@@ -20,18 +20,7 @@ SpriteAtlas:
       readable: 0
       crunchedCompression: 0
       sRGB: 1
-    platformSettings:
-    - serializedVersion: 2
-      m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 1024
-      m_ResizeAlgorithm: 0
-      m_TextureFormat: -1
-      m_TextureCompression: 1
-      m_CompressionQuality: 50
-      m_CrunchedCompression: 0
-      m_AllowsAlphaSplitting: 0
-      m_Overridden: 0
-      m_AndroidETC2FallbackOverride: 0
+    platformSettings: []
     packingSettings:
       serializedVersion: 2
       padding: 4
@@ -45,32 +34,10 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 46422c13d7482294cb6723c1675adf92, type: 3}
     - {fileID: 102900000, guid: f093f9dac90e85846a21e2c357318274, type: 3}
     - {fileID: 102900000, guid: 55e68412f3b327d4ea8b785945bab30e, type: 3}
-    totalSpriteSurfaceArea: 5360640
+    totalSpriteSurfaceArea: 0
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 21300000, guid: ab85ceb3c27d629449cb64bad632651a, type: 3}
-  - {fileID: 21300000, guid: a5b1e3349db2f2144ac756c19fce235c, type: 3}
-  - {fileID: 21300000, guid: 4210f28421d1b5042b27d55d12499b85, type: 3}
-  - {fileID: 21300000, guid: 33457677973a7ee439ef3017e966b0d9, type: 3}
-  - {fileID: 21300000, guid: 7ab2b8381b4633b449787f952e51d9b6, type: 3}
-  - {fileID: 21300000, guid: 935c0f695cd777d489d636a81c7a9856, type: 3}
-  - {fileID: 21300000, guid: cf4892d9a30f90e4697e3d44e442b1d3, type: 3}
-  - {fileID: 21300000, guid: bce6f3abd9469a8499e204892f5cd358, type: 3}
-  - {fileID: 21300000, guid: 229b8d6e5b84ebd409c422ac747ab511, type: 3}
-  - {fileID: 21300000, guid: fc6e787e3dce1c742ae845fcb2702132, type: 3}
-  - {fileID: 21300000, guid: 6bf43c2f427a1db40819b241b9d7c446, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - stage1_background_layer1
-  - stage0_background
-  - stage0_background_layer1
-  - stage2_background
-  - stage1_thumbnail
-  - stage2_background_layer1
-  - stage1_background
-  - stage2_thumbnail
-  - stage0_background_layer2
-  - stage2_field
-  - stage1_field
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_Tag: MapAtlas
   m_IsVariant: 0
