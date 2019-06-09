@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - obstacle
+  - Npc
+  - pushed
+  - bullet
+  - attackPointNPC
+  - FxTemporaire
+  - attackPoint
+  - EquipWeaponPoint
+  - EquipBackPoint
+  - Rope
+  - Enemy
+  - EquipHatPoint
+  - ExplosionFX
+  - EquipSymbolPoint
+  - ground
+  - Obstacle
+  - grass
+  - HealthBar
+  - weapon
+  - coin
+  - BombPickup
+  - EffectSound
+  - Wall
+  - Boom
+  - Hero
+  - Castle
+  - arrow
+  - CoinUI
+  - PopupPanel
+  - HeroPoint
+  - ShowPoint
+  - heart
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Background
+  - Attackable
+  - Hero
+  - Enemy
+  - Castle
+  - HeroIgnore
+  - EnemyIgnore
+  - Coin
+  - ShowUI
+  - 
+  - 
+  - Decompositionable
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - FieldObject
+  - Field
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 623079803
+    locked: 0
+  - name: BackEffect
+    uniqueID: 3962018883
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: FrontEffect
+    uniqueID: 3934385447
+    locked: 0
+  - name: Foreground
+    uniqueID: 1577768137
+    locked: 0
+  - name: CanvasUI
+    uniqueID: 1063215913
+    locked: 0
+  - name: ShowUI
+    uniqueID: 1639062169
+    locked: 0
+  - name: ShowObject
+    uniqueID: 1042282855
+    locked: 0
