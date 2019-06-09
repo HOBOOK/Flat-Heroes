@@ -30,8 +30,8 @@ public class UI_Manager : MonoBehaviour
     }
     private void OnEnable()
     {
-        if (Camera.main.GetComponent<BlurOptimized>()!=null)
-            Camera.main.GetComponent<BlurOptimized>().enabled = false;
+        //if (Camera.main.GetComponent<BlurOptimized>()!=null)
+        //    Camera.main.GetComponent<BlurOptimized>().enabled = false;
         if (Title!=null)
         {
             if (Title.GetComponent<AiryUIAnimatedElement>() != null)
@@ -99,8 +99,8 @@ public class UI_Manager : MonoBehaviour
         }
         if (popupObject != null && popupObject.GetComponentInChildren<AiryUIAnimatedElement>() != null)
         {
-            if(Camera.main.GetComponent<BlurOptimized>()!=null)
-                Camera.main.GetComponent<BlurOptimized>().enabled = true;
+            //if(Camera.main.GetComponent<BlurOptimized>()!=null)
+            //    Camera.main.GetComponent<BlurOptimized>().enabled = true;
             GameObject information = popupObject.transform.GetChild(2).gameObject;
             if(isWin)
             {
