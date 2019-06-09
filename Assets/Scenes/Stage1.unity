@@ -1149,7 +1149,6 @@ GameObject:
   - component: {fileID: 67004241}
   - component: {fileID: 67004244}
   - component: {fileID: 67004245}
-  - component: {fileID: 67004246}
   - component: {fileID: 67004247}
   m_Layer: 0
   m_Name: Main Camera
@@ -1250,24 +1249,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragSpeed: 2
---- !u!114 &67004246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67004240}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4975a6e437fc3b149a8cd508ce5bdd69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  threshold: 0.8
-  intensity: 1
-  blurSize: 1
-  blurIterations: 4
-  blurType: 0
-  fastBloomShader: {fileID: 4800000, guid: 68a00c837b82e4c6d92e7da765dc5f1d, type: 3}
 --- !u!114 &67004247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8994,7 +8975,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 14.01, y: 4.23}
+    oldSize: {x: 14.017864, y: 4.23}
     newSize: {x: 14.01, y: 4.23}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -12548,7 +12529,7 @@ SpriteRenderer:
   m_Size: {x: 0.96, y: 0.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1838988267
