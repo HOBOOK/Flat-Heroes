@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "영웅스킬", menuName = "영웅스킬")]
-public class HeroSkill : ScriptableObject
+[CreateAssetMenu(fileName = "사용자스킬", menuName = "사용자스킬")]
+public class UserSkill : ScriptableObject
 {
     public enum SkillType { ATTACK, HEAL, BUFF, DEBUFF };
-    public enum ApplyType { All, Allys, Enemys };
-
     public SkillType skillType;
+    public enum ApplyType { All, Allys, Enemys };
     public ApplyType applyType;
-    public int skillAnimationType;
     public string skillName;
     public string skillDescription;
     public int skillLevel;
@@ -20,8 +18,8 @@ public class HeroSkill : ScriptableObject
     public GameObject skillEffect;
     public AudioClip skillSound;
 
-    public HeroSkill() { }
-    public HeroSkill(SkillType skilltype, ApplyType applytype, string skillname, string skilldescription, int skilllevel, int skillabillity, float skilldelaytime)
+    public UserSkill() { }
+    public UserSkill(SkillType skilltype, ApplyType applytype, string skillname, string skilldescription, int skilllevel, int skillabillity, float skilldelaytime)
     {
         this.skillType = skilltype;
         this.applyType = applytype;
@@ -32,3 +30,4 @@ public class HeroSkill : ScriptableObject
         this.skillDelayTime = skilldelaytime;
     }
 }
+

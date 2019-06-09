@@ -1,41 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "스킬", menuName = "사용자스킬")]
-public class UserSkill : ScriptableObject
-{
-    public enum SkillType { ATTACK,HEAL,BUFF,DEBUFF};
-    public SkillType skillType;
-    public enum ApplyType { All, Allys, Enemys};
-    public ApplyType applyType;
-    public string skillName;
-    public string skillDescription;
-    public int skillLevel;
-    public int skillAbillity;
-    public float skillDelayTime;
-    public Sprite skillImage;
-    public GameObject skillEffect;
-    public AudioClip skillSound;
-
-    public UserSkill() { }
-    public UserSkill(SkillType skilltype, ApplyType applytype, string skillname, string skilldescription, int skilllevel, int skillabillity, float skilldelaytime)
-    {
-        this.skillType = skilltype;
-        this.applyType = applytype;
-        this.skillName = skillname;
-        this.skillDescription = skilldescription;
-        this.skillLevel = skilllevel;
-        this.skillAbillity = skillabillity;
-        this.skillDelayTime = skilldelaytime;
-    }
-}
 
 public class UserSkillManager : MonoBehaviour
 {
     public static UserSkillManager instance = null;
-    //private List<UserSkill> userSkills = new List<UserSkill>();
     public UserSkill[] selectedSkills = new UserSkill[2];
     private float[] selectedSkillDelayTime = new float[2];
     private bool[] selectedSkillEnable = new bool[2];
@@ -55,7 +27,7 @@ public class UserSkillManager : MonoBehaviour
         SkillUpdate();
     }
 
-    private void Start()
+    private void OnEnable()
     {
         InitSkill();
     }
@@ -64,16 +36,18 @@ public class UserSkillManager : MonoBehaviour
     {
         if (!isSkillSettingCompleted)
         {
-            for(int i =0; i<2;i++)
+            for (int i =0; i< selectedSkills.Length; i++)
             {
                 SetSkill(selectedSkills[i], i);
             }
+            
             isSkillSettingCompleted = true;
         }
     }
 
     public void SetSkill(UserSkill userSkill, int skillNumber)
     {
+        Debugging.Log(userSkill.name);
         selectedSkillDelayTime[skillNumber] = userSkill.skillDelayTime;
         selectedSkillEnable[skillNumber] = false;
     }

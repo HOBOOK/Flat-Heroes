@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: AllysHeal
-  m_EditorClassIdentifier: Assembly-CSharp::UserSkill
+  m_Script: {fileID: 11500000, guid: 4cda4ae0bc5157b489e38ea51e80947d, type: 3}
+  m_Name: Recovery
+  m_EditorClassIdentifier: 
   skillType: 1
   applyType: 1
-  skillName: AllysHeal
-  skillDescription: "\uC544\uAD70 \uD790"
+  skillName: "\uD68C\uBCF5"
+  skillDescription: "\uC601\uC6C5\uB4E4\uC758 \uCCB4\uB825\uC744 \uD68C\uBCF5\uD55C\uB2E4"
   skillLevel: 1
-  skillAbillity: 10
-  skillDelayTime: 10
-  skillImage: {fileID: 21300004, guid: 4b5c40b3adedacb42935da1968b45675, type: 3}
+  skillAbillity: 30
+  skillDelayTime: 7
+  skillImage: {fileID: 21300000, guid: 03aa629a72b7bc14b932213a17ecd2f6, type: 3}
   skillEffect: {fileID: 1476639049503398517, guid: 8c1f8a2191f832741beeff86586414a8,
     type: 3}
   skillSound: {fileID: 8300000, guid: ce415b7198c9d7a498d2228effb42ce0, type: 3}

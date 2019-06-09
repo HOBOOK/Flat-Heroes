@@ -43,6 +43,6 @@ public class LoadAssetBundle : MonoBehaviour
         }
         PrefabsDatabaseManager.instance.GetHeroList();
 
-        //Caching.ClearCache();
+        Caching.ClearCache();
     }
 }
