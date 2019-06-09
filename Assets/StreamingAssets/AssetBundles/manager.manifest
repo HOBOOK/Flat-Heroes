@@ -1,0 +1,67 @@
+ManifestFileVersion: 0
+CRC: 213381174
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 4b6958ee1cf1fc5239d94d20a5f57edd
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 37eae78ebf404b051fdb1faf3e0ce9da
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 82
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5df837a02018caa45bb1e9f517c909d0, type: 3}
+- Class: 114
+  Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ca4b7d056218a2e478b0a4338b2d97fd, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b8db6d1be928a5247942a6150dcfaaa2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 29362e4eb7936074b8ea895c6c782018, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: abbfae4e250be064297d015b2abe752e, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ac16b78e5269bca49ba390a5227f68c1, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+Assets:
+- Assets/AllResource/SoundManager.prefab
+- Assets/AllResource/PrefabDatabase.prefab
+- Assets/AllResource/LoadSceneManager.prefab
+- Assets/AllResource/EffectPoolManager.prefab
+Dependencies: []

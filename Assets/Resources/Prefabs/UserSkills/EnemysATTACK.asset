@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: EnemysATTACK
+  m_EditorClassIdentifier: Assembly-CSharp::UserSkill
+  skillType: 0
+  applyType: 2
+  skillName: EnemysAttack
+  skillDescription: "\uC801\uB4E4 \uBAA8\uB450 \uACF5\uACA9"
+  skillLevel: 1
+  skillAbillity: 5
+  skillDelayTime: 3
+  skillImage: {fileID: 21300000, guid: f1291683e3127cd4891db662db2edfc5, type: 3}
+  skillEffect: {fileID: 1332444886512078, guid: e4a5f354cdac2d146a25921904f66303,
+    type: 3}
+  skillSound: {fileID: 8300000, guid: 64fb9477894fa2e4a997518fbb1c2f15, type: 3}

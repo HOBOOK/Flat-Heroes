@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MapCollection>
+  <Maps>
+    <Map id="5001">
+      <Name>격전의 숲 1</Name>
+      <Description>하늘에서 정체불명의 물체가 떨어졌다... 예감이 좋지 않다.</Description>
+      <StageNumber>1</StageNumber>
+      <Image>Maps/map_001</Image>
+      <Enable>true</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5002">
+      <Name>격전의 숲 2</Name>
+      <Description>1-2맵이다.</Description>
+      <StageNumber>1</StageNumber>
+      <Image>Maps/map_002</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5003">
+      <Name>격전의 숲 3</Name>
+      <Description>1-3맵이다.</Description>
+      <StageNumber>1</StageNumber>
+      <Image>Maps/map_003</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5004">
+      <Name>격전의 숲 4</Name>
+      <Description>1-4맵이다.</Description>
+      <StageNumber>1</StageNumber>
+      <Image>Maps/map_004</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5005">
+      <Name>격전의 숲 5</Name>
+      <Description>1-5맵이다.</Description>
+      <StageNumber>1</StageNumber>
+      <Image>Maps/map_005</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5006">
+      <Name>격전의 숲 6</Name>
+      <Description>1-6맵이다.</Description>
+      <StageNumber>1</StageNumber>
+      <Image>Maps/map_006</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5007">
+      <Name>격전의 숲 7</Name>
+      <Description>1-7맵이다.</Description>
+      <StageNumber>1</StageNumber>
+      <Image>Maps/map_007</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5008">
+      <Name>격전의 숲 8</Name>
+      <Description>1-8맵이다.</Description>
+      <StageNumber>1</StageNumber>
+      <Image>Maps/map_008</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5009">
+      <Name>격전의 숲 9</Name>
+      <Description>1-9맵이다.</Description>
+      <StageNumber>1</StageNumber>
+      <Image>Maps/map_009</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5010">
+      <Name>격전의 숲 끝자락</Name>
+      <Description>강력한 힘을 내뿜고 있는 자가 등장했다.. 물러 설 수 없어</Description>
+      <StageNumber>1</StageNumber>
+      <Image>Maps/map_010</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5011">
+      <Name>2-1 맵</Name>
+      <Description>2-1맵이다.</Description>
+      <StageNumber>2</StageNumber>
+      <Image>Maps/map_011</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5012">
+      <Name>2-2 맵</Name>
+      <Description>2-2맵이다.</Description>
+      <StageNumber>2</StageNumber>
+      <Image>Maps/map_012</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5013">
+      <Name>2-3 맵</Name>
+      <Description>2-3맵이다.</Description>
+      <StageNumber>2</StageNumber>
+      <Image>Maps/map_013</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5014">
+      <Name>2-4 맵</Name>
+      <Description>2-4맵이다.</Description>
+      <StageNumber>2</StageNumber>
+      <Image>Maps/map_014</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5015">
+      <Name>2-5 맵</Name>
+      <Description>2-5맵이다.</Description>
+      <StageNumber>2</StageNumber>
+      <Image>Maps/map_015</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5016">
+      <Name>2-6 맵</Name>
+      <Description>2-6맵이다.</Description>
+      <StageNumber>2</StageNumber>
+      <Image>Maps/map_016</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5017">
+      <Name>2-7 맵</Name>
+      <Description>2-7맵이다.</Description>
+      <StageNumber>2</StageNumber>
+      <Image>Maps/map_017</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5018">
+      <Name>2-8맵</Name>
+      <Description>2-8맵이다.</Description>
+      <StageNumber>2</StageNumber>
+      <Image>Maps/map_018</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5019">
+      <Name>2-9 맵</Name>
+      <Description>2-9맵이다.</Description>
+      <StageNumber>2</StageNumber>
+      <Image>Maps/map_019</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5020">
+      <Name>2-10 맵</Name>
+      <Description>2-10맵이다.</Description>
+      <StageNumber>2</StageNumber>
+      <Image>Maps/map_020</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5021">
+      <Name>3-1 맵</Name>
+      <Description>3-1맵이다.</Description>
+      <StageNumber>3</StageNumber>
+      <Image>Maps/map_021</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5022">
+      <Name>3-2 맵</Name>
+      <Description>3-2맵이다.</Description>
+      <StageNumber>3</StageNumber>
+      <Image>Maps/map_022</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5023">
+      <Name>3-3 맵</Name>
+      <Description>3-3맵이다.</Description>
+      <StageNumber>3</StageNumber>
+      <Image>Maps/map_023</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5024">
+      <Name>3-4맵</Name>
+      <Description>3-4맵이다.</Description>
+      <StageNumber>3</StageNumber>
+      <Image>Maps/map_024</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5025">
+      <Name>3-5맵</Name>
+      <Description>3-5맵이다.</Description>
+      <StageNumber>3</StageNumber>
+      <Image>Maps/map_025</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5026">
+      <Name>3-6맵</Name>
+      <Description>3-6맵이다.</Description>
+      <StageNumber>3</StageNumber>
+      <Image>Maps/map_026</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5027">
+      <Name>3-7 맵</Name>
+      <Description>3-7맵이다.</Description>
+      <StageNumber>3</StageNumber>
+      <Image>Maps/map_027</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5028">
+      <Name>3-8 맵</Name>
+      <Description>3-8맵이다.</Description>
+      <StageNumber>3</StageNumber>
+      <Image>Maps/map_028</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5029">
+      <Name>3-1 맵</Name>
+      <Description>3-9맵이다.</Description>
+      <StageNumber>3</StageNumber>
+      <Image>Maps/map_029</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5030">
+      <Name>3-10 맵</Name>
+      <Description>3-10맵이다.</Description>
+      <StageNumber>3</StageNumber>
+      <Image>Maps/map_030</Image>
+      <Enable>false</Enable>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+  </Maps>
+</MapCollection>

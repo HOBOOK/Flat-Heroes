@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HeroCollection>
+  <Heros>
+    <Hero id="101">
+      <Name>동해</Name>
+      <Image>HeroThumbnail/thumbnail_001</Image>
+      <Enable>true</Enable>
+      <Type>0</Type>
+      <Description>동쪽 나라에서 온 실력이 출중한 무사</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+    </Hero>
+    <Hero id="102">
+      <Name>화이트</Name>
+      <Image>HeroThumbnail/thumbnail_002</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>유명 용병단의 전설의 사령관</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+    </Hero>
+    <Hero id="103">
+      <Name>알버스</Name>
+      <Image>HeroThumbnail/thumbnail_003</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>위기가 다치자 등장한 정체불명의 마법사</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+    </Hero>
+    <Hero id="104">
+      <Name>아르테미스</Name>
+      <Image>HeroThumbnail/thumbnail_004</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>여명단을 이끌고 있는 수장. 그녀의 활시위소리가 들리면 도망가기를 포기하라</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+    </Hero>
+    <Hero id="105">
+      <Name>켄</Name>
+      <Image>HeroThumbnail/thumbnail_005</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>동쪽 나라에서 악명높은 어쌔신</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+    </Hero>
+    <Hero id="106">
+      <Name>그레고리우스</Name>
+      <Image>HeroThumbnail/thumbnail_006</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>영웅 설명 없음.</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+    </Hero>
+    <Hero id="107">
+      <Name>7번 영웅</Name>
+      <Image>HeroThumbnail/thumbnail_007</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>영웅 설명 없음</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+    </Hero>
+    <Hero id="501">
+      <Name>좀비</Name>
+      <Image>HeroThumbnail/thumbnail_501</Image>
+      <Enable>false</Enable>
+      <Type>1</Type>
+      <Description>???</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+    </Hero>
+    <Hero id="510">
+      <Name>좀비자이언트</Name>
+      <Image>HeroThumbnail/thumbnail_501</Image>
+      <Enable>false</Enable>
+      <Type>1</Type>
+      <Description>???</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+    </Hero>
+  </Heros>
+</HeroCollection>

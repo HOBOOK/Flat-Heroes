@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: AllysHeal
+  m_EditorClassIdentifier: Assembly-CSharp::UserSkill
+  skillType: 1
+  applyType: 1
+  skillName: AllysHeal
+  skillDescription: "\uC544\uAD70 \uD790"
+  skillLevel: 1
+  skillAbillity: 10
+  skillDelayTime: 10
+  skillImage: {fileID: 21300004, guid: 4b5c40b3adedacb42935da1968b45675, type: 3}
+  skillEffect: {fileID: 1476639049503398517, guid: 8c1f8a2191f832741beeff86586414a8,
+    type: 3}
+  skillSound: {fileID: 8300000, guid: ce415b7198c9d7a498d2228effb42ce0, type: 3}

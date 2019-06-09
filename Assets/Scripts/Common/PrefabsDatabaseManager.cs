@@ -1,0 +1,126 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
+using UnityEngine;
+
+// Destroy를 사용할 객체관리클래스
+public class PrefabsDatabaseManager : MonoBehaviour
+{
+    public static PrefabsDatabaseManager instance = null;
+    public GameObject heroLobbyPoint;
+    public static List<GameObject> heroPrefabList = new List<GameObject>();
+    public static List<GameObject> monsterPrefabList = new List<GameObject>();
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        //var heroPrefabs = Resources.LoadAll<GameObject>("Prefabs/Heros");
+        //foreach (var heroPrefab in heroPrefabs)
+        //{
+        //    heroPrefabList.Add(heroPrefab);
+        //}
+        //var monsterPrefabs = Resources.LoadAll<GameObject>("Prefabs/Monsters");
+        //foreach (var monsterPrefab in monsterPrefabs)
+        //{
+        //    heroPrefabList.Add(monsterPrefab);
+        //}
+    }
+
+    public void AddPrefabToHeroList(GameObject prefab)
+    {
+        heroPrefabList.Add(prefab);
+    }
+
+    public void GetHeroList()
+    {
+        string str = "";
+        foreach(var i in heroPrefabList)
+        {
+            str += i.name + "\r\n";
+        }
+        Debugging.Log("HeroPrefabList : "+str);
+    }
+
+    public void AddPrefabToMonsterList(GameObject prefab)
+    {
+        monsterPrefabList.Add(prefab);
+    }
+
+    public Transform GetLobbyPoint(int index)
+    {
+        if (heroLobbyPoint == null)
+        {
+            heroLobbyPoint = GameObject.Find("HeroPoints");
+        }
+        if(heroPrefabList!=null)
+        {
+            Transform point = null;
+            int childcnt = heroLobbyPoint.transform.childCount;
+            if (index < childcnt)
+            {
+                point = heroLobbyPoint.transform.GetChild(index).transform;
+            }
+            else
+            {
+                Debugging.Log("index초과 > " + index);
+            }
+            if (point != null)
+                return point;
+            else
+                Debugging.Log("point가 null");
+        }
+        else
+        {
+            Debugging.Log("heroPrefabList가 Null임");
+        }
+;       return null;
+    }
+    public GameObject GetHeroPrefab(int id)
+    {
+        if(heroPrefabList!=null)
+        {
+            foreach(var hero in heroPrefabList)
+            {
+
+                if(hero.GetComponent<Hero>().id==id)
+                {
+                    return hero;
+                }
+            }
+            Debugging.LogWarning(heroPrefabList.Count + " 의 영웅 프리팹 준비됨. >> " + id + " 의 영웅 프리팹을 찾을 수 없음.");
+            return null;
+        }
+        else
+        {
+
+            Debugging.LogWarning("heroPrefabList가 없음.");
+            return null;
+        }
+    }
+
+    public GameObject GetMonsterPrefab(int id)
+    {
+        if (monsterPrefabList != null)
+        {
+            foreach (var monster in monsterPrefabList)
+            {
+                if (monster.GetComponent<Hero>().id == id)
+                {
+                    return monster;
+                }
+            }
+            GetHeroList();
+            Debugging.LogWarning(heroPrefabList.Count + " 의 몬스터 프리팹 준비됨. >> " + id + " 의 몬스터 프리팹을 찾을 수 없음.");
+            return null;
+        }
+        else
+        {
+
+            Debugging.LogWarning("monsterPrefabList 가 없음.");
+            return null;
+        }
+    }
+}
