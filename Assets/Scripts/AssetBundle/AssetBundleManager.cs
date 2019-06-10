@@ -59,7 +59,6 @@ public class AssetBundleManager : MonoBehaviour
     static private AssetBundleTimeManager timeManager;
     static private Dictionary<string, AssetBundleNode> dicAssetBundle;
     static private List<string> lstKeyName;
-    public GameObject progressViewUI;
 
     public IEnumerator LoadAssetBundle(string url, int version, bool removeAll, float lifeTime = 0.0f, string bundleName=null)
     {
@@ -86,13 +85,7 @@ public class AssetBundleManager : MonoBehaviour
                     while(!uwr.isDone)
                     {
                         yield return null;
-                        if(progressViewUI!=null)
-                        {
-                            if (!progressViewUI.activeSelf)
-                                progressViewUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
-                            progressViewUI.GetComponentInChildren<Slider>().transform.GetComponentInChildren<Text>().text = string.Format("{0}\r\n다운로드중...{1}%", bundleName, uwr.downloadProgress * 100f);
-                            progressViewUI.GetComponentInChildren<Slider>().value = uwr.downloadProgress;
-                        }
+                        UI_StartManager.instance.SetDownLoadUIProgressbarValue(uwr.downloadProgress, bundleName);
                     }
                     
                     AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(uwr);

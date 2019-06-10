@@ -72,7 +72,10 @@ public class LoadSceneManager : MonoBehaviour
     IEnumerator LoadingScene()
     {
         isLoadStart = true;
-        UI_Manager.instance.CoverFadeIn();
+        if(UI_Manager.instance==null&&UI_StartManager.instance!=null)
+            UI_StartManager.instance.CoverFadeIn();
+        else
+            UI_Manager.instance.CoverFadeIn();
         yield return new WaitForSeconds(2.0f);
         if (Canvas==null)
             Canvas = GameObject.Find("CanvasShow");

@@ -79,10 +79,19 @@ public class AssetLoadManager : MonoBehaviour
         if(!dicAsset[keyName].ContainsKey(assetName))
         {
             AssetBundleRequest abReq = AB.LoadAssetAsync(assetName);
-            yield return abReq;
-            if(abReq.asset!=null)
+            while (!abReq.isDone)
+            {
+                yield return null;
+                UI_StartManager.instance.SetAssetLoadUIProgressbarValue(abReq.progress, assetName,UI_StartManager.instance.CurrentDownloadCount);
+            }
+            if (abReq.asset!=null)
             {
                 dicAsset[keyName].Add(assetName, abReq.asset);
+                UI_StartManager.instance.CurrentDownloadCount += 1;
+            }
+            else
+            {
+                Debugging.LogWarning(assetName + " 번들로드에 실패하였습니다. > NULL");
             }
         }
     }

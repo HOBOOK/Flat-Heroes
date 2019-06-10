@@ -11,12 +11,12 @@ public class LoadAssetBundle : MonoBehaviour
 
     IEnumerator Start()
     {
-        AssetBundleManager.Instance.progressViewUI = ProgressViewUI;
+        UI_StartManager.instance.ShowDownloadUI();
+        UI_StartManager.instance.MaxDownloadCount = 10;
         yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetBundle(BundleManagerURL, version, false, 2.0f,"게임매니저"));
         print(AssetBundleManager.Instance.isVersionAdded(BundleManagerURL, version));
         yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetBundle(BundleHeroURL, version, false,2.0f,"영웅데이터"));
         print(AssetBundleManager.Instance.isVersionAdded(BundleHeroURL, version));
-
 
         yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetFromABAsync(BundleManagerURL, version, "LoadSceneManager"));
         GameObject obj = AssetBundleManager.Instance.GetLoadedAsset(BundleManagerURL, version, "LoadSceneManager") as GameObject;
@@ -34,8 +34,6 @@ public class LoadAssetBundle : MonoBehaviour
         GameObject obj4 = AssetBundleManager.Instance.GetLoadedAsset(BundleManagerURL, version, "EffectPoolManager") as GameObject;
         Instantiate(obj4, this.transform);
 
-
-
         for (int i = 0; i < 7; i++)
         {
             yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetFromABAsync(BundleHeroURL, version, "Hero00" + (i + 1)));
@@ -43,6 +41,7 @@ public class LoadAssetBundle : MonoBehaviour
         }
         PrefabsDatabaseManager.instance.GetHeroList();
 
-        Caching.ClearCache();
+        //Caching.ClearCache();
+        UI_StartManager.instance.ShowStartUI();
     }
 }
