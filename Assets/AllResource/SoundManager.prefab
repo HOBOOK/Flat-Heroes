@@ -76,7 +76,7 @@ MonoBehaviour:
   fireShot: {fileID: 8300000, guid: d083adb0d41328b49bcb5b6a9d05bbe2, type: 3}
   shootPistolSilence: {fileID: 8300000, guid: faf46bca684452646b3b94bd9a09101d, type: 3}
   magic: {fileID: 8300000, guid: 88e117ed0ce5729499497283dc2e1e27, type: 3}
-  Bgm1: {fileID: 8300000, guid: 9cfb674fd95011840a75c4eccaa79d1b, type: 3}
+  Bgm1: {fileID: 8300000, guid: 63c077ee0595b4cb1b2757d5ee5d9bfe, type: 3}
   Bgm2: {fileID: 8300000, guid: 633a2afc030fd4e199214806b08d5242, type: 3}
 --- !u!1 &2522054163756783632
 GameObject:

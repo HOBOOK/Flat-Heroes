@@ -26,9 +26,7 @@ public class UI_StartManager : MonoBehaviour
             instance = this;
         else
             Destroy(instance);
-    }
-    private void OnEnable()
-    {
+
         DownloadUI.gameObject.SetActive(false);
         StartAbleUI.gameObject.SetActive(false);
         TitleUI.gameObject.SetActive(false);
@@ -37,6 +35,7 @@ public class UI_StartManager : MonoBehaviour
         startButton.interactable = false;
         versionText.text = Application.version;
     }
+
     public void SetDownloadCount(int maxCount)
     {
         MaxDownloadCount = maxCount;

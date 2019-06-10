@@ -70,10 +70,11 @@ public class AssetBundleManager : MonoBehaviour
         if(this.isVersionAdded(url,version))
         {
             timeManager.ResetLifeTime(keyName);
+
         }
         else
         {
-            using (UnityWebRequest uwr = UnityWebRequestAssetBundle.GetAssetBundle(url,0,0))
+            using (UnityWebRequest uwr = UnityWebRequestAssetBundle.GetAssetBundle(url, (uint)version, 0))
             {
                 var operation = uwr.SendWebRequest();
                 
@@ -116,6 +117,7 @@ public class AssetBundleManager : MonoBehaviour
         }
         yield return null;
     }
+
     public IEnumerator LoadAssetFromABAsync(string url, int version, string assetName, bool resetLife = true)
     {
         yield return StartCoroutine(loadManager.LoadAssetFromABAsync(url, version, assetName, resetLife));
@@ -158,7 +160,7 @@ public class AssetBundleManager : MonoBehaviour
     public void RemoveAssetBundle(string url, int version)
     {
         string keyName = this.MakeKeyName(url, version);
-        if(dicAssetBundle.ContainsKey(keyName))
+        if (dicAssetBundle.ContainsKey(keyName))
         {
             if(dicAssetBundle[keyName].removeAll ==true)
             {
@@ -171,6 +173,7 @@ public class AssetBundleManager : MonoBehaviour
             dicAssetBundle[keyName].UnloadAssetBundle();
             dicAssetBundle.Remove(keyName);
             lstKeyName.Remove(keyName);
+
         }
     }
 
