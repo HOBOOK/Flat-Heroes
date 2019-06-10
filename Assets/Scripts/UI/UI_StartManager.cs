@@ -12,6 +12,7 @@ public class UI_StartManager : MonoBehaviour
     public GameObject StartAbleUI;
     public GameObject CoverUI;
     public GameObject TitleUI;
+    public GameObject ErrorAlertUI;
     public Button startButton;
     public Text versionText;
 
@@ -31,11 +32,16 @@ public class UI_StartManager : MonoBehaviour
         DownloadUI.gameObject.SetActive(false);
         StartAbleUI.gameObject.SetActive(false);
         TitleUI.gameObject.SetActive(false);
+        ErrorAlertUI.gameObject.SetActive(false);
         downloadProgressBar = DownloadUI.GetComponentInChildren<Slider>();
         startButton.interactable = false;
         versionText.text = Application.version;
     }
-
+    public void SetDownloadCount(int maxCount)
+    {
+        MaxDownloadCount = maxCount;
+        CurrentDownloadCount = 0;
+    }
     public void ShowStartUI()
     {
         DownloadUI.gameObject.SetActive(false);
@@ -49,6 +55,16 @@ public class UI_StartManager : MonoBehaviour
         startButton.interactable = false;
         StartAbleUI.gameObject.SetActive(false);
         DownloadUI.gameObject.SetActive(true);
+    }
+    public void ShowErrorUI(string errorMsg)
+    {
+        if(ErrorAlertUI!=null)
+        {
+            ErrorAlertUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
+            //ErrorAlertUI.gameObject.SetActive(true);
+            ErrorAlertUI.transform.GetChild(0).GetChild(0).GetComponentInChildren<Text>().text = errorMsg;
+        }
+
     }
 
     public void SetDownLoadUIProgressbarValue(float v, string downloadBundleName)

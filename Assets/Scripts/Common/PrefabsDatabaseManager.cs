@@ -31,7 +31,13 @@ public class PrefabsDatabaseManager : MonoBehaviour
 
     public void AddPrefabToHeroList(GameObject prefab)
     {
-        heroPrefabList.Add(prefab);
+        if (prefab != null)
+            heroPrefabList.Add(prefab);
+        else
+        {
+            UI_StartManager.instance.ShowErrorUI("영웅 데이터가 정상적으로 추가되지 않았습니다.");
+        }
+
     }
 
     public void GetHeroList()

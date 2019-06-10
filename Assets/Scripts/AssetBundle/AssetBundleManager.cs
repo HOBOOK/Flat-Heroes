@@ -73,23 +73,23 @@ public class AssetBundleManager : MonoBehaviour
         }
         else
         {
-            using (UnityWebRequest uwr = UnityWebRequestAssetBundle.GetAssetBundle(url))
+            using (UnityWebRequest uwr = UnityWebRequestAssetBundle.GetAssetBundle(url,0,0))
             {
-                uwr.SendWebRequest();
+                var operation = uwr.SendWebRequest();
+                
+                while (!operation.isDone)
+                {
+                    yield return null;
+                    UI_StartManager.instance.SetDownLoadUIProgressbarValue(operation.progress, bundleName);
+                }
                 if (uwr.isNetworkError || uwr.isHttpError)
                 {
-                    Debug.Log(uwr.error);
+                    UI_StartManager.instance.ShowErrorUI("네트워크 오류로 인해 다운로드에 실패하였습니다.");
                 }
                 else
                 {
-                    while(!uwr.isDone)
-                    {
-                        yield return null;
-                        UI_StartManager.instance.SetDownLoadUIProgressbarValue(uwr.downloadProgress, bundleName);
-                    }
-                    
                     AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(uwr);
-
+                    Debugging.Log(bundle.name);
                     var materials = bundle.LoadAllAssets<Material>();
                     foreach (Material m in materials)
                     {
@@ -107,7 +107,6 @@ public class AssetBundleManager : MonoBehaviour
                     AssetBundleNode node = new AssetBundleNode(url, version, removeAll, bundle);
                     dicAssetBundle.Add(keyName, node);
                     lstKeyName.Add(keyName);
-
                     if (lifeTime > 0.0f)
                     {
                         timeManager.SetLifeTime(keyName, lifeTime);
@@ -115,6 +114,7 @@ public class AssetBundleManager : MonoBehaviour
                 }
             }
         }
+        yield return null;
     }
     public IEnumerator LoadAssetFromABAsync(string url, int version, string assetName, bool resetLife = true)
     {

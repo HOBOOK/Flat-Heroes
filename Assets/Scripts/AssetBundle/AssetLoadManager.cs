@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -56,7 +57,8 @@ public class AssetLoadManager : MonoBehaviour
         string keyName = abManager.MakeKeyName(url, version);
         if(!abManager.isVersionAdded(url,version)||this.IsAssetLoaded(url,version,assetName))
         {
-            //yield return null;
+            UI_StartManager.instance.ShowErrorUI("이미 로드 되어있습니다.");
+            yield return null;
         }
         else
         {
@@ -91,7 +93,7 @@ public class AssetLoadManager : MonoBehaviour
             }
             else
             {
-                Debugging.LogWarning(assetName + " 번들로드에 실패하였습니다. > NULL");
+                UI_StartManager.instance.ShowErrorUI(assetName + " 로드에 실패하였습니다.");
             }
         }
     }
@@ -103,12 +105,20 @@ public class AssetLoadManager : MonoBehaviour
         if(abManager.isVersionAdded(url,version)&&this.IsAssetLoaded(url,version,assetName))
         {
             obj = dicAsset[keyName][assetName];
+            Debugging.Log(assetName + "체크.");
 
-            if(remove)
+            if (remove)
             {
                 dicAsset[keyName].Remove(assetName);
             }
         }
+        if(obj==null)
+        {
+            Debugging.Log(assetName + "이 Null 입니다.");
+            UI_StartManager.instance.ShowErrorUI(assetName + " 로드에 실패하였습니다.");
+        }
+
+
         return obj;
     }
 
