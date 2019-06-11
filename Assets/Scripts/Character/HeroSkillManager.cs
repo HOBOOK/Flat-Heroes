@@ -76,8 +76,9 @@ public class HeroSkillManager : MonoBehaviour
         if(id!=0)
         {
             var stageHero = CharactersManager.instance.GetCurrentInStageHero(id).GetComponent<Hero>();
-            stageHero.status.skillGuage = 100;
-            if (stageHero != null && stageHero.isSkillAble())
+            int needEnergy = stageHero.status.skillEnegry;
+            needEnergy = 100;
+            if (stageHero != null && stageHero.isSkillAble()&&StageManagement.instance.IsSkillAble(needEnergy))
             {
                 stageHero.SkillAttack();
                 this.transform.GetChild(index).GetComponent<Animator>().SetBool("isAble", false);
@@ -87,10 +88,11 @@ public class HeroSkillManager : MonoBehaviour
                 GameObject clickEffect = EffectPool.Instance.PopFromPool("BalloonPopExplosion");
                 clickEffect.transform.position = this.transform.GetChild(index).transform.position;
                 clickEffect.SetActive(true);
+                StageManagement.instance.UseSkill(needEnergy);
             }
             else
             {
-
+                Debugging.Log(id + " 영웅의 스킬을 사용할 수 없습니다.");
             }
         }
     }

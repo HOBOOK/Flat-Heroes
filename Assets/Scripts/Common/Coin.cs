@@ -56,6 +56,7 @@ public class Coin : MonoBehaviour
                     GetCoin(coinAmount);
                     isGet = true;
                     ObjectPool.Instance.PushToPool("Coin", gameObject);
+                    MagnetTarget.GetComponentInParent<UI_StageCoin>().GetEffect();
                 }
             }
             if (dropCoinUI != null)

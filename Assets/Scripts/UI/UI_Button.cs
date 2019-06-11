@@ -211,7 +211,7 @@ public class UI_Button : MonoBehaviour
                     HeroSystem.SetObtainHero(characterId);
                     callBackScript.GetComponent<UI_ShopCharacter>().RefreshUI();
                     HeroData hd = HeroSystem.GetHero(characterId);
-                    UI_Manager.instance.ShowGetAlert("HeroThumbnail/" + hd.image, string.Format("<color='yellow'>{0}</color> 영웅을 획득하였습니다.", hd.name));
+                    UI_Manager.instance.ShowGetAlert(hd.image, string.Format("<color='yellow'>{0}</color> 영웅을 획득하였습니다.", hd.name));
                 }
                 else
                 {
@@ -225,7 +225,7 @@ public class UI_Button : MonoBehaviour
                     HeroSystem.SetObtainHero(characterId);
                     callBackScript.GetComponent<UI_ShopCharacter>().RefreshUI();
                     HeroData hd = HeroSystem.GetHero(characterId);
-                    UI_Manager.instance.ShowGetAlert("HeroThumbnail/" + hd.image, string.Format("<color='yellow'>{0}</color> 영웅을 획득하였습니다.", hd.name));
+                    UI_Manager.instance.ShowGetAlert(hd.image, string.Format("<color='yellow'>{0}</color> 영웅을 획득하였습니다.", hd.name));
                 }
                 else
                 {

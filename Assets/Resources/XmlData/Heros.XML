@@ -64,6 +64,42 @@
       <Level>1</Level>
       <Exp>0</Exp>
     </Hero>
+    <Hero id="108">
+      <Name>8번 영웅</Name>
+      <Image>HeroThumbnail/thumbnail_008</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>영웅 설명 없음</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+    </Hero>
+    <Hero id="109">
+      <Name>종국</Name>
+      <Image>HeroThumbnail/thumbnail_009</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>전설의 외과의사</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+    </Hero>
+    <Hero id="110">
+      <Name>10번 영웅</Name>
+      <Image>HeroThumbnail/thumbnail_010</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>영웅 설명 없음</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+    </Hero>
+    <Hero id="111">
+      <Name>11번 영웅</Name>
+      <Image>HeroThumbnail/thumbnail_011</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>영웅 설명 없음</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+    </Hero>
     <Hero id="501">
       <Name>좀비</Name>
       <Image>HeroThumbnail/thumbnail_501</Image>

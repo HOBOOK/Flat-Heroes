@@ -176,7 +176,7 @@ public class UI_Manager : MonoBehaviour
     {
         if (PopGetAbilityUI != null)
         {
-            PopGetAbilityUI.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Ability/" + ability.image);
+            PopGetAbilityUI.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ability.image);
             PopGetAbilityUI.transform.GetChild(1).GetComponent<Text>().text = ability.name;
             showUIanimation(PopGetAbilityUI);
         }

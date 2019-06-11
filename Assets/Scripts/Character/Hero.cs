@@ -179,14 +179,6 @@ public class Hero : MonoBehaviour
             weaponPoint.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
-    void SkillGuageUp(int guage)
-    {
-        if (status.skillGuage + guage > 100)
-            status.skillGuage = 100;
-        else
-            status.skillGuage += guage;
-        hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Slider>().value = (float)status.skillGuage / 100;
-    }
     void InitEnemys()
     {
         Transform Characters = null;
@@ -620,7 +612,7 @@ public class Hero : MonoBehaviour
     }
     public bool isSkillAble()
     {
-        if (status.skillGuage >= 100 && !isSkillAttack && !isDead)
+        if (!isSkillAttack && !isDead)
         {
             return true;
         }
@@ -1606,7 +1598,6 @@ public class Hero : MonoBehaviour
     IEnumerator Attacking()
     {
         isAttack = true;
-        SkillGuageUp(10);
         attackNumber = UnityEngine.Random.Range(0, 5);
         isLeftorRight = target.transform.position.x < transform.position.x ? true : false;
         RedirectCharacter();
@@ -1631,7 +1622,6 @@ public class Hero : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         StopAttack();
         isSkillAttack = false;
-        status.skillGuage = 0;
         yield return null;
     }
     public IEnumerator LobbyAttack()
@@ -1806,11 +1796,11 @@ public class Hero : MonoBehaviour
         public int defence;
         [Range(0, 9999)]
         public int hp;
+        [Range(10, 1000)]
+        public int skillEnegry;
         [HideInInspector]
         [Range(0, 9999)]
         public int maxHp;
-        [Range(0, 100)]
-        public int skillGuage;
         [Range(0, 100)]
         public int criticalPercent;
         [Range(0.05f,2)]
@@ -1850,6 +1840,7 @@ public class Hero : MonoBehaviour
         {
             status.exp += nExp;
             HeroSystem.SetHero(this);
+            hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Slider>().value = (float)status.exp / (float)Common.EXP_TABLE[(status.level-1)];
             LevelUp();
         }
     }

@@ -37,7 +37,7 @@ public class StageManagement : MonoBehaviour
         if(stageInfo!=null&&!isEndGame)
         {
             stageInfo.stageTime += Time.fixedUnscaledDeltaTime;
-            CoinUpdate();
+            EnergyUpdate();
 
             checkingHeroAliveTime += Time.fixedUnscaledDeltaTime;
             if(checkingHeroAliveTime>1.0f)
@@ -86,17 +86,32 @@ public class StageManagement : MonoBehaviour
         dPoint += 1;
     }
 
-    private void CoinUpdate()
+    private void EnergyUpdate()
     {
-        if (stageInfo.cointGetTime > 1)
+        if (stageInfo.stageGetTime > 1)
         {
-            stageInfo.stageCoin += 1;
-            stageInfo.cointGetTime = 0;
+            stageInfo.stageEnergy += 1;
+            stageInfo.stageGetTime = 0;
         }
         else
         {
-            stageInfo.cointGetTime += Time.deltaTime;
+            stageInfo.stageGetTime += Time.deltaTime* stageInfo.stageGetSpeed;
         }
+    }
+
+    public bool IsSkillAble(int skillenergy)
+    {
+        if (stageInfo.stageEnergy - skillenergy < 0)
+            return false;
+        else
+        {
+            return true;
+        }
+    }
+
+    public void UseSkill(int skillenergy)
+    {
+        stageInfo.stageEnergy -= skillenergy;
     }
 }
 
@@ -105,8 +120,10 @@ public class StageInfo
     public int stageNumber;
     public int mapNumber;
     public int stageCoin;
+    public int stageEnergy;
     public float stageTime;
-    public float cointGetTime;
+    public float stageGetTime;
+    public float stageGetSpeed;
     public StageInfo() { }
     public StageInfo(int mapId)
     {
@@ -115,9 +132,11 @@ public class StageInfo
     }
     public void initStage()
     {
-        stageCoin = 300;
+        stageEnergy = 0;
+        stageCoin = 0;
         stageTime = 0;
-        cointGetTime = 0;
+        stageGetTime = 0;
+        stageGetSpeed = 5;
 
         Debugging.Log("스테이지 씬에 맵로딩 완료. >> " + this.stageNumber + " 스테이지의 " + this.mapNumber + " 맵");
     }

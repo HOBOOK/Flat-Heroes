@@ -35,12 +35,12 @@ public class LoadAssetBundle : MonoBehaviour
         }
         AssetBundleManager.Instance.RemoveAssetBundle(BundleManagerURL, version);
         Debugging.Log("매니저다운 끝");
-        version = 1;
+        version =2;
         yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetBundle(BundleHeroURL, version, false, 0.0f, "영웅데이터"));
-        UI_StartManager.instance.SetDownloadCount(7);
+        UI_StartManager.instance.SetDownloadCount(9);
         if (AssetBundleManager.Instance.isVersionAdded(BundleHeroURL, version))
         {
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 9; i++)
             {
                 yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetFromABAsync(BundleHeroURL, version, "Hero00" + (i + 1)));
 
