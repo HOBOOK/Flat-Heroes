@@ -13,6 +13,7 @@ public class StageManagement : MonoBehaviour
     float checkingHeroAliveTime;
     private static int kPoint;
     private static int dPoint;
+    private static int MonsterCount;
     private void Awake()
     {
         if (instance == null)
@@ -22,6 +23,7 @@ public class StageManagement : MonoBehaviour
     }
     private void Start()
     {
+        MonsterCount = 0;
         isEndGame = false;
         kPoint = 0;
         dPoint = 0;
@@ -52,6 +54,14 @@ public class StageManagement : MonoBehaviour
             }
         }
     }
+    public void AddMonsterCount()
+    {
+        MonsterCount += 1;
+    }
+    public int GetMonsterCount()
+    {
+        return MonsterCount;
+    }
     private bool CheckHerosEnd()
     {
         int cnt = 0;
@@ -76,6 +86,7 @@ public class StageManagement : MonoBehaviour
     public void SetKPoint()
     {
         kPoint += 1;
+        MonsterCount -= 1;
     }
     public int GetDPoint()
     {
@@ -97,6 +108,14 @@ public class StageManagement : MonoBehaviour
         {
             stageInfo.stageGetTime += Time.deltaTime* stageInfo.stageGetSpeed;
         }
+    }
+    public int GetStageEnergy()
+    {
+        return stageInfo.stageEnergy;
+    }
+    public void DrainStageEnergy()
+    {
+        stageInfo.stageEnergy -= MonsterCount*3;
     }
 
     public bool IsSkillAble(int skillenergy)
@@ -136,7 +155,7 @@ public class StageInfo
         stageCoin = 0;
         stageTime = 0;
         stageGetTime = 0;
-        stageGetSpeed = 5;
+        stageGetSpeed = 100;
 
         Debugging.Log("스테이지 씬에 맵로딩 완료. >> " + this.stageNumber + " 스테이지의 " + this.mapNumber + " 맵");
     }

@@ -14,6 +14,7 @@ public class Castle : MonoBehaviour
     int spawnCount;
     float spawnTime = 3.0f;
     public float spawnDelay = 30.0f;
+    float drainEnergyTime = 0.0f;
     float curSpawnTime = 0;
     public List<SpawnEnemy> spawnEnemys = new List<SpawnEnemy>();
     Transform enemySpawnPoint;
@@ -49,6 +50,15 @@ public class Castle : MonoBehaviour
             isDead = true;
             StopAllCoroutines();
             StartCoroutine("CastleExplosionEffect");
+        }
+        else
+        {
+            drainEnergyTime += Time.deltaTime;
+            if(drainEnergyTime>5.0f)
+            {
+                StageManagement.instance.DrainStageEnergy();
+                drainEnergyTime = 0;
+            }
         }
     }
     void SpawnUpdate()
@@ -87,6 +97,7 @@ public class Castle : MonoBehaviour
             e.transform.position = this.transform.position;
             yield return new WaitForEndOfFrame();
             e.SetActive(true);
+            StageManagement.instance.AddMonsterCount();
             List<GameObject> allys = Common.FindAlly();
             foreach(var ally in allys)
             {

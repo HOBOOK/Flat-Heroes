@@ -1101,10 +1101,10 @@ MonoBehaviour:
     exp: 0
     addAttack: 5
     attack: 15
-    defence: 10
-    hp: 100
+    defence: 200
+    hp: 150
+    skillEnegry: 94
     maxHp: 0
-    skillGuage: 0
     criticalPercent: 17
     attackSpeed: 0.369
     moveSpeed: 0.5

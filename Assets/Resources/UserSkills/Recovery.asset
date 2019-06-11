@@ -18,7 +18,7 @@ MonoBehaviour:
   skillDescription: "\uC601\uC6C5\uB4E4\uC758 \uCCB4\uB825\uC744 \uD68C\uBCF5\uD55C\uB2E4"
   skillLevel: 1
   skillAbillity: 30
-  skillDelayTime: 7
+  skillDelayTime: 45
   skillImage: {fileID: 21300000, guid: 03aa629a72b7bc14b932213a17ecd2f6, type: 3}
   skillEffect: {fileID: 1476639049503398517, guid: 8c1f8a2191f832741beeff86586414a8,
     type: 3}

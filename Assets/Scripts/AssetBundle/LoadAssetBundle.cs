@@ -11,6 +11,7 @@ public class LoadAssetBundle : MonoBehaviour
 
     IEnumerator Start()
     {
+        Caching.ClearCache();
         UI_StartManager.instance.ShowDownloadUI();
         yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetBundle(BundleManagerURL, version, false,0.0f,"게임매니저"));
         UI_StartManager.instance.SetDownloadCount(4);
@@ -35,7 +36,7 @@ public class LoadAssetBundle : MonoBehaviour
         }
         AssetBundleManager.Instance.RemoveAssetBundle(BundleManagerURL, version);
         Debugging.Log("매니저다운 끝");
-        version =2;
+        version =1;
         yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetBundle(BundleHeroURL, version, false, 0.0f, "영웅데이터"));
         UI_StartManager.instance.SetDownloadCount(9);
         if (AssetBundleManager.Instance.isVersionAdded(BundleHeroURL, version))

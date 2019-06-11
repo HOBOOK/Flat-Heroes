@@ -123,5 +123,13 @@ public static class HeroSystem
             Debugging.LogError("저장할 영웅들을 찾지못함");
         }
     }
+    public static Sprite GetHeroThumbnail(int id)
+    {
+        HeroData data = heros.Find(hero => hero.id == id || hero.id.Equals(id));
+        if (data != null)
+            return Resources.Load<Sprite>(data.image);
+        else
+            return null;
+    }
 
 }
