@@ -23,7 +23,7 @@ public class HeroSkillManager : MonoBehaviour
             }
             else
             {
-                this.transform.GetChild(heroIndex).transform.GetChild(1).GetChild(1).GetComponent<Image>().sprite = HeroSystem.GetHeroThumbnail(User.stageHeros[heroIndex]);
+                this.transform.GetChild(heroIndex).transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = HeroSystem.GetHeroThumbnail(User.stageHeros[heroIndex]);
 
                 this.transform.GetChild(heroIndex).GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = User.stageHeros[heroIndex].ToString();
                 skillNeedEnergys.Add(User.stageHeros[heroIndex]);
@@ -42,7 +42,7 @@ public class HeroSkillManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(skillbuttons!=null&&skillbuttons.Count>0)
+        if(skillbuttons!=null&&skillbuttons.Count>0&&StageManagement.instance.stageInfo!=null)
         {
             for(var i = 0; i<skillbuttons.Count; i++)
             {
@@ -70,6 +70,7 @@ public class HeroSkillManager : MonoBehaviour
 
     IEnumerator ClickingSkillButton(Animator anim)
     {
+
         anim.SetBool("isAble", false);
         anim.SetTrigger("clicking");
         yield return new WaitForSeconds(1.0f);
@@ -86,12 +87,13 @@ public class HeroSkillManager : MonoBehaviour
             needEnergy = 100;
             if (stageHero != null && stageHero.isSkillAble()&&StageManagement.instance.IsSkillAble(needEnergy))
             {
+                SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
                 stageHero.SkillAttack();
-                StartCoroutine(ClickingSkillButton(this.transform.GetChild(index).GetComponentInChildren<Animator>()));
                 this.transform.GetChild(index).GetComponentInChildren<Button>().interactable = false;
                 GameObject clickEffect = EffectPool.Instance.PopFromPool("BalloonPopExplosion");
                 clickEffect.transform.position = this.transform.GetChild(index).transform.position;
                 clickEffect.SetActive(true);
+                StartCoroutine(ClickingSkillButton(this.transform.GetChild(index).GetComponentInChildren<Animator>()));
                 StageManagement.instance.UseSkill(needEnergy);
             }
             else

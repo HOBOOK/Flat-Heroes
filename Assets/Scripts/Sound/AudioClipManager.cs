@@ -31,6 +31,7 @@ public class AudioClipManager : MonoBehaviour
     public AudioClip ui_shop;
     public AudioClip ui_button_default;
     public AudioClip ui_pop;
+    public AudioClip ui_button_skill;
     //Skill
     public AudioClip spell;
     public AudioClip heal;

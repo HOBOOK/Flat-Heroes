@@ -96,12 +96,18 @@ public class StageManagement : MonoBehaviour
     {
         dPoint += 1;
     }
+    public void StageClear()
+    {
+        User.coin += stageInfo.stageCoin;
+        Debugging.Log(string.Format("스테이지 클리어 코인 획득 >> {0}(+{1}",User.coin,stageInfo.stageCoin));
+    }
 
     private void EnergyUpdate()
     {
         if (stageInfo.stageGetTime > 1)
         {
             stageInfo.stageEnergy += 1;
+            stageInfo.stageEnergy = Mathf.Clamp(stageInfo.stageEnergy, 0, stageInfo.stageMaxEnergy);
             stageInfo.stageGetTime = 0;
         }
         else
@@ -140,6 +146,7 @@ public class StageInfo
     public int mapNumber;
     public int stageCoin;
     public int stageEnergy;
+    public int stageMaxEnergy;
     public float stageTime;
     public float stageGetTime;
     public float stageGetSpeed;
@@ -156,6 +163,7 @@ public class StageInfo
         stageTime = 0;
         stageGetTime = 0;
         stageGetSpeed = 100;
+        stageMaxEnergy = 300;
 
         Debugging.Log("스테이지 씬에 맵로딩 완료. >> " + this.stageNumber + " 스테이지의 " + this.mapNumber + " 맵");
     }

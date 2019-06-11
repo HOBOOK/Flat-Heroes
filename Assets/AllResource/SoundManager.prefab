@@ -69,6 +69,7 @@ MonoBehaviour:
   ui_shop: {fileID: 8300000, guid: 1660ef4124212c647be3a8b251b4b7b4, type: 3}
   ui_button_default: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
   ui_pop: {fileID: 8300000, guid: e7aabe1962a01224aa83f1018220d5ab, type: 3}
+  ui_button_skill: {fileID: 8300000, guid: 0ade500752bd79d46a02f81b63b68895, type: 3}
   spell: {fileID: 8300000, guid: 63ab379ea3c5328478e3d785da0b2215, type: 3}
   heal: {fileID: 8300000, guid: ce415b7198c9d7a498d2228effb42ce0, type: 3}
   teleport: {fileID: 8300000, guid: 7087dc68d59b49941bc4b4f75474d262, type: 3}

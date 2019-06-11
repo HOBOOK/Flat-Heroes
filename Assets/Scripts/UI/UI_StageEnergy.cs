@@ -16,8 +16,8 @@ public class UI_StageEnergy : MonoBehaviour
     }
     void LateUpdate()
     {
-        if(energyText != null&& StageManagement.instance!=null)
-            energyText.text = Common.GetThousandCommaText(StageManagement.instance.stageInfo.stageEnergy).ToString();
+        if(energyText != null&& StageManagement.instance!=null&&StageManagement.instance.stageInfo!=null)
+            energyText.text = string.Format("{0}/{1}",Common.GetThousandCommaText(StageManagement.instance.stageInfo.stageEnergy), Common.GetThousandCommaText(StageManagement.instance.stageInfo.stageMaxEnergy));
         if(energyImage != null)
         {
             if (imageSize > 1.1f)

@@ -17,7 +17,7 @@ public class UI_StageCoin : MonoBehaviour
     }
     void LateUpdate()
     {
-        if (coinText != null && StageManagement.instance != null)
+        if (coinText != null && StageManagement.instance != null && StageManagement.instance.stageInfo != null)
             coinText.text = Common.GetThousandCommaText(StageManagement.instance.stageInfo.stageCoin).ToString();
     }
 
