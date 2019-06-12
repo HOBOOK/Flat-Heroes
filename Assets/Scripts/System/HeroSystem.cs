@@ -67,7 +67,7 @@ public static class HeroSystem
         }
         else
         {
-            Debugging.LogError("세팅할 영웅을 찾지못함 >> " + heroPrefab.id);
+            Debugging.LogWarning("세팅할 영웅을 찾지못함 >> " + heroPrefab.id);
         }
     }
     public static void SetObtainHero(int id)

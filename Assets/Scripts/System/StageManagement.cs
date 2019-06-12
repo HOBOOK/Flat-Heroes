@@ -138,6 +138,24 @@ public class StageManagement : MonoBehaviour
     {
         stageInfo.stageEnergy -= skillenergy;
     }
+    public void AddGetStageItem(int id)
+    {
+        stageInfo.stageGetItems.Add(id);
+    }
+    public List<Item> GetStageItems()
+    {
+        List<Item> getItemList = new List<Item>();
+        if(stageInfo.stageGetItems!=null&stageInfo.stageGetItems.Count>0)
+        {
+            foreach(var itemId in stageInfo.stageGetItems)
+            {
+                Item getItem = ItemSystem.GetItem(itemId);
+                if(getItem!=null)
+                    getItemList.Add(getItem);
+            }
+        }
+        return getItemList;
+    }
 }
 
 public class StageInfo
@@ -150,6 +168,7 @@ public class StageInfo
     public float stageTime;
     public float stageGetTime;
     public float stageGetSpeed;
+    public List<int> stageGetItems;
     public StageInfo() { }
     public StageInfo(int mapId)
     {
@@ -164,6 +183,7 @@ public class StageInfo
         stageGetTime = 0;
         stageGetSpeed = 100;
         stageMaxEnergy = 300;
+        stageGetItems = new List<int>();
 
         Debugging.Log("스테이지 씬에 맵로딩 완료. >> " + this.stageNumber + " 스테이지의 " + this.mapNumber + " 맵");
     }

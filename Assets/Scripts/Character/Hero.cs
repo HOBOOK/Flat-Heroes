@@ -1077,7 +1077,7 @@ public class Hero : MonoBehaviour
         }
         // 아이템 획득 파트
         Item randomItem = ItemSystem.GetRandomItem();
-        if(UnityEngine.Random.Range(0,1000)<randomItem.droprate)
+        if(UnityEngine.Random.Range(0,100)<randomItem.droprate)
         {
             Debugging.Log(randomItem.droprate + " 의 확률수치의 " + randomItem.name + "의 아이템이 드랍되었습니다.");
             GameObject dropItem = ObjectPool.Instance.PopFromPool("dropItemPrefab");
@@ -1085,6 +1085,7 @@ public class Hero : MonoBehaviour
             dropItem.GetComponent<dropItemInfo>().dropItemID = randomItem.id;
             dropItem.SetActive(true);
             dropItem.GetComponent<dropItemInfo>().DropItem();
+            StageManagement.instance.AddGetStageItem(randomItem.id);
             yield return new WaitForSeconds(0.1f);
         }
         yield return null;
@@ -1814,7 +1815,7 @@ public class Hero : MonoBehaviour
     
     public void LevelUp()
     {
-        if (status.exp >= Common.EXP_TABLE[status.level - 1] && status.level < 10)
+        if (status.exp >= Common.EXP_TABLE[status.level - 1] && status.level < 10&&!isDead)
         {
             LevelUpEffect();
             status.level += 1;
@@ -1836,7 +1837,7 @@ public class Hero : MonoBehaviour
 
     public void ExpUp(int nExp)
     {
-        if (status!=null&&status.level<10)
+        if (status!=null&&status.level<10 && !isDead)
         {
             status.exp += nExp;
             HeroSystem.SetHero(this);
