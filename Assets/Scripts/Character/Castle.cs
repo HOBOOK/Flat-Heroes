@@ -194,7 +194,7 @@ public class Castle : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
         HeroSystem.SaveHeros(Common.FindAlly());
-        MapSystem.MapClear(StageManagement.instance.stageInfo.mapNumber);
+        MapSystem.MapClear(StageManagement.instance.stageInfo.mapNumber,1);
         StageManagement.instance.StageClear();
         SaveSystem.SavePlayer();
         UI_Manager.instance.OpenEndGamePanel(true);

@@ -73,23 +73,26 @@ public class UI_Manager_AbilityTab : MonoBehaviour
             foreach(var ab in AbilitySystem.GetAllAbilities())
             {
                 GameObject abObj = Instantiate(abilitySlotPrefab, PanelAbilitys[ab.abilityType].transform);
-                if (ab.enable)
+                if (AbilitySystem.isAbleAbility(ab.id))
                 {
-                    abObj.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ab.image);
-                    abObj.transform.GetComponentInChildren<Text>().text = ab.level.ToString();
+                    Ability userAbility = AbilitySystem.GetUserAbility(ab.id);
+                    abObj.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(userAbility.image);
+                    abObj.transform.GetComponentInChildren<Text>().text = userAbility.level.ToString();
                     abObj.transform.GetComponentInChildren<Text>().enabled = true;
+                    abObj.GetComponent<Button>().onClick.RemoveAllListeners();
                     abObj.GetComponent<Button>().onClick.AddListener(delegate
                     {
-                        OnAbilityClick(ab);
+                        OnAbilityClick(userAbility);
                     });
+                    abilityList.Add(userAbility);
                 }
                 else
                 {
                     abObj.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/ui_ability_lock");
                     abObj.transform.GetComponentInChildren<Text>().enabled = false;
+                    abilityList.Add(ab);
                 }
                 abilitySlotList.Add(abObj);
-                abilityList.Add(ab);
             }
 
             if (abilityTotalStatText != null)
@@ -100,7 +103,7 @@ public class UI_Manager_AbilityTab : MonoBehaviour
 
             if (scrollCountText != null)
             {
-                scrollCountText.text = Common.GetThousandCommaText(ItemSystem.GetItem(8001).count);
+                scrollCountText.text = Common.GetThousandCommaText(ItemSystem.GetUserScrollCount());
             }
         }
     }
@@ -115,13 +118,16 @@ public class UI_Manager_AbilityTab : MonoBehaviour
         {
             for(var i = 0; i < abilitySlotList.Count; i++)
             {
-                if(abilityList[i].enable)
+                if(AbilitySystem.isAbleAbility(abilityList[i].id))
                 {
-                    abilitySlotList[i].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(abilityList[i].image);
+                    Ability userAb = AbilitySystem.GetUserAbility(abilityList[i].id);
+                    abilitySlotList[i].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(userAb.image);
                     abilitySlotList[i].GetComponent<Button>().onClick.RemoveAllListeners();
                     int abIndex = i;
-                    abilitySlotList[i].transform.GetComponentInChildren<Text>().text = abilityList[abIndex].level.ToString();
+                    userAb = AbilitySystem.GetUserAbility(abilityList[abIndex].id);
+                    abilitySlotList[i].transform.GetComponentInChildren<Text>().text = userAb.level.ToString();
                     abilitySlotList[i].transform.GetComponentInChildren<Text>().enabled = true;
+                    abilitySlotList[i].GetComponent<Button>().onClick.RemoveAllListeners();
                     abilitySlotList[i].GetComponent<Button>().onClick.AddListener(delegate
                     {
                         OnAbilityClick(abilityList[abIndex]);
@@ -138,7 +144,7 @@ public class UI_Manager_AbilityTab : MonoBehaviour
         
         if(scrollCountText!=null)
         {
-            scrollCountText.text = Common.GetThousandCommaText(ItemSystem.GetItem(8001).count);
+            scrollCountText.text = Common.GetThousandCommaText(ItemSystem.GetUserScrollCount());
         }
     }
 
@@ -172,7 +178,6 @@ public class UI_Manager_AbilityTab : MonoBehaviour
         isCheckAlertOn = true;
         int amount = User.abilityCount;
         Item userAbilityScroll = ItemSystem.GetItem(8001);
-        Debugging.Log(userAbilityScroll.name);
         Debugging.Log(amount);
         var alertPanel = UI_Manager.instance.ShowNeedAlert(userAbilityScroll.image, string.Format("<color='yellow'>'{0}' <size='24'>x </size>{1}</color>  사용하여 능력을 개방하시겠습니까?", userAbilityScroll.name, amount));
         while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
@@ -182,7 +187,7 @@ public class UI_Manager_AbilityTab : MonoBehaviour
         if (alertPanel.GetComponentInChildren<UI_CheckButton>().isResult)
         {
             UI_Manager.instance.ClosePopupAlertUI();
-            if (userAbilityScroll != null && userAbilityScroll.count >= amount)
+            if (ItemSystem.GetUserScrollCount() >= amount)
             {
                 if (!isSelectStart)
                     StartCoroutine(RandomSelectAbility(amount));
@@ -246,7 +251,7 @@ public class UI_Manager_AbilityTab : MonoBehaviour
         UI_Manager.instance.PopupInterActiveCover.SetActive(false);
         SelectImage.GetComponent<Image>().enabled = false;
         isSelectStart = false;
-        AbilitySystem.ObtainAbility(abilityList[selectedIndex].id);
+        AbilitySystem.SetObtainAbility(abilityList[selectedIndex].id);
         ItemSystem.UseItem(8001, useItemAmount);
         RefreshUI();
         UI_Manager.instance.PopupGetAbility(abilityList[selectedIndex]);

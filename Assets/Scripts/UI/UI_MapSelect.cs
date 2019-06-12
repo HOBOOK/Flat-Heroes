@@ -98,7 +98,7 @@ public class UI_MapSelect : MonoBehaviour
                         // 맵노드리스트에 아이디와 슬롯프리팹을 추가
                         mapNodeList.Add(mapNode.id, mapNodePrefab);
                         // 아직 갈 수 없는 맵노드에 잠금 아이콘 추가
-                        if(mapNode.enable==false)
+                        if(!MapSystem.isAbleMap(mapNode.id))
                         {
                             mapNodePrefab.transform.GetChild(0).GetComponent<Image>().overrideSprite = Resources.Load<Sprite>("UI/ui_lock_transparent");
                         }
@@ -197,7 +197,7 @@ public class UI_MapSelect : MonoBehaviour
     public void OnMapNodeClick(int mapId)
     {
         SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_button_default);
-        if (MapSystem.GetMap(mapId).enable)
+        if (MapSystem.isAbleMap(mapId))
         {
             mapNameText.text = MapSystem.GetMap(mapId).name;
             mapDescriptionText.text = MapSystem.GetMap(mapId).description;

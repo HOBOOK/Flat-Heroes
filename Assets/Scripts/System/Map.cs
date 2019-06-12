@@ -21,9 +21,6 @@ public class Map
     [XmlElement("Image")]
     public string image;
 
-    [XmlElement("Enable")]
-    public bool enable;
-
     [XmlElement("ClearPoint")]
     public int clearPoint;
 

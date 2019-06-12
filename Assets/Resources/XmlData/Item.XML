@@ -10,7 +10,7 @@
       <Defence>0</Defence>
       <Value>10000</Value>
       <Image>Items/weapon_sword_2</Image>
-      <Count>3</Count>
+      <Count>0</Count>
       <Enable>false</Enable>
       <DropRate>1</DropRate>
     </Item>
@@ -23,7 +23,7 @@
       <Defence>0</Defence>
       <Value>10000</Value>
       <Image>Items/weapon_sword_3</Image>
-      <Count>1</Count>
+      <Count>0</Count>
       <Enable>false</Enable>
       <DropRate>1</DropRate>
     </Item>
@@ -36,7 +36,7 @@
       <Defence>50</Defence>
       <Value>30000</Value>
       <Image>Items/weapon_gun</Image>
-      <Count>1</Count>
+      <Count>0</Count>
       <Enable>false</Enable>
       <DropRate>1</DropRate>
     </Item>
@@ -49,8 +49,8 @@
       <Defence>0</Defence>
       <Value>10000</Value>
       <Image>Items/abilityScroll</Image>
-      <Count>1</Count>
-      <Enable>true</Enable>
+      <Count>0</Count>
+      <Enable>false</Enable>
       <DropRate>10</DropRate>
     </Item>
     <Item id="9001">

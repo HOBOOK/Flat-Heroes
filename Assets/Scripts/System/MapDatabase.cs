@@ -32,12 +32,7 @@ public class MapDatabase
                 var reader = new StringReader(_xml.text);
                 MapDatabase mapDB = serializer.Deserialize(reader) as MapDatabase;
                 reader.Close();
-                // 암호화/////
-                XmlElement elmRoot = xmlDoc.DocumentElement;
-                var encrpytData = DataSecurityManager.EncryptData(elmRoot.InnerXml);
-                elmRoot.InnerText = encrpytData;
-                ////////////
-                xmlDoc.Save(path);
+                CreateXml(mapDB.maps[0],path);
                 Debugging.Log("MapDatabase 최초 생성 성공");
                 return mapDB;
             }
@@ -45,8 +40,26 @@ public class MapDatabase
         Debugging.Log("MapDatabase 최초 생성 실패");
         return null;
     }
-
+    #region 전체맵정보
     public static MapDatabase Load()
+    {
+        TextAsset _xml = Resources.Load<TextAsset>("XmlData/Map");
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.LoadXml(_xml.text);
+        if (_xml != null)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(MapDatabase));
+            var reader = new StringReader(_xml.text);
+            MapDatabase mapDB = serializer.Deserialize(reader) as MapDatabase;
+            reader.Close();
+            Debugging.Log("MapDatabase 로드 성공");
+            return mapDB;
+        }
+        return null;
+    }
+    #endregion
+    #region 유저맵정보
+    public static MapDatabase LoadUser()
     {
         string path = Application.persistentDataPath + "/Xml/Map.Xml";
         if (System.IO.File.Exists(path))
@@ -79,8 +92,7 @@ public class MapDatabase
         Debugging.LogSystemWarning("MapDatabase wasn't loaded. >> " + path + " is null. >>");
         return null;
     }
-
-    public static void MapClearSave(int id)
+    public static void AddMapClear(int clearId,int openId)
     {
         string path = Application.persistentDataPath + "/Xml/Map.Xml";
         XmlDocument xmlDoc = new XmlDocument();
@@ -92,30 +104,76 @@ public class MapDatabase
         var decrpytData = DataSecurityManager.DecryptData(elmRoot.InnerText);
         elmRoot.InnerXml = decrpytData;
         //////////
-        bool isPointSet = false, isEnableSet= false;
+        
+        ChangeNode(MapSystem.GetUserMap(clearId), xmlDoc);
+        CreateNode(MapSystem.GetMap(openId), xmlDoc, path);
+    }
+    #endregion
+    public static void CreateXml(Map data, string path)
+    {
+        XmlDocument xmlDoc = new XmlDocument();
+        // Xml을 선언한다(xml의 버전과 인코딩 방식을 정해준다.)
+        xmlDoc.AppendChild(xmlDoc.CreateXmlDeclaration("1.0", "utf-8", "yes"));
 
-        XmlNodeList nodes = xmlDoc.SelectNodes("MapCollection/Maps/Map");
-        foreach (XmlNode node in nodes)
-        {
-            if (node.Attributes.GetNamedItem("id").Value == id.ToString() || node.Attributes.GetNamedItem("id").Value.Equals(id.ToString()))
-            {
-                node.SelectSingleNode("ClearPoint").InnerText = MapSystem.GetMap(id).clearPoint.ToString();
-                isPointSet = true;
-            }
-            if(node.Attributes.GetNamedItem("id").Value == (id+1).ToString() || node.Attributes.GetNamedItem("id").Value.Equals((id+1).ToString()))
-            {
-                node.SelectSingleNode("Enable").InnerText = MapSystem.GetMap((id + 1)).enable.ToString().ToLower();
-                isEnableSet = true;
-            }
-            if (isPointSet && isEnableSet)
-                break;
-        }
+        // 루트 노드 생성
+        XmlNode root = xmlDoc.CreateNode(XmlNodeType.Element, "MapCollection", string.Empty);
+        xmlDoc.AppendChild(root);
+
+        XmlNode root2 = xmlDoc.CreateNode(XmlNodeType.Element, "Maps", string.Empty);
+        root.AppendChild(root2);
+
+        // 자식 노드 생성
+        XmlNode child = xmlDoc.CreateNode(XmlNodeType.Element, "Map", string.Empty);
+        root2.AppendChild(child);
+
+        XmlAttribute id = xmlDoc.CreateAttribute("id");
+        id.Value = data.id.ToString();
+        child.Attributes.Append(id);
+
+        // 자식 노드에 들어갈 속성 생성
+        XmlElement clearPoint = xmlDoc.CreateElement("ClearPoint");
+        clearPoint.InnerText = data.clearPoint.ToString();
+        child.AppendChild(clearPoint);
+
         // 암호화/////
+        XmlElement elmRoot = xmlDoc.DocumentElement;
         var encrpytData = DataSecurityManager.EncryptData(elmRoot.InnerXml);
         elmRoot.InnerText = encrpytData;
         ////////////
         xmlDoc.Save(path);
-        Debugging.Log(id + " 의 맵데이터 xml 저장 완료");
     }
+    public static void ChangeNode(Map data, XmlDocument xmlDoc)
+    {
+        XmlNodeList nodes = xmlDoc.SelectNodes("MapCollection/Maps/Map");
+        foreach (XmlNode node in nodes)
+        {
+            if (node.Attributes.GetNamedItem("id").Value == data.id.ToString() || node.Attributes.GetNamedItem("id").Value.Equals(data.id.ToString()))
+            {
+                node.SelectSingleNode("ClearPoint").InnerText = data.clearPoint.ToString();
+                break;
+            }
+        }
+    }
+    public static void CreateNode(Map data, XmlDocument xmlDoc, string path)
+    {
+        // 자식 노드 생성
+        XmlNode child = xmlDoc.CreateNode(XmlNodeType.Element, "Map", string.Empty);
+        xmlDoc.DocumentElement.FirstChild.AppendChild(child);
 
+        XmlAttribute id = xmlDoc.CreateAttribute("id");
+        id.Value = data.id.ToString();
+        child.Attributes.Append(id);
+
+        // 자식 노드에 들어갈 속성 생성
+        XmlElement clearPoint = xmlDoc.CreateElement("ClearPoint");
+        clearPoint.InnerText = data.clearPoint.ToString();
+        child.AppendChild(clearPoint);
+
+        // 암호화/////
+        XmlElement elmRoot = xmlDoc.DocumentElement;
+        var encrpytData = DataSecurityManager.EncryptData(elmRoot.InnerXml);
+        elmRoot.InnerText = encrpytData;
+        ////////////
+        xmlDoc.Save(path);
+    }
 }

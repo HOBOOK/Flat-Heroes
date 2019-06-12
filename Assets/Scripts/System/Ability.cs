@@ -21,9 +21,6 @@ public class Ability
     [XmlElement("PowerType")]
     public int powerType;
 
-    [XmlElement("Enable")]
-    public bool enable;
-
     [XmlElement("Power")]
     public int power;
 

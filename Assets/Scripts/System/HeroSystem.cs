@@ -30,7 +30,6 @@ public static class HeroSystem
             hd = HeroDatabase.InitSetting();
             userHd = HeroDatabase.LoadUser();
         }
-
         if (hd!=null)
         {
             foreach (HeroData hero in hd.heros)
@@ -124,7 +123,7 @@ public static class HeroSystem
     }
     public static List<HeroData> GetUnableHeros()
     {
-        List<HeroData> heroDatas = heros;
+        List<HeroData> heroDatas = heros.FindAll(x => x.type!=1);
         heroDatas = heroDatas.Where(f => !userHeros.Any(t => t.id == f.id)).ToList();
         heroDatas.Sort((i1, i2) => i1.name.CompareTo(i2.name));
         return heroDatas;

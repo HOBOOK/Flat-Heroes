@@ -5,7 +5,6 @@
       <Name>태초의 힘</Name>
       <Level>0</Level>
       <AbilityType>0</AbilityType>
-      <Enable>false</Enable>
       <PowerType>0</PowerType>
       <Power>20</Power>
       <Image>Ability/ability_001</Image>
@@ -14,7 +13,6 @@
       <Name>두번째 탄생</Name>
       <Level>0</Level>
       <AbilityType>1</AbilityType>
-      <Enable>false</Enable>
       <PowerType>1</PowerType>
       <Power>20</Power>
       <Image>Ability/ability_002</Image>
@@ -23,7 +21,6 @@
       <Name>세번째 만남</Name>
       <Level>0</Level>
       <AbilityType>1</AbilityType>
-      <Enable>false</Enable>
       <PowerType>2</PowerType>
       <Power>20</Power>
       <Image>Ability/ability_003</Image>
@@ -32,7 +29,6 @@
       <Name>네번째 이별</Name>
       <Level>0</Level>
       <AbilityType>2</AbilityType>
-      <Enable>false</Enable>
       <PowerType>0</PowerType>
       <Power>20</Power>
       <Image>Ability/ability_004</Image>
@@ -41,7 +37,6 @@
       <Name>다섯번째 영광</Name>
       <Level>0</Level>
       <AbilityType>2</AbilityType>
-      <Enable>false</Enable>
       <PowerType>0</PowerType>
       <Power>20</Power>
       <Image>Ability/ability_005</Image>
@@ -50,7 +45,6 @@
       <Name>여섯번째 절망</Name>
       <Level>0</Level>
       <AbilityType>0</AbilityType>
-      <Enable>false</Enable>
       <PowerType>0</PowerType>
       <Power>20</Power>
       <Image>Ability/ability_006</Image>
@@ -59,7 +53,6 @@
       <Name>일곱번째 희망</Name>
       <Level>0</Level>
       <AbilityType>0</AbilityType>
-      <Enable>false</Enable>
       <PowerType>0</PowerType>
       <Power>20</Power>
       <Image>Ability/ability_007</Image>
