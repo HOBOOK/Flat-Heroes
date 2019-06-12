@@ -32,14 +32,7 @@ public class HeroDatabase
                 var reader = new StringReader(_xml.text);
                 HeroDatabase heroDB = serializer.Deserialize(reader) as HeroDatabase;
                 reader.Close();
-
-                // 암호화/////
-                XmlElement elmRoot = xmlDoc.DocumentElement;
-                var encrpytData = DataSecurityManager.EncryptData(elmRoot.InnerXml);
-                elmRoot.InnerText = encrpytData;
-                ////////////
-                xmlDoc.Save(path);
-
+                CreateXml(heroDB.heros[0],path);
                 Debugging.Log("HeroDatabase 최초 생성 성공");
                 return heroDB;
             }
@@ -48,7 +41,120 @@ public class HeroDatabase
         return null;
     }
 
+    public static void CreateXml(HeroData data,string path)
+    {
+        XmlDocument xmlDoc = new XmlDocument();
+       // Xml을 선언한다(xml의 버전과 인코딩 방식을 정해준다.)
+       xmlDoc.AppendChild(xmlDoc.CreateXmlDeclaration("1.0", "utf-8", "yes"));
+
+        // 루트 노드 생성
+        XmlNode root = xmlDoc.CreateNode(XmlNodeType.Element, "HeroCollection", string.Empty);
+        xmlDoc.AppendChild(root);
+
+        XmlNode root2 = xmlDoc.CreateNode(XmlNodeType.Element, "Heros", string.Empty);
+        root.AppendChild(root2);
+
+        // 자식 노드 생성
+        XmlNode child = xmlDoc.CreateNode(XmlNodeType.Element, "Hero", string.Empty);
+        root2.AppendChild(child);
+
+        XmlAttribute id = xmlDoc.CreateAttribute("id");
+        id.Value = data.id.ToString();
+        child.Attributes.Append(id);
+
+        // 자식 노드에 들어갈 속성 생성
+        XmlElement name = xmlDoc.CreateElement("Name");
+        name.InnerText = data.name;
+        child.AppendChild(name);
+
+        XmlElement image = xmlDoc.CreateElement("Image");
+        image.InnerText = data.image;
+        child.AppendChild(image);
+        XmlElement enable = xmlDoc.CreateElement("Enable");
+        enable.InnerText = data.enable.ToString().ToLower();
+        child.AppendChild(enable);
+        XmlElement type = xmlDoc.CreateElement("Type");
+        type.InnerText = data.type.ToString();
+        child.AppendChild(type);
+        XmlElement description = xmlDoc.CreateElement("Description");
+        description.InnerText = data.description;
+        child.AppendChild(description);
+        XmlElement level = xmlDoc.CreateElement("Level");
+        level.InnerText = data.level.ToString();
+        child.AppendChild(level);
+        XmlElement exp = xmlDoc.CreateElement("Exp");
+        exp.InnerText = data.exp.ToString();
+        child.AppendChild(exp);
+
+        // 암호화/////
+        XmlElement elmRoot = xmlDoc.DocumentElement;
+        var encrpytData = DataSecurityManager.EncryptData(elmRoot.InnerXml);
+        elmRoot.InnerText = encrpytData;
+        ////////////
+        xmlDoc.Save(path);
+    }
+    public static void CreateNode(HeroData data, XmlDocument xmlDoc, string path)
+    {
+        // 자식 노드 생성
+        XmlNode child = xmlDoc.CreateNode(XmlNodeType.Element, "Hero", string.Empty);
+        xmlDoc.DocumentElement.FirstChild.AppendChild(child);
+
+        XmlAttribute id = xmlDoc.CreateAttribute("id");
+        id.Value = data.id.ToString();
+        child.Attributes.Append(id);
+
+        // 자식 노드에 들어갈 속성 생성
+        XmlElement name = xmlDoc.CreateElement("Name");
+        name.InnerText = data.name;
+        child.AppendChild(name);
+
+        XmlElement image = xmlDoc.CreateElement("Image");
+        image.InnerText = data.image;
+        child.AppendChild(image);
+        XmlElement enable = xmlDoc.CreateElement("Enable");
+        enable.InnerText = data.enable.ToString().ToLower();
+        child.AppendChild(enable);
+        XmlElement type = xmlDoc.CreateElement("Type");
+        type.InnerText = data.type.ToString();
+        child.AppendChild(type);
+        XmlElement description = xmlDoc.CreateElement("Description");
+        description.InnerText = data.description;
+        child.AppendChild(description);
+        XmlElement level = xmlDoc.CreateElement("Level");
+        level.InnerText = data.level.ToString();
+        child.AppendChild(level);
+        XmlElement exp = xmlDoc.CreateElement("Exp");
+        exp.InnerText = data.exp.ToString();
+        child.AppendChild(exp);
+
+        // 암호화/////
+        XmlElement elmRoot = xmlDoc.DocumentElement;
+        var encrpytData = DataSecurityManager.EncryptData(elmRoot.InnerXml);
+        elmRoot.InnerText = encrpytData;
+        ////////////
+        xmlDoc.Save(path);
+    }
+
     public static HeroDatabase Load()
+    {
+        TextAsset _xml = Resources.Load<TextAsset>("XmlData/Heros");
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.LoadXml(_xml.text);
+        if (_xml != null)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(HeroDatabase));
+            var reader = new StringReader(_xml.text);
+            HeroDatabase heroDB = serializer.Deserialize(reader) as HeroDatabase;
+            reader.Close();
+
+            Debugging.Log("HeroDatabase 로드 성공");
+            return heroDB;
+        }
+        return null;
+    }
+
+    #region 유저히어로정보
+    public static HeroDatabase LoadUser()
     {
         string path = Application.persistentDataPath + "/Xml/Heros.Xml";
         if (System.IO.File.Exists(path))
@@ -74,7 +180,7 @@ public class HeroDatabase
                 var reader = new StringReader(_xml);
                 HeroDatabase heroDB = serializer.Deserialize(reader) as HeroDatabase;
                 reader.Close();
-                Debugging.Log("HeroDatabase 기존 파일 로드");
+                Debugging.Log("HeroDatabase 유저 파일 로드");
                 return heroDB;
             }
         }
@@ -82,7 +188,22 @@ public class HeroDatabase
         return null;
     }
 
-    public static void Save(int id)
+    public static void AddUser(int id)
+    {
+        string path = Application.persistentDataPath + "/Xml/Heros.Xml";
+        XmlDocument xmlDoc = new XmlDocument();
+        if (System.IO.File.Exists(path))
+            xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
+
+        //복호화////
+        XmlElement elmRoot = xmlDoc.DocumentElement;
+        var decrpytData = DataSecurityManager.DecryptData(elmRoot.InnerText);
+        elmRoot.InnerXml = decrpytData;
+        //////////
+        CreateNode(HeroSystem.GetHero(id), xmlDoc, path);
+    }
+
+    public static void SaveUser(int id)
     {
         string path = Application.persistentDataPath + "/Xml/Heros.Xml";
         XmlDocument xmlDoc = new XmlDocument();
@@ -104,8 +225,7 @@ public class HeroDatabase
                 if(hd!=null)
                 {
                     node.SelectSingleNode("Level").InnerText = hd.level.ToString();
-                    if(node.SelectSingleNode("Enable").InnerText.Equals("false"))
-                        node.SelectSingleNode("Enable").InnerText = hd.enable.ToString().ToLower();
+                    node.SelectSingleNode("Exp").InnerText = hd.exp.ToString();
                 }
 
                 break;
@@ -119,7 +239,7 @@ public class HeroDatabase
         Debugging.Log(id + " 영웅의 단일 xml 저장 완료");
     }
 
-    public static void SaveAll(List<HeroData> herodatas)
+    public static void SaveAllUser(List<HeroData> herodatas)
     {
         string path = Application.persistentDataPath + "/Xml/Heros.Xml";
         XmlDocument xmlDoc = new XmlDocument();
@@ -151,4 +271,5 @@ public class HeroDatabase
         xmlDoc.Save(path);
         Debugging.Log(herodatas.Count + " 영웅들의 일괄 xml 저장 완료");
     }
+    #endregion
 }

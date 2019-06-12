@@ -57,18 +57,11 @@ public class UI_HeroSelect : MonoBehaviour
                     slotHeroImage = slotPrefab.transform.GetChild(0).GetComponent<Image>();
                     if (slotHeroImage != null)
                         slotHeroImage.sprite = Resources.Load<Sprite>(heroSlot.image);
-                    if (!heroSlot.enable)
+                    slotPrefab.GetComponent<Button>().onClick.RemoveAllListeners();
+                    slotPrefab.GetComponent<Button>().onClick.AddListener(delegate
                     {
-                        slotHeroImage.overrideSprite = Resources.Load<Sprite>("UI/ui_lock");
-                    }
-                    else
-                    {
-                        slotPrefab.GetComponent<Button>().onClick.RemoveAllListeners();
-                        slotPrefab.GetComponent<Button>().onClick.AddListener(delegate
-                        {
-                            OnItemSlotClick(heroSlot);
-                        });
-                    }
+                        OnItemSlotClick(heroSlot);
+                    });
                 }
             }
         }
