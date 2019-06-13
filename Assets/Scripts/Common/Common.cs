@@ -282,6 +282,11 @@ public class Common : MonoBehaviour
         v3Pos.y = 0;
         return v3Pos;
     }
+    //오브젝트 와의거리
+    public static float GetDistanceBetweenAnother(Transform me, Transform target)
+    {
+        return Vector3.Distance(GetBottomPosition(me), GetBottomPosition(target));
+    }
 
     //1000단위 숫자 , 찍기
     public static string GetThousandCommaText(int data)

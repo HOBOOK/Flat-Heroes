@@ -11,6 +11,7 @@ public class StageManagement : MonoBehaviour
     public Transform HeroPoint;
     bool isEndGame;
     float checkingHeroAliveTime;
+    public Text mapnameText;
     private static int kPoint;
     private static int dPoint;
     private static int MonsterCount;
@@ -30,7 +31,8 @@ public class StageManagement : MonoBehaviour
         stageInfo = GameManagement.instance.GetStageInfo();
         stageInfo.initStage();
         UI_Manager.instance.Title.GetComponentInChildren<Text>().text = MapSystem.GetMap(stageInfo.mapNumber).name;
-        if(Map!=null)
+        mapnameText.text = MapSystem.GetMap(stageInfo.mapNumber).name;
+        if (Map!=null)
             MapSystem.SetMapSprite(stageInfo.stageNumber, Map);
         CharactersManager.instance.SetStagePositionHeros();
     }

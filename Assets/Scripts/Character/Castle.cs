@@ -94,7 +94,7 @@ public class Castle : MonoBehaviour
             GameObject e = Instantiate(spawnEnemy.enemyPrefab, enemySpawnPoint);
             e.SetActive(false);
             e.GetComponent<Hero>().isPlayerHero = false;
-            e.transform.position = this.transform.position;
+            e.transform.position = new Vector3(18, 0);
             yield return new WaitForEndOfFrame();
             e.SetActive(true);
             StageManagement.instance.AddMonsterCount();
@@ -237,7 +237,7 @@ public class Castle : MonoBehaviour
                 {
                     collision.GetComponent<arrowController>().ArrowStand(this.transform);
                 }
-                if (collision.gameObject.layer == 9 && collision.isTrigger && !isUnBeat && collision.GetComponentInParent<Hero>() != null && collision.GetComponentInParent<Hero>().isPlayerHero && collision.GetComponentInParent<Hero>().target.transform.GetInstanceID() == this.transform.GetInstanceID())
+                if (collision.gameObject.layer == 9 && collision.GetComponent<Collider2D>()!=null&& collision.isTrigger && !isUnBeat && collision.GetComponentInParent<Hero>() != null && collision.GetComponentInParent<Hero>().isPlayerHero && collision.GetComponentInParent<Hero>().target.transform.GetInstanceID() == this.transform.GetInstanceID())
                 {
                     Hitted(collision, collision.GetComponentInParent<Hero>().Damage(), 3f, 3f);
                 }

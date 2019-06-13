@@ -274,10 +274,10 @@ public class Hero : MonoBehaviour
                         target = Common.hitTargetObject;
                     }
                 }
-                else if (target == Common.hitTargetObject && enemys.Count > 0)
-                {
-                    target = null;
-                }
+                //else if (target == Common.hitTargetObject && enemys.Count > 0)
+                //{
+                //    target = null;
+                //}
             }
             if(Common.hitTargetObject==null)
             {
@@ -963,8 +963,17 @@ public class Hero : MonoBehaviour
             if (collision.GetComponentInParent<Hero>() != null)
             {
                 DamageUIShow(dam.ToString(), collision.GetComponentInParent<Hero>().isCriticalAttack);
-                if (Vector3.Distance(Common.GetBottomPosition(collision.transform.parent), Common.GetBottomPosition(this.transform)) < distanceBetweenTarget && collision.GetComponentInParent<Hero>() != null && collision.GetComponentInParent<Hero>().isPlayerHero != isPlayerHero)
-                    target = collision.GetComponentInParent<Hero>().gameObject;
+                if (collision.GetComponentInParent<Hero>() != null && collision.GetComponentInParent<Hero>().isPlayerHero != isPlayerHero)
+                {
+                    if(target==Common.hitTargetObject)
+                    {
+                        target = collision.GetComponentInParent<Hero>().gameObject;
+                    }
+                    else if (Common.GetDistanceBetweenAnother(this.transform, collision.transform.parent) < distanceBetweenTarget)
+                    {
+                        target = collision.GetComponentInParent<Hero>().gameObject;
+                    }
+                }
             }
             if (isStunning)
             {
@@ -1471,6 +1480,7 @@ public class Hero : MonoBehaviour
                 case 1:
                     SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.smoke);
                     List<GameObject> targetList = enemys;
+                    targetList  = targetList.FindAll(x=> Common.GetDistanceBetweenAnother(this.transform, x.transform) < 5);
                     if(targetList.Count>0)
                     {
                         for(int i = 0; i < targetList.Count; i++)

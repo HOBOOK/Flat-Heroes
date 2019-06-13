@@ -88,7 +88,6 @@ public class ItemDatabase
                 var reader = new StringReader(_xml);
                 ItemDatabase itemDB = serializer.Deserialize(reader) as ItemDatabase;
                 reader.Close();
-                Debugging.Log(decrpytData);
                 Debugging.Log("ItemDatabase 기존 파일 로드");
                 return itemDB;
             }

@@ -26,7 +26,7 @@ public class FollowCamera : MonoBehaviour
     public float restricX()
     {
         float oSize = GetComponent<Camera>().orthographicSize;
-        float size = 10 - (2 * (oSize - 5));
+        float size = 8 - (2 * (oSize - 5));
         return size;
     }
 

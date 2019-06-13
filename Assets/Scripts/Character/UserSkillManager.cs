@@ -17,9 +17,6 @@ public class UserSkillManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-        else
-            Destroy(instance);
-
     }
 
     private void FixedUpdate()

@@ -99,11 +99,31 @@ public static class MapSystem
         }
         return currentMapId;
     }
+    public static int GetCurrentAllMapId()
+    {
+        int currentMapId = 5001;
+        foreach (var map in maps)
+        {
+            if (isAbleMap(map.id))
+            {
+                if (currentMapId < map.id)
+                {
+                    currentMapId = map.id;
+                }
+            }
+        }
+        return currentMapId;
+    }
     public static bool isAbleMap(int id)
     {
         Map userMap = userMaps.Find(x => x.id == id || x.id.Equals(id));
+
         if (userMap != null)
+        {
+
             return true;
+        }
+
         else
             return false;
     }
@@ -116,6 +136,10 @@ public static class MapSystem
     public static List<Map> GetMapNode(int stageNumber)
     {
         return maps.FindAll(item => item.stageNumber.Equals(stageNumber));
+    }
+    public static List<Map> GetMapNodeAll()
+    {
+        return maps;
     }
     public static string GetStageName(int index)
     {
