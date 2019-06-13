@@ -29,6 +29,7 @@ public class UI_MapSelectNew : MonoBehaviour
     // 선택된 맵 INDEX
     int currentMapIndex;
     int mapIndex;
+    bool isNodeLoadCompleted;
     Dictionary<int,Map> mapDatas;
     #endregion
 
@@ -49,20 +50,21 @@ public class UI_MapSelectNew : MonoBehaviour
     }
     private void OnEnable()
     {
-        ShowHero();
         RefreshUI();
     }
     void RefreshUI()
     {
         if (mapSlotNodePrefab != null)
         {
+            isNodeLoadCompleted = false;
             mapIndex = 0;
             currentMapIndex = 0;
             mapDatas = new Dictionary<int, Map>();
+            mapDatas.Clear();
             currentMapId = MapSystem.GetCurrentAllMapId();
-            foreach(Transform child in ContentView.transform)
+            for(int i = 0; i < ContentView.transform.childCount; i++)
             {
-                Destroy(child);
+                this.GetComponentInChildren<SimpleScrollSnap>().Remove(i);
             }
             foreach (var mapNode in MapSystem.GetMapNodeAll())
             {
@@ -73,7 +75,6 @@ public class UI_MapSelectNew : MonoBehaviour
                     mapNodePrefab.name = mapNode.name;
                     if (mapNode.id == currentMapId)
                     {
-                        Debugging.Log(mapNode.id + " > " + mapIndex);
                         currentMapIndex = mapIndex;
                     }
 
@@ -82,21 +83,22 @@ public class UI_MapSelectNew : MonoBehaviour
                     this.GetComponentInChildren<SimpleScrollSnap>().AddToBack(mapNodePrefab);
                 }
             }
+            isNodeLoadCompleted = true;
             StartCoroutine("ShowSelectMap");
         }
     }
 
     public IEnumerator ShowSelectMap()
     {
-        while(ContentView.transform.childCount< mapIndex)
+        while(!isNodeLoadCompleted)
         {
             Debugging.Log("로딩........");
             yield return null;
         }
-
         for (int i = 0; i < ContentView.transform.childCount; i++)
         {
-             if(i==currentMapIndex)
+            int tempEventIndex = i;
+            if (i==currentMapIndex)
             {
                 mapNodeImage = ContentView.transform.GetChild(i).GetComponent<Image>();
                 if (hero == null)
@@ -115,32 +117,35 @@ public class UI_MapSelectNew : MonoBehaviour
                     hero.GetComponent<Animator>().SetBool("isMoving", true);
                     hero.GetComponent<Animator>().SetBool("isRun", true);
                 }
-                this.GetComponentInChildren<SimpleScrollSnap>().GoToPanel(i);
+                this.GetComponentInChildren<SimpleScrollSnap>().GoToPanel(tempEventIndex);
+
                 ShowHero();
             }
-            int tempEventIndex = i;
-            ContentView.transform.GetChild(i).transform.position = new Vector3(i, 0);
+            ContentView.transform.GetChild(i).transform.localPosition = new Vector3((i*100)+2000, ContentView.transform.GetChild(i).transform.localPosition.y);
             ContentView.transform.GetChild(i).GetComponent<Button>().onClick.RemoveAllListeners();
             ContentView.transform.GetChild(i).GetComponent<Button>().onClick.AddListener(delegate
             {
                 OnMapNodeClick(mapDatas[tempEventIndex].id, tempEventIndex);
             });
-            if (!MapSystem.isAbleMap(mapDatas[i].id))
+            if(mapDatas.ContainsKey(i))
             {
-                ContentView.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>().overrideSprite = Resources.Load<Sprite>("UI/ui_lock_transparent");
-            }
-            else
-            {
-                if (mapDatas[i].clearPoint < 1)
+                if (!MapSystem.isAbleMap(mapDatas[i].id))
                 {
-                    ContentView.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0);
+                    ContentView.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>().overrideSprite = Resources.Load<Sprite>("UI/ui_lock_transparent");
                 }
                 else
                 {
-                    ContentView.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                    if (mapDatas[i].clearPoint < 1)
+                    {
+                        ContentView.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0);
+                    }
+                    else
+                    {
+                        ContentView.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                    }
                 }
-                mapIndex++;
             }
+
         }
     }
     // 맵노드 클릭 이벤트
