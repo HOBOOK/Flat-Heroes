@@ -1077,7 +1077,7 @@ public class Hero : MonoBehaviour
         }
         // 아이템 획득 파트
         Item randomItem = ItemSystem.GetRandomItem();
-        if(UnityEngine.Random.Range(0,100)<randomItem.droprate)
+        if(UnityEngine.Random.Range(0,10)<randomItem.droprate)
         {
             Debugging.Log(randomItem.droprate + " 의 확률수치의 " + randomItem.name + "의 아이템이 드랍되었습니다.");
             GameObject dropItem = ObjectPool.Instance.PopFromPool("dropItemPrefab");

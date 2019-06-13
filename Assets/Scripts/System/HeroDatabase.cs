@@ -86,6 +86,7 @@ public class HeroDatabase
                 var reader = new StringReader(_xml);
                 HeroDatabase heroDB = serializer.Deserialize(reader) as HeroDatabase;
                 reader.Close();
+                Debugging.Log(decrpytData);
                 Debugging.Log("HeroDatabase 유저 파일 로드");
                 return heroDB;
             }

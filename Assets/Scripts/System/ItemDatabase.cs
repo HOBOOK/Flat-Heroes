@@ -88,6 +88,7 @@ public class ItemDatabase
                 var reader = new StringReader(_xml);
                 ItemDatabase itemDB = serializer.Deserialize(reader) as ItemDatabase;
                 reader.Close();
+                Debugging.Log(decrpytData);
                 Debugging.Log("ItemDatabase 기존 파일 로드");
                 return itemDB;
             }
@@ -109,6 +110,7 @@ public class ItemDatabase
         //////////
         ///
         XmlNodeList nodes = xmlDoc.SelectNodes("ItemCollection/Items/Item");
+        Debugging.Log(id + "아이템 데이터 xml 저장중..");
         foreach (XmlNode node in nodes)
         {
             if (node.Attributes.GetNamedItem("id").Value == id.ToString() || node.Attributes.GetNamedItem("id").Value.Equals(id.ToString()))
@@ -158,7 +160,7 @@ public class ItemDatabase
         {
             if (node.Attributes.GetNamedItem("id").Value == id.ToString() || node.Attributes.GetNamedItem("id").Value.Equals(id.ToString()))
             {
-                node.RemoveAll();
+                node.ParentNode.RemoveChild(node);
                 break;
             }
         }

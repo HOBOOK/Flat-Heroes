@@ -85,7 +85,6 @@ public class AbilityDatabase
                 var reader = new StringReader(_xml);
                 AbilityDatabase abilityDB = serializer.Deserialize(reader) as AbilityDatabase;
                 reader.Close();
-                Debugging.Log(decrpytData);
                 Debugging.Log("AbilityDatabase 기존 파일 로드");
                 return abilityDB;
             }

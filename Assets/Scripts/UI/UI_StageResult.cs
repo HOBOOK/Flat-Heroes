@@ -45,6 +45,7 @@ public class UI_StageResult : MonoBehaviour
         {
             foreach(var item in getItemsIdList)
             {
+                SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
                 GameObject itemPrefab = Instantiate(GetItemSlotPrefab, GetItemInfoPanel.transform);
                 itemPrefab.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(item.id);
                 itemPrefab.transform.GetComponentInChildren<Text>().text = item.name;
@@ -69,6 +70,7 @@ public class UI_StageResult : MonoBehaviour
             txt.text = ((int)current).ToString();
             yield return null;
         }
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.coinGet);
         current = target;
         txt.text = ((int)current).ToString();
     }

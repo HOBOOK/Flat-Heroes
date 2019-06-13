@@ -121,7 +121,6 @@ public static class ItemSystem
                 ItemDatabase.AddItemSave(id);
             }
         }
-
     }
     public static void UseItem(int id, int count)
     {

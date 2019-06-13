@@ -99,6 +99,12 @@ public class StageManagement : MonoBehaviour
     public void StageClear()
     {
         User.coin += stageInfo.stageCoin;
+        var getItems = GetStageItems();
+        for(var i = 0; i < getItems.Count; i++)
+        {
+            ItemSystem.SetObtainItem(getItems[i].id);
+        }
+
         Debugging.Log(string.Format("스테이지 클리어 코인 획득 >> {0}(+{1}",User.coin,stageInfo.stageCoin));
     }
 

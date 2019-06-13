@@ -263,7 +263,7 @@ public class UI_Manager : MonoBehaviour
                     break;
                 case PopupAlertTYPE.scroll:
                     shortageImage.sprite = Resources.Load<Sprite>("Items/abilityScroll");
-                    shortageText.text = string.Format("주문서가 부족합니다. \r\n <color='red;>필요 : {0}</color> 현재 : {1}", needAmount, 0);
+                    shortageText.text = string.Format("주문서가 부족합니다. \r\n <color='red;>필요 : {0}</color> 현재 : {1}", needAmount, ItemSystem.GetUserScrollCount());
                     break;
                 case PopupAlertTYPE.coin:
                     shortageImage.sprite = Resources.Load<Sprite>("Items/coin");

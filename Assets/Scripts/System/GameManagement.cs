@@ -101,9 +101,7 @@ public class GameManagement : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.F3))
         {
-            var stageHero = CharactersManager.instance.GetCurrentInStageHero(101);
-            stageHero.GetComponent<Hero>().status.skillEnegry = 100;
-            stageHero.GetComponent<Hero>().SkillAttack();
+            ItemSystem.UseItem(8001, 1);
         }
     }
     void DebugInitXmlData()
