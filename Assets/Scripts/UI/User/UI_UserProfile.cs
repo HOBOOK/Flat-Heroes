@@ -7,6 +7,7 @@ public class UI_UserProfile : MonoBehaviour
 {
     protected Text userNameText;
     protected Text userLevelText;
+    public bool isResultProfile = false;
 
     private void Awake()
     {
@@ -22,7 +23,7 @@ public class UI_UserProfile : MonoBehaviour
     {
         if (userNameText != null)
             userNameText.text = User.name;
-        if (userLevelText != null)
+        if (userLevelText != null&& !isResultProfile)
             userLevelText.text = User.level.ToString();
     }
 }

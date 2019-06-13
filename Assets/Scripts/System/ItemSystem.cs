@@ -90,9 +90,9 @@ public static class ItemSystem
         if (obtainMoney != null)
         {
             if (obtainMoney.id > 9000 && obtainMoney.id < 9010)
-                SaveSystem.SetUserCrystal(obtainMoney.count);
+                SaveSystem.AddUserCrystal(obtainMoney.count);
             else if (obtainMoney.id > 9010 && obtainMoney.id < 9020)
-                SaveSystem.SetUserEnergy(obtainMoney.count);
+                SaveSystem.AddUserEnergy(obtainMoney.count);
             SaveSystem.SavePlayer();
         }
         else

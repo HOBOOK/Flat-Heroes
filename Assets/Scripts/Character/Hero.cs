@@ -577,6 +577,7 @@ public class Hero : MonoBehaviour
             animator.SetTrigger("deading");
             if (!isPlayerHero)
             {
+                StageManagement.instance.AddExp(200);
                 StageManagement.instance.SetKPoint();
                 List<GameObject> allyHeros = Common.FindAlly();
                 if(allyHeros.Count>0)
@@ -1591,7 +1592,6 @@ public class Hero : MonoBehaviour
     IEnumerator Stunning()
     {
         isStunning = true;
-        Debugging.Log(name + " >> 스턴상태");
         Knockback(10, 1);
         animator.SetTrigger("stunning");
         animator.SetBool("isStun", true);

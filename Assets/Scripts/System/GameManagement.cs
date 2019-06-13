@@ -101,7 +101,8 @@ public class GameManagement : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.F3))
         {
-            ItemSystem.UseItem(8001, 1);
+            User.level = 1;
+            User.exp = 0;
         }
     }
     void DebugInitXmlData()

@@ -3919,6 +3919,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoldInfoTextl: {fileID: 602924159}
+  levelText: {fileID: 395537081}
+  expSlider: {fileID: 591137233}
   GetItemInfoPanel: {fileID: 1403970665}
   GetItemSlotPrefab: {fileID: 2356440304269338676, guid: 6f0c8b333f88a8649a4c7ba82a12a709,
     type: 3}
@@ -11394,6 +11396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eee20df8ad61ac409411a6799f5c622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isResultProfile: 1
 --- !u!114 &1292192306
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -28,9 +28,6 @@ public class UI_MapSelectNew : MonoBehaviour
     int currentMapId;
     // 선택된 맵 INDEX
     int currentMapIndex;
-    int mapIndex;
-    bool isNodeLoadCompleted;
-    Dictionary<int,Map> mapDatas;
     #endregion
 
     private void Awake()
@@ -52,16 +49,15 @@ public class UI_MapSelectNew : MonoBehaviour
     {
         RefreshUI();
     }
-    void RefreshUI()
+    public void GenerateMapNodes()
+    {
+        MapSystem.LoadMap();
+        CreateMapNodesI();
+    }
+    void CreateMapNodesI()
     {
         if (mapSlotNodePrefab != null)
         {
-            isNodeLoadCompleted = false;
-            mapIndex = 0;
-            currentMapIndex = 0;
-            mapDatas = new Dictionary<int, Map>();
-            mapDatas.Clear();
-            currentMapId = MapSystem.GetCurrentAllMapId();
             for(int i = 0; i < ContentView.transform.childCount; i++)
             {
                 this.GetComponentInChildren<SimpleScrollSnap>().Remove(i);
@@ -73,34 +69,33 @@ public class UI_MapSelectNew : MonoBehaviour
                     // 맵노드 생성
                     GameObject mapNodePrefab = mapSlotNodePrefab;
                     mapNodePrefab.name = mapNode.name;
-                    if (mapNode.id == currentMapId)
-                    {
-                        currentMapIndex = mapIndex;
-                    }
-
-                    mapDatas.Add(mapIndex, mapNode);
-                    mapIndex++;
                     this.GetComponentInChildren<SimpleScrollSnap>().AddToBack(mapNodePrefab);
                 }
             }
-            isNodeLoadCompleted = true;
-            StartCoroutine("ShowSelectMap");
         }
+    }
+    void RefreshUI()
+    {
+        StartCoroutine("ShowSelectMap");
     }
 
     public IEnumerator ShowSelectMap()
     {
-        while(!isNodeLoadCompleted)
+        while(ContentView.transform.childCount<MapSystem.GetMapCount())
         {
             Debugging.Log("로딩........");
             yield return null;
         }
+        currentMapId = MapSystem.GetCurrentAllMapId();
+        currentMapIndex = GetMapIndex(currentMapId);
+        Debugging.Log(currentMapIndex + "번째 인덱스가 현재 맵입니다.");
         for (int i = 0; i < ContentView.transform.childCount; i++)
         {
             int tempEventIndex = i;
             if (i==currentMapIndex)
             {
                 mapNodeImage = ContentView.transform.GetChild(i).GetComponent<Image>();
+                ShowMapInfo(GetMapId(i));
                 if (hero == null)
                 {
                     hero = Instantiate(PrefabsDatabaseManager.instance.GetHeroPrefab(101), mapNodeImage.transform);
@@ -118,35 +113,37 @@ public class UI_MapSelectNew : MonoBehaviour
                     hero.GetComponent<Animator>().SetBool("isRun", true);
                 }
                 this.GetComponentInChildren<SimpleScrollSnap>().GoToPanel(tempEventIndex);
-
                 ShowHero();
             }
-            ContentView.transform.GetChild(i).transform.localPosition = new Vector3((i*100)+2000, ContentView.transform.GetChild(i).transform.localPosition.y);
             ContentView.transform.GetChild(i).GetComponent<Button>().onClick.RemoveAllListeners();
             ContentView.transform.GetChild(i).GetComponent<Button>().onClick.AddListener(delegate
             {
-                OnMapNodeClick(mapDatas[tempEventIndex].id, tempEventIndex);
+                OnMapNodeClick(MapSystem.GetMap(GetMapId(tempEventIndex)).id, tempEventIndex);
             });
-            if(mapDatas.ContainsKey(i))
+            if (!MapSystem.isAbleMap(MapSystem.GetMap(GetMapId(i)).id))
             {
-                if (!MapSystem.isAbleMap(mapDatas[i].id))
+                ContentView.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>().overrideSprite = Resources.Load<Sprite>("UI/ui_lock_transparent");
+            }
+            else
+            {
+                if (MapSystem.GetMap(GetMapId(i)).clearPoint < 1)
                 {
-                    ContentView.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>().overrideSprite = Resources.Load<Sprite>("UI/ui_lock_transparent");
+                    ContentView.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0);
                 }
                 else
                 {
-                    if (mapDatas[i].clearPoint < 1)
-                    {
-                        ContentView.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0);
-                    }
-                    else
-                    {
-                        ContentView.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                    }
+                    ContentView.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 }
             }
-
         }
+    }
+    int GetMapIndex(int id)
+    {
+        return id - 5001;
+    }
+    int GetMapId(int index)
+    {
+        return index + 5001;
     }
     // 맵노드 클릭 이벤트
     public void OnMapNodeClick(int mapId, int index)
@@ -154,18 +151,23 @@ public class UI_MapSelectNew : MonoBehaviour
         SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_button_default);
         if (MapSystem.isAbleMap(mapId))
         {
+            currentMapId = GetMapId(index);
             Debugging.Log(index + "번째 노드클릭");
             mapNodeImage = ContentView.transform.GetChild(index).GetComponent<Image>();
             this.GetComponentInChildren<SimpleScrollSnap>().GoToPanel(index);
-            mapNameText.text = MapSystem.GetMap(mapId).name;
-            mapDescriptionText.text = MapSystem.GetMap(mapId).description;
-            MapInfoPanel.GetComponent<AiryUIAnimatedElement>().ShowElement();
+            ShowMapInfo(mapId);
             ShowHero();
         }
         else
         {
             Debugging.Log(mapId + " 의 맵은 아직 열리지 않은 맵입니다.");
         }
+    }
+    void ShowMapInfo(int mapId)
+    {
+        mapNameText.text = MapSystem.GetMap(mapId).name;
+        mapDescriptionText.text = MapSystem.GetMap(mapId).description;
+        MapInfoPanel.GetComponent<AiryUIAnimatedElement>().ShowElement();
     }
 
     public void ShowHero()

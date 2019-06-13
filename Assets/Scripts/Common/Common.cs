@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class Common : MonoBehaviour
 {
+    public static int[] EXP_TABLE = { 100, 300, 400, 700, 1100, 1800, 2900, 4700, 7800, 10000 };
+    public static int[] USER_EXP_TABLE = { 1000, 2000, 3000, 5000, 8000, 13000, 21000, 34000, 55000, 89000, 144000 };
+
     public static Common instance = null;
     private void Awake()
     {
@@ -331,7 +334,7 @@ public class Common : MonoBehaviour
         return (int)finalDam;
     }
 
-    public static int[] EXP_TABLE= { 100, 300, 400, 700, 1100, 1800, 2900, 4700, 7800, 10000 };
+  
 
     public enum SCENE { START,MAIN,STAGE,TRAINING};
     public static SCENE Scene;

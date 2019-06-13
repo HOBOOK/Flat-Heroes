@@ -49,6 +49,7 @@ public static class SaveSystem
             User.isPlaying = false;
 
             User.level = data.level;
+            User.exp = data.exp;
             User.coin = data.coin;
             User.blackCrystal = data.blackCrystal;
             User.portalEnergy = data.portalEnergy;
@@ -82,12 +83,38 @@ public static class SaveSystem
         User.stageHeros = new int[5];
         Debugging.LogSystem("Init Player");
     }
-
-    public static void SetUserCrystal(int amount)
+    public static void ExpUp(int exp)
+    {
+        if(User.exp + exp >Common.USER_EXP_TABLE[(User.level-1)])
+        {
+            int departExp = (User.exp + exp) - Common.USER_EXP_TABLE[(User.level - 1)];
+            LevelUp(departExp);
+        }
+        else
+        {
+            User.exp += exp;
+        }
+    }
+    public static void LevelUp(int departExp)
+    {
+        int maxLevel = 10;
+        if (User.level < maxLevel)
+        {
+            User.level += 1;
+            User.exp = departExp;
+        }
+        else
+            Debugging.Log("유저레벨이 MAX입니다.");
+    }
+    public static void AddUserCoin(int amount)
+    {
+        User.coin += amount;
+    }
+    public static void AddUserCrystal(int amount)
     {
         User.blackCrystal += amount;
     }
-    public static void SetUserEnergy(int amount)
+    public static void AddUserEnergy(int amount)
     {
         User.portalEnergy += amount;
     }

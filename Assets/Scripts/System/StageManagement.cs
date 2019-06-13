@@ -7,6 +7,7 @@ public class StageManagement : MonoBehaviour
 {
     public static StageManagement instance = null;
     public StageInfo stageInfo;
+    public static UserInfo userInfo;
     public Transform Map;
     public Transform HeroPoint;
     bool isEndGame;
@@ -28,6 +29,8 @@ public class StageManagement : MonoBehaviour
         isEndGame = false;
         kPoint = 0;
         dPoint = 0;
+        userInfo = new UserInfo();
+        userInfo.initUserInfo();
         stageInfo = GameManagement.instance.GetStageInfo();
         stageInfo.initStage();
         UI_Manager.instance.Title.GetComponentInChildren<Text>().text = MapSystem.GetMap(stageInfo.mapNumber).name;
@@ -98,18 +101,22 @@ public class StageManagement : MonoBehaviour
     {
         dPoint += 1;
     }
+    
     public void StageClear()
     {
-        User.coin += stageInfo.stageCoin;
+        SaveSystem.AddUserCoin(stageInfo.stageCoin);
+        SaveSystem.ExpUp(stageInfo.stageExp);
+        SaveSystem.SavePlayer();
         var getItems = GetStageItems();
         for(var i = 0; i < getItems.Count; i++)
         {
             ItemSystem.SetObtainItem(getItems[i].id);
         }
-
-        Debugging.Log(string.Format("스테이지 클리어 코인 획득 >> {0}(+{1}",User.coin,stageInfo.stageCoin));
     }
-
+    public UserInfo GetUserInfo()
+    {
+        return userInfo;
+    }
     private void EnergyUpdate()
     {
         if (stageInfo.stageGetTime > 1)
@@ -141,6 +148,10 @@ public class StageManagement : MonoBehaviour
             return true;
         }
     }
+    public void AddExp(int amount)
+    {
+        stageInfo.stageExp += amount;
+    }
 
     public void UseSkill(int skillenergy)
     {
@@ -170,6 +181,7 @@ public class StageInfo
 {
     public int stageNumber;
     public int mapNumber;
+    public int stageExp;
     public int stageCoin;
     public int stageEnergy;
     public int stageMaxEnergy;
@@ -191,8 +203,36 @@ public class StageInfo
         stageGetTime = 0;
         stageGetSpeed = 100;
         stageMaxEnergy = 300;
+        stageExp = 0;
         stageGetItems = new List<int>();
 
         Debugging.Log("스테이지 씬에 맵로딩 완료. >> " + this.stageNumber + " 스테이지의 " + this.mapNumber + " 맵");
     }
+}
+public class UserInfo
+{
+    public int level;
+    public int exp;
+    public int departExp;
+    public bool isLevelUp;
+
+    public void initUserInfo()
+    {
+        level = User.level;
+        exp = User.exp;
+        departExp = 0;
+        isLevelUp = false;
+        Debugging.Log(level + " > " + exp + " 영웅 레벨 정보 로드 완료.");
+    }
+    public void LevelUp()
+    {
+        if(exp>Common.USER_EXP_TABLE[level-1])
+        {
+            level += 1;
+            isLevelUp = true;
+            exp = 0;
+        }
+    }
+
+
 }

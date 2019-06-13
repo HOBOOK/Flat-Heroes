@@ -141,8 +141,6 @@ public static class HeroSystem
         string debugStr = "";
         foreach (var hd in heroDatas)
             debugStr += hd.name + "\r\n";
-
-        Debugging.Log(debugStr);
         return heroDatas;
     }
     public static Sprite GetHeroThumbnail(int id)

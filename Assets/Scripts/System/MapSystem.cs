@@ -132,11 +132,18 @@ public static class MapSystem
     #region 전체맵정보
     public static Map GetMap(int id)
     {
-        return maps.Find(item => item.id == id || item.id.Equals(id));
+        Map map = maps.Find(item => item.id == id || item.id.Equals(id));
+        if (map == null)
+            map = maps.Find(item => item.id == 5001);
+        return map;
     }
     public static List<Map> GetMapNode(int stageNumber)
     {
         return maps.FindAll(item => item.stageNumber.Equals(stageNumber));
+    }
+    public static int GetMapCount()
+    {
+        return maps.Count;
     }
     public static List<Map> GetMapNodeAll()
     {

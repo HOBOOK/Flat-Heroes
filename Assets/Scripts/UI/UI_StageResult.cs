@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class UI_StageResult : MonoBehaviour
 {
     public Text GoldInfoTextl;
+    public Text levelText;
+    public Slider expSlider;
     public GameObject GetItemInfoPanel;
     public GameObject GetItemSlotPrefab;
-
+    UserInfo userinfo;
     private static UI_StageResult _instance = null;
 
     public static UI_StageResult Instance
@@ -26,11 +28,59 @@ public class UI_StageResult : MonoBehaviour
             return _instance;
         }
     }
-
     private void OnEnable()
     {
+        ShowGetExp();
         ShowGetGold(StageManagement.instance.stageInfo.stageCoin);
         StartCoroutine("ShowGetItem");
+    }
+    public void ShowGetExp()
+    {
+        userinfo = StageManagement.instance.GetUserInfo();
+        levelText.text = userinfo.level.ToString();
+        int initexp = userinfo.exp;
+        if (initexp + StageManagement.instance.stageInfo.stageExp > Common.USER_EXP_TABLE[(userinfo.level - 1)])
+        {
+            userinfo.departExp = (initexp + StageManagement.instance.stageInfo.stageExp) - Common.USER_EXP_TABLE[(userinfo.level - 1)];
+        }
+        StartCoroutine(ShowCountExp((initexp+StageManagement.instance.stageInfo.stageExp),initexp , expSlider));
+    }
+    IEnumerator ShowCountExp(float target, float current, Slider slider)
+    {
+        float duration = 1.5f; // 카운팅에 걸리는 시간 설정. 
+        float offset = (target - current) / duration;
+        while (current < target)
+        {
+            current += offset * Time.deltaTime;
+            userinfo.exp = ((int)current);
+            userinfo.LevelUp();
+            if(userinfo.isLevelUp)
+            {
+                current = 0;
+                target = userinfo.departExp;
+                StartCoroutine(LevelUpTextEffect(levelText));
+                userinfo.isLevelUp = false;
+            }
+            slider.value = ((float)current) / (float)Common.USER_EXP_TABLE[userinfo.level-1];
+            slider.GetComponentInChildren<Text>().text = string.Format("{0}/{1}({2}%)", ((int)current), Common.USER_EXP_TABLE[userinfo.level-1], (slider.value*100).ToString("N0"));
+            yield return null;
+        }
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.coinGet);
+        current = target;
+        slider.GetComponentInChildren<Text>().text = string.Format("{0}/{1}({2}%)", ((int)current), Common.USER_EXP_TABLE[userinfo.level-1], (slider.value * 100).ToString("N0"));
+    }
+    IEnumerator LevelUpTextEffect(Text txt)
+    {
+        float size = 1.5f;
+        while (size > 1)
+        {
+            txt.text = userinfo.level.ToString();
+            txt.transform.localScale = new Vector3(size, size, size);
+            size -= 0.01f;
+            yield return new WaitForSeconds(0.01f);
+        }
+        txt.transform.localScale = Vector3.one;
+        yield return null;
     }
 
     public void ShowGetGold(int amount)
