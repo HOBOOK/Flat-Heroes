@@ -91,7 +91,7 @@
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
-        <Mission id="10">
+    <Mission id="10">
       <Name>일일퀘스트10</Name>
       <Description>일일퀘스트 10입니다.</Description>
       <MissionType>0</MissionType>
@@ -121,5 +121,56 @@
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
+    <Mission id="201">
+      <Name>반복퀘스트1</Name>
+      <Description>반복퀘스트 1입니다.</Description>
+      <MissionType>2</MissionType>
+      <MissionLevel>0</MissionLevel>
+      <Image>Mission/mission_201</Image>
+      <Clear>false</Clear>
+      <RewardItemId>0</RewardItemId>
+      <RewardItemCount>1</RewardItemCount>
+    </Mission>
+        <Mission id="202">
+      <Name>반복퀘스트2</Name>
+      <Description>반복퀘스트 2입니다.</Description>
+      <MissionType>2</MissionType>
+      <MissionLevel>0</MissionLevel>
+      <Image>Mission/mission_202</Image>
+      <Clear>false</Clear>
+      <RewardItemId>0</RewardItemId>
+      <RewardItemCount>1</RewardItemCount>
+    </Mission>
+    <Mission id="203">
+      <Name>반복퀘스트3</Name>
+      <Description>반복퀘스트 3입니다.</Description>
+      <MissionType>2</MissionType>
+      <MissionLevel>0</MissionLevel>
+      <Image>Mission/mission_203</Image>
+      <Clear>false</Clear>
+      <RewardItemId>0</RewardItemId>
+      <RewardItemCount>1</RewardItemCount>
+    </Mission>
+    <Mission id="204">
+      <Name>반복퀘스트4</Name>
+      <Description>반복퀘스트 4입니다.</Description>
+      <MissionType>2</MissionType>
+      <MissionLevel>0</MissionLevel>
+      <Image>Mission/mission_204</Image>
+      <Clear>false</Clear>
+      <RewardItemId>0</RewardItemId>
+      <RewardItemCount>1</RewardItemCount>
+    </Mission>
+    <Mission id="205">
+      <Name>반복퀘스트5</Name>
+      <Description>반복퀘스트 5입니다.</Description>
+      <MissionType>2</MissionType>
+      <MissionLevel>0</MissionLevel>
+      <Image>Mission/mission_205</Image>
+      <Clear>false</Clear>
+      <RewardItemId>0</RewardItemId>
+      <RewardItemCount>1</RewardItemCount>
+    </Mission>
+  
   </Missions>
 </MissionCollection>

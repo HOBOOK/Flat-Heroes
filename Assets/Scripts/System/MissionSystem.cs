@@ -57,12 +57,16 @@ public class MissionSystem
     {
         return userMissions;
     }
-    public static List<Mission> GetUnClearMissions()
+    public static List<Mission> GetMainMissions()
     {
         List<Mission> missionDatas = missions.FindAll(m=>m.missionType==1||m.missionType.Equals(1));
         missionDatas = missionDatas.Where(f => !userMissions.Any(t => t.id == f.id)).ToList();
         missionDatas.Sort((i1, i2) => i1.id.CompareTo(i2.id));
         return missionDatas;
+    }
+    public static List<Mission> GetRepeatMissions()
+    {
+        return missions.FindAll(item => item.missionType == 2 || item.missionType.Equals(2));
     }
 
     public static List<Mission> GetDayMissions()
@@ -108,7 +112,7 @@ public class MissionSystem
         {
             Debugging.Log("기존의 일일미션 데이터를 가져옴");
         }
-        return userMissions.FindAll(m => m.missionType == 0 || m.missionType.Equals(0) && m.clear==false);
+        return userMissions.FindAll(m => m.missionType == 0 || m.missionType.Equals(0));
     }
     public static int DebugGetUnClearMissionId()
     {

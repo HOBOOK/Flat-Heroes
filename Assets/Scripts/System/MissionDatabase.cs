@@ -112,7 +112,7 @@ public class MissionDatabase
         
         foreach (XmlNode node in nodes)
         {
-            if(node.SelectSingleNode("MissionType").InnerText.Equals("0")|| node.SelectSingleNode("Enable").InnerText=="0")
+            if(node.SelectSingleNode("MissionType").InnerText.Equals("0"))
             {
                 node.ParentNode.RemoveChild(node);
             }
