@@ -114,8 +114,8 @@ public class ItemDatabase
         {
             if (node.Attributes.GetNamedItem("id").Value == id.ToString() || node.Attributes.GetNamedItem("id").Value.Equals(id.ToString()))
             {
-                node.SelectSingleNode("Enable").InnerText = ItemSystem.GetItem(id).enable.ToString().ToLower();
-                node.SelectSingleNode("Count").InnerText = ItemSystem.GetItem(id).count.ToString();
+                node.SelectSingleNode("Enable").InnerText = ItemSystem.GetUserItem(id).enable.ToString().ToLower();
+                node.SelectSingleNode("Count").InnerText = ItemSystem.GetUserItem(id).count.ToString();
                 break;
             }
         }

@@ -44938,7 +44938,7 @@ RectTransform:
   m_GameObject: {fileID: 1943477032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 5778920}
   m_Father: {fileID: 1501208134}
@@ -44962,7 +44962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minSize: 2
-  maxSize: 4
+  maxSize: 3
   zoomRate: 5
   zoom: 1
   zoomTarget: 5
