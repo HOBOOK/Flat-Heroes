@@ -182,8 +182,6 @@ public class Castle : MonoBehaviour
     {
         Camera.main.GetComponent<FollowCamera>().ChangeTarget(this.gameObject);
         Camera.main.GetComponent<CameraEffectHandler>().SetCameraSize(3.5f);
-
-
         yield return new WaitForSeconds(2.0f);
         for(int i = 0; i < 5; i++)
         {
@@ -193,9 +191,13 @@ public class Castle : MonoBehaviour
             effect.SetActive(true);
             yield return new WaitForSeconds(0.2f);
         }
+
         HeroSystem.SaveHeros(Common.FindAlly());
         MapSystem.MapClear(StageManagement.instance.stageInfo.mapNumber,1);
+        MissionSystem.AddClearPoint(MissionSystem.ClearType.StageClear);
+        MissionSystem.PointSave();
         StageManagement.instance.StageClear();
+
         UI_Manager.instance.OpenEndGamePanel(true);
         this.gameObject.SetActive(false);
         yield return null;

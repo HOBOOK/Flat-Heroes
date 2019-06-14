@@ -61,23 +61,38 @@ public class UI_Mission : MonoBehaviour
             rewardItemImage = missionSlot.transform.GetChild(2).GetChild(1).GetComponent<Image>();
             rewardItemCountText = rewardItemImage.GetComponentInChildren<Text>();
             rewardButton = missionSlot.transform.GetChild(2).GetComponentInChildren<Button>();
-
             clearPanel = missionSlot.transform.GetChild(3).gameObject;
 
             missionImage.sprite = Resources.Load<Sprite>(mission.image);
             missionTitleText.text = mission.name;
-            missionDescriptionText.text = mission.description;
+            missionDescriptionText.text = mission.description + string.Format(" ({0}/{1})",mission.point,mission.clearPoint);
             rewardItemImage.sprite = Resources.Load<Sprite>(ItemSystem.GetItem(mission.rewardItemId).image);
             rewardItemCountText.text = "x " + Common.GetThousandCommaText(mission.rewardItemCount);
+            int missionid = mission.id;
+            rewardButton.onClick.RemoveAllListeners();
+            rewardButton.onClick.AddListener(delegate
+            {
+                OnClickRewardButton(missionid);
+            });
             if (mission.clear)
             {
                 rewardButton.GetComponentInChildren<Text>().text = "임무완료";
+                rewardButton.interactable = false;
                 clearPanel.SetActive(true);
             }
             else
             {
-                rewardButton.GetComponentInChildren<Text>().text = "진행중";
                 clearPanel.SetActive(false);
+                if (mission.enable)
+                {
+                    rewardButton.interactable = true;
+                    rewardButton.GetComponentInChildren<Text>().text = "보상받기";
+                }
+                else
+                {
+                    rewardButton.interactable = false;
+                    rewardButton.GetComponentInChildren<Text>().text = "진행중";
+                }
             }
             missionSlot.SetActive(true);
         }
@@ -85,6 +100,20 @@ public class UI_Mission : MonoBehaviour
 
     private void OnEnable()
     {
+        RefreshUI();
+    }
+
+    public void OnClickRewardButton(int id)
+    {
+        Mission mission = MissionSystem.GetUserMission(id);
+        if(mission!=null&&mission.enable&&!mission.clear)
+        {
+            MissionSystem.ClearMission(id);
+        }
+        else
+        {
+            Debugging.Log(id + " 의 미션클리어 실패");
+        }
         RefreshUI();
     }
 }

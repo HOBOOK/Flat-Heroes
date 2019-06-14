@@ -57,6 +57,10 @@ public class MissionSystem
     {
         return userMissions;
     }
+    public static Mission GetUserMission(int id)
+    {
+        return userMissions.Find(item => item.id==id||item.id.Equals(id));
+    }
     public static List<Mission> GetMainMissions()
     {
         List<Mission> missionDatas = missions.FindAll(m=>m.missionType==1||m.missionType.Equals(1));
@@ -130,9 +134,47 @@ public class MissionSystem
             MissionDatabase.ClearMission(clearMission);
         }
     }
-
     public static List<Mission> GetAllMissions()
     {
         return missions;
     }
+
+    // 퀘스트 클리어 타입 0:몬스터 처치 1:스테이지 클리어
+
+    public static void AddClearPoint(ClearType clearType)
+    {
+        List<Mission> currentMissions = userMissions.FindAll(x => !x.enable && !x.clear&&x.clearType==(int)clearType);
+        for(var i = 0; i < currentMissions.Count; i++)
+        {
+            currentMissions[i].point += 1;
+            Debugging.Log(string.Format("{0} 미션 포인트 ({1}/{2})",currentMissions[i].name,currentMissions[i].point,currentMissions[i].clearPoint));
+            if(currentMissions[i].point>=currentMissions[i].clearPoint)
+            {
+                currentMissions[i].enable = true;
+            }
+        }
+
+    }
+    public static void PointSave()
+    {
+        MissionDatabase.PointSave(userMissions.FindAll(x=>!x.clear));
+    }
+
+    public static void CoinReward(int coin)
+    {
+
+    }
+    public static void CrystalReward(int crystal)
+    {
+
+    }
+    public static void EnergyReward(int energy)
+    {
+
+    }
+    public static void ItemReward(int itemId)
+    {
+
+    }
+    public enum ClearType { EnemyKill,StageClear};
 }

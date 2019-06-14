@@ -38,8 +38,7 @@ public class UI_Manager_InventoryTab : MonoBehaviour
 
     private void RefreshUI(Common.OrderByType orderByType=Common.OrderByType.NONE)
     {
-        if(items==null)
-            items = ItemSystem.GetUserItems(orderByType);
+        items = ItemSystem.GetUserItems(orderByType);
         if (items!=null)
         {
             for (int i = 0; i < itemSlots.Length; i++)

@@ -151,6 +151,41 @@ public class MissionDatabase
         xmlDoc.Save(path);
         Debugging.Log(mission.name + " 일일미션클리어 xml 저장 완료");
     }
+    public static void PointSave(List<Mission> missons)
+    {
+        string path = Application.persistentDataPath + "/Xml/Mission.Xml";
+        XmlDocument xmlDoc = new XmlDocument();
+        if (System.IO.File.Exists(path))
+            xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
+
+        //복호화////
+        XmlElement elmRoot = xmlDoc.DocumentElement;
+        var decrpytData = DataSecurityManager.DecryptData(elmRoot.InnerText);
+        elmRoot.InnerXml = decrpytData;
+        //////////
+
+        XmlNodeList nodes = xmlDoc.SelectNodes("MissionCollection/Missions/Mission");
+
+        foreach (XmlNode node in nodes)
+        {
+            foreach(var mission in missons)
+            {
+                if (node.Attributes.GetNamedItem("id").Value.Equals(mission.id.ToString()))
+                {
+                    node.SelectSingleNode("Point").InnerText = mission.point.ToString();
+                    node.SelectSingleNode("Enable").InnerText = mission.enable.ToString().ToLower();
+                    break;
+                }
+            }
+        }
+        Debugging.Log(decrpytData);
+        // 암호화/////
+        var encrpytData = DataSecurityManager.EncryptData(elmRoot.InnerXml);
+        elmRoot.InnerText = encrpytData;
+        ////////////
+        xmlDoc.Save(path);
+        Debugging.Log("미션포인트 xml 저장 완료");
+    }
     #endregion
 
 
@@ -200,9 +235,24 @@ public class MissionDatabase
         XmlElement image = xmlDoc.CreateElement("Image");
         image.InnerText = data.image;
         child.AppendChild(image);
+        XmlElement point = xmlDoc.CreateElement("Point");
+        point.InnerText = data.point.ToString();
+        child.AppendChild(point);
+        XmlElement clearPoint = xmlDoc.CreateElement("ClearPoint");
+        clearPoint.InnerText = data.clearPoint.ToString();
+        child.AppendChild(clearPoint);
+        XmlElement clearType = xmlDoc.CreateElement("ClearType");
+        clearType.InnerText = data.clearType.ToString();
+        child.AppendChild(clearType);
         XmlElement clear = xmlDoc.CreateElement("Clear");
         clear.InnerText = data.clear.ToString().ToLower();
         child.AppendChild(clear);
+        XmlElement enable = xmlDoc.CreateElement("Enable");
+        enable.InnerText = data.clear.ToString().ToLower();
+        child.AppendChild(enable);
+        XmlElement rewardType = xmlDoc.CreateElement("RewardType");
+        rewardType.InnerText = data.rewardType.ToString();
+        child.AppendChild(rewardType);
         XmlElement rewardItem = xmlDoc.CreateElement("RewardItemId");
         rewardItem.InnerText = data.rewardItemId.ToString();
         child.AppendChild(rewardItem);
@@ -246,9 +296,24 @@ public class MissionDatabase
             XmlElement image = xmlDoc.CreateElement("Image");
             image.InnerText = data[i].image;
             child.AppendChild(image);
+            XmlElement point = xmlDoc.CreateElement("Point");
+            point.InnerText = data[i].point.ToString();
+            child.AppendChild(point);
+            XmlElement clearPoint = xmlDoc.CreateElement("ClearPoint");
+            clearPoint.InnerText = data[i].clearPoint.ToString();
+            child.AppendChild(clearPoint);
+            XmlElement clearType = xmlDoc.CreateElement("ClearType");
+            clearType.InnerText = data[i].clearType.ToString();
+            child.AppendChild(clearType);
             XmlElement clear = xmlDoc.CreateElement("Clear");
             clear.InnerText = data[i].clear.ToString().ToLower();
             child.AppendChild(clear);
+            XmlElement enable = xmlDoc.CreateElement("Enable");
+            enable.InnerText = data[i].enable.ToString().ToLower();
+            child.AppendChild(enable);
+            XmlElement rewardType = xmlDoc.CreateElement("RewardType");
+            rewardType.InnerText = data[i].rewardType.ToString();
+            child.AppendChild(rewardType);
             XmlElement rewardItem = xmlDoc.CreateElement("RewardItemId");
             rewardItem.InnerText = data[i].rewardItemId.ToString();
             child.AppendChild(rewardItem);

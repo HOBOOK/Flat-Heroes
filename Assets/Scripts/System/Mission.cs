@@ -24,8 +24,23 @@ public class Mission
     [XmlElement("Image")]
     public string image;
 
+    [XmlElement("Point")]
+    public int point;
+
+    [XmlElement("ClearPoint")]
+    public int clearPoint;
+
+    [XmlElement("ClearType")]
+    public int clearType;
+
     [XmlElement("Clear")]
     public bool clear;
+
+    [XmlElement("Enable")]
+    public bool enable;
+
+    [XmlElement("RewardType")]
+    public int rewardType;
 
     [XmlElement("RewardItemId")]
     public int rewardItemId;

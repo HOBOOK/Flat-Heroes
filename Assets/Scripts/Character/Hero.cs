@@ -577,6 +577,7 @@ public class Hero : MonoBehaviour
             animator.SetTrigger("deading");
             if (!isPlayerHero)
             {
+                MissionSystem.AddClearPoint(MissionSystem.ClearType.EnemyKill);
                 StageManagement.instance.AddExp(200);
                 StageManagement.instance.SetKPoint();
                 List<GameObject> allyHeros = Common.FindAlly();

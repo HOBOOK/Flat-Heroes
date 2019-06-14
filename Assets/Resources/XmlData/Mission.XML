@@ -3,101 +3,151 @@
   <Missions>
     <Mission id="1">
       <Name>일일퀘스트1</Name>
-      <Description>일일퀘스트 1입니다.</Description>
+      <Description>몬스터 10마리 처치</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_001</Image>
+      <Point>0</Point>
+      <ClearPoint>10</ClearPoint>
+      <ClearType>0</ClearType>
       <Clear>false</Clear>
+      <Enable>false</Enable>
+      <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
     <Mission id="2">
       <Name>일일퀘스트2</Name>
-      <Description>일일퀘스트 2입니다.</Description>
+      <Description>몬스터 15마리 처치</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_002</Image>
+            <Point>0</Point>
+            <ClearPoint>15</ClearPoint>
+            <ClearType>0</ClearType>
       <Clear>false</Clear>
+      <Enable>false</Enable>
+            <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
         <Mission id="3">
       <Name>일일퀘스트3</Name>
-      <Description>일일퀘스트 3입니다.</Description>
+      <Description>몬스터 7마리 처치</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_003</Image>
+                <Point>0</Point>
+                <ClearPoint>7</ClearPoint>
+                <ClearType>0</ClearType>
       <Clear>false</Clear>
+      <Enable>false</Enable>
+                <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
         <Mission id="4">
       <Name>일일퀘스트4</Name>
-      <Description>일일퀘스트 4입니다.</Description>
+      <Description>스테이지 3번 클리어</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_004</Image>
+                <Point>0</Point>
+                <ClearPoint>3</ClearPoint>
+                <ClearType>1</ClearType>
       <Clear>false</Clear>
+      <Enable>false</Enable>
+                <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
       <Mission id="5">
       <Name>일일퀘스트5</Name>
-      <Description>일일퀘스트 5입니다.</Description>
+      <Description>스테이지 2번 클리어</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_005</Image>
+              <Point>0</Point>
+              <ClearPoint>2</ClearPoint>
+              <ClearType>1</ClearType>
       <Clear>false</Clear>
+      <Enable>false</Enable>
+              <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
     <Mission id="6">
       <Name>일일퀘스트6</Name>
-      <Description>일일퀘스트 6입니다.</Description>
+      <Description>스테이지 5번 클리어</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_006</Image>
+            <Point>0</Point>
+            <ClearPoint>5</ClearPoint>
+            <ClearType>1</ClearType>
       <Clear>false</Clear>
+      <Enable>false</Enable>
+            <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
     <Mission id="7">
       <Name>일일퀘스트7</Name>
-      <Description>일일퀘스트 7입니다.</Description>
+      <Description>몬스터 50마리 처치</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_007</Image>
+            <Point>0</Point>
+            <ClearPoint>50</ClearPoint>
+            <ClearType>0</ClearType>
       <Clear>false</Clear>
+      <Enable>false</Enable>
+            <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
     <Mission id="8">
       <Name>일일퀘스트8</Name>
-      <Description>일일퀘스트 8입니다.</Description>
+      <Description>몬스터 20마리 처치</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_008</Image>
+            <Point>0</Point>
+            <ClearPoint>20</ClearPoint>
+            <ClearType>0</ClearType>
       <Clear>false</Clear>
+      <Enable>false</Enable>
+            <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
     <Mission id="9">
       <Name>일일퀘스트9</Name>
-      <Description>일일퀘스트 9입니다.</Description>
+      <Description>스테이지3번 클리어</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_009</Image>
+            <Point>0</Point>
+            <ClearPoint>3</ClearPoint>
+            <ClearType>1</ClearType>
       <Clear>false</Clear>
+      <Enable>false</Enable>
+            <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
     <Mission id="10">
       <Name>일일퀘스트10</Name>
-      <Description>일일퀘스트 10입니다.</Description>
+      <Description>몬스터 5마리 처치</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_010</Image>
+            <Point>0</Point>
+            <ClearPoint>5</ClearPoint>
+            <ClearType>0</ClearType>
       <Clear>false</Clear>
+      <Enable>false</Enable>
+            <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
@@ -107,7 +157,12 @@
       <MissionType>1</MissionType>
       <MissionLevel>1</MissionLevel>
       <Image>Mission/mission_101</Image>
+            <Point>0</Point>
+            <ClearPoint>0</ClearPoint>
+            <ClearType>0</ClearType>
       <Clear>false</Clear>
+      <Enable>false</Enable>
+            <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
@@ -117,7 +172,12 @@
       <MissionType>1</MissionType>
       <MissionLevel>1</MissionLevel>
       <Image>Mission/mission_101</Image>
+              <Point>0</Point>
+              <ClearPoint>0</ClearPoint>
+              <ClearType>0</ClearType>
       <Clear>false</Clear>
+      <Enable>false</Enable>
+              <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
@@ -127,7 +187,12 @@
       <MissionType>2</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_201</Image>
+            <Point>0</Point>
+            <ClearPoint>0</ClearPoint>
+            <ClearType>0</ClearType>
       <Clear>false</Clear>
+      <Enable>false</Enable>
+            <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
@@ -137,7 +202,12 @@
       <MissionType>2</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_202</Image>
+                <Point>0</Point>
+                <ClearPoint>0</ClearPoint>
+                <ClearType>0</ClearType>
       <Clear>false</Clear>
+      <Enable>false</Enable>
+       <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
@@ -147,7 +217,12 @@
       <MissionType>2</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_203</Image>
+            <Point>0</Point>
+            <ClearPoint>0</ClearPoint>
+            <ClearType>0</ClearType>
       <Clear>false</Clear>
+      <Enable>false</Enable>
+      <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
@@ -157,7 +232,12 @@
       <MissionType>2</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_204</Image>
+            <Point>0</Point>
+            <ClearPoint>0</ClearPoint>
+            <ClearType>0</ClearType>
       <Clear>false</Clear>
+      <Enable>false</Enable>
+      <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
@@ -167,10 +247,14 @@
       <MissionType>2</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_205</Image>
+            <Point>0</Point>
+            <ClearPoint>0</ClearPoint>
+            <ClearType>0</ClearType>
       <Clear>false</Clear>
+      <Enable>false</Enable>
+      <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
-  
   </Missions>
 </MissionCollection>
