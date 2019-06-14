@@ -21,9 +21,99 @@
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>1</RewardItemCount>
     </Mission>
+        <Mission id="3">
+      <Name>일일퀘스트3</Name>
+      <Description>일일퀘스트 3입니다.</Description>
+      <MissionType>0</MissionType>
+      <MissionLevel>0</MissionLevel>
+      <Image>Mission/mission_003</Image>
+      <Clear>false</Clear>
+      <RewardItemId>0</RewardItemId>
+      <RewardItemCount>1</RewardItemCount>
+    </Mission>
+        <Mission id="4">
+      <Name>일일퀘스트4</Name>
+      <Description>일일퀘스트 4입니다.</Description>
+      <MissionType>0</MissionType>
+      <MissionLevel>0</MissionLevel>
+      <Image>Mission/mission_004</Image>
+      <Clear>false</Clear>
+      <RewardItemId>0</RewardItemId>
+      <RewardItemCount>1</RewardItemCount>
+    </Mission>
+      <Mission id="5">
+      <Name>일일퀘스트5</Name>
+      <Description>일일퀘스트 5입니다.</Description>
+      <MissionType>0</MissionType>
+      <MissionLevel>0</MissionLevel>
+      <Image>Mission/mission_005</Image>
+      <Clear>false</Clear>
+      <RewardItemId>0</RewardItemId>
+      <RewardItemCount>1</RewardItemCount>
+    </Mission>
+    <Mission id="6">
+      <Name>일일퀘스트6</Name>
+      <Description>일일퀘스트 6입니다.</Description>
+      <MissionType>0</MissionType>
+      <MissionLevel>0</MissionLevel>
+      <Image>Mission/mission_006</Image>
+      <Clear>false</Clear>
+      <RewardItemId>0</RewardItemId>
+      <RewardItemCount>1</RewardItemCount>
+    </Mission>
+    <Mission id="7">
+      <Name>일일퀘스트7</Name>
+      <Description>일일퀘스트 7입니다.</Description>
+      <MissionType>0</MissionType>
+      <MissionLevel>0</MissionLevel>
+      <Image>Mission/mission_007</Image>
+      <Clear>false</Clear>
+      <RewardItemId>0</RewardItemId>
+      <RewardItemCount>1</RewardItemCount>
+    </Mission>
+    <Mission id="8">
+      <Name>일일퀘스트8</Name>
+      <Description>일일퀘스트 8입니다.</Description>
+      <MissionType>0</MissionType>
+      <MissionLevel>0</MissionLevel>
+      <Image>Mission/mission_008</Image>
+      <Clear>false</Clear>
+      <RewardItemId>0</RewardItemId>
+      <RewardItemCount>1</RewardItemCount>
+    </Mission>
+    <Mission id="9">
+      <Name>일일퀘스트9</Name>
+      <Description>일일퀘스트 9입니다.</Description>
+      <MissionType>0</MissionType>
+      <MissionLevel>0</MissionLevel>
+      <Image>Mission/mission_009</Image>
+      <Clear>false</Clear>
+      <RewardItemId>0</RewardItemId>
+      <RewardItemCount>1</RewardItemCount>
+    </Mission>
+        <Mission id="10">
+      <Name>일일퀘스트10</Name>
+      <Description>일일퀘스트 10입니다.</Description>
+      <MissionType>0</MissionType>
+      <MissionLevel>0</MissionLevel>
+      <Image>Mission/mission_010</Image>
+      <Clear>false</Clear>
+      <RewardItemId>0</RewardItemId>
+      <RewardItemCount>1</RewardItemCount>
+    </Mission>
     <Mission id="101">
       <Name>주퀘스트1</Name>
       <Description>스테이지 1-1을 클리어</Description>
+      <MissionType>1</MissionType>
+      <MissionLevel>1</MissionLevel>
+      <Image>Mission/mission_101</Image>
+      <Clear>false</Clear>
+      <RewardItemId>0</RewardItemId>
+      <RewardItemCount>1</RewardItemCount>
+    </Mission>
+      <Mission id="102">
+      <Name>주퀘스트2</Name>
+      <Description>스테이지 1-2을 클리어</Description>
       <MissionType>1</MissionType>
       <MissionLevel>1</MissionLevel>
       <Image>Mission/mission_101</Image>

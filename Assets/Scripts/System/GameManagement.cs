@@ -99,11 +99,6 @@ public class GameManagement : MonoBehaviour
             Time.timeScale = timeScale;
             Debugging.Log("F2 >> " + "게임진행속도 증가 x " + timeScale);
         }
-        else if(Input.GetKeyDown(KeyCode.F3))
-        {
-            User.level = 1;
-            User.exp = 0;
-        }
     }
     void DebugInitXmlData()
     {

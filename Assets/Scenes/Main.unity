@@ -7383,7 +7383,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1440, y: 900}
+  m_SizeDelta: {x: 1280, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &361996829
 MonoBehaviour:
@@ -21013,6 +21013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eee20df8ad61ac409411a6799f5c622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isResultProfile: 0
 --- !u!1 &900373830
 GameObject:
   m_ObjectHideFlags: 0

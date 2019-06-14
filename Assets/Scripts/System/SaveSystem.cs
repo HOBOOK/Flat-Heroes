@@ -20,7 +20,6 @@ public static class SaveSystem
 
         Debugging.LogSystem("File is saved in Successfully.");
     }
-
     public static void LoadPlayer()
     {
         Common.isDataLoadSuccess = false;
@@ -69,7 +68,6 @@ public static class SaveSystem
         }
         Common.isDataLoadSuccess = true;
     }
-
     public static void InitPlayer()
     {
         User.level = 1;

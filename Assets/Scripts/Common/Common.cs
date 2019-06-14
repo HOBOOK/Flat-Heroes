@@ -356,4 +356,30 @@ public class Common : MonoBehaviour
         return GameObject.Find("CanvasUI").transform;
     }
 
+    public static int[] getRandomId(int length, int min, int max)
+    {
+        int[] randArray = new int[length];
+        bool isSame;
+
+        for(int i = 0; i<length; i++)
+        {
+            while(true)
+            {
+                randArray[i] = Random.Range(min, max);
+                isSame = false;
+
+                for(int j = 0; j <i; ++j)
+                {
+                    if(randArray[j]==randArray[i])
+                    {
+                        isSame = true;
+                        break;
+                    }
+                }
+                if (!isSame) break;
+            }
+        }
+        return randArray;
+    }
+
 }

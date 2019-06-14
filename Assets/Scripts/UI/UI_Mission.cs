@@ -14,6 +14,8 @@ public class UI_Mission : MonoBehaviour
     Text missionDescriptionText;
     Image rewardItemImage;
     Text rewardItemCountText;
+    Button rewardButton;
+    GameObject clearPanel;
 
      void Awake()
     {
@@ -40,44 +42,67 @@ public class UI_Mission : MonoBehaviour
                     Destroy(child.gameObject);
                 }
             }
-            foreach(var mission in MissionSystem.GetAllMissions())
+            foreach(var mission in MissionSystem.GetDayMissions())
             {
-                if(mission.missionType==0) // 일일 미션
-                {
-                    GameObject missionSlot = Instantiate(slotMissionPrefab, ScrollContentViewDailyMission.transform);
-                    missionImage = missionSlot.transform.GetChild(0).GetChild(0).GetComponent<Image>();
-                    missionTitleText = missionSlot.transform.GetChild(1).GetChild(1).GetComponentInChildren<Text>();
-                    missionDescriptionText = missionSlot.transform.GetChild(1).GetChild(0).GetComponent<Text>();
-                    rewardItemImage = missionSlot.transform.GetChild(2).GetChild(1).GetComponent<Image>();
-                    rewardItemCountText = rewardItemImage.GetComponentInChildren<Text>();
+                GameObject missionSlot = Instantiate(slotMissionPrefab, ScrollContentViewDailyMission.transform);
+                missionImage = missionSlot.transform.GetChild(0).GetChild(0).GetComponent<Image>();
+                missionTitleText = missionSlot.transform.GetChild(1).GetChild(1).GetComponentInChildren<Text>();
+                missionDescriptionText = missionSlot.transform.GetChild(1).GetChild(0).GetComponent<Text>();
+                rewardItemImage = missionSlot.transform.GetChild(2).GetChild(1).GetComponent<Image>();
+                rewardItemCountText = rewardItemImage.GetComponentInChildren<Text>();
+                rewardButton = missionSlot.transform.GetChild(2).GetComponentInChildren<Button>();
 
-                    missionImage.sprite = Resources.Load<Sprite>(mission.image);
-                    missionTitleText.text = mission.name;
-                    missionDescriptionText.text = mission.description;
-                    rewardItemImage.sprite = Resources.Load<Sprite>(ItemSystem.GetItem(mission.rewardItemId).image);
-                    rewardItemCountText.text = "x "+Common.GetThousandCommaText(mission.rewardItemCount);
-                    missionSlot.SetActive(true);
-                }
-                else if(mission.missionType==1) // 주 미션
-                {
-                    GameObject missionSlot = Instantiate(slotMissionPrefab, ScrollContentViewMainMission.transform);
-                    missionImage = missionSlot.transform.GetChild(0).GetChild(0).GetComponent<Image>();
-                    missionTitleText = missionSlot.transform.GetChild(1).GetChild(1).GetComponentInChildren<Text>();
-                    missionDescriptionText = missionSlot.transform.GetChild(1).GetChild(0).GetComponent<Text>();
-                    rewardItemImage = missionSlot.transform.GetChild(2).GetChild(1).GetComponent<Image>();
-                    rewardItemCountText = rewardItemImage.GetComponentInChildren<Text>();
+                clearPanel = missionSlot.transform.GetChild(3).gameObject;
 
-                    missionImage.sprite = Resources.Load<Sprite>(mission.image);
-                    missionTitleText.text = mission.name;
-                    missionDescriptionText.text = mission.description;
-                    rewardItemImage.sprite = Resources.Load<Sprite>(ItemSystem.GetItem(mission.rewardItemId).image);
-                    rewardItemCountText.text = "x " + Common.GetThousandCommaText(mission.rewardItemCount);
-                    missionSlot.SetActive(true);
+                missionImage.sprite = Resources.Load<Sprite>(mission.image);
+                missionTitleText.text = mission.name;
+                missionDescriptionText.text = mission.description;
+                rewardItemImage.sprite = Resources.Load<Sprite>(ItemSystem.GetItem(mission.rewardItemId).image);
+                rewardItemCountText.text = "x " + Common.GetThousandCommaText(mission.rewardItemCount);
+                if(mission.clear)
+                {
+                    rewardButton.GetComponentInChildren<Text>().text = "임무완료";
+                    clearPanel.SetActive(true);
                 }
+                else
+                {
+                    rewardButton.GetComponentInChildren<Text>().text = "진행중";
+                    clearPanel.SetActive(false);
+                }
+                missionSlot.SetActive(true);
+            }
+            foreach(var mission in MissionSystem.GetUnClearMissions())
+            {
+                GameObject missionSlot = Instantiate(slotMissionPrefab, ScrollContentViewMainMission.transform);
+                missionImage = missionSlot.transform.GetChild(0).GetChild(0).GetComponent<Image>();
+                missionTitleText = missionSlot.transform.GetChild(1).GetChild(1).GetComponentInChildren<Text>();
+                missionDescriptionText = missionSlot.transform.GetChild(1).GetChild(0).GetComponent<Text>();
+                rewardItemImage = missionSlot.transform.GetChild(2).GetChild(1).GetComponent<Image>();
+                rewardItemCountText = rewardItemImage.GetComponentInChildren<Text>();
+                rewardButton = missionSlot.transform.GetChild(2).GetComponentInChildren<Button>();
+
+                clearPanel = missionSlot.transform.GetChild(3).gameObject;
+
+                missionImage.sprite = Resources.Load<Sprite>(mission.image);
+                missionTitleText.text = mission.name;
+                missionDescriptionText.text = mission.description;
+                rewardItemImage.sprite = Resources.Load<Sprite>(ItemSystem.GetItem(mission.rewardItemId).image);
+                rewardItemCountText.text = "x " + Common.GetThousandCommaText(mission.rewardItemCount);
+                if (mission.clear)
+                {
+                    rewardButton.GetComponentInChildren<Text>().text = "임무완료";
+                    clearPanel.SetActive(true);
+                }
+                else
+                {
+                    rewardButton.GetComponentInChildren<Text>().text = "진행중";
+                    clearPanel.SetActive(false);
+                }
+                missionSlot.SetActive(true);
             }
         }
     }
-    void Start()
+    private void OnEnable()
     {
         RefreshUI();
     }
