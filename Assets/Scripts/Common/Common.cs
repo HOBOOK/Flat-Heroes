@@ -18,16 +18,6 @@ public class Common : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject);
     }
-    public static GameObject GetPrefabDatabase()
-    {
-        return GameObject.Find("PrefabDatabase").gameObject;
-    }
-    public static GameObject GetCameraObject()
-    {
-        return Camera.main.gameObject;
-    }
-    public static bool isDataLoadSuccess = false;
-
     public static List<GameObject> EnemysList;
     public static List<GameObject> AllysList;
 
@@ -99,41 +89,8 @@ public class Common : MonoBehaviour
         return all;
     }
     //정렬타입
-    public enum OrderByType
-    {
-        NONE,
-        NAME,
-        VALUE,
-    }
-
-    public enum NPC_APPERANCE
-    {
-        Npc001,
-        Npc002,
-        Npc003,
-        Npc004,
-        Npc005,
-        Npc006,
-        Npc007,
-        Npc008,
-        Npc009,
-        Npc010,
-        Npc011,
-        Npc012,
-        Npc013,
-        Monster002,
-        Random
-    };
-    public enum EventType
-    {
-        CameraShake,
-        CameraSlow,
-        CameraBlack,
-        CameraSizing,
-        None
-    }
-    public static float cameraOrthSize;
-
+    public enum OrderByType{    NONE,NAME,VALUE }
+    public enum EventType{  CameraShake,CameraSlow,CameraBlack,CameraSizing,None    }
 
     public static void CameraAllEffectOff()
     {
@@ -153,7 +110,6 @@ public class Common : MonoBehaviour
 
     public static GameObject hitTargetObject;
 
-
     public static int looMinus(int hp, int amount)
     {
         if (hp - amount <= 0)
@@ -161,7 +117,6 @@ public class Common : MonoBehaviour
         else
             return hp - amount;
     }
-
     public static int looHpPlus(int hp, int hpFull, int amount)
     {
         if (hp + amount >= hpFull)
@@ -265,7 +220,6 @@ public class Common : MonoBehaviour
     //배열 중복제거
     public static T[] GetDistinctValues<T>(T[] array)
     {
-
         List<T> tmp = new List<T>();
 
         for (int i = 0; i < array.Length; i++)
@@ -274,7 +228,6 @@ public class Common : MonoBehaviour
                 continue;
             tmp.Add(array[i]);
         }
-
         return tmp.ToArray();
     }
 
@@ -334,15 +287,12 @@ public class Common : MonoBehaviour
         return (int)finalDam;
     }
 
-  
-
     public enum SCENE { START,MAIN,STAGE,TRAINING};
     public static SCENE Scene;
     public static bool GetSceneCompareTo(SCENE sCene)
     {
         return (int)sCene == SceneManager.GetActiveScene().buildIndex;
     }
-
     public static string GetRandomID(int cnt)
     {
         System.Random rand = new System.Random();

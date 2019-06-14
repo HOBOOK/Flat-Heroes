@@ -170,13 +170,11 @@ public class CameraEffectHandler : MonoBehaviour
             if (GetComponent<Camera>().orthographicSize > width&&isReduction)
             {
                 GetComponent<Camera>().orthographicSize = width;
-                Common.cameraOrthSize = width;
                 isSizing = false;
             }
             else if(GetComponent<Camera>().orthographicSize < width&&!isReduction)
             {
                 GetComponent<Camera>().orthographicSize = width;
-                Common.cameraOrthSize = width;
                 isSizing = false;
             }
         }

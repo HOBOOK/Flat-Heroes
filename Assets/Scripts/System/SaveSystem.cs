@@ -22,7 +22,6 @@ public static class SaveSystem
     }
     public static void LoadPlayer()
     {
-        Common.isDataLoadSuccess = false;
         int loadTryCount = 0;
         string path = Application.persistentDataPath + "/player.fun";
         PlayerData data = null;
@@ -66,7 +65,6 @@ public static class SaveSystem
             Debugging.LogSystemWarning("Save file not fount in " + path);
             InitPlayer();
         }
-        Common.isDataLoadSuccess = true;
     }
     public static void InitPlayer()
     {
