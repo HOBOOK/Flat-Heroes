@@ -109,6 +109,28 @@ public class UI_Mission : MonoBehaviour
         if(mission!=null&&mission.enable&&!mission.clear)
         {
             MissionSystem.ClearMission(id);
+            MissionSystem.RewardType rewardType = (MissionSystem.RewardType)mission.rewardType;
+
+            switch(rewardType)
+            {
+                case MissionSystem.RewardType.coin:
+                    SaveSystem.AddUserCoin(mission.rewardItemCount);
+                    UI_Manager.instance.ShowGetAlert(Common.GetCoinCrystalEnergyImagePath(0), string.Format("<color='yellow'>코인</color> {0} 개를 획득하였습니다.", mission.rewardItemCount));
+                    break;
+                case MissionSystem.RewardType.crystal:
+                    SaveSystem.AddUserCrystal(mission.rewardItemCount);
+                    UI_Manager.instance.ShowGetAlert(Common.GetCoinCrystalEnergyImagePath(1), string.Format("<color='yellow'>수정</color> {0} 개를 획득하였습니다.", mission.rewardItemCount));
+                    break;
+                case MissionSystem.RewardType.energy:
+                    SaveSystem.AddUserEnergy(mission.rewardItemCount);
+                    UI_Manager.instance.ShowGetAlert(Common.GetCoinCrystalEnergyImagePath(2), string.Format("<color='yellow'>포탈에너지</color> {0} 개를 획득하였습니다.", mission.rewardItemCount));
+                    break;
+                case MissionSystem.RewardType.item:
+                    ItemSystem.SetObtainItem(mission.rewardItemId, mission.rewardItemCount);
+                    Item rewardItem = ItemSystem.GetItem(mission.rewardItemId);
+                    UI_Manager.instance.ShowGetAlert(rewardItem.image, string.Format("<color='yellow'>{0}</color> 아이템을 획득하였습니다.", rewardItem.name));
+                    break;
+            }
         }
         else
         {

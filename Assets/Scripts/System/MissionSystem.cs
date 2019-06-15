@@ -177,4 +177,5 @@ public class MissionSystem
 
     }
     public enum ClearType { EnemyKill,StageClear};
+    public enum RewardType { coin,crystal,energy,item};
 }

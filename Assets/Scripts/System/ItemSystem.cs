@@ -100,14 +100,14 @@ public static class ItemSystem
             Debugging.LogError("획득할 재화를 찾지못함 >> " + id);
         }
     }
-    public static void SetObtainItem(int id)
+    public static void SetObtainItem(int id, int count=1)
     {
         Item obtainItem = userItems.Find(item => item.id == id || item.id.Equals(id));
 
         if (obtainItem != null)
         {
             obtainItem.enable = true;
-            obtainItem.count += 1;
+            obtainItem.count += count;
             ItemDatabase.ItemSave(id);
         }
         else
@@ -116,7 +116,7 @@ public static class ItemSystem
             if(newItem!=null)
             {
                 newItem.enable = true;
-                newItem.count = 1;
+                newItem.count = count;
                 userItems.Add(newItem);
                 ItemDatabase.AddItemSave(id);
             }

@@ -21,6 +21,23 @@ public class Common : MonoBehaviour
     public static List<GameObject> EnemysList;
     public static List<GameObject> AllysList;
 
+    public static string GetCoinCrystalEnergyImagePath(int type)
+    {
+        string path = "";
+        switch(type)
+        {
+            case 0:
+                path = "Items/coin";
+                break;
+            case 1:
+                path = "Items/blackCrystal";
+                break;
+            case 2:
+                path = "Items/portalEnergy";
+                break;
+        }
+        return path;
+    }
     public static int FindEnemysCount()
     {
         GameObject enemyObjects = GameObject.Find("EnemysHero").gameObject;
