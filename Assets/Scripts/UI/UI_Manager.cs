@@ -90,28 +90,26 @@ public class UI_Manager : MonoBehaviour
         {
             for (var i = 0; i < popupPanel.transform.childCount; i++)
             {
-                if (popupPanel.transform.GetChild(i).name.Equals("PanelPopEndGame"))
+                if(isWin)
                 {
-                    popupObject = popupPanel.transform.GetChild(i).gameObject;
-                    break;
+                    if (popupPanel.transform.GetChild(i).name.Equals("PanelPopEndGame"))
+                    {
+                        popupObject = popupPanel.transform.GetChild(i).gameObject;
+                        break;
+                    }
+                }
+                else
+                {
+                    if (popupPanel.transform.GetChild(i).name.Equals("PanelPopDefeat"))
+                    {
+                        popupObject = popupPanel.transform.GetChild(i).gameObject;
+                        break;
+                    }
                 }
             }
         }
         if (popupObject != null && popupObject.GetComponentInChildren<AiryUIAnimatedElement>() != null)
         {
-            //if(Camera.main.GetComponent<BlurOptimized>()!=null)
-            //    Camera.main.GetComponent<BlurOptimized>().enabled = true;
-            GameObject information = popupObject.transform.GetChild(2).gameObject;
-            if(isWin)
-            {
-                information.transform.GetChild(0).gameObject.SetActive(true);
-                information.transform.GetChild(1).GetComponent<Text>().text = "이겼습니다 !!";
-            }
-            else
-            {
-                information.transform.GetChild(0).gameObject.SetActive(false);
-                information.transform.GetChild(1).GetComponent<Text>().text = "...패배하였습니다.";
-            }
             popupObject.gameObject.SetActive(true);
             showUIanimation(popupObject);
         }

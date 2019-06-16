@@ -172,7 +172,7 @@ public static class MapSystem
                 var field = MapTransform.transform.GetChild(0).gameObject;
                 field.GetComponent<SpriteRenderer>().sprite = mapsp;
             }
-            else if (!mapsp.name.Contains("thumbnail"))
+            else if (!mapsp.name.Contains("tile"))
             {
                 var background = MapTransform.transform.GetChild(1).GetChild(1).gameObject;
                 background.GetComponentInChildren<SpriteRenderer>().sprite = mapsp;

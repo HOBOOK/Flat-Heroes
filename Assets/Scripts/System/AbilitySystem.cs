@@ -41,6 +41,7 @@ public static class AbilitySystem
             {
                 userAbilities.Add(ability);
             }
+            SetAbilityStats();
         }
         if(ad!=null&&userAd!=null)
         {

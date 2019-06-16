@@ -25,14 +25,14 @@ public class UI_chatBox : MonoBehaviour
     private void OnEnable()
     {
         initScale = this.transform.localScale;
-
+        
         if (transform.rotation.y != 0)
         {
-            correctionPos = new Vector3(-0.5f, correctionY * 0.7f, 0);
+            correctionPos = new Vector3(-0.5f, correctionY * Random.Range(0.6f,0.8f), 0);
         }
         else
         {
-            correctionPos = new Vector3(0.5f, correctionY * 0.7f, 0);
+            correctionPos = new Vector3(0.5f, correctionY * Random.Range(0.6f, 0.8f), 0);
         }
         this.GetComponentInChildren<Text>().text = "";
         textCount = chatText.Length;

@@ -66,7 +66,10 @@ public class UI_Mission : MonoBehaviour
             missionImage.sprite = Resources.Load<Sprite>(mission.image);
             missionTitleText.text = mission.name;
             missionDescriptionText.text = mission.description + string.Format(" ({0}/{1})",mission.point,mission.clearPoint);
-            rewardItemImage.sprite = Resources.Load<Sprite>(ItemSystem.GetItem(mission.rewardItemId).image);
+            if(mission.rewardType==3)
+                rewardItemImage.sprite = Resources.Load<Sprite>(ItemSystem.GetItem(mission.rewardItemId).image);
+            else
+                rewardItemImage.sprite = Resources.Load<Sprite>(Common.GetCoinCrystalEnergyImagePath(mission.rewardType));
             rewardItemCountText.text = "x " + Common.GetThousandCommaText(mission.rewardItemCount);
             int missionid = mission.id;
             rewardButton.onClick.RemoveAllListeners();

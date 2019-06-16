@@ -42,6 +42,7 @@ public class Hero : MonoBehaviour
     float distanceBetweenTarget;
     float standardTime = 5.0f;
     float animationTime = 0.0f;
+    float recoveryHpTime;
     private float attackMinRange = 0f;
     private float attackMaxRange = 1.0f;
     float attackRange;
@@ -72,6 +73,8 @@ public class Hero : MonoBehaviour
     Animator faceAnimator;
     //InnerClass
     public Status status;
+    //HeroData
+    HeroData heroData;
     #endregion
 
     #region Awake,Start,Update
@@ -137,10 +140,7 @@ public class Hero : MonoBehaviour
     {
         get
         {
-            if (isPlayerHero)
-                return status.attack + AbilitySystem.GetAbilityStats(0);
-            else
-                return status.attack;
+            return status.attack;
         }
         set { }
     }
@@ -148,10 +148,7 @@ public class Hero : MonoBehaviour
     {
         get
         {
-            if (isPlayerHero)
-                return status.defence + AbilitySystem.GetAbilityStats(2);
-            else
-                return status.defence;
+            return status.defence;
         }
         set { }
     }
@@ -162,9 +159,18 @@ public class Hero : MonoBehaviour
         else
             isCriticalAttack = false;
         float dam = isCriticalAttack ? ATTACK * 1.5f: ATTACK;
-        dam = isSkillAttack ? dam * 10 : dam;
+        dam = isSkillAttack ? dam * 2 : dam;
         dam = UnityEngine.Random.Range(dam * 0.8f, dam * 1.2f);
         return (int)dam;
+    }
+    void RecoveryHp()
+    {
+        recoveryHpTime += Time.deltaTime;
+        if(!isDead&&status.hp>0&&recoveryHpTime>1.0f)
+        {
+            status.hp=Common.looHpPlus(status.hp, status.maxHp, HeroSystem.GetRecoveryHp(heroData));
+            recoveryHpTime = 0;
+        }
     }
     void DistanceChecking()
     {
@@ -392,7 +398,7 @@ public class Hero : MonoBehaviour
     void StartHero()
     {
         // STATUS 설정
-        HeroData heroData = null;
+        heroData = null;
         if (isPlayerHero)
             heroData = HeroSystem.GetUserHero(id);
         else
@@ -402,6 +408,7 @@ public class Hero : MonoBehaviour
             this.status.SetHeroStatus(heroData);
             this.HeroName = heroData.name;
             this.name = HeroName;
+            initChats = HeroSystem.GetHeroChats(heroData.id);
         }
         else
         {
@@ -496,6 +503,7 @@ public class Hero : MonoBehaviour
     }
     void AttackMode()
     {
+        RecoveryHp();
         DistanceChecking();
         if (distanceBetweenTarget < attackMaxRange && distanceBetweenTarget >= attackMinRange&&target!=null)
         {
@@ -1077,7 +1085,7 @@ public class Hero : MonoBehaviour
         }
         // 아이템 획득 파트
         Item randomItem = ItemSystem.GetRandomItem();
-        if(UnityEngine.Random.Range(0,10)<randomItem.droprate)
+        if(UnityEngine.Random.Range(0,1000)<randomItem.droprate)
         {
             Debugging.Log(randomItem.droprate + " 의 확률수치의 " + randomItem.name + "의 아이템이 드랍되었습니다.");
             GameObject dropItem = ObjectPool.Instance.PopFromPool("dropItemPrefab");

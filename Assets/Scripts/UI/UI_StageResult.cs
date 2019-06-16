@@ -112,7 +112,7 @@ public class UI_StageResult : MonoBehaviour
 
     IEnumerator ShowCount(float target, float current,Text txt)
     {
-        float duration = 1f; // 카운팅에 걸리는 시간 설정. 
+        float duration = 1.5f; // 카운팅에 걸리는 시간 설정. 
         float offset = (target - current) / duration;
         while (current < target)
         {

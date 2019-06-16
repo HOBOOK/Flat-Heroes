@@ -115,7 +115,7 @@ public class UI_HeroSelect : MonoBehaviour
         selectedHeroNameText.fontSize = 22;
         selectedHeroNameText.text = "영웅을 선택해주세요.";
         selectedHeroNameText.color = new Color(1,1,1,(100f/255f));
-        selectedHeroImage.sprite = Resources.Load<Sprite>("Items/coin");
+        selectedHeroImage.sprite = Resources.Load<Sprite>("UI/ui_tab_manager_button1");
         PanelHeroSelection.transform.GetChild(index).GetComponent<Image>().color = Color.white;
         RefreshUI();
         selectHeroLockCover.SetActive(true);

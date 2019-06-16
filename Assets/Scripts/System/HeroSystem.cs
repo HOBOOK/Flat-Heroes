@@ -134,17 +134,20 @@ public static class HeroSystem
         HeroData data = userHeros.Find(x => x.id == id || x.id.Equals(id));
         if(data!=null)
         {
-            return (20 - (data.intelligent));
+            return (50 - (data.intelligent));
         }
         return 1000;
     }
     public static int GetHeroStatusAttack(HeroData data)
     {
-        return (10)+(data.strength * 5) + (data.intelligent * 4) + (data.physical) + (data.agility * 2);
+        if (data.type == 0)
+            return (10) + (data.strength * 5) + (data.intelligent * 4) + (data.physical) + (data.agility * 2) + AbilitySystem.GetAbilityStats(0);
+        else
+            return (10) + (data.strength * 5) + (data.intelligent * 4) + (data.physical) + (data.agility * 2);
     }
     public static int GetHeroStatusDefence(HeroData data)
     {
-        return (data.physical * 5) + (data.agility);
+        return (data.physical * 5) + (data.agility) + AbilitySystem.GetAbilityStats(2);
     }
     public static int GetHeroStatusMaxHp(HeroData data)
     {
@@ -170,6 +173,10 @@ public static class HeroSystem
     {
         return data.intelligent;
     }
+    public static int GetRecoveryHp(HeroData data)
+    {
+        return Mathf.Clamp((data.physical + 100) / 100, 1, 100);
+    }
     public static string GetHeroStatusSpeedText(float data)
     {
         string txt = "";
@@ -184,6 +191,21 @@ public static class HeroSystem
         else
             txt = "느림";
         return txt;
+    }
+    public static List<string> GetHeroChats(int id)
+    {
+        List<string> chatList = new List<string>();
+        HeroData data = GetHero(id);
+        if(data!=null)
+        {
+            string[] str = data.chat.Split(',');
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                chatList.Add(str[i]);
+            }
+        }
+        return chatList;
     }
     #endregion
 

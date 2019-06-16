@@ -33,8 +33,22 @@ public class StageManagement : MonoBehaviour
         userInfo.initUserInfo();
         stageInfo = GameManagement.instance.GetStageInfo();
         stageInfo.initStage();
-        UI_Manager.instance.Title.GetComponentInChildren<Text>().text = MapSystem.GetMap(stageInfo.mapNumber).name;
-        mapnameText.text = MapSystem.GetMap(stageInfo.mapNumber).name;
+        Map map = MapSystem.GetMap(stageInfo.mapNumber);
+        SoundManager.instance.BgmSourceChange(AudioClipManager.instance.Bgm2);
+        switch(map.stageType)
+        {
+            case 0:
+                UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "플랫 에너지를 흡수하는 구조물 파괴.";
+                break;
+            case 1:
+                UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "모든 적을 섬멸.";
+                break;
+            case 2:
+                UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "보스 격퇴.";
+                break;
+        }
+
+        mapnameText.text = map.name;
         if (Map!=null)
             MapSystem.SetMapSprite(stageInfo.stageNumber, Map);
         CharactersManager.instance.SetStagePositionHeros();

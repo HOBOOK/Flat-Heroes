@@ -80,7 +80,8 @@ public class Castle : MonoBehaviour
             {
                 if (!spawnEnemys[i].isSpawnEnd && spawnCount < 15)
                 {
-                    for(int j = 0; j < spawnEnemys[i].count; j++)
+                    spawnEnemys[i].isSpawnEnd = true;
+                    for (int j = 0; j < spawnEnemys[i].count; j++)
                     {
                         GameObject e = Instantiate(spawnEnemys[i].enemyPrefab, enemySpawnPoint);
                         e.SetActive(false);
@@ -89,7 +90,7 @@ public class Castle : MonoBehaviour
                         e.SetActive(true);
                         StageManagement.instance.AddMonsterCount();
                     }
-                    spawnEnemys[i].isSpawnEnd = true;
+                    spawnEnemys[i].isSpawnEnd = false;
                 }
             }
         }
@@ -228,7 +229,7 @@ public class Castle : MonoBehaviour
     }
     IEnumerator UnBeatTime(int dam)
     {
-        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.damage1, AudioClipManager.instance.damage2);
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.damage2);
         while (isUnBeat)
         {
             yield return new WaitForFixedUpdate();

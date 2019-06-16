@@ -88,6 +88,18 @@ public class SoundManager : MonoBehaviour
                 effectSource.PlayOneShot(clips[randomIndex]);
         }
     }
+    public void BgmSourceChange(AudioClip clip)
+    {
+        if (!isEffectOff)
+        {
+            if (clip != null)
+            {
+                bgmSource.clip = clip;
+                bgmSource.Play();
+            }
+
+        }
+    }
     public void PlaySingleLoop(AudioClip clip)
     {
         if(!isEffectOff)

@@ -44,4 +44,7 @@ public class HeroData
 
     [XmlElement("Agility")]
     public int agility;
+
+    [XmlElement("Chat")]
+    public string chat;
 }

@@ -14,6 +14,7 @@
       <Intelligent>4</Intelligent>
       <Physical>7</Physical>
       <Agility>5</Agility>
+      <Chat>평평하게 만들어주지!,시작이군.</Chat>
     </Hero>
     <Hero id="102">
       <Name>화이트</Name>
@@ -28,6 +29,7 @@
       <Intelligent>6</Intelligent>
       <Physical>5</Physical>
       <Agility>10</Agility>
+      <Chat>평평하게 만들어주지!,시작이군.</Chat>
     </Hero>
     <Hero id="103">
       <Name>알버스</Name>
@@ -42,6 +44,7 @@
       <Intelligent>18</Intelligent>
       <Physical>2</Physical>
       <Agility>5</Agility>
+      <Chat>평평하게 만들어주지!,시작이군.</Chat>
     </Hero>
     <Hero id="104">
       <Name>아르테미스</Name>
@@ -56,6 +59,7 @@
       <Intelligent>7</Intelligent>
       <Physical>4</Physical>
       <Agility>11</Agility>
+      <Chat>평평하게 만들어주지!,시작이군.</Chat>
     </Hero>
     <Hero id="105">
       <Name>켄</Name>
@@ -70,6 +74,7 @@
       <Intelligent>3</Intelligent>
       <Physical>10</Physical>
       <Agility>15</Agility>
+      <Chat>평평하게 만들어주지!,시작이군.</Chat>
     </Hero>
     <Hero id="106">
       <Name>그레고리우스</Name>
@@ -84,6 +89,7 @@
       <Intelligent>2</Intelligent>
       <Physical>15</Physical>
       <Agility>1</Agility>
+      <Chat>평평하게 만들어주지!,시작이군.</Chat>
     </Hero>
     <Hero id="107">
       <Name>7번 영웅</Name>
@@ -98,6 +104,7 @@
       <Intelligent>3</Intelligent>
       <Physical>10</Physical>
       <Agility>10</Agility>
+      <Chat>평평하게 만들어주지!,시작이군.</Chat>
     </Hero>
     <Hero id="108">
       <Name>8번 영웅</Name>
@@ -112,6 +119,7 @@
       <Intelligent>3</Intelligent>
       <Physical>10</Physical>
       <Agility>10</Agility>
+      <Chat>평평하게 만들어주지!,시작이군.</Chat>
     </Hero>
     <Hero id="109">
       <Name>종국</Name>
@@ -126,6 +134,7 @@
       <Intelligent>3</Intelligent>
       <Physical>10</Physical>
       <Agility>10</Agility>
+      <Chat>평평하게 만들어주지!,시작이군.</Chat>
     </Hero>
     <Hero id="110">
       <Name>10번 영웅</Name>
@@ -140,6 +149,7 @@
       <Intelligent>3</Intelligent>
       <Physical>10</Physical>
       <Agility>10</Agility>
+      <Chat>평평하게 만들어주지!,시작이군.</Chat>
     </Hero>
     <Hero id="111">
       <Name>11번 영웅</Name>
@@ -154,6 +164,7 @@
       <Intelligent>3</Intelligent>
       <Physical>10</Physical>
       <Agility>10</Agility>
+      <Chat>평평하게 만들어주지!,시작이군.</Chat>
     </Hero>
     <Hero id="501">
       <Name>좀비</Name>
@@ -168,6 +179,7 @@
       <Intelligent>0</Intelligent>
       <Physical>5</Physical>
       <Agility>0</Agility>
+      <Chat>크르륵..,...크르릉</Chat>
     </Hero>
     <Hero id="510">
       <Name>좀비자이언트</Name>
@@ -182,6 +194,7 @@
       <Intelligent>0</Intelligent>
       <Physical>7</Physical>
       <Agility>0</Agility>
+      <Chat>크우우르릉!!,크릌..!!</Chat>
     </Hero>
   </Heros>
 </HeroCollection>

@@ -9,6 +9,7 @@ public class UI_HeroInfo : MonoBehaviour
     public Button heroSetLobbyButton;
     public GameObject heroStatusInfoPanel;
     public GameObject heroStatPanel;
+    public GameObject heroLevelInfoPanel;
 
     GameObject PanelHeroInfo;
     Text heroNameText;
@@ -103,8 +104,8 @@ public class UI_HeroInfo : MonoBehaviour
             //Status 정보
             if(heroStatusInfoPanel!=null)
             {
-                heroStatusInfoPanel.transform.GetChild(0).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusAttack(targetHeroData).ToString();
-                heroStatusInfoPanel.transform.GetChild(1).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusDefence(targetHeroData).ToString();
+                heroStatusInfoPanel.transform.GetChild(0).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusAttack(targetHeroData).ToString()+string.Format("<color='yellow'>(+{0})</color>",AbilitySystem.GetAbilityStats(0));
+                heroStatusInfoPanel.transform.GetChild(1).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusDefence(targetHeroData).ToString() + string.Format("<color='yellow'>(+{0})</color>", AbilitySystem.GetAbilityStats(2)); ;
                 heroStatusInfoPanel.transform.GetChild(2).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusMaxHp(targetHeroData).ToString();
                 heroStatusInfoPanel.transform.GetChild(3).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusCriticalPercent(targetHeroData).ToString()+"%";
                 heroStatusInfoPanel.transform.GetChild(4).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusSpeedText(HeroSystem.GetHeroStatusAttackSpeed(targetHeroData));

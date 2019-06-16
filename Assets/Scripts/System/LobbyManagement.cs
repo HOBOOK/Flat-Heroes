@@ -15,5 +15,6 @@ public class LobbyManagement : MonoBehaviour
     private void Start()
     {
         CharactersManager.instance.SetLobbyPositionHeros();
+        SoundManager.instance.BgmSourceChange(AudioClipManager.instance.Bgm1);
     }
 }
