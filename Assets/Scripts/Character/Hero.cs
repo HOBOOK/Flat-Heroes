@@ -221,16 +221,17 @@ public class Hero : MonoBehaviour
                     if (enemys.Count > 0)
                     {
                         int targetIndex = 0;
-                        float tempTargetDistance = Mathf.Abs(Vector2.Distance(Common.GetBottomPosition(enemys[0].transform), Common.GetBottomPosition(transform)));
+                        float tempTargetDistance = Common.GetDistanceBetweenAnother(transform, enemys[0].transform);
                         for (int i = 1; i < enemys.Count; i++)
                         {
-                            if (tempTargetDistance > Mathf.Abs(Vector2.Distance(Common.GetBottomPosition(enemys[i].transform), Common.GetBottomPosition(transform))))
+                            if (tempTargetDistance > Common.GetDistanceBetweenAnother(transform, enemys[i].transform))
                             {
                                 targetIndex = i;
                             }
-                            tempTargetDistance = Mathf.Abs(Vector2.Distance(Common.GetBottomPosition(enemys[i - 1].transform), Common.GetBottomPosition(transform)));
+                            tempTargetDistance = Common.GetDistanceBetweenAnother(transform, enemys[i-1].transform);
                         }
                         target = enemys[targetIndex].gameObject;
+                     
                         //Debugging.Log(name + " 의 타겟 >> " + target.name);
                     }
                     else
@@ -244,14 +245,14 @@ public class Hero : MonoBehaviour
                 if (enemys.Count > 0)
                 {
                     int targetIndex = 0;
-                    float tempTargetDistance = Mathf.Abs(Vector2.Distance(Common.GetBottomPosition(enemys[0].transform), Common.GetBottomPosition(transform)));
+                    float tempTargetDistance = Common.GetDistanceBetweenAnother(transform, enemys[0].transform);
                     for (int i = 1; i < enemys.Count; i++)
                     {
-                        if (tempTargetDistance > Mathf.Abs(Vector2.Distance(Common.GetBottomPosition(enemys[i].transform), Common.GetBottomPosition(transform))))
+                        if (tempTargetDistance > Common.GetDistanceBetweenAnother(transform, enemys[i].transform))
                         {
                             targetIndex = i;
                         }
-                        tempTargetDistance = Mathf.Abs(Vector2.Distance(Common.GetBottomPosition(enemys[i - 1].transform), Common.GetBottomPosition(transform)));
+                        tempTargetDistance = Common.GetDistanceBetweenAnother(transform, enemys[i - 1].transform);
                     }
                     target = enemys[targetIndex].gameObject;
                     //Debugging.Log(name + " 의 타겟 강제지정 >> " + target.name);
@@ -391,14 +392,14 @@ public class Hero : MonoBehaviour
     void StartHero()
     {
         // STATUS 설정
-        HeroData heroData = HeroSystem.GetHero(id);
-        if(heroData!=null)
+        HeroData heroData = null;
+        if (isPlayerHero)
+            heroData = HeroSystem.GetUserHero(id);
+        else
+            heroData = HeroSystem.GetHero(id);
+        if (heroData!=null)
         {
-            this.status.level = heroData.level;
-            this.status.exp = heroData.exp;
-            this.status.hp = this.status.hp < 50 ? 50 : this.status.hp;
-            this.status.maxHp = this.status.hp;
-            this.status.moveSpeed = Mathf.Clamp(this.status.moveSpeed, 0.1f, 3f);
+            this.status.SetHeroStatus(heroData);
             this.HeroName = heroData.name;
             this.name = HeroName;
         }
@@ -486,7 +487,7 @@ public class Hero : MonoBehaviour
                 attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(1.5f + attackRange * 2f, 3);
                 break;
             case WeaponType.Bow:
-                attackRange = 12.0f + scale;
+                attackRange = 10.0f + scale;
                 attackPoint.GetComponent<BoxCollider2D>().offset = new Vector2(-0.5f, 0);
                 attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(3, 3);
                 break;
@@ -578,7 +579,7 @@ public class Hero : MonoBehaviour
             if (!isPlayerHero)
             {
                 MissionSystem.AddClearPoint(MissionSystem.ClearType.EnemyKill);
-                StageManagement.instance.AddExp(200);
+                StageManagement.instance.AddExp(20);
                 StageManagement.instance.SetKPoint();
                 List<GameObject> allyHeros = Common.FindAlly();
                 if(allyHeros.Count>0)
@@ -586,7 +587,7 @@ public class Hero : MonoBehaviour
                     string debugStr = "";
                     foreach (var hero in allyHeros)
                     {
-                        int exp = (100 / allyHeros.Count);
+                        int exp = (int)((status.level * 0.25f) * (status.attack + status.defence));
                         debugStr += string.Format("<{0} + {1}>, ", hero.name, exp);
                         hero.GetComponent<Hero>().ExpUp(exp);
                     }
@@ -596,18 +597,6 @@ public class Hero : MonoBehaviour
             else
             {
                 StageManagement.instance.SetDPoint();
-                List<GameObject> enemyHeros = Common.FindEnemy();
-                if(enemyHeros.Count>0)
-                {
-                    string debugStr = "";
-                    foreach (var hero in enemyHeros)
-                    {
-                        int exp = (100 / enemyHeros.Count);
-                        debugStr += string.Format("<{0} + {1}>, ", hero.name, exp);
-                        hero.GetComponent<Hero>().ExpUp(exp);
-                    }
-                    Debugging.Log(debugStr);
-                }
             }
             StartCoroutine("TransparentSprite");
         }
@@ -808,8 +797,8 @@ public class Hero : MonoBehaviour
             if (target != null && ObjectPool.Instance != null)
             {
                 GameObject bullet = ObjectPool.Instance.PopFromPool("Bullet");
-
-                bullet.GetComponent<bulletController>().damage = Damage();
+                bullet.GetComponent<bulletController>().penetrateCnt = 2;
+                bullet.GetComponent<bulletController>().damage = Damage()/ 2;
                 bullet.GetComponent<bulletController>().isAlly = this.isPlayerHero;
                 bullet.GetComponent<bulletController>().Target = target.transform;
                 bullet.GetComponent<bulletController>().isCritical = isCriticalAttack;
@@ -1414,14 +1403,6 @@ public class Hero : MonoBehaviour
             yield return null;
         if (isDefence)
             isDefence = false;
-        else
-        {
-            if (dam >= status.maxHp *0.3f&& !isStunning)
-            {
-                Stunned();
-            }
-        }
-
         yield return null;
     }
     IEnumerator StartAttackMode()
@@ -1800,8 +1781,6 @@ public class Hero : MonoBehaviour
         public int level;
         [HideInInspector]
         public int exp;
-        [Range(0,50)]
-        public int addAttack;
         [Range(1, 9999)]
         public int attack;
         [Range(0, 1000)]
@@ -1822,16 +1801,31 @@ public class Hero : MonoBehaviour
         [Range(0, 10)]
         public float knockbackResist;
         public Status() { level = 1; exp = 0;}
+
+        public void SetHeroStatus(HeroData data)
+        {
+            this.level = data.level;
+            this.exp = data.exp;
+            this.attack = HeroSystem.GetHeroStatusAttack(data);
+            this.defence = HeroSystem.GetHeroStatusDefence(data);
+            this.maxHp = HeroSystem.GetHeroStatusMaxHp(data);
+            this.hp = this.maxHp;
+            this.criticalPercent = HeroSystem.GetHeroStatusCriticalPercent(data);
+            this.attackSpeed = HeroSystem.GetHeroStatusAttackSpeed(data);
+            this.moveSpeed = HeroSystem.GetHeroStatusMoveSpeed(data);
+            this.knockbackResist = HeroSystem.GetHeroStatusKnockbackResist(data);
+            this.skillEnegry = 20 - HeroSystem.GetHeroStatusSkillEnergy(data);
+
+            Debugging.Log(string.Format("{0} => 공격력:{1} 방어력:{2} 체력:{3} 크리티컬:{4} 공격속도:{5} 이동속도:{6} 넉백:{7} 에너지효율:{8}", data.name, this.attack, this.defence, this.maxHp, this.criticalPercent, this.attackSpeed, this.moveSpeed, this.knockbackResist, this.skillEnegry));
+        }
     }
-    
+
     public void LevelUp()
     {
         if (status.exp >= Common.EXP_TABLE[status.level - 1] && status.level < 10&&!isDead)
         {
             LevelUpEffect();
-            status.level += 1;
-            status.exp = 0;
-            this.status.attack += (int)(this.status.attack * 0.1f);
+            HeroSystem.LevelUpStatusSet(this.id,this);
             if (hpUI != null)
             {
                 hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Text>().text = status.level.ToString();
@@ -1841,7 +1835,6 @@ public class Hero : MonoBehaviour
                     hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Slider>().value = 0;
                 ShowHpBar();
             }
-            HeroSystem.SetHero(this);
             Debugging.Log(name + " 의 레벨업 ! >> " + status.level);
         }
     }

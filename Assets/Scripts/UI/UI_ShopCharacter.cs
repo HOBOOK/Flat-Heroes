@@ -78,7 +78,7 @@ public class UI_ShopCharacter : MonoBehaviour
                 if (slotNameText != null)
                     slotNameText.text = slot.name;
                 if (slotValueText != null)
-                    slotValueText.text = Common.GetThousandCommaText(slot.id);
+                    slotValueText.text = Common.GetThousandCommaText(slot.value);
                 slotItemImage = slotPrefab.transform.GetChild(0).GetChild(0).GetComponent<Image>();
                 slotMoneyImage = slotPrefab.transform.GetChild(2).GetChild(0).GetComponent<Image>();
                 if (slotItemImage != null)
@@ -126,7 +126,7 @@ public class UI_ShopCharacter : MonoBehaviour
         BuyButton.GetComponent<UI_Button>().characterId = heroData.id;
         BuyButton.GetComponent<UI_Button>().paymentType = UI_Button.PaymentType.BlackCrystal;
         BuyButton.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/blackCrystal");
-        BuyButton.GetComponent<UI_Button>().paymentAmount = heroData.id;
-        BuyButton.GetComponentInChildren<Text>().text = Common.GetThousandCommaText(heroData.id);
+        BuyButton.GetComponent<UI_Button>().paymentAmount = heroData.value;
+        BuyButton.GetComponentInChildren<Text>().text = Common.GetThousandCommaText(heroData.value);
     }
 }

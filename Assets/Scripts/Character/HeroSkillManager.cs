@@ -25,8 +25,8 @@ public class HeroSkillManager : MonoBehaviour
             {
                 this.transform.GetChild(heroIndex).transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = HeroSystem.GetHeroThumbnail(User.stageHeros[heroIndex]);
 
-                this.transform.GetChild(heroIndex).GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = User.stageHeros[heroIndex].ToString();
-                skillNeedEnergys.Add(User.stageHeros[heroIndex]);
+                this.transform.GetChild(heroIndex).GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = HeroSystem.GetHeroNeedEnergy(User.stageHeros[heroIndex]).ToString();
+                skillNeedEnergys.Add(HeroSystem.GetHeroNeedEnergy(User.stageHeros[heroIndex]));
 
                 this.transform.GetChild(heroIndex).GetComponentInChildren<Button>().onClick.RemoveAllListeners();
                 this.transform.GetChild(heroIndex).GetComponentInChildren<Button>().onClick.AddListener(delegate
@@ -84,7 +84,6 @@ public class HeroSkillManager : MonoBehaviour
         {
             var stageHero = CharactersManager.instance.GetCurrentInStageHero(id).GetComponent<Hero>();
             int needEnergy = stageHero.status.skillEnegry;
-            needEnergy = 100;
             if (stageHero != null && stageHero.isSkillAble()&&StageManagement.instance.IsSkillAble(needEnergy))
             {
                 SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);

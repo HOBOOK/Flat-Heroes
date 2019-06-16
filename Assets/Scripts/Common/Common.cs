@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class Common : MonoBehaviour
 {
-    public static int[] EXP_TABLE = { 100, 300, 400, 700, 1100, 1800, 2900, 4700, 7800, 10000 };
-    public static int[] USER_EXP_TABLE = { 1000, 2000, 3000, 5000, 8000, 13000, 21000, 34000, 55000, 89000, 144000 };
+    public static int[] EXP_TABLE = { 100, 150, 250, 400, 600, 850, 1200, 1500, 1800, 2100, 2400, 2700, 3000, 3500, 4000, 4700, 5500, 6500, 7500, 9000 };
+    public static int[] USER_EXP_TABLE = { 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 12000 };
 
     public static Common instance = null;
     private void Awake()
@@ -258,7 +258,7 @@ public class Common : MonoBehaviour
     //오브젝트 와의거리
     public static float GetDistanceBetweenAnother(Transform me, Transform target)
     {
-        return Vector3.Distance(GetBottomPosition(me), GetBottomPosition(target));
+        return Vector2.Distance(GetBottomPosition(me), GetBottomPosition(target));
     }
 
     //1000단위 숫자 , 찍기

@@ -9,6 +9,11 @@
       <Description>동쪽 나라에서 온 실력이 출중한 무사</Description>
       <Level>1</Level>
       <Exp>0</Exp>
+      <Value>1500</Value>
+      <Strength>12</Strength>
+      <Intelligent>4</Intelligent>
+      <Physical>7</Physical>
+      <Agility>5</Agility>
     </Hero>
     <Hero id="102">
       <Name>화이트</Name>
@@ -18,6 +23,11 @@
       <Description>유명 용병단의 전설의 사령관</Description>
       <Level>1</Level>
       <Exp>0</Exp>
+      <Value>1500</Value>
+      <Strength>9</Strength>
+      <Intelligent>6</Intelligent>
+      <Physical>5</Physical>
+      <Agility>10</Agility>
     </Hero>
     <Hero id="103">
       <Name>알버스</Name>
@@ -27,6 +37,11 @@
       <Description>위기가 다치자 등장한 정체불명의 마법사</Description>
       <Level>1</Level>
       <Exp>0</Exp>
+      <Value>1500</Value>
+      <Strength>3</Strength>
+      <Intelligent>18</Intelligent>
+      <Physical>2</Physical>
+      <Agility>5</Agility>
     </Hero>
     <Hero id="104">
       <Name>아르테미스</Name>
@@ -36,6 +51,11 @@
       <Description>여명단을 이끌고 있는 수장. 그녀의 활시위소리가 들리면 도망가기를 포기하라</Description>
       <Level>1</Level>
       <Exp>0</Exp>
+      <Value>1500</Value>
+      <Strength>7</Strength>
+      <Intelligent>7</Intelligent>
+      <Physical>4</Physical>
+      <Agility>11</Agility>
     </Hero>
     <Hero id="105">
       <Name>켄</Name>
@@ -45,6 +65,11 @@
       <Description>동쪽 나라에서 악명높은 어쌔신</Description>
       <Level>1</Level>
       <Exp>0</Exp>
+      <Value>1500</Value>
+      <Strength>8</Strength>
+      <Intelligent>3</Intelligent>
+      <Physical>10</Physical>
+      <Agility>15</Agility>
     </Hero>
     <Hero id="106">
       <Name>그레고리우스</Name>
@@ -54,6 +79,11 @@
       <Description>영웅 설명 없음.</Description>
       <Level>1</Level>
       <Exp>0</Exp>
+      <Value>1500</Value>
+      <Strength>10</Strength>
+      <Intelligent>2</Intelligent>
+      <Physical>15</Physical>
+      <Agility>1</Agility>
     </Hero>
     <Hero id="107">
       <Name>7번 영웅</Name>
@@ -63,6 +93,11 @@
       <Description>영웅 설명 없음</Description>
       <Level>1</Level>
       <Exp>0</Exp>
+      <Value>1500</Value>
+      <Strength>20</Strength>
+      <Intelligent>3</Intelligent>
+      <Physical>10</Physical>
+      <Agility>10</Agility>
     </Hero>
     <Hero id="108">
       <Name>8번 영웅</Name>
@@ -72,6 +107,11 @@
       <Description>영웅 설명 없음</Description>
       <Level>1</Level>
       <Exp>0</Exp>
+      <Value>1500</Value>
+      <Strength>20</Strength>
+      <Intelligent>3</Intelligent>
+      <Physical>10</Physical>
+      <Agility>10</Agility>
     </Hero>
     <Hero id="109">
       <Name>종국</Name>
@@ -81,6 +121,11 @@
       <Description>전설의 외과의사</Description>
       <Level>1</Level>
       <Exp>0</Exp>
+      <Value>1500</Value>
+      <Strength>20</Strength>
+      <Intelligent>3</Intelligent>
+      <Physical>10</Physical>
+      <Agility>10</Agility>
     </Hero>
     <Hero id="110">
       <Name>10번 영웅</Name>
@@ -90,6 +135,11 @@
       <Description>영웅 설명 없음</Description>
       <Level>1</Level>
       <Exp>0</Exp>
+      <Value>1500</Value>
+      <Strength>20</Strength>
+      <Intelligent>3</Intelligent>
+      <Physical>10</Physical>
+      <Agility>10</Agility>
     </Hero>
     <Hero id="111">
       <Name>11번 영웅</Name>
@@ -99,6 +149,11 @@
       <Description>영웅 설명 없음</Description>
       <Level>1</Level>
       <Exp>0</Exp>
+      <Value>1500</Value>
+      <Strength>20</Strength>
+      <Intelligent>3</Intelligent>
+      <Physical>10</Physical>
+      <Agility>10</Agility>
     </Hero>
     <Hero id="501">
       <Name>좀비</Name>
@@ -108,6 +163,11 @@
       <Description>???</Description>
       <Level>1</Level>
       <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>1</Strength>
+      <Intelligent>0</Intelligent>
+      <Physical>5</Physical>
+      <Agility>0</Agility>
     </Hero>
     <Hero id="510">
       <Name>좀비자이언트</Name>
@@ -117,6 +177,11 @@
       <Description>???</Description>
       <Level>1</Level>
       <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>2</Strength>
+      <Intelligent>0</Intelligent>
+      <Physical>7</Physical>
+      <Agility>0</Agility>
     </Hero>
   </Heros>
 </HeroCollection>

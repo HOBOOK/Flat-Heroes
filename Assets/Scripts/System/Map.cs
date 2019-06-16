@@ -15,6 +15,9 @@ public class Map
     [XmlElement("Description")]
     public string description;
 
+    [XmlElement("StageType")]
+    public int stageType;
+
     [XmlElement("StageNumber")]
     public int stageNumber;
 

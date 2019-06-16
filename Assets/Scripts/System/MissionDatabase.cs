@@ -178,7 +178,6 @@ public class MissionDatabase
                 }
             }
         }
-        Debugging.Log(decrpytData);
         // 암호화/////
         var encrpytData = DataSecurityManager.EncryptData(elmRoot.InnerXml);
         elmRoot.InnerText = encrpytData;

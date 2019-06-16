@@ -130,6 +130,10 @@ public class HeroDatabase
                 {
                     node.SelectSingleNode("Level").InnerText = hd.level.ToString();
                     node.SelectSingleNode("Exp").InnerText = hd.exp.ToString();
+                    node.SelectSingleNode("Strength").InnerText = hd.strength.ToString();
+                    node.SelectSingleNode("Intelligent").InnerText = hd.intelligent.ToString();
+                    node.SelectSingleNode("Physical").InnerText = hd.physical.ToString();
+                    node.SelectSingleNode("Agility").InnerText = hd.agility.ToString();
                 }
                 break;
             }
@@ -162,6 +166,10 @@ public class HeroDatabase
                 {
                     node.SelectSingleNode("Level").InnerText = herodatas[i].level.ToString();
                     node.SelectSingleNode("Exp").InnerText = herodatas[i].exp.ToString();
+                    node.SelectSingleNode("Strength").InnerText = herodatas[i].strength.ToString();
+                    node.SelectSingleNode("Intelligent").InnerText = herodatas[i].intelligent.ToString();
+                    node.SelectSingleNode("Physical").InnerText = herodatas[i].physical.ToString();
+                    node.SelectSingleNode("Agility").InnerText = herodatas[i].agility.ToString();
                     break;
                 }
             }
@@ -219,6 +227,21 @@ public class HeroDatabase
         XmlElement exp = xmlDoc.CreateElement("Exp");
         exp.InnerText = data.exp.ToString();
         child.AppendChild(exp);
+        XmlElement value = xmlDoc.CreateElement("Value");
+        value.InnerText = data.value.ToString();
+        child.AppendChild(value);
+        XmlElement str = xmlDoc.CreateElement("Strength");
+        str.InnerText = data.strength.ToString();
+        child.AppendChild(str);
+        XmlElement intel = xmlDoc.CreateElement("Intelligent");
+        intel.InnerText = data.intelligent.ToString();
+        child.AppendChild(intel);
+        XmlElement phy = xmlDoc.CreateElement("Physical");
+        phy.InnerText = data.physical.ToString();
+        child.AppendChild(phy);
+        XmlElement agl = xmlDoc.CreateElement("Agility");
+        agl.InnerText = data.agility.ToString();
+        child.AppendChild(agl);
 
         // 암호화/////
         XmlElement elmRoot = xmlDoc.DocumentElement;
@@ -260,6 +283,21 @@ public class HeroDatabase
         XmlElement exp = xmlDoc.CreateElement("Exp");
         exp.InnerText = data.exp.ToString();
         child.AppendChild(exp);
+        XmlElement value = xmlDoc.CreateElement("Value");
+        value.InnerText = data.value.ToString();
+        child.AppendChild(value);
+        XmlElement str = xmlDoc.CreateElement("Strength");
+        str.InnerText = data.strength.ToString();
+        child.AppendChild(str);
+        XmlElement intel = xmlDoc.CreateElement("Intelligent");
+        intel.InnerText = data.intelligent.ToString();
+        child.AppendChild(intel);
+        XmlElement phy = xmlDoc.CreateElement("Physical");
+        phy.InnerText = data.physical.ToString();
+        child.AppendChild(phy);
+        XmlElement agl = xmlDoc.CreateElement("Agility");
+        agl.InnerText = data.agility.ToString();
+        child.AppendChild(agl);
 
         // 암호화/////
         XmlElement elmRoot = xmlDoc.DocumentElement;

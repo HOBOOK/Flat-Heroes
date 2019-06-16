@@ -12,8 +12,8 @@ public class Castle : MonoBehaviour
     public int defence;
     public bool isDead;
     int spawnCount;
-    float spawnTime = 3.0f;
-    public float spawnDelay = 30.0f;
+    float spawnTime =1.0f;
+    public float spawnDelay;
     float drainEnergyTime = 0.0f;
     float curSpawnTime = 0;
     public List<SpawnEnemy> spawnEnemys = new List<SpawnEnemy>();
@@ -33,7 +33,7 @@ public class Castle : MonoBehaviour
     {
         Common.hitTargetObject = this.gameObject;
         GUI_Manager.instance.OpenHpUI(this.gameObject);
-        Spawn();
+        FirstSpawn();
     }
     private void Update()
     {
@@ -71,11 +71,35 @@ public class Castle : MonoBehaviour
         }
 
     }
+    void FirstSpawn()
+    {
+        if (spawnEnemys != null && spawnEnemys.Count > 0 && spawnCount < 15)
+        {
+            Debugging.Log(this.name + " 소환 시작");
+            for (int i = 0; i < spawnEnemys.Count; i++)
+            {
+                if (!spawnEnemys[i].isSpawnEnd && spawnCount < 15)
+                {
+                    for(int j = 0; j < spawnEnemys[i].count; j++)
+                    {
+                        GameObject e = Instantiate(spawnEnemys[i].enemyPrefab, enemySpawnPoint);
+                        e.SetActive(false);
+                        e.GetComponent<Hero>().isPlayerHero = false;
+                        e.transform.position = new Vector3(UnityEngine.Random.Range(15,18), 0);
+                        e.SetActive(true);
+                        StageManagement.instance.AddMonsterCount();
+                    }
+                    spawnEnemys[i].isSpawnEnd = true;
+                }
+            }
+        }
+        spawnCount = Common.FindEnemysCount();
+    }
     void Spawn()
     {
         if (spawnEnemys != null && spawnEnemys.Count > 0&&spawnCount<15)
         {
-            Debugging.Log(this.name + " 소환 시작");
+            Debugging.Log(this.name + " 소환");
             for (int i = 0; i < spawnEnemys.Count; i++)
             {
                 if (!spawnEnemys[i].isSpawnEnd&&spawnCount<15)

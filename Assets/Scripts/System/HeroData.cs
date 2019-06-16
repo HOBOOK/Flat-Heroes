@@ -29,4 +29,19 @@ public class HeroData
 
     [XmlElement("Exp")]
     public int exp;
+
+    [XmlElement("Value")]
+    public int value;
+
+    [XmlElement("Strength")]
+    public int strength;
+
+    [XmlElement("Intelligent")]
+    public int intelligent;
+
+    [XmlElement("Physical")]
+    public int physical;
+
+    [XmlElement("Agility")]
+    public int agility;
 }
