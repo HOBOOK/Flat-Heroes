@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Xml;
 using UnityEngine;
 
@@ -141,7 +142,7 @@ public static class HeroSystem
     public static int GetHeroStatusAttack(HeroData data)
     {
         if (data.type == 0)
-            return (10) + (data.strength * 5) + (data.intelligent * 4) + (data.physical) + (data.agility * 2) + AbilitySystem.GetAbilityStats(0);
+            return (10) + (data.strength * 5) + (data.intelligent * 4) + (data.physical) + (data.agility * 2) + AbilitySystem.GetAbilityStats(0) + ItemSystem.GetHeroEquipmentItemAttack(data);
         else
             return (10) + (data.strength * 5) + (data.intelligent * 4) + (data.physical) + (data.agility * 2);
     }
@@ -206,6 +207,106 @@ public static class HeroSystem
             }
         }
         return chatList;
+    }
+    public static int[] GetHeroEquipmentItems(int id)
+    {
+        int[] itemIds = new int[5];
+        HeroData data = userHeros.Find(x => x.id == id || x.id.Equals(id));
+        if(data!=null)
+        {
+            string[] items = data.equipmentItem.Split(',');
+            for(int i =0; i<5; i++)
+            {
+                int itemid = System.Convert.ToInt32(items[i]);
+                if(itemid!=0)
+                {
+                    itemIds[i] = itemid;
+                }
+            }
+        }
+        return itemIds;
+    }
+    public static void SetHeroEquipmentItems(int index,int id,Item item)
+    {
+        int[] itemIds = new int[5];
+        HeroData data = userHeros.Find(x => x.id == id || x.id.Equals(id));
+        if (data != null)
+        {
+            string[] items = data.equipmentItem.Split(',');
+            for (int i = 0; i < 5; i++)
+            {
+                int itemid = System.Convert.ToInt32(items[i]);
+                if (itemid != 0)
+                {
+                    itemIds[i] = itemid;
+                }
+            }
+        }
+        itemIds[index] = item.id;
+        string equipmentItemList = "";
+        for(int i =0; i < itemIds.Length; i++)
+        {
+            if(i==itemIds.Length-1)
+            {
+                equipmentItemList += itemIds[i];
+            }
+            else
+                equipmentItemList += itemIds[i] + ",";
+        }
+        Debugging.Log("장비세팅완료 > " + equipmentItemList);
+        data.equipmentItem = equipmentItemList;
+    }
+    public static void SetHeroDismountItems(int index, int id)
+    {
+        int[] itemIds = new int[5];
+        HeroData data = userHeros.Find(x => x.id == id || x.id.Equals(id));
+        if (data != null)
+        {
+            string[] items = data.equipmentItem.Split(',');
+            for (int i = 0; i < 5; i++)
+            {
+                int itemid = System.Convert.ToInt32(items[i]);
+                if (itemid != 0)
+                {
+                    itemIds[i] = itemid;
+                }
+            }
+        }
+        itemIds[index] = 0;
+        string equipmentItemList = "";
+        for (int i = 0; i < itemIds.Length; i++)
+        {
+            if (i == itemIds.Length - 1)
+            {
+                equipmentItemList += itemIds[i];
+            }
+            else
+                equipmentItemList += itemIds[i] + ",";
+        }
+        Debugging.Log("장비세팅완료 > " + equipmentItemList);
+        data.equipmentItem = equipmentItemList;
+    }
+    public static void EquipHeroEquimentItem(int index, int id, Item item)
+    {
+        HeroData data = userHeros.Find(x => x.id == id || x.id.Equals(id));
+        if(data!=null&&item!=null)
+        {
+            int dismountItemId = GetHeroEquipmentItems(id)[index];
+            SetHeroEquipmentItems(index, id, item);
+            HeroDatabase.SaveUser(id);
+            ItemSystem.EquipItem(dismountItemId, item.id, data);
+        }
+    }
+    public static void DismountHeroEquimentItem(int index, int id)
+    {
+        HeroData data = userHeros.Find(x => x.id == id || x.id.Equals(id));
+        if (data != null)
+        {
+            int dismountItemId = GetHeroEquipmentItems(id)[index];
+            SetHeroDismountItems(index, id);
+            HeroDatabase.SaveUser(id);
+            ItemSystem.DismountItem(dismountItemId);
+        }
     }
     #endregion
 

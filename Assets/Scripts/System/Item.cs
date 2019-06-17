@@ -9,6 +9,12 @@ public class Item
     [XmlAttribute("id")]
     public int id;
 
+    [XmlElement("CustomId")]
+    public int customId;
+
+    [XmlElement("EquipCharacterId")]
+    public int equipCharacterId;
+
     [XmlElement("Name")]
     public string name;
 

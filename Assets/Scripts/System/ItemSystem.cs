@@ -122,10 +122,9 @@ public static class ItemSystem
             }
         }
     }
-
     public static void UseItem(int id, int count)
     {
-        Item useItem = userItems.Find(item => item.id == id || item.id.Equals(id));
+        Item useItem = userItems.Find(item => item.id == id || item.id.Equals(id)&&item.itemtype==1);
         if (useItem != null)
         {
             if(useItem.count-count<=0)
@@ -144,6 +143,90 @@ public static class ItemSystem
 
         }
     }
+    public static void EquipItem(int dismountId, int equipId, HeroData heroData)
+    {
+        Item equipItem = userItems.Find(item => item.id == equipId || item.id.Equals(equipId) && item.itemtype == 0);
+        Item dismountItem = userItems.Find(item => item.id == dismountId || item.id.Equals(dismountId) && item.itemtype == 0);
+        if (equipItem != null && heroData != null)
+        {
+            equipItem.equipCharacterId = heroData.id;
+            if(dismountItem!=null)
+                dismountItem.equipCharacterId = 0;
+            ItemDatabase.EquipItemSave(dismountId, equipId, heroData.id);
+            Debugging.Log(equipItem.name + " 아이템이 " + heroData.name + "에게 장착되었습니다.");
+        }
+    }
+    public static void DismountItem(int dismountId)
+    {
+        Item dismountItem = userItems.Find(item => item.id == dismountId || item.id.Equals(dismountId) && item.itemtype == 0);
+        if (dismountItem != null)
+        {
+            dismountItem.equipCharacterId = 0;
+            ItemDatabase.DismountItemSave(dismountId);
+            Debugging.Log(dismountItem.name + " 아이템이 해제되었습니다.");
+        }
+    }
+    public static List<Item> GetUserEquipmentItems(Common.OrderByType orderByType = Common.OrderByType.NONE)
+    {
+        List<Item> itemList = new List<Item>();
+        foreach (var item in userItems.FindAll(item => item.count > 0 && item.itemtype==0))
+        {
+            if (item.itemtype == 0)
+            {
+                for (int i = 0; i < item.count; i++)
+                {
+                    itemList.Add(item);
+                }
+            }
+            else
+            {
+                itemList.Add(item);
+            }
+        }
+        if (orderByType != Common.OrderByType.NONE)
+        {
+            itemList = SetOrderByItemList(itemList, orderByType);
+        }
+        return itemList;
+    }
+    public static List<Item> GetUserUnEquipmentItems(Common.OrderByType orderByType = Common.OrderByType.NONE)
+    {
+        List<Item> itemList = new List<Item>();
+        foreach (var item in userItems.FindAll(item => item.count > 0 && item.itemtype == 0&&item.equipCharacterId==0))
+        {
+            if (item.itemtype == 0)
+            {
+                for (int i = 0; i < item.count; i++)
+                {
+                    itemList.Add(item);
+                }
+            }
+            else
+            {
+                itemList.Add(item);
+            }
+        }
+        if (orderByType != Common.OrderByType.NONE)
+        {
+            itemList = SetOrderByItemList(itemList, orderByType);
+        }
+        return itemList;
+    }
+    public static int GetHeroEquipmentItemAttack(HeroData heroData)
+    {
+        int attack = 0;
+        int[] heroItems = HeroSystem.GetHeroEquipmentItems(heroData.id);
+        for(int i = 0; i < heroItems.Length; i++)
+        {
+            if(heroItems[i]!=0)
+            {
+                attack += ItemSystem.GetUserItem(heroItems[i]).attack;
+            }
+        }
+        Debugging.Log(heroData.name + " 의 총 아이템 공격력 = " + attack);
+        return attack;
+    }
+
     #endregion
 
     #region 전체아이템정보

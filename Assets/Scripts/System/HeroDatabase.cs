@@ -86,6 +86,7 @@ public class HeroDatabase
                 var reader = new StringReader(_xml);
                 HeroDatabase heroDB = serializer.Deserialize(reader) as HeroDatabase;
                 reader.Close();
+                Debugging.Log(decrpytData);
                 Debugging.Log("HeroDatabase 유저 파일 로드");
                 return heroDB;
             }
@@ -125,7 +126,7 @@ public class HeroDatabase
         {
             if(node.Attributes.GetNamedItem("id").Value==id.ToString()|| node.Attributes.GetNamedItem("id").Value.Equals(id.ToString()))
             {
-                HeroData hd = HeroSystem.GetHero(id);
+                HeroData hd = HeroSystem.GetUserHero(id);
                 if(hd!=null)
                 {
                     node.SelectSingleNode("Level").InnerText = hd.level.ToString();
@@ -134,6 +135,7 @@ public class HeroDatabase
                     node.SelectSingleNode("Intelligent").InnerText = hd.intelligent.ToString();
                     node.SelectSingleNode("Physical").InnerText = hd.physical.ToString();
                     node.SelectSingleNode("Agility").InnerText = hd.agility.ToString();
+                    node.SelectSingleNode("EquipmentItem").InnerText = hd.equipmentItem.ToString();
                 }
                 break;
             }
@@ -215,12 +217,6 @@ public class HeroDatabase
         XmlElement enable = xmlDoc.CreateElement("Enable");
         enable.InnerText = data.enable.ToString().ToLower();
         child.AppendChild(enable);
-        XmlElement type = xmlDoc.CreateElement("Type");
-        type.InnerText = data.type.ToString();
-        child.AppendChild(type);
-        XmlElement description = xmlDoc.CreateElement("Description");
-        description.InnerText = data.description;
-        child.AppendChild(description);
         XmlElement level = xmlDoc.CreateElement("Level");
         level.InnerText = data.level.ToString();
         child.AppendChild(level);
@@ -242,6 +238,9 @@ public class HeroDatabase
         XmlElement agl = xmlDoc.CreateElement("Agility");
         agl.InnerText = data.agility.ToString();
         child.AppendChild(agl);
+        XmlElement equipmentItem = xmlDoc.CreateElement("EquipmentItem");
+        equipmentItem.InnerText = data.equipmentItem.ToString();
+        child.AppendChild(equipmentItem);
 
         // 암호화/////
         XmlElement elmRoot = xmlDoc.DocumentElement;
@@ -271,12 +270,6 @@ public class HeroDatabase
         XmlElement enable = xmlDoc.CreateElement("Enable");
         enable.InnerText = data.enable.ToString().ToLower();
         child.AppendChild(enable);
-        XmlElement type = xmlDoc.CreateElement("Type");
-        type.InnerText = data.type.ToString();
-        child.AppendChild(type);
-        XmlElement description = xmlDoc.CreateElement("Description");
-        description.InnerText = data.description;
-        child.AppendChild(description);
         XmlElement level = xmlDoc.CreateElement("Level");
         level.InnerText = data.level.ToString();
         child.AppendChild(level);
@@ -298,6 +291,9 @@ public class HeroDatabase
         XmlElement agl = xmlDoc.CreateElement("Agility");
         agl.InnerText = data.agility.ToString();
         child.AppendChild(agl);
+        XmlElement equipmentItem = xmlDoc.CreateElement("EquipmentItem");
+        equipmentItem.InnerText = data.equipmentItem.ToString();
+        child.AppendChild(equipmentItem);
 
         // 암호화/////
         XmlElement elmRoot = xmlDoc.DocumentElement;

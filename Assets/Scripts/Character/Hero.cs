@@ -75,6 +75,8 @@ public class Hero : MonoBehaviour
     public Status status;
     //HeroData
     HeroData heroData;
+    //EquipItems
+    List<Item> equipItems = new List<Item>();
     #endregion
 
     #region Awake,Start,Update
