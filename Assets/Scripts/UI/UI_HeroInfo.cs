@@ -145,7 +145,7 @@ public class UI_HeroInfo : MonoBehaviour
                 }
                 else
                 {
-                    heroEquimentItemSlots.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>().sprite = null;
+                    heroEquimentItemSlots.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemNoneImage();
 
                 }
                 int buttonIndex = i;

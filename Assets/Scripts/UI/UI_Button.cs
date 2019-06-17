@@ -40,19 +40,11 @@ public class UI_Button : MonoBehaviour
                     {
                         targetUI.SetActive(true);
                         targetUI.SetActive(true);
-                        //if (Camera.main.GetComponent<BlurOptimized>()!=null)
-                        //{
-                        //    Camera.main.GetComponent<BlurOptimized>().enabled = true;
-                        //}
                         showUIanimation();
                     }
                     else
                     {
                         targetUI.SetActive(false);
-                        //if (Camera.main.GetComponent<BlurOptimized>() != null&& UI_Manager.instance.GetPopupPanelCount()==0)
-                        //{
-                        //    Camera.main.GetComponent<BlurOptimized>().enabled = false;
-                        //}
                         //hideUIanimation();
                     }
                 }
@@ -105,20 +97,12 @@ public class UI_Button : MonoBehaviour
                     {
                         targetUI.SetActive(true);
                         targetUI.SetActive(true);
-                        //if (Camera.main.GetComponent<BlurOptimized>() != null)
-                        //{
-                        //    Camera.main.GetComponent<BlurOptimized>().enabled = true;
-                        //}
                         showUIanimation();
                         Invoke("StartPause", 0.75f);
                     }
                     else
                     {
                         targetUI.SetActive(false);
-                        //if (Camera.main.GetComponent<BlurOptimized>() != null && UI_Manager.instance.GetPopupPanelCount() == 0)
-                        //{
-                        //    Camera.main.GetComponent<BlurOptimized>().enabled = false;
-                        //}
                         StopPause();
                         //hideUIanimation();
                     }

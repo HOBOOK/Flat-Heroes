@@ -45,19 +45,19 @@ public class UI_EquipmentItem : MonoBehaviour
         {
             if(equipmentItemId==0)
             {
-                InformationPanel.transform.GetChild(0).GetComponent<Image>().enabled = false;
+                InformationPanel.transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
                 InformationPanel.transform.GetComponentInChildren<Text>().enabled = false;
                 EquipmentActionPanel.SetActive(false);
             }
             else
             {
                 Item equipmentItemInfo = ItemSystem.GetItem(equipmentItemId);
-                InformationPanel.transform.GetChild(0).GetComponent<Image>().enabled = true;
+                InformationPanel.transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
                 InformationPanel.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(equipmentItemId);
                 InformationPanel.transform.GetComponentInChildren<Text>().enabled = true;
                 InformationPanel.transform.GetComponentInChildren<Text>().text = equipmentItemInfo.name;
                 EquipmentActionPanel.SetActive(true);
-                EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = string.Format("{0}\r\n<아이템 효과>\r\n공격력 : {1}\r\n방어력 : {2}", equipmentItemInfo.description, equipmentItemInfo.attack, equipmentItemInfo.defence);
+                EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = string.Format("{0}\r\n\r\n<color='yellow'>공격력 + {1}\r\n방어력 + {2}</color>", equipmentItemInfo.description, equipmentItemInfo.attack, equipmentItemInfo.defence);
                 EquipmentActionPanel.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = "장착해제";
                 EquipmentActionPanel.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
                 EquipmentActionPanel.GetComponentInChildren<Button>().onClick.AddListener(delegate
@@ -90,11 +90,11 @@ public class UI_EquipmentItem : MonoBehaviour
         {
             Item item = ItemSystem.GetUserItem(itemid);
             InformationPanel.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(item.id);
-            InformationPanel.transform.GetChild(0).GetComponent<Image>().enabled = true;
+            InformationPanel.transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
             InformationPanel.transform.GetComponentInChildren<Text>().enabled = true;
             InformationPanel.transform.GetComponentInChildren<Text>().text = item.name;
             EquipmentActionPanel.SetActive(true);
-            EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = string.Format("{0}\r\n<아이템 효과>\r\n공격력 : {1}\r\n방어력 : {2}", item.description, item.attack, item.defence);
+            EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = string.Format("{0}\r\n\r\n<color='yellow'>공격력 + {1}\r\n방어력 + {2}</color>", item.description, item.attack, item.defence);
             EquipmentActionPanel.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = "장착하기";
             EquipmentActionPanel.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
             EquipmentActionPanel.GetComponentInChildren<Button>().onClick.AddListener(delegate

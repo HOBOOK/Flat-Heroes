@@ -276,6 +276,10 @@ public static class ItemSystem
     {
         return Resources.Load<Sprite>(items.Find(item => item.id == id).image);
     }
+    public static Sprite GetItemNoneImage()
+    {
+        return Resources.Load<Sprite>("Items/none");
+    }
     #endregion
 
 

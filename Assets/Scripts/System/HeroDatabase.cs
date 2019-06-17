@@ -217,6 +217,12 @@ public class HeroDatabase
         XmlElement enable = xmlDoc.CreateElement("Enable");
         enable.InnerText = data.enable.ToString().ToLower();
         child.AppendChild(enable);
+        XmlElement type = xmlDoc.CreateElement("Type");
+        type.InnerText = data.type.ToString();
+        child.AppendChild(type);
+        XmlElement description = xmlDoc.CreateElement("Description");
+        description.InnerText = data.description;
+        child.AppendChild(description);
         XmlElement level = xmlDoc.CreateElement("Level");
         level.InnerText = data.level.ToString();
         child.AppendChild(level);
