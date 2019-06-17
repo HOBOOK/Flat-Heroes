@@ -51,6 +51,7 @@ public class Hero : MonoBehaviour
     //GameObject
     public GameObject target;
     List<GameObject> enemys = new List<GameObject>();
+    List<GameObject> allys = new List<GameObject>();
     public GameObject weaponPoint;
     public GameObject attackPoint;
     GameObject hpUI;
@@ -65,7 +66,7 @@ public class Hero : MonoBehaviour
     public HeroState heroState;
     public WeaponType weaponType;
     public enum HeroState { Normal, Attack  }
-    public enum WeaponType { No,Gun,Sword,Knife,Staff,Bow}
+    public enum WeaponType { No,Gun,Sword,Knife,Staff,Bow,Heal}
     //Rigidbody2D
     Rigidbody2D rigid;
     //Animator
@@ -206,9 +207,38 @@ public class Hero : MonoBehaviour
             }
         }
     }
+    void FindAllys()
+    {
+        if(!isAttack&&!isClimb&&!isClimbing&&isStage&&isFriend)
+        {
+            allys = Common.FindAlly();
+            allys.Remove(this.gameObject);
+            if (allys != null && allys.Count > 0)
+            {
+                int tempHp = allys[0].GetComponent<Hero>().status.hp;
+                int targetIndex = 0;
+                for (var i = 1; i < allys.Count; i++)
+                {
+                    if (tempHp > allys[i].GetComponent<Hero>().status.hp&&TargetAliveCheck(allys[i]))
+                    {
+                        targetIndex = i;
+                        tempHp = allys[i].GetComponent<Hero>().status.hp;
+                    }
+                }
+                target = allys[targetIndex].gameObject;
+                Debugging.Log(this.HeroName + " 의 힐타겟 > " + target.name);
+            }
+            else
+            {
+                target = null;
+                isFriend = false;
+                FindEnemys(true);
+            }
+        }
+    }
     void FindEnemys(bool isForce=false)
     {
-        if(!isAttack  && !isClimb && !isClimbing&&isStage)
+        if(!isAttack  && !isClimb && !isClimbing&&isStage&&!isFriend)
         {
             if (!isForce)
             {
@@ -231,8 +261,8 @@ public class Hero : MonoBehaviour
                             if (tempTargetDistance > Common.GetDistanceBetweenAnother(transform, enemys[i].transform))
                             {
                                 targetIndex = i;
+                                tempTargetDistance = Common.GetDistanceBetweenAnother(transform, enemys[i].transform);
                             }
-                            tempTargetDistance = Common.GetDistanceBetweenAnother(transform, enemys[i-1].transform);
                         }
                         target = enemys[targetIndex].gameObject;
                      
@@ -496,8 +526,30 @@ public class Hero : MonoBehaviour
                 attackPoint.GetComponent<BoxCollider2D>().offset = new Vector2(-0.5f, 0);
                 attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(3, 3);
                 break;
+            case WeaponType.Heal:
+                attackRange = 1.0f + scale;
+                attackPoint.GetComponent<BoxCollider2D>().offset = new Vector2(0.5f - attackRange, 0);
+                attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(1.5f + attackRange * 2f, 3);
+                break;
         }
         attackMaxRange = UnityEngine.Random.Range(attackRange * 0.8f, attackRange);
+    }
+    void HealMode()
+    {
+        RecoveryHp();
+        DistanceChecking();
+        if (distanceBetweenTarget < attackMaxRange && distanceBetweenTarget >= attackMinRange && target != null)
+        {
+            Heal();
+        }
+        else
+        {
+            if (!isAttack && !isUnBeat && !isStunning && !isClimb && !isWait && !isAirborne && !isClimb && !isClimbing && !isSkillAttack)
+            {
+                ChangeNpcMode();
+                Track();
+            }
+        }
     }
     void AttackMode()
     {
@@ -549,7 +601,10 @@ public class Hero : MonoBehaviour
                     Normal();
                     break;
                 case HeroState.Attack:
-                    AttackMode();
+                    if (!isFriend)
+                        AttackMode();
+                    else
+                        HealMode();
                     break;
             }
 
@@ -620,6 +675,31 @@ public class Hero : MonoBehaviour
         if (isSkillAble())
         {
             StartCoroutine("SkillAttacking");
+        }
+    }
+    void Heal()
+    {
+        isTrack = false;
+        animator.SetBool("isMoving", false);
+        animator.SetBool("isRun", false);
+
+        if (!isAttack && !isUnBeat && !isWait && !isStunning && !isAirborne && !isClimb && !isClimbing && !isSkillAttack)
+        {
+            StartCoroutine("HealAttacking");
+        }
+        if (isAttack && target != null && TargetAliveCheck(target))
+        {
+            if (distanceBetweenTarget < 0.5f)
+            {
+                if (this.transform.position.x > target.transform.position.x)
+                {
+                    this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(target.transform.position.x + 0.5f, this.transform.position.y, 0), 0.1f);
+                }
+                else
+                {
+                    this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(target.transform.position.x - 0.5f, this.transform.position.y, 0), 0.1f);
+                }
+            }
         }
     }
     void Attack()
@@ -815,6 +895,20 @@ public class Hero : MonoBehaviour
         }
         yield return null;
     }
+    public void ThrowingBomb()
+    {
+        if (target != null && ObjectPool.Instance != null)
+        {
+            GameObject knife = ObjectPool.Instance.PopFromPool("knife(throw)");
+            knife.GetComponent<bulletController>().damage = Damage();
+            knife.GetComponent<bulletController>().isAlly = this.isPlayerHero;
+            knife.GetComponent<bulletController>().Target = target.transform;
+            knife.GetComponent<bulletController>().isCritical = isCriticalAttack;
+            knife.transform.position = transform.GetChild(0).position + new Vector3(0, 0.1f) + transform.right * -1f;
+            knife.transform.rotation = isLeftorRight ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+            knife.SetActive(true);
+        }
+    }
     public void Throwing()
     {
         if (target != null && ObjectPool.Instance != null)
@@ -1008,7 +1102,7 @@ public class Hero : MonoBehaviour
             StartCoroutine(UnBeatTime(dam));
         }
     }
-    public void Healing(int healAmount)
+    public void Healing(int healAmount=0)
     {
         int maxHeal = status.maxHp - status.hp;
         healAmount = Mathf.Clamp(healAmount, 0, maxHeal);
@@ -1427,6 +1521,7 @@ public class Hero : MonoBehaviour
         isStart = true;
         yield return new WaitForSeconds(3.0f);
         FindEnemys(true);
+        FindAllys();
         yield return null;
     }
     IEnumerator OnAttackPoint(int totalCount=1)
@@ -1594,6 +1689,26 @@ public class Hero : MonoBehaviour
         animator.SetBool("isStun", false);
         yield return null;
     }
+    IEnumerator HealAttacking()
+    {
+        isAttack = true;
+        attackNumber = UnityEngine.Random.Range(0, 5);
+        isLeftorRight = target.transform.position.x < transform.position.x ? true : false;
+        RedirectCharacter();
+        animator.SetInteger("attackNumber", attackNumber);
+        animator.SetFloat("speed", 0.8f + this.status.attackSpeed * 2f);
+        faceAnimator.SetTrigger("Do");
+        animator.SetBool("isAttack", true);
+        animator.SetTrigger("attacking");
+        if (playChats.Count > 0 && UnityEngine.Random.Range(0, 5) < 1)
+            Common.Chat(playChats[UnityEngine.Random.Range(0, playChats.Count)], transform);
+        if (target != null && target.GetComponent<Hero>() != null)
+            target.GetComponent<Hero>().Healing(100);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        StopAttack();
+        FindAllys();
+        yield return null;
+    }
     IEnumerator Attacking()
     {
         isAttack = true;
@@ -1693,23 +1808,30 @@ public class Hero : MonoBehaviour
     #region 유저인터페이스
     public void DamageUIShow(string font, bool isCritical = false)
     {
-        GameObject damageUIprefab = ObjectPool.Instance.PopFromPool("damageUI", GameObject.Find("CanvasUI").transform) as GameObject;
-        damageUIprefab.GetComponentInChildren<Text>().text = font.ToString();
-        damageUIprefab.GetComponent<TextDamageController>().isLeft = !isLeftorRight;
-        damageUIprefab.GetComponent<TextDamageController>().isCritical = isCritical;
-        damageUIprefab.GetComponent<TextDamageController>().isCC = false;
-        damageUIprefab.transform.position = transform.position + new Vector3(0, 1);
-        damageUIprefab.SetActive(true);
+        if (ObjectPool.Instance != null)
+        {
+            GameObject damageUIprefab = ObjectPool.Instance.PopFromPool("damageUI", GameObject.Find("CanvasUI").transform) as GameObject;
+            damageUIprefab.GetComponentInChildren<Text>().text = font.ToString();
+            damageUIprefab.GetComponent<TextDamageController>().isLeft = !isLeftorRight;
+            damageUIprefab.GetComponent<TextDamageController>().isCritical = isCritical;
+            damageUIprefab.GetComponent<TextDamageController>().isCC = false;
+            damageUIprefab.transform.position = transform.position + new Vector3(0, 1);
+            damageUIprefab.SetActive(true);
+        }
     }
     public void DamageCCUIShow(string font)
     {
-        GameObject damageUIprefab = ObjectPool.Instance.PopFromPool("damageUI", GameObject.Find("CanvasUI").transform) as GameObject;
-        damageUIprefab.GetComponentInChildren<Text>().text = font.ToString();
-        damageUIprefab.GetComponent<TextDamageController>().isLeft = !isLeftorRight;
-        damageUIprefab.GetComponent<TextDamageController>().isCritical = false;
-        damageUIprefab.GetComponent<TextDamageController>().isCC = true;
-        damageUIprefab.transform.position = transform.position;
-        damageUIprefab.SetActive(true);
+        if(ObjectPool.Instance!=null)
+        {
+            GameObject damageUIprefab = ObjectPool.Instance.PopFromPool("damageUI", GameObject.Find("CanvasUI").transform) as GameObject;
+            damageUIprefab.GetComponentInChildren<Text>().text = font.ToString();
+            damageUIprefab.GetComponent<TextDamageController>().isLeft = !isLeftorRight;
+            damageUIprefab.GetComponent<TextDamageController>().isCritical = false;
+            damageUIprefab.GetComponent<TextDamageController>().isCC = true;
+            damageUIprefab.transform.position = transform.position;
+            damageUIprefab.SetActive(true);
+        }
+
     }
     private void OpenHpBar(bool isBlue = false)
     {
@@ -1719,7 +1841,7 @@ public class Hero : MonoBehaviour
     }
     private void ShowHpBar(int dam=0)
     {
-        if (!isDead && status.hp > 0)
+        if (!isDead && status.hp > 0&&hpUI!=null)
         {
             if (!hpUI.gameObject.activeSelf)
             {

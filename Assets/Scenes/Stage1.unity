@@ -1617,6 +1617,7 @@ MonoBehaviour:
   targetUI: {fileID: 1496668535}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -2325,6 +2326,7 @@ MonoBehaviour:
   targetUI: {fileID: 1496668535}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -3521,6 +3523,7 @@ MonoBehaviour:
   targetUI: {fileID: 1058130889}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -4476,6 +4479,7 @@ MonoBehaviour:
   Map: {fileID: 1149448784}
   HeroPoint: {fileID: 315671704}
   mapnameText: {fileID: 205971404}
+  stageModeType: 0
 --- !u!1 &448316962
 GameObject:
   m_ObjectHideFlags: 0
@@ -12651,6 +12655,7 @@ MonoBehaviour:
   targetUI: {fileID: 1496668535}
   targetSceneNumber: 1
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -13086,6 +13091,7 @@ MonoBehaviour:
   targetUI: {fileID: 426855047}
   targetSceneNumber: 1
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -14587,6 +14593,7 @@ MonoBehaviour:
   targetUI: {fileID: 1496668535}
   targetSceneNumber: 1
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -18111,6 +18118,7 @@ MonoBehaviour:
   targetUI: {fileID: 0}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -18680,6 +18688,7 @@ MonoBehaviour:
   targetUI: {fileID: 0}
   targetSceneNumber: 1
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -20977,6 +20986,7 @@ MonoBehaviour:
   targetUI: {fileID: 1496668535}
   targetSceneNumber: 1
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0

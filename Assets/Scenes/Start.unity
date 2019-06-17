@@ -212,6 +212,7 @@ MonoBehaviour:
   targetUI: {fileID: 0}
   targetSceneNumber: 1
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -485,6 +486,7 @@ MonoBehaviour:
   targetUI: {fileID: 1604836755}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
