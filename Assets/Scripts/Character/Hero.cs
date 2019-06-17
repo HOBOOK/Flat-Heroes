@@ -120,6 +120,7 @@ public class Hero : MonoBehaviour
         if (isDead)
             return;
         FindEnemys();
+        FindAllys();
         StateChecking();
         Die();
     }
@@ -686,20 +687,6 @@ public class Hero : MonoBehaviour
         if (!isAttack && !isUnBeat && !isWait && !isStunning && !isAirborne && !isClimb && !isClimbing && !isSkillAttack)
         {
             StartCoroutine("HealAttacking");
-        }
-        if (isAttack && target != null && TargetAliveCheck(target))
-        {
-            if (distanceBetweenTarget < 0.5f)
-            {
-                if (this.transform.position.x > target.transform.position.x)
-                {
-                    this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(target.transform.position.x + 0.5f, this.transform.position.y, 0), 0.1f);
-                }
-                else
-                {
-                    this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(target.transform.position.x - 0.5f, this.transform.position.y, 0), 0.1f);
-                }
-            }
         }
     }
     void Attack()
@@ -1706,7 +1693,6 @@ public class Hero : MonoBehaviour
             target.GetComponent<Hero>().Healing(100);
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         StopAttack();
-        FindAllys();
         yield return null;
     }
     IEnumerator Attacking()
