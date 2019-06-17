@@ -80,10 +80,6 @@ public class Hero : MonoBehaviour
     #endregion
 
     #region Awake,Start,Update
-    private void Awake()
-    {
-
-    }
     void Start()
     {
         InitHero();
@@ -170,7 +166,7 @@ public class Hero : MonoBehaviour
         recoveryHpTime += Time.deltaTime;
         if(!isDead&&status.hp>0&&recoveryHpTime>1.0f)
         {
-            status.hp=Common.looHpPlus(status.hp, status.maxHp, HeroSystem.GetRecoveryHp(heroData));
+            status.hp=Common.looHpPlus(status.hp, status.maxHp, HeroSystem.GetRecoveryHp(ref heroData));
             recoveryHpTime = 0;
         }
     }
@@ -288,7 +284,7 @@ public class Hero : MonoBehaviour
                 //    target = null;
                 //}
             }
-            if(Common.hitTargetObject==null)
+            if(Common.hitTargetObject==null&&Common.stageModeType==Common.StageModeType.Main)
             {
                 if (!isPlayerHero)
                     status.hp = 0;
@@ -377,7 +373,7 @@ public class Hero : MonoBehaviour
     #region 영웅세팅
     void InitHero()
     {
-        if (Common.GetSceneCompareTo(Common.SCENE.STAGE))
+        if (Common.GetSceneCompareTo(Common.SCENE.STAGE)|| Common.GetSceneCompareTo(Common.SCENE.INFINITE))
         {
             isStage = true;
         }
@@ -407,7 +403,7 @@ public class Hero : MonoBehaviour
             heroData = HeroSystem.GetHero(id);
         if (heroData!=null)
         {
-            this.status.SetHeroStatus(heroData);
+            this.status.SetHeroStatus(ref heroData);
             this.HeroName = heroData.name;
             this.name = HeroName;
             initChats = HeroSystem.GetHeroChats(heroData.id);
@@ -1812,19 +1808,19 @@ public class Hero : MonoBehaviour
         public float knockbackResist;
         public Status() { level = 1; exp = 0;}
 
-        public void SetHeroStatus(HeroData data)
+        public void SetHeroStatus(ref HeroData data)
         {
             this.level = data.level;
             this.exp = data.exp;
-            this.attack = HeroSystem.GetHeroStatusAttack(data);
-            this.defence = HeroSystem.GetHeroStatusDefence(data);
-            this.maxHp = HeroSystem.GetHeroStatusMaxHp(data);
+            this.attack = HeroSystem.GetHeroStatusAttack(ref data);
+            this.defence = HeroSystem.GetHeroStatusDefence(ref data);
+            this.maxHp = HeroSystem.GetHeroStatusMaxHp(ref data);
             this.hp = this.maxHp;
-            this.criticalPercent = HeroSystem.GetHeroStatusCriticalPercent(data);
-            this.attackSpeed = HeroSystem.GetHeroStatusAttackSpeed(data);
-            this.moveSpeed = HeroSystem.GetHeroStatusMoveSpeed(data);
-            this.knockbackResist = HeroSystem.GetHeroStatusKnockbackResist(data);
-            this.skillEnegry = 20 - HeroSystem.GetHeroStatusSkillEnergy(data);
+            this.criticalPercent = HeroSystem.GetHeroStatusCriticalPercent(ref data);
+            this.attackSpeed = HeroSystem.GetHeroStatusAttackSpeed(ref data);
+            this.moveSpeed = HeroSystem.GetHeroStatusMoveSpeed(ref data);
+            this.knockbackResist = HeroSystem.GetHeroStatusKnockbackResist(ref data);
+            this.skillEnegry = 20 - HeroSystem.GetHeroStatusSkillEnergy(ref data);
 
             Debugging.Log(string.Format("{0} => 공격력:{1} 방어력:{2} 체력:{3} 크리티컬:{4} 공격속도:{5} 이동속도:{6} 넉백:{7} 에너지효율:{8}", data.name, this.attack, this.defence, this.maxHp, this.criticalPercent, this.attackSpeed, this.moveSpeed, this.knockbackResist, this.skillEnegry));
         }

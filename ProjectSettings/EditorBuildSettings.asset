@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage1.unity
     guid: ac0f352576a8a964ba81bb63792ddd8e
   - enabled: 1
+    path: Assets/Scenes/StageInfinite.unity
+    guid: 90c025065947df24c878e7ae336cb829
+  - enabled: 1
     path: Assets/Scenes/Training.unity
     guid: edf4f4bbaac7ab146a9bf731a7dd4e06
   - enabled: 0

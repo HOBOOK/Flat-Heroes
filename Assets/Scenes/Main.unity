@@ -4977,6 +4977,7 @@ MonoBehaviour:
   targetUI: {fileID: 1678227707}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -8652,6 +8653,7 @@ MonoBehaviour:
   targetUI: {fileID: 205530758}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -9604,6 +9606,7 @@ MonoBehaviour:
   targetUI: {fileID: 367887165}
   targetSceneNumber: 2
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -9655,17 +9658,6 @@ MonoBehaviour:
       - m_Target: {fileID: 363981576}
         m_MethodName: OnClick
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 293930581}
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10654,6 +10646,7 @@ MonoBehaviour:
   targetUI: {fileID: 982945691}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -12143,6 +12136,7 @@ MonoBehaviour:
   targetUI: {fileID: 449290581}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -12290,6 +12284,7 @@ MonoBehaviour:
   targetUI: {fileID: 0}
   targetSceneNumber: 2
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -14006,6 +14001,7 @@ MonoBehaviour:
   targetUI: {fileID: 293930581}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -18224,6 +18220,7 @@ MonoBehaviour:
   targetUI: {fileID: 387471555}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -21385,6 +21382,7 @@ MonoBehaviour:
   targetUI: {fileID: 596696615}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -23000,6 +22998,7 @@ MonoBehaviour:
   targetUI: {fileID: 0}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 1000
   buyItemId: 1001
   characterId: 0
@@ -23736,6 +23735,7 @@ MonoBehaviour:
   targetUI: {fileID: 0}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -24434,6 +24434,7 @@ MonoBehaviour:
   targetUI: {fileID: 387471555}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -26042,6 +26043,7 @@ MonoBehaviour:
   targetUI: {fileID: 596696615}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -26701,7 +26703,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 942922235}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &942922235
@@ -26757,6 +26781,7 @@ MonoBehaviour:
   targetUI: {fileID: 0}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -27437,6 +27462,7 @@ MonoBehaviour:
   targetUI: {fileID: 205530758}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -34378,6 +34404,7 @@ MonoBehaviour:
   targetUI: {fileID: 982945691}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -36592,6 +36619,7 @@ MonoBehaviour:
   targetUI: {fileID: 411417194}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -37642,6 +37670,7 @@ MonoBehaviour:
   targetUI: {fileID: 1035873737}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -42186,6 +42215,7 @@ MonoBehaviour:
   targetUI: {fileID: 411417194}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -42816,7 +42846,6 @@ GameObject:
   - component: {fileID: 1562571217}
   - component: {fileID: 1562571216}
   - component: {fileID: 1562571215}
-  - component: {fileID: 1562571214}
   m_Layer: 16
   m_Name: Button
   m_TagString: Untagged
@@ -42843,27 +42872,6 @@ RectTransform:
   m_AnchoredPosition: {x: 150, y: -100}
   m_SizeDelta: {x: 96, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1562571214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562571212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1fb07155df5d604e81ff5c585558b43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonType: 0
-  targetUI: {fileID: 293930581}
-  targetSceneNumber: 0
-  paymentType: 0
-  paymentAmount: 0
-  buyItemId: 0
-  characterId: 0
-  callBackScript: {fileID: 0}
-  audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &1562571215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42907,17 +42915,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1562571214}
-        m_MethodName: OnClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 367887165}
         m_MethodName: SetActive
         m_Mode: 6
@@ -44513,6 +44510,7 @@ MonoBehaviour:
   targetUI: {fileID: 1035873737}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -48880,6 +48878,7 @@ MonoBehaviour:
   targetUI: {fileID: 1880272421}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -49514,6 +49513,7 @@ MonoBehaviour:
   targetUI: {fileID: 1880272421}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -53350,7 +53350,40 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2001448907}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2001448909}
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 450485065}
+        m_MethodName: SetStageType
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 205530758}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2001448907
@@ -53403,14 +53436,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonType: 0
-  targetUI: {fileID: 0}
+  targetUI: {fileID: 367887165}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
   callBackScript: {fileID: 0}
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!1 &2002975334
 GameObject:
   m_ObjectHideFlags: 0
@@ -55372,6 +55406,7 @@ MonoBehaviour:
   targetUI: {fileID: 293930581}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
@@ -55434,6 +55469,17 @@ MonoBehaviour:
       - m_Target: {fileID: 205530758}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 450485065}
+        m_MethodName: SetStageType
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -55913,6 +55959,7 @@ MonoBehaviour:
   targetUI: {fileID: 344326287}
   targetSceneNumber: 0
   paymentType: 0
+  stageType: 0
   paymentAmount: 0
   buyItemId: 0
   characterId: 0

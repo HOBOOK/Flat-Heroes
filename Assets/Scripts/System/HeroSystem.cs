@@ -62,7 +62,7 @@ public static class HeroSystem
     {
         return userHeros.Find(hero => hero.id == id || hero.id.Equals(id));
     }
-    public static void LevelUpStatusSet(int id,Hero heroPrefab)
+    public static void LevelUpStatusSet(int id, Hero heroPrefab)
     {
         HeroData userData = userHeros.Find(x => x.id == id || x.id.Equals(id));
 
@@ -74,7 +74,7 @@ public static class HeroSystem
             userData.agility += (int)(userData.agility * 0.1f);
             userData.level += 1;
             userData.exp = 0;
-            heroPrefab.status.SetHeroStatus(userData);
+            heroPrefab.status.SetHeroStatus(ref userData);
         }
     }
     public static void SetHero(Hero heroPrefab)
@@ -139,42 +139,42 @@ public static class HeroSystem
         }
         return 1000;
     }
-    public static int GetHeroStatusAttack(HeroData data)
+    public static int GetHeroStatusAttack(ref HeroData data)
     {
         if (data.type == 0)
-            return (10) + (data.strength * 5) + (data.intelligent * 4) + (data.physical) + (data.agility * 2) + AbilitySystem.GetAbilityStats(0) + ItemSystem.GetHeroEquipmentItemAttack(data);
+            return (10) + (data.strength * 5) + (data.intelligent * 4) + (data.physical) + (data.agility * 2) + AbilitySystem.GetAbilityStats(0) + ItemSystem.GetHeroEquipmentItemAttack(ref data);
         else
             return (10) + (data.strength * 5) + (data.intelligent * 4) + (data.physical) + (data.agility * 2);
     }
-    public static int GetHeroStatusDefence(HeroData data)
+    public static int GetHeroStatusDefence(ref HeroData data)
     {
         return (data.physical * 5) + (data.agility) + AbilitySystem.GetAbilityStats(2);
     }
-    public static int GetHeroStatusMaxHp(HeroData data)
+    public static int GetHeroStatusMaxHp(ref HeroData data)
     {
         return (200)+(data.strength * 2) + (data.intelligent) + (data.physical * 10) + (data.agility * 3);
     }
-    public static int GetHeroStatusCriticalPercent(HeroData data)
+    public static int GetHeroStatusCriticalPercent(ref HeroData data)
     {
         return (int)((data.intelligent * 0.05f) + (data.agility * 0.2f));
     }
-    public static float GetHeroStatusAttackSpeed(HeroData data)
+    public static float GetHeroStatusAttackSpeed(ref HeroData data)
     {
         return (data.strength * 0.001f) + (data.agility * 0.005f);
     }
-    public static float GetHeroStatusMoveSpeed(HeroData data)
+    public static float GetHeroStatusMoveSpeed(ref HeroData data)
     {
         return (data.agility * 0.005f) + 0.5f;
     }
-    public static float GetHeroStatusKnockbackResist(HeroData data)
+    public static float GetHeroStatusKnockbackResist(ref HeroData data)
     {
         return (data.physical * 0.2f) + (data.agility * 0.05f);
     }
-    public static int GetHeroStatusSkillEnergy(HeroData data)
+    public static int GetHeroStatusSkillEnergy(ref HeroData data)
     {
         return data.intelligent;
     }
-    public static int GetRecoveryHp(HeroData data)
+    public static int GetRecoveryHp(ref HeroData data)
     {
         return Mathf.Clamp((data.physical + 100) / 100, 1, 100);
     }
@@ -226,7 +226,7 @@ public static class HeroSystem
         }
         return itemIds;
     }
-    public static void SetHeroEquipmentItems(int index,int id,Item item)
+    public static void SetHeroEquipmentItems(int index,int id, Item item)
     {
         int[] itemIds = new int[5];
         HeroData data = userHeros.Find(x => x.id == id || x.id.Equals(id));
@@ -294,7 +294,7 @@ public static class HeroSystem
             int dismountItemId = GetHeroEquipmentItems(id)[index];
             SetHeroEquipmentItems(index, id, item);
             HeroDatabase.SaveUser(id);
-            ItemSystem.EquipItem(dismountItemId, item.id, data);
+            ItemSystem.EquipItem(dismountItemId, item.id, ref data);
         }
     }
     public static void DismountHeroEquimentItem(int index, int id)

@@ -16,6 +16,8 @@ public class StageManagement : MonoBehaviour
     private static int kPoint;
     private static int dPoint;
     private static int MonsterCount;
+    public Common.StageModeType stageModeType;
+
     private void Awake()
     {
         if (instance == null)
@@ -25,6 +27,7 @@ public class StageManagement : MonoBehaviour
     }
     private void Start()
     {
+        stageModeType = Common.stageModeType;
         MonsterCount = 0;
         isEndGame = false;
         kPoint = 0;
@@ -33,24 +36,32 @@ public class StageManagement : MonoBehaviour
         userInfo.initUserInfo();
         stageInfo = GameManagement.instance.GetStageInfo();
         stageInfo.initStage();
-        Map map = MapSystem.GetMap(stageInfo.mapNumber);
-        SoundManager.instance.BgmSourceChange(AudioClipManager.instance.Bgm2);
-        switch(map.stageType)
+        if(stageModeType==Common.StageModeType.Main)
         {
-            case 0:
-                UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "플랫 에너지를 흡수하는 구조물 파괴.";
-                break;
-            case 1:
-                UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "모든 적을 섬멸.";
-                break;
-            case 2:
-                UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "보스 격퇴.";
-                break;
+            Map map = MapSystem.GetMap(stageInfo.mapNumber);
+            SoundManager.instance.BgmSourceChange(AudioClipManager.instance.Bgm2);
+            switch (map.stageType)
+            {
+                case 0:
+                    UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "플랫 에너지를 흡수하는 구조물 파괴.";
+                    break;
+                case 1:
+                    UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "모든 적을 섬멸.";
+                    break;
+                case 2:
+                    UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "보스 격퇴.";
+                    break;
+            }
+            mapnameText.text = map.name;
+            if (Map != null)
+                MapSystem.SetMapSprite(stageInfo.stageNumber, ref Map);
+        }
+        else if(stageModeType==Common.StageModeType.Infinite)
+        {
+            SoundManager.instance.BgmSourceChange(AudioClipManager.instance.Bgm2);
+            UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "가능할 때까지 모든적을 섬멸.";
         }
 
-        mapnameText.text = map.name;
-        if (Map!=null)
-            MapSystem.SetMapSprite(stageInfo.stageNumber, Map);
         CharactersManager.instance.SetStagePositionHeros();
     }
     private void FixedUpdate()

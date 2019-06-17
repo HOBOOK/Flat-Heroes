@@ -21,6 +21,8 @@ public class Common : MonoBehaviour
     public static List<GameObject> EnemysList;
     public static List<GameObject> AllysList;
 
+   
+
     public static string GetCoinCrystalEnergyImagePath(int type)
     {
         string path = "";
@@ -108,6 +110,9 @@ public class Common : MonoBehaviour
     //정렬타입
     public enum OrderByType{    NONE,NAME,VALUE }
     public enum EventType{  CameraShake,CameraSlow,CameraBlack,CameraSizing,None    }
+    public enum StageModeType { Main, Infinite}
+
+    public static StageModeType stageModeType;
 
     public static void CameraAllEffectOff()
     {
@@ -304,7 +309,7 @@ public class Common : MonoBehaviour
         return (int)finalDam;
     }
 
-    public enum SCENE { START,MAIN,STAGE,TRAINING};
+    public enum SCENE { START,MAIN,STAGE,INFINITE,TRAINING};
     public static SCENE Scene;
     public static bool GetSceneCompareTo(SCENE sCene)
     {

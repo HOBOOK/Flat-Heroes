@@ -113,7 +113,7 @@ public class UI_EquipmentItem : MonoBehaviour
     }
     public void DismountEvent(int id)
     {
-        HeroSystem.DismountHeroEquimentItem(equipmentSlotIndex, targetHeroId);
+        HeroSystem.DismountHeroEquimentItem(equipmentSlotIndex,targetHeroId);
         equipmentItemId = 0;
         RefreshUI();
         Debugging.Log(id + " 아이템 장착해제");

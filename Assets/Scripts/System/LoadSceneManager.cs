@@ -50,12 +50,25 @@ public class LoadSceneManager : MonoBehaviour
         }
     }
 
-    public void LoadStageScene()
+    public void LoadStageScene(int stageType=0)
     {
         if (!isLoadStart)
         {
-            nextSceneNumber = 2;
-            StartCoroutine("LoadingScene");
+            switch(stageType)
+            {
+                case 0:
+                    nextSceneNumber = 2;
+                    Common.stageModeType = Common.StageModeType.Main;
+                    StartCoroutine("LoadingScene");
+                    break;
+                case 1:
+                    nextSceneNumber = 3;
+                    GameManagement.instance.SetStageInfo(0);
+                    Common.stageModeType = Common.StageModeType.Infinite;
+                    StartCoroutine("LoadingScene");
+                    break;
+            }
+
         }
     }
 

@@ -152,7 +152,7 @@ public class CharactersManager : MonoBehaviour
         SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
         heroUITarget = hero.transform;
         heroUIname.text = hero.HeroName;
-        heroUIinfo.text = string.Format("레벨:{0}\r\n전투력:{1}\r\n", hero.status.level, Common.GetHeroPower(hero));
+        heroUIinfo.text = string.Format("레벨:{0}\r\n전투력:{1}", hero.status.level, Common.GetHeroPower(hero));
         heroInfoUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
     }
 

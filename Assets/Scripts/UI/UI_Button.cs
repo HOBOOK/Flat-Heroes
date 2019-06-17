@@ -15,6 +15,7 @@ public class UI_Button : MonoBehaviour
     public int targetSceneNumber;
     public enum PaymentType { Coin,BlackCrystal,Cash};
     public PaymentType paymentType;
+    public int stageType;
     public int paymentAmount;
     public int buyItemId;
     public int characterId;
@@ -67,7 +68,7 @@ public class UI_Button : MonoBehaviour
                         User.portalEnergy -= stageHeroCount;
                         Debugging.Log(stageHeroCount + " 에너지 소모. 전투씬 로드 시작 > " + User.portalEnergy);
                         SaveSystem.SavePlayer();
-                        LoadSceneManager.instance.LoadStageScene();
+                        LoadSceneManager.instance.LoadStageScene(stageType);
                         this.GetComponent<Button>().interactable = false;
                     }
                 }
@@ -119,7 +120,10 @@ public class UI_Button : MonoBehaviour
     {
         Time.timeScale = 1;
     }
-
+    public void SetStageType(int type)
+    {
+        stageType = type;
+    }
     void OnButtonEffectSound()
     {
         if (SoundManager.instance != null)
@@ -311,6 +315,7 @@ public class ButtonInspectorEditor : Editor
                 enumScript.audioClip = (AudioClip)EditorGUILayout.ObjectField("ButtonAudioClip", enumScript.audioClip, typeof(AudioClip), true);
                 break;
             case UI_Button.ButtonType.StageSceneLoad:
+                enumScript.stageType = EditorGUILayout.IntField("StageType", enumScript.stageType);
                 enumScript.audioClip = (AudioClip)EditorGUILayout.ObjectField("ButtonAudioClip", enumScript.audioClip, typeof(AudioClip), true);
                 break;
             case UI_Button.ButtonType.SceneLoadAddtive:

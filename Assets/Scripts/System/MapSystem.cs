@@ -156,7 +156,7 @@ public static class MapSystem
         else
             return null;
     }
-    public static void SetMapSprite(int stageNumber, Transform MapTransform)
+    public static void SetMapSprite(int stageNumber, ref Transform MapTransform)
     {
         Sprite[] mapSprite = Resources.LoadAll<Sprite>("Maps/Stage" + stageNumber);
         foreach (var mapsp in mapSprite)

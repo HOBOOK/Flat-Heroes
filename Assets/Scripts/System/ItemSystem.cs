@@ -143,7 +143,7 @@ public static class ItemSystem
 
         }
     }
-    public static void EquipItem(int dismountId, int equipId, HeroData heroData)
+    public static void EquipItem(int dismountId, int equipId, ref HeroData heroData)
     {
         Item equipItem = userItems.Find(item => item.id == equipId || item.id.Equals(equipId) && item.itemtype == 0);
         Item dismountItem = userItems.Find(item => item.id == dismountId || item.id.Equals(dismountId) && item.itemtype == 0);
@@ -212,7 +212,7 @@ public static class ItemSystem
         }
         return itemList;
     }
-    public static int GetHeroEquipmentItemAttack(HeroData heroData)
+    public static int GetHeroEquipmentItemAttack(ref HeroData heroData)
     {
         int attack = 0;
         int[] heroItems = HeroSystem.GetHeroEquipmentItems(heroData.id);
