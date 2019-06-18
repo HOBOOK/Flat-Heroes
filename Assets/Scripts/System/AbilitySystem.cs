@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public static class AbilitySystem
@@ -103,17 +104,37 @@ public static class AbilitySystem
             }
         }
     }
+    static string[] statStrings = {"공격력 + ",
+            "방어력 + ",
+            "체력 + ",
+            "크리티컬 확률 + ",
+            "공격속도 + ",
+            "이동속도 + ", 
+            "에너지효율 + " };
     public static string GetAllAbilityStatToString()
     {
-        return string.Format(
-            "공격력 + {0}\r\n" +
-            "방어력 +{1}\r\n" +
-            "체력 + {2}\r\n" +
-            "크리티컬 확률 + {3}%\r\n" +
-            "공격속도 + {4}%\r\n" +
-            "이동속도 +{5}%\r\n" +
-            "에너지효율 + {6}"
-            ,GetAbilityStats(0), GetAbilityStats(1), GetAbilityStats(2), GetAbilityStats(3), GetAbilityStats(4), GetAbilityStats(5), GetAbilityStats(6));
+        string statString = "";
+        StringBuilder sb = new StringBuilder(statString);
+        int cacheStat = 0;
+        for(var i = 0; i<abilitiesStats.Length; i++)
+        {
+            cacheStat = GetAbilityStats(i);
+            if(cacheStat!=0)
+            {
+                sb.Append(statStrings[i] + cacheStat+"\r\n");
+            }
+        }
+        statString = sb.ToString();
+        return statString;
+        //return string.Format(
+        //    "공격력 + {0}\r\n" +
+        //    "방어력 +{1}\r\n" +
+        //    "체력 + {2}\r\n" +
+        //    "크리티컬 확률 + {3}%\r\n" +
+        //    "공격속도 + {4}%\r\n" +
+        //    "이동속도 +{5}%\r\n" +
+        //    "에너지효율 + {6}"
+        //    ,GetAbilityStats(0), GetAbilityStats(1), GetAbilityStats(2), GetAbilityStats(3), GetAbilityStats(4), GetAbilityStats(5), GetAbilityStats(6));
     }
     #endregion
 
@@ -150,7 +171,7 @@ public static class AbilitySystem
                 des = string.Format("영웅들의 이동속도가 <color='red'>{0}%</color> 증가합니다.", power);
                 break;
             case 6:
-                des = string.Format("에너지 효율이 <color='red'>{0}%</color> 증가합니다.", power);
+                des = string.Format("에너지 효율이 <color='red'>{0}</color> 증가합니다.", power);
                 break;
         }
         return des;

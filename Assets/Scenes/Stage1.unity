@@ -1621,6 +1621,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!1 &96423756
@@ -2330,6 +2331,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &176280524
@@ -3527,6 +3529,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 1660ef4124212c647be3a8b251b4b7b4, type: 3}
 --- !u!1 &328496957
@@ -12659,6 +12662,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &1349195039
@@ -13095,6 +13099,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &1367324419
@@ -14597,6 +14602,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &1551029402
@@ -18122,6 +18128,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: d5b7fe271a5f8c541922c8b59877ebbe, type: 3}
 --- !u!114 &1803359562
@@ -18251,6 +18258,16 @@ PrefabInstance:
       propertyPath: objectPool.Array.data[10].parent
       value: 
       objectReference: {fileID: 1303895172}
+    - target: {fileID: 3844189599673974193, guid: 80574662ed8dfc34ab7222a8807a0910,
+        type: 3}
+      propertyPath: objectPool.Array.data[8].poolCount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844189599673974193, guid: 80574662ed8dfc34ab7222a8807a0910,
+        type: 3}
+      propertyPath: objectPool.Array.data[6].poolCount
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80574662ed8dfc34ab7222a8807a0910, type: 3}
 --- !u!4 &1824685115 stripped
@@ -18692,6 +18709,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 0}
 --- !u!1 &1882080841
@@ -20990,6 +21008,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &2101070769

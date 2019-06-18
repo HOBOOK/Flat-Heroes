@@ -124,7 +124,7 @@ public class AbilityDatabase
         {
             if (node.Attributes.GetNamedItem("id").Value == id.ToString() || node.Attributes.GetNamedItem("id").Value.Equals(id.ToString()))
             {
-                Ability ability = AbilitySystem.GetAbility(id);
+                Ability ability = AbilitySystem.GetUserAbility(id);
                 if (ability != null)
                 {
                     node.SelectSingleNode("Level").InnerText = ability.level.ToString();

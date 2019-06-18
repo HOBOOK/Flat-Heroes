@@ -156,7 +156,7 @@ public class UI_Manager_AbilityTab : MonoBehaviour
         {
             abilityInfoImage.sprite = Resources.Load<Sprite>(ab.image);
             abilityInfoNameText.text = ab.name;
-            abilityInfoDescriptionText.text = AbilitySystem.GetAbilityDescription(ab.powerType, ab.power);
+            abilityInfoDescriptionText.text = AbilitySystem.GetAbilityDescription(ab.powerType, (ab.power*ab.level));
 
 
             abilityInfoNameText.enabled = true;
