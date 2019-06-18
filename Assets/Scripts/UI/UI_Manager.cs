@@ -32,12 +32,18 @@ public class UI_Manager : MonoBehaviour
     {
         //if (Camera.main.GetComponent<BlurOptimized>()!=null)
         //    Camera.main.GetComponent<BlurOptimized>().enabled = false;
-        if (Title!=null)
+        if (Common.GetSceneCompareTo(Common.SCENE.MAIN))
+            ShowTitle();
+
+    }
+    public void ShowTitle()
+    {
+        if (Title != null)
         {
+            Title.gameObject.SetActive(true);
+
             if (Title.GetComponent<AiryUIAnimatedElement>() != null)
                 Title.GetComponent<AiryUIAnimatedElement>().ShowElement();
-            else
-                Title.gameObject.SetActive(true);
         }
     }
 

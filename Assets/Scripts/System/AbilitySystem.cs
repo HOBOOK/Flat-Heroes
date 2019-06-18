@@ -165,10 +165,10 @@ public static class AbilitySystem
                 des = string.Format("영웅들의 크리티컬 확률이 <color='red'>{0}%</color> 증가합니다.", power);
                 break;
             case 4:
-                des = string.Format("영웅들의 공격속도가 <color='red'>{0}%</color> 증가합니다.", power);
+                des = string.Format("영웅들의 공격속도가 <color='red'>{0}</color> 증가합니다.", power);
                 break;
             case 5:
-                des = string.Format("영웅들의 이동속도가 <color='red'>{0}%</color> 증가합니다.", power);
+                des = string.Format("영웅들의 이동속도가 <color='red'>{0}</color> 증가합니다.", power);
                 break;
             case 6:
                 des = string.Format("에너지 효율이 <color='red'>{0}</color> 증가합니다.", power);

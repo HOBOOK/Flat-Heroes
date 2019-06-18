@@ -116,8 +116,8 @@ public class UI_HeroInfo : MonoBehaviour
             heroStatusInfoPanel.transform.GetChild(3).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusCriticalPercent(ref targetHeroData).ToString() + string.Format("<color='yellow'>(+{0})</color>%", AbilitySystem.GetAbilityStats(3));
             //heroStatusInfoPanel.transform.GetChild(4).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusSpeedText(HeroSystem.GetHeroStatusAttackSpeed(ref targetHeroData));
             //heroStatusInfoPanel.transform.GetChild(5).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusSpeedText(HeroSystem.GetHeroStatusMoveSpeed(ref targetHeroData));
-            heroStatusInfoPanel.transform.GetChild(4).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusAttackSpeed(ref targetHeroData).ToString();
-            heroStatusInfoPanel.transform.GetChild(5).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusMoveSpeed(ref targetHeroData).ToString();
+            heroStatusInfoPanel.transform.GetChild(4).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusAttackSpeed(ref targetHeroData).ToString() + string.Format("<color='yellow'>(+{0})</color>", AbilitySystem.GetAbilityStats(4));
+            heroStatusInfoPanel.transform.GetChild(5).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusMoveSpeed(ref targetHeroData).ToString() + string.Format("<color='yellow'>(+{0})</color>", AbilitySystem.GetAbilityStats(5));
             heroStatusInfoPanel.transform.GetChild(6).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusKnockbackResist(ref targetHeroData).ToString("N1");
             heroStatusInfoPanel.transform.GetChild(7).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusSkillEnergy(ref targetHeroData).ToString() + string.Format("<color='yellow'>(+{0})</color>", AbilitySystem.GetAbilityStats(6));
         }

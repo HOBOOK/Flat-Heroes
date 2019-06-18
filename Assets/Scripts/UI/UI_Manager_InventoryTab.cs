@@ -30,15 +30,16 @@ public class UI_Manager_InventoryTab : MonoBehaviour
                 itemInfoName = PanelItemInfo.transform.GetChild(1).GetComponent<Text>();
                 itemInfoDescription = PanelItemInfo.transform.GetChild(2).GetComponent<Text>();
             }
-            if(itemSellButton==null)
+            if (itemSellButton==null)
             {
                 itemSellButton = PanelItemInfo.GetComponentInChildren<Button>();
             }
             itemInfoImage.enabled = false;
             itemInfoName.enabled = false;
             itemInfoDescription.enabled = false;
-            if (itemSellButton != null)
-                itemSellButton.gameObject.SetActive(false);
+            itemSellButton.enabled = false;
+            itemSellButton.GetComponent<Image>().enabled = false;
+            itemSellButton.GetComponentInChildren<Text>().enabled = false;
         }
     }
 
@@ -86,7 +87,8 @@ public class UI_Manager_InventoryTab : MonoBehaviour
             itemInfoName.enabled = true;
             itemInfoDescription.enabled = true;
             itemSellButton.enabled = true;
-            itemSellButton.gameObject.SetActive(true);
+            itemSellButton.GetComponent<Image>().enabled = true;
+            itemSellButton.GetComponentInChildren<Text>().enabled = true;
             itemSellButton.GetComponent<UI_Button>().callBackScript = this.gameObject;
             itemSellButton.GetComponent<UI_Button>().sellItemId = itemSlots[index].Item.id;
             if (itemInfoImage.GetComponent<AiryUIAnimatedElement>() != null)

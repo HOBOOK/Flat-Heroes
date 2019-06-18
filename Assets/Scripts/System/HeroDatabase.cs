@@ -86,7 +86,6 @@ public class HeroDatabase
                 var reader = new StringReader(_xml);
                 HeroDatabase heroDB = serializer.Deserialize(reader) as HeroDatabase;
                 reader.Close();
-                Debugging.Log(decrpytData);
                 Debugging.Log("HeroDatabase 유저 파일 로드");
                 return heroDB;
             }
@@ -247,6 +246,9 @@ public class HeroDatabase
         XmlElement equipmentItem = xmlDoc.CreateElement("EquipmentItem");
         equipmentItem.InnerText = data.equipmentItem.ToString();
         child.AppendChild(equipmentItem);
+        XmlElement skill = xmlDoc.CreateElement("Skill");
+        skill.InnerText = data.skill.ToString();
+        child.AppendChild(skill);
 
         // 암호화/////
         XmlElement elmRoot = xmlDoc.DocumentElement;
@@ -300,6 +302,9 @@ public class HeroDatabase
         XmlElement equipmentItem = xmlDoc.CreateElement("EquipmentItem");
         equipmentItem.InnerText = data.equipmentItem.ToString();
         child.AppendChild(equipmentItem);
+        XmlElement skill = xmlDoc.CreateElement("Skill");
+        skill.InnerText = data.skill.ToString();
+        child.AppendChild(skill);
 
         // 암호화/////
         XmlElement elmRoot = xmlDoc.DocumentElement;

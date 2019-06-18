@@ -10,7 +10,8 @@ public class LoadAssetBundle : MonoBehaviour
     public int version = 0;
 
     IEnumerator Start()
-    { 
+    {
+        Caching.ClearCache();
         UI_StartManager.instance.ShowDownloadUI();
         yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetBundle(BundleManagerURL, version, false,0.0f,"게임매니저"));
         UI_StartManager.instance.SetDownloadCount(4);
@@ -50,8 +51,6 @@ public class LoadAssetBundle : MonoBehaviour
 
         }
         Debugging.Log("영웅다운 끝");
-
-        //Caching.ClearCache();
         UI_StartManager.instance.ShowStartUI();
     }
 

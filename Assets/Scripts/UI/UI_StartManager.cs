@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.ImageEffects;
@@ -45,7 +46,19 @@ public class UI_StartManager : MonoBehaviour
     {
         DownloadUI.gameObject.SetActive(false);
         StartAbleUI.gameObject.SetActive(true);
-        startButton.interactable = true;
+        if(Common.CheckingLocalFileExist())
+        {
+            StartAbleUI.transform.GetChild(0).gameObject.SetActive(false);
+            StartAbleUI.transform.GetChild(1).gameObject.SetActive(true);
+            startButton.interactable = true;
+        }
+        else
+        {
+            StartAbleUI.transform.GetChild(0).gameObject.SetActive(true);
+            StartAbleUI.transform.GetChild(1).gameObject.SetActive(false);
+            startButton.interactable = false;
+        }
+
         TitleUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
     }
     public void ShowDownloadUI()

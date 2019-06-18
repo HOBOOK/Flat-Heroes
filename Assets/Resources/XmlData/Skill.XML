@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SkillCollection>
+  <Skills>
+    <Skill id="1">
+      <Name>바람 가르기</Name>
+      <Description>순간적으로 앞으로 나아가면서 다수의 적을 공격한다.</Description>
+      <Image>Skill/skill_001</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>50</Power>
+      <AddPower>10</AddPower>
+      <Energy>50</Energy>
+    </Skill>
+    <Skill id="2">
+      <Name>수류탄 투척</Name>
+      <Description>3초후 폭발하는 수류탄을 적에게 투척한다.</Description>
+      <Image>Skill/skill_002</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>50</Power>
+      <AddPower>10</AddPower>
+      <Energy>50</Energy>
+    </Skill>
+    <Skill id="3">
+      <Name>살라만다</Name>
+      <Description>불꽃들을 소환하여 전방에 무차별 폭격을 가한다.</Description>
+      <Image>Skill/skill_003</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>50</Power>
+      <AddPower>10</AddPower>
+      <Energy>50</Energy>
+    </Skill>
+    <Skill id="4">
+      <Name>퀵스나이핑</Name>
+      <Description>엄청난 속도로 연속으로 화살을 발사한다.</Description>
+      <Image>Skill/skill_004</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>50</Power>
+      <AddPower>10</AddPower>
+      <Energy>50</Energy>
+    </Skill>
+  </Skills>
+</SkillCollection>

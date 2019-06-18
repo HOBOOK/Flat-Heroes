@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class CameraEffectHandler : MonoBehaviour
 {
     public GameObject blackupdowneffect;
-
+    public List<GameObject> offPanelList = new List<GameObject>();
+    public bool isBlackEffectClear = false;
     void Update ()
     {
         if(blackupdowneffect!=null)
@@ -76,12 +77,20 @@ public class CameraEffectHandler : MonoBehaviour
     IEnumerator StartBlackUpDownEffect()
     {
         Debugging.Log("컷씬 스타트");
-
+        isBlackEffectClear = false;
         isStartBlackUpDownEffect = true;
         int cnt = 0;
         blackupdowneffect.SetActive(true);
         var sr = blackupdowneffect.GetComponentsInChildren<Image>();
         var rt = blackupdowneffect.GetComponentsInChildren<RectTransform>();
+
+        if(offPanelList!=null&& offPanelList.Count>0)
+        {
+            foreach(var panel in offPanelList)
+            {
+                panel.gameObject.SetActive(false);
+            }
+        }
 
         foreach (var item in sr)
         {
@@ -102,7 +111,7 @@ public class CameraEffectHandler : MonoBehaviour
             foreach (var item in rt)
             {
                 if (item.gameObject.GetInstanceID() != blackupdowneffect.GetInstanceID())
-                    item.sizeDelta = new Vector2(item.sizeDelta.x, cnt*4);
+                    item.sizeDelta = new Vector2(item.sizeDelta.x, cnt*2);
             }
             yield return new WaitForSeconds(0.015f);
         }
@@ -113,7 +122,7 @@ public class CameraEffectHandler : MonoBehaviour
         foreach (var item in rt)
         {
             if (item.gameObject.GetInstanceID() != blackupdowneffect.GetInstanceID())
-                item.sizeDelta = new Vector2(item.sizeDelta.x, 200);
+                item.sizeDelta = new Vector2(item.sizeDelta.x, 100);
         }
         yield return null;
     }
@@ -135,9 +144,9 @@ public class CameraEffectHandler : MonoBehaviour
             foreach (var item in rt)
             {
                 if(item.gameObject.GetInstanceID()!=blackupdowneffect.GetInstanceID())
-                   item.sizeDelta = new Vector2(item.sizeDelta.x,(200- (cnt * 4)));
+                   item.sizeDelta = new Vector2(item.sizeDelta.x,(100- (cnt *2)));
             }
-            yield return new WaitForSeconds(0.015f);
+            yield return new WaitForSeconds(0.007f);
         }
         foreach (var item in rt)
         {
@@ -145,6 +154,14 @@ public class CameraEffectHandler : MonoBehaviour
                 item.sizeDelta = new Vector2(item.sizeDelta.x, 0);
         }
         blackupdowneffect.SetActive(false);
+        if (offPanelList != null && offPanelList.Count > 0)
+        {
+            foreach (var panel in offPanelList)
+            {
+                panel.gameObject.SetActive(true);
+            }
+        }
+        isBlackEffectClear = true;
         yield return null;
     }
     #endregion

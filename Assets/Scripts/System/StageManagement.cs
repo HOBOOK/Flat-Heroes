@@ -63,6 +63,11 @@ public class StageManagement : MonoBehaviour
         }
 
         CharactersManager.instance.SetStagePositionHeros();
+        StartCoroutine("StageStartEffect");
+    }
+    private void ShowGoalTitle()
+    {
+        UI_Manager.instance.ShowTitle();
     }
     private void FixedUpdate()
     {
@@ -83,6 +88,18 @@ public class StageManagement : MonoBehaviour
                 checkingHeroAliveTime = 0.0f;
             }
         }
+    }
+    IEnumerator StageStartEffect()
+    {
+        yield return new WaitForFixedUpdate();
+        Common.isBlackUpDown = true;
+        yield return new WaitForSeconds(7.0f);
+        Common.isBlackUpDown = false;
+        while(!Camera.main.GetComponent<CameraEffectHandler>().isBlackEffectClear)
+        {
+            yield return null;
+        }
+        ShowGoalTitle();
     }
     public void AddMonsterCount()
     {

@@ -23,6 +23,7 @@ public class GameManagement : MonoBehaviour
     private void Start()
     {
         HeroSystem.LoadHero();
+        SkillSystem.LoadSkill();
         AbilitySystem.LoadAbility();
         ItemSystem.LoadItem();
         MapSystem.LoadMap();
@@ -101,8 +102,7 @@ public class GameManagement : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.F3))
         {
-            ItemSystem.SetObtainItem(8001,10);
-            Debugging.Log("F3 >>");
+            Common.isBlackUpDown = Common.isBlackUpDown ? false : true;
         }
     }
     void DebugInitXmlData()

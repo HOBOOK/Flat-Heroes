@@ -76,6 +76,7 @@ public class Hero : MonoBehaviour
     public Status status;
     //HeroData
     HeroData heroData;
+    Skill skillData;
     //EquipItems
     List<Item> equipItems = new List<Item>();
     #endregion
@@ -432,12 +433,18 @@ public class Hero : MonoBehaviour
             heroData = HeroSystem.GetUserHero(id);
         else
             heroData = HeroSystem.GetHero(id);
+
         if (heroData!=null)
         {
             this.status.SetHeroStatus(ref heroData);
             this.HeroName = heroData.name;
             this.name = HeroName;
             initChats = HeroSystem.GetHeroChats(heroData.id);
+            skillData = SkillSystem.GetSkill(heroData.skill);
+            if(skillData!=null)
+            {
+                Debugging.LogSystem(string.Format("{0} 의 스킬 이름 :{1} , 레벨:{2}", HeroName, skillData.name, SkillSystem.GetUserSkillLevel(skillData.id)));
+            }
         }
         else
         {
@@ -1499,14 +1506,14 @@ public class Hero : MonoBehaviour
         RedirectCharacter();
         if (initChats.Count > 0)
             Common.Chat(initChats[UnityEngine.Random.Range(0, initChats.Count)], transform);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         SpriteAlphaSetting(1);
         yield return new WaitForSeconds(1);
         EquipWeapon();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         heroState = HeroState.Attack;
         isStart = true;
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(5.0f);
         FindEnemys(true);
         FindAllys();
         yield return null;
@@ -1925,12 +1932,10 @@ public class Hero : MonoBehaviour
             this.maxHp = HeroSystem.GetHeroStatusMaxHp(ref data);
             this.hp = this.maxHp;
             this.criticalPercent = HeroSystem.GetHeroStatusCriticalPercent(ref data);
-            this.attackSpeed = HeroSystem.GetHeroStatusAttackSpeed(ref data);
-            this.moveSpeed = HeroSystem.GetHeroStatusMoveSpeed(ref data);
+            this.attackSpeed = HeroSystem.GetHeroStatusAttackSpeed(ref data)*0.01f;
+            this.moveSpeed = HeroSystem.GetHeroStatusMoveSpeed(ref data)*0.01f;
             this.knockbackResist = HeroSystem.GetHeroStatusKnockbackResist(ref data);
             this.skillEnegry = 20 - HeroSystem.GetHeroStatusSkillEnergy(ref data);
-
-            Debugging.Log(string.Format("{0} => 공격력:{1} 방어력:{2} 체력:{3} 크리티컬:{4} 공격속도:{5} 이동속도:{6} 넉백:{7} 에너지효율:{8}", data.name, this.attack, this.defence, this.maxHp, this.criticalPercent, this.attackSpeed, this.moveSpeed, this.knockbackResist, this.skillEnegry));
         }
     }
 

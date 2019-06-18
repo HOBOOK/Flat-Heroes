@@ -98,6 +98,7 @@ public static class HeroSystem
         {
             HeroDatabase.AddUser(id);
             userHeros.Add(obtainHero);
+            SkillSystem.SetObtainSkill(obtainHero.skill);
             Debugging.Log(id + " 영웅 획득 성공!");
         }
         else
@@ -171,26 +172,26 @@ public static class HeroSystem
             return (int)((data.intelligent * 0.05f) + (data.agility * 0.2f));
         }
     }
-    public static float GetHeroStatusAttackSpeed(ref HeroData data)
+    public static int GetHeroStatusAttackSpeed(ref HeroData data)
     {
         if(data.type==0)
         {
-            return (data.strength * 0.001f) + (data.agility * 0.005f) * ((AbilitySystem.GetAbilityStats(4)+100)*0.01f);
+            return data.strength+ (data.agility * 5) + AbilitySystem.GetAbilityStats(4);
         }
         else
         {
-            return (data.strength * 0.001f) + (data.agility * 0.005f);
+            return data.strength + (data.agility * 5);
         }
     }
-    public static float GetHeroStatusMoveSpeed(ref HeroData data)
+    public static int GetHeroStatusMoveSpeed(ref HeroData data)
     {
         if(data.type==0)
         {
-            return ((data.agility * 0.005f) + 0.5f) * ((AbilitySystem.GetAbilityStats(5)+100)*0.01f);
+            return data.agility + 50 +AbilitySystem.GetAbilityStats(5);
         }
         else
         {
-            return (data.agility * 0.005f) + 0.5f;
+            return data.agility + 50;
         }
     }
     public static float GetHeroStatusKnockbackResist(ref HeroData data)

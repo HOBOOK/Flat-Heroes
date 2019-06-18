@@ -291,7 +291,8 @@ public class UI_Button : MonoBehaviour
     IEnumerator CheckingSellAlert()
     {
         isCheckAlertOn = true;
-        var alertPanel = UI_Manager.instance.ShowNeedAlert("Items/coin", string.Format("<color='yellow'>'{0}' <size='24'>x </size>{1}</color>  에 아이템을 판매하시겠습니까?", "코인", ItemSystem.GetUserItem(sellItemId).value));
+        Item sellItem = ItemSystem.GetUserItem(sellItemId);
+        var alertPanel = UI_Manager.instance.ShowNeedAlert(sellItem.image, string.Format("<color='red'>'{0}'</color> {1}개를 <color='yellow'>{2} 코인</color>  에 판매하시겠습니까?", sellItem.name, 1, Common.GetThousandCommaText(sellItem.value)));
         while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
         {
             yield return new WaitForFixedUpdate();

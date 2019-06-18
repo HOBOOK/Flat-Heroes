@@ -7,6 +7,7 @@ public class ItemSlot : MonoBehaviour
 {
     [SerializeField] Image image;
     [SerializeField] Text nameText;
+    [SerializeField] Text countText;
 
     private Item _item;
     public Item Item
@@ -19,6 +20,7 @@ public class ItemSlot : MonoBehaviour
             {
                 image.enabled = false;
                 nameText.enabled = false;
+                countText.enabled = false;
             }
             else
             {
@@ -26,6 +28,11 @@ public class ItemSlot : MonoBehaviour
                 nameText.text = _item.name;
                 image.enabled = true;
                 nameText.enabled = true;
+                if(_item.itemtype==1)
+                {
+                    countText.enabled = true;
+                    countText.text = _item.count.ToString();
+                }
             }
         }
     }
@@ -33,7 +40,15 @@ public class ItemSlot : MonoBehaviour
     {
         if(image==null)
             image = transform.GetChild(0).GetChild(0).GetComponent<Image>();
-        if (nameText == null)
-            nameText = transform.GetComponentInChildren<Text>();
+        if (nameText == null||countText==null)
+        {
+            foreach(var txt in transform.GetComponentsInChildren<Text>())
+            {
+                if (txt.name.Equals("ItemName"))
+                    nameText = txt;
+                else if (txt.name.Equals("ItemCOunt"))
+                    countText = txt;
+            }
+        }
     }
 }

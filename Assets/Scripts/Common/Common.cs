@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,8 +22,23 @@ public class Common : MonoBehaviour
     public static List<GameObject> EnemysList;
     public static List<GameObject> AllysList;
 
-   
-
+    //로컬 파일체크
+    public static bool CheckingLocalFileExist()
+    {
+        string path1 = Application.persistentDataPath + "/player.fun";
+        if (File.Exists(path1))
+        {
+            Debugging.Log("Path1 통과");
+            string path2 = Application.persistentDataPath + "/Xml";
+            DirectoryInfo di = new DirectoryInfo(path2);
+            if (di.Exists == true)
+            {
+                Debugging.Log("최종 Path통과");
+                return true;
+            }
+        }
+        return false;
+    }
     public static string GetCoinCrystalEnergyImagePath(int type)
     {
         string path = "";
