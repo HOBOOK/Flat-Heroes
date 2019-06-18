@@ -14,8 +14,8 @@ public class UI_Manager_InventoryTab : MonoBehaviour
     Image itemInfoImage;
     Text itemInfoName;
     Text itemInfoDescription;
-
-    private void OnValidate()
+    Button itemSellButton;
+    public void OnValidate()
     {
         if(itemParent!=null)
         {
@@ -30,19 +30,27 @@ public class UI_Manager_InventoryTab : MonoBehaviour
                 itemInfoName = PanelItemInfo.transform.GetChild(1).GetComponent<Text>();
                 itemInfoDescription = PanelItemInfo.transform.GetChild(2).GetComponent<Text>();
             }
+            if(itemSellButton==null)
+            {
+                itemSellButton = PanelItemInfo.GetComponentInChildren<Button>();
+            }
             itemInfoImage.enabled = false;
             itemInfoName.enabled = false;
             itemInfoDescription.enabled = false;
+            if (itemSellButton != null)
+                itemSellButton.gameObject.SetActive(false);
         }
     }
 
-    private void RefreshUI(Common.OrderByType orderByType=Common.OrderByType.NONE)
+    public void RefreshUI(Common.OrderByType orderByType=Common.OrderByType.NONE)
     {
         items = ItemSystem.GetUserItems(orderByType);
         if (items!=null)
         {
             for (int i = 0; i < itemSlots.Length; i++)
             {
+                itemSlots[i].Item = null;
+                itemSlots[i].GetComponent<Button>().enabled = false;
                 if (i < items.Count && i < itemSlots.Length)
                 {
                     itemSlots[i].Item = items[i];
@@ -56,11 +64,6 @@ public class UI_Manager_InventoryTab : MonoBehaviour
                             OnItemSlotClick(index);
                         });
                     }
-                }
-                else
-                {
-                    itemSlots[i].Item = null;
-                    itemSlots[i].GetComponent<Button>().enabled = false;
                 }
             }
         }
@@ -82,6 +85,10 @@ public class UI_Manager_InventoryTab : MonoBehaviour
             itemInfoImage.enabled = true;
             itemInfoName.enabled = true;
             itemInfoDescription.enabled = true;
+            itemSellButton.enabled = true;
+            itemSellButton.gameObject.SetActive(true);
+            itemSellButton.GetComponent<UI_Button>().callBackScript = this.gameObject;
+            itemSellButton.GetComponent<UI_Button>().sellItemId = itemSlots[index].Item.id;
             if (itemInfoImage.GetComponent<AiryUIAnimatedElement>() != null)
                 itemInfoImage.GetComponent<AiryUIAnimatedElement>().ShowElement();
             Debugging.Log(index + " 아이템 슬롯버튼 클릭");

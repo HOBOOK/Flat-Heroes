@@ -223,7 +223,6 @@ public static class ItemSystem
                 attack += ItemSystem.GetUserItem(heroItems[i]).attack;
             }
         }
-        Debugging.Log(heroData.name + " 의 총 아이템 공격력 = " + attack);
         return attack;
     }
 

@@ -9,7 +9,7 @@ using UnityStandardAssets.ImageEffects;
 
 public class UI_Button : MonoBehaviour
 {
-    public enum ButtonType { ActiveControll,Trigger,SceneLoad, StageSceneLoad, SceneLoadAddtive, ItemBuy,CharacterBuy,ScenePause};
+    public enum ButtonType { ActiveControll,Trigger,SceneLoad, StageSceneLoad, SceneLoadAddtive, ItemBuy,CharacterBuy,ScenePause,ItemSell};
     public ButtonType buttonType;
     public GameObject targetUI;
     public int targetSceneNumber;
@@ -19,6 +19,7 @@ public class UI_Button : MonoBehaviour
     public int paymentAmount;
     public int buyItemId;
     public int characterId;
+    public int sellItemId;
     public GameObject callBackScript;
     public AudioClip audioClip;
 
@@ -108,6 +109,9 @@ public class UI_Button : MonoBehaviour
                         //hideUIanimation();
                     }
                 }
+                break;
+            case ButtonType.ItemSell:
+                SellStart();
                 break;
         }
     }
@@ -226,6 +230,38 @@ public class UI_Button : MonoBehaviour
                 break;
         }
     }
+
+    void SellItemProcessing()
+    {
+        if(SellAbleCheck(ref sellItemId))
+        {
+            int value = ItemSystem.GetUserItem(sellItemId).value;
+            OnButtonEffectSound();
+
+            ItemSystem.UseItem(sellItemId, 1);
+            SaveSystem.AddUserCoin(value);
+            UI_Manager.instance.ShowGetAlert("Items/coin", string.Format("<color='yellow'>{0}</color> 코인을 획득했습니다.", value));
+            if (callBackScript != null)
+            {
+                callBackScript.GetComponent<UI_Manager_InventoryTab>().OnValidate();
+                callBackScript.GetComponent<UI_Manager_InventoryTab>().RefreshUI(Common.OrderByType.NAME);
+            }
+        }
+        else
+        {
+            Item item = ItemSystem.GetItem(sellItemId);
+            if(item!=null)
+                UI_Manager.instance.ShowAlert(item.image, string.Format("<color='yellow'>{0}</color> 은(는) 현재 판매할 수 없습니다. \r\n <color='grey'><size='20'>장착중이거나 아이템의 개수에 오류가 있습니다.</size></color>",item.name));
+        }
+    }
+
+    void SellStart()
+    {
+        if(!isCheckAlertOn)
+        {
+            StartCoroutine("CheckingSellAlert");
+        }
+    }
     IEnumerator CheckingAlert(int type)
     {
         isCheckAlertOn = true;
@@ -242,6 +278,28 @@ public class UI_Button : MonoBehaviour
                 BuyItemProcessing();
             else
                 BuyCharProcessing();
+        }
+        else
+        {
+            UI_Manager.instance.ClosePopupAlertUI();
+            // 아니오를 클릭시
+        }
+        isCheckAlertOn = false;
+        yield return null;
+    }
+
+    IEnumerator CheckingSellAlert()
+    {
+        isCheckAlertOn = true;
+        var alertPanel = UI_Manager.instance.ShowNeedAlert("Items/coin", string.Format("<color='yellow'>'{0}' <size='24'>x </size>{1}</color>  에 아이템을 판매하시겠습니까?", "코인", ItemSystem.GetUserItem(sellItemId).value));
+        while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        if (alertPanel.GetComponentInChildren<UI_CheckButton>().isResult)
+        {
+            UI_Manager.instance.ClosePopupAlertUI();
+            SellItemProcessing();
         }
         else
         {
@@ -270,6 +328,19 @@ public class UI_Button : MonoBehaviour
         {
             return false;
         }
+    }
+
+    bool SellAbleCheck(ref int targetItemId)
+    {
+        Item item = ItemSystem.GetUserItem(targetItemId);
+        if(item!=null)
+        {
+            if(item.equipCharacterId==0&&item.count>0)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     void showUIanimation()
@@ -337,6 +408,11 @@ public class ButtonInspectorEditor : Editor
                 break;
             case UI_Button.ButtonType.ScenePause:
                 enumScript.targetUI = (GameObject)EditorGUILayout.ObjectField("TargetUI", enumScript.targetUI, typeof(GameObject), true);
+                enumScript.audioClip = (AudioClip)EditorGUILayout.ObjectField("ButtonAudioClip", enumScript.audioClip, typeof(AudioClip), true);
+                break;
+            case UI_Button.ButtonType.ItemSell:
+                enumScript.callBackScript = (GameObject)EditorGUILayout.ObjectField("InventroyScript", enumScript.callBackScript, typeof(GameObject), true);
+                enumScript.sellItemId = EditorGUILayout.IntField("SellItemId", enumScript.sellItemId);
                 enumScript.audioClip = (AudioClip)EditorGUILayout.ObjectField("ButtonAudioClip", enumScript.audioClip, typeof(AudioClip), true);
                 break;
         }

@@ -14,47 +14,47 @@
       <Level>0</Level>
       <AbilityType>1</AbilityType>
       <PowerType>1</PowerType>
-      <Power>20</Power>
+      <Power>15</Power>
       <Image>Ability/ability_002</Image>
     </Ability>
     <Ability id="3">
       <Name>세번째 만남</Name>
       <Level>0</Level>
-      <AbilityType>1</AbilityType>
+      <AbilityType>2</AbilityType>
       <PowerType>2</PowerType>
-      <Power>20</Power>
+      <Power>50</Power>
       <Image>Ability/ability_003</Image>
     </Ability>
     <Ability id="4">
       <Name>네번째 이별</Name>
       <Level>0</Level>
-      <AbilityType>2</AbilityType>
-      <PowerType>0</PowerType>
-      <Power>20</Power>
+      <AbilityType>0</AbilityType>
+      <PowerType>3</PowerType>
+      <Power>1</Power>
       <Image>Ability/ability_004</Image>
     </Ability>
     <Ability id="5">
       <Name>다섯번째 영광</Name>
       <Level>0</Level>
-      <AbilityType>2</AbilityType>
-      <PowerType>0</PowerType>
-      <Power>20</Power>
+      <AbilityType>1</AbilityType>
+      <PowerType>4</PowerType>
+      <Power>5</Power>
       <Image>Ability/ability_005</Image>
     </Ability>
     <Ability id="6">
       <Name>여섯번째 절망</Name>
       <Level>0</Level>
-      <AbilityType>0</AbilityType>
-      <PowerType>0</PowerType>
-      <Power>20</Power>
+      <AbilityType>2</AbilityType>
+      <PowerType>5</PowerType>
+      <Power>5</Power>
       <Image>Ability/ability_006</Image>
     </Ability>
     <Ability id="7">
       <Name>일곱번째 희망</Name>
       <Level>0</Level>
       <AbilityType>0</AbilityType>
-      <PowerType>0</PowerType>
-      <Power>20</Power>
+      <PowerType>6</PowerType>
+      <Power>1</Power>
       <Image>Ability/ability_007</Image>
     </Ability>
   </Abilitys>

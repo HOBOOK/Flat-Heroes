@@ -64,6 +64,7 @@ public class UI_Manager_AbilityTab : MonoBehaviour
             abilityInfoDescriptionText.enabled = false;
             abilityTotalStatText.enabled = true;
         }
+        RefreshUI();
     }
 
     private void Start()
@@ -72,7 +73,7 @@ public class UI_Manager_AbilityTab : MonoBehaviour
         {
             foreach(var ab in AbilitySystem.GetAllAbilities())
             {
-                GameObject abObj = Instantiate(abilitySlotPrefab, PanelAbilitys[ab.abilityType].transform);
+                GameObject abObj = Instantiate(abilitySlotPrefab, PanelAbilitys[ab.id%3].transform);
                 if (AbilitySystem.isAbleAbility(ab.id))
                 {
                     Ability userAbility = AbilitySystem.GetUserAbility(ab.id);
@@ -98,7 +99,7 @@ public class UI_Manager_AbilityTab : MonoBehaviour
             if (abilityTotalStatText != null)
             {
                 AbilitySystem.SetAbilityStats();
-                abilityTotalStatText.text = string.Format("전체공격력+{0} 전체방어력+{1}", AbilitySystem.GetAbilityStats(0), AbilitySystem.GetAbilityStats(2));
+                abilityTotalStatText.text = AbilitySystem.GetAllAbilityStatToString();
             }
 
             if (scrollCountText != null)
@@ -139,7 +140,7 @@ public class UI_Manager_AbilityTab : MonoBehaviour
         if (abilityTotalStatText != null)
         {
             AbilitySystem.SetAbilityStats();
-            abilityTotalStatText.text = string.Format("전체공격력+{0} 전체방어력+{1}", AbilitySystem.GetAbilityStats(0), AbilitySystem.GetAbilityStats(2));
+            abilityTotalStatText.text = AbilitySystem.GetAllAbilityStatToString();
         }
         
         if(scrollCountText!=null)
@@ -168,7 +169,7 @@ public class UI_Manager_AbilityTab : MonoBehaviour
             if (abilityTotalStatText != null)
             {
                 AbilitySystem.SetAbilityStats();
-                abilityTotalStatText.text = string.Format("전체공격력+{0} 전체방어력+{1}", AbilitySystem.GetAbilityStats(0), AbilitySystem.GetAbilityStats(2));
+                abilityTotalStatText.text = AbilitySystem.GetAllAbilityStatToString();
             }
         }
     }

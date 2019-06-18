@@ -946,6 +946,162 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20664248}
   m_CullTransparentMesh: 0
+--- !u!1 &23067098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 23067099}
+  - component: {fileID: 23067102}
+  - component: {fileID: 23067101}
+  - component: {fileID: 23067100}
+  - component: {fileID: 23067103}
+  m_Layer: 16
+  m_Name: Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &23067099
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23067098}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1878120724}
+  m_Father: {fileID: 364130774}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 20}
+  m_SizeDelta: {x: 300, y: 120}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &23067100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23067098}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 23067101}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 23067103}
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &23067101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23067098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.44705886, g: 0.13333334, b: 0.3529412, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: decb368a59ab4c84b8de2701770acd0e, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &23067102
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23067098}
+  m_CullTransparentMesh: 0
+--- !u!114 &23067103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23067098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fb07155df5d604e81ff5c585558b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonType: 8
+  targetUI: {fileID: 0}
+  targetSceneNumber: 0
+  paymentType: 0
+  stageType: 0
+  paymentAmount: 0
+  buyItemId: 0
+  characterId: 0
+  sellItemId: 0
+  callBackScript: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!1 &24555083
 GameObject:
   m_ObjectHideFlags: 0
@@ -4981,6 +5137,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &174284453
@@ -8657,6 +8814,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &335038871
@@ -9610,6 +9768,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &363981577
@@ -9719,6 +9878,7 @@ RectTransform:
   - {fileID: 952353140}
   - {fileID: 1751003282}
   - {fileID: 1782762837}
+  - {fileID: 23067099}
   m_Father: {fileID: 1781512723}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10650,6 +10810,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &400458194
@@ -11136,10 +11297,10 @@ RectTransform:
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -275}
-  m_SizeDelta: {x: 0, y: -550}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 400}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &419178377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12140,6 +12301,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &449290587
@@ -12288,6 +12450,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 55065370986a8a64b9cb79d03f9ea0b7, type: 3}
 --- !u!114 &450485066
@@ -14005,6 +14168,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &518846538
@@ -18224,6 +18388,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &684216095
@@ -19327,10 +19492,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1f31cc0b366b09f47a7a5de18bc3b4db, type: 3}
-    m_FontSize: 30
+    m_FontSize: 27
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -21386,6 +21551,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &791610794
@@ -21514,11 +21680,11 @@ RectTransform:
   m_Father: {fileID: 1021995563}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -100, y: -660}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -330}
+  m_SizeDelta: {x: -60, y: 50}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &793952374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23002,6 +23168,7 @@ MonoBehaviour:
   paymentAmount: 1000
   buyItemId: 1001
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: d5b7fe271a5f8c541922c8b59877ebbe, type: 3}
 --- !u!114 &845028817
@@ -23739,6 +23906,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!1 &860378418
@@ -24438,6 +24606,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &871307158
@@ -26047,6 +26216,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!1 &929573593
@@ -26785,6 +26955,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 0}
 --- !u!1 &944191354
@@ -27466,6 +27637,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &958307459
@@ -34408,6 +34580,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &1226018409
@@ -36623,6 +36796,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: d5b7fe271a5f8c541922c8b59877ebbe, type: 3}
 --- !u!114 &1339842621
@@ -37674,6 +37848,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &1389767497
@@ -42219,6 +42394,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 1660ef4124212c647be3a8b251b4b7b4, type: 3}
 --- !u!114 &1530452978
@@ -44514,6 +44690,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!1 &1640460747
@@ -48124,8 +48301,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -175}
-  m_SizeDelta: {x: -100, y: -390}
+  m_AnchoredPosition: {x: 0, y: -110}
+  m_SizeDelta: {x: -100, y: -520}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1782762838
 MonoBehaviour:
@@ -48882,6 +49059,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!1 &1817224271
@@ -49517,6 +49695,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &1842031274
@@ -50494,6 +50673,85 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874468072}
+  m_CullTransparentMesh: 0
+--- !u!1 &1878120723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1878120724}
+  - component: {fileID: 1878120726}
+  - component: {fileID: 1878120725}
+  m_Layer: 16
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1878120724
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878120723}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 23067099}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1878120725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878120723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 1f31cc0b366b09f47a7a5de18bc3b4db, type: 3}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\uD310\uB9E4\uD558\uAE30"
+--- !u!222 &1878120726
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878120723}
   m_CullTransparentMesh: 0
 --- !u!1 &1879064497
 GameObject:
@@ -53443,6 +53701,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!1 &2002975334
@@ -55410,6 +55669,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &2089535062
@@ -55963,6 +56223,7 @@ MonoBehaviour:
   paymentAmount: 0
   buyItemId: 0
   characterId: 0
+  sellItemId: 0
   callBackScript: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!1 &2106173421

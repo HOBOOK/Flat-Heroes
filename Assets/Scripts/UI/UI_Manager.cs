@@ -276,5 +276,23 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
+    public void ShowAlert(string imagePath, string alertText)
+    {
+        if (PopupAlertUI != null)
+        {
+            foreach (Transform otherUI in PopupAlertUI.transform.GetChild(0).transform)
+            {
+                otherUI.gameObject.SetActive(false);
+            }
+            GameObject ShowtageAlertPanel = PopupAlertUI.transform.GetChild(0).GetChild(0).gameObject;
+            ShowtageAlertPanel.gameObject.SetActive(true);
+            Image shortageImage = ShowtageAlertPanel.transform.GetChild(0).GetComponent<Image>();
+            Text shortageText = ShowtageAlertPanel.transform.GetChild(1).GetComponent<Text>();
+            shortageImage.sprite = Resources.Load<Sprite>(imagePath);
+            shortageText.text = alertText;
+            PopupAlertUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
+        }
+    }
+
 
 }

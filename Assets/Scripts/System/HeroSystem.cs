@@ -148,23 +148,50 @@ public static class HeroSystem
     }
     public static int GetHeroStatusDefence(ref HeroData data)
     {
-        return (data.physical * 5) + (data.agility) + AbilitySystem.GetAbilityStats(2);
+        if (data.type == 0)
+            return (data.physical * 5) + (data.agility) + AbilitySystem.GetAbilityStats(1);
+        else
+            return (data.physical * 5) + (data.agility);
     }
     public static int GetHeroStatusMaxHp(ref HeroData data)
     {
-        return (200)+(data.strength * 2) + (data.intelligent) + (data.physical * 10) + (data.agility * 3);
+        if(data.type==0)
+            return (200)+(data.strength * 2) + (data.intelligent) + (data.physical * 10) + (data.agility * 3)+AbilitySystem.GetAbilityStats(2);
+        else
+            return (200) + (data.strength * 2) + (data.intelligent) + (data.physical * 10) + (data.agility * 3);
     }
     public static int GetHeroStatusCriticalPercent(ref HeroData data)
     {
-        return (int)((data.intelligent * 0.05f) + (data.agility * 0.2f));
+        if(data.type==0)
+        {
+            return (int)((data.intelligent * 0.05f) + (data.agility * 0.2f)) + AbilitySystem.GetAbilityStats(3);
+        }
+        else
+        {
+            return (int)((data.intelligent * 0.05f) + (data.agility * 0.2f));
+        }
     }
     public static float GetHeroStatusAttackSpeed(ref HeroData data)
     {
-        return (data.strength * 0.001f) + (data.agility * 0.005f);
+        if(data.type==0)
+        {
+            return (data.strength * 0.001f) + (data.agility * 0.005f) * ((AbilitySystem.GetAbilityStats(4)+100)*0.01f);
+        }
+        else
+        {
+            return (data.strength * 0.001f) + (data.agility * 0.005f);
+        }
     }
     public static float GetHeroStatusMoveSpeed(ref HeroData data)
     {
-        return (data.agility * 0.005f) + 0.5f;
+        if(data.type==0)
+        {
+            return ((data.agility * 0.005f) + 0.5f) * ((AbilitySystem.GetAbilityStats(5)+100)*0.01f);
+        }
+        else
+        {
+            return (data.agility * 0.005f) + 0.5f;
+        }
     }
     public static float GetHeroStatusKnockbackResist(ref HeroData data)
     {
@@ -172,7 +199,14 @@ public static class HeroSystem
     }
     public static int GetHeroStatusSkillEnergy(ref HeroData data)
     {
-        return data.intelligent;
+        if(data.type==0)
+        {
+            return data.intelligent + AbilitySystem.GetAbilityStats(6);
+        }
+        else
+        {
+            return data.intelligent;
+        }
     }
     public static int GetRecoveryHp(ref HeroData data)
     {
