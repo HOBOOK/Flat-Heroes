@@ -111,9 +111,9 @@ public class CameraEffectHandler : MonoBehaviour
             foreach (var item in rt)
             {
                 if (item.gameObject.GetInstanceID() != blackupdowneffect.GetInstanceID())
-                    item.sizeDelta = new Vector2(item.sizeDelta.x, cnt*2);
+                    item.sizeDelta = new Vector2(item.sizeDelta.x, cnt*3);
             }
-            yield return new WaitForSeconds(0.015f);
+            yield return new WaitForSeconds(0.007f);
         }
         foreach (var item in sr)
         {
@@ -122,7 +122,7 @@ public class CameraEffectHandler : MonoBehaviour
         foreach (var item in rt)
         {
             if (item.gameObject.GetInstanceID() != blackupdowneffect.GetInstanceID())
-                item.sizeDelta = new Vector2(item.sizeDelta.x, 100);
+                item.sizeDelta = new Vector2(item.sizeDelta.x, 150);
         }
         yield return null;
     }
@@ -144,7 +144,7 @@ public class CameraEffectHandler : MonoBehaviour
             foreach (var item in rt)
             {
                 if(item.gameObject.GetInstanceID()!=blackupdowneffect.GetInstanceID())
-                   item.sizeDelta = new Vector2(item.sizeDelta.x,(100- (cnt *2)));
+                   item.sizeDelta = new Vector2(item.sizeDelta.x,(150- (cnt *3)));
             }
             yield return new WaitForSeconds(0.007f);
         }

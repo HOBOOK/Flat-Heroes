@@ -1215,6 +1215,7 @@ MonoBehaviour:
   blackupdowneffect: {fileID: 1157261871}
   offPanelList:
   - {fileID: 52054151}
+  isBlackEffectClear: 0
 --- !u!114 &67004245
 MonoBehaviour:
   m_ObjectHideFlags: 0

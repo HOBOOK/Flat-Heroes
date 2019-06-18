@@ -237,7 +237,7 @@ public class Common : MonoBehaviour
         GameObject chatObj = ObjectPool.Instance.PopFromPool("chatBox");
         chatObj.transform.localScale = new Vector3(0.03f, 0.03f, 0.03f);
         posY = posY == 0 ? 1 : posY;
-        if (tran.rotation.y != 0)
+        if (tran.rotation.y == 0)
         {
             chatObj.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             chatObj.GetComponentInChildren<Text>().transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));

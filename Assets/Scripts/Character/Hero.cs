@@ -164,6 +164,12 @@ public class Hero : MonoBehaviour
         dam = UnityEngine.Random.Range(dam * 0.8f, dam * 1.2f);
         return (int)dam;
     }
+    public bool isHealAble()
+    {
+        if (status.hp == status.maxHp)
+            return false;
+        return true;
+    }
     void RecoveryHp()
     {
         recoveryHpTime += Time.deltaTime;
@@ -548,7 +554,10 @@ public class Hero : MonoBehaviour
         DistanceChecking();
         if (distanceBetweenTarget < attackMaxRange && distanceBetweenTarget >= attackMinRange && target != null)
         {
-            Heal();
+            if (target.GetComponent<Hero>().isHealAble())
+                Heal();
+            else
+                Idle();
         }
         else
         {
@@ -1098,6 +1107,7 @@ public class Hero : MonoBehaviour
     }
     public void Healing(int healAmount=0)
     {
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.heal);
         int maxHeal = status.maxHp - status.hp;
         healAmount = Mathf.Clamp(healAmount, 0, maxHeal);
         this.status.hp = Common.looHpPlus(this.status.hp, this.status.maxHp, healAmount);
