@@ -15,7 +15,7 @@ public class FollowCamera : MonoBehaviour
     private void Start()
     {
         GetComponent<Camera>().orthographicSize = otrhSize;
-        this.transform.position = new Vector3(-restricX(), 1.5f, -100);
+        this.transform.position = new Vector3(-restricX(), 1f, -100);
     }
 
     public void ChangeTarget(GameObject t)
@@ -33,11 +33,11 @@ public class FollowCamera : MonoBehaviour
 	void FixedUpdate ()
     {
         if (this.transform.position.x < -restricX())
-            transform.position = new Vector3(-restricX(), 1.5f, -100);
+            transform.position = new Vector3(-restricX(), 1f, -100);
         else if (this.transform.position.x > restricX())
-            transform.position = new Vector3(restricX(), 1.5f, - 100);
+            transform.position = new Vector3(restricX(), 1f, - 100);
         else
-            transform.position = new Vector3(transform.position.x, 1.5f, -100);
+            transform.position = new Vector3(transform.position.x, 1f, -100);
 
         if (target != null)
         {
@@ -93,13 +93,13 @@ public class FollowCamera : MonoBehaviour
 
     private float cameraY()
     {
-        if (target!=null&&target.position.y + 1.5f < 1.5f)
+        if (target!=null&&target.position.y + 1f < 1f)
         {
-            return target.position.y + 1.5f;
+            return target.position.y + 1f;
         }
         else
         {
-            return 1.5f;
+            return 1f;
         }
     }
 

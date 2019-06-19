@@ -22,6 +22,8 @@ public class UI_HeroInfo : MonoBehaviour
     Text heroExpText;
     Slider heroExpSlider;
     HeroData targetHeroData;
+    Button skillLevelUpButton;
+    
 
     private void Awake()
     {
@@ -104,15 +106,10 @@ public class UI_HeroInfo : MonoBehaviour
                 heroSetLobbyButton.GetComponentInChildren<Text>().text = "로비배치 >";
             }
 
-            Skill heroSkill = SkillSystem.GetSkill(heroData.skill);
-            if (heroSkillSlot!=null&& heroSkill!=null)
-            {
-                heroSkillSlot.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = SkillSystem.GetSkillImage(heroSkill.id);
-                heroSkillSlot.transform.GetComponentInChildren<Text>().text = string.Format("<size='30'>기술레벨 : {0}</size>\r\n<color='grey'>{1}</color>",SkillSystem.GetUserSkillLevel(heroSkill.id),heroSkill.description);
-            }
             RefreshHeroStatusEquipmentPanel();
         }
     }
+
     public void RefreshHeroStatusEquipmentPanel()
     {
         //Status 정보
@@ -163,6 +160,46 @@ public class UI_HeroInfo : MonoBehaviour
                     OnEquipmentItemClick(buttonIndex, equipmentItemsId[buttonIndex]);
                 });
             }
+        }
+
+        // 스킬정보
+        Skill heroSkill = SkillSystem.GetSkill(targetHeroData.skill);
+        if (heroSkillSlot != null && heroSkill != null)
+        {
+            heroSkillSlot.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = SkillSystem.GetSkillImage(heroSkill.id);
+            heroSkillSlot.transform.GetComponentInChildren<Text>().text = string.Format("<size='30'>기술레벨 : {0}</size>\r\n<color='grey'>{1}</color>", SkillSystem.GetUserSkillLevel(heroSkill.id), SkillSystem.GetUserSkillDescription(heroSkill.id));
+            // 스킬강화버튼
+            skillLevelUpButton = heroSkillSlot.GetComponentInChildren<Button>();
+            int needMoney = SkillSystem.GetUserSkillLevelUpNeedCoin(heroSkill.id);
+            skillLevelUpButton.transform.GetChild(0).GetComponentInChildren<Text>().text = Common.GetThousandCommaText(needMoney);
+
+            if (Common.PaymentAbleCheck(ref User.coin, needMoney))
+            {
+                skillLevelUpButton.interactable = true;
+            }
+            else
+            {
+                skillLevelUpButton.interactable = false;
+            }
+            skillLevelUpButton.onClick.RemoveAllListeners();
+            skillLevelUpButton.onClick.AddListener(delegate
+            {
+                OnSkillLevelUpClick(heroSkill.id, needMoney);
+            });
+        }
+    }
+
+    public void OnSkillLevelUpClick(int skill, int needMoney)
+    {
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_button_default);
+        if(Common.PaymentCheck(ref User.coin,needMoney))
+         {
+            SkillSystem.SetObtainSkill(skill);
+            RefreshHeroStatusEquipmentPanel();
+        }
+        else
+        {
+            UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.coin, needMoney);
         }
     }
 

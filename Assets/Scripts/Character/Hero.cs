@@ -160,7 +160,7 @@ public class Hero : MonoBehaviour
         else
             isCriticalAttack = false;
         float dam = isCriticalAttack ? ATTACK * 1.5f: ATTACK;
-        dam = isSkillAttack ? dam * 2 : dam;
+        dam = isSkillAttack ? dam + SkillSystem.GetUserSkillPower(heroData.skill) : dam;
         dam = UnityEngine.Random.Range(dam * 0.8f, dam * 1.2f);
         return (int)dam;
     }

@@ -254,6 +254,30 @@ public class Common : MonoBehaviour
         chatObj.GetComponent<UI_chatBox>().chatText = chat;
         chatObj.SetActive(true);
     }
+    //페이먼트 체크
+    public static bool PaymentAbleCheck(ref int target, int payment)
+    {
+        if (target - payment >= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public static bool PaymentCheck(ref int target, int payment)
+    {
+        if(PaymentAbleCheck(ref target,payment))
+        {
+            target -= payment;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     //배열 중복제거
     public static T[] GetDistinctValues<T>(T[] array)

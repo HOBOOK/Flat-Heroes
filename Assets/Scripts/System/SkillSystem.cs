@@ -48,7 +48,7 @@ public static class SkillSystem
         }
     }
 
-    #region 유저어빌리티정보
+    #region 유저스킬정보
     public static Skill GetUserSkill(int id)
     {
         return userSkills.Find(x => x.id == id || x.id.Equals(id));
@@ -91,6 +91,15 @@ public static class SkillSystem
         {
             return 0;
         }
+    }
+    public static int GetUserSkillLevelUpNeedCoin(int id)
+    {
+        int x = GetUserSkillLevel(id);
+        return x * x * 1000;
+    }
+    public static string GetUserSkillDescription(int id)
+    {
+        return string.Format("{0}\r\n스킬공격력 : {1}",GetSkill(id).description,GetUserSkillPower(id));
     }
     #endregion
 

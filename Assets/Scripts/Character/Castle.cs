@@ -86,7 +86,7 @@ public class Castle : MonoBehaviour
                         GameObject e = Instantiate(spawnEnemys[i].enemyPrefab, enemySpawnPoint);
                         e.SetActive(false);
                         e.GetComponent<Hero>().isPlayerHero = false;
-                        e.transform.position = new Vector3(UnityEngine.Random.Range(15,18), 0);
+                        e.transform.position = new Vector3(UnityEngine.Random.Range(15,18), e.transform.localScale.y);
                         e.SetActive(true);
                         StageManagement.instance.AddMonsterCount();
                     }

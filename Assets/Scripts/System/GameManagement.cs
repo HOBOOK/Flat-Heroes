@@ -102,7 +102,7 @@ public class GameManagement : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.F3))
         {
-            Common.isBlackUpDown = Common.isBlackUpDown ? false : true;
+            ItemSystem.SetObtainItem(1001,3);
         }
     }
     void DebugInitXmlData()

@@ -152,7 +152,7 @@ public class UI_Button : MonoBehaviour
         switch (paymentType)
         {
             case PaymentType.Coin:
-                if (PaymentCheck(ref User.coin, paymentAmount))
+                if (Common.PaymentCheck(ref User.coin, paymentAmount))
                 {
                     OnButtonEffectSound();
                     if (buyItemId > 9000)
@@ -169,7 +169,7 @@ public class UI_Button : MonoBehaviour
                 }
                 break;
             case PaymentType.BlackCrystal:
-                if (PaymentCheck(ref User.blackCrystal, paymentAmount))
+                if (Common.PaymentCheck(ref User.blackCrystal, paymentAmount))
                 {
                     OnButtonEffectSound();
                     if (buyItemId > 9000)
@@ -197,7 +197,7 @@ public class UI_Button : MonoBehaviour
         switch (paymentType)
         {
             case PaymentType.Coin:
-                if (PaymentCheck(ref User.coin, paymentAmount))
+                if (Common.PaymentCheck(ref User.coin, paymentAmount))
                 {
                     OnButtonEffectSound();
                     HeroSystem.SetObtainHero(characterId);
@@ -211,7 +211,7 @@ public class UI_Button : MonoBehaviour
                 }
                 break;
             case PaymentType.BlackCrystal:
-                if (PaymentCheck(ref User.blackCrystal, paymentAmount))
+                if (Common.PaymentCheck(ref User.blackCrystal, paymentAmount))
                 {
                     OnButtonEffectSound();
                     HeroSystem.SetObtainHero(characterId);
@@ -317,20 +317,6 @@ public class UI_Button : MonoBehaviour
         if (!isCheckAlertOn)
             StartCoroutine("CheckingAlert");
     }
-
-    bool PaymentCheck(ref int target, int payment)
-    {
-        if (target - payment >= 0)
-        {
-            target -= payment;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
     bool SellAbleCheck(ref int targetItemId)
     {
         Item item = ItemSystem.GetUserItem(targetItemId);
