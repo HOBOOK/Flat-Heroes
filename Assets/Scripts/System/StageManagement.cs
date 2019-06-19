@@ -39,7 +39,7 @@ public class StageManagement : MonoBehaviour
         if(stageModeType==Common.StageModeType.Main)
         {
             Map map = MapSystem.GetMap(stageInfo.mapNumber);
-            SoundManager.instance.BgmSourceChange(AudioClipManager.instance.Bgm2);
+            SoundManager.instance.BgmSourceChange(AudioClipManager.instance.StageBgm);
             switch (map.stageType)
             {
                 case 0:
@@ -58,7 +58,7 @@ public class StageManagement : MonoBehaviour
         }
         else if(stageModeType==Common.StageModeType.Infinite)
         {
-            SoundManager.instance.BgmSourceChange(AudioClipManager.instance.Bgm2);
+            SoundManager.instance.BgmSourceChange(AudioClipManager.instance.StageBgm);
             UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "가능할 때까지 모든적을 섬멸.";
         }
 

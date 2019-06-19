@@ -40,10 +40,10 @@ public class AudioClipManager : MonoBehaviour
     public AudioClip fireShot;
     public AudioClip shootPistolSilence;
     public AudioClip magic;
-    
 
-    public AudioClip Bgm1;
-    public AudioClip Bgm2;
+
+    public AudioClip LobbyBgm;
+    public AudioClip StageBgm;
 
     public static AudioClipManager instance;
 

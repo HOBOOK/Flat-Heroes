@@ -11,7 +11,7 @@ public class LoadAssetBundle : MonoBehaviour
 
     IEnumerator Start()
     {
-        //Caching.ClearCache();
+        Caching.ClearCache();
         UI_StartManager.instance.ShowDownloadUI();
         yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetBundle(BundleManagerURL, version, false,0.0f,"게임매니저"));
         UI_StartManager.instance.SetDownloadCount(4);
