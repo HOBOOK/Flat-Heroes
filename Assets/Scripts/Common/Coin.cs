@@ -42,7 +42,6 @@ public class Coin : MonoBehaviour
         targetUIPos = MagnetTarget.transform.position;
         coinPos = this.transform.position;
         distance = Vector2.Distance(coinPos, targetUIPos);
-        Debugging.Log(distance + " 코인 시작 거리");
         while (distance > 0.2f)
         {
             targetUIPos = MagnetTarget.transform.position;

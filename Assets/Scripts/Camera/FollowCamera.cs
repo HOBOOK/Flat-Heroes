@@ -11,7 +11,7 @@ public class FollowCamera : MonoBehaviour
     private Vector3 dragOriginPos;
     // 마우스 줌 //
     float zoom;
-    float otrhSize =4f;
+    float otrhSize =4.5f;
     private void Start()
     {
         GetComponent<Camera>().orthographicSize = otrhSize;
@@ -83,7 +83,7 @@ public class FollowCamera : MonoBehaviour
     }
     void Zoom(float increment)
     {
-        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - increment, 3.5f, 4);
+        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - increment, 4f, 5f);
     }
     private void MoveCamera()
     {
