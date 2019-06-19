@@ -163,18 +163,17 @@ public static class MapSystem
         {
             if (mapsp.name.Contains("layer1"))
             {
-                var foreground = MapTransform.transform.GetChild(1).GetChild(0).gameObject;
-                foreach (var foremap in foreground.GetComponentsInChildren<SpriteRenderer>())
-                    foremap.sprite = mapsp;
+                var foreground = MapTransform.transform.GetChild(0).GetChild(0).gameObject;
+                foreground.GetComponent<SpriteRenderer>().sprite = mapsp;
             }
             else if (mapsp.name.Contains("field"))
             {
-                var field = MapTransform.transform.GetChild(0).gameObject;
+                var field = MapTransform.transform.GetChild(0).GetChild(1).gameObject;
                 field.GetComponent<SpriteRenderer>().sprite = mapsp;
             }
             else if (!mapsp.name.Contains("tile"))
             {
-                var background = MapTransform.transform.GetChild(1).GetChild(1).gameObject;
+                var background = MapTransform.transform.GetChild(1).GetChild(0).gameObject;
                 background.GetComponentInChildren<SpriteRenderer>().sprite = mapsp;
             }
         }
