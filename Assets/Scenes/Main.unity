@@ -43276,6 +43276,7 @@ GameObject:
   - component: {fileID: 1562571217}
   - component: {fileID: 1562571216}
   - component: {fileID: 1562571215}
+  - component: {fileID: 1562571214}
   m_Layer: 16
   m_Name: Button
   m_TagString: Untagged
@@ -43302,6 +43303,29 @@ RectTransform:
   m_AnchoredPosition: {x: 150, y: -100}
   m_SizeDelta: {x: 96, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1562571214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562571212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fb07155df5d604e81ff5c585558b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonType: 0
+  targetUI: {fileID: 7643754166288312485}
+  targetSceneNumber: 0
+  paymentType: 0
+  stageType: 0
+  paymentAmount: 0
+  buyItemId: 0
+  characterId: 0
+  sellItemId: 0
+  callBackScript: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &1562571215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43348,6 +43372,17 @@ MonoBehaviour:
       - m_Target: {fileID: 367887165}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1562571214}
+        m_MethodName: OnClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
