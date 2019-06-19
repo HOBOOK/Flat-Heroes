@@ -45,5 +45,60 @@
       <AddPower>10</AddPower>
       <Energy>100</Energy>
     </Skill>
+    <Skill id="5">
+      <Name>5번째 스킬</Name>
+      <Description>엄청난 속도로 연속으로 화살을 발사한다.</Description>
+      <Image>Skill/skill_005</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>50</Power>
+      <AddPower>10</AddPower>
+      <Energy>100</Energy>
+    </Skill>
+    <Skill id="6">
+      <Name>6번째 스킬</Name>
+      <Description>엄청난 속도로 연속으로 화살을 발사한다.</Description>
+      <Image>Skill/skill_006</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>50</Power>
+      <AddPower>10</AddPower>
+      <Energy>100</Energy>
+    </Skill>
+    <Skill id="7">
+      <Name>7번째 스킬</Name>
+      <Description>엄청난 속도로 연속으로 화살을 발사한다.</Description>
+      <Image>Skill/skill_007</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>50</Power>
+      <AddPower>10</AddPower>
+      <Energy>100</Energy>
+    </Skill>
+    <Skill id="8">
+      <Name>8번째 스킬</Name>
+      <Description>엄청난 속도로 연속으로 화살을 발사한다.</Description>
+      <Image>Skill/skill_008</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>50</Power>
+      <AddPower>10</AddPower>
+      <Energy>100</Energy>
+    </Skill>
+    <Skill id="9">
+      <Name>9번째 스킬</Name>
+      <Description>엄청난 속도로 연속으로 화살을 발사한다.</Description>
+      <Image>Skill/skill_009</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>50</Power>
+      <AddPower>10</AddPower>
+      <Energy>100</Energy>
+    </Skill>
   </Skills>
 </SkillCollection>

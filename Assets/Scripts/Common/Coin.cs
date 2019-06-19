@@ -11,57 +11,18 @@ public class Coin : MonoBehaviour
     Vector3 coinPos;
     Vector3 targetUIPos;
     float distance;
-    bool isGet = false;
-    bool isAwake = false;
-    bool isStart = false;
 
     private void OnEnable()
     {
-        isAwake = false;
-        isStart = false;
-        isGet = false;
         this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         this.GetComponent<Collider2D>().isTrigger = false;
+        MagnetTarget = GameObject.FindGameObjectWithTag("CoinUI").transform;
+        StartCoroutine("StartCoin");
     }
-    private void Awake()
+    void FixedUpdate()
     {
-        foreach(var i in GameObject.FindGameObjectsWithTag("CoinUI"))
-        {
-            if(i.GetComponent<Image>()!=null)
-            {
-                MagnetTarget = i.transform;
-            }
-        }
-    }
-    void Update()
-    {
-        if(MagnetTarget != null)
-        {
-            if(!isAwake)
-            {
-                StartCoroutine("StartCoin");
-                isAwake = true;
-            }
-            else if(!isGet && isStart)
-            {
-
-                targetUIPos = MagnetTarget.transform.position;
-                coinPos = Vector3.Lerp(this.transform.position, targetUIPos, 0.1f);
-                coinPos.z = 0;
-                this.transform.position = coinPos;
-                distance = Vector2.Distance(coinPos, targetUIPos);
-                if (distance < 0.5f)
-                {
-                    ObjectPool.Instance.PushToPool("dropItemUI", dropCoinUI, Common.CanvasUI());
-                    GetCoin(coinAmount);
-                    isGet = true;
-                    ObjectPool.Instance.PushToPool("Coin", gameObject);
-                    MagnetTarget.GetComponentInParent<UI_StageCoin>().GetEffect();
-                }
-            }
-            if (dropCoinUI != null)
-                dropCoinUI.transform.position = this.transform.position+new Vector3(0,0.5f);
-        }
+        if (dropCoinUI != null)
+            dropCoinUI.transform.position = this.transform.position + new Vector3(0, 0.5f);
     }
     IEnumerator StartCoin()
     {
@@ -74,7 +35,27 @@ public class Coin : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         this.GetComponent<Collider2D>().isTrigger = true;
-        isStart = true;
+        StartCoroutine("GetCoin");
+    }
+    IEnumerator GetCoin()
+    {
+        targetUIPos = MagnetTarget.transform.position;
+        coinPos = this.transform.position;
+        distance = Vector2.Distance(coinPos, targetUIPos);
+        Debugging.Log(distance + " 코인 시작 거리");
+        while (distance > 0.2f)
+        {
+            targetUIPos = MagnetTarget.transform.position;
+            coinPos = Vector3.Lerp(this.transform.position, targetUIPos, 0.1f);
+            coinPos.z = 0;
+            this.transform.position = coinPos;
+            distance = Vector2.Distance(coinPos, targetUIPos);
+            yield return new WaitForEndOfFrame();
+        }
+        ObjectPool.Instance.PushToPool("dropItemUI", dropCoinUI, Common.CanvasUI());
+        GetCoin(coinAmount);
+        ObjectPool.Instance.PushToPool("Coin", gameObject);
+        MagnetTarget.GetComponentInParent<UI_StageCoin>().GetEffect();
         yield return null;
     }
     public void SetCoin(int amount)

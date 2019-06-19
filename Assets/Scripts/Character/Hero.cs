@@ -182,7 +182,7 @@ public class Hero : MonoBehaviour
     void DistanceChecking()
     {
         if (target != null)
-            distanceBetweenTarget = Vector2.Distance(Common.GetBottomPosition(target.transform), Common.GetBottomPosition(transform));
+            distanceBetweenTarget = Common.GetDistanceBetweenAnother(transform, target.transform);
     }
     void RemoveWeapon()
     {
@@ -217,7 +217,7 @@ public class Hero : MonoBehaviour
     }
     void FindAllys()
     {
-        if(!isAttack&&!isClimb&&!isClimbing&&isStage&&isFriend)
+        if(!isAttack&&!isClimb&&!isClimbing&&isStage&&isFriend&&!isWait)
         {
             allys = Common.FindAlly();
             allys.Remove(this.gameObject);

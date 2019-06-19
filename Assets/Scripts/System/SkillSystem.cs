@@ -105,7 +105,10 @@ public static class SkillSystem
     }
     public static Sprite GetSkillImage(int id)
     {
-        return Resources.Load<Sprite>(skills.Find(item => item.id == id).image);
+        Sprite sprite = Resources.Load<Sprite>(skills.Find(x => x.id == id || x.id.Equals(id)).image);
+        if (sprite == null)
+            sprite = ItemSystem.GetItemNoneImage();
+        return sprite;
     }
     #endregion
 }
