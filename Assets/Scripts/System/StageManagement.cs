@@ -99,6 +99,7 @@ public class StageManagement : MonoBehaviour
         {
             yield return null;
         }
+        HeroSkillManager.instance.ShowUI();
         ShowGoalTitle();
     }
     public void AddMonsterCount()

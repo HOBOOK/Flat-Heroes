@@ -10,7 +10,7 @@
       <TargetType>0</TargetType>
       <Power>50</Power>
       <AddPower>10</AddPower>
-      <Energy>50</Energy>
+      <Energy>100</Energy>
     </Skill>
     <Skill id="2">
       <Name>수류탄 투척</Name>
@@ -21,7 +21,7 @@
       <TargetType>0</TargetType>
       <Power>50</Power>
       <AddPower>10</AddPower>
-      <Energy>50</Energy>
+      <Energy>100</Energy>
     </Skill>
     <Skill id="3">
       <Name>살라만다</Name>
@@ -32,7 +32,7 @@
       <TargetType>0</TargetType>
       <Power>50</Power>
       <AddPower>10</AddPower>
-      <Energy>50</Energy>
+      <Energy>100</Energy>
     </Skill>
     <Skill id="4">
       <Name>퀵스나이핑</Name>
@@ -43,7 +43,7 @@
       <TargetType>0</TargetType>
       <Power>50</Power>
       <AddPower>10</AddPower>
-      <Energy>50</Energy>
+      <Energy>100</Energy>
     </Skill>
   </Skills>
 </SkillCollection>

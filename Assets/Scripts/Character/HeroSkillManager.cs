@@ -7,7 +7,24 @@ public class HeroSkillManager : MonoBehaviour
 {
     List<GameObject> skillbuttons;
     List<float> skillNeedEnergys;
-    void Start()
+
+    Image skillImage;
+    Text skillEnergyText;
+
+    public static HeroSkillManager instance = null;
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
+    private void Start()
+    {
+        for (var i = 0; i < this.transform.childCount; i++)
+        {
+            this.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+    public void ShowUI()
     {
         skillNeedEnergys = new List<float>();
         skillbuttons = new List<GameObject>();
@@ -20,13 +37,19 @@ public class HeroSkillManager : MonoBehaviour
                 Debugging.Log(this.transform.GetChild(heroIndex).name);
                 this.transform.GetChild(heroIndex).gameObject.SetActive(false);
                 this.transform.GetChild(heroIndex).gameObject.SetActive(false);
+                skillNeedEnergys.Add(0);
             }
             else
             {
                 this.transform.GetChild(heroIndex).transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = HeroSystem.GetHeroThumbnail(User.stageHeros[heroIndex]);
-
-                this.transform.GetChild(heroIndex).GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = HeroSystem.GetHeroNeedEnergy(User.stageHeros[heroIndex]).ToString();
-                skillNeedEnergys.Add(HeroSystem.GetHeroNeedEnergy(User.stageHeros[heroIndex]));
+                skillImage = this.transform.GetChild(heroIndex).GetChild(0).GetChild(0).GetComponent<Image>();
+                skillEnergyText = this.transform.GetChild(heroIndex).GetComponentInChildren<Button>().GetComponentInChildren<Text>();
+                int skillId = HeroSystem.GetUserHero(User.stageHeros[heroIndex]).skill;
+                Skill skill = SkillSystem.GetSkill(skillId);
+                skillImage.sprite = SkillSystem.GetSkillImage(skill.id);
+                int needEnergy = HeroSystem.GetHeroNeedEnergy(User.stageHeros[heroIndex], skill);
+                skillEnergyText.text = needEnergy.ToString();
+                skillNeedEnergys.Add(needEnergy);
 
                 this.transform.GetChild(heroIndex).GetComponentInChildren<Button>().onClick.RemoveAllListeners();
                 this.transform.GetChild(heroIndex).GetComponentInChildren<Button>().onClick.AddListener(delegate
@@ -36,8 +59,8 @@ public class HeroSkillManager : MonoBehaviour
                 this.transform.GetChild(heroIndex).gameObject.SetActive(true);
                 this.transform.GetChild(heroIndex).GetComponentInChildren<Animator>().SetTrigger("showing");
                 this.transform.GetChild(heroIndex).GetComponentInChildren<Animator>().SetBool("isAble", true);
-                skillbuttons.Add(this.transform.GetChild(heroIndex).gameObject);
             }
+            skillbuttons.Add(this.transform.GetChild(heroIndex).gameObject);
         }
     }
     private void FixedUpdate()
@@ -46,6 +69,9 @@ public class HeroSkillManager : MonoBehaviour
         {
             for(var i = 0; i<skillbuttons.Count; i++)
             {
+                if (!skillbuttons[i].activeSelf)
+                    continue;
+
                 float delay = SetEnergyPercent(i);
                 if (delay <= 0)
                 {
@@ -83,7 +109,7 @@ public class HeroSkillManager : MonoBehaviour
         if(id!=0)
         {
             var stageHero = CharactersManager.instance.GetCurrentInStageHero(id).GetComponent<Hero>();
-            int needEnergy = stageHero.status.skillEnegry;
+            int needEnergy = (int)skillNeedEnergys[index];
             if (stageHero != null && stageHero.isSkillAble()&&StageManagement.instance.IsSkillAble(needEnergy))
             {
                 SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);

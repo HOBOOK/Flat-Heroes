@@ -131,12 +131,13 @@ public static class HeroSystem
             Debugging.LogError("저장할 영웅들을 찾지못함");
         }
     }
-    public static int GetHeroNeedEnergy(int id)
+    public static int GetHeroNeedEnergy(int id, Skill skill)
     {
         HeroData data = userHeros.Find(x => x.id == id || x.id.Equals(id));
-        if(data!=null)
+        if(data!=null&&skill!=null)
         {
-            return (50 - (data.intelligent));
+            Debugging.Log("필요 에너지량 >>>>>> " + (skill.energy - GetHeroStatusSkillEnergy(ref data)));
+            return (skill.energy - GetHeroStatusSkillEnergy(ref data));
         }
         return 1000;
     }

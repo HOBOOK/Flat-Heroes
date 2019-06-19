@@ -103,6 +103,10 @@ public static class SkillSystem
     {
         return skills;
     }
+    public static Sprite GetSkillImage(int id)
+    {
+        return Resources.Load<Sprite>(skills.Find(item => item.id == id).image);
+    }
     #endregion
 }
 

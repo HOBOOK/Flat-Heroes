@@ -12,6 +12,7 @@ public class UI_HeroInfo : MonoBehaviour
     public GameObject heroLevelInfoPanel;
     public GameObject heroEquipmentItemPanel;
     public GameObject heroEquimentItemSlots;
+    public GameObject heroSkillSlot;
 
     GameObject showHeroObj;
     GameObject PanelHeroInfo;
@@ -101,6 +102,13 @@ public class UI_HeroInfo : MonoBehaviour
             else
             {
                 heroSetLobbyButton.GetComponentInChildren<Text>().text = "로비배치 >";
+            }
+
+            Skill heroSkill = SkillSystem.GetSkill(heroData.skill);
+            if (heroSkillSlot!=null&& heroSkill!=null)
+            {
+                heroSkillSlot.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = SkillSystem.GetSkillImage(heroSkill.id);
+                heroSkillSlot.transform.GetComponentInChildren<Text>().text = string.Format("<size='30'>기술레벨 : {0}</size>\r\n<color='grey'>{1}</color>",SkillSystem.GetUserSkillLevel(heroSkill.id),heroSkill.description);
             }
             RefreshHeroStatusEquipmentPanel();
         }
