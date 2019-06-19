@@ -36,6 +36,8 @@ public class FollowCamera : MonoBehaviour
             transform.position = new Vector3(-restricX(), 1.5f, -100);
         else if (this.transform.position.x > restricX())
             transform.position = new Vector3(restricX(), 1.5f, - 100);
+        else
+            transform.position = new Vector3(transform.position.x, 1.5f, -100);
 
         if (target != null)
         {
@@ -91,7 +93,7 @@ public class FollowCamera : MonoBehaviour
 
     private float cameraY()
     {
-        if (target.position.y + 1.5f < 1.5f)
+        if (target!=null&&target.position.y + 1.5f < 1.5f)
         {
             return target.position.y + 1.5f;
         }
