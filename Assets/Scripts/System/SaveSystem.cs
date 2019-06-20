@@ -57,6 +57,13 @@ public static class SaveSystem
             User.stageHeros = data.stageHeros;
             User.lobbyHeros = data.lobbyHeros;
 
+            User.flatEnergyChargingSpeedLevel = data.flatEnergyChargingSpeedLevel;
+            User.flatEnergyMaxLevel = data.flatEnergyMaxLevel;
+            User.addMoneyLevel = data.addMoneyLevel;
+            User.addExpLevel = data.addExpLevel;
+            User.addAttackLevel = data.addAttackLevel;
+            User.addDefenceLevel = data.addExpLevel;
+
             User.name = data.name;
             //Debugging.LogSystem("File is loaded Successfully >> Try : " + loadTryCount + "\r\n" + JsonUtility.ToJson(data));
         }
@@ -77,6 +84,13 @@ public static class SaveSystem
         User.abilityCount = 1;
         User.lobbyHeros = new int[5];
         User.stageHeros = new int[5];
+        User.flatEnergyChargingSpeedLevel = 1;
+        User.flatEnergyMaxLevel = 1;
+        User.addMoneyLevel = 1;
+        User.addExpLevel = 1;
+        User.addAttackLevel = 1;
+        User.addDefenceLevel = 1;
+
         Debugging.LogSystem("Init Player");
     }
     public static void ExpUp(int exp)

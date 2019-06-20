@@ -16,6 +16,13 @@ public class PlayerData
     public int[] stageHeros;
     public int[] lobbyHeros;
 
+    public int flatEnergyChargingSpeedLevel;
+    public int flatEnergyMaxLevel;
+    public int addMoneyLevel;
+    public int addExpLevel;
+    public int addAttackLevel;
+    public int addDefenceLevel;
+
     public string name;
 
     public PlayerData()
@@ -32,6 +39,15 @@ public class PlayerData
         stageHeros = User.stageHeros;
         lobbyHeros = User.lobbyHeros;
         // End integer //
+
+        // Start Lab//
+        flatEnergyChargingSpeedLevel = User.flatEnergyChargingSpeedLevel;
+        flatEnergyMaxLevel = User.flatEnergyMaxLevel;
+        addMoneyLevel = User.addMoneyLevel;
+        addExpLevel = User.addExpLevel;
+        addAttackLevel = User.addAttackLevel;
+        addDefenceLevel = User.addDefenceLevel;
+        // End Lab//
 
         name = User.name;
 

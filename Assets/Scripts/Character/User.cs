@@ -31,4 +31,16 @@ public class User
     public static int[] stageHeros;
     [SerializeField]
     public static int[] lobbyHeros;
+    [SerializeField]
+    public static int flatEnergyChargingSpeedLevel;
+    [SerializeField]
+    public static int flatEnergyMaxLevel;
+    [SerializeField]
+    public static int addMoneyLevel;
+    [SerializeField]
+    public static int addExpLevel;
+    [SerializeField]
+    public static int addAttackLevel;
+    [SerializeField]
+    public static int addDefenceLevel;
 }
