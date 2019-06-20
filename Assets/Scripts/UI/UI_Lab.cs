@@ -10,6 +10,7 @@ public class UI_Lab : MonoBehaviour
     Text labLevelText;
     Text labPowerText;
     Text labNeedCoinText;
+    Button labLevelButton;
 
     private void Awake()
     {
@@ -28,14 +29,42 @@ public class UI_Lab : MonoBehaviour
         {
             labLevelText = ScrollContentView.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Text>();
             labPowerText = ScrollContentView.transform.GetChild(i).GetChild(1).GetChild(1).GetComponentInChildren<Text>();
-            labNeedCoinText = ScrollContentView.transform.GetChild(i).GetComponentInChildren<Button>().GetComponentInChildren<Text>();
+            labLevelButton = ScrollContentView.transform.GetChild(i).GetComponentInChildren<Button>();
+            labNeedCoinText = labLevelButton.GetComponentInChildren<Text>();
 
             int labTypeLevel = LabSystem.GetLapLevel(i);
             labLevelText.text = string.Format("LEVEL {0}", labTypeLevel);
             labPowerText.text = string.Format("{0} > <color='yellow'>{1}</color>",LabSystem.GetLapPower(i, labTypeLevel), LabSystem.GetLapPower(i, labTypeLevel+1));
-            labNeedCoinText.text = Common.GetThousandCommaText(LabSystem.GetNeedMoney(labTypeLevel));
+
+            int levelupNeedCoin = LabSystem.GetNeedMoney(labTypeLevel);
+            labNeedCoinText.text = Common.GetThousandCommaText(levelupNeedCoin);
+            int slotIndex = i;
+            labLevelButton.onClick.RemoveAllListeners();
+            labLevelButton.onClick.AddListener(delegate
+            {
+                OnClickLabLevelUp(slotIndex, levelupNeedCoin);
+            });
+            if(Common.PaymentAbleCheck(ref User.coin, levelupNeedCoin))
+            {
+                labLevelButton.interactable = true;
+            }
+            else
+            {
+                labLevelButton.interactable = false;
+            }
         }
     }
 
-
+    void OnClickLabLevelUp(int type, int needMoney)
+    {
+        if(Common.PaymentCheck(ref User.coin, needMoney))
+        {
+            LabSystem.SetLapLevelUp(type);
+            RefreshUI();
+        }
+        else
+        {
+            //
+        }
+    }
 }

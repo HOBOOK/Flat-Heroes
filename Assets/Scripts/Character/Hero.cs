@@ -106,7 +106,6 @@ public class Hero : MonoBehaviour
         RemoveWeapon();
         if(isStage)
         {
-            OpenHpBar(isPlayerHero);
             InitEnemys();
             StartCoroutine("StartAttackMode");
         }
@@ -121,7 +120,6 @@ public class Hero : MonoBehaviour
         if (isDead)
             return;
         FindEnemys();
-        FindAllys();
         StateChecking();
         Die();
     }
@@ -215,34 +213,40 @@ public class Hero : MonoBehaviour
             }
         }
     }
-    void FindAllys()
+    IEnumerator FindAllys()
     {
-        if(!isAttack&&!isClimb&&!isClimbing&&isStage&&isFriend&&!isWait)
+        while(!isDead&&isFriend && isStage)
         {
-            allys = Common.FindAlly();
-            allys.Remove(this.gameObject);
-            if (allys != null && allys.Count > 0)
+            if (!isAttack && !isClimb && !isClimbing && !isWait)
             {
-                int tempHp = allys[0].GetComponent<Hero>().status.hp;
-                int targetIndex = 0;
-                for (var i = 1; i < allys.Count; i++)
+                allys = Common.FindAlly();
+                allys.Remove(this.gameObject);
+                if (allys != null && allys.Count > 0)
                 {
-                    if (tempHp > allys[i].GetComponent<Hero>().status.hp&&TargetAliveCheck(allys[i]))
+                    int tempHp = allys[0].GetComponent<Hero>().status.hp;
+                    int targetIndex = 0;
+                    for (var i = 1; i < allys.Count; i++)
                     {
-                        targetIndex = i;
-                        tempHp = allys[i].GetComponent<Hero>().status.hp;
+                        if (tempHp > allys[i].GetComponent<Hero>().status.hp && TargetAliveCheck(allys[i]))
+                        {
+                            targetIndex = i;
+                            tempHp = allys[i].GetComponent<Hero>().status.hp;
+                        }
                     }
+                    target = allys[targetIndex].gameObject;
                 }
-                target = allys[targetIndex].gameObject;
-                Debugging.Log(this.HeroName + " 의 힐타겟 > " + target.name);
+                else
+                {
+                    target = null;
+                    isFriend = false;
+                    FindEnemys(true);
+                }
+                yield return new WaitForSeconds(1.0f);
             }
-            else
-            {
-                target = null;
-                isFriend = false;
-                FindEnemys(true);
-            }
+            yield return new WaitForSeconds(1.0f);
         }
+        yield return null;
+
     }
     void FindEnemys(bool isForce=false)
     {
@@ -665,7 +669,7 @@ public class Hero : MonoBehaviour
                     string debugStr = "";
                     foreach (var hero in allyHeros)
                     {
-                        int exp = (int)((status.level * 0.25f) * (status.attack + status.defence));
+                        int exp = (int)((status.level * 0.25f) * (status.attack + status.defence)) + LabSystem.GetAddExp(User.addExpLevel);
                         debugStr += string.Format("<{0} + {1}>, ", hero.name, exp);
                         hero.GetComponent<Hero>().ExpUp(exp);
                     }
@@ -737,11 +741,7 @@ public class Hero : MonoBehaviour
         animator.SetBool("isMoving", true);
         animator.SetBool("isRun", true);
         rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
-        if(!isTrack && target !=null&&weaponType==WeaponType.Knife&&distanceBetweenTarget>attackMaxRange+0.5f && distanceBetweenTarget < 5)
-        {
-            StartCoroutine(SmokingTeleport(target.transform));
-        }
-        else if (!isTrack && target != null)
+        if (!isTrack && target != null)
         {
             StartCoroutine(Tracking(target.transform.position));
         }
@@ -1116,7 +1116,7 @@ public class Hero : MonoBehaviour
             }
             yield return new WaitForSeconds(0.1f);
             // 코인
-            int coin = UnityEngine.Random.Range(15, 30);
+            int coin = UnityEngine.Random.Range(15, 30) + LabSystem.GetAddMoney(User.addMoneyLevel);
             int coinRemain = coin % 100; // 80
             int coinCount = (coin-coinRemain) / 100; // 11
             int coinPart = 0;
@@ -1479,16 +1479,17 @@ public class Hero : MonoBehaviour
         RedirectCharacter();
         yield return new WaitForSeconds(3);
         SpriteAlphaSetting(1);
+        OpenHpBar(isPlayerHero);
         yield return new WaitForSeconds(1);
         EquipWeapon();
+        if (initChats.Count > 0)
+            Common.Chat(initChats[UnityEngine.Random.Range(0, initChats.Count)], transform);
         yield return new WaitForSeconds(3);
         heroState = HeroState.Attack;
         isStart = true;
-        if (initChats.Count > 0)
-            Common.Chat(initChats[UnityEngine.Random.Range(0, initChats.Count)], transform);
         yield return new WaitForSeconds(5.0f);
         FindEnemys(true);
-        FindAllys();
+        StartCoroutine("FindAllys");
         yield return null;
     }
     IEnumerator OnAttackPoint(int totalCount=1)
@@ -2019,6 +2020,27 @@ public class Hero : MonoBehaviour
                 arrow.SetActive(true);
             }
             yield return new WaitForSeconds(0.05f);
+        }
+        yield return null;
+    }
+    public IEnumerator Skill005()
+    {
+        SmokeDarkEffect();
+        yield return new WaitForSeconds(0.5f);
+        if (target.transform.position.x > this.transform.position.x)
+            this.transform.position = target.transform.position + new Vector3(-0.7f, 0);
+        else
+            this.transform.position = target.transform.position + new Vector3(0.7f, 0);
+        SmokeDarkEffect();
+
+        attackPoint.name = this.Damage().ToString();
+        int cnt = 0;
+        while (cnt < 5)
+        {
+            attackPoint.gameObject.SetActive(true);
+            yield return new WaitForFixedUpdate();
+            attackPoint.gameObject.SetActive(false);
+            cnt++;
         }
         yield return null;
     }

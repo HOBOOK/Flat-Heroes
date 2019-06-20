@@ -57,7 +57,7 @@ public static class SaveSystem
             User.stageHeros = data.stageHeros;
             User.lobbyHeros = data.lobbyHeros;
 
-            User.flatEnergyChargingSpeedLevel = data.flatEnergyChargingSpeedLevel;
+            User.flatEnergyChargingLevel = data.flatEnergyChargingLevel;
             User.flatEnergyMaxLevel = data.flatEnergyMaxLevel;
             User.addMoneyLevel = data.addMoneyLevel;
             User.addExpLevel = data.addExpLevel;
@@ -84,7 +84,7 @@ public static class SaveSystem
         User.abilityCount = 1;
         User.lobbyHeros = new int[5];
         User.stageHeros = new int[5];
-        User.flatEnergyChargingSpeedLevel = 1;
+        User.flatEnergyChargingLevel = 1;
         User.flatEnergyMaxLevel = 1;
         User.addMoneyLevel = 1;
         User.addExpLevel = 1;

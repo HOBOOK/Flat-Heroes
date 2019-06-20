@@ -86,7 +86,7 @@ public class GameManagement : MonoBehaviour
         {
             User.portalEnergy += 20;
             User.blackCrystal += 1000;
-            User.coin += 10000;
+            User.coin += 100000;
         }
         else if (Input.GetKeyDown(KeyCode.F2))
         {

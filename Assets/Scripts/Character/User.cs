@@ -32,7 +32,7 @@ public class User
     [SerializeField]
     public static int[] lobbyHeros;
     [SerializeField]
-    public static int flatEnergyChargingSpeedLevel;
+    public static int flatEnergyChargingLevel;
     [SerializeField]
     public static int flatEnergyMaxLevel;
     [SerializeField]

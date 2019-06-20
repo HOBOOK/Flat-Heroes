@@ -29,6 +29,7 @@ public class Coin : MonoBehaviour
         Sound_Coin();
         yield return new WaitForSeconds(1.0f);
         dropCoinUI = Instantiate(ObjectPool.Instance.PopFromPool("dropItemUI"), Common.CanvasUI());
+        dropCoinUI.transform.position = this.transform.position + new Vector3(0, 0.5f);
         dropCoinUI.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         dropCoinUI.SetActive(true);
         dropCoinUI.GetComponentInChildren<Text>().text = coinAmount.ToString();

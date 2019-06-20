@@ -136,22 +136,21 @@ public static class HeroSystem
         HeroData data = userHeros.Find(x => x.id == id || x.id.Equals(id));
         if(data!=null&&skill!=null)
         {
-            Debugging.Log("필요 에너지량 >>>>>> " + (skill.energy - GetHeroStatusSkillEnergy(ref data)));
-            return (skill.energy - GetHeroStatusSkillEnergy(ref data));
+            return (SkillSystem.GetNeedSkillEnergy(skill) - GetHeroStatusSkillEnergy(ref data));
         }
         return 1000;
     }
     public static int GetHeroStatusAttack(ref HeroData data)
     {
         if (data.type == 0)
-            return (10) + (data.strength * 5) + (data.intelligent * 4) + (data.physical) + (data.agility * 2) + AbilitySystem.GetAbilityStats(0) + ItemSystem.GetHeroEquipmentItemAttack(ref data);
+            return (10) + (data.strength * 5) + (data.intelligent * 4) + (data.physical) + (data.agility * 2) + AbilitySystem.GetAbilityStats(0) + ItemSystem.GetHeroEquipmentItemAttack(ref data) + LabSystem.GetAddAttack(User.addAttackLevel);
         else
             return (10) + (data.strength * 5) + (data.intelligent * 4) + (data.physical) + (data.agility * 2);
     }
     public static int GetHeroStatusDefence(ref HeroData data)
     {
         if (data.type == 0)
-            return (data.physical * 5) + (data.agility) + AbilitySystem.GetAbilityStats(1);
+            return (data.physical * 5) + (data.agility) + AbilitySystem.GetAbilityStats(1) + ItemSystem.GetHeroEquipmentItemDefence(ref data) + LabSystem.GetAddDefence(User.addDefenceLevel);
         else
             return (data.physical * 5) + (data.agility);
     }

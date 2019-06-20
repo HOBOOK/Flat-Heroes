@@ -115,8 +115,8 @@ public class UI_HeroInfo : MonoBehaviour
         //Status 정보
         if (heroStatusInfoPanel != null)
         {
-            heroStatusInfoPanel.transform.GetChild(0).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusAttack(ref targetHeroData).ToString() + string.Format("<color='yellow'>(+{0})</color>", AbilitySystem.GetAbilityStats(0) + ItemSystem.GetHeroEquipmentItemAttack(ref targetHeroData));
-            heroStatusInfoPanel.transform.GetChild(1).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusDefence(ref targetHeroData).ToString() + string.Format("<color='yellow'>(+{0})</color>", AbilitySystem.GetAbilityStats(1));
+            heroStatusInfoPanel.transform.GetChild(0).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusAttack(ref targetHeroData).ToString() + string.Format("<color='yellow'>(+{0})</color>", AbilitySystem.GetAbilityStats(0) + ItemSystem.GetHeroEquipmentItemAttack(ref targetHeroData)+ LabSystem.GetAddAttack(User.addAttackLevel));
+            heroStatusInfoPanel.transform.GetChild(1).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusDefence(ref targetHeroData).ToString() + string.Format("<color='yellow'>(+{0})</color>", AbilitySystem.GetAbilityStats(1) + ItemSystem.GetHeroEquipmentItemDefence(ref targetHeroData) + LabSystem.GetAddDefence(User.addDefenceLevel));
             heroStatusInfoPanel.transform.GetChild(2).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusMaxHp(ref targetHeroData).ToString() + string.Format("<color='yellow'>(+{0})</color>", AbilitySystem.GetAbilityStats(2));
             heroStatusInfoPanel.transform.GetChild(3).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusCriticalPercent(ref targetHeroData).ToString() + string.Format("<color='yellow'>(+{0})</color>%", AbilitySystem.GetAbilityStats(3));
             heroStatusInfoPanel.transform.GetChild(4).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusAttackSpeed(ref targetHeroData).ToString() + string.Format("<color='yellow'>(+{0})</color>", AbilitySystem.GetAbilityStats(4));
@@ -167,7 +167,7 @@ public class UI_HeroInfo : MonoBehaviour
         if (heroSkillSlot != null && heroSkill != null)
         {
             heroSkillSlot.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = SkillSystem.GetSkillImage(heroSkill.id);
-            heroSkillSlot.transform.GetComponentInChildren<Text>().text = string.Format("<size='30'>기술레벨 : {0}</size>\r\n<color='grey'>{1}</color>", SkillSystem.GetUserSkillLevel(heroSkill.id), SkillSystem.GetUserSkillDescription(heroSkill.id));
+            heroSkillSlot.transform.GetComponentInChildren<Text>().text = string.Format("<size='27'>기술레벨 : {0}</size>\r\n<color='grey'>{1}</color>", SkillSystem.GetUserSkillLevel(heroSkill.id), SkillSystem.GetUserSkillDescription(heroSkill,targetHeroData));
             // 스킬강화버튼
             skillLevelUpButton = heroSkillSlot.GetComponentInChildren<Button>();
             int needMoney = SkillSystem.GetUserSkillLevelUpNeedCoin(heroSkill.id);

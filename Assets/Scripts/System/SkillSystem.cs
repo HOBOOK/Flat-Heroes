@@ -61,6 +61,19 @@ public static class SkillSystem
         else
             return 1;
     }
+    public static int GetNeedSkillEnergy(Skill skill)
+    {
+        if (skill != null)
+            return skill.energy + ((skill.energy * GetUserSkillLevel(skill.id)) / 10);
+        return 0;
+    }
+    public static int GetNeedSkillEnergy(int id)
+    {
+        Skill skill = GetSkill(id);
+        if (skill != null)
+            return skill.energy + ((skill.energy * GetUserSkillLevel(skill.id)) / 10);
+        return 0;
+    }
     public static void SetObtainSkill(int id)
     {
         Skill userSkill = userSkills.Find(x => x.id == id || x.id.Equals(id));
@@ -97,9 +110,9 @@ public static class SkillSystem
         int x = GetUserSkillLevel(id);
         return x * x * 1000;
     }
-    public static string GetUserSkillDescription(int id)
+    public static string GetUserSkillDescription(Skill skillData, HeroData heroData)
     {
-        return string.Format("{0}\r\n<color='yellow'>스킬공격력 : {1}</color>",GetSkill(id).description,GetUserSkillPower(id));
+        return string.Format("\r\n{0}\r\n\r\n<color='yellow'>스킬공격력 : {1}</color>  <color='cyan'>소모에너지 : {2}</color><color='yellow'>(-{3})</color>",GetSkill(skillData.id).description,GetUserSkillPower(skillData.id), HeroSystem.GetHeroNeedEnergy(heroData.id,skillData),HeroSystem.GetHeroStatusSkillEnergy(ref heroData));
     }
     #endregion
 

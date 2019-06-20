@@ -225,6 +225,19 @@ public static class ItemSystem
         }
         return attack;
     }
+    public static int GetHeroEquipmentItemDefence(ref HeroData heroData)
+    {
+        int defence = 0;
+        int[] heroItems = HeroSystem.GetHeroEquipmentItems(heroData.id);
+        for (int i = 0; i < heroItems.Length; i++)
+        {
+            if (heroItems[i] != 0)
+            {
+                defence += ItemSystem.GetUserItem(heroItems[i]).defence;
+            }
+        }
+        return defence;
+    }
 
     #endregion
 

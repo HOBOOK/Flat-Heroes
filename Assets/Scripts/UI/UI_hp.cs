@@ -56,6 +56,7 @@ public class UI_hp : MonoBehaviour
         if (Target == null||Target != target)
             Target = target;
         this.name = string.Format("HP_BAR_OF_{0}", Target.name);
+        this.transform.position = Target.transform.GetChild(0).position;
         sliderContainerRectTransform.sizeDelta = new Vector2(Mathf.Clamp(GetMaxHp()*0.01f, 120, 200), 70);
         panelHpTime = 0.0f;
         levelUI.GetComponentInChildren<Text>().text = Target.GetComponent<Hero>().status.level.ToString();

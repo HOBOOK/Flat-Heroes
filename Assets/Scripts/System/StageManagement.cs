@@ -164,13 +164,13 @@ public class StageManagement : MonoBehaviour
     {
         if (stageInfo.stageGetTime > 1)
         {
-            stageInfo.stageEnergy += 1;
+            stageInfo.stageEnergy += stageInfo.stageGetEnergy;
             stageInfo.stageEnergy = Mathf.Clamp(stageInfo.stageEnergy, 0, stageInfo.stageMaxEnergy);
             stageInfo.stageGetTime = 0;
         }
         else
         {
-            stageInfo.stageGetTime += Time.deltaTime* stageInfo.stageGetSpeed;
+            stageInfo.stageGetTime += Time.deltaTime;
         }
     }
     public int GetStageEnergy()
@@ -230,7 +230,7 @@ public class StageInfo
     public int stageMaxEnergy;
     public float stageTime;
     public float stageGetTime;
-    public float stageGetSpeed;
+    public int stageGetEnergy;
     public List<int> stageGetItems;
     public StageInfo() { }
     public StageInfo(int mapId)
@@ -244,7 +244,7 @@ public class StageInfo
         stageCoin = 0;
         stageTime = 0;
         stageGetTime = 0;
-        stageGetSpeed = LabSystem.ChargeEnergySpeed;
+        stageGetEnergy = LabSystem.ChargeEnergy;
         stageMaxEnergy = LabSystem.MaxEnergy;
         stageExp = 0;
         stageGetItems = new List<int>();

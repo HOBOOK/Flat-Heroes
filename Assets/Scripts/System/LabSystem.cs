@@ -13,7 +13,7 @@ public class LabSystem
             case 0:
                 return User.flatEnergyMaxLevel + plusLevel;
             case 1:
-                return User.flatEnergyChargingSpeedLevel + plusLevel;
+                return User.flatEnergyChargingLevel + plusLevel;
             case 2:
                 return User.addMoneyLevel + plusLevel;
             case 3:
@@ -26,6 +26,31 @@ public class LabSystem
                 return 0;
         }
     }
+    public static void SetLapLevelUp(int type)
+    {
+        switch (type)
+        {
+            case 0:
+                User.flatEnergyMaxLevel += 1;
+                break;
+            case 1:
+                User.flatEnergyChargingLevel += 1;
+                break;
+            case 2:
+                User.addMoneyLevel += 1;
+                break;
+            case 3:
+                User.addExpLevel += 1;
+                break;
+            case 4:
+                User.addAttackLevel += 1;
+                break;
+            case 5:
+                User.addDefenceLevel += 1;
+                break;
+        }
+        SaveSystem.SavePlayer();
+    }
     public static int GetNeedMoney(int level)
     {
         return level * level * 1000 + 1000;
@@ -37,7 +62,7 @@ public class LabSystem
             case 0:
                 return GetMaxEnergy(level);
             case 1:
-                return GetChargeEnergySpeed(level);
+                return GetChargeEnergy(level);
             case 2:
                 return GetAddMoney(level);
             case 3:
@@ -55,9 +80,9 @@ public class LabSystem
     {
         get { return User.flatEnergyMaxLevel * 50 + 100; }
     }
-    public static float ChargeEnergySpeed
+    public static int ChargeEnergy
     {
-        get { return User.flatEnergyChargingSpeedLevel * 2 + 5; }
+        get { return User.flatEnergyChargingLevel * 5; }
     }
     public static int AddMoney
     {
@@ -80,9 +105,9 @@ public class LabSystem
     {
         return level * 50 + 100;
     }
-    public static float GetChargeEnergySpeed(int level)
+    public static float GetChargeEnergy(int level)
     {
-        return level * 2 + 5;
+        return level*5;
     }
     public static int GetAddMoney(int level)
     {

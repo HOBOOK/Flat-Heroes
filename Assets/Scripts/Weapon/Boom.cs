@@ -9,6 +9,7 @@ public class Boom : MonoBehaviour
     public bool isCritical;
     bool isBoom = false;
     bool isGround = false;
+    bool isThrowStart;
     int maxTargetCount;
     int targetCount;
     float arrowTimer;
@@ -21,14 +22,16 @@ public class Boom : MonoBehaviour
     private void Awake()
     {
         AttackPoint = this.transform.GetChild(0).gameObject;
-
     }
     private void OnEnable()
     {
+        arrowTimer = 0;
         maxTargetCount = 1;
         targetCount = 0;
         isGround = false;
         isBoom = false;
+        isThrowStart = false;
+
         this.GetComponent<Rigidbody2D>().isKinematic = false;
     }
     public void StartBomb(int maxCount,bool isAlias, int dam, bool critical, GameObject targetObject)
@@ -39,11 +42,12 @@ public class Boom : MonoBehaviour
         isCritical = critical;
 
         target = targetObject.transform;
-        startPos = transform.position;
+        startPos = this.transform.position;
         targetPos = target.transform.position;
         vx = (targetPos.x - startPos.x) / 2f;
         vy = (targetPos.y - startPos.y + 9.8f) / 2f;
         vz = (targetPos.z - startPos.z) / 2f;
+        isThrowStart = true;
         StartCoroutine("Booming");
     }
     IEnumerator Booming()
@@ -61,7 +65,7 @@ public class Boom : MonoBehaviour
     }
     public void BombMoving()
     {
-        if (target != null&&!isBoom&&!isGround)
+        if (target != null&&!isBoom&&!isGround&& isThrowStart)
         {
             arrowTimer += Time.deltaTime;
             float sx = startPos.x + vx * arrowTimer*1.5f;
