@@ -244,8 +244,8 @@ public class StageInfo
         stageCoin = 0;
         stageTime = 0;
         stageGetTime = 0;
-        stageGetSpeed = 10;
-        stageMaxEnergy = 100;
+        stageGetSpeed = 30;
+        stageMaxEnergy = 200;
         stageExp = 0;
         stageGetItems = new List<int>();
 

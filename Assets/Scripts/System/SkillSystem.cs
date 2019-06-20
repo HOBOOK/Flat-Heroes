@@ -99,7 +99,7 @@ public static class SkillSystem
     }
     public static string GetUserSkillDescription(int id)
     {
-        return string.Format("{0}\r\n스킬공격력 : {1}",GetSkill(id).description,GetUserSkillPower(id));
+        return string.Format("{0}\r\n<color='yellow'>스킬공격력 : {1}</color>",GetSkill(id).description,GetUserSkillPower(id));
     }
     #endregion
 

@@ -146,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 11544603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_Children: []
   m_Father: {fileID: 1274899499}
   m_RootOrder: 0
@@ -18441,6 +18441,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3844189599673974193, guid: 80574662ed8dfc34ab7222a8807a0910,
         type: 3}
+      propertyPath: objectPool.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844189599673974193, guid: 80574662ed8dfc34ab7222a8807a0910,
+        type: 3}
       propertyPath: objectPool.Array.data[2].parent
       value: 
       objectReference: {fileID: 1303895172}
@@ -18478,6 +18483,22 @@ PrefabInstance:
         type: 3}
       propertyPath: objectPool.Array.data[6].poolCount
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844189599673974193, guid: 80574662ed8dfc34ab7222a8807a0910,
+        type: 3}
+      propertyPath: objectPool.Array.data[12].poolItemName
+      value: Bomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844189599673974193, guid: 80574662ed8dfc34ab7222a8807a0910,
+        type: 3}
+      propertyPath: objectPool.Array.data[12].prefab
+      value: 
+      objectReference: {fileID: 2884078706234749140, guid: e1088063e4e7f66489b672bd6bc380b2,
+        type: 3}
+    - target: {fileID: 3844189599673974193, guid: 80574662ed8dfc34ab7222a8807a0910,
+        type: 3}
+      propertyPath: objectPool.Array.data[12].poolCount
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80574662ed8dfc34ab7222a8807a0910, type: 3}

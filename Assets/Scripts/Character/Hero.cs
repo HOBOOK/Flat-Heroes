@@ -850,32 +850,7 @@ public class Hero : MonoBehaviour
         isClimbing = false;
         animator.SetBool("isClimbReady", false);
     }
-    public IEnumerator ShootFire(int count = 1)
-    {
-        count = Mathf.Clamp(count, 1, 10);
-        for (int i = 0; i < count; i++)
-        {
-            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.magic);
-            if (target != null && ObjectPool.Instance != null)
-            {
-                Vector3 pos = transform.GetChild(0).position + new Vector3(UnityEngine.Random.Range(-2f, 2f), UnityEngine.Random.Range(-1f, 1f));
-                MagicSpawnEffect(pos);
-                yield return new WaitForSeconds(0.2f);
-                if(target!=null)
-                {
-                    GameObject bullet = ObjectPool.Instance.PopFromPool("FlamethrowerCartoonyFire");
-                    bullet.GetComponent<bulletController>().damage = Damage();
-                    bullet.GetComponent<bulletController>().isAlly = this.isPlayerHero;
-                    bullet.GetComponent<bulletController>().Target = target.transform;
-                    bullet.GetComponent<bulletController>().isCritical = isCriticalAttack;
-                    bullet.transform.position = pos;
-                    bullet.SetActive(true);
-                }
-            }
-            yield return new WaitForSeconds(0.03f);
-        }
-        yield return null;
-    }
+
     public IEnumerator Shoot(int count=1)
     {
         count = Mathf.Clamp(count, 1, 10);
@@ -898,20 +873,7 @@ public class Hero : MonoBehaviour
         }
         yield return null;
     }
-    public void ThrowingBomb()
-    {
-        if (target != null && ObjectPool.Instance != null)
-        {
-            GameObject knife = ObjectPool.Instance.PopFromPool("knife(throw)");
-            knife.GetComponent<bulletController>().damage = Damage();
-            knife.GetComponent<bulletController>().isAlly = this.isPlayerHero;
-            knife.GetComponent<bulletController>().Target = target.transform;
-            knife.GetComponent<bulletController>().isCritical = isCriticalAttack;
-            knife.transform.position = transform.GetChild(0).position + new Vector3(0, 0.1f) + transform.right * -1f;
-            knife.transform.rotation = isLeftorRight ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
-            knife.SetActive(true);
-        }
-    }
+
     public void Throwing()
     {
         if (target != null && ObjectPool.Instance != null)
@@ -1140,16 +1102,18 @@ public class Hero : MonoBehaviour
             // 하트
             if(UnityEngine.Random.Range(0,10)<1)
             {
-                GameObject heartPrefab = ObjectPool.Instance.PopFromPool("Heart");
-                heartPrefab.GetComponent<Heart>().SetHeart(10);
                 var findTarget = Common.FindAlly();
-                findTarget.Sort((t1, t2) => t1.GetComponent<Hero>().status.hp.CompareTo(t2.GetComponent<Hero>().status.hp));
-                heartPrefab.GetComponent<Heart>().MagnetTarget = findTarget[0];
-                heartPrefab.transform.position = this.transform.position;
-                heartPrefab.SetActive(true);
-                heartPrefab.GetComponent<Rigidbody2D>().AddForce(new Vector3(UnityEngine.Random.Range(-1, 1), 5, 10), ForceMode2D.Impulse);
+                if(findTarget!=null&&findTarget.Count>0)
+                {
+                    GameObject heartPrefab = ObjectPool.Instance.PopFromPool("Heart");
+                    heartPrefab.GetComponent<Heart>().SetHeart(10);
+                    findTarget.Sort((t1, t2) => t1.GetComponent<Hero>().status.hp.CompareTo(t2.GetComponent<Hero>().status.hp));
+                    heartPrefab.GetComponent<Heart>().MagnetTarget = findTarget[0];
+                    heartPrefab.transform.position = this.transform.position;
+                    heartPrefab.SetActive(true);
+                    heartPrefab.GetComponent<Rigidbody2D>().AddForce(new Vector3(UnityEngine.Random.Range(-1, 1), 5, 10), ForceMode2D.Impulse);
+                }
             }
-
             yield return new WaitForSeconds(0.1f);
             // 코인
             int coin = UnityEngine.Random.Range(15, 30);
@@ -1423,16 +1387,15 @@ public class Hero : MonoBehaviour
             }
             if (collision.gameObject.layer == 9 && collision.isTrigger && collision.gameObject != attackPoint.gameObject && collision.GetComponentInParent<Hero>() != null && collision.GetComponentInParent<Hero>().isPlayerHero != isPlayerHero && collision.GetComponentInParent<Hero>().target != null && collision.GetComponentInParent<Hero>().target.gameObject.GetInstanceID() == this.gameObject.GetInstanceID())
             {
-                if (UnityEngine.Random.Range(0, 10) >= 1 || isStunning || isAirborne)
-                {
-                    Hitted(collision, Convert.ToInt32(collision.name), 3f, 3f);
-                    HitEffect(collision);
-
-                }
-                else
+                if (UnityEngine.Random.Range(0, 1000) <= Mathf.Clamp(status.defence,0,500) && !isStunning && !isAirborne)
                 {
                     Defence(collision);
                     GuardEffect(collision);
+                }
+                else
+                {
+                    Hitted(collision, Convert.ToInt32(collision.name), 3f, 3f);
+                    HitEffect(collision);
                 }
             }
         }
@@ -1735,7 +1698,7 @@ public class Hero : MonoBehaviour
         isSkillAttack = true;
         animator.SetBool("isSkill", true);
         animator.SetTrigger("skillAttacking");
-        animator.SetInteger("skillType", 0);
+        animator.SetInteger("skillType", skillData.id);
         yield return new WaitForSeconds(2.0f);
         StopAttack();
         isSkillAttack = false;
@@ -1977,6 +1940,87 @@ public class Hero : MonoBehaviour
             hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Slider>().value = (float)status.exp / (float)Common.EXP_TABLE[(status.level-1)];
             LevelUp();
         }
+    }
+    #endregion
+
+    #region 영웅스킬모음
+    public IEnumerator Skill001()
+    {
+        int totalCount = SkillSystem.GetUserSkillLevel(skillData.id);
+        attackPoint.name = this.Damage().ToString();
+        int cnt = 0;
+        while (cnt < totalCount)
+        {
+            attackPoint.gameObject.SetActive(true);
+            if (attackPoint && attackPoint.GetComponent<AudioSource>() != null)
+            {
+                attackPoint.GetComponent<AudioSource>().Play();
+            }
+            yield return new WaitForFixedUpdate();
+            attackPoint.gameObject.SetActive(false);
+            cnt++;
+        }
+        yield return null;
+    }
+    public IEnumerator Skill002()
+    {
+        if (target != null && ObjectPool.Instance != null)
+        {
+            int totalCount = SkillSystem.GetUserSkillLevel(skillData.id);
+            GameObject bomb = ObjectPool.Instance.PopFromPool("Bomb");
+            bomb.transform.position = this.transform.position;
+            bomb.gameObject.SetActive(true);
+            bomb.GetComponent<Boom>().StartBomb(totalCount,isPlayerHero, Damage(), isCriticalAttack,target);
+        }
+        yield return null;
+    }
+    public IEnumerator Skill003()
+    {
+        int totalCount = SkillSystem.GetUserSkillLevel(skillData.id);
+        for (int i = 0; i < totalCount; i++)
+        {
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.magic);
+            if (target != null && ObjectPool.Instance != null)
+            {
+                Vector3 pos = transform.GetChild(0).position + new Vector3(UnityEngine.Random.Range(-2f, 2f), UnityEngine.Random.Range(-1f, 1f));
+                MagicSpawnEffect(pos);
+                yield return new WaitForSeconds(0.2f);
+                if (target != null)
+                {
+                    GameObject bullet = ObjectPool.Instance.PopFromPool("FlamethrowerCartoonyFire");
+                    bullet.GetComponent<bulletController>().damage = Damage();
+                    bullet.GetComponent<bulletController>().isAlly = this.isPlayerHero;
+                    bullet.GetComponent<bulletController>().Target = target.transform;
+                    bullet.GetComponent<bulletController>().isCritical = isCriticalAttack;
+                    bullet.transform.position = pos;
+                    bullet.SetActive(true);
+                }
+            }
+            yield return new WaitForSeconds(0.03f);
+        }
+        yield return null;
+    }
+    public IEnumerator Skill004()
+    {
+        int totalCount = SkillSystem.GetUserSkillLevel(skillData.id);
+        for (int i = 0; i < totalCount; i++)
+        {
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.bow);
+            if (target != null && ObjectPool.Instance != null)
+            {
+                GameObject arrow = ObjectPool.Instance.PopFromPool("Arrow");
+
+                arrow.GetComponent<arrowController>().damage = Damage();
+                arrow.GetComponent<arrowController>().isAlly = this.isPlayerHero;
+                arrow.GetComponent<arrowController>().target = target.transform;
+                arrow.GetComponent<arrowController>().isCritical = isCriticalAttack;
+                arrow.transform.position = transform.position + new Vector3(0, 0.1f) + transform.right * -1f;
+                arrow.transform.rotation = isLeftorRight ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+                arrow.SetActive(true);
+            }
+            yield return new WaitForSeconds(0.05f);
+        }
+        yield return null;
     }
     #endregion
 }
