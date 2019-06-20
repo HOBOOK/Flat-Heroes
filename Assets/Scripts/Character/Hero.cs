@@ -1514,8 +1514,6 @@ public class Hero : MonoBehaviour
         yield return new WaitForSeconds(UnityEngine.Random.Range(0.1f, 0.5f));
         SpawnEffect();
         RedirectCharacter();
-        if (initChats.Count > 0)
-            Common.Chat(initChats[UnityEngine.Random.Range(0, initChats.Count)], transform);
         yield return new WaitForSeconds(3);
         SpriteAlphaSetting(1);
         yield return new WaitForSeconds(1);
@@ -1523,6 +1521,8 @@ public class Hero : MonoBehaviour
         yield return new WaitForSeconds(3);
         heroState = HeroState.Attack;
         isStart = true;
+        if (initChats.Count > 0)
+            Common.Chat(initChats[UnityEngine.Random.Range(0, initChats.Count)], transform);
         yield return new WaitForSeconds(5.0f);
         FindEnemys(true);
         FindAllys();
