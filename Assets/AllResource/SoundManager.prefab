@@ -77,7 +77,7 @@ MonoBehaviour:
   fireShot: {fileID: 8300000, guid: d083adb0d41328b49bcb5b6a9d05bbe2, type: 3}
   shootPistolSilence: {fileID: 8300000, guid: faf46bca684452646b3b94bd9a09101d, type: 3}
   magic: {fileID: 8300000, guid: 88e117ed0ce5729499497283dc2e1e27, type: 3}
-  LobbyBgm: {fileID: 8300000, guid: a7f61cb62a4d4334db588579d05b36c5, type: 3}
+  LobbyBgm: {fileID: 8300000, guid: b442123a67071894ca2beeb4a6185aae, type: 3}
   StageBgm: {fileID: 8300000, guid: 737bdbe2425ec664695d2c589f352ca0, type: 3}
 --- !u!1 &2522054163756783632
 GameObject:

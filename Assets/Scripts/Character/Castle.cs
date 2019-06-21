@@ -86,7 +86,7 @@ public class Castle : MonoBehaviour
                         GameObject e = Instantiate(spawnEnemys[i].enemyPrefab, enemySpawnPoint);
                         e.SetActive(false);
                         e.GetComponent<Hero>().isPlayerHero = false;
-                        e.transform.position = new Vector3(UnityEngine.Random.Range(15,18), e.transform.localScale.y);
+                        e.transform.position = new Vector3(UnityEngine.Random.Range(10,13), e.transform.localScale.y);
                         e.SetActive(true);
                         StageManagement.instance.AddMonsterCount();
                     }
@@ -112,14 +112,15 @@ public class Castle : MonoBehaviour
     }
     IEnumerator Spawning(SpawnEnemy spawnEnemy)
     {
-        spawnEnemy.isSpawnEnd = true;
 
+        spawnEnemy.isSpawnEnd = true;
+        SpawnEffect();
         for (int i = 0; i < spawnEnemy.count; i++)
         {
             GameObject e = Instantiate(spawnEnemy.enemyPrefab, enemySpawnPoint);
             e.SetActive(false);
             e.GetComponent<Hero>().isPlayerHero = false;
-            e.transform.position = new Vector3(18, 0);
+            e.transform.position = this.transform.position;
             yield return new WaitForEndOfFrame();
             e.SetActive(true);
             StageManagement.instance.AddMonsterCount();
@@ -202,6 +203,16 @@ public class Castle : MonoBehaviour
         GameObject effect = EffectPool.Instance.PopFromPool("RoundHitRed");
         effect.transform.position = transform.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), 0);
         effect.SetActive(true);
+    }
+    public void SpawnEffect()
+    {
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.teleport);
+        if (EffectPool.Instance != null)
+        {
+            GameObject effect = EffectPool.Instance.PopFromPool("SimplePortalRed");
+            effect.transform.position = transform.GetChild(0).position;
+            effect.SetActive(true);
+        }
     }
     public IEnumerator CastleExplosionEffect()
     {

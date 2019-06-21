@@ -164,7 +164,9 @@ public static class MapSystem
             if (mapsp.name.Contains("layer1"))
             {
                 var foreground = MapTransform.transform.GetChild(0).GetChild(0).gameObject;
+                var middleground = MapTransform.transform.GetChild(1).GetChild(1).gameObject;
                 foreground.GetComponent<SpriteRenderer>().sprite = mapsp;
+                middleground.GetComponent<SpriteRenderer>().sprite = mapsp;
             }
             else if (mapsp.name.Contains("field"))
             {

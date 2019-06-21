@@ -208,6 +208,7 @@ public class UI_Manager : MonoBehaviour
     {
         if (PopupAlertUI != null)
         {
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
             foreach (Transform otherUI in PopupAlertUI.transform.GetChild(0).transform)
             {
                 otherUI.gameObject.SetActive(false);
@@ -230,7 +231,8 @@ public class UI_Manager : MonoBehaviour
     {
         if (PopupAlertUI != null)
         {
-            foreach(Transform otherUI in PopupAlertUI.transform.GetChild(0).transform)
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
+            foreach (Transform otherUI in PopupAlertUI.transform.GetChild(0).transform)
             {
                 otherUI.gameObject.SetActive(false);
             }
@@ -251,6 +253,7 @@ public class UI_Manager : MonoBehaviour
     {
         if(PopupAlertUI!=null)
         {
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
             foreach (Transform otherUI in PopupAlertUI.transform.GetChild(0).transform)
             {
                 otherUI.gameObject.SetActive(false);
@@ -286,6 +289,7 @@ public class UI_Manager : MonoBehaviour
     {
         if (PopupAlertUI != null)
         {
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
             foreach (Transform otherUI in PopupAlertUI.transform.GetChild(0).transform)
             {
                 otherUI.gameObject.SetActive(false);
