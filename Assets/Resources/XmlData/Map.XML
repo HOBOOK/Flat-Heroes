@@ -76,7 +76,7 @@
     <Map id="5010">
       <Name>격전의 숲 끝자락</Name>
       <Description>강력한 힘을 내뿜고 있는 자가 등장했다.. 물러 설 수 없어</Description>
-      <StageType>0</StageType>
+      <StageType>2</StageType>
       <StageNumber>1</StageNumber>
       <Image>Maps/map_010</Image>
       <ClearPoint>0</ClearPoint>
@@ -156,7 +156,7 @@
     <Map id="5020">
       <Name>2-10 맵</Name>
       <Description>2-10맵이다.</Description>
-      <StageType>0</StageType>
+      <StageType>2</StageType>
       <StageNumber>2</StageNumber>
       <Image>Maps/map_020</Image>
       <ClearPoint>0</ClearPoint>
@@ -236,8 +236,328 @@
     <Map id="5030">
       <Name>3-10 맵</Name>
       <Description>3-10맵이다.</Description>
-      <StageType>0</StageType>
+      <StageType>2</StageType>
       <StageNumber>3</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5031">
+      <Name>4-1 맵</Name>
+      <Description>4-1맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>4</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+      <Map id="5032">
+      <Name>4-2 맵</Name>
+      <Description>4-2맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>4</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+      <Map id="5033">
+      <Name>4-3 맵</Name>
+      <Description>4-3맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>4</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5034">
+      <Name>4-4 맵</Name>
+      <Description>4-4맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>4</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5035">
+      <Name>4-5맵</Name>
+      <Description>4-5맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>4</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5036">
+      <Name>4-6 맵</Name>
+      <Description>4-6맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>4</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5037">
+      <Name>4-7 맵</Name>
+      <Description>4-7맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>4</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5038">
+      <Name>4-8 맵</Name>
+      <Description>4-8맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>4</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5039">
+      <Name>4-9 맵</Name>
+      <Description>4-9맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>4</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5040">
+      <Name>4-10 맵</Name>
+      <Description>4-10맵이다.</Description>
+      <StageType>2</StageType>
+      <StageNumber>4</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5041">
+      <Name>5-1 맵</Name>
+      <Description>5-1맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>5</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+      <Map id="5042">
+      <Name>5-2 맵</Name>
+      <Description>5-2맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>5</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5043">
+      <Name>5-3 맵</Name>
+      <Description>5-3맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>5</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5044">
+      <Name>5-4 맵</Name>
+      <Description>5-4맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>5</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5045">
+      <Name>5-5 맵</Name>
+      <Description>5-5맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>5</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5046">
+      <Name>5-6 맵</Name>
+      <Description>5-6맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>5</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5047">
+      <Name>5-7 맵</Name>
+      <Description>5-7맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>5</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5048">
+      <Name>5-8 맵</Name>
+      <Description>5-8맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>5</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5049">
+      <Name>5-9 맵</Name>
+      <Description>5-9맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>5</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5050">
+      <Name>5-10 맵</Name>
+      <Description>5-10맵이다.</Description>
+      <StageType>2</StageType>
+      <StageNumber>5</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5051">
+      <Name>6-1맵</Name>
+      <Description>6-1맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>6</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+      <Map id="5052">
+      <Name>6-2 맵</Name>
+      <Description>6-2맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>6</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5053">
+      <Name>6-3 맵</Name>
+      <Description>6-3맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>6</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5054">
+      <Name>6-4 맵</Name>
+      <Description>6-4맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>6</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5055">
+      <Name>6-5 맵</Name>
+      <Description>6-5맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>6</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5056">
+      <Name>6-6 맵</Name>
+      <Description>6-6맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>6</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5057">
+      <Name>6-7 맵</Name>
+      <Description>6-7맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>6</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5058">
+      <Name>6-8 맵</Name>
+      <Description>6-8맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>6</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5059">
+      <Name>6-9 맵</Name>
+      <Description>6-9맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>6</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5060">
+      <Name>6-10 맵</Name>
+      <Description>6-10맵이다.</Description>
+      <StageType>2</StageType>
+      <StageNumber>6</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5061">
+      <Name>7-1 맵</Name>
+      <Description>7-1맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>7</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+      <Map id="5062">
+      <Name>7-2 맵</Name>
+      <Description>7-2맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>7</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5063">
+      <Name>7-3 맵</Name>
+      <Description>7-3맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>7</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5064">
+      <Name>7-4 맵</Name>
+      <Description>7-4맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>7</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5065">
+      <Name>7-5 맵</Name>
+      <Description>7-5맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>7</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5066">
+      <Name>7-6 맵</Name>
+      <Description>7-6맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>7</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5067">
+      <Name>7-7 맵</Name>
+      <Description>7-7맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>7</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5068">
+      <Name>7-8 맵</Name>
+      <Description>7-8맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>7</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5069">
+      <Name>7-9 맵</Name>
+      <Description>7-9맵이다.</Description>
+      <StageType>0</StageType>
+      <StageNumber>7</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="5070">
+      <Name>7-10 맵</Name>
+      <Description>7-10맵이다.</Description>
+      <StageType>2</StageType>
+      <StageNumber>7</StageNumber>
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>

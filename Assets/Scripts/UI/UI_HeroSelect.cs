@@ -31,7 +31,7 @@ public class UI_HeroSelect : MonoBehaviour
     }
     private void OnEnable()
     {
-        SetImageAndTextSelectHeroPanel();
+        RefreshUI();
     }
     void RefreshUI()
     {
@@ -65,13 +65,10 @@ public class UI_HeroSelect : MonoBehaviour
                 }
             }
         }
+        SetImageAndTextSelectHeroPanel();
         selectHeroLockCover.SetActive(true);
     }
 
-    void Start()
-    {
-        RefreshUI();
-    }
     public void SetImageAndTextSelectHeroPanel()
     {
         for(int i = 0; i<User.stageHeros.Length; i++)
@@ -85,8 +82,15 @@ public class UI_HeroSelect : MonoBehaviour
                 selectedHeroNameText.text = string.Format("<size='{0}'>레벨 {1}</size>\r\n{2}", selectedHeroNameText.fontSize - 5, data.level, data.name);
                 selectedHeroNameText.color = Color.white;
                 selectedHeroImage.sprite = Resources.Load<Sprite>(data.image);
-                PanelHeroSelection.transform.GetChild(index).GetComponent<Image>().color = Color.white;
+                Color buttonColor = PanelHeroSelection.transform.GetChild(i).GetComponent<Image>().color;
+                PanelHeroSelection.transform.GetChild(i).GetComponent<Image>().color = new Color(buttonColor.r, buttonColor.g, buttonColor.b, 1);
             }
+            else
+            {
+                Color buttonColor = PanelHeroSelection.transform.GetChild(i).GetComponent<Image>().color;
+                PanelHeroSelection.transform.GetChild(i).GetComponent<Image>().color = new Color(buttonColor.r, buttonColor.g, buttonColor.b, 0.3f);
+            }
+
         }
         selectHeroLockCover.SetActive(true);
     }
@@ -101,7 +105,8 @@ public class UI_HeroSelect : MonoBehaviour
         selectedHeroNameText.text = string.Format("<size='{0}'>레벨 {1}</size>\r\n{2}",selectedHeroNameText.fontSize-5, heroData.level, heroData.name);
         selectedHeroNameText.color = Color.white;
         selectedHeroImage.sprite = Resources.Load<Sprite>(heroData.image);
-        PanelHeroSelection.transform.GetChild(index).GetComponent<Image>().color = Color.white;
+        Color buttonColor = PanelHeroSelection.transform.GetChild(index).GetComponent<Image>().color;
+        PanelHeroSelection.transform.GetChild(index).GetComponent<Image>().color = new Color(buttonColor.r, buttonColor.g, buttonColor.b, 1);
         RefreshUI();
         selectHeroLockCover.SetActive(true);
     }
@@ -116,7 +121,8 @@ public class UI_HeroSelect : MonoBehaviour
         selectedHeroNameText.text = "영웅을 선택해주세요.";
         selectedHeroNameText.color = new Color(1,1,1,(100f/255f));
         selectedHeroImage.sprite = Resources.Load<Sprite>("UI/ui_tab_manager_button1");
-        PanelHeroSelection.transform.GetChild(index).GetComponent<Image>().color = Color.white;
+        Color buttonColor = PanelHeroSelection.transform.GetChild(index).GetComponent<Image>().color;
+        PanelHeroSelection.transform.GetChild(index).GetComponent<Image>().color = new Color(buttonColor.r, buttonColor.g, buttonColor.b, 0.3f);
         RefreshUI();
         selectHeroLockCover.SetActive(true);
     }
@@ -127,7 +133,8 @@ public class UI_HeroSelect : MonoBehaviour
         {
             SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_button_default);
             index = ix;
-            PanelHeroSelection.transform.GetChild(index).GetComponent<Image>().color = Color.black;
+            Color buttonColor = PanelHeroSelection.transform.GetChild(index).GetComponent<Image>().color;
+            PanelHeroSelection.transform.GetChild(index).GetComponent<Image>().color = new Color(buttonColor.r, buttonColor.g, buttonColor.b, 0.7f);
             selectHeroLockCover.SetActive(false);
 
         }
