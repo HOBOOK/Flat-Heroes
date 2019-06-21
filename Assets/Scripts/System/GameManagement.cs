@@ -104,6 +104,10 @@ public class GameManagement : MonoBehaviour
         {
             ItemSystem.SetObtainItem(1001,3);
         }
+        else if (Input.GetKeyDown(KeyCode.F4))
+        {
+            ItemSystem.SetObtainItem(8001, 1);
+        }
     }
     void DebugInitXmlData()
     {

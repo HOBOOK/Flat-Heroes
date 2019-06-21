@@ -84,12 +84,12 @@ public static class SaveSystem
         User.abilityCount = 1;
         User.lobbyHeros = new int[5];
         User.stageHeros = new int[5];
-        User.flatEnergyChargingLevel = 1;
-        User.flatEnergyMaxLevel = 1;
-        User.addMoneyLevel = 1;
-        User.addExpLevel = 1;
-        User.addAttackLevel = 1;
-        User.addDefenceLevel = 1;
+        User.flatEnergyChargingLevel = 0;
+        User.flatEnergyMaxLevel = 0;
+        User.addMoneyLevel = 0;
+        User.addExpLevel = 0;
+        User.addAttackLevel = 0;
+        User.addDefenceLevel = 0;
 
         Debugging.LogSystem("Init Player");
     }

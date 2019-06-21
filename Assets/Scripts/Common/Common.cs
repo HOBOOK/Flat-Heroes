@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -363,6 +364,7 @@ public class Common : MonoBehaviour
         return new string(chars.ToArray()).ToUpper();
     }
 
+
     public static Transform CanvasUI()
     {
         return GameObject.Find("CanvasUI").transform;
@@ -377,7 +379,7 @@ public class Common : MonoBehaviour
         {
             while(true)
             {
-                randArray[i] = Random.Range(min, max);
+                randArray[i] = UnityEngine.Random.Range(min, max);
                 isSame = false;
 
                 for(int j = 0; j <i; ++j)
@@ -394,4 +396,21 @@ public class Common : MonoBehaviour
         return randArray;
     }
 
+    public static int GetRandomItemId(List<Item> userEquipmentItems)
+    {
+        int maxId = 0;
+        for(var i = 0; i < userEquipmentItems.Count; i++)
+        {
+            if (userEquipmentItems[i].itemtype == 0)
+            {
+                if (maxId < userEquipmentItems[i].customId)
+                    maxId = userEquipmentItems[i].customId;
+            }
+            else
+                continue;
+
+        }
+        maxId += 1;
+        return maxId;
+    }
 }

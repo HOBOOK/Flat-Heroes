@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -75,6 +77,14 @@ public static class ItemSystem
     {
         return userItems.Find(item => item.id == id || item.id.Equals(id));
     }
+    public static Item GetUserItemByCustomId(int id)
+    {
+        return userItems.Find(item => item.customId == id || item.customId.Equals(id));
+    }
+    public static Item GetUserEquipmentItem(int id)
+    {
+        return userItems.Find(item => (item.customId == id || item.customId.Equals(id))&&item.itemtype==0);
+    }
     public static int GetUserScrollCount()
     {
         Item scroll = GetUserItem(8001);
@@ -104,7 +114,7 @@ public static class ItemSystem
     {
         Item obtainItem = userItems.Find(item => item.id == id || item.id.Equals(id));
 
-        if (obtainItem != null)
+        if (obtainItem != null&&obtainItem.itemtype!=0)
         {
             obtainItem.enable = true;
             obtainItem.count += count;
@@ -115,19 +125,71 @@ public static class ItemSystem
             Item newItem = items.Find(item => item.id == id || item.id.Equals(id));
             if(newItem!=null)
             {
-                newItem.enable = true;
-                newItem.count = count;
-                userItems.Add(newItem);
-                ItemDatabase.AddItemSave(id);
+                if(newItem.itemtype==0)
+                {
+                    Item[] newItems = new Item[count];
+                    for(var i = 0; i < count; i++)
+                    {
+                        Item newCopyItem = newItem.Clone() as Item;
+                        newCopyItem.customId = Common.GetRandomItemId(userItems);
+                        newCopyItem.enable = true;
+                        newCopyItem.count = 1;
+                        userItems.Add(newCopyItem);
+                        newItems[i] = newCopyItem;
+                    }
+                    foreach(var item in userItems)
+                    {
+                        Debugging.Log(item.customId);
+                    }
+                    ItemDatabase.AddItemListSave(newItems);
+                }
+                else
+                {
+                    Item newCopyItem = newItem.Clone() as Item;
+                    newCopyItem.customId = Common.GetRandomItemId(userItems);
+                    newCopyItem.enable = true;
+                    newCopyItem.count = count;
+                    userItems.Add(newCopyItem);
+                    ItemDatabase.AddItemSave(newCopyItem);
+                }
             }
         }
     }
     public static void UseItem(int id, int count)
     {
-        Item useItem = userItems.Find(item => item.id == id || item.id.Equals(id)&&item.itemtype==1);
+        Item useItem = userItems.Find(item => item.customId == id || item.customId.Equals(id));
         if (useItem != null)
         {
             if(useItem.count-count<=0)
+            {
+                //xml삭제
+                userItems.Remove(useItem);
+                if(useItem.itemtype==0)
+                {
+                    ItemDatabase.DeleteEquipItemSave(useItem.customId);
+                }
+                else
+                {
+                    ItemDatabase.DeleteItemSave(id);
+                }
+
+                Debugging.Log(useItem.name + "을 " + count + "개 사용하여 0개가 남아서 XML에서 삭제되었습니다.");
+            }
+            else
+            {
+                useItem.count -= count;
+                ItemDatabase.ItemSave(id);
+                Debugging.Log(useItem.name + "을 " + count + "개 사용하여 " + useItem.count + "개 남았습니다.");
+            }
+
+        }
+    }
+    public static void UseEquipmentItem(int id, int count)
+    {
+        Item useItem = userItems.Find(item => (item.customId == id || item.customId.Equals(id)) && item.itemtype == 0);
+        if (useItem != null)
+        {
+            if (useItem.count - count <= 0)
             {
                 //xml삭제
                 userItems.Remove(useItem);
@@ -140,13 +202,12 @@ public static class ItemSystem
                 ItemDatabase.ItemSave(id);
                 Debugging.Log(useItem.name + "을 " + count + "개 사용하여 " + useItem.count + "개 남았습니다.");
             }
-
         }
     }
     public static void EquipItem(int dismountId, int equipId, ref HeroData heroData)
     {
-        Item equipItem = userItems.Find(item => item.id == equipId || item.id.Equals(equipId) && item.itemtype == 0);
-        Item dismountItem = userItems.Find(item => item.id == dismountId || item.id.Equals(dismountId) && item.itemtype == 0);
+        Item equipItem = userItems.Find(item => (item.customId == equipId || item.customId.Equals(equipId)) && item.itemtype == 0);
+        Item dismountItem = userItems.Find(item => (item.customId == dismountId || item.customId.Equals(dismountId)) && item.itemtype == 0);
         if (equipItem != null && heroData != null)
         {
             equipItem.equipCharacterId = heroData.id;
@@ -158,7 +219,7 @@ public static class ItemSystem
     }
     public static void DismountItem(int dismountId)
     {
-        Item dismountItem = userItems.Find(item => item.id == dismountId || item.id.Equals(dismountId) && item.itemtype == 0);
+        Item dismountItem = userItems.Find(item => (item.customId == dismountId || item.customId.Equals(dismountId)) && item.itemtype == 0);
         if (dismountItem != null)
         {
             dismountItem.equipCharacterId = 0;
@@ -194,22 +255,13 @@ public static class ItemSystem
         List<Item> itemList = new List<Item>();
         foreach (var item in userItems.FindAll(item => item.count > 0 && item.itemtype == 0&&item.equipCharacterId==0))
         {
-            if (item.itemtype == 0)
-            {
-                for (int i = 0; i < item.count; i++)
-                {
-                    itemList.Add(item);
-                }
-            }
-            else
-            {
-                itemList.Add(item);
-            }
+            itemList.Add(item);
         }
         if (orderByType != Common.OrderByType.NONE)
         {
             itemList = SetOrderByItemList(itemList, orderByType);
         }
+
         return itemList;
     }
     public static int GetHeroEquipmentItemAttack(ref HeroData heroData)
@@ -220,7 +272,7 @@ public static class ItemSystem
         {
             if(heroItems[i]!=0)
             {
-                attack += ItemSystem.GetUserItem(heroItems[i]).attack;
+                attack += ItemSystem.GetUserEquipmentItem(heroItems[i]).attack;
             }
         }
         return attack;
@@ -233,7 +285,7 @@ public static class ItemSystem
         {
             if (heroItems[i] != 0)
             {
-                defence += ItemSystem.GetUserItem(heroItems[i]).defence;
+                defence += ItemSystem.GetUserEquipmentItem(heroItems[i]).defence;
             }
         }
         return defence;
@@ -257,7 +309,7 @@ public static class ItemSystem
     public static Item GetRandomItem()
     {
         List<Item> ranitems = items.FindAll(item => item.itemtype != 100);
-        return ranitems[Random.Range(0, ranitems.Count)];
+        return ranitems[UnityEngine.Random.Range(0, ranitems.Count)];
     }
     private static List<Item> SetOrderByItemList(List<Item> itemList, Common.OrderByType orderByType)
     {
@@ -284,9 +336,12 @@ public static class ItemSystem
     {
         return items.Find(item => item.id == id).weapontype;
     }
-    public static Sprite GetItemImage(int id)
+    public static Sprite GetItemImage(int id, bool isEquipment = false)
     {
-        return Resources.Load<Sprite>(items.Find(item => item.id == id).image);
+        if(isEquipment)
+            return Resources.Load<Sprite>(userItems.Find(item => item.customId == id).image);
+        else
+            return Resources.Load<Sprite>(items.Find(item => item.id == id).image);
     }
     public static Sprite GetItemNoneImage()
     {

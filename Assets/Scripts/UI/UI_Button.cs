@@ -235,7 +235,7 @@ public class UI_Button : MonoBehaviour
     {
         if(SellAbleCheck(ref sellItemId))
         {
-            int value = ItemSystem.GetUserItem(sellItemId).value;
+            int value = ItemSystem.GetUserItemByCustomId(sellItemId).value;
             OnButtonEffectSound();
 
             ItemSystem.UseItem(sellItemId, 1);
@@ -249,7 +249,7 @@ public class UI_Button : MonoBehaviour
         }
         else
         {
-            Item item = ItemSystem.GetItem(sellItemId);
+            Item item = ItemSystem.GetUserItemByCustomId(sellItemId);
             if(item!=null)
                 UI_Manager.instance.ShowAlert(item.image, string.Format("<color='yellow'>{0}</color> 은(는) 현재 판매할 수 없습니다. \r\n <color='grey'><size='20'>장착중이거나 아이템의 개수에 오류가 있습니다.</size></color>",item.name));
         }
@@ -291,7 +291,7 @@ public class UI_Button : MonoBehaviour
     IEnumerator CheckingSellAlert()
     {
         isCheckAlertOn = true;
-        Item sellItem = ItemSystem.GetUserItem(sellItemId);
+        Item sellItem = ItemSystem.GetUserItemByCustomId(sellItemId);
         var alertPanel = UI_Manager.instance.ShowNeedAlert(sellItem.image, string.Format("<color='red'>'{0}'</color> {1}개를 <color='yellow'>{2} 코인</color>  에 판매하시겠습니까?", sellItem.name, 1, Common.GetThousandCommaText(sellItem.value)));
         while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
         {
@@ -319,7 +319,7 @@ public class UI_Button : MonoBehaviour
     }
     bool SellAbleCheck(ref int targetItemId)
     {
-        Item item = ItemSystem.GetUserItem(targetItemId);
+        Item item = ItemSystem.GetUserItemByCustomId(targetItemId);
         if(item!=null)
         {
             if(item.equipCharacterId==0&&item.count>0)

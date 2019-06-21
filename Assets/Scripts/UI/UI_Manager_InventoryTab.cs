@@ -90,7 +90,7 @@ public class UI_Manager_InventoryTab : MonoBehaviour
             itemSellButton.GetComponent<Image>().enabled = true;
             itemSellButton.GetComponentInChildren<Text>().enabled = true;
             itemSellButton.GetComponent<UI_Button>().callBackScript = this.gameObject;
-            itemSellButton.GetComponent<UI_Button>().sellItemId = itemSlots[index].Item.id;
+            itemSellButton.GetComponent<UI_Button>().sellItemId = itemSlots[index].Item.customId;
             if (itemInfoImage.GetComponent<AiryUIAnimatedElement>() != null)
                 itemInfoImage.GetComponent<AiryUIAnimatedElement>().ShowElement();
             Debugging.Log(index + " 아이템 슬롯버튼 클릭");

@@ -145,12 +145,12 @@ public class ItemDatabase
         {
             if(dismountId!=0)
             {
-                if (node.Attributes.GetNamedItem("id").Value == dismountId.ToString() || node.Attributes.GetNamedItem("id").Value.Equals(dismountId.ToString()))
+                if (node.SelectSingleNode("CustomId").InnerText == dismountId.ToString() || node.SelectSingleNode("CustomId").InnerText.Equals(dismountId.ToString()))
                 {
                     node.SelectSingleNode("EquipCharacterId").InnerText = "0";
                 }
             }
-            if (node.Attributes.GetNamedItem("id").Value == equipId.ToString() || node.Attributes.GetNamedItem("id").Value.Equals(equipId.ToString()))
+            if (node.SelectSingleNode("CustomId").InnerText == equipId.ToString() || node.SelectSingleNode("CustomId").InnerText.Equals(equipId.ToString()))
             {
                 node.SelectSingleNode("EquipCharacterId").InnerText = targetCharacterId.ToString();
             }
@@ -181,7 +181,7 @@ public class ItemDatabase
         {
             if (dismountId != 0)
             {
-                if (node.Attributes.GetNamedItem("id").Value == dismountId.ToString() || node.Attributes.GetNamedItem("id").Value.Equals(dismountId.ToString()))
+                if (node.SelectSingleNode("CustomId").InnerText == dismountId.ToString() || node.SelectSingleNode("CustomId").InnerText.Equals(dismountId.ToString()))
                 {
                     node.SelectSingleNode("EquipCharacterId").InnerText = "0";
                     break;
@@ -195,7 +195,7 @@ public class ItemDatabase
         xmlDoc.Save(path);
         Debugging.Log(dismountId + " 의 아이템 해제 데이터 xml 저장 완료");
     }
-    public static void AddItemSave(int id)
+    public static void AddItemSave(Item item)
     {
         string path = Application.persistentDataPath + "/Xml/Item.Xml";
         XmlDocument xmlDoc = new XmlDocument();
@@ -207,8 +207,23 @@ public class ItemDatabase
         var decrpytData = DataSecurityManager.DecryptData(elmRoot.InnerText);
         elmRoot.InnerXml = decrpytData;
         //////////
-        CreateNode(ItemSystem.GetItem(id),xmlDoc,path);
-        Debugging.Log(id + " 의 아이템 데이터 xml 추가저장 완료");
+        CreateNode(item, xmlDoc,path);
+        Debugging.Log(item.name + " 의 아이템 데이터 xml 추가저장 완료");
+    }
+    public static void AddItemListSave(Item[] items)
+    {
+        string path = Application.persistentDataPath + "/Xml/Item.Xml";
+        XmlDocument xmlDoc = new XmlDocument();
+        if (System.IO.File.Exists(path))
+            xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
+
+        //복호화////
+        XmlElement elmRoot = xmlDoc.DocumentElement;
+        var decrpytData = DataSecurityManager.DecryptData(elmRoot.InnerText);
+        elmRoot.InnerXml = decrpytData;
+        //////////
+        CreateNodes(items, xmlDoc, path);
+        Debugging.Log(items.Length+ " 의 아이템 데이터 xml 추가저장 완료");
     }
     public static void DeleteItemSave(int id)
     {
@@ -227,6 +242,35 @@ public class ItemDatabase
         foreach (XmlNode node in nodes)
         {
             if (node.Attributes.GetNamedItem("id").Value == id.ToString() || node.Attributes.GetNamedItem("id").Value.Equals(id.ToString()))
+            {
+                node.ParentNode.RemoveChild(node);
+                break;
+            }
+        }
+        // 암호화/////
+        var encrpytData = DataSecurityManager.EncryptData(elmRoot.InnerXml);
+        elmRoot.InnerText = encrpytData;
+        ////////////
+        xmlDoc.Save(path);
+        Debugging.Log(id + " 의 아이템 데이터 xml 삭제 완료");
+    }
+    public static void DeleteEquipItemSave(int id)
+    {
+        string path = Application.persistentDataPath + "/Xml/Item.Xml";
+        XmlDocument xmlDoc = new XmlDocument();
+        if (System.IO.File.Exists(path))
+            xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
+
+        //복호화////
+        XmlElement elmRoot = xmlDoc.DocumentElement;
+        var decrpytData = DataSecurityManager.DecryptData(elmRoot.InnerText);
+        elmRoot.InnerXml = decrpytData;
+        //////////
+        ///
+        XmlNodeList nodes = xmlDoc.SelectNodes("ItemCollection/Items/Item");
+        foreach (XmlNode node in nodes)
+        {
+            if (node.SelectSingleNode("CustomId").InnerText == id.ToString() || node.SelectSingleNode("CustomId").InnerText.Equals(id.ToString()))
             {
                 node.ParentNode.RemoveChild(node);
                 break;
@@ -314,6 +358,68 @@ public class ItemDatabase
 
         // 암호화/////
         XmlElement elmRoot = xmlDoc.DocumentElement;
+        var encrpytData = DataSecurityManager.EncryptData(elmRoot.InnerXml);
+        elmRoot.InnerText = encrpytData;
+        ////////////
+        xmlDoc.Save(path);
+    }
+
+    public static void CreateNodes(Item[] datas, XmlDocument xmlDoc, string path)
+    {
+        foreach(var data in datas)
+        {
+            XmlNode child = xmlDoc.CreateNode(XmlNodeType.Element, "Item", string.Empty);
+            xmlDoc.DocumentElement.FirstChild.AppendChild(child);
+
+            XmlAttribute id = xmlDoc.CreateAttribute("id");
+            id.Value = data.id.ToString();
+            child.Attributes.Append(id);
+
+            // 자식 노드에 들어갈 속성 생성
+            XmlElement customId = xmlDoc.CreateElement("CustomId");
+            customId.InnerText = data.customId.ToString();
+            child.AppendChild(customId);
+            XmlElement equipCharacterId = xmlDoc.CreateElement("EquipCharacterId");
+            equipCharacterId.InnerText = data.equipCharacterId.ToString();
+            child.AppendChild(equipCharacterId);
+            XmlElement name = xmlDoc.CreateElement("Name");
+            name.InnerText = data.name;
+            child.AppendChild(name);
+            XmlElement description = xmlDoc.CreateElement("Description");
+            description.InnerText = data.description;
+            child.AppendChild(description);
+            XmlElement type = xmlDoc.CreateElement("ItemType");
+            type.InnerText = data.itemtype.ToString();
+            child.AppendChild(type);
+            XmlElement wType = xmlDoc.CreateElement("WeaponType");
+            wType.InnerText = data.weapontype.ToString();
+            child.AppendChild(wType);
+            XmlElement attack = xmlDoc.CreateElement("Attack");
+            attack.InnerText = data.attack.ToString();
+            child.AppendChild(attack);
+            XmlElement defence = xmlDoc.CreateElement("Defenece");
+            defence.InnerText = data.defence.ToString();
+            child.AppendChild(defence);
+            XmlElement value = xmlDoc.CreateElement("Value");
+            value.InnerText = data.value.ToString();
+            child.AppendChild(value);
+            XmlElement image = xmlDoc.CreateElement("Image");
+            image.InnerText = data.image;
+            child.AppendChild(image);
+            XmlElement count = xmlDoc.CreateElement("Count");
+            count.InnerText = data.count.ToString();
+            child.AppendChild(count);
+            XmlElement enable = xmlDoc.CreateElement("Enable");
+            enable.InnerText = data.enable.ToString().ToLower();
+            child.AppendChild(enable);
+            XmlElement droprate = xmlDoc.CreateElement("DropRate");
+            droprate.InnerText = data.droprate.ToString();
+            child.AppendChild(droprate);
+        }
+
+        // 암호화/////
+        XmlElement elmRoot = xmlDoc.DocumentElement;
+        Debugging.Log(elmRoot.InnerXml);
         var encrpytData = DataSecurityManager.EncryptData(elmRoot.InnerXml);
         elmRoot.InnerText = encrpytData;
         ////////////

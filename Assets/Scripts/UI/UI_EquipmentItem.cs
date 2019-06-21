@@ -51,9 +51,9 @@ public class UI_EquipmentItem : MonoBehaviour
             }
             else
             {
-                Item equipmentItemInfo = ItemSystem.GetItem(equipmentItemId);
+                Item equipmentItemInfo = ItemSystem.GetUserEquipmentItem(equipmentItemId);
                 InformationPanel.transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
-                InformationPanel.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(equipmentItemId);
+                InformationPanel.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(equipmentItemId,true);
                 InformationPanel.transform.GetComponentInChildren<Text>().enabled = true;
                 InformationPanel.transform.GetComponentInChildren<Text>().text = equipmentItemInfo.name;
                 EquipmentActionPanel.SetActive(true);
@@ -79,7 +79,7 @@ public class UI_EquipmentItem : MonoBehaviour
                 itemSlot.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
                 itemSlot.GetComponentInChildren<Button>().onClick.AddListener(delegate
                 {
-                    OnClickItemInfoShow(userEquipmentItemList[index].id);
+                    OnClickItemInfoShow(userEquipmentItemList[index].customId);
                 });
             }
         }
@@ -88,7 +88,7 @@ public class UI_EquipmentItem : MonoBehaviour
     {
         if(InformationPanel!=null&&EquipmentActionPanel!=null)
         {
-            Item item = ItemSystem.GetUserItem(itemid);
+            Item item = ItemSystem.GetUserEquipmentItem(itemid);
             InformationPanel.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(item.id);
             InformationPanel.transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
             InformationPanel.transform.GetComponentInChildren<Text>().enabled = true;
@@ -99,14 +99,14 @@ public class UI_EquipmentItem : MonoBehaviour
             EquipmentActionPanel.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
             EquipmentActionPanel.GetComponentInChildren<Button>().onClick.AddListener(delegate
             {
-                EquipmentEvent(item.id);
+                EquipmentEvent(item.customId);
             });
         }
     }
 
     public void EquipmentEvent(int id)
     {
-        HeroSystem.EquipHeroEquimentItem(equipmentSlotIndex, targetHeroId, ItemSystem.GetUserItem(id));
+        HeroSystem.EquipHeroEquimentItem(equipmentSlotIndex, targetHeroId, ItemSystem.GetUserEquipmentItem(id));
         Debugging.Log(id + " 아이템 장착성공");
         this.gameObject.SetActive(false);
         

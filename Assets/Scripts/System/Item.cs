@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Xml;
 using System.Xml.Serialization;
+using System;
 
-public class Item
+public class Item : ICloneable
 {
     [XmlAttribute("id")]
     public int id;
@@ -47,4 +48,24 @@ public class Item
 
     [XmlElement("DropRate")]
     public int droprate;
+
+    public object Clone()
+    {
+        Item newItem = new Item();
+        newItem.id = this.id;
+        newItem.customId = this.customId;
+        newItem.equipCharacterId = this.equipCharacterId;
+        newItem.name = this.name;
+        newItem.description = this.description;
+        newItem.itemtype = this.itemtype;
+        newItem.weapontype = this.weapontype;
+        newItem.attack = this.attack;
+        newItem.defence = this.defence;
+        newItem.value = this.value;
+        newItem.image = this.image;
+        newItem.enable = this.enable;
+        newItem.count = this.count;
+        newItem.droprate = this.droprate;
+        return newItem;
+    }
 }

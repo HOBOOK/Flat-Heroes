@@ -146,7 +146,7 @@ public class UI_HeroInfo : MonoBehaviour
             {
                 if (equipmentItemsId[i] != 0)
                 {
-                    heroEquimentItemSlots.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(equipmentItemsId[i]);
+                    heroEquimentItemSlots.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(equipmentItemsId[i],true);
                 }
                 else
                 {

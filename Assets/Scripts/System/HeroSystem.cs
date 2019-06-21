@@ -277,7 +277,7 @@ public static class HeroSystem
                 }
             }
         }
-        itemIds[index] = item.id;
+        itemIds[index] = item.customId;
         string equipmentItemList = "";
         for(int i =0; i < itemIds.Length; i++)
         {
@@ -329,7 +329,7 @@ public static class HeroSystem
             int dismountItemId = GetHeroEquipmentItems(id)[index];
             SetHeroEquipmentItems(index, id, item);
             HeroDatabase.SaveUser(id);
-            ItemSystem.EquipItem(dismountItemId, item.id, ref data);
+            ItemSystem.EquipItem(dismountItemId, item.customId, ref data);
         }
     }
     public static void DismountHeroEquimentItem(int index, int id)
