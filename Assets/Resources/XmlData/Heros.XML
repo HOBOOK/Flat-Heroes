@@ -205,7 +205,7 @@
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>0</Skill>
     </Hero>
-    <Hero id="510">
+    <Hero id="1001">
       <Name>좀비자이언트</Name>
       <Image>HeroThumbnail/thumbnail_501</Image>
       <Enable>false</Enable>

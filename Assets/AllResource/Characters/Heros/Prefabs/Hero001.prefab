@@ -256,7 +256,7 @@ MonoBehaviour:
       defaultLocalRotation: {x: 0, y: 0, z: 0.000000077694935, w: 1}
     m_Weight: 1
     m_RestoreDefaultPose: 1
-    targetPosition: {x: -0.128, y: -0.902, z: 0}
+    targetPosition: {x: 0.6045755, y: -1.0599151, z: 0}
     flip: 0
 --- !u!1 &5166482754073123367
 GameObject:
@@ -362,7 +362,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5166482754155798590}
-  m_LocalRotation: {x: 0, y: 0, z: 0.31146178, w: 0.9502587}
+  m_LocalRotation: {x: 0, y: 0, z: 0.31146184, w: 0.9502587}
   m_LocalPosition: {x: -0.062467784, y: -0.15149479, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.22387478
+  m_Length: 0.22387484
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 5166482755519219384}
   m_AttachedIK: {fileID: 5166482754361154146}
@@ -583,7 +583,7 @@ MonoBehaviour:
       defaultLocalRotation: {x: 0, y: 0, z: -0.28207502, w: 0.95939237}
     m_Weight: 1
     m_RestoreDefaultPose: 1
-    targetPosition: {x: -0.165, y: -0.37, z: 0}
+    targetPosition: {x: 0.5675755, y: -0.527915, z: 0}
     flip: 1
 --- !u!1 &5166482754323888503
 GameObject:
@@ -692,7 +692,7 @@ MonoBehaviour:
     - m_Bone: {fileID: 0}
       m_BoneTransform: {fileID: 5166482754155798721}
       solverPosition: {x: 0, y: 0, z: 0}
-      solverRotation: {x: 0, y: 0, z: 0.31146178, w: 0.9502587}
+      solverRotation: {x: 0, y: 0, z: 0.31146184, w: 0.9502587}
       defaultLocalRotation: {x: 0, y: 0, z: 0.14952114, w: 0.98875856}
     - m_Bone: {fileID: 0}
       m_BoneTransform: {fileID: 5166482755519219384}
@@ -701,7 +701,7 @@ MonoBehaviour:
       defaultLocalRotation: {x: 0, y: 0, z: -0.46734303, w: 0.8840761}
     m_Weight: 1
     m_RestoreDefaultPose: 1
-    targetPosition: {x: -0.2, y: -0.203, z: 0}
+    targetPosition: {x: 0.53257555, y: -0.360915, z: 0}
     flip: 1
 --- !u!1 &5166482754369027255
 GameObject:
@@ -771,7 +771,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1639062169
   m_SortingLayer: 4
-  m_SortingOrder: 158
+  m_SortingOrder: 13
   m_Sprite: {fileID: 21300000, guid: f80618c6030127e44941766b0e2a9376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1286,7 +1286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.3395763
+  m_Length: 0.33957633
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 5166482755406369403}
   m_AttachedIK: {fileID: 0}
@@ -1389,7 +1389,7 @@ MonoBehaviour:
       defaultLocalRotation: {x: 0, y: 0, z: -0.00000006370139, w: 1}
     m_Weight: 1
     m_RestoreDefaultPose: 1
-    targetPosition: {x: 0.122, y: -0.901, z: 0}
+    targetPosition: {x: 0.8545755, y: -1.058915, z: 0}
     flip: 0
 --- !u!1 &5166482754836019338
 GameObject:
@@ -1949,7 +1949,6 @@ MonoBehaviour:
   status:
     level: 1
     exp: 0
-    addAttack: 5
     attack: 20
     defence: 0
     hp: 350
@@ -2639,7 +2638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.2374114
+  m_Length: 0.23741135
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 5166482754207931605}
   m_AttachedIK: {fileID: 5166482754294100070}

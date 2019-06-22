@@ -66,7 +66,7 @@ public class Hero : MonoBehaviour
     public HeroState heroState;
     public WeaponType weaponType;
     public enum HeroState { Normal, Attack  }
-    public enum WeaponType { No,Gun,Sword,Knife,Staff,Bow,Heal}
+    public enum WeaponType { No,Gun,Sword,Knife,Staff,Bow,Heal,Zombie}
     //Rigidbody2D
     Rigidbody2D rigid;
     //Animator
@@ -545,6 +545,11 @@ public class Hero : MonoBehaviour
                 attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(3, 3);
                 break;
             case WeaponType.Heal:
+                attackRange = 1.0f + scale;
+                attackPoint.GetComponent<BoxCollider2D>().offset = new Vector2(0.5f - attackRange, 0);
+                attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(1.5f + attackRange * 2f, 3);
+                break;
+            case WeaponType.Zombie:
                 attackRange = 1.0f + scale;
                 attackPoint.GetComponent<BoxCollider2D>().offset = new Vector2(0.5f - attackRange, 0);
                 attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(1.5f + attackRange * 2f, 3);
@@ -1117,31 +1122,12 @@ public class Hero : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             // 코인
             int coin = UnityEngine.Random.Range(15, 30) + LabSystem.GetAddMoney(User.addMoneyLevel);
-            int coinRemain = coin % 100; // 80
-            int coinCount = (coin-coinRemain) / 100; // 11
-            int coinPart = 0;
-            if (coinCount>0)
-            {
-                coinPart = (coin - coinRemain) / coinCount; // 100
-                for (int i = 0; i < coinCount; i++)
-                {
-                    GameObject coinPrefab = ObjectPool.Instance.PopFromPool("Coin");
-                    coinPrefab.GetComponent<Coin>().SetCoin(coinPart);
-                    coinPrefab.transform.position = transform.position;
-                    coinPrefab.SetActive(true);
-                    coinPrefab.GetComponent<Rigidbody2D>().AddForce(new Vector3(UnityEngine.Random.Range(-1, 1), 5, 10), ForceMode2D.Impulse);
-                    yield return new WaitForSeconds(0.1f);
-                }
-            }
-            if(coinRemain>0)
-            {
-                GameObject coinRemainPrefab = ObjectPool.Instance.PopFromPool("Coin");
-                coinRemainPrefab.GetComponent<Coin>().SetCoin(coinRemain);
-                coinRemainPrefab.transform.position = transform.position;
-                coinRemainPrefab.SetActive(true);
-                coinRemainPrefab.GetComponent<Rigidbody2D>().AddForce(new Vector3(UnityEngine.Random.Range(-1, 1), 5, 10), ForceMode2D.Impulse);
-                yield return new WaitForSeconds(0.1f);
-            }
+            GameObject coinPrefab = ObjectPool.Instance.PopFromPool("Coin");
+            coinPrefab.GetComponent<Coin>().SetCoin(coin);
+            coinPrefab.transform.position = transform.position;
+            coinPrefab.SetActive(true);
+            coinPrefab.GetComponent<Rigidbody2D>().AddForce(new Vector3(UnityEngine.Random.Range(-1, 1), 5, 10), ForceMode2D.Impulse);
+            yield return new WaitForSeconds(0.1f);
         }
         // 아이템 획득 파트
         Item randomItem = ItemSystem.GetRandomItem();

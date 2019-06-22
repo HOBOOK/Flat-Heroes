@@ -7997,7 +7997,7 @@ MonoBehaviour:
   spawnEnemys:
   - enemyPrefab: {fileID: 4389615953612647212, guid: c8157117b9e5d594692754b6497a5c28,
       type: 3}
-    count: 5
+    count: 3
     isSpawnEnd: 0
   - enemyPrefab: {fileID: 283822810198271897, guid: 50de9021960f2394cb7aa2a69c97a708,
       type: 3}
