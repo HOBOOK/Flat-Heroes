@@ -2024,13 +2024,13 @@ public class Hero : MonoBehaviour
         SmokeDarkEffect();
 
         attackPoint.name = this.Damage().ToString();
-        int cnt = 0;
-        while (cnt < 5)
+        int totalCount = SkillSystem.GetUserSkillLevel(skillData.id);
+        for (int i = 0; i < totalCount; i++)
         {
             attackPoint.gameObject.SetActive(true);
             yield return new WaitForFixedUpdate();
             attackPoint.gameObject.SetActive(false);
-            cnt++;
+            i++;
         }
         yield return null;
     }

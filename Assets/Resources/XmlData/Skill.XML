@@ -8,9 +8,9 @@
       <Level>1</Level>
       <SkillType>0</SkillType>
       <TargetType>0</TargetType>
-      <Power>50</Power>
-      <AddPower>10</AddPower>
-      <Energy>100</Energy>
+      <Power>70</Power>
+      <AddPower>20</AddPower>
+      <Energy>40</Energy>
     </Skill>
     <Skill id="2">
       <Name>수류탄 투척</Name>
@@ -20,8 +20,8 @@
       <SkillType>0</SkillType>
       <TargetType>0</TargetType>
       <Power>50</Power>
-      <AddPower>10</AddPower>
-      <Energy>100</Energy>
+      <AddPower>8</AddPower>
+      <Energy>55</Energy>
     </Skill>
     <Skill id="3">
       <Name>살라만다</Name>
@@ -31,8 +31,8 @@
       <SkillType>0</SkillType>
       <TargetType>0</TargetType>
       <Power>50</Power>
-      <AddPower>10</AddPower>
-      <Energy>100</Energy>
+      <AddPower>15</AddPower>
+      <Energy>80</Energy>
     </Skill>
     <Skill id="4">
       <Name>퀵스나이핑</Name>
@@ -42,19 +42,19 @@
       <SkillType>0</SkillType>
       <TargetType>0</TargetType>
       <Power>50</Power>
-      <AddPower>10</AddPower>
-      <Energy>100</Energy>
+      <AddPower>17</AddPower>
+      <Energy>50</Energy>
     </Skill>
     <Skill id="5">
-      <Name>5번째 스킬</Name>
-      <Description>엄청난 속도로 연속으로 화살을 발사한다.</Description>
+      <Name>댄싱나이프</Name>
+      <Description>나이프를 던진곳으로 날아가 적을 공격한다.</Description>
       <Image>Skill/skill_005</Image>
       <Level>1</Level>
       <SkillType>0</SkillType>
       <TargetType>0</TargetType>
       <Power>50</Power>
-      <AddPower>10</AddPower>
-      <Energy>100</Energy>
+      <AddPower>12</AddPower>
+      <Energy>65</Energy>
     </Skill>
     <Skill id="6">
       <Name>6번째 스킬</Name>

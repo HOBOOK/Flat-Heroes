@@ -23,8 +23,8 @@ public class bulletController : MonoBehaviour
     private int[] penetrateTargetDistinctID;
     private void Awake()
     {
-        if (penetrateCnt < 2)
-            penetrateCnt = 2;
+        if (penetrateCnt < 1)
+            penetrateCnt = 1;
     }
     private void OnEnable()
     {

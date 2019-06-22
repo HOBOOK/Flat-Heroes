@@ -76,7 +76,7 @@ MonoBehaviour:
   speed: 7
   Target: {fileID: 0}
   offset: 0
-  penetrateCnt: 3
+  penetrateCnt: 1
 --- !u!61 &3208221434095542411
 BoxCollider2D:
   m_ObjectHideFlags: 0
