@@ -252,10 +252,17 @@ public class UI_Manager_AbilityTab : MonoBehaviour
         UI_Manager.instance.PopupInterActiveCover.SetActive(false);
         SelectImage.GetComponent<Image>().enabled = false;
         isSelectStart = false;
-        AbilitySystem.SetObtainAbility(abilityList[selectedIndex].id);
-        ItemSystem.UseItem(8001, useItemAmount);
-        RefreshUI();
-        UI_Manager.instance.PopupGetAbility(abilityList[selectedIndex]);
+
+        if (ItemSystem.UseItem(ItemSystem.GetUserScroll().customId, useItemAmount))
+        {
+            AbilitySystem.SetObtainAbility(abilityList[selectedIndex].id);
+            RefreshUI();
+            UI_Manager.instance.PopupGetAbility(abilityList[selectedIndex]);
+        }
+        else
+        {
+            RefreshUI();
+        }
         yield return null;
     }
 

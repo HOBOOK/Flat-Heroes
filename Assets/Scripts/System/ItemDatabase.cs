@@ -419,7 +419,6 @@ public class ItemDatabase
 
         // 암호화/////
         XmlElement elmRoot = xmlDoc.DocumentElement;
-        Debugging.Log(elmRoot.InnerXml);
         var encrpytData = DataSecurityManager.EncryptData(elmRoot.InnerXml);
         elmRoot.InnerText = encrpytData;
         ////////////

@@ -54,6 +54,7 @@ public class UI_Manager_InventoryTab : MonoBehaviour
                 itemSlots[i].GetComponent<Button>().enabled = false;
                 if (i < items.Count && i < itemSlots.Length)
                 {
+                    Debugging.Log(items[i].name+"/" + items[i].id + "/" + items[i].count + "/" + items[i].customId);
                     itemSlots[i].Item = items[i];
                     itemSlots[i].GetComponent<Button>().enabled = true;
                     int index = i;

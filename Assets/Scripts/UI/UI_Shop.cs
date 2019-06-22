@@ -86,11 +86,11 @@ public class UI_Shop : MonoBehaviour
                 {
                     switch (slot.itemtype)
                     {
-                        //case 100:
-                        //    slotMoneyImage.sprite = Resources.Load<Sprite>("Items/blackCrystal");
-                        //    break;
+                        case 100:
+                            slotMoneyImage.sprite = Resources.Load<Sprite>("UI/won");
+                            break;
                         default:
-                            slotMoneyImage.sprite = Resources.Load<Sprite>("Items/coin");
+                            slotMoneyImage.sprite = Resources.Load<Sprite>("Items/blackCrystal");
                             break;
                     }
                 }
@@ -140,13 +140,13 @@ public class UI_Shop : MonoBehaviour
         BuyButton.GetComponent<UI_Button>().buttonType = UI_Button.ButtonType.ItemBuy;
         switch (itemData.itemtype)
         {
-            //case 100:
-            //    BuyButton.GetComponent<UI_Button>().paymentType = UI_Button.PaymentType.BlackCrystal;
-            //    BuyButton.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/blackCrystal");
-            //    break;
+            case 100:
+                BuyButton.GetComponent<UI_Button>().paymentType = UI_Button.PaymentType.Cash;
+                BuyButton.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/won");
+                break;
             default:
-                BuyButton.GetComponent<UI_Button>().paymentType = UI_Button.PaymentType.Coin;
-                BuyButton.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/coin");
+                BuyButton.GetComponent<UI_Button>().paymentType = UI_Button.PaymentType.BlackCrystal;
+                BuyButton.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/blackCrystal");
                 break;
         }
         BuyButton.GetComponent<UI_Button>().paymentAmount = itemData.value;

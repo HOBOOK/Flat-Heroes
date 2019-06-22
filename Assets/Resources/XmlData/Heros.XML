@@ -9,7 +9,7 @@
       <Description>동쪽 나라에서 온 실력이 출중한 무사</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>1500</Value>
+      <Value>150</Value>
       <Strength>12</Strength>
       <Intelligent>4</Intelligent>
       <Physical>7</Physical>
@@ -26,7 +26,7 @@
       <Description>유명 용병단의 전설의 사령관</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>1500</Value>
+      <Value>150</Value>
       <Strength>9</Strength>
       <Intelligent>6</Intelligent>
       <Physical>5</Physical>
@@ -43,7 +43,7 @@
       <Description>위기가 다치자 등장한 정체불명의 마법사</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>1500</Value>
+      <Value>150</Value>
       <Strength>3</Strength>
       <Intelligent>18</Intelligent>
       <Physical>2</Physical>
@@ -60,7 +60,7 @@
       <Description>여명단을 이끌고 있는 수장. 그녀의 활시위소리가 들리면 도망가기를 포기하라</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>1500</Value>
+      <Value>150</Value>
       <Strength>7</Strength>
       <Intelligent>7</Intelligent>
       <Physical>4</Physical>
@@ -77,7 +77,7 @@
       <Description>동쪽 나라에서 악명높은 어쌔신</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>1500</Value>
+      <Value>150</Value>
       <Strength>8</Strength>
       <Intelligent>3</Intelligent>
       <Physical>10</Physical>
@@ -94,7 +94,7 @@
       <Description>영웅 설명 없음.</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>1500</Value>
+      <Value>150</Value>
       <Strength>10</Strength>
       <Intelligent>2</Intelligent>
       <Physical>15</Physical>
@@ -111,7 +111,7 @@
       <Description>영웅 설명 없음</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>1500</Value>
+      <Value>150</Value>
       <Strength>20</Strength>
       <Intelligent>3</Intelligent>
       <Physical>10</Physical>
@@ -128,7 +128,7 @@
       <Description>영웅 설명 없음</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>1500</Value>
+      <Value>150</Value>
       <Strength>20</Strength>
       <Intelligent>3</Intelligent>
       <Physical>10</Physical>
@@ -145,7 +145,7 @@
       <Description>전설의 외과의사</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>1500</Value>
+      <Value>150</Value>
       <Strength>20</Strength>
       <Intelligent>3</Intelligent>
       <Physical>10</Physical>
@@ -162,7 +162,7 @@
       <Description>영웅 설명 없음</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>1500</Value>
+      <Value>150</Value>
       <Strength>20</Strength>
       <Intelligent>3</Intelligent>
       <Physical>10</Physical>
@@ -179,7 +179,7 @@
       <Description>영웅 설명 없음</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>1500</Value>
+      <Value>150</Value>
       <Strength>20</Strength>
       <Intelligent>3</Intelligent>
       <Physical>10</Physical>

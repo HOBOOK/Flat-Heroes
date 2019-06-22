@@ -237,14 +237,22 @@ public class UI_Button : MonoBehaviour
         {
             int value = ItemSystem.GetUserItemByCustomId(sellItemId).value;
             OnButtonEffectSound();
-
-            ItemSystem.UseItem(sellItemId, 1);
-            SaveSystem.AddUserCoin(value);
-            UI_Manager.instance.ShowGetAlert("Items/coin", string.Format("<color='yellow'>{0}</color> 코인을 획득했습니다.", value));
-            if (callBackScript != null)
+            if (ItemSystem.UseItem(sellItemId, 1))
             {
-                callBackScript.GetComponent<UI_Manager_InventoryTab>().OnValidate();
-                callBackScript.GetComponent<UI_Manager_InventoryTab>().RefreshUI(Common.OrderByType.NAME);
+                SaveSystem.AddUserCoin(value);
+                UI_Manager.instance.ShowGetAlert("Items/coin", string.Format("<color='yellow'>{0}</color> 코인을 획득했습니다.", value));
+                if (callBackScript != null)
+                {
+                    callBackScript.GetComponent<UI_Manager_InventoryTab>().OnValidate();
+                    callBackScript.GetComponent<UI_Manager_InventoryTab>().RefreshUI(Common.OrderByType.NAME);
+                }
+            }
+            else
+            {
+                Item item = ItemSystem.GetUserItemByCustomId(sellItemId);
+                if (item != null)
+                    UI_Manager.instance.ShowAlert(item.image, string.Format("<color='yellow'>{0}</color> 은(는) 현재 판매할 수 없습니다. \r\n <color='grey'><size='20'>판매</size></color>", item.name));
+
             }
         }
         else

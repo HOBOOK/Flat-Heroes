@@ -2027,10 +2027,14 @@ public class Hero : MonoBehaviour
     {
         SmokeDarkEffect();
         yield return new WaitForSeconds(0.5f);
-        if (target.transform.position.x > this.transform.position.x)
-            this.transform.position = target.transform.position + new Vector3(-0.7f, 0);
-        else
-            this.transform.position = target.transform.position + new Vector3(0.7f, 0);
+        if(target!=null)
+        {
+            if (target.transform.position.x > this.transform.position.x)
+                this.transform.position = target.transform.position + new Vector3(-0.7f, 0);
+            else
+                this.transform.position = target.transform.position + new Vector3(0.7f, 0);
+        }
+
         SmokeDarkEffect();
 
         attackPoint.name = this.Damage().ToString();

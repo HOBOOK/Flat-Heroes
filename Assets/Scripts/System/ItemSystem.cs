@@ -87,11 +87,15 @@ public static class ItemSystem
     }
     public static int GetUserScrollCount()
     {
-        Item scroll = GetUserItem(8001);
+        Item scroll = GetUserScroll();
         if (scroll == null)
             return 0;
         else
             return scroll.count;
+    }
+    public static Item GetUserScroll()
+    {
+        return GetUserItem(8001);
     }
     public static void SetObtainMoney(int id)
     {
@@ -145,17 +149,17 @@ public static class ItemSystem
                 }
                 else
                 {
-                    Item newCopyItem = newItem.Clone() as Item;
-                    newCopyItem.customId = Common.GetRandomItemId(userItems);
-                    newCopyItem.enable = true;
-                    newCopyItem.count = count;
-                    userItems.Add(newCopyItem);
-                    ItemDatabase.AddItemSave(newCopyItem);
+                    newItem.customId = Common.GetRandomItemId(userItems);
+                    newItem.enable = true;
+                    newItem.count = count;
+                    userItems.Add(newItem);
+                    ItemDatabase.AddItemSave(newItem);
                 }
             }
         }
     }
-    public static void UseItem(int id, int count)
+    
+    public static bool UseItem(int id, int count)
     {
         Item useItem = userItems.Find(item => item.customId == id || item.customId.Equals(id));
         if (useItem != null)
@@ -174,14 +178,21 @@ public static class ItemSystem
                 }
 
                 Debugging.Log(useItem.name + "을 " + count + "개 사용하여 0개가 남아서 XML에서 삭제되었습니다.");
+                return true;
             }
             else
             {
                 useItem.count -= count;
                 ItemDatabase.ItemSave(id);
                 Debugging.Log(useItem.name + "을 " + count + "개 사용하여 " + useItem.count + "개 남았습니다.");
+                return true;
             }
 
+        }
+        else
+        {
+            Debugging.LogWarning(useItem.name + "을 " + count + "개 사용하여 " + useItem.count + "개 남았습니다.");
+            return false;
         }
     }
     public static void UseEquipmentItem(int id, int count)
@@ -272,7 +283,9 @@ public static class ItemSystem
         {
             if(heroItems[i]!=0)
             {
-                attack += ItemSystem.GetUserEquipmentItem(heroItems[i]).attack;
+                Item item = ItemSystem.GetUserEquipmentItem(heroItems[i]);
+
+                attack += item != null ? item.attack : 0;
             }
         }
         return attack;
@@ -285,7 +298,8 @@ public static class ItemSystem
         {
             if (heroItems[i] != 0)
             {
-                defence += ItemSystem.GetUserEquipmentItem(heroItems[i]).defence;
+                Item item = ItemSystem.GetUserEquipmentItem(heroItems[i]);
+                defence += item != null ? item.defence : 0;
             }
         }
         return defence;

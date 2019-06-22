@@ -62,32 +62,92 @@
       <DropRate>10</DropRate>
     </Item>
     <Item id="9001">
-             <CustomId>0</CustomId>
-            <EquipCharacterId>0</EquipCharacterId>
-      <Name>흑수정 100개</Name>
-      <Description>흑수정이 100개가 들어있다.</Description>
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>흑수정 1000개</Name>
+      <Description>흑수정이 1000개가 들어있다.</Description>
       <ItemType>100</ItemType>
       <WeaponType>0</WeaponType>
       <Attack>0</Attack>
       <Defence>0</Defence>
-      <Value>100</Value>
+      <Value>80000</Value>
       <Image>Items/blackCrystal</Image>
-      <Count>100</Count>
+      <Count>1000</Count>
       <Enable>true</Enable>
       <DropRate>0</DropRate>
     </Item>
     <Item id="9002">
-             <CustomId>0</CustomId>
-            <EquipCharacterId>0</EquipCharacterId>
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>흑수정 30개</Name>
+      <Description>흑수정이 30개가 들어있다.</Description>
+      <ItemType>100</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>0</Attack>
+      <Defence>0</Defence>
+      <Value>3000</Value>
+      <Image>Items/blackCrystal</Image>
+      <Count>30</Count>
+      <Enable>true</Enable>
+      <DropRate>0</DropRate>
+    </Item>
+        <Item id="9003">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>흑수정 80개</Name>
+      <Description>흑수정이 80개가 들어있다.</Description>
+      <ItemType>100</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>0</Attack>
+      <Defence>0</Defence>
+      <Value>7500</Value>
+      <Image>Items/blackCrystal</Image>
+      <Count>80</Count>
+      <Enable>true</Enable>
+      <DropRate>0</DropRate>
+    </Item>
+        <Item id="9004">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>흑수정 150개</Name>
+      <Description>흑수정이 150개가 들어있다.</Description>
+      <ItemType>100</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>0</Attack>
+      <Defence>0</Defence>
+      <Value>13500</Value>
+      <Image>Items/blackCrystal</Image>
+      <Count>150</Count>
+      <Enable>true</Enable>
+      <DropRate>0</DropRate>
+    </Item>
+      <Item id="9005">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
       <Name>흑수정 300개</Name>
       <Description>흑수정이 300개가 들어있다.</Description>
       <ItemType>100</ItemType>
       <WeaponType>0</WeaponType>
       <Attack>0</Attack>
       <Defence>0</Defence>
-      <Value>300</Value>
+      <Value>26000</Value>
       <Image>Items/blackCrystal</Image>
       <Count>300</Count>
+      <Enable>true</Enable>
+      <DropRate>0</DropRate>
+    </Item>
+    <Item id="9006">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>흑수정 500개</Name>
+      <Description>흑수정이 500개가 들어있다.</Description>
+      <ItemType>100</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>0</Attack>
+      <Defence>0</Defence>
+      <Value>42000</Value>
+      <Image>Items/blackCrystal</Image>
+      <Count>500</Count>
       <Enable>true</Enable>
       <DropRate>0</DropRate>
     </Item>

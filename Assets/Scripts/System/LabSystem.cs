@@ -53,7 +53,7 @@ public class LabSystem
     }
     public static int GetNeedMoney(int level)
     {
-        return level * level * 1000 + 1000;
+        return level * level * 100 + 1000;
     }
     public static float GetLapPower(int type, int level)
     {
@@ -78,11 +78,11 @@ public class LabSystem
 
     public static int MaxEnergy
     {
-        get { return User.flatEnergyMaxLevel * 50 + 100; }
+        get { return User.flatEnergyMaxLevel * 10 + 100; }
     }
     public static int ChargeEnergy
     {
-        get { return User.flatEnergyChargingLevel * 5; }
+        get { return User.flatEnergyChargingLevel*2+5; }
     }
     public static int AddMoney
     {
@@ -103,19 +103,19 @@ public class LabSystem
 
     public static int GetMaxEnergy(int level)
     {
-        return level * 50 + 100;
+        return level * 10 + 100;
     }
     public static float GetChargeEnergy(int level)
     {
-        return level*5;
+        return level*2+5;
     }
     public static int GetAddMoney(int level)
     {
-        return level * 10;
+        return level * 5;
     }
     public static int GetAddExp(int level)
     {
-        return level * 10;
+        return level * 5;
     }
     public static int GetAddAttack(int level)
     {
