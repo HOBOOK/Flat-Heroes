@@ -316,6 +316,10 @@ public static class ItemSystem
     {
         return items.Count;
     }
+    public static List<Item> GetEquipmentItems()
+    {
+        return items.FindAll(item => (item.itemtype == 0 || item.itemtype.Equals(0)) &&item.itemClass>0);
+    }
     public static List<Item> GetShopItems()
     {
         return items.FindAll(item => item.itemtype == 100 || item.itemtype.Equals(100));

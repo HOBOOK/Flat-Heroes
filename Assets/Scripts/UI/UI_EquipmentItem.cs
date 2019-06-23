@@ -56,6 +56,7 @@ public class UI_EquipmentItem : MonoBehaviour
                 InformationPanel.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(equipmentItemId,true);
                 InformationPanel.transform.GetComponentInChildren<Text>().enabled = true;
                 InformationPanel.transform.GetComponentInChildren<Text>().text = equipmentItemInfo.name;
+                InformationPanel.transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(equipmentItemInfo.itemClass);
                 EquipmentActionPanel.SetActive(true);
                 EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = string.Format("{0}\r\n\r\n<color='yellow'>공격력 + {1}\r\n방어력 + {2}</color>", equipmentItemInfo.description, equipmentItemInfo.attack, equipmentItemInfo.defence);
                 EquipmentActionPanel.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = "장착해제";
@@ -93,7 +94,8 @@ public class UI_EquipmentItem : MonoBehaviour
             InformationPanel.transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
             InformationPanel.transform.GetComponentInChildren<Text>().enabled = true;
             InformationPanel.transform.GetComponentInChildren<Text>().text = item.name;
-            EquipmentActionPanel.SetActive(true);
+            InformationPanel.transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(item.itemClass);
+          EquipmentActionPanel.SetActive(true);
             EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = string.Format("{0}\r\n\r\n<color='yellow'>공격력 + {1}\r\n방어력 + {2}</color>", item.description, item.attack, item.defence);
             EquipmentActionPanel.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = "장착하기";
             EquipmentActionPanel.GetComponentInChildren<Button>().onClick.RemoveAllListeners();

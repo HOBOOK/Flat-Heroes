@@ -355,6 +355,9 @@ public class ItemDatabase
         XmlElement droprate = xmlDoc.CreateElement("DropRate");
         droprate.InnerText = data.droprate.ToString();
         child.AppendChild(droprate);
+        XmlElement itemClass = xmlDoc.CreateElement("Class");
+        itemClass.InnerText = data.itemClass.ToString();
+        child.AppendChild(itemClass);
 
         // 암호화/////
         XmlElement elmRoot = xmlDoc.DocumentElement;
@@ -415,6 +418,9 @@ public class ItemDatabase
             XmlElement droprate = xmlDoc.CreateElement("DropRate");
             droprate.InnerText = data.droprate.ToString();
             child.AppendChild(droprate);
+            XmlElement itemClass = xmlDoc.CreateElement("Class");
+            itemClass.InnerText = data.itemClass.ToString();
+            child.AppendChild(itemClass);
         }
 
         // 암호화/////

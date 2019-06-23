@@ -14,6 +14,7 @@ public class UI_Manager : MonoBehaviour
     public GameObject PopGetAbilityUI;
     public GameObject PopupInterActiveCover;
     public GameObject PopupAlertUI;
+    public GameObject PopupGetGachaUI;
 
     public enum PopupAlertTYPE { energy,scroll,coin,blackCrystal}
 
@@ -174,6 +175,16 @@ public class UI_Manager : MonoBehaviour
             }
         }
         return cnt;
+    }
+    public void PopupGetGacha(GachaSystem.GachaType gachaType)
+    {
+        if (PopupGetGachaUI != null)
+        {
+            showUIanimation(PopupGetGachaUI);
+            PopupGetGachaUI.GetComponent<UI_GetGacha>().GachaStart(gachaType);
+        }
+        else
+            Debugging.Log("가챠 팝업창이 없습니다.");
     }
 
     public void PopupGetAbility(Ability ability)

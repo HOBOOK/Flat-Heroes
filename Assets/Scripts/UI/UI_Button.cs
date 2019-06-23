@@ -9,12 +9,13 @@ using UnityStandardAssets.ImageEffects;
 
 public class UI_Button : MonoBehaviour
 {
-    public enum ButtonType { ActiveControll,Trigger,SceneLoad, StageSceneLoad, SceneLoadAddtive, ItemBuy,CharacterBuy,ScenePause,ItemSell};
+    public enum ButtonType { ActiveControll,Trigger,SceneLoad, StageSceneLoad, SceneLoadAddtive, ItemBuy,CharacterBuy,ScenePause,ItemSell,Gacha};
     public ButtonType buttonType;
     public GameObject targetUI;
     public int targetSceneNumber;
-    public enum PaymentType { Coin,BlackCrystal,Cash};
+    public enum PaymentType { Coin,BlackCrystal,Cash,AD};
     public PaymentType paymentType;
+    public GachaSystem.GachaType gachaType;
     public int stageType;
     public int paymentAmount;
     public int buyItemId;
@@ -113,6 +114,28 @@ public class UI_Button : MonoBehaviour
             case ButtonType.ItemSell:
                 SellStart();
                 break;
+            case ButtonType.Gacha:
+                GachaStart();
+                break;
+        }
+    }
+    void GachaStart()
+    {
+        if (!isCheckAlertOn)
+        {
+            StartCoroutine("CheckingGachaAlert");
+        }
+    }
+    void GachaProcessing()
+    {
+        if (Common.PaymentCheck(ref User.blackCrystal, paymentAmount))
+        {
+            OnButtonEffectSound();
+            UI_Manager.instance.PopupGetGacha(gachaType);
+        }
+        else
+        {
+            UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.blackCrystal, paymentAmount);
         }
     }
 
@@ -309,11 +332,32 @@ public class UI_Button : MonoBehaviour
         {
             UI_Manager.instance.ClosePopupAlertUI();
             SellItemProcessing();
+
         }
         else
         {
             UI_Manager.instance.ClosePopupAlertUI();
-            // 아니오를 클릭시
+        }
+        isCheckAlertOn = false;
+        yield return null;
+    }
+
+    IEnumerator CheckingGachaAlert()
+    {
+        isCheckAlertOn = true;
+        var alertPanel = UI_Manager.instance.ShowNeedAlert("", string.Format("<color='red'>'{0}'</color>을(를) <color='yellow'>{1} 수정</color>  으로 구매하시겠습니까?", GachaSystem.GachaTypeText[(int)gachaType], Common.GetThousandCommaText(paymentAmount)));
+        while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        if (alertPanel.GetComponentInChildren<UI_CheckButton>().isResult)
+        {
+            UI_Manager.instance.ClosePopupAlertUI();
+            GachaProcessing();
+        }
+        else
+        {
+            UI_Manager.instance.ClosePopupAlertUI();
         }
         isCheckAlertOn = false;
         yield return null;
@@ -408,6 +452,12 @@ public class ButtonInspectorEditor : Editor
             case UI_Button.ButtonType.ItemSell:
                 enumScript.callBackScript = (GameObject)EditorGUILayout.ObjectField("InventroyScript", enumScript.callBackScript, typeof(GameObject), true);
                 enumScript.sellItemId = EditorGUILayout.IntField("SellItemId", enumScript.sellItemId);
+                enumScript.audioClip = (AudioClip)EditorGUILayout.ObjectField("ButtonAudioClip", enumScript.audioClip, typeof(AudioClip), true);
+                break;
+            case UI_Button.ButtonType.Gacha:
+                enumScript.gachaType = (GachaSystem.GachaType)EditorGUILayout.EnumFlagsField("GachaType", enumScript.gachaType);
+                enumScript.paymentType = (UI_Button.PaymentType)EditorGUILayout.EnumFlagsField("PaymentType", enumScript.paymentType);
+                enumScript.paymentAmount = EditorGUILayout.IntField("Amount", enumScript.paymentAmount);
                 enumScript.audioClip = (AudioClip)EditorGUILayout.ObjectField("ButtonAudioClip", enumScript.audioClip, typeof(AudioClip), true);
                 break;
         }
