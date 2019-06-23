@@ -32,7 +32,7 @@ public class UI_GetGacha : MonoBehaviour
                 StartCoroutine(ShowGetGachas(gachaItems));
                 break;
             case GachaSystem.GachaType.SpecialOne:
-                Item gachaItem = GachaSystem.StartSpeicalGacha(ItemSystem.GetEquipmentItems());
+                Item gachaItem = GachaSystem.StartSpeicalGacha(ItemSystem.GetEquipmentItems(), User.gachaSeed);
                 StartCoroutine(ShowGetGacha(gachaItem));
                 break;
             case GachaSystem.GachaType.NormalFive:
@@ -40,11 +40,11 @@ public class UI_GetGacha : MonoBehaviour
                 StartCoroutine(ShowGetGachas(gachaItemsNormal));
                 break;
             case GachaSystem.GachaType.NormalOne:
-                Item gachaItemNormal = GachaSystem.StartNormalGacha(ItemSystem.GetEquipmentItems());
+                Item gachaItemNormal = GachaSystem.StartNormalGacha(ItemSystem.GetEquipmentItems(),User.gachaSeed);
                 StartCoroutine(ShowGetGacha(gachaItemNormal));
                 break;
             case GachaSystem.GachaType.FreeAd:
-                Item gachaItemFree = GachaSystem.StartSpeicalGacha(ItemSystem.GetEquipmentItems());
+                Item gachaItemFree = GachaSystem.StartSpeicalGacha(ItemSystem.GetEquipmentItems(), User.gachaSeed);
                 StartCoroutine(ShowGetGacha(gachaItemFree));
                 break;
         }

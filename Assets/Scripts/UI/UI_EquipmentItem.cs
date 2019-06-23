@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,8 @@ public class UI_EquipmentItem : MonoBehaviour
     public GameObject EquipmentActionPanel;
     public GameObject ItemListContentView;
     public UI_HeroInfo heroInfoPanelScript;
+
+    Button selectedButton;
 
     List<Item> userEquipmentItemList = new List<Item>();
 
@@ -45,19 +48,17 @@ public class UI_EquipmentItem : MonoBehaviour
         {
             if(equipmentItemId==0)
             {
-                InformationPanel.transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
-                InformationPanel.transform.GetComponentInChildren<Text>().enabled = false;
-                EquipmentActionPanel.SetActive(false);
+                InformationPanel.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemNoneImage();
+                InformationPanel.transform.GetComponentInChildren<Text>().text = "비어있음";
+                EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = "장착한 장비가 없습니다.";
             }
             else
             {
                 Item equipmentItemInfo = ItemSystem.GetUserEquipmentItem(equipmentItemId);
-                InformationPanel.transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
                 InformationPanel.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(equipmentItemId,true);
                 InformationPanel.transform.GetComponentInChildren<Text>().enabled = true;
-                InformationPanel.transform.GetComponentInChildren<Text>().text = equipmentItemInfo.name;
+                InformationPanel.transform.GetComponentInChildren<Text>().text = string.Format("{0}({1})", equipmentItemInfo.name, Enum.GetName(typeof(GachaSystem.GachaClass), (GachaSystem.GachaClass)equipmentItemInfo.itemClass - 1));
                 InformationPanel.transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(equipmentItemInfo.itemClass);
-                EquipmentActionPanel.SetActive(true);
                 EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = string.Format("{0}\r\n\r\n<color='yellow'>공격력 + {1}\r\n방어력 + {2}</color>", equipmentItemInfo.description, equipmentItemInfo.attack, equipmentItemInfo.defence);
                 EquipmentActionPanel.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = "장착해제";
                 EquipmentActionPanel.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
@@ -74,28 +75,32 @@ public class UI_EquipmentItem : MonoBehaviour
             for(var i = 0; i <userEquipmentItemList.Count; i++)
             {
                 GameObject itemSlot = Instantiate(ItemSlotPrefab, ItemListContentView.transform);
-                itemSlot.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(userEquipmentItemList[i].image);
+                itemSlot.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(userEquipmentItemList[i].image);
                 itemSlot.GetComponentInChildren<Text>().text = userEquipmentItemList[i].name;
                 int index = i;
                 itemSlot.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
                 itemSlot.GetComponentInChildren<Button>().onClick.AddListener(delegate
                 {
-                    OnClickItemInfoShow(userEquipmentItemList[index].customId);
+                    OnClickItemInfoShow(userEquipmentItemList[index].customId, itemSlot.GetComponentInChildren<Button>());
                 });
             }
         }
     }
-    public void OnClickItemInfoShow(int itemid)
+    public void OnClickItemInfoShow(int itemid, Button button)
     {
         if(InformationPanel!=null&&EquipmentActionPanel!=null)
         {
+            if (selectedButton != null)
+                selectedButton.interactable = true;
+            selectedButton = button;
+            selectedButton.interactable = false;
             Item item = ItemSystem.GetUserEquipmentItem(itemid);
             InformationPanel.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(item.id);
             InformationPanel.transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
             InformationPanel.transform.GetComponentInChildren<Text>().enabled = true;
-            InformationPanel.transform.GetComponentInChildren<Text>().text = item.name;
+            InformationPanel.transform.GetComponentInChildren<Text>().text = string.Format("{0}({1})", item.name, Enum.GetName(typeof(GachaSystem.GachaClass), (GachaSystem.GachaClass)item.itemClass - 1));
             InformationPanel.transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(item.itemClass);
-          EquipmentActionPanel.SetActive(true);
+            EquipmentActionPanel.SetActive(true);
             EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = string.Format("{0}\r\n\r\n<color='yellow'>공격력 + {1}\r\n방어력 + {2}</color>", item.description, item.attack, item.defence);
             EquipmentActionPanel.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = "장착하기";
             EquipmentActionPanel.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
@@ -103,6 +108,7 @@ public class UI_EquipmentItem : MonoBehaviour
             {
                 EquipmentEvent(item.customId);
             });
+
         }
     }
 

@@ -43,4 +43,6 @@ public class User
     public static int addAttackLevel;
     [SerializeField]
     public static int addDefenceLevel;
+    [SerializeField]
+    public static int gachaSeed;
 }

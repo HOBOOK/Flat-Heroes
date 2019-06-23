@@ -39,7 +39,7 @@ public class ItemSlot : MonoBehaviour
     private void OnValidate()
     {
         if(image==null)
-            image = transform.GetChild(0).GetChild(0).GetComponent<Image>();
+            image = transform.GetChild(0).GetComponent<Image>();
         if (nameText == null||countText==null)
         {
             foreach(var txt in transform.GetComponentsInChildren<Text>())

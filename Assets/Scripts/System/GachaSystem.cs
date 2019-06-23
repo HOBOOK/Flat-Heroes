@@ -12,21 +12,22 @@ public class GachaSystem
         List<Item> returnGachaItemList = new List<Item>();
         for(int i = 0; i<count; i++)
         {
-            Item item = StartSpeicalGacha(items);
+            Item item = StartSpeicalGacha(items,User.gachaSeed+i);
             if(item!=null)
             {
                 returnGachaItemList.Add(item);
                 ItemSystem.SetObtainItem(item.id);
             }
-
         }
-        
         return returnGachaItemList;
     }
 
-    public static Item StartSpeicalGacha(List<Item> items)
+    [SerializeField] static Random.State lastState;
+    public static Item StartSpeicalGacha(List<Item> items, int seed)
     {
+        Random.InitState(seed);
         int gachaClassNumber = Random.Range(0, 1000);
+        User.gachaSeed = Random.Range(0, 1000);
         GachaClass gachaClass;
         if (gachaClassNumber <= 5)
             gachaClass = GachaClass.SSS;
@@ -38,7 +39,6 @@ public class GachaSystem
             gachaClass = GachaClass.A;
         else
             gachaClass = GachaClass.B;
-
         List<Item> gachaItemList = new List<Item>();
         Item returnGachaItem = null;
         switch(gachaClass)
@@ -73,7 +73,7 @@ public class GachaSystem
         List<Item> returnGachaItemList = new List<Item>();
         for (int i = 0; i < count; i++)
         {
-            Item item = StartNormalGacha(items);
+            Item item = StartNormalGacha(items, User.gachaSeed+i);
             if (item != null)
             {
                 returnGachaItemList.Add(item);
@@ -83,9 +83,11 @@ public class GachaSystem
         return returnGachaItemList;
     }
 
-    public static Item StartNormalGacha(List<Item> items)
+    public static Item StartNormalGacha(List<Item> items, int seed)
     {
+        Random.InitState(seed);
         int gachaClassNumber = Random.Range(0, 1000);
+        User.gachaSeed = Random.Range(0, 1000);
         GachaClass gachaClass;
         if (gachaClassNumber > 0 && gachaClassNumber <= 50)
             gachaClass = GachaClass.S;

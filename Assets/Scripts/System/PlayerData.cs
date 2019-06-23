@@ -22,6 +22,7 @@ public class PlayerData
     public int addExpLevel;
     public int addAttackLevel;
     public int addDefenceLevel;
+    public int gachaSeed;
 
     public string name;
 
@@ -38,6 +39,7 @@ public class PlayerData
         stageDetailNumber = User.stageDetailNumber;
         stageHeros = User.stageHeros;
         lobbyHeros = User.lobbyHeros;
+        gachaSeed = User.gachaSeed;
         // End integer //
 
         // Start Lab//
