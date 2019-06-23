@@ -40,6 +40,26 @@ public class Common : MonoBehaviour
         }
         return false;
     }
+    public static string GetCoinCrystalEnergyText(int type)
+    {
+        string txt = "";
+        switch (type)
+        {
+            case 0:
+                txt = "코인";
+                break;
+            case 1:
+                txt = "수정";
+                break;
+            case 2:
+                txt = "포탈에너지";
+                break;
+            case 3:
+                txt = "광고";
+                break;
+        }
+        return txt;
+    }
     public static string GetCoinCrystalEnergyImagePath(int type)
     {
         string path = "";
@@ -53,6 +73,9 @@ public class Common : MonoBehaviour
                 break;
             case 2:
                 path = "Items/portalEnergy";
+                break;
+            case 3:
+                path = "UI/ui_ad";
                 break;
         }
         return path;

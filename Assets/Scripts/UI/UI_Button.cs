@@ -13,7 +13,7 @@ public class UI_Button : MonoBehaviour
     public ButtonType buttonType;
     public GameObject targetUI;
     public int targetSceneNumber;
-    public enum PaymentType { Coin,BlackCrystal,Cash,AD};
+    public enum PaymentType { Coin,BlackCrystal,Cash,Advertisement,None};
     public PaymentType paymentType;
     public GachaSystem.GachaType gachaType;
     public int stageType;
@@ -123,20 +123,41 @@ public class UI_Button : MonoBehaviour
     {
         if (!isCheckAlertOn)
         {
-            StartCoroutine("CheckingGachaAlert");
+            StartCoroutine(CheckingGachaAlert((int)paymentType));
         }
     }
     void GachaProcessing()
     {
-        if (Common.PaymentCheck(ref User.blackCrystal, paymentAmount))
+        switch (paymentType)
         {
-            OnButtonEffectSound();
-            UI_Manager.instance.PopupGetGacha(gachaType);
+            case PaymentType.Coin:
+                if (Common.PaymentCheck(ref User.coin, paymentAmount))
+                {
+                    OnButtonEffectSound();
+                    UI_Manager.instance.PopupGetGacha(gachaType);
+                }
+                else
+                {
+                    UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.coin, paymentAmount);
+                }
+                break;
+            case PaymentType.BlackCrystal:
+                if (Common.PaymentCheck(ref User.blackCrystal, paymentAmount))
+                {
+                    OnButtonEffectSound();
+                    UI_Manager.instance.PopupGetGacha(gachaType);
+                }
+                else
+                {
+                    UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.blackCrystal, paymentAmount);
+                }
+                break;
+            case PaymentType.Advertisement:
+                OnButtonEffectSound();
+                UI_Manager.instance.PopupGetGacha(gachaType);
+                break;
         }
-        else
-        {
-            UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.blackCrystal, paymentAmount);
-        }
+
     }
 
     void StartPause()
@@ -263,7 +284,7 @@ public class UI_Button : MonoBehaviour
             if (ItemSystem.UseItem(sellItemId, 1))
             {
                 SaveSystem.AddUserCoin(value);
-                UI_Manager.instance.ShowGetAlert("Items/coin", string.Format("<color='yellow'>{0}</color> 코인을 획득했습니다.", value));
+                UI_Manager.instance.ShowGetAlert("Items/coin", string.Format("<color='yellow'>{0}</color> 코인을 획득했습니다.", Common.GetThousandCommaText(value)));
                 if (callBackScript != null)
                 {
                     callBackScript.GetComponent<UI_Manager_InventoryTab>().OnValidate();
@@ -296,7 +317,7 @@ public class UI_Button : MonoBehaviour
     IEnumerator CheckingAlert(int type)
     {
         isCheckAlertOn = true;
-        var alertPanel = UI_Manager.instance.ShowNeedAlert("Items/" + Enum.GetName(typeof(PaymentType), paymentType), string.Format("<color='yellow'>'{0}' <size='24'>x </size>{1}</color>  사용하여 구매하시겠습니까?", Enum.GetName(typeof(PaymentType), paymentType), paymentAmount));
+        var alertPanel = UI_Manager.instance.ShowNeedAlert("Items/" + Enum.GetName(typeof(PaymentType), paymentType), string.Format("<color='yellow'>'{0}' <size='24'>x </size>{1}</color>  사용하여 구매하시겠습니까?", Common.GetCoinCrystalEnergyText(type), paymentAmount));
         while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
         {
             yield return new WaitForFixedUpdate();
@@ -342,10 +363,10 @@ public class UI_Button : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator CheckingGachaAlert()
+    IEnumerator CheckingGachaAlert(int type)
     {
         isCheckAlertOn = true;
-        var alertPanel = UI_Manager.instance.ShowNeedAlert("", string.Format("<color='red'>'{0}'</color>을(를) <color='yellow'>{1} 수정</color>  으로 구매하시겠습니까?", GachaSystem.GachaTypeText[(int)gachaType], Common.GetThousandCommaText(paymentAmount)));
+        var alertPanel = UI_Manager.instance.ShowNeedAlert(Common.GetCoinCrystalEnergyImagePath(type), string.Format("<color='red'>'{0}'</color>을(를) <color='yellow'>{1} {2}</color>  으로 구매하시겠습니까?", GachaSystem.GachaTypeText[(int)gachaType], Common.GetThousandCommaText(paymentAmount),Common.GetCoinCrystalEnergyText(type)));
         while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
         {
             yield return new WaitForFixedUpdate();
