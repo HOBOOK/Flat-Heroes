@@ -10,6 +10,11 @@
       <WeaponType>0</WeaponType>
       <Attack>20</Attack>
       <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
       <Value>1000</Value>
       <Image>Equipment/equipment_001</Image>
       <Count>0</Count>
@@ -26,6 +31,11 @@
       <WeaponType>0</WeaponType>
       <Attack>40</Attack>
       <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
       <Value>2000</Value>
       <Image>Equipment/equipment_002</Image>
       <Count>0</Count>
@@ -42,6 +52,11 @@
       <WeaponType>1</WeaponType>
       <Attack>80</Attack>
       <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
       <Value>5000</Value>
       <Image>Equipment/equipment_003</Image>
       <Count>0</Count>
@@ -56,8 +71,13 @@
       <Description>용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.</Description>
       <ItemType>0</ItemType>
       <WeaponType>1</WeaponType>
-      <Attack>60</Attack>
+      <Attack>40</Attack>
       <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>2</SkillEnergy>
       <Value>6000</Value>
       <Image>Equipment/equipment_004</Image>
       <Count>0</Count>
@@ -72,8 +92,13 @@
       <Description>짧고 휘두르기 편한 단검이다.</Description>
       <ItemType>0</ItemType>
       <WeaponType>1</WeaponType>
-      <Attack>15</Attack>
+      <Attack>0</Attack>
       <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>5</Critical>
+      <AttackSpeed>20</AttackSpeed>
+      <MoveSpeed>10</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
       <Value>1000</Value>
       <Image>Equipment/equipment_005</Image>
       <Count>0</Count>
@@ -91,6 +116,11 @@
       <WeaponType>0</WeaponType>
       <Attack>0</Attack>
       <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
       <Value>10000</Value>
       <Image>Items/abilityScroll</Image>
       <Count>0</Count>
@@ -107,6 +137,11 @@
       <WeaponType>0</WeaponType>
       <Attack>0</Attack>
       <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
       <Value>80000</Value>
       <Image>Items/blackCrystal</Image>
       <Count>1000</Count>
@@ -123,6 +158,11 @@
       <WeaponType>0</WeaponType>
       <Attack>0</Attack>
       <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
       <Value>3000</Value>
       <Image>Items/blackCrystal</Image>
       <Count>30</Count>
@@ -139,6 +179,11 @@
       <WeaponType>0</WeaponType>
       <Attack>0</Attack>
       <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+       <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
       <Value>7500</Value>
       <Image>Items/blackCrystal</Image>
       <Count>80</Count>
@@ -155,12 +200,17 @@
       <WeaponType>0</WeaponType>
       <Attack>0</Attack>
       <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
       <Value>13500</Value>
       <Image>Items/blackCrystal</Image>
       <Count>150</Count>
       <Enable>true</Enable>
       <DropRate>0</DropRate>
-              <Class>0</Class>
+      <Class>0</Class>
     </Item>
       <Item id="9005">
       <CustomId>0</CustomId>
@@ -171,12 +221,17 @@
       <WeaponType>0</WeaponType>
       <Attack>0</Attack>
       <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
       <Value>26000</Value>
       <Image>Items/blackCrystal</Image>
       <Count>300</Count>
       <Enable>true</Enable>
       <DropRate>0</DropRate>
-            <Class>0</Class>
+      <Class>0</Class>
     </Item>
     <Item id="9006">
       <CustomId>0</CustomId>
@@ -187,44 +242,59 @@
       <WeaponType>0</WeaponType>
       <Attack>0</Attack>
       <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
       <Value>42000</Value>
       <Image>Items/blackCrystal</Image>
       <Count>500</Count>
       <Enable>true</Enable>
       <DropRate>0</DropRate>
-          <Class>0</Class>
+      <Class>0</Class>
     </Item>
     <Item id="9011">
-             <CustomId>0</CustomId>
-            <EquipCharacterId>0</EquipCharacterId>
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
       <Name>포탈에너지 100개</Name>
       <Description>포탈에너지가 100개 담겨져있다.</Description>
       <ItemType>100</ItemType>
       <WeaponType>0</WeaponType>
       <Attack>0</Attack>
       <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
       <Value>1100</Value>
       <Image>Items/portalEnergy</Image>
       <Count>100</Count>
       <Enable>true</Enable>
       <DropRate>0</DropRate>
-          <Class>0</Class>
+      <Class>0</Class>
     </Item>
     <Item id="0">
-             <CustomId>0</CustomId>
-            <EquipCharacterId>0</EquipCharacterId>
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
       <Name>코인</Name>
       <Description>금으로 만들어진 화폐이다.</Description>
       <ItemType>100</ItemType>
       <WeaponType>0</WeaponType>
       <Attack>0</Attack>
       <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
       <Value>1</Value>
       <Image>Items/coin</Image>
       <Count>1</Count>
       <Enable>true</Enable>
       <DropRate>0</DropRate>
-          <Class>0</Class>
+      <Class>0</Class>
     </Item>
   </Items>
 </ItemCollection>

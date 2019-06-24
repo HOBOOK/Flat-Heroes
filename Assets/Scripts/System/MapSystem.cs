@@ -139,7 +139,29 @@ public static class MapSystem
     }
     public static List<Map> GetMapNode(int stageNumber)
     {
-        return maps.FindAll(item => item.stageNumber.Equals(stageNumber));
+        List<Map> mapNodes = new List<Map>();
+        List<Map> userMapNodes = userMaps.FindAll(x => x.stageNumber == stageNumber || x.stageNumber.Equals(stageNumber));
+        List<Map> allMapNodes = maps.FindAll(x => x.stageNumber == stageNumber || x.stageNumber.Equals(stageNumber));
+
+        foreach(var allMap in allMapNodes)
+        {
+            bool isExist = false;
+            foreach(var userMap in userMapNodes)
+            {
+                if(allMap.id==userMap.id||allMap.id.Equals(userMap.id))
+                {
+                    isExist = true;
+                    mapNodes.Add(userMap);
+                    break;
+                }
+            }
+            if(!isExist)
+            {
+                mapNodes.Add(allMap);
+            }
+        }
+
+        return mapNodes;
     }
     public static int GetMapCount()
     {

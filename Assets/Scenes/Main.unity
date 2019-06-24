@@ -70135,6 +70135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7643754165308130084}
+  - component: {fileID: 7643754165308130086}
   m_Layer: 16
   m_Name: Content
   m_TagString: Untagged
@@ -70142,6 +70143,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7643754165308130086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7643754165308130085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fdd7870f24e46a40b91e37601722a06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panel: {fileID: 5298918031713362752, guid: 988b17f24841a404f9abc24c16da9956, type: 3}
+  toggle: {fileID: 7643754164521661942}
+  addInput: {fileID: 0}
+  removeInput: {fileID: 0}
 --- !u!114 &7643754165500127857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70244,7 +70261,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7643754165663781750}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

@@ -157,7 +157,7 @@ public static class HeroSystem
     public static int GetHeroStatusMaxHp(ref HeroData data)
     {
         if(data.type==0)
-            return (200)+(data.strength * 2) + (data.intelligent) + (data.physical * 10) + (data.agility * 3)+AbilitySystem.GetAbilityStats(2);
+            return (200)+(data.strength * 2) + (data.intelligent) + (data.physical * 10) + (data.agility * 3)+AbilitySystem.GetAbilityStats(2)+ItemSystem.GetHeroEquipmentItemHp(ref data);
         else
             return (200) + (data.strength * 2) + (data.intelligent) + (data.physical * 10) + (data.agility * 3);
     }
@@ -165,7 +165,7 @@ public static class HeroSystem
     {
         if(data.type==0)
         {
-            return (int)((data.intelligent * 0.05f) + (data.agility * 0.2f)) + AbilitySystem.GetAbilityStats(3);
+            return (int)((data.intelligent * 0.05f) + (data.agility * 0.2f)) + AbilitySystem.GetAbilityStats(3) + ItemSystem.GetHeroEquipmentItemCritical(ref data);
         }
         else
         {
@@ -176,7 +176,7 @@ public static class HeroSystem
     {
         if(data.type==0)
         {
-            return data.strength+ (data.agility * 5) + AbilitySystem.GetAbilityStats(4);
+            return data.strength+ (data.agility * 5) + AbilitySystem.GetAbilityStats(4) + ItemSystem.GetHeroEquipmentItemAttackSpeed(ref data);
         }
         else
         {
@@ -187,7 +187,7 @@ public static class HeroSystem
     {
         if(data.type==0)
         {
-            return data.agility + 50 +AbilitySystem.GetAbilityStats(5);
+            return data.agility + 50 +AbilitySystem.GetAbilityStats(5) + ItemSystem.GetHeroEquipmentItemMoveSpeed(ref data);
         }
         else
         {
@@ -202,7 +202,7 @@ public static class HeroSystem
     {
         if(data.type==0)
         {
-            return data.intelligent + AbilitySystem.GetAbilityStats(6);
+            return data.intelligent + AbilitySystem.GetAbilityStats(6) + ItemSystem.GetHeroEquipmentItemSkillEnergy(ref data);
         }
         else
         {

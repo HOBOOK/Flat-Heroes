@@ -62,7 +62,7 @@ public class UI_EquipmentItem : MonoBehaviour
                 InformationPanel.transform.GetComponentInChildren<Text>().enabled = true;
                 InformationPanel.transform.GetComponentInChildren<Text>().text = string.Format("{0}({1})", equipmentItemInfo.name, Enum.GetName(typeof(GachaSystem.GachaClass), (GachaSystem.GachaClass)equipmentItemInfo.itemClass - 1));
                 InformationPanel.transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(equipmentItemInfo.itemClass);
-                EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = string.Format("{0}\r\n\r\n<color='yellow'>공격력 + {1}\r\n방어력 + {2}</color>", equipmentItemInfo.description, equipmentItemInfo.attack, equipmentItemInfo.defence);
+                EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = ItemSystem.GetEquipmentItemDescription(equipmentItemInfo);
                 EquipmentActionPanel.GetComponentInChildren<Button>().enabled = true;
                 EquipmentActionPanel.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = "장착해제";
                 EquipmentActionPanel.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
@@ -107,7 +107,7 @@ public class UI_EquipmentItem : MonoBehaviour
             InformationPanel.transform.GetComponentInChildren<Text>().text = string.Format("{0}({1})", item.name, Enum.GetName(typeof(GachaSystem.GachaClass), (GachaSystem.GachaClass)item.itemClass - 1));
             InformationPanel.transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(item.itemClass);
             EquipmentActionPanel.SetActive(true);
-            EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = string.Format("{0}\r\n\r\n<color='yellow'>공격력 + {1}\r\n방어력 + {2}</color>", item.description, item.attack, item.defence);
+            EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = ItemSystem.GetEquipmentItemDescription(item);
             EquipmentActionPanel.GetComponentInChildren<Button>().enabled = true;
             EquipmentActionPanel.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = "장착하기";
             EquipmentActionPanel.GetComponentInChildren<Button>().onClick.RemoveAllListeners();

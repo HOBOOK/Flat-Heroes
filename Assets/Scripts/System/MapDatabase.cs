@@ -134,6 +134,9 @@ public class MapDatabase
         XmlElement clearPoint = xmlDoc.CreateElement("ClearPoint");
         clearPoint.InnerText = data.clearPoint.ToString();
         child.AppendChild(clearPoint);
+        XmlElement stageNumber = xmlDoc.CreateElement("StageNumber");
+        stageNumber.InnerText = data.stageNumber.ToString();
+        child.AppendChild(stageNumber);
 
         // 암호화/////
         XmlElement elmRoot = xmlDoc.DocumentElement;
@@ -168,6 +171,10 @@ public class MapDatabase
         XmlElement clearPoint = xmlDoc.CreateElement("ClearPoint");
         clearPoint.InnerText = data.clearPoint.ToString();
         child.AppendChild(clearPoint);
+        XmlElement stageNumber = xmlDoc.CreateElement("StageNumber");
+        stageNumber.InnerText = data.stageNumber.ToString();
+        child.AppendChild(stageNumber);
+
 
         // 암호화/////
         XmlElement elmRoot = xmlDoc.DocumentElement;

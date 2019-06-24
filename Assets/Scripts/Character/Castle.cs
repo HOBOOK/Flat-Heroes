@@ -229,7 +229,7 @@ public class Castle : MonoBehaviour
         }
 
         HeroSystem.SaveHeros(Common.FindAlly());
-        MapSystem.MapClear(StageManagement.instance.stageInfo.mapNumber,1);
+        MapSystem.MapClear(StageManagement.instance.stageInfo.mapNumber,3);
         MissionSystem.AddClearPoint(MissionSystem.ClearType.StageClear);
         MissionSystem.PointSave();
         StageManagement.instance.StageClear();

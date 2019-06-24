@@ -34,6 +34,21 @@ public class Item : ICloneable
     [XmlElement("Defence")]
     public int defence;
 
+    [XmlElement("Hp")]
+    public int hp;
+
+    [XmlElement("Critical")]
+    public int critical;
+
+    [XmlElement("AttackSpeed")]
+    public int attackSpeed;
+
+    [XmlElement("MoveSpeed")]
+    public int moveSpeed;
+
+    [XmlElement("SkillEnergy")]
+    public int skillEnergy;
+
     [XmlElement("Value")]
     public int value;
 
@@ -64,6 +79,11 @@ public class Item : ICloneable
         newItem.weapontype = this.weapontype;
         newItem.attack = this.attack;
         newItem.defence = this.defence;
+        newItem.hp = this.hp;
+        newItem.critical = this.critical;
+        newItem.attackSpeed = this.attackSpeed;
+        newItem.moveSpeed = this.moveSpeed;
+        newItem.skillEnergy = this.skillEnergy;
         newItem.value = this.value;
         newItem.image = this.image;
         newItem.enable = this.enable;

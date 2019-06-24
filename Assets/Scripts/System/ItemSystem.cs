@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -303,6 +304,93 @@ public static class ItemSystem
             }
         }
         return defence;
+    }
+    public static int GetHeroEquipmentItemHp(ref HeroData heroData)
+    {
+        int hp = 0;
+        int[] heroItems = HeroSystem.GetHeroEquipmentItems(heroData.id);
+        for (int i = 0; i < heroItems.Length; i++)
+        {
+            if (heroItems[i] != 0)
+            {
+                Item item = ItemSystem.GetUserEquipmentItem(heroItems[i]);
+
+                hp += item != null ? item.hp : 0;
+            }
+        }
+        return hp;
+    }
+    public static int GetHeroEquipmentItemCritical(ref HeroData heroData)
+    {
+        int cri = 0;
+        int[] heroItems = HeroSystem.GetHeroEquipmentItems(heroData.id);
+        for (int i = 0; i < heroItems.Length; i++)
+        {
+            if (heroItems[i] != 0)
+            {
+                Item item = ItemSystem.GetUserEquipmentItem(heroItems[i]);
+                cri += item != null ? item.critical : 0;
+            }
+        }
+        return cri;
+    }
+    public static int GetHeroEquipmentItemAttackSpeed(ref HeroData heroData)
+    {
+        int aSpeed = 0;
+        int[] heroItems = HeroSystem.GetHeroEquipmentItems(heroData.id);
+        for (int i = 0; i < heroItems.Length; i++)
+        {
+            if (heroItems[i] != 0)
+            {
+                Item item = ItemSystem.GetUserEquipmentItem(heroItems[i]);
+                aSpeed += item != null ? item.attackSpeed : 0;
+            }
+        }
+        return aSpeed;
+    }
+    public static int GetHeroEquipmentItemMoveSpeed(ref HeroData heroData)
+    {
+        int mSpeed = 0;
+        int[] heroItems = HeroSystem.GetHeroEquipmentItems(heroData.id);
+        for (int i = 0; i < heroItems.Length; i++)
+        {
+            if (heroItems[i] != 0)
+            {
+                Item item = ItemSystem.GetUserEquipmentItem(heroItems[i]);
+                mSpeed += item != null ? item.moveSpeed : 0;
+            }
+        }
+        return mSpeed;
+    }
+    public static int GetHeroEquipmentItemSkillEnergy(ref HeroData heroData)
+    {
+        int energy = 0;
+        int[] heroItems = HeroSystem.GetHeroEquipmentItems(heroData.id);
+        for (int i = 0; i < heroItems.Length; i++)
+        {
+            if (heroItems[i] != 0)
+            {
+                Item item = ItemSystem.GetUserEquipmentItem(heroItems[i]);
+                energy += item != null ? item.skillEnergy : 0;
+            }
+        }
+        return energy;
+    }
+    public static string GetEquipmentItemDescription(Item item)
+    {
+        StringBuilder sb = new StringBuilder();
+        string[] itemAbilitiesTxt = { "공격력", "방어력", "체력", "치명확률", "공격속도", "이동속도", "기술력" };
+        string[] itemAbilities = { item.attack.ToString(), item.defence.ToString(), item.hp.ToString(), item.critical.ToString(), item.attackSpeed.ToString(), item.moveSpeed.ToString(), item.skillEnergy.ToString() };
+
+        for(int i = 0; i < itemAbilitiesTxt.Length; i++)
+        {
+            if(itemAbilities[i]!="0"||!itemAbilities[i].Equals("0"))
+            {
+                sb.Append(string.Format("<color='green'>{0} + {1}</color>\r\n",itemAbilitiesTxt[i],itemAbilities[i]));
+            }
+        }
+        sb.Append("\r\n"+item.description);
+        return sb.ToString();
     }
 
     #endregion

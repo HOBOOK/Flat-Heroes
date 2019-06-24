@@ -101,16 +101,24 @@ public class UI_MapSelect : MonoBehaviour
                         if(!MapSystem.isAbleMap(mapNode.id))
                         {
                             mapNodePrefab.transform.GetChild(0).GetComponent<Image>().overrideSprite = Resources.Load<Sprite>("UI/ui_lock_transparent");
+                            mapNodePrefab.transform.GetChild(1).gameObject.SetActive(false);
                         }
                         else
                         {
-                            if (mapNode.clearPoint < 1)
+                            if (mapNode.clearPoint > 2)
                             {
-                                mapNodePrefab.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0);
+                                mapNodePrefab.transform.GetChild(0).gameObject.SetActive(true);
+                                mapNodePrefab.transform.GetChild(1).gameObject.SetActive(true);
+                            }
+                            else if(mapNode.clearPoint==2)
+                            {
+                                mapNodePrefab.transform.GetChild(0).gameObject.SetActive(true);
+                                mapNodePrefab.transform.GetChild(1).gameObject.SetActive(false);
                             }
                             else
                             {
-                                mapNodePrefab.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                                mapNodePrefab.transform.GetChild(0).gameObject.SetActive(false);
+                                mapNodePrefab.transform.GetChild(1).gameObject.SetActive(false);
                             }
                         }
                     }

@@ -83,7 +83,7 @@ public class UI_Manager_InventoryTab : MonoBehaviour
         {
             itemInfoImage.sprite = ItemSystem.GetItemImage(itemSlots[index].Item.id);
             itemInfoName.text = itemSlots[index].Item.name;
-            itemInfoDescription.text = itemSlots[index].Item.description;
+            itemInfoDescription.text = ItemSystem.GetEquipmentItemDescription(itemSlots[index].Item);
             itemInfoImage.enabled = true;
             itemInfoName.enabled = true;
             itemInfoDescription.enabled = true;

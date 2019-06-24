@@ -102,7 +102,11 @@ public class GameManagement : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.F3))
         {
-            ItemSystem.SetObtainItem(1001,1);
+            ItemSystem.SetObtainItem(1,1);
+            ItemSystem.SetObtainItem(2, 1);
+            ItemSystem.SetObtainItem(3, 1);
+            ItemSystem.SetObtainItem(4, 1);
+            ItemSystem.SetObtainItem(5, 1);
         }
         else if (Input.GetKeyDown(KeyCode.F4))
         {
