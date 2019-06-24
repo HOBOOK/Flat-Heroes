@@ -214,10 +214,10 @@
       <Level>1</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>2</Strength>
-      <Intelligent>0</Intelligent>
-      <Physical>7</Physical>
-      <Agility>0</Agility>
+      <Strength>20</Strength>
+      <Intelligent>10</Intelligent>
+      <Physical>70</Physical>
+      <Agility>5</Agility>
       <Chat>크우우르릉!!,크릌..!!</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>0</Skill>

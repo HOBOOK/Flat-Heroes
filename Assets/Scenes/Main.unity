@@ -2517,7 +2517,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 758e962cb2f671b49ac252ff0c71f843, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 91646865bacd1bd45a7a41595a1909eb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3126,7 +3126,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 758e962cb2f671b49ac252ff0c71f843, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a151c3dd250e7004ba07aea41ac8b2fd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3318,7 +3318,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 14.01, y: 4.23}
+    oldSize: {x: 1.28, y: 2.56}
     newSize: {x: 14.01, y: 4.23}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6425,7 +6425,7 @@ SpriteRenderer:
   m_SortingLayerID: -332948413
   m_SortingLayer: -1
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 6bf43c2f427a1db40819b241b9d7c446, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fc6e787e3dce1c742ae845fcb2702132, type: 3}
   m_Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -25184,7 +25184,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 758e962cb2f671b49ac252ff0c71f843, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 191adef4459d3bd47b628fed2098072f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -31902,7 +31902,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 758e962cb2f671b49ac252ff0c71f843, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b5fe3ab1ab371b04b83510b80ab34bee, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -37061,7 +37061,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 758e962cb2f671b49ac252ff0c71f843, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 191adef4459d3bd47b628fed2098072f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
