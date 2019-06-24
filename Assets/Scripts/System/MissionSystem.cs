@@ -43,7 +43,8 @@ public class MissionSystem
             }
         }
 
-        if(missions!=null&&userMissions!=null)
+        GetDayMissions();
+        if (missions!=null&&userMissions!=null)
         {
             Debugging.LogSystem("MissionDatabase is loaded Succesfully.");
         }

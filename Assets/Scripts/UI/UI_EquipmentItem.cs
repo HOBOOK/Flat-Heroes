@@ -48,18 +48,22 @@ public class UI_EquipmentItem : MonoBehaviour
         {
             if(equipmentItemId==0)
             {
-                InformationPanel.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemNoneImage();
+                InformationPanel.transform.GetChild(0).GetComponent<Image>().enabled = false;
                 InformationPanel.transform.GetComponentInChildren<Text>().text = "비어있음";
                 EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = "장착한 장비가 없습니다.";
+                EquipmentActionPanel.GetComponentInChildren<Button>().enabled = false;
+                EquipmentActionPanel.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = "";
             }
             else
             {
                 Item equipmentItemInfo = ItemSystem.GetUserEquipmentItem(equipmentItemId);
+                InformationPanel.transform.GetChild(0).GetComponent<Image>().enabled = true;
                 InformationPanel.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(equipmentItemId,true);
                 InformationPanel.transform.GetComponentInChildren<Text>().enabled = true;
                 InformationPanel.transform.GetComponentInChildren<Text>().text = string.Format("{0}({1})", equipmentItemInfo.name, Enum.GetName(typeof(GachaSystem.GachaClass), (GachaSystem.GachaClass)equipmentItemInfo.itemClass - 1));
                 InformationPanel.transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(equipmentItemInfo.itemClass);
                 EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = string.Format("{0}\r\n\r\n<color='yellow'>공격력 + {1}\r\n방어력 + {2}</color>", equipmentItemInfo.description, equipmentItemInfo.attack, equipmentItemInfo.defence);
+                EquipmentActionPanel.GetComponentInChildren<Button>().enabled = true;
                 EquipmentActionPanel.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = "장착해제";
                 EquipmentActionPanel.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
                 EquipmentActionPanel.GetComponentInChildren<Button>().onClick.AddListener(delegate
@@ -76,6 +80,7 @@ public class UI_EquipmentItem : MonoBehaviour
             {
                 GameObject itemSlot = Instantiate(ItemSlotPrefab, ItemListContentView.transform);
                 itemSlot.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(userEquipmentItemList[i].image);
+                itemSlot.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(userEquipmentItemList[i].itemClass);
                 itemSlot.GetComponentInChildren<Text>().text = userEquipmentItemList[i].name;
                 int index = i;
                 itemSlot.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
@@ -95,6 +100,7 @@ public class UI_EquipmentItem : MonoBehaviour
             selectedButton = button;
             selectedButton.interactable = false;
             Item item = ItemSystem.GetUserEquipmentItem(itemid);
+            InformationPanel.transform.GetChild(0).GetComponent<Image>().enabled = true;
             InformationPanel.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(item.id);
             InformationPanel.transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
             InformationPanel.transform.GetComponentInChildren<Text>().enabled = true;
@@ -102,6 +108,7 @@ public class UI_EquipmentItem : MonoBehaviour
             InformationPanel.transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(item.itemClass);
             EquipmentActionPanel.SetActive(true);
             EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = string.Format("{0}\r\n\r\n<color='yellow'>공격력 + {1}\r\n방어력 + {2}</color>", item.description, item.attack, item.defence);
+            EquipmentActionPanel.GetComponentInChildren<Button>().enabled = true;
             EquipmentActionPanel.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = "장착하기";
             EquipmentActionPanel.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
             EquipmentActionPanel.GetComponentInChildren<Button>().onClick.AddListener(delegate

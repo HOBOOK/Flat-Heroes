@@ -220,7 +220,9 @@ public class UI_Manager_AbilityTab : MonoBehaviour
         int tempIndex = 0;
         float time = 0;
         UI_Manager.instance.PopupInterActiveCover.SetActive(true);
+        Random.InitState(User.gachaSeed);
         int selectedIndex = Random.Range(0, abilitySlotList.Count);
+        User.gachaSeed = Random.Range(0, 1000);
         SelectImage.GetComponent<Image>().enabled = true;
         while (time<1)
         {
