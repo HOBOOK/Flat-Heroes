@@ -9,20 +9,17 @@ public class Boss : MonoBehaviour
     public int maxHp;
     bool isEnd = false;
     public Hero bossPrefabData;
-    void Start()
+    public void StartBoss()
     {
         isEnd = false;
-        Common.hitTargetObject = this.gameObject;
-        GUI_Manager.instance.OpenHpUI(this.gameObject);
-
         if (bossPrefabData == null)
         {
             bossPrefabData = this.GetComponent<Hero>();
             maxHp = bossPrefabData.status.maxHp;
             hp = bossPrefabData.status.hp;
+            GUI_Manager.instance.OpenHpUI(this.gameObject);
         }
     }
-
     private void Update()
     {
         if(bossPrefabData!=null&&!isEnd)

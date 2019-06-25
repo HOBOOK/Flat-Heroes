@@ -207,6 +207,7 @@ public class UI_MapSelect : MonoBehaviour
         SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_button_default);
         if (MapSystem.isAbleMap(mapId))
         {
+            currentMapId = mapId;
             mapNameText.text = MapSystem.GetMap(mapId).name;
             mapDescriptionText.text = MapSystem.GetMap(mapId).description;
             foreach (var node in mapNodeList)

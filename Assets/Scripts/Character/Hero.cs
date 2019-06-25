@@ -352,7 +352,11 @@ public class Hero : MonoBehaviour
         {
             enemys.Add(enemy);
             if (target == Common.hitTargetObject)
+            {
                 target = null;
+                FindEnemys(true);
+            }
+
         }
     }
     bool TargetAliveCheck(GameObject obj)
@@ -470,6 +474,10 @@ public class Hero : MonoBehaviour
             if(skillData!=null)
             {
                 Debugging.LogSystem(string.Format("{0} 의 스킬 이름 :{1} , 레벨:{2}", HeroName, skillData.name, SkillSystem.GetUserSkillLevel(skillData.id)));
+            }
+            if(this.id>1000)
+            {
+                this.GetComponent<Boss>().StartBoss();
             }
         }
         else
@@ -737,7 +745,7 @@ public class Hero : MonoBehaviour
         animator.SetBool("isRun", false);
 
 
-        if (!isAttack && !isUnBeat && !isWait && !isStunning && !isAirborne&&!isClimb&&!isClimbing&&!isSkillAttack)
+        if (!isAttack && !isWait && !isStunning && !isAirborne&&!isClimb&&!isClimbing&&!isSkillAttack)
         {
             StartCoroutine("Attacking");
         }
@@ -1818,9 +1826,12 @@ public class Hero : MonoBehaviour
     }
     private void OpenHpBar(bool isBlue = false)
     {
-        hpUI = ObjectPool.Instance.PopFromPool("hpEnemyUI");
-        hpUI.GetComponent<UI_hp>().OpenHpUI(this.gameObject, isBlue);
-        hpUI.gameObject.SetActive(true);
+        if(this.GetComponent<Boss>()==null)
+        {
+            hpUI = ObjectPool.Instance.PopFromPool("hpEnemyUI");
+            hpUI.GetComponent<UI_hp>().OpenHpUI(this.gameObject, isBlue);
+            hpUI.gameObject.SetActive(true);
+        }
     }
     private void ShowHpBar(int dam=0)
     {

@@ -444,14 +444,15 @@ public static class ItemSystem
     }
     public static Sprite GetItemImage(int id, bool isEquipment = false)
     {
-        Sprite sprite;
-        if(isEquipment)
-            sprite= Resources.Load<Sprite>(userItems.Find(item => item.customId == id).image);
+        Item item;
+        if (isEquipment)
+            item = userItems.Find(x => x.customId == id);
         else
-            sprite= Resources.Load<Sprite>(items.Find(item => item.id == id).image);
-        if (sprite == null)
-            sprite = GetItemNoneImage();
-        return sprite;
+            item = userItems.Find(x => x.id == id);
+        if (item == null)
+            return GetItemNoneImage();
+        else
+            return Resources.Load<Sprite>(item.image);
     }
     public static Sprite GetItemNoneImage()
     {

@@ -80,6 +80,7 @@ public class GUI_Manager : MonoBehaviour
         sliderContainerRectTransform.sizeDelta = new Vector2(Mathf.Clamp(GetMaxHp() * 0.01f, 250, 300), 80);
         panelHpTime = 0.0f;
         currentValue = GetCurrentHp();
+        Debugging.Log(">>>>>>" + GetCurrentHp() / GetMaxHp());
         PanelCastleHP.transform.GetChild(0).GetComponent<Slider>().value = GetCurrentHp() / GetMaxHp();
         PanelCastleHP.transform.GetChild(1).GetComponentInChildren<Text>().text = currentHp.ToString();
         if (isBlue)

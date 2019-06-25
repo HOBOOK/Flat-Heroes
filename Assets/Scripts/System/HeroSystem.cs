@@ -143,9 +143,9 @@ public static class HeroSystem
     public static int GetHeroStatusAttack(ref HeroData data)
     {
         if (data.type == 0)
-            return (10) + (data.strength * 5) + (data.intelligent * 4) + (data.physical) + (data.agility * 2) + AbilitySystem.GetAbilityStats(0) + ItemSystem.GetHeroEquipmentItemAttack(ref data) + LabSystem.GetAddAttack(User.addAttackLevel);
+            return (10) + (data.strength * 5) + (data.intelligent * 4) + (data.agility * 2) + AbilitySystem.GetAbilityStats(0) + ItemSystem.GetHeroEquipmentItemAttack(ref data) + LabSystem.GetAddAttack(User.addAttackLevel);
         else
-            return (10) + (data.strength * 5) + (data.intelligent * 4) + (data.physical) + (data.agility * 2);
+            return (10) + (data.strength * 5) + (data.intelligent * 4) +(data.agility * 2);
     }
     public static int GetHeroStatusDefence(ref HeroData data)
     {
@@ -157,9 +157,9 @@ public static class HeroSystem
     public static int GetHeroStatusMaxHp(ref HeroData data)
     {
         if(data.type==0)
-            return (200)+(data.strength * 2) + (data.intelligent) + (data.physical * 10) + (data.agility * 3)+AbilitySystem.GetAbilityStats(2)+ItemSystem.GetHeroEquipmentItemHp(ref data);
+            return (200)+(data.strength * 2) + (data.intelligent) + (data.physical * 15) + (data.agility * 3)+AbilitySystem.GetAbilityStats(2)+ItemSystem.GetHeroEquipmentItemHp(ref data);
         else
-            return (200) + (data.strength * 2) + (data.intelligent) + (data.physical * 10) + (data.agility * 3);
+            return (200) + (data.strength * 2) + (data.intelligent) + (data.physical * 15) + (data.agility * 3);
     }
     public static int GetHeroStatusCriticalPercent(ref HeroData data)
     {

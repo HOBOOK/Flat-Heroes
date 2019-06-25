@@ -27,13 +27,13 @@ public class Castle : MonoBehaviour
     {
         maxHp = hp;
         enemySpawnPoint = GameObject.Find("EnemysHero").transform;
-        firstPos = this.transform.position;
         isGod = false;
     }
     void Start()
     {
         Common.hitTargetObject = this.gameObject;
         GUI_Manager.instance.OpenHpUI(this.gameObject);
+        firstPos = this.transform.position;
         SetSpawnMonster();
         FirstSpawn();
         SetEffect();
