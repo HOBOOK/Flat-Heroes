@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.22387487
+  m_Length: 0.22387473
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 8820134058833269311}
   m_AttachedIK: {fileID: 8934693645529596919}
@@ -524,7 +524,6 @@ MonoBehaviour:
   status:
     level: 1
     exp: 0
-    addAttack: 8
     attack: 848
     defence: 68
     hp: 508
@@ -700,8 +699,8 @@ MonoBehaviour:
   doFace: {fileID: 21300000, guid: 55c93b50805b69b4783ad4346720880d, type: 3}
   eyeOffFace: {fileID: 21300000, guid: 4376934282c73fe4f939e583312d2f2c, type: 3}
   hitFace: {fileID: 21300000, guid: df20e960c5ebf4e4fb48cd33273afcb7, type: 3}
-  mouceFace: {fileID: 21300000, guid: 9dd2a1e750ef7824daed32245f734db7, type: 3}
-  currentSprite: {fileID: 21300000, guid: 9dd2a1e750ef7824daed32245f734db7, type: 3}
+  mouceFace: {fileID: 0}
+  currentSprite: {fileID: 0}
   faceType: 0
 --- !u!1 &8821658973660848403
 GameObject:
@@ -1030,7 +1029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.2339222
+  m_Length: 0.23392227
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 8819937205162176985}
   m_AttachedIK: {fileID: 8935030500479877819}
@@ -1917,7 +1916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.29008874
+  m_Length: 0.29008877
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 8825270897178394671}
   m_AttachedIK: {fileID: 8930745822836439381}
@@ -2284,7 +2283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.2374114
+  m_Length: 0.2374117
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 8825128984984183839}
   m_AttachedIK: {fileID: 8934892461439045039}

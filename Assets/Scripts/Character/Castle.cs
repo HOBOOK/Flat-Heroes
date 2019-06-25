@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Castle : MonoBehaviour
 {
+    public int id;
     public int hp;
     [HideInInspector]
     public int maxHp;
@@ -33,7 +34,21 @@ public class Castle : MonoBehaviour
     {
         Common.hitTargetObject = this.gameObject;
         GUI_Manager.instance.OpenHpUI(this.gameObject);
+        SetSpawnMonster();
         FirstSpawn();
+        SetEffect();
+    }
+    void SetEffect()
+    {
+        GameObject shieldEffect = EffectPool.Instance.PopFromPool("ShieldYellow", this.transform);
+        shieldEffect.transform.localPosition = Vector3.zero;
+        GameObject auraEffect = EffectPool.Instance.PopFromPool("MagicAuraYellow", this.transform);
+        auraEffect.transform.localPosition = Vector3.zero;
+    }
+    void SetSpawnMonster()
+    {
+        SpawnEnemy spawnEnemy = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(501), 3);
+        spawnEnemys.Add(spawnEnemy);
     }
     private void Update()
     {
@@ -227,14 +242,7 @@ public class Castle : MonoBehaviour
             effect.SetActive(true);
             yield return new WaitForSeconds(0.2f);
         }
-
-        HeroSystem.SaveHeros(Common.FindAlly());
-        MapSystem.MapClear(StageManagement.instance.stageInfo.mapNumber,3);
-        MissionSystem.AddClearPoint(MissionSystem.ClearType.StageClear);
-        MissionSystem.PointSave();
         StageManagement.instance.StageClear();
-
-        UI_Manager.instance.OpenEndGamePanel(true);
         this.gameObject.SetActive(false);
         yield return null;
     }
@@ -293,6 +301,14 @@ public class Castle : MonoBehaviour
         public GameObject enemyPrefab;
         public int count;
         public bool isSpawnEnd = false;
+
+        SpawnEnemy() { }
+        public SpawnEnemy(GameObject prefab, int cnt)
+        {
+            enemyPrefab = prefab;
+            count = cnt;
+            isSpawnEnd = false;
+        }
     }
 
 }

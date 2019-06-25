@@ -91,20 +91,20 @@ public class AssetBundleManager : MonoBehaviour
                 {
                     AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(uwr);
                     Debugging.Log(bundle.name);
-                    var materials = bundle.LoadAllAssets<Material>();
-                    foreach (Material m in materials)
-                    {
-                        var shaderName = m.shader.name;
-                        var newShader = Shader.Find(shaderName);
-                        if (newShader != null)
-                        {
-                            m.shader = newShader;
-                        }
-                        else
-                        {
-                            Debug.LogWarning("unable to refresh shader: " + shaderName + " in material " + m.name);
-                        }
-                    }
+                    //var materials = bundle.LoadAllAssets<Material>();
+                    //foreach (Material m in materials)
+                    //{
+                    //    var shaderName = m.shader.name;
+                    //    var newShader = Shader.Find(shaderName);
+                    //    if (newShader != null)
+                    //    {
+                    //        m.shader = newShader;
+                    //    }
+                    //    else
+                    //    {
+                    //        Debug.LogWarning("unable to refresh shader: " + shaderName + " in material " + m.name);
+                    //    }
+                    //}
                     AssetBundleNode node = new AssetBundleNode(url, version, removeAll, bundle);
                     dicAssetBundle.Add(keyName, node);
                     lstKeyName.Add(keyName);

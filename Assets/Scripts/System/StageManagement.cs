@@ -18,6 +18,9 @@ public class StageManagement : MonoBehaviour
     private static int MonsterCount;
     public Common.StageModeType stageModeType;
 
+    public Transform CastlePoint;
+    public Transform BossPoint;
+
     private void Awake()
     {
         if (instance == null)
@@ -36,7 +39,7 @@ public class StageManagement : MonoBehaviour
         userInfo.initUserInfo();
         stageInfo = GameManagement.instance.GetStageInfo();
         stageInfo.initStage();
-        if(stageModeType==Common.StageModeType.Main)
+        if (stageModeType == Common.StageModeType.Main)
         {
             Map map = MapSystem.GetMap(stageInfo.mapNumber);
             SoundManager.instance.BgmSourceChange(AudioClipManager.instance.StageBgm);
@@ -44,19 +47,21 @@ public class StageManagement : MonoBehaviour
             {
                 case 0:
                     UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "플랫 에너지를 흡수하는 구조물 파괴.";
+                    InitCastle();
                     break;
                 case 1:
                     UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "모든 적을 섬멸.";
                     break;
                 case 2:
                     UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "보스 격퇴.";
+                    InitBoss();
                     break;
             }
             mapnameText.text = map.name;
             if (Map != null)
                 MapSystem.SetMapSprite(stageInfo.stageNumber, ref Map);
         }
-        else if(stageModeType==Common.StageModeType.Infinite)
+        else if (stageModeType == Common.StageModeType.Infinite)
         {
             SoundManager.instance.BgmSourceChange(AudioClipManager.instance.StageBgm);
             UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "가능할 때까지 모든적을 섬멸.";
@@ -65,21 +70,39 @@ public class StageManagement : MonoBehaviour
         CharactersManager.instance.SetStagePositionHeros();
         StartCoroutine("StageStartEffect");
     }
+    private void InitCastle()
+    {
+        GameObject castle = Instantiate(PrefabsDatabaseManager.instance.GetCastlePrefab(1), CastlePoint);
+        if(castle!=null)
+        {
+            castle.transform.position = CastlePoint.position;
+            castle.gameObject.SetActive(true);
+        }
+    }
+    private void InitBoss()
+    {
+        GameObject boss = Instantiate(PrefabsDatabaseManager.instance.GetMonsterPrefab(1001), BossPoint);
+        if (boss != null)
+        {
+            boss.transform.position = BossPoint.position;
+            boss.gameObject.SetActive(true);
+        }
+    }
     private void ShowGoalTitle()
     {
         UI_Manager.instance.ShowTitle();
     }
     private void FixedUpdate()
     {
-        if(stageInfo!=null&&!isEndGame)
+        if (stageInfo != null && !isEndGame)
         {
             stageInfo.stageTime += Time.fixedUnscaledDeltaTime;
             EnergyUpdate();
 
             checkingHeroAliveTime += Time.fixedUnscaledDeltaTime;
-            if(checkingHeroAliveTime>1.0f)
+            if (checkingHeroAliveTime > 1.0f)
             {
-                if(CheckHerosEnd())
+                if (CheckHerosEnd())
                 {
                     HeroSystem.SaveHeros(Common.FindAlly());
                     UI_Manager.instance.OpenEndGamePanel(false);
@@ -95,7 +118,7 @@ public class StageManagement : MonoBehaviour
         Common.isBlackUpDown = true;
         yield return new WaitForSeconds(7.0f);
         Common.isBlackUpDown = false;
-        while(!Camera.main.GetComponent<CameraEffectHandler>().isBlackEffectClear)
+        while (!Camera.main.GetComponent<CameraEffectHandler>().isBlackEffectClear)
         {
             yield return null;
         }
@@ -113,7 +136,7 @@ public class StageManagement : MonoBehaviour
     private bool CheckHerosEnd()
     {
         int cnt = 0;
-        for(int i = 0; i < HeroPoint.childCount; i++)
+        for (int i = 0; i < HeroPoint.childCount; i++)
         {
             if (HeroPoint.GetChild(i).gameObject.activeSelf)
                 cnt++;
@@ -144,17 +167,29 @@ public class StageManagement : MonoBehaviour
     {
         dPoint += 1;
     }
-    
+
     public void StageClear()
     {
+        StartCoroutine("StageClearing");
+    }
+
+    public IEnumerator StageClearing()
+    {
+        HeroSystem.SaveHeros(Common.FindAlly());
+        MapSystem.MapClear(stageInfo.mapNumber, stageInfo.stageClearPoint);
+        MissionSystem.AddClearPoint(MissionSystem.ClearType.StageClear);
+        MissionSystem.PointSave();
         SaveSystem.AddUserCoin(stageInfo.stageCoin);
         SaveSystem.ExpUp(stageInfo.stageExp);
         SaveSystem.SavePlayer();
         var getItems = GetStageItems();
-        for(var i = 0; i < getItems.Count; i++)
+        for (var i = 0; i < getItems.Count; i++)
         {
             ItemSystem.SetObtainItem(getItems[i].id);
         }
+        UI_Manager.instance.OpenEndGamePanel(true);
+        this.gameObject.SetActive(false);
+        yield return null;
     }
     public UserInfo GetUserInfo()
     {
@@ -231,6 +266,7 @@ public class StageInfo
     public float stageTime;
     public float stageGetTime;
     public int stageGetEnergy;
+    public int stageClearPoint;
     public List<int> stageGetItems;
     public StageInfo() { }
     public StageInfo(int mapId)
@@ -248,6 +284,7 @@ public class StageInfo
         stageMaxEnergy = LabSystem.MaxEnergy;
         stageExp = 0;
         stageGetItems = new List<int>();
+        stageClearPoint = 0;
 
         Debugging.Log("스테이지 씬에 맵로딩 완료. >> " + this.stageNumber + " 스테이지의 " + this.mapNumber + " 맵");
     }

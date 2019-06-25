@@ -12,6 +12,7 @@ public class PrefabsDatabaseManager : MonoBehaviour
     public GameObject heroLobbyPoint;
     public static List<GameObject> heroPrefabList = new List<GameObject>();
     public static List<GameObject> monsterPrefabList = new List<GameObject>();
+    public static List<GameObject> castlePrefabList = new List<GameObject>();
 
     private void Awake()
     {
@@ -39,20 +40,15 @@ public class PrefabsDatabaseManager : MonoBehaviour
         }
 
     }
-
-    public void GetHeroList()
-    {
-        string str = "";
-        foreach(var i in heroPrefabList)
-        {
-            str += i.name + "\r\n";
-        }
-        Debugging.Log("HeroPrefabList : "+str);
-    }
-
     public void AddPrefabToMonsterList(GameObject prefab)
     {
-        monsterPrefabList.Add(prefab);
+        if(prefab!=null)
+            monsterPrefabList.Add(prefab);
+    }
+    public void AddPrefabToCastleList(GameObject prefab)
+    {
+        if(prefab!=null)
+            castlePrefabList.Add(prefab);
     }
 
     public Transform GetLobbyPoint(int index)
@@ -84,6 +80,7 @@ public class PrefabsDatabaseManager : MonoBehaviour
         }
 ;       return null;
     }
+
     public GameObject GetHeroPrefab(int id)
     {
         if(heroPrefabList!=null)
@@ -106,7 +103,28 @@ public class PrefabsDatabaseManager : MonoBehaviour
             return null;
         }
     }
+    public GameObject GetCastlePrefab(int id)
+    {
+        if (castlePrefabList != null)
+        {
+            foreach (var castle in castlePrefabList)
+            {
 
+                if (castle.GetComponent<Castle>().id == id)
+                {
+                    return castle;
+                }
+            }
+            Debugging.LogWarning(castlePrefabList.Count + " 의 캐슬 프리팹 준비됨. >> " + id + " 의 캐슬 프리팹을 찾을 수 없음.");
+            return null;
+        }
+        else
+        {
+
+            Debugging.LogWarning("castlePrefabList 없음.");
+            return null;
+        }
+    }
     public GameObject GetMonsterPrefab(int id)
     {
         if (monsterPrefabList != null)
@@ -118,8 +136,7 @@ public class PrefabsDatabaseManager : MonoBehaviour
                     return monster;
                 }
             }
-            GetHeroList();
-            Debugging.LogWarning(heroPrefabList.Count + " 의 몬스터 프리팹 준비됨. >> " + id + " 의 몬스터 프리팹을 찾을 수 없음.");
+            Debugging.LogWarning(monsterPrefabList.Count + " 의 몬스터 프리팹 준비됨. >> " + id + " 의 몬스터 프리팹을 찾을 수 없음.");
             return null;
         }
         else
@@ -129,4 +146,23 @@ public class PrefabsDatabaseManager : MonoBehaviour
             return null;
         }
     }
+
+    public void GetPrefabList()
+    {
+        string str = "";
+        foreach (var i in heroPrefabList)
+        {
+            str += i.name + "\r\n";
+        }
+        foreach (var i in monsterPrefabList)
+        {
+            str += i.name + "\r\n";
+        }
+        foreach (var i in castlePrefabList)
+        {
+            str += i.name + "\r\n";
+        }
+        Debugging.Log(str);
+    }
+
 }

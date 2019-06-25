@@ -168,3 +168,15 @@ MonoBehaviour:
     parent: {fileID: 0}
     poolCount: 10
     poolList: []
+  - poolItemName: MagicAuraYellow
+    prefab: {fileID: 1540681573920810968, guid: e395b348785b3614b861587de9a6f0c6,
+      type: 3}
+    parent: {fileID: 0}
+    poolCount: 2
+    poolList: []
+  - poolItemName: ShieldYellow
+    prefab: {fileID: 4071892374306934944, guid: 4e275b8c1358c2c4e865a078dbf0058b,
+      type: 3}
+    parent: {fileID: 0}
+    poolCount: 2
+    poolList: []

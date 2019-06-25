@@ -119,7 +119,12 @@ public class GUI_Manager : MonoBehaviour
                 hpImage.material.SetFloat("_Percent", currentHp / currentMaxHp);
                 return currentHp;
             }
-
+            else if(Common.hitTargetObject.GetComponent<Boss>()!=null)
+            {
+                currentHp = (float)Common.hitTargetObject.GetComponent<Boss>().hp;
+                hpImage.material.SetFloat("_Percent", currentHp / currentMaxHp);
+                return currentHp;
+            }
             else
                 return 1;
         }
@@ -133,6 +138,11 @@ public class GUI_Manager : MonoBehaviour
             if (Common.hitTargetObject.GetComponent<Castle>() != null)
             {
                 currentMaxHp = (float)Common.hitTargetObject.GetComponent<Castle>().maxHp;
+                return currentMaxHp;
+            }
+            else if (Common.hitTargetObject.GetComponent<Boss>() != null)
+            {
+                currentMaxHp = (float)Common.hitTargetObject.GetComponent<Boss>().maxHp;
                 return currentMaxHp;
             }
             else

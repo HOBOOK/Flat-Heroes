@@ -11,7 +11,7 @@ public class LoadAssetBundle : MonoBehaviour
 
     IEnumerator Start()
     {
-        //Caching.ClearCache();
+        Caching.ClearCache();
         UI_StartManager.instance.ShowDownloadUI();
         yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetBundle(BundleManagerURL, version, false,0.0f,"게임매니저"));
         UI_StartManager.instance.SetDownloadCount(4);
@@ -38,17 +38,36 @@ public class LoadAssetBundle : MonoBehaviour
         Debugging.Log("매니저다운 끝");
         version =1;
         yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetBundle(BundleHeroURL, version, false, 0.0f, "영웅데이터"));
-        UI_StartManager.instance.SetDownloadCount(9);
+        UI_StartManager.instance.SetDownloadCount(11);
         if (AssetBundleManager.Instance.isVersionAdded(BundleHeroURL, version))
         {
+            // 영웅 프리팹
             for (int i = 0; i < 9; i++)
             {
-                yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetFromABAsync(BundleHeroURL, version, "Hero00" + (i + 1)));
-
-                PrefabsDatabaseManager.instance.AddPrefabToHeroList(AssetBundleManager.Instance.GetLoadedAsset(BundleHeroURL, version, "Hero00" + (i + 1)) as GameObject);
+                yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetFromABAsync(BundleHeroURL, version, string.Format("Hero{0:D3}", (i+1))));
+                PrefabsDatabaseManager.instance.AddPrefabToHeroList(AssetBundleManager.Instance.GetLoadedAsset(BundleHeroURL, version, string.Format("Hero{0:D3}", (i + 1))) as GameObject);
             }
-            PrefabsDatabaseManager.instance.GetHeroList();
 
+            // 몬스터 프리팹
+            for(int i = 0; i < 1; i++)
+            {
+                yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetFromABAsync(BundleHeroURL, version, string.Format("Monster{0:D3}", (i + 1))));
+                PrefabsDatabaseManager.instance.AddPrefabToMonsterList(AssetBundleManager.Instance.GetLoadedAsset(BundleHeroURL, version, string.Format("Monster{0:D3}", (i + 1))) as GameObject);
+            }
+            for (int i = 0; i < 1; i++)
+            {
+                yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetFromABAsync(BundleHeroURL, version, string.Format("Boss{0:D3}", (i + 1))));
+                PrefabsDatabaseManager.instance.AddPrefabToMonsterList(AssetBundleManager.Instance.GetLoadedAsset(BundleHeroURL, version, string.Format("Boss{0:D3}", (i + 1))) as GameObject);
+            }
+            // 캐슬
+            for (int i = 0; i < 1; i++)
+            {
+                yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetFromABAsync(BundleHeroURL, version, string.Format("Castle{0:D3}", (i + 1))));
+                GameObject castle = AssetBundleManager.Instance.GetLoadedAsset(BundleHeroURL, version, string.Format("Castle{0:D3}", (i + 1))) as GameObject;
+                PrefabsDatabaseManager.instance.AddPrefabToCastleList(AssetBundleManager.Instance.GetLoadedAsset(BundleHeroURL, version, string.Format("Castle{0:D3}", (i + 1))) as GameObject);
+            }
+            yield return new WaitForSeconds(0.1f);
+            PrefabsDatabaseManager.instance.GetPrefabList();
         }
         Debugging.Log("영웅다운 끝");
         UI_StartManager.instance.ShowStartUI();

@@ -1560,7 +1560,6 @@ MonoBehaviour:
   status:
     level: 1
     exp: 0
-    addAttack: 5
     attack: 1018
     defence: 68
     hp: 678

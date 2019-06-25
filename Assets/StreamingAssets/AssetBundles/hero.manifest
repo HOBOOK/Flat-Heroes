@@ -1,0 +1,244 @@
+ManifestFileVersion: 0
+CRC: 380575351
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: ca1aef2c6eb4135237f30dac6a9f8503
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ad54fe1784e4bd1b8b5d1a3a353fcde7
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 50
+  Script: {instanceID: 0}
+- Class: 61
+  Script: {instanceID: 0}
+- Class: 70
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 82
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5ef9f68452016c745a20c02ac0cf33a4, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 99091f75dac5d4ede961d37f71798fc6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 03b157d7625014c58bfbad3513f40289, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ffaef1588b6ff00439bc2e987b123b99, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ef242a5924d57d44a8fff14f0c9657bf, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: cb87b4dc6dca6ff44ab37afb811920f0, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/AllResource/Characters/Heros/Hero007/face_attack_007.png
+- Assets/AllResource/Characters/Heros/Hero007/face_hit_007.png
+- Assets/AllResource/Characters/Heros/Hero001/hair_back_001.png
+- Assets/AllResource/Characters/Heros/Hero003/leg_left_dn_003.png
+- Assets/AllResource/Castles/Castle001/castle_001.png
+- Assets/AllResource/Characters/Heros/Hero003/hair_003.png
+- Assets/AllResource/Characters/Boss/Prefabs/Boss001.prefab
+- Assets/AllResource/Characters/Heros/Hero007/arm_left_up_007.png
+- Assets/AllResource/Characters/Heros/Hero003/back_leg_003.png
+- Assets/AllResource/Characters/Heros/Hero008/leg_left_up_008.png
+- Assets/AllResource/Characters/Heros/Hero004/arm_left_up_004.png
+- Assets/AllResource/Characters/Heros/Hero005/arm_left_dn_005.png
+- Assets/AllResource/Characters/Heros/Hero002/leg_left_dn_002.png
+- Assets/AllResource/Characters/Heros/Hero006/leg_left_dn_006.png
+- Assets/AllResource/Characters/Monsters/Monster001/arm_left_dn_m001.png
+- Assets/AllResource/Characters/Heros/Hero009/leg_left_up_009.png
+- Assets/AllResource/Characters/Heros/Hero005/face_hit_005.png
+- Assets/AllResource/Castles/Prefabs/Castle001.prefab
+- Assets/AllResource/Characters/Heros/Hero003/arm_right_up_003.png
+- Assets/AllResource/Characters/Heros/Hero002/arm_right_up_002.png
+- Assets/AllResource/Characters/Heros/Hero009/leg_left_dn_009.png
+- Assets/AllResource/Characters/Boss/Boss001/hair_b001.png
+- Assets/AllResource/Characters/Heros/Hero001/leg_right_dn_001.png
+- Assets/AllResource/Characters/Heros/Hero007/face_eye_close_007.png
+- Assets/AllResource/Characters/Heros/Hero005/leg_left_up_005.png
+- Assets/AllResource/Characters/Heros/Prefabs/Hero008.prefab
+- Assets/AllResource/Characters/Heros/Hero009/leg_right_up_009.png
+- Assets/AllResource/Characters/Heros/Hero008/arm_right_dn_008.png
+- Assets/AllResource/Characters/Heros/Hero009/arm_left_dn_009.png
+- Assets/AllResource/Characters/Heros/Hero005/face_005.png
+- Assets/AllResource/Characters/Heros/Hero002/hair_002.png
+- Assets/AllResource/Characters/Heros/Hero002/face_002.png
+- Assets/AllResource/Characters/Heros/Hero009/arm_left_up_009.png
+- Assets/AllResource/Characters/Heros/Hero012/hat_012.png
+- Assets/AllResource/Characters/Monsters/Monster001/arm_right_up_m001.png
+- Assets/AllResource/Characters/Boss/Boss001/face_attack_b001.png
+- Assets/AllResource/Characters/Heros/Hero003/leg_left_up_003.png
+- Assets/AllResource/Characters/Heros/Hero003/arm_right_dn_003.png
+- Assets/AllResource/Characters/Heros/Hero003/body_003.png
+- Assets/AllResource/Characters/Heros/Hero007/hair_back_007.png
+- Assets/AllResource/Characters/Monsters/Monster001/leg_right_up_m001.png
+- Assets/AllResource/Characters/Heros/Hero007/hair_007.png
+- Assets/AllResource/Characters/Heros/Hero004/arm_right_dn_004.png
+- Assets/AllResource/Characters/Boss/Boss001/face_hit_b001.png
+- Assets/AllResource/Characters/Heros/Hero012/hair_null.png
+- Assets/AllResource/Characters/Heros/Hero008/hair_008.png
+- Assets/AllResource/Characters/Heros/Hero002/arm_left_up_002.png
+- Assets/AllResource/Characters/Heros/Hero004/face_004.png
+- Assets/AllResource/Characters/Heros/Hero004/face_attack_004.png
+- Assets/AllResource/Characters/Heros/Hero001/face_eye_close_001.png
+- Assets/AllResource/Characters/Heros/Hero007/leg_right_up_007.png
+- Assets/AllResource/Characters/Boss/Boss001/arm_right_dn_b001.png
+- Assets/AllResource/Characters/Heros/Hero003/leg_right_up_003.png
+- Assets/AllResource/Characters/Heros/Hero007/leg_left_up_007.png
+- Assets/AllResource/Characters/Heros/Prefabs/Hero004.prefab
+- Assets/AllResource/Characters/Heros/Hero001/arm_right_up_001.png
+- Assets/AllResource/Characters/Heros/Hero010/arm_left_up_010.png
+- Assets/AllResource/Characters/Heros/Hero004/leg_left_dn_004.png
+- Assets/AllResource/Characters/Heros/Hero008/face_eye_close_008.png
+- Assets/AllResource/Characters/Heros/Hero005/hair_005.png
+- Assets/AllResource/Characters/Heros/Hero006/body_006.png
+- Assets/AllResource/Characters/Heros/Hero008/face_hit_008.png
+- Assets/AllResource/Characters/Boss/Boss001/leg_left_dn_b001.png
+- Assets/AllResource/Characters/Heros/Hero001/leg_left_dn_001.png
+- Assets/AllResource/Characters/Heros/Hero001/leg_right_up_001.png
+- Assets/AllResource/Characters/Heros/Hero004/leg_left_up_004.png
+- Assets/AllResource/Characters/Heros/Hero009/face_attack_009.png
+- Assets/AllResource/Characters/Heros/Hero004/back_004.png
+- Assets/AllResource/Characters/Heros/Hero001/leg_left_up_001.png
+- Assets/AllResource/Characters/Heros/Hero006/face_eye_006.png
+- Assets/AllResource/Characters/Heros/Prefabs/Hero003.prefab
+- Assets/AllResource/Characters/Boss/Boss001/arm_right_up_b001.png
+- Assets/AllResource/Characters/Heros/Hero005/leg_right_dn_005.png
+- Assets/AllResource/Characters/Heros/Hero008/face_008.png
+- Assets/AllResource/Characters/Monsters/Monster001/body_m001.png
+- Assets/AllResource/Characters/Heros/Hero002/leg_right_up_002.png
+- Assets/AllResource/Characters/Heros/Hero007/arm_left_dn_007.png
+- Assets/AllResource/Characters/Heros/Hero003/face_eye_close_003.png
+- Assets/AllResource/Characters/Heros/Hero002/face_attack_002.png
+- Assets/AllResource/Characters/Heros/Hero002/leg_left_up_002.png
+- Assets/AllResource/Characters/Heros/Prefabs/Hero005.prefab
+- Assets/AllResource/Characters/Heros/Hero002/arm_right_dn_002.png
+- Assets/AllResource/Characters/Heros/Hero005/face_eye_005.png
+- Assets/AllResource/Characters/Heros/Hero006/hair_006.png
+- Assets/AllResource/Characters/Heros/Prefabs/Hero007.prefab
+- Assets/AllResource/Characters/Heros/Hero001/arm_left_dn_001.png
+- Assets/AllResource/Characters/Heros/Hero003/face_003.png
+- Assets/AllResource/Characters/Monsters/Prefabs/Monster001.prefab
+- Assets/AllResource/Characters/Heros/Hero005/arm_right_dn_005.png
+- Assets/AllResource/Characters/Heros/Hero003/leg_right_dn_003.png
+- Assets/AllResource/Characters/Heros/Hero008/body_008.png
+- Assets/AllResource/Characters/Heros/Hero003/back_003.png
+- Assets/AllResource/Characters/Heros/Hero002/body_002.png
+- Assets/AllResource/Characters/Heros/Hero002/leg_right_dn_002.png
+- Assets/AllResource/Characters/Heros/Hero005/face_attack_005.png
+- Assets/AllResource/Characters/Heros/Hero007/face_007.png
+- Assets/AllResource/Characters/Heros/Hero010/face_010.png
+- Assets/AllResource/Characters/Heros/Hero006/hair_back_006.png
+- Assets/AllResource/Characters/Heros/Hero004/face_hit_004.png
+- Assets/AllResource/Characters/Heros/Hero003/face_hit_003.png
+- Assets/AllResource/Characters/Heros/Hero001/face_mouse_001.png
+- Assets/AllResource/Characters/Heros/Hero012/hair_012.png
+- Assets/AllResource/Characters/Heros/Hero004/leg_right_dn_004.png
+- Assets/AllResource/Characters/Heros/Hero004/face_eye_close_004.png
+- Assets/AllResource/Characters/Heros/Hero008/face_attack_008.png
+- Assets/AllResource/Characters/Heros/Hero008/leg_left_dn_008.png
+- Assets/AllResource/Characters/Heros/Hero003/face_attack_003.png
+- Assets/AllResource/Characters/Heros/Prefabs/Hero001.prefab
+- Assets/AllResource/Characters/Heros/Hero006/face_attack_006.png
+- Assets/AllResource/Characters/Heros/Hero008/arm_left_up_008.png
+- Assets/AllResource/Characters/Heros/Hero005/body_005.png
+- Assets/AllResource/Characters/Heros/Hero002/back_002.png
+- Assets/AllResource/Characters/Heros/Hero001/arm_right_dn_001.png
+- Assets/AllResource/Characters/Heros/Hero007/arm_right_up_007.png
+- Assets/AllResource/Characters/Heros/Hero004/arm_left_dn_004.png
+- Assets/AllResource/Characters/Heros/Prefabs/Hero011.prefab
+- Assets/AllResource/Characters/Heros/Hero003/arm_left_dn_003.png
+- Assets/AllResource/Characters/Heros/Hero009/leg_right_dn_009.png
+- Assets/AllResource/Characters/Heros/Prefabs/Hero006.prefab
+- Assets/AllResource/Characters/Heros/Hero006/leg_right_dn_006.png
+- Assets/AllResource/Characters/Heros/Hero006/leg_right_up_006.png
+- Assets/AllResource/Characters/Heros/Hero007/leg_right_dn_007.png
+- Assets/AllResource/Characters/Heros/Hero004/body_004.png
+- Assets/AllResource/Characters/Heros/Hero008/leg_right_dn_008.png
+- Assets/AllResource/Characters/Heros/Hero009/body_009.png
+- Assets/AllResource/Characters/Monsters/Monster001/arm_left_up_m001.png
+- Assets/AllResource/Characters/Heros/Hero001/weapon_sword_zip.png
+- Assets/AllResource/Characters/Heros/Hero005/leg_right_up_005.png
+- Assets/AllResource/Characters/Heros/Hero002/face_hit_002.png
+- Assets/AllResource/Characters/Heros/Hero001/body_001.png
+- Assets/AllResource/Characters/Heros/Hero004/arm_right_up_004.png
+- Assets/AllResource/Characters/Heros/Hero010/hair_010.png
+- Assets/AllResource/Characters/Heros/Hero004/face_eye_004.png
+- Assets/AllResource/Characters/Heros/Hero005/arm_right_up_005.png
+- Assets/AllResource/Characters/Heros/Hero008/leg_right_up_008.png
+- Assets/AllResource/Characters/Monsters/Monster001/leg_left_dn_m001.png
+- Assets/AllResource/Characters/Heros/Hero006/arm_right_up_006.png
+- Assets/AllResource/Characters/Boss/Boss001/leg_right_up_b001.png
+- Assets/AllResource/Characters/Heros/Hero011/hair_back_011.png
+- Assets/AllResource/Characters/Heros/Hero009/face_eye_009.png
+- Assets/AllResource/Characters/Heros/Hero004/hair_004.png
+- Assets/AllResource/Characters/Heros/Hero007/leg_left_dn_007.png
+- Assets/AllResource/Characters/Heros/Prefabs/Hero010.prefab
+- Assets/AllResource/Characters/Monsters/Monster001/leg_left_up_m001.png
+- Assets/AllResource/Characters/Heros/Hero002/hat_002.png
+- Assets/AllResource/Characters/Monsters/Monster001/hair_m001.png
+- Assets/AllResource/Characters/Heros/Hero001/face_hit_001.png
+- Assets/AllResource/Characters/Heros/Hero008/arm_right_up_008.png
+- Assets/AllResource/Characters/Heros/Hero007/body_007.png
+- Assets/AllResource/Characters/Heros/Hero006/arm_right_dn_006.png
+- Assets/AllResource/Characters/Heros/Hero006/arm_left_dn_006.png
+- Assets/AllResource/Characters/Heros/Hero010/body_010.png
+- Assets/AllResource/Characters/Heros/Hero007/arm_right_dn_007.png
+- Assets/AllResource/Characters/Heros/Hero009/face_009.png
+- Assets/AllResource/Characters/Heros/Hero003/arm_left_up_003.png
+- Assets/AllResource/Characters/Heros/Hero001/hair_001.png
+- Assets/AllResource/Characters/Boss/Boss001/arm_left_up_b001.png
+- Assets/AllResource/Characters/Boss/Boss001/leg_right_dn_b001.png
+- Assets/AllResource/Characters/Heros/Hero001/arm_left_up_001.png
+- Assets/AllResource/Characters/Boss/Boss001/leg_left_up_b001.png
+- Assets/AllResource/Characters/Heros/Hero005/arm_left_up_005.png
+- Assets/AllResource/Characters/Heros/Hero002/face_eye_close_002.png
+- Assets/AllResource/Characters/Boss/Boss001/face_mouse_b001.png
+- Assets/AllResource/Characters/Heros/Hero002/arm_left_dn_002.png
+- Assets/AllResource/Characters/Heros/Hero006/arm_left_up_006.png
+- Assets/AllResource/Characters/Monsters/Monster001/face_m001.png
+- Assets/AllResource/Characters/Heros/Hero006/face_006.png
+- Assets/AllResource/Characters/Boss/Boss001/body_b001.png
+- Assets/AllResource/Characters/Heros/Hero010/arm_right_up_010.png
+- Assets/AllResource/Characters/Heros/Hero009/face_hit_009.png
+- Assets/AllResource/Characters/Heros/Hero005/leg_left_dn_005.png
+- Assets/AllResource/Characters/Heros/Hero004/leg_right_up_004.png
+- Assets/AllResource/Characters/Heros/Hero006/face_hit_006.png
+- Assets/AllResource/Characters/Heros/Hero009/hair_009.png
+- Assets/AllResource/Characters/Heros/Prefabs/Hero009.prefab
+- Assets/AllResource/Characters/Boss/Boss001/arm_left_dn_b001.png
+- Assets/AllResource/Characters/Heros/Hero001/face_attack_001.png
+- Assets/AllResource/Characters/Boss/Boss001/face_eye_close_b001.png
+- Assets/AllResource/Characters/Boss/Boss001/face_default_b001.png
+- Assets/AllResource/Characters/Heros/Hero002/arm_link_002.png
+- Assets/AllResource/Characters/Heros/Hero006/leg_left_up_006.png
+- Assets/AllResource/Characters/Heros/Hero004/hair_back_004.png
+- Assets/AllResource/Characters/Heros/Hero001/face_001.png
+- Assets/AllResource/Characters/Heros/Prefabs/Hero002.prefab
+- Assets/AllResource/Characters/Monsters/Monster001/leg_right_dn_m001.png
+- Assets/AllResource/Characters/Heros/Hero009/arm_right_up_009.png
+- Assets/AllResource/Characters/Heros/Hero008/arm_left_dn_008.png
+- Assets/AllResource/Characters/Monsters/Monster001/arm_right_dn_m001.png
+- Assets/AllResource/Characters/Heros/Hero009/arm_right_dn_009.png
+Dependencies: []

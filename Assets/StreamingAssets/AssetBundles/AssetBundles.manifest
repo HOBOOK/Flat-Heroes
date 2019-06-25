@@ -1,0 +1,10 @@
+ManifestFileVersion: 0
+CRC: 699586179
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: manager
+      Dependencies: {}
+    Info_1:
+      Name: hero
+      Dependencies: {}
