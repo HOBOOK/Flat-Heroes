@@ -8,12 +8,19 @@ public class Boss : MonoBehaviour
     [HideInInspector]
     public int maxHp;
     bool isEnd = false;
-    Hero bossPrefabData;
+    public Hero bossPrefabData;
     void Start()
     {
         isEnd = false;
         Common.hitTargetObject = this.gameObject;
         GUI_Manager.instance.OpenHpUI(this.gameObject);
+
+        if (bossPrefabData == null)
+        {
+            bossPrefabData = this.GetComponent<Hero>();
+            maxHp = bossPrefabData.status.maxHp;
+            hp = bossPrefabData.status.hp;
+        }
     }
 
     private void Update()
@@ -26,7 +33,8 @@ public class Boss : MonoBehaviour
 
     void StateUpdate()
     {
-        if(bossPrefabData.isDead)
+        hp = bossPrefabData.status.hp;
+        if (bossPrefabData.isDead)
         {
             isEnd = true;
             StartCoroutine("BossDead");

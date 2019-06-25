@@ -41,9 +41,11 @@ public class Castle : MonoBehaviour
     void SetEffect()
     {
         GameObject shieldEffect = EffectPool.Instance.PopFromPool("ShieldYellow", this.transform);
-        shieldEffect.transform.localPosition = Vector3.zero;
+        shieldEffect.transform.position = transform.position;
+        shieldEffect.gameObject.SetActive(true);
         GameObject auraEffect = EffectPool.Instance.PopFromPool("MagicAuraYellow", this.transform);
-        auraEffect.transform.localPosition = Vector3.zero;
+        auraEffect.transform.position = transform.position;
+        auraEffect.gameObject.SetActive(true);
     }
     void SetSpawnMonster()
     {
@@ -225,7 +227,7 @@ public class Castle : MonoBehaviour
         if (EffectPool.Instance != null)
         {
             GameObject effect = EffectPool.Instance.PopFromPool("SimplePortalRed");
-            effect.transform.position = transform.GetChild(0).position;
+            effect.transform.position = transform.position;
             effect.SetActive(true);
         }
     }

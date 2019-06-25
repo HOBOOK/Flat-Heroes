@@ -63,7 +63,6 @@ public class LoadAssetBundle : MonoBehaviour
             for (int i = 0; i < 1; i++)
             {
                 yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetFromABAsync(BundleHeroURL, version, string.Format("Castle{0:D3}", (i + 1))));
-                GameObject castle = AssetBundleManager.Instance.GetLoadedAsset(BundleHeroURL, version, string.Format("Castle{0:D3}", (i + 1))) as GameObject;
                 PrefabsDatabaseManager.instance.AddPrefabToCastleList(AssetBundleManager.Instance.GetLoadedAsset(BundleHeroURL, version, string.Format("Castle{0:D3}", (i + 1))) as GameObject);
             }
             yield return new WaitForSeconds(0.1f);

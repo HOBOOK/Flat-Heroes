@@ -107,7 +107,10 @@ public class Hero : MonoBehaviour
         if(isStage)
         {
             InitEnemys();
-            StartCoroutine("StartAttackMode");
+            if (isPlayerHero)
+                StartCoroutine("StartAttackMode");
+            else
+                StartCoroutine("StartMonsterAttackMode");
         }
         else
         {
@@ -315,10 +318,19 @@ public class Hero : MonoBehaviour
             {
                 if (target == null && enemys.Count < 1)
                 {
+                    enemys = Common.FindEnemy();
+                   
                     // 캐슬타겟
-                    if (Common.hitTargetObject != null && !Common.hitTargetObject.GetComponent<Castle>().isDead)
+                    if (Common.hitTargetObject != null)
                     {
-                        target = Common.hitTargetObject;
+                        if(Common.hitTargetObject.GetComponent<Castle>()!=null&&!Common.hitTargetObject.GetComponent<Castle>().isDead)
+                        {
+                            target = Common.hitTargetObject;
+                        }
+                        else if(Common.hitTargetObject.GetComponent<Boss>()!=null&&!Common.hitTargetObject.GetComponent<Boss>().bossPrefabData.isDead)
+                        {
+                            target = Common.hitTargetObject;
+                        }
                     }
                 }
                 //else if (target == Common.hitTargetObject && enemys.Count > 0)
@@ -337,7 +349,11 @@ public class Hero : MonoBehaviour
     public void ResearchingEnemys(GameObject enemy)
     {
         if(!TargetDeadCheck(enemy))
+        {
             enemys.Add(enemy);
+            if (target == Common.hitTargetObject)
+                target = null;
+        }
     }
     bool TargetAliveCheck(GameObject obj)
     {
@@ -1476,6 +1492,20 @@ public class Hero : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         FindEnemys(true);
         StartCoroutine("FindAllys");
+        yield return null;
+    }
+    IEnumerator StartMonsterAttackMode()
+    {
+        RedirectCharacter();
+        OpenHpBar(isPlayerHero);
+        yield return new WaitForSeconds(0.5f);
+        EquipWeapon();
+        if (initChats.Count > 0)
+            Common.Chat(initChats[UnityEngine.Random.Range(0, initChats.Count)], transform);
+        yield return new WaitForSeconds(1);
+        heroState = HeroState.Attack;
+        isStart = true;
+        FindEnemys(true);
         yield return null;
     }
     IEnumerator OnAttackPoint(int totalCount=1)

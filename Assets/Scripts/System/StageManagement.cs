@@ -75,7 +75,7 @@ public class StageManagement : MonoBehaviour
         GameObject castle = Instantiate(PrefabsDatabaseManager.instance.GetCastlePrefab(1), CastlePoint);
         if(castle!=null)
         {
-            castle.transform.position = CastlePoint.position;
+            castle.transform.position = CastlePoint.position+new Vector3(0,castle.transform.localScale.y);
             castle.gameObject.SetActive(true);
         }
     }
@@ -188,7 +188,6 @@ public class StageManagement : MonoBehaviour
             ItemSystem.SetObtainItem(getItems[i].id);
         }
         UI_Manager.instance.OpenEndGamePanel(true);
-        this.gameObject.SetActive(false);
         yield return null;
     }
     public UserInfo GetUserInfo()
