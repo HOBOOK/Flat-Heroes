@@ -49,8 +49,12 @@ public class Castle : MonoBehaviour
     }
     void SetSpawnMonster()
     {
-        SpawnEnemy spawnEnemy = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(501), 3);
+        SpawnEnemy spawnEnemy = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(501), 1);
         spawnEnemys.Add(spawnEnemy);
+        SpawnEnemy spawnEnemy2= new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(502), 1);
+        spawnEnemys.Add(spawnEnemy2);
+        SpawnEnemy spawnEnemy3 = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(503), 1);
+        spawnEnemys.Add(spawnEnemy3);
     }
     private void Update()
     {
@@ -103,7 +107,7 @@ public class Castle : MonoBehaviour
                         GameObject e = Instantiate(spawnEnemys[i].enemyPrefab, enemySpawnPoint);
                         e.SetActive(false);
                         e.GetComponent<Hero>().isPlayerHero = false;
-                        e.transform.position = new Vector3(UnityEngine.Random.Range(10,13), e.transform.localScale.y);
+                        e.transform.position = new Vector3(UnityEngine.Random.Range(10f,13f), e.transform.localScale.y);
                         e.SetActive(true);
                         StageManagement.instance.AddMonsterCount();
                     }

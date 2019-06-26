@@ -38,7 +38,7 @@ public class LoadAssetBundle : MonoBehaviour
         Debugging.Log("매니저다운 끝");
         version =1;
         yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetBundle(BundleHeroURL, version, false, 0.0f, "영웅데이터"));
-        UI_StartManager.instance.SetDownloadCount(11);
+        UI_StartManager.instance.SetDownloadCount(13);
         if (AssetBundleManager.Instance.isVersionAdded(BundleHeroURL, version))
         {
             // 영웅 프리팹
@@ -49,7 +49,7 @@ public class LoadAssetBundle : MonoBehaviour
             }
 
             // 몬스터 프리팹
-            for(int i = 0; i < 1; i++)
+            for(int i = 0; i < 3; i++)
             {
                 yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetFromABAsync(BundleHeroURL, version, string.Format("Monster{0:D3}", (i + 1))));
                 PrefabsDatabaseManager.instance.AddPrefabToMonsterList(AssetBundleManager.Instance.GetLoadedAsset(BundleHeroURL, version, string.Format("Monster{0:D3}", (i + 1))) as GameObject);

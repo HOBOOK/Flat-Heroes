@@ -43,14 +43,6 @@ public class Boss : MonoBehaviour
         Camera.main.GetComponent<FollowCamera>().ChangeTarget(this.gameObject);
         Camera.main.GetComponent<CameraEffectHandler>().SetCameraSize(3.5f);
         yield return new WaitForSeconds(2.0f);
-        for (int i = 0; i < 5; i++)
-        {
-            Common.isHitShake = true;
-            GameObject effect = EffectPool.Instance.PopFromPool("ExplosionRoundFire");
-            effect.transform.position = transform.position + new Vector3(UnityEngine.Random.Range(-2f, 2f), UnityEngine.Random.Range(-2f, 2f), 0);
-            effect.SetActive(true);
-            yield return new WaitForSeconds(0.2f);
-        }
         StageManagement.instance.StageClear();
         this.gameObject.SetActive(false);
         yield return null;

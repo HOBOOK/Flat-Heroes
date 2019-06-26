@@ -249,6 +249,9 @@ public class HeroDatabase
         XmlElement skill = xmlDoc.CreateElement("Skill");
         skill.InnerText = data.skill.ToString();
         child.AppendChild(skill);
+        XmlElement attackType = xmlDoc.CreateElement("AttackType");
+        attackType.InnerText = data.attackType.ToString();
+        child.AppendChild(attackType);
 
         // 암호화/////
         XmlElement elmRoot = xmlDoc.DocumentElement;
@@ -311,6 +314,9 @@ public class HeroDatabase
         XmlElement skill = xmlDoc.CreateElement("Skill");
         skill.InnerText = data.skill.ToString();
         child.AppendChild(skill);
+        XmlElement attackType = xmlDoc.CreateElement("AttackType");
+        attackType.InnerText = data.attackType.ToString();
+        child.AppendChild(attackType);
 
         // 암호화/////
         XmlElement elmRoot = xmlDoc.DocumentElement;

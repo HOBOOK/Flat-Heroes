@@ -1,10 +1,10 @@
 ManifestFileVersion: 0
-CRC: 4251606193
+CRC: 3341393550
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: hero
+      Name: manager
       Dependencies: {}
     Info_1:
-      Name: manager
+      Name: hero
       Dependencies: {}

@@ -53,4 +53,7 @@ public class HeroData
 
     [XmlElement("Skill")]
     public int skill;
+
+    [XmlElement("AttackType")]
+    public int attackType;
 }

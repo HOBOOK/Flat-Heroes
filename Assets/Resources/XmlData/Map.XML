@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <MapCollection>
   <Maps>
-    <Map id="5001">
+    <Map id="1">
       <Name>격전의 숲 1</Name>
       <Description>하늘에서 정체불명의 물체가 떨어졌다... 예감이 좋지 않다.</Description>
       <StageType>0</StageType>
@@ -9,7 +9,7 @@
       <Image>Maps/map_001</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5002">
+    <Map id="2">
       <Name>격전의 숲 2</Name>
       <Description>1-2맵이다.</Description>
       <StageType>0</StageType>
@@ -17,7 +17,7 @@
       <Image>Maps/map_002</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5003">
+    <Map id="3">
       <Name>격전의 숲 3</Name>
       <Description>1-3맵이다.</Description>
       <StageType>0</StageType>
@@ -25,7 +25,7 @@
       <Image>Maps/map_003</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5004">
+    <Map id="4">
       <Name>격전의 숲 4</Name>
       <Description>1-4맵이다.</Description>
       <StageType>0</StageType>
@@ -33,7 +33,7 @@
       <Image>Maps/map_004</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5005">
+    <Map id="5">
       <Name>격전의 숲 5</Name>
       <Description>1-5맵이다.</Description>
       <StageType>0</StageType>
@@ -41,7 +41,7 @@
       <Image>Maps/map_005</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5006">
+    <Map id="6">
       <Name>격전의 숲 6</Name>
       <Description>1-6맵이다.</Description>
       <StageType>0</StageType>
@@ -49,7 +49,7 @@
       <Image>Maps/map_006</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5007">
+    <Map id="7">
       <Name>격전의 숲 7</Name>
       <Description>1-7맵이다.</Description>
       <StageType>0</StageType>
@@ -57,7 +57,7 @@
       <Image>Maps/map_007</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5008">
+    <Map id="8">
       <Name>격전의 숲 8</Name>
       <Description>1-8맵이다.</Description>
       <StageType>0</StageType>
@@ -65,7 +65,7 @@
       <Image>Maps/map_008</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5009">
+    <Map id="9">
       <Name>격전의 숲 9</Name>
       <Description>1-9맵이다.</Description>
       <StageType>0</StageType>
@@ -73,7 +73,7 @@
       <Image>Maps/map_009</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5010">
+    <Map id="10">
       <Name>격전의 숲 끝자락</Name>
       <Description>강력한 힘을 내뿜고 있는 자가 등장했다.. 물러 설 수 없어</Description>
       <StageType>2</StageType>
@@ -81,7 +81,7 @@
       <Image>Maps/map_010</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5011">
+    <Map id="11">
       <Name>2-1 맵</Name>
       <Description>2-1맵이다.</Description>
       <StageType>0</StageType>
@@ -89,7 +89,7 @@
       <Image>Maps/map_011</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5012">
+    <Map id="12">
       <Name>2-2 맵</Name>
       <Description>2-2맵이다.</Description>
       <StageType>0</StageType>
@@ -97,7 +97,7 @@
       <Image>Maps/map_012</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5013">
+    <Map id="13">
       <Name>2-3 맵</Name>
       <Description>2-3맵이다.</Description>
       <StageType>0</StageType>
@@ -105,7 +105,7 @@
       <Image>Maps/map_013</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5014">
+    <Map id="14">
       <Name>2-4 맵</Name>
       <Description>2-4맵이다.</Description>
       <StageType>0</StageType>
@@ -113,7 +113,7 @@
       <Image>Maps/map_014</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5015">
+    <Map id="15">
       <Name>2-5 맵</Name>
       <Description>2-5맵이다.</Description>
       <StageType>0</StageType>
@@ -121,7 +121,7 @@
       <Image>Maps/map_015</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5016">
+    <Map id="16">
       <Name>2-6 맵</Name>
       <Description>2-6맵이다.</Description>
       <StageType>0</StageType>
@@ -129,7 +129,7 @@
       <Image>Maps/map_016</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5017">
+    <Map id="17">
       <Name>2-7 맵</Name>
       <Description>2-7맵이다.</Description>
       <StageType>0</StageType>
@@ -137,7 +137,7 @@
       <Image>Maps/map_017</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5018">
+    <Map id="18">
       <Name>2-8맵</Name>
       <Description>2-8맵이다.</Description>
       <StageType>0</StageType>
@@ -145,7 +145,7 @@
       <Image>Maps/map_018</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5019">
+    <Map id="19">
       <Name>2-9 맵</Name>
       <Description>2-9맵이다.</Description>
       <StageType>0</StageType>
@@ -153,7 +153,7 @@
       <Image>Maps/map_019</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5020">
+    <Map id="20">
       <Name>2-10 맵</Name>
       <Description>2-10맵이다.</Description>
       <StageType>2</StageType>
@@ -161,7 +161,7 @@
       <Image>Maps/map_020</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5021">
+    <Map id="21">
       <Name>3-1 맵</Name>
       <Description>3-1맵이다.</Description>
       <StageType>0</StageType>
@@ -169,7 +169,7 @@
       <Image>Maps/map_021</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5022">
+    <Map id="22">
       <Name>3-2 맵</Name>
       <Description>3-2맵이다.</Description>
       <StageType>0</StageType>
@@ -177,7 +177,7 @@
       <Image>Maps/map_022</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5023">
+    <Map id="23">
       <Name>3-3 맵</Name>
       <Description>3-3맵이다.</Description>
       <StageType>0</StageType>
@@ -185,7 +185,7 @@
       <Image>Maps/map_023</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5024">
+    <Map id="24">
       <Name>3-4맵</Name>
       <Description>3-4맵이다.</Description>
       <StageType>0</StageType>
@@ -193,7 +193,7 @@
       <Image>Maps/map_024</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5025">
+    <Map id="25">
       <Name>3-5맵</Name>
       <Description>3-5맵이다.</Description>
       <StageType>0</StageType>
@@ -201,7 +201,7 @@
       <Image>Maps/map_025</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5026">
+    <Map id="26">
       <Name>3-6맵</Name>
       <Description>3-6맵이다.</Description>
       <StageType>0</StageType>
@@ -209,7 +209,7 @@
       <Image>Maps/map_026</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5027">
+    <Map id="27">
       <Name>3-7 맵</Name>
       <Description>3-7맵이다.</Description>
       <StageType>0</StageType>
@@ -217,7 +217,7 @@
       <Image>Maps/map_027</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5028">
+    <Map id="28">
       <Name>3-8 맵</Name>
       <Description>3-8맵이다.</Description>
       <StageType>0</StageType>
@@ -225,7 +225,7 @@
       <Image>Maps/map_028</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5029">
+    <Map id="29">
       <Name>3-9 맵</Name>
       <Description>3-9맵이다.</Description>
       <StageType>0</StageType>
@@ -233,7 +233,7 @@
       <Image>Maps/map_029</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5030">
+    <Map id="30">
       <Name>3-10 맵</Name>
       <Description>3-10맵이다.</Description>
       <StageType>2</StageType>
@@ -241,7 +241,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5031">
+    <Map id="31">
       <Name>4-1 맵</Name>
       <Description>4-1맵이다.</Description>
       <StageType>0</StageType>
@@ -249,7 +249,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-      <Map id="5032">
+      <Map id="32">
       <Name>4-2 맵</Name>
       <Description>4-2맵이다.</Description>
       <StageType>0</StageType>
@@ -257,7 +257,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-      <Map id="5033">
+      <Map id="33">
       <Name>4-3 맵</Name>
       <Description>4-3맵이다.</Description>
       <StageType>0</StageType>
@@ -265,7 +265,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5034">
+    <Map id="34">
       <Name>4-4 맵</Name>
       <Description>4-4맵이다.</Description>
       <StageType>0</StageType>
@@ -273,7 +273,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5035">
+    <Map id="35">
       <Name>4-5맵</Name>
       <Description>4-5맵이다.</Description>
       <StageType>0</StageType>
@@ -281,7 +281,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5036">
+    <Map id="36">
       <Name>4-6 맵</Name>
       <Description>4-6맵이다.</Description>
       <StageType>0</StageType>
@@ -289,7 +289,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5037">
+    <Map id="37">
       <Name>4-7 맵</Name>
       <Description>4-7맵이다.</Description>
       <StageType>0</StageType>
@@ -297,7 +297,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5038">
+    <Map id="38">
       <Name>4-8 맵</Name>
       <Description>4-8맵이다.</Description>
       <StageType>0</StageType>
@@ -305,7 +305,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5039">
+    <Map id="39">
       <Name>4-9 맵</Name>
       <Description>4-9맵이다.</Description>
       <StageType>0</StageType>
@@ -313,7 +313,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5040">
+    <Map id="40">
       <Name>4-10 맵</Name>
       <Description>4-10맵이다.</Description>
       <StageType>2</StageType>
@@ -321,7 +321,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5041">
+    <Map id="41">
       <Name>5-1 맵</Name>
       <Description>5-1맵이다.</Description>
       <StageType>0</StageType>
@@ -329,7 +329,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-      <Map id="5042">
+      <Map id="42">
       <Name>5-2 맵</Name>
       <Description>5-2맵이다.</Description>
       <StageType>0</StageType>
@@ -337,7 +337,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5043">
+    <Map id="43">
       <Name>5-3 맵</Name>
       <Description>5-3맵이다.</Description>
       <StageType>0</StageType>
@@ -345,7 +345,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5044">
+    <Map id="44">
       <Name>5-4 맵</Name>
       <Description>5-4맵이다.</Description>
       <StageType>0</StageType>
@@ -353,7 +353,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5045">
+    <Map id="45">
       <Name>5-5 맵</Name>
       <Description>5-5맵이다.</Description>
       <StageType>0</StageType>
@@ -361,7 +361,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5046">
+    <Map id="46">
       <Name>5-6 맵</Name>
       <Description>5-6맵이다.</Description>
       <StageType>0</StageType>
@@ -369,7 +369,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5047">
+    <Map id="47">
       <Name>5-7 맵</Name>
       <Description>5-7맵이다.</Description>
       <StageType>0</StageType>
@@ -377,7 +377,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5048">
+    <Map id="48">
       <Name>5-8 맵</Name>
       <Description>5-8맵이다.</Description>
       <StageType>0</StageType>
@@ -385,7 +385,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5049">
+    <Map id="49">
       <Name>5-9 맵</Name>
       <Description>5-9맵이다.</Description>
       <StageType>0</StageType>
@@ -393,7 +393,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5050">
+    <Map id="50">
       <Name>5-10 맵</Name>
       <Description>5-10맵이다.</Description>
       <StageType>2</StageType>
@@ -401,7 +401,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5051">
+    <Map id="51">
       <Name>6-1맵</Name>
       <Description>6-1맵이다.</Description>
       <StageType>0</StageType>
@@ -409,7 +409,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-      <Map id="5052">
+      <Map id="52">
       <Name>6-2 맵</Name>
       <Description>6-2맵이다.</Description>
       <StageType>0</StageType>
@@ -417,7 +417,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5053">
+    <Map id="53">
       <Name>6-3 맵</Name>
       <Description>6-3맵이다.</Description>
       <StageType>0</StageType>
@@ -425,7 +425,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5054">
+    <Map id="54">
       <Name>6-4 맵</Name>
       <Description>6-4맵이다.</Description>
       <StageType>0</StageType>
@@ -433,7 +433,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5055">
+    <Map id="55">
       <Name>6-5 맵</Name>
       <Description>6-5맵이다.</Description>
       <StageType>0</StageType>
@@ -441,7 +441,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5056">
+    <Map id="56">
       <Name>6-6 맵</Name>
       <Description>6-6맵이다.</Description>
       <StageType>0</StageType>
@@ -449,7 +449,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5057">
+    <Map id="57">
       <Name>6-7 맵</Name>
       <Description>6-7맵이다.</Description>
       <StageType>0</StageType>
@@ -457,7 +457,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5058">
+    <Map id="58">
       <Name>6-8 맵</Name>
       <Description>6-8맵이다.</Description>
       <StageType>0</StageType>
@@ -465,7 +465,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5059">
+    <Map id="59">
       <Name>6-9 맵</Name>
       <Description>6-9맵이다.</Description>
       <StageType>0</StageType>
@@ -473,7 +473,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5060">
+    <Map id="60">
       <Name>6-10 맵</Name>
       <Description>6-10맵이다.</Description>
       <StageType>2</StageType>
@@ -481,7 +481,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5061">
+    <Map id="61">
       <Name>7-1 맵</Name>
       <Description>7-1맵이다.</Description>
       <StageType>0</StageType>
@@ -489,7 +489,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-      <Map id="5062">
+      <Map id="62">
       <Name>7-2 맵</Name>
       <Description>7-2맵이다.</Description>
       <StageType>0</StageType>
@@ -497,7 +497,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5063">
+    <Map id="63">
       <Name>7-3 맵</Name>
       <Description>7-3맵이다.</Description>
       <StageType>0</StageType>
@@ -505,7 +505,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5064">
+    <Map id="64">
       <Name>7-4 맵</Name>
       <Description>7-4맵이다.</Description>
       <StageType>0</StageType>
@@ -513,7 +513,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5065">
+    <Map id="65">
       <Name>7-5 맵</Name>
       <Description>7-5맵이다.</Description>
       <StageType>0</StageType>
@@ -521,7 +521,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5066">
+    <Map id="66">
       <Name>7-6 맵</Name>
       <Description>7-6맵이다.</Description>
       <StageType>0</StageType>
@@ -529,7 +529,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5067">
+    <Map id="67">
       <Name>7-7 맵</Name>
       <Description>7-7맵이다.</Description>
       <StageType>0</StageType>
@@ -537,7 +537,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5068">
+    <Map id="68">
       <Name>7-8 맵</Name>
       <Description>7-8맵이다.</Description>
       <StageType>0</StageType>
@@ -545,7 +545,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5069">
+    <Map id="69">
       <Name>7-9 맵</Name>
       <Description>7-9맵이다.</Description>
       <StageType>0</StageType>
@@ -553,7 +553,7 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
-    <Map id="5070">
+    <Map id="70">
       <Name>7-10 맵</Name>
       <Description>7-10맵이다.</Description>
       <StageType>2</StageType>

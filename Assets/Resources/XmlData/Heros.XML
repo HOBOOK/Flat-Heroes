@@ -17,6 +17,7 @@
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>1</Skill>
+      <AttackType>0</AttackType>
     </Hero>
     <Hero id="102">
       <Name>화이트</Name>
@@ -34,6 +35,7 @@
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>2</Skill>
+      <AttackType>0</AttackType>
     </Hero>
     <Hero id="103">
       <Name>알버스</Name>
@@ -51,6 +53,7 @@
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>3</Skill>
+      <AttackType>0</AttackType>
     </Hero>
     <Hero id="104">
       <Name>아르테미스</Name>
@@ -68,6 +71,7 @@
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>4</Skill>
+      <AttackType>0</AttackType>
     </Hero>
     <Hero id="105">
       <Name>켄</Name>
@@ -85,6 +89,7 @@
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>5</Skill>
+      <AttackType>0</AttackType>
     </Hero>
     <Hero id="106">
       <Name>그레고리우스</Name>
@@ -102,6 +107,7 @@
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>6</Skill>
+      <AttackType>0</AttackType>
     </Hero>
     <Hero id="107">
       <Name>7번 영웅</Name>
@@ -119,6 +125,7 @@
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>7</Skill>
+      <AttackType>0</AttackType>
     </Hero>
     <Hero id="108">
       <Name>8번 영웅</Name>
@@ -136,6 +143,7 @@
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>8</Skill>
+      <AttackType>0</AttackType>
     </Hero>
     <Hero id="109">
       <Name>종국</Name>
@@ -153,6 +161,7 @@
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>9</Skill>
+      <AttackType>0</AttackType>    
     </Hero>
     <Hero id="110">
       <Name>10번 영웅</Name>
@@ -170,6 +179,7 @@
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>10</Skill>
+      <AttackType>0</AttackType>
     </Hero>
     <Hero id="111">
       <Name>11번 영웅</Name>
@@ -187,6 +197,7 @@
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>11</Skill>
+      <AttackType>0</AttackType>
     </Hero>
     <Hero id="501">
       <Name>좀비</Name>
@@ -199,11 +210,48 @@
       <Value>0</Value>
       <Strength>1</Strength>
       <Intelligent>0</Intelligent>
-      <Physical>5</Physical>
+      <Physical>8</Physical>
       <Agility>0</Agility>
       <Chat>크르륵..,...크르릉</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="502">
+      <Name>좀비2</Name>
+      <Image>HeroThumbnail/thumbnail_502</Image>
+      <Enable>false</Enable>
+      <Type>1</Type>
+      <Description>???</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>3</Strength>
+      <Intelligent>0</Intelligent>
+      <Physical>10</Physical>
+      <Agility>0</Agility>
+      <Chat>크르륵..,...크르릉</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="503">
+      <Name>좀비3</Name>
+      <Image>HeroThumbnail/thumbnail_502</Image>
+      <Enable>false</Enable>
+      <Type>1</Type>
+      <Description>???</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>3</Strength>
+      <Intelligent>0</Intelligent>
+      <Physical>10</Physical>
+      <Agility>0</Agility>
+      <Chat>크르륵..,...크르릉</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
     </Hero>
     <Hero id="1001">
       <Name>좀비자이언트</Name>
@@ -216,11 +264,12 @@
       <Value>0</Value>
       <Strength>20</Strength>
       <Intelligent>10</Intelligent>
-      <Physical>50</Physical>
+      <Physical>100</Physical>
       <Agility>5</Agility>
       <Chat>크우우르릉!!,크릌..!!</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>0</Skill>
+      <AttackType>0</AttackType>
     </Hero>
   </Heros>
 </HeroCollection>

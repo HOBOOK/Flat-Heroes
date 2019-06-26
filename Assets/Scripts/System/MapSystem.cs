@@ -70,7 +70,7 @@ public static class MapSystem
     }
     public static int GetCurrentMapId(int stageNumber = 0)
     {
-        int currentMapId = 5001;
+        int currentMapId = 1;
         if (stageNumber > 0)
         {
             foreach (var map in GetMapNode(stageNumber))
@@ -101,7 +101,7 @@ public static class MapSystem
     }
     public static int GetCurrentAllMapId()
     {
-        int currentMapId = 5001;
+        int currentMapId = 1;
         foreach (var map in maps)
         {
             if (isAbleMap(map.id))
@@ -134,7 +134,7 @@ public static class MapSystem
     {
         Map map = maps.Find(item => item.id == id || item.id.Equals(id));
         if (map == null)
-            map = maps.Find(item => item.id == 5001);
+            map = maps.Find(item => item.id == 1);
         return map;
     }
     public static List<Map> GetMapNode(int stageNumber)

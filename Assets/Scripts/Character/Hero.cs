@@ -574,9 +574,18 @@ public class Hero : MonoBehaviour
                 attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(1.5f + attackRange * 2f, 3);
                 break;
             case WeaponType.Zombie:
-                attackRange = 1.0f + scale;
-                attackPoint.GetComponent<BoxCollider2D>().offset = new Vector2(0.5f - attackRange, 0);
-                attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(1.5f + attackRange * 2f, 3);
+                if(heroData.attackType==0)
+                {
+                    attackRange = 1.0f + scale;
+                    attackPoint.GetComponent<BoxCollider2D>().offset = new Vector2(0.5f - attackRange, 0);
+                    attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(1.5f + attackRange * 2f, 3);
+                }
+                else
+                {
+                    attackRange = 7.0f + scale;
+                    attackPoint.GetComponent<BoxCollider2D>().offset = new Vector2(-0.5f, 0);
+                    attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(3, 3);
+                }
                 break;
         }
         attackMaxRange = UnityEngine.Random.Range(attackRange * 0.8f, attackRange);
@@ -1397,7 +1406,7 @@ public class Hero : MonoBehaviour
             }
             if (collision.gameObject.layer == 9 && collision.isTrigger && collision.gameObject != attackPoint.gameObject && collision.GetComponentInParent<Hero>() != null && collision.GetComponentInParent<Hero>().isPlayerHero != isPlayerHero && collision.GetComponentInParent<Hero>().target != null && collision.GetComponentInParent<Hero>().target.gameObject.GetInstanceID() == this.gameObject.GetInstanceID())
             {
-                if (UnityEngine.Random.Range(0, 1000) <= Mathf.Clamp(status.defence,0,500) && !isStunning && !isAirborne)
+                if (UnityEngine.Random.Range(0, 1000) <= Mathf.Clamp(status.defence*0.1f,0,200) && !isStunning && !isAirborne)
                 {
                     Defence(collision);
                     GuardEffect(collision);
@@ -1703,7 +1712,14 @@ public class Hero : MonoBehaviour
     IEnumerator Attacking()
     {
         isAttack = true;
-        attackNumber = UnityEngine.Random.Range(0, 5);
+        if(id>500&&id<1000)
+        {
+            attackNumber = heroData.attackType;
+        }
+        else
+        {
+            attackNumber = UnityEngine.Random.Range(0, 5);
+        }
         isLeftorRight = target.transform.position.x < transform.position.x ? true : false;
         RedirectCharacter();
         animator.SetInteger("attackNumber", attackNumber);
@@ -1984,7 +2000,7 @@ public class Hero : MonoBehaviour
             {
                 attackPoint.GetComponent<AudioSource>().Play();
             }
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForSeconds(0.2f);
             attackPoint.gameObject.SetActive(false);
             cnt++;
         }
