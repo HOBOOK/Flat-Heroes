@@ -98,7 +98,8 @@ public class Hero : MonoBehaviour
             isLeftorRight = true;
         }
         animator = GetComponent<Animator>();
-        faceAnimator = GetComponentInChildren<faceOff>().GetFaceAnimator();
+        if(GetComponentInChildren<faceOff>()!=null)
+            faceAnimator = GetComponentInChildren<faceOff>().GetFaceAnimator();
         rigid = GetComponent<Rigidbody2D>();
         if (attackPoint.GetComponent<SpriteRenderer>() != null)
             attackPoint.GetComponent<SpriteRenderer>().enabled = false;
@@ -691,7 +692,8 @@ public class Hero : MonoBehaviour
             StartCoroutine("DroppingItem");
             rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
             rigid.gravityScale = 1;
-            faceAnimator.SetBool("isDead", true);
+            if(faceAnimator!=null)
+                faceAnimator.SetBool("isDead", true);
             rigid.velocity = Vector3.zero;
             Knockback(12, 23);
             attackPoint.SetActive(false);
@@ -840,7 +842,8 @@ public class Hero : MonoBehaviour
         {
             animator.SetBool("isJumping", true);
             animator.SetTrigger("jumping");
-            faceAnimator.SetTrigger("Do");
+            if (faceAnimator != null)
+                faceAnimator.SetTrigger("Do");
             rigid.velocity = Vector2.zero;
             JumpEffect();
             Vector2 jumpVelocity = new Vector2(isLeftorRight ? -1 : 1, 20);
@@ -1029,7 +1032,8 @@ public class Hero : MonoBehaviour
         if (!animator.GetBool("isAttack")&&!animator.GetBool("isSkill"))
         {
             animator.SetTrigger("defencing");
-            faceAnimator.SetTrigger("Do");
+            if (faceAnimator != null)
+                faceAnimator.SetTrigger("Do");
             Knockback(1, 1, collision);
         }
         DamageCCUIShow("막음");
@@ -1079,7 +1083,8 @@ public class Hero : MonoBehaviour
                 if (!animator.GetBool("isAttack") && !animator.GetBool("isSkill"))
                     animator.SetTrigger("heating");
             }
-            faceAnimator.SetTrigger("Hit");
+            if (faceAnimator != null)
+                faceAnimator.SetTrigger("Hit");
             status.hp = Common.looMinus(status.hp, dam);
             StartCoroutine(UnBeatTime(dam));
         }
@@ -1098,7 +1103,8 @@ public class Hero : MonoBehaviour
                 if (!animator.GetBool("isAttack") && !animator.GetBool("isSkill"))
                     animator.SetTrigger("heating");
             }
-            faceAnimator.SetTrigger("Hit");
+            if (faceAnimator != null)
+                faceAnimator.SetTrigger("Hit");
             status.hp = Common.looMinus(status.hp, dam);
             Vector2 attackedVelocity = isLeftorRight ? new Vector2(addforce.x, addforce.y) : new Vector2(-addforce.x, addforce.y);
             rigid.AddForce(attackedVelocity, ForceMode2D.Impulse);
@@ -1679,7 +1685,8 @@ public class Hero : MonoBehaviour
         Knockback(10, 1);
         animator.SetTrigger("stunning");
         animator.SetBool("isStun", true);
-        faceAnimator.SetTrigger("Hit");
+        if (faceAnimator != null)
+            faceAnimator.SetTrigger("Hit");
         rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
         while (isStunning)
         {
@@ -1698,7 +1705,8 @@ public class Hero : MonoBehaviour
         RedirectCharacter();
         animator.SetInteger("attackNumber", attackNumber);
         animator.SetFloat("speed", 0.8f + this.status.attackSpeed * 2f);
-        faceAnimator.SetTrigger("Do");
+        if (faceAnimator != null)
+            faceAnimator.SetTrigger("Do");
         animator.SetBool("isAttack", true);
         animator.SetTrigger("attacking");
         if (playChats.Count > 0 && UnityEngine.Random.Range(0, 5) < 1)
@@ -1724,7 +1732,8 @@ public class Hero : MonoBehaviour
         RedirectCharacter();
         animator.SetInteger("attackNumber", attackNumber);
         animator.SetFloat("speed", 0.8f + this.status.attackSpeed*2f);
-        faceAnimator.SetTrigger("Do");
+        if (faceAnimator != null)
+            faceAnimator.SetTrigger("Do");
         animator.SetBool("isAttack", true);
         animator.SetTrigger("attacking");
         if (playChats.Count > 0 && UnityEngine.Random.Range(0, 5)<1)
@@ -1755,7 +1764,8 @@ public class Hero : MonoBehaviour
         attackNumber = UnityEngine.Random.Range(0, 5);
         animator.SetInteger("attackNumber", attackNumber);
         animator.SetFloat("speed", 1.0f);
-        faceAnimator.SetTrigger("Do");
+        if (faceAnimator != null)
+            faceAnimator.SetTrigger("Do");
         animator.SetTrigger("attacking");
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length * 1.1f);
         Idle();

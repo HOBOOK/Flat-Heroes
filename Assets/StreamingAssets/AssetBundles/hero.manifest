@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 4148333840
+CRC: 3625357204
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9b45d74fdcf23c2edcc8f6f0f0036877
+    Hash: 062eac6f758b84f0b6d0582096c7ef92
   TypeTreeHash:
     serializedVersion: 2
     Hash: c9554f441d42930d1d610c25c7409c98
@@ -93,6 +93,7 @@ Assets:
 - Assets/AllResource/Characters/Heros/Hero003/leg_left_up_003.png
 - Assets/AllResource/Characters/Heros/Hero003/arm_right_dn_003.png
 - Assets/AllResource/Characters/Heros/Hero003/body_003.png
+- Assets/AllResource/Characters/Monsters/Monster004/body_m004.png
 - Assets/AllResource/Characters/Heros/Hero007/hair_back_007.png
 - Assets/AllResource/Characters/Monsters/Monster003/face_m003.png
 - Assets/AllResource/Characters/Monsters/Monster001/leg_right_up_m001.png
@@ -118,6 +119,7 @@ Assets:
 - Assets/AllResource/Characters/Heros/Hero008/face_eye_close_008.png
 - Assets/AllResource/Characters/Heros/Hero005/hair_005.png
 - Assets/AllResource/Characters/Heros/Hero006/body_006.png
+- Assets/AllResource/Characters/Monsters/Monster005/body_m005.png
 - Assets/AllResource/Characters/Heros/Hero008/face_hit_008.png
 - Assets/AllResource/Characters/Boss/Boss001/leg_left_dn_b001.png
 - Assets/AllResource/Characters/Heros/Hero001/leg_left_dn_001.png
@@ -133,6 +135,7 @@ Assets:
 - Assets/AllResource/Characters/Heros/Hero008/face_008.png
 - Assets/AllResource/Characters/Monsters/Monster001/body_m001.png
 - Assets/AllResource/Characters/Heros/Hero002/leg_right_up_002.png
+- Assets/AllResource/Characters/Monsters/Monster006/body_m006.png
 - Assets/AllResource/Characters/Heros/Hero007/arm_left_dn_007.png
 - Assets/AllResource/Characters/Heros/Hero003/face_eye_close_003.png
 - Assets/AllResource/Characters/Heros/Hero002/face_attack_002.png
@@ -208,6 +211,7 @@ Assets:
 - Assets/AllResource/Characters/Heros/Hero002/hat_002.png
 - Assets/AllResource/Characters/Monsters/Monster001/hair_m001.png
 - Assets/AllResource/Characters/Heros/Hero001/face_hit_001.png
+- Assets/AllResource/Characters/Monsters/Prefabs/Monster004.prefab
 - Assets/AllResource/Characters/Heros/Hero008/arm_right_up_008.png
 - Assets/AllResource/Characters/Heros/Hero007/body_007.png
 - Assets/AllResource/Characters/Heros/Hero006/arm_right_dn_006.png
@@ -217,6 +221,7 @@ Assets:
 - Assets/AllResource/Characters/Monsters/Monster003/arm_left_up_m003.png
 - Assets/AllResource/Characters/Heros/Hero009/face_009.png
 - Assets/AllResource/Characters/Monsters/Monster003/body_m003.png
+- Assets/AllResource/Characters/Monsters/Prefabs/Monster006.prefab
 - Assets/AllResource/Characters/Monsters/Monster003/arm_right_dn_m003.png
 - Assets/AllResource/Characters/Heros/Hero003/arm_left_up_003.png
 - Assets/AllResource/Characters/Heros/Hero001/hair_001.png
@@ -254,4 +259,5 @@ Assets:
 - Assets/AllResource/Characters/Heros/Hero008/arm_left_dn_008.png
 - Assets/AllResource/Characters/Monsters/Monster001/arm_right_dn_m001.png
 - Assets/AllResource/Characters/Heros/Hero009/arm_right_dn_009.png
+- Assets/AllResource/Characters/Monsters/Prefabs/Monster005.prefab
 Dependencies: []

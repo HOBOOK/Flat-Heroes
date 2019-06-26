@@ -237,7 +237,7 @@
     </Hero>
     <Hero id="503">
       <Name>좀비3</Name>
-      <Image>HeroThumbnail/thumbnail_502</Image>
+      <Image>HeroThumbnail/thumbnail_503</Image>
       <Enable>false</Enable>
       <Type>1</Type>
       <Description>???</Description>
@@ -253,6 +253,60 @@
       <Skill>0</Skill>
       <AttackType>0</AttackType>
     </Hero>
+    <Hero id="504">
+      <Name>파리1</Name>
+      <Image>HeroThumbnail/thumbnail_504</Image>
+      <Enable>false</Enable>
+      <Type>1</Type>
+      <Description>???</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>3</Strength>
+      <Intelligent>0</Intelligent>
+      <Physical>10</Physical>
+      <Agility>0</Agility>
+      <Chat>윙~~~</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="505">
+      <Name>슬라임1</Name>
+      <Image>HeroThumbnail/thumbnail_505</Image>
+      <Enable>false</Enable>
+      <Type>1</Type>
+      <Description>???</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>3</Strength>
+      <Intelligent>0</Intelligent>
+      <Physical>10</Physical>
+      <Agility>0</Agility>
+      <Chat>포옹포옹~</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="506">
+      <Name>슬라임2</Name>
+      <Image>HeroThumbnail/thumbnail_506</Image>
+      <Enable>false</Enable>
+      <Type>1</Type>
+      <Description>???</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>3</Strength>
+      <Intelligent>0</Intelligent>
+      <Physical>10</Physical>
+      <Agility>0</Agility>
+      <Chat>포옹포옹~</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
     <Hero id="1001">
       <Name>좀비자이언트</Name>
       <Image>HeroThumbnail/thumbnail_501</Image>
@@ -262,10 +316,10 @@
       <Level>1</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>20</Strength>
+      <Strength>50</Strength>
       <Intelligent>10</Intelligent>
-      <Physical>100</Physical>
-      <Agility>5</Agility>
+      <Physical>150</Physical>
+      <Agility>40</Agility>
       <Chat>크우우르릉!!,크릌..!!</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>0</Skill>
