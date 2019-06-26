@@ -252,6 +252,14 @@ public class StageManagement : MonoBehaviour
         }
         return getItemList;
     }
+    public void OnClickNextStage()
+    {
+        GameManagement.instance.SetStageInfo(stageInfo.mapNumber+1);
+        SaveSystem.SavePlayer();
+        LoadSceneManager.instance.LoadStageScene();
+    }
+
+
 }
 
 public class StageInfo

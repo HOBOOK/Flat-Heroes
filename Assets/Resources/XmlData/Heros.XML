@@ -280,9 +280,9 @@
       <Level>1</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>3</Strength>
+      <Strength>30</Strength>
       <Intelligent>0</Intelligent>
-      <Physical>10</Physical>
+      <Physical>1000</Physical>
       <Agility>0</Agility>
       <Chat>포옹포옹~</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
@@ -298,9 +298,9 @@
       <Level>1</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>3</Strength>
+      <Strength>30</Strength>
       <Intelligent>0</Intelligent>
-      <Physical>10</Physical>
+      <Physical>1000</Physical>
       <Agility>0</Agility>
       <Chat>포옹포옹~</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
