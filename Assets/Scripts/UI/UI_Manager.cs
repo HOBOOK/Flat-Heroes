@@ -229,6 +229,10 @@ public class UI_Manager : MonoBehaviour
             Image getImage = getAlertPanel.transform.GetChild(0).GetComponent<Image>();
             Text getText = getAlertPanel.transform.GetChild(1).GetComponent<Text>();
             getImage.sprite = Resources.Load<Sprite>(spritePath);
+            if (getImage.sprite == null)
+                getImage.enabled = false;
+            else
+                getImage.enabled = true;
             getText.text = txt;
             PopupAlertUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
         }
@@ -252,6 +256,10 @@ public class UI_Manager : MonoBehaviour
             Image getImage = getAlertPanel.transform.GetChild(0).GetComponent<Image>();
             Text getText = getAlertPanel.transform.GetChild(1).GetComponent<Text>();
             getImage.sprite = Resources.Load<Sprite>(spritePath);
+            if (getImage.sprite == null)
+                getImage.enabled = false;
+            else
+                getImage.enabled = true;
             getText.text = alertText;
             getAlertPanel.GetComponentInChildren<UI_CheckButton>().isChecking = false;
             PopupAlertUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
@@ -310,6 +318,10 @@ public class UI_Manager : MonoBehaviour
             Image shortageImage = ShowtageAlertPanel.transform.GetChild(0).GetComponent<Image>();
             Text shortageText = ShowtageAlertPanel.transform.GetChild(1).GetComponent<Text>();
             shortageImage.sprite = Resources.Load<Sprite>(imagePath);
+            if (shortageImage.sprite == null)
+                shortageImage.enabled = false;
+            else
+                shortageImage.enabled = true;
             shortageText.text = alertText;
             PopupAlertUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
         }

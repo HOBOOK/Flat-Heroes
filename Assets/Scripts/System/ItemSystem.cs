@@ -175,7 +175,7 @@ public static class ItemSystem
                 }
                 else
                 {
-                    ItemDatabase.DeleteItemSave(id);
+                    ItemDatabase.DeleteItemSave(useItem.id);
                 }
 
                 Debugging.Log(useItem.name + "을 " + count + "개 사용하여 0개가 남아서 XML에서 삭제되었습니다.");
@@ -184,7 +184,7 @@ public static class ItemSystem
             else
             {
                 useItem.count -= count;
-                ItemDatabase.ItemSave(id);
+                ItemDatabase.ItemSave(useItem.id);
                 Debugging.Log(useItem.name + "을 " + count + "개 사용하여 " + useItem.count + "개 남았습니다.");
                 return true;
             }
@@ -192,7 +192,7 @@ public static class ItemSystem
         }
         else
         {
-            Debugging.LogWarning(useItem.name + "을 " + count + "개 사용하여 " + useItem.count + "개 남았습니다.");
+            Debugging.LogWarning(id+" 아이템이 NULL 입니다.");
             return false;
         }
     }

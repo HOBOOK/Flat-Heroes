@@ -57,11 +57,11 @@ public class UI_Manager_InventoryTab : MonoBehaviour
             {
                 itemSlots[i].Item = null;
                 itemSlots[i].GetComponent<Button>().enabled = false;
+                itemSlots[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.BC;
                 if (i < items.Count && i < itemSlots.Length)
                 {
-                    Debugging.Log(items[i].name+"/" + items[i].id + "/" + items[i].count + "/" + items[i].customId);
                     itemSlots[i].Item = items[i];
-                    itemSlots[i].transform.GetChild(0).GetComponent<Image>().color = ItemColor.GetItemColor(items[i].itemClass);
+                    itemSlots[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.GetItemColor(items[i].itemClass);
                     itemSlots[i].transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(items[i].itemClass);
                     itemSlots[i].GetComponent<Button>().enabled = true;
                     int index = i;
