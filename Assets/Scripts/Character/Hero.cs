@@ -689,7 +689,6 @@ public class Hero : MonoBehaviour
                 Common.Chat(endChats[UnityEngine.Random.Range(0, endChats.Count)], transform);
             StopAllCoroutines();
             SetFalseAllboolean();
-            StartCoroutine("DroppingItem");
             rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
             rigid.gravityScale = 1;
             if(faceAnimator!=null)
@@ -700,6 +699,7 @@ public class Hero : MonoBehaviour
             animator.SetTrigger("deading");
             if (!isPlayerHero)
             {
+                StartCoroutine("DroppingItem");
                 MissionSystem.AddClearPoint(MissionSystem.ClearType.EnemyKill);
                 StageManagement.instance.AddExp(20);
                 StageManagement.instance.SetKPoint();
@@ -2079,26 +2079,44 @@ public class Hero : MonoBehaviour
     public IEnumerator Skill005()
     {
         SmokeDarkEffect();
+        bool flag = false;
         yield return new WaitForSeconds(0.5f);
-        if(target!=null)
+        if (target != null)
         {
             if (target.transform.position.x > this.transform.position.x)
-                this.transform.position = target.transform.position + new Vector3(-0.7f, 0);
+            {
+                this.transform.position = Common.GetBottomPosition(target.transform) + new Vector3(-0.7f, 0);
+                flag = true;
+            }
+
             else
-                this.transform.position = target.transform.position + new Vector3(0.7f, 0);
+            {
+                this.transform.position = Common.GetBottomPosition(target.transform) + new Vector3(0.7f, 0);
+                flag = false;
+            }
+
         }
-
         SmokeDarkEffect();
-
         attackPoint.name = this.Damage().ToString();
         int totalCount = SkillSystem.GetUserSkillLevel(skillData.id);
         for (int i = 0; i < totalCount; i++)
         {
+
             attackPoint.gameObject.SetActive(true);
             yield return new WaitForFixedUpdate();
             attackPoint.gameObject.SetActive(false);
             i++;
         }
+
+        if(target!=null)
+        {
+            if (!flag)
+                this.transform.position = Common.GetBottomPosition(target.transform) + new Vector3(-0.7f, 0);
+            else
+                this.transform.position = Common.GetBottomPosition(target.transform) + new Vector3(0.7f, 0);
+            SmokeDarkEffect();
+        }
+
         yield return null;
     }
     #endregion

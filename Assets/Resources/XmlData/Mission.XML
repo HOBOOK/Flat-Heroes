@@ -29,7 +29,7 @@
       <Enable>false</Enable>
             <RewardType>1</RewardType>
       <RewardItemId>0</RewardItemId>
-      <RewardItemCount>5</RewardItemCount>
+      <RewardItemCount>10</RewardItemCount>
     </Mission>
         <Mission id="3">
       <Name>일일퀘스트3</Name>
@@ -38,7 +38,7 @@
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_003</Image>
                 <Point>0</Point>
-                <ClearPoint>7</ClearPoint>
+                <ClearPoint>8</ClearPoint>
                 <ClearType>0</ClearType>
       <Clear>false</Clear>
       <Enable>false</Enable>
@@ -59,7 +59,7 @@
       <Enable>false</Enable>
                 <RewardType>1</RewardType>
       <RewardItemId>0</RewardItemId>
-      <RewardItemCount>5</RewardItemCount>
+      <RewardItemCount>12</RewardItemCount>
     </Mission>
       <Mission id="5">
       <Name>일일퀘스트5</Name>
@@ -74,7 +74,7 @@
       <Enable>false</Enable>
               <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
-      <RewardItemCount>1500</RewardItemCount>
+      <RewardItemCount>10000</RewardItemCount>
     </Mission>
     <Mission id="6">
       <Name>일일퀘스트6</Name>
@@ -89,7 +89,7 @@
       <Enable>false</Enable>
             <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
-      <RewardItemCount>10000</RewardItemCount>
+      <RewardItemCount>20000</RewardItemCount>
     </Mission>
     <Mission id="7">
       <Name>일일퀘스트7</Name>
@@ -104,7 +104,7 @@
       <Enable>false</Enable>
             <RewardType>1</RewardType>
       <RewardItemId>0</RewardItemId>
-      <RewardItemCount>5</RewardItemCount>
+      <RewardItemCount>15</RewardItemCount>
     </Mission>
     <Mission id="8">
       <Name>일일퀘스트8</Name>
@@ -119,7 +119,7 @@
       <Enable>false</Enable>
             <RewardType>1</RewardType>
       <RewardItemId>0</RewardItemId>
-      <RewardItemCount>5</RewardItemCount>
+      <RewardItemCount>10</RewardItemCount>
     </Mission>
     <Mission id="9">
       <Name>일일퀘스트9</Name>
@@ -134,22 +134,22 @@
       <Enable>false</Enable>
             <RewardType>1</RewardType>
       <RewardItemId>0</RewardItemId>
-      <RewardItemCount>5</RewardItemCount>
+      <RewardItemCount>12</RewardItemCount>
     </Mission>
     <Mission id="10">
       <Name>일일퀘스트10</Name>
-      <Description>몬스터 5마리 처치</Description>
+      <Description>몬스터 80마리 처치</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_010</Image>
             <Point>0</Point>
-            <ClearPoint>5</ClearPoint>
+            <ClearPoint>80</ClearPoint>
             <ClearType>0</ClearType>
       <Clear>false</Clear>
       <Enable>false</Enable>
             <RewardType>1</RewardType>
       <RewardItemId>0</RewardItemId>
-      <RewardItemCount>5</RewardItemCount>
+      <RewardItemCount>20</RewardItemCount>
     </Mission>
     <Mission id="101">
       <Name>주퀘스트1</Name>
