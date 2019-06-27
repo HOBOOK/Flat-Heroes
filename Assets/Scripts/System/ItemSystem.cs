@@ -427,7 +427,7 @@ public static class ItemSystem
                     itemList.Sort((i1, i2) => i1.name.CompareTo(i2.name));
                     break;
                 case Common.OrderByType.VALUE:
-                    itemList.Sort((i1, i2) => i1.value.CompareTo(i2.name));
+                    itemList.Sort((i1, i2) => i2.itemClass.CompareTo(i1.itemClass));
                     break;
             }
             return itemList;

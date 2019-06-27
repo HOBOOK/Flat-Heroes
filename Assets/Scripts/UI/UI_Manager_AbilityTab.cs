@@ -127,6 +127,7 @@ public class UI_Manager_AbilityTab : MonoBehaviour
                     int abIndex = i;
                     userAb = AbilitySystem.GetUserAbility(abilityList[abIndex].id);
                     abilitySlotList[i].transform.GetComponentInChildren<Text>().text = userAb.level.ToString();
+
                     abilitySlotList[i].transform.GetComponentInChildren<Text>().enabled = true;
                     abilitySlotList[i].GetComponent<Button>().onClick.RemoveAllListeners();
                     abilitySlotList[i].GetComponent<Button>().onClick.AddListener(delegate

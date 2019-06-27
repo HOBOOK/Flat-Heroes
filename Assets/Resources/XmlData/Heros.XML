@@ -205,13 +205,13 @@
       <Enable>false</Enable>
       <Type>1</Type>
       <Description>???</Description>
-      <Level>1</Level>
+      <Level>9</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>1</Strength>
-      <Intelligent>0</Intelligent>
-      <Physical>8</Physical>
-      <Agility>0</Agility>
+      <Strength>23</Strength>
+      <Intelligent>5</Intelligent>
+      <Physical>28</Physical>
+      <Agility>15</Agility>
       <Chat>크르륵..,...크르릉</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>0</Skill>
@@ -223,13 +223,13 @@
       <Enable>false</Enable>
       <Type>1</Type>
       <Description>???</Description>
-      <Level>1</Level>
+      <Level>9</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>3</Strength>
-      <Intelligent>0</Intelligent>
-      <Physical>10</Physical>
-      <Agility>0</Agility>
+      <Strength>25</Strength>
+      <Intelligent>7</Intelligent>
+      <Physical>30</Physical>
+      <Agility>15</Agility>
       <Chat>크르륵..,...크르릉</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>0</Skill>
@@ -241,13 +241,13 @@
       <Enable>false</Enable>
       <Type>1</Type>
       <Description>???</Description>
-      <Level>1</Level>
+      <Level>10</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>3</Strength>
-      <Intelligent>0</Intelligent>
-      <Physical>10</Physical>
-      <Agility>0</Agility>
+      <Strength>30</Strength>
+      <Intelligent>5</Intelligent>
+      <Physical>35</Physical>
+      <Agility>10</Agility>
       <Chat>크르륵..,...크르릉</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>0</Skill>
@@ -259,12 +259,12 @@
       <Enable>false</Enable>
       <Type>1</Type>
       <Description>???</Description>
-      <Level>1</Level>
+      <Level>2</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>3</Strength>
+      <Strength>12</Strength>
       <Intelligent>0</Intelligent>
-      <Physical>10</Physical>
+      <Physical>7</Physical>
       <Agility>0</Agility>
       <Chat>윙~~~</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
@@ -280,9 +280,9 @@
       <Level>1</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>30</Strength>
+      <Strength>10</Strength>
       <Intelligent>0</Intelligent>
-      <Physical>1000</Physical>
+      <Physical>10</Physical>
       <Agility>0</Agility>
       <Chat>포옹포옹~</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
@@ -298,9 +298,9 @@
       <Level>1</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>30</Strength>
+      <Strength>10</Strength>
       <Intelligent>0</Intelligent>
-      <Physical>1000</Physical>
+      <Physical>10</Physical>
       <Agility>0</Agility>
       <Chat>포옹포옹~</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
@@ -313,13 +313,13 @@
       <Enable>false</Enable>
       <Type>1</Type>
       <Description>???</Description>
-      <Level>1</Level>
+      <Level>20</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>50</Strength>
-      <Intelligent>10</Intelligent>
+      <Strength>150</Strength>
+      <Intelligent>30</Intelligent>
       <Physical>150</Physical>
-      <Agility>40</Agility>
+      <Agility>70</Agility>
       <Chat>크우우르릉!!,크릌..!!</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>0</Skill>

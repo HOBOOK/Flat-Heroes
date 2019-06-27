@@ -56,6 +56,7 @@ public class UI_Manager_InventoryTab : MonoBehaviour
                 {
                     Debugging.Log(items[i].name+"/" + items[i].id + "/" + items[i].count + "/" + items[i].customId);
                     itemSlots[i].Item = items[i];
+                    itemSlots[i].transform.GetChild(0).GetComponent<Image>().color = ItemColor.GetItemColor(items[i].itemClass);
                     itemSlots[i].GetComponent<Button>().enabled = true;
                     int index = i;
                     if(index < items.Count && index < itemSlots.Length)
