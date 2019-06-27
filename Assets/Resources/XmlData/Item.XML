@@ -50,19 +50,19 @@
       <Description>정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.</Description>
       <ItemType>0</ItemType>
       <WeaponType>1</WeaponType>
-      <Attack>80</Attack>
-      <Defence>0</Defence>
+      <Attack>120</Attack>
+      <Defence>-20</Defence>
       <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
+      <Critical>10</Critical>
+      <AttackSpeed>10</AttackSpeed>
+      <MoveSpeed>5</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>5000</Value>
+      <Value>15000</Value>
       <Image>Equipment/equipment_003</Image>
       <Count>0</Count>
       <Enable>false</Enable>
       <DropRate>1</DropRate>
-      <Class>3</Class>
+      <Class>5</Class>
     </Item>
     <Item id="4">
        <CustomId>0</CustomId>
@@ -105,6 +105,69 @@
       <Enable>false</Enable>
       <DropRate>1</DropRate>
       <Class>1</Class>
+    </Item>
+    <Item id="6">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>천갑옷</Name>
+      <Description>가볍고 활동하기 편한 갑옷이다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>1</WeaponType>
+      <Attack>0</Attack>
+      <Defence>30</Defence>
+      <Hp>100</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>1000</Value>
+      <Image>Equipment/equipment_006</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>1</DropRate>
+      <Class>2</Class>
+    </Item>
+    <Item id="7">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>철갑옷</Name>
+      <Description>살짝 무겁지만 튼튼한 갑옷이다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>1</WeaponType>
+      <Attack>0</Attack>
+      <Defence>50</Defence>
+      <Hp>100</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>1000</Value>
+      <Image>Equipment/equipment_007</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>1</DropRate>
+      <Class>3</Class>
+    </Item>
+    <Item id="8">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>사냥꾼의 갑옷</Name>
+      <Description>균형이 잘 잡혀있는 갑옷이다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>1</WeaponType>
+      <Attack>10</Attack>
+      <Defence>50</Defence>
+      <Hp>30</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>5</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>1000</Value>
+      <Image>Equipment/equipment_008</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>1</DropRate>
+      <Class>4</Class>
     </Item>
     
     <Item id="8001">

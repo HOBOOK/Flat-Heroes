@@ -337,7 +337,7 @@ public class ItemDatabase
         XmlElement attack = xmlDoc.CreateElement("Attack");
         attack.InnerText = data.attack.ToString();
         child.AppendChild(attack);
-        XmlElement defence = xmlDoc.CreateElement("Defenece");
+        XmlElement defence = xmlDoc.CreateElement("Defence");
         defence.InnerText = data.defence.ToString();
         child.AppendChild(defence);
         XmlElement hp = xmlDoc.CreateElement("Hp");
@@ -415,7 +415,7 @@ public class ItemDatabase
             XmlElement attack = xmlDoc.CreateElement("Attack");
             attack.InnerText = data.attack.ToString();
             child.AppendChild(attack);
-            XmlElement defence = xmlDoc.CreateElement("Defenece");
+            XmlElement defence = xmlDoc.CreateElement("Defence");
             defence.InnerText = data.defence.ToString();
             child.AppendChild(defence);
             XmlElement hp = xmlDoc.CreateElement("Hp");

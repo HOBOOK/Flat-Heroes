@@ -82,6 +82,7 @@ public class UI_EquipmentItem : MonoBehaviour
                 itemSlot.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(userEquipmentItemList[i].image);
                 itemSlot.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(userEquipmentItemList[i].itemClass);
                 itemSlot.GetComponentInChildren<Text>().text = userEquipmentItemList[i].name;
+                itemSlot.transform.GetChild(2).GetComponent<Image>().color = ItemColor.GetItemColor(userEquipmentItemList[i].itemClass);
                 int index = i;
                 itemSlot.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
                 itemSlot.GetComponentInChildren<Button>().onClick.AddListener(delegate

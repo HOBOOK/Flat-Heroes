@@ -46,7 +46,7 @@
       <Energy>50</Energy>
     </Skill>
     <Skill id="5">
-      <Name>댄싱나이프</Name>
+      <Name>스모킹나이프</Name>
       <Description>나이프를 던진곳으로 날아가 적을 공격한다.</Description>
       <Image>Skill/skill_005</Image>
       <Level>1</Level>
