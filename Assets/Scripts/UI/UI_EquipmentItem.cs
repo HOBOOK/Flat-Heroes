@@ -75,7 +75,7 @@ public class UI_EquipmentItem : MonoBehaviour
             {
                 Destroy(child.gameObject);
             }
-            userEquipmentItemList = ItemSystem.GetUserUnEquipmentItems(Common.OrderByType.NAME);
+            userEquipmentItemList = ItemSystem.GetUserUnEquipmentItems(Common.OrderByType.VALUE);
             for(var i = 0; i <userEquipmentItemList.Count; i++)
             {
                 GameObject itemSlot = Instantiate(ItemSlotPrefab, ItemListContentView.transform);

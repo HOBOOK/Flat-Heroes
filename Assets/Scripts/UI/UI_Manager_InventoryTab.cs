@@ -11,10 +11,15 @@ public class UI_Manager_InventoryTab : MonoBehaviour
 
     public GameObject ItemSlotPrefab;
     public GameObject PanelItemInfo;
+    public GameObject ScrollContentView;
     Image itemInfoImage;
     Text itemInfoName;
     Text itemInfoDescription;
     Button itemSellButton;
+    private void Awake()
+    {
+        ScrollContentView = transform.GetComponentInChildren<ContentSizeFitter>().gameObject;
+    }
     public void OnValidate()
     {
         if(itemParent!=null)
@@ -57,6 +62,7 @@ public class UI_Manager_InventoryTab : MonoBehaviour
                     Debugging.Log(items[i].name+"/" + items[i].id + "/" + items[i].count + "/" + items[i].customId);
                     itemSlots[i].Item = items[i];
                     itemSlots[i].transform.GetChild(0).GetComponent<Image>().color = ItemColor.GetItemColor(items[i].itemClass);
+                    itemSlots[i].transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(items[i].itemClass);
                     itemSlots[i].GetComponent<Button>().enabled = true;
                     int index = i;
                     if(index < items.Count && index < itemSlots.Length)
@@ -84,6 +90,7 @@ public class UI_Manager_InventoryTab : MonoBehaviour
         {
             itemInfoImage.sprite = ItemSystem.GetItemImage(itemSlots[index].Item.id);
             itemInfoName.text = itemSlots[index].Item.name;
+            itemInfoName.color = ItemColor.GetItemColor(itemSlots[index].Item.itemClass);
             itemInfoDescription.text = ItemSystem.GetEquipmentItemDescription(itemSlots[index].Item);
             itemInfoImage.enabled = true;
             itemInfoName.enabled = true;
