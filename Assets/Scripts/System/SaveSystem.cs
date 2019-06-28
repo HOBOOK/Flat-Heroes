@@ -64,6 +64,8 @@ public static class SaveSystem
             User.addAttackLevel = data.addAttackLevel;
             User.addDefenceLevel = data.addExpLevel;
             User.gachaSeed = data.gachaSeed;
+            if (data.playerSkill == null) data.playerSkill = new int[2];
+            User.playerSkill = data.playerSkill;
 
             User.name = data.name;
             //Debugging.LogSystem("File is loaded Successfully >> Try : " + loadTryCount + "\r\n" + JsonUtility.ToJson(data));
@@ -92,6 +94,7 @@ public static class SaveSystem
         User.addAttackLevel = 0;
         User.addDefenceLevel = 0;
         User.gachaSeed = UnityEngine.Random.Range(0, 100);
+        User.playerSkill = new int[2];
 
         Debugging.LogSystem("Init Player");
     }

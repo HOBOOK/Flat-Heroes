@@ -48,6 +48,11 @@ public static class SkillSystem
         }
     }
 
+    public static void SetObtainPlayerSkill()
+    {
+        // TODO 필요레벨 도달시 플레이어 스킬획득
+    }
+
     #region 유저스킬정보
     public static Skill GetUserSkill(int id)
     {
@@ -59,7 +64,7 @@ public static class SkillSystem
         if (userSkill != null)
             return userSkill.level;
         else
-            return 1;
+            return 0;
     }
     public static int GetNeedSkillEnergy(Skill skill)
     {
@@ -88,6 +93,7 @@ public static class SkillSystem
             if (skill != null)
             {
                 skill.level = 1;
+                userSkills.Add(skill);
                 SkillDatabase.AddSkill(id);
             }
         }
@@ -117,6 +123,53 @@ public static class SkillSystem
     public static List<Skill> GetPlayerSkillList()
     {
         return skills.FindAll(x => x.id > 100);
+    }
+    public static List<Skill> GetAblePlayerSkillList()
+    {
+        return skills.FindAll(x => x.id > 100&&!x.id.Equals(User.playerSkill[0])&&!x.id.Equals(User.playerSkill[1]));
+    }
+    public static List<Skill> GetSelectSkillList()
+    {
+        List<Skill> selectSkill = new List<Skill>();
+
+        for(var i = 0; i < User.playerSkill.Length; i++)
+        {
+            if(User.playerSkill[i]!=0)
+            {
+                Skill skill = GetUserSkill(User.playerSkill[i]);
+                if (skill != null)
+                    selectSkill.Add(skill);
+            }
+        }
+        return selectSkill;
+    }
+    public static void SetPlayerSkill(List<Skill> skillList)
+    {
+        for (var i = 0; i < skillList.Count; i++)
+        {
+            if(skillList[i]!=null)
+                User.playerSkill[i] = skillList[i].id;
+        }
+        for(var i = skillList.Count; i<User.playerSkill.Length; i++)
+        {
+            User.playerSkill[i] = 0;
+        }
+    }
+    public static string GetPlayerSkillDescription(Skill skill)
+    {
+        string des = "";
+
+        des = string.Format("Lv{0} {1}\r\n\r\n{2}\r\n<color='yellow'><size='20'>스킬 공격력 : {3}\r\n재사용 대기시간 : {4}초</size></color>", GetUserSkillLevel(skill.id), skill.name, skill.description,skill.power,skill.energy);
+
+        return des;
+    }
+    public static bool isPlayerSkillAble(int id)
+    {
+        Skill skill = userSkills.Find(x => x.id == id || x.id.Equals(id));
+        if (skill != null && skill.level >= User.level)
+            return true;
+        else
+            return false;
     }
     #endregion
 

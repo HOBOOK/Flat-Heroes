@@ -180,3 +180,9 @@ MonoBehaviour:
     parent: {fileID: 0}
     poolCount: 2
     poolList: []
+  - poolItemName: SkillUpgradeEffect
+    prefab: {fileID: 7449290386173551058, guid: b84177c3b730a5b44ada33a4d3ca8c90,
+      type: 3}
+    parent: {fileID: 0}
+    poolCount: 5
+    poolList: []

@@ -115,7 +115,7 @@
       <Name>희망</Name>
       <Description>아군 전체의 체력을 회복한다.</Description>
       <Image>Skill/skill_102</Image>
-      <Level>1</Level>
+      <Level>5</Level>
       <SkillType>0</SkillType>
       <TargetType>0</TargetType>
       <Power>100</Power>
@@ -126,7 +126,7 @@
       <Name>후회</Name>
       <Description>아군 한명을 랜덤으로 부활시킨다.</Description>
       <Image>Skill/skill_103</Image>
-      <Level>1</Level>
+      <Level>10</Level>
       <SkillType>3</SkillType>
       <TargetType>0</TargetType>
       <Power>100</Power>
@@ -137,7 +137,7 @@
       <Name>자만</Name>
       <Description>적 전체를 2초간 스턴상태로 만든다.</Description>
       <Image>Skill/skill_104</Image>
-      <Level>1</Level>
+      <Level>15</Level>
       <SkillType>2</SkillType>
       <TargetType>0</TargetType>
       <Power>2</Power>
@@ -148,7 +148,7 @@
       <Name>희생</Name>
       <Description>아군 한명을 희생시켜 가장강한 적의 체력을 희생한 아군의 체력만큼 감소시킨다.</Description>
       <Image>Skill/skill_105</Image>
-      <Level>1</Level>
+      <Level>20</Level>
       <SkillType>3</SkillType>
       <TargetType>0</TargetType>
       <Power>0</Power>

@@ -16,6 +16,8 @@ public class UI_Manager_InventoryTab : MonoBehaviour
     Text itemInfoName;
     Text itemInfoDescription;
     Button itemSellButton;
+    GameObject isEquipPanel;
+
     private void Awake()
     {
         ScrollContentView = transform.GetComponentInChildren<ContentSizeFitter>().gameObject;
@@ -58,12 +60,16 @@ public class UI_Manager_InventoryTab : MonoBehaviour
                 itemSlots[i].Item = null;
                 itemSlots[i].GetComponent<Button>().enabled = false;
                 itemSlots[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.BC;
+                isEquipPanel = itemSlots[i].transform.GetChild(0).GetChild(2).gameObject;
+                isEquipPanel.SetActive(false);
                 if (i < items.Count && i < itemSlots.Length)
                 {
                     itemSlots[i].Item = items[i];
                     itemSlots[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.GetItemColor(items[i].itemClass);
                     itemSlots[i].transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(items[i].itemClass);
                     itemSlots[i].GetComponent<Button>().enabled = true;
+                    if (items[i].equipCharacterId > 0)
+                        isEquipPanel.SetActive(true);
                     int index = i;
                     if(index < items.Count && index < itemSlots.Length)
                     {

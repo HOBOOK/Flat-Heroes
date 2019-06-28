@@ -37,7 +37,6 @@ public class UserSkillManager : MonoBehaviour
             {
                 SetSkill(selectedSkills[i], i);
             }
-            
             isSkillSettingCompleted = true;
         }
     }

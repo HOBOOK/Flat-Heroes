@@ -45,4 +45,6 @@ public class User
     public static int addDefenceLevel;
     [SerializeField]
     public static int gachaSeed;
+    [SerializeField]
+    public static int[] playerSkill;
 }

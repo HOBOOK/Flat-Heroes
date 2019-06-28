@@ -12,6 +12,8 @@ public class UI_Manager_PlayerSkillTab : MonoBehaviour
     Image skillImage;
     Text skillDescriptionText;
     Text skillNeedCrystalText;
+    Button skillUpgradeButton;
+
     private void OnEnable()
     {
         RefreshUI();
@@ -34,13 +36,57 @@ public class UI_Manager_PlayerSkillTab : MonoBehaviour
                 GameObject slot = Instantiate(slotPrefab, ScrollContentView.transform);
                 skillImage = slot.transform.GetChild(0).GetChild(0).GetComponent<Image>();
                 skillDescriptionText = slot.transform.GetChild(1).GetComponent<Text>();
-                skillNeedCrystalText = slot.transform.GetComponentInChildren<Button>().GetComponentInChildren<Text>();
+                skillUpgradeButton = slot.transform.GetComponentInChildren<Button>();
+                skillNeedCrystalText = skillUpgradeButton.GetComponentInChildren<Text>();
+
 
                 skillImage.sprite = SkillSystem.GetSkillImage(playerSkillList[i].id);
-                skillDescriptionText.text = string.Format("Lv{0} {1}\r\n\r\n{2}",SkillSystem.GetUserSkillLevel(playerSkillList[i].id),playerSkillList[i].name,playerSkillList[i].description);
-                skillNeedCrystalText.text = "100";
-            }
+                skillDescriptionText.text = SkillSystem.GetPlayerSkillDescription(playerSkillList[i]);
 
+                int upgradePayment = 100;
+                skillNeedCrystalText.text = Common.GetThousandCommaText(upgradePayment);
+                skillUpgradeButton.onClick.RemoveAllListeners();
+                int index = i;
+                skillUpgradeButton.onClick.AddListener(delegate
+                {
+                    OnClickSkillUpgrate(index, playerSkillList[index].id, upgradePayment);
+                });
+                if (Common.PaymentAbleCheck(ref User.blackCrystal, upgradePayment))
+                {
+                    skillUpgradeButton.enabled = true;
+                }
+                else
+                {
+                    skillUpgradeButton.enabled = false;
+                }
+
+                if (SkillSystem.isPlayerSkillAble(playerSkillList[i].id))
+                {
+                    slot.transform.GetChild(3).gameObject.SetActive(false);
+                }
+                else
+                {
+                    slot.transform.GetChild(3).gameObject.SetActive(true);
+                    slot.transform.GetChild(3).GetComponentInChildren<Text>().text = playerSkillList[i].level.ToString();
+                }
+            }
         }
+    }
+
+    public void OnClickSkillUpgrate(int index, int skillId, int payment)
+    {
+        if(Common.PaymentCheck(ref User.blackCrystal, payment))
+        {
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
+            SkillSystem.SetObtainSkill(skillId);
+            EffectManager.SkillUpgradeEffect(ScrollContentView.transform.GetChild(index).GetChild(0).transform);
+            RefreshUI();
+        }
+        else
+        {
+            UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.blackCrystal, payment);
+        }
+
+
     }
 }

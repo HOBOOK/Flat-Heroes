@@ -23,7 +23,7 @@ public class UI_HeroInfo : MonoBehaviour
     Slider heroExpSlider;
     HeroData targetHeroData;
     Button skillLevelUpButton;
-    
+    Image skillImage;
 
     private void Awake()
     {
@@ -167,7 +167,8 @@ public class UI_HeroInfo : MonoBehaviour
         Skill heroSkill = SkillSystem.GetSkill(targetHeroData.skill);
         if (heroSkillSlot != null && heroSkill != null)
         {
-            heroSkillSlot.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = SkillSystem.GetSkillImage(heroSkill.id);
+            skillImage = heroSkillSlot.transform.GetChild(0).GetChild(0).GetComponent<Image>();
+            skillImage.sprite = SkillSystem.GetSkillImage(heroSkill.id);
             heroSkillSlot.transform.GetComponentInChildren<Text>().text = string.Format("<size='27'>기술레벨 : {0}</size>\r\n<color='grey'>{1}</color>", SkillSystem.GetUserSkillLevel(heroSkill.id), SkillSystem.GetUserSkillDescription(heroSkill,targetHeroData));
             // 스킬강화버튼
             skillLevelUpButton = heroSkillSlot.GetComponentInChildren<Button>();
@@ -192,9 +193,10 @@ public class UI_HeroInfo : MonoBehaviour
 
     public void OnSkillLevelUpClick(int skill, int needMoney)
     {
-        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_button_default);
         if(Common.PaymentCheck(ref User.coin,needMoney))
          {
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
+            EffectManager.SkillUpgradeEffect(skillImage.transform);
             SkillSystem.SetObtainSkill(skill);
             RefreshHeroStatusEquipmentPanel();
         }

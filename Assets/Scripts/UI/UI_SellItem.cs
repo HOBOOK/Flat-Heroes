@@ -18,6 +18,8 @@ public class UI_SellItem : MonoBehaviour
     Text sellItemCountText;
     Text sellItemTotalCoinText;
     Button sellItemButton;
+    Button RemoveAllButton;
+    Button AddBclassButton;
 
     bool isCheckAlertOn;
     int totalValue;
@@ -30,6 +32,18 @@ public class UI_SellItem : MonoBehaviour
             sellItemCountText = SellActionView.transform.GetChild(0).GetComponent<Text>();
             sellItemTotalCoinText = SellActionView.transform.GetChild(1).GetComponentInChildren<Text>();
             sellItemButton = SellActionView.transform.GetChild(2).GetComponent<Button>();
+            RemoveAllButton = SellActionView.transform.GetChild(4).GetChild(0).GetComponent<Button>();
+            AddBclassButton = SellActionView.transform.GetChild(4).GetChild(1).GetComponent<Button>();
+            RemoveAllButton.onClick.RemoveAllListeners();
+            RemoveAllButton.onClick.AddListener(delegate
+            {
+                OnClickItemAllToInventory();
+            });
+            AddBclassButton.onClick.RemoveAllListeners();
+            AddBclassButton.onClick.AddListener(delegate
+            {
+                OnClickBclassItemToSellList();
+            });
         }
     }
     void SetActionInfo(int count, int coin, bool isSellAble)
@@ -124,7 +138,7 @@ public class UI_SellItem : MonoBehaviour
                 itemSlot.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
                 itemSlot.GetComponentInChildren<Button>().onClick.AddListener(delegate
                 {
-                    OnClickItemToSellList(userItemList[index], itemSlot.GetComponentInChildren<Button>());
+                    OnClickItemToInventory(sellItemList[index], itemSlot.GetComponentInChildren<Button>());
                 });
                 itemSlot.gameObject.SetActive(true);
 
@@ -156,8 +170,68 @@ public class UI_SellItem : MonoBehaviour
             {
                 Debugging.Log("리스트가 가득참");
             }
-
         }
+    }
+
+    public void OnClickItemToInventory(Item sellItem, Button button)
+    {
+        if (SellListContentView != null)
+        {
+            if (sellItemList.Count > 0)
+            {
+                sellItemList.Remove(sellItem);
+                userItemList.Add(sellItem);
+                totalValue = 0;
+                totalCount = sellItemList.Count;
+                foreach (var item in sellItemList)
+                {
+                    totalValue += item.value;
+                }
+                SetActionInfo(totalCount, totalValue, true);
+                RefreshUI();
+            }
+            else
+            {
+                Debugging.Log("리스트가 가득참");
+            }
+        }
+    }
+
+    public void OnClickItemAllToInventory()
+    {
+        int currentSlotCount = sellItemList.Count;
+        for(int i = 0; i < currentSlotCount; i++)
+        {
+            userItemList.Add(sellItemList[i]);
+        }
+        sellItemList.Clear();
+        totalValue = 0;
+        totalCount = sellItemList.Count;
+        foreach (var item in sellItemList)
+        {
+            totalValue += item.value;
+        }
+        SetActionInfo(totalCount, totalValue, true);
+        RefreshUI();
+    }
+
+    public void OnClickBclassItemToSellList()
+    {
+        List<Item> bClassItemList = userItemList.FindAll(x => x.itemClass < 5);
+        int emptySlotCount = 15 - sellItemList.Count;
+        for (int i = 0; i < emptySlotCount && i< bClassItemList.Count; i++)
+        {
+            userItemList.Remove(bClassItemList[i]);
+            sellItemList.Add(bClassItemList[i]);
+        }
+        totalValue = 0;
+        totalCount = sellItemList.Count;
+        foreach (var item in sellItemList)
+        {
+            totalValue += item.value;
+        }
+        SetActionInfo(totalCount, totalValue, true);
+        RefreshUI();
     }
 
     public void OnSellStart()
