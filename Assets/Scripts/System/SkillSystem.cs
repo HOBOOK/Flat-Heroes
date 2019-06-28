@@ -114,6 +114,10 @@ public static class SkillSystem
     {
         return string.Format("\r\n{0}\r\n\r\n<color='yellow'>스킬공격력 : {1}</color>  <color='cyan'>소모에너지 : {2}</color><color='yellow'>(-{3})</color>",GetSkill(skillData.id).description,GetUserSkillPower(skillData.id), HeroSystem.GetHeroNeedEnergy(heroData.id,skillData),HeroSystem.GetHeroStatusSkillEnergy(ref heroData));
     }
+    public static List<Skill> GetPlayerSkillList()
+    {
+        return skills.FindAll(x => x.id > 100);
+    }
     #endregion
 
     #region 전체어빌리티정보
