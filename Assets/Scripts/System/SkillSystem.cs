@@ -46,11 +46,24 @@ public static class SkillSystem
         {
             Debugging.LogSystem("SkillDatabase is loaded Succesfully.");
         }
+
+        SetObtainPlayerSkill();
     }
 
     public static void SetObtainPlayerSkill()
     {
-        // TODO 필요레벨 도달시 플레이어 스킬획득
+        List<Skill> playerSkillList = skills.FindAll(x => x.id > 100 && x.level <= User.level);
+        List<Skill> userPlayerSkillList = userSkills.FindAll(x => x.id > 100);
+
+        foreach(var skill in playerSkillList)
+        {
+            Skill s = userPlayerSkillList.Find(x => x.id == skill.id);
+            if(s==null)
+            {
+                SetObtainSkill(skill.id);
+                UI_Manager.instance.ShowGetAlert(skill.image, string.Format("<color='yellow'>'{0}'</color> 플레이어 스킬 잠금이 해제되었습니다!",skill.name));
+            }
+        }
     }
 
     #region 유저스킬정보
@@ -159,14 +172,22 @@ public static class SkillSystem
     {
         string des = "";
 
-        des = string.Format("Lv{0} {1}\r\n\r\n{2}\r\n<color='yellow'><size='20'>스킬 공격력 : {3}\r\n재사용 대기시간 : {4}초</size></color>", GetUserSkillLevel(skill.id), skill.name, skill.description,skill.power,skill.energy);
+        des = string.Format("Lv{0} {1}\r\n\r\n{2}\r\n<color='yellow'><size='20'>스킬 공격력 : {3}\r\n재사용 대기시간 : {4}초</size></color>", GetUserSkillLevel(skill.id), skill.name, skill.description,GetUserSkillPower(skill.id),skill.energy);
 
         return des;
     }
     public static bool isPlayerSkillAble(int id)
     {
         Skill skill = userSkills.Find(x => x.id == id || x.id.Equals(id));
-        if (skill != null && skill.level >= User.level)
+        if (skill != null)
+            return true;
+        else
+            return false;
+    }
+    public static bool isPlayerSkillUpgradeAble(int id)
+    {
+        Skill skill = userSkills.Find(x => x.id == id || x.id.Equals(id));
+        if (skill != null && skill.level <= User.level)
             return true;
         else
             return false;

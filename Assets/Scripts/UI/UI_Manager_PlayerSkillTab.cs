@@ -62,12 +62,20 @@ public class UI_Manager_PlayerSkillTab : MonoBehaviour
 
                 if (SkillSystem.isPlayerSkillAble(playerSkillList[i].id))
                 {
-                    slot.transform.GetChild(3).gameObject.SetActive(false);
+                    if(SkillSystem.isPlayerSkillUpgradeAble(playerSkillList[i].id))
+                    {
+                        slot.transform.GetChild(3).gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        slot.transform.GetChild(3).gameObject.SetActive(true);
+                        slot.transform.GetChild(3).GetComponentInChildren<Text>().text = string.Format("! 제한레벨 : {0}", SkillSystem.GetUserSkillLevel(playerSkillList[i].id));
+                    }
                 }
                 else
                 {
                     slot.transform.GetChild(3).gameObject.SetActive(true);
-                    slot.transform.GetChild(3).GetComponentInChildren<Text>().text = playerSkillList[i].level.ToString();
+                    slot.transform.GetChild(3).GetComponentInChildren<Text>().text = string.Format("! 해제레벨 : {0}",playerSkillList[i].level);
                 }
             }
         }

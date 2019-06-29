@@ -11,7 +11,9 @@ public class UserSkillManager : MonoBehaviour
     public UserSkill[] selectedSkills = new UserSkill[2];
     private float[] selectedSkillDelayTime = new float[2];
     private bool[] selectedSkillEnable = new bool[2];
-    private bool isSkillSettingCompleted = false;
+
+    public Button skill1Button;
+    public Button skill2Button;
 
     private void Awake()
     {
@@ -21,60 +23,75 @@ public class UserSkillManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        SkillUpdate();
+        if(StageManagement.instance.isStageStart)
+            SkillUpdate();
     }
 
-    private void OnEnable()
+    private void Start()
     {
         InitSkill();
     }
 
     void InitSkill()
     {
-        if (!isSkillSettingCompleted)
+        selectedSkills = new UserSkill[2];
+
+        if(User.playerSkill[0]!=0)
         {
-            for (int i =0; i< selectedSkills.Length; i++)
-            {
+            Debugging.Log(User.playerSkill[0]);
+            selectedSkills[0] = Resources.Load<UserSkill>("UserSkills/"+User.playerSkill[0].ToString()) as UserSkill;
+            selectedSkills[0].SetSkill();
+            skill1Button.GetComponent<UI_UserSkillButton>().StartButton(true, selectedSkills[0].skillImage);
+        }
+        else
+        {
+            skill1Button.GetComponent<UI_UserSkillButton>().StartButton(false, null);
+        }
+        if (User.playerSkill[1] != 0)
+        {
+            selectedSkills[1] = Resources.Load<UserSkill>("UserSkills/" + User.playerSkill[1].ToString()) as UserSkill;
+            selectedSkills[1].SetSkill();
+            skill1Button.GetComponent<UI_UserSkillButton>().StartButton(true, selectedSkills[1].skillImage);
+        }
+        else
+        {
+            skill2Button.GetComponent<UI_UserSkillButton>().StartButton(false, null);
+        }
+
+        for (int i = 0; i < selectedSkills.Length; i++)
+        {
+            if(selectedSkills[i]!=null)
                 SetSkill(selectedSkills[i], i);
-            }
-            isSkillSettingCompleted = true;
         }
     }
 
     public void SetSkill(UserSkill userSkill, int skillNumber)
     {
         Debugging.Log(userSkill.name);
-        selectedSkillDelayTime[skillNumber] = userSkill.skillDelayTime;
+        selectedSkillDelayTime[skillNumber] = 10f;
         selectedSkillEnable[skillNumber] = false;
     }
 
     public void ClearSkill()
     {
-        if(isSkillSettingCompleted)
-        {
-            selectedSkills = new UserSkill[2];
-            selectedSkillDelayTime = new float[2];
-            selectedSkillEnable = new bool[2];
-            isSkillSettingCompleted = false;
-        }
+        selectedSkills = new UserSkill[2];
+        selectedSkillDelayTime = new float[2];
+        selectedSkillEnable = new bool[2];
     }
 
     public void SkillUpdate()
     {
-        if(isSkillSettingCompleted)
+        for (int i = 0; i < 2; i++)
         {
-            for(int i = 0; i < 2; i++)
+            if (selectedSkills[i] != null)
             {
-                if(selectedSkills[i]!=null)
+                if (selectedSkillDelayTime[i] <= 0)
                 {
-                    if (selectedSkillDelayTime[i] <= 0)
-                    {
-                        selectedSkillEnable[i] = true;
-                    }
-                    if (!selectedSkillEnable[i])
-                    {
-                        selectedSkillDelayTime[i] -= Time.deltaTime;
-                    }
+                    selectedSkillEnable[i] = true;
+                }
+                if (!selectedSkillEnable[i])
+                {
+                    selectedSkillDelayTime[i] -= Time.deltaTime;
                 }
             }
         }

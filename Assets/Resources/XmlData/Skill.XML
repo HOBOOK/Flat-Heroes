@@ -106,7 +106,7 @@
       <Image>Skill/skill_101</Image>
       <Level>1</Level>
       <SkillType>0</SkillType>
-      <TargetType>0</TargetType>
+      <TargetType>2</TargetType>
       <Power>100</Power>
       <AddPower>10</AddPower>
       <Energy>40</Energy>
@@ -117,7 +117,7 @@
       <Image>Skill/skill_102</Image>
       <Level>5</Level>
       <SkillType>0</SkillType>
-      <TargetType>0</TargetType>
+      <TargetType>1</TargetType>
       <Power>100</Power>
       <AddPower>10</AddPower>
       <Energy>60</Energy>
@@ -128,7 +128,7 @@
       <Image>Skill/skill_103</Image>
       <Level>10</Level>
       <SkillType>3</SkillType>
-      <TargetType>0</TargetType>
+      <TargetType>1</TargetType>
       <Power>100</Power>
       <AddPower>10</AddPower>
       <Energy>180</Energy>
@@ -139,7 +139,7 @@
       <Image>Skill/skill_104</Image>
       <Level>15</Level>
       <SkillType>2</SkillType>
-      <TargetType>0</TargetType>
+      <TargetType>2</TargetType>
       <Power>2</Power>
       <AddPower>1</AddPower>
       <Energy>50</Energy>
@@ -150,7 +150,7 @@
       <Image>Skill/skill_105</Image>
       <Level>20</Level>
       <SkillType>3</SkillType>
-      <TargetType>0</TargetType>
+      <TargetType>2</TargetType>
       <Power>0</Power>
       <AddPower>0</AddPower>
       <Energy>150</Energy>

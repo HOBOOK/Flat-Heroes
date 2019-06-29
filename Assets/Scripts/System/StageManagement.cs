@@ -10,6 +10,7 @@ public class StageManagement : MonoBehaviour
     public static UserInfo userInfo;
     public Transform Map;
     public Transform HeroPoint;
+    bool isStartGame = false;
     bool isEndGame;
     float checkingHeroAliveTime;
     public Text mapnameText;
@@ -30,6 +31,7 @@ public class StageManagement : MonoBehaviour
     }
     private void Start()
     {
+        isStartGame = false;
         stageModeType = Common.stageModeType;
         MonsterCount = 0;
         isEndGame = false;
@@ -107,6 +109,7 @@ public class StageManagement : MonoBehaviour
                     HeroSystem.SaveHeros(Common.FindAlly());
                     UI_Manager.instance.OpenEndGamePanel(false);
                     isEndGame = true;
+                    isStartGame = false;
                 }
                 checkingHeroAliveTime = 0.0f;
             }
@@ -124,6 +127,14 @@ public class StageManagement : MonoBehaviour
         }
         HeroSkillManager.instance.ShowUI();
         ShowGoalTitle();
+        isStartGame = true;
+    }
+    public bool isStageStart
+    {
+        get
+        {
+            return isStartGame;
+        }
     }
     public void AddMonsterCount()
     {
@@ -175,6 +186,8 @@ public class StageManagement : MonoBehaviour
 
     public IEnumerator StageClearing()
     {
+        isStartGame = false;
+        isEndGame = true;
         HeroSystem.SaveHeros(Common.FindAlly());
         MapSystem.MapClear(stageInfo.mapNumber, stageInfo.stageClearPoint);
         MissionSystem.AddClearPoint(MissionSystem.ClearType.StageClear);

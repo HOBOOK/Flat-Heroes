@@ -11,6 +11,8 @@ public class UI_UserSkillButton : MonoBehaviour
     Text skillDelayText;
     Image skillCover;
     Image skillImage;
+
+    bool isStart = false;
     private void Awake()
     {
         skillImage = transform.GetChild(0).GetComponent<Image>();
@@ -21,25 +23,45 @@ public class UI_UserSkillButton : MonoBehaviour
                 skillCover = i;
         }
     }
+    private void Start()
+    {
+        isStart = false;
+    }
+    public void StartButton(bool start, Sprite sprite)
+    {
+        if(start)
+        {
+            skillImage.enabled = true;
+            skillImage.sprite = sprite;
+            isStart = true;
+        }
+        else
+        {
+            skillImage.enabled = false;
+            skillDelayText.enabled = false;
+            isStart = false;
+        }
+    }
     void FixedUpdate()
     {
-        if(UserSkillManager.instance.selectedSkills[skillnumber]!=null)
+        if(isStart)
         {
-            if(skillImage.sprite==null)
+            if (UserSkillManager.instance.selectedSkills[skillnumber] != null)
             {
-                skillImage.sprite = UserSkillManager.instance.selectedSkills[skillnumber].skillImage;
+
+                skillDelayTime = UserSkillManager.instance.GetSkillDelayTime(skillnumber);
+                if (UserSkillManager.instance.GetSkillEnable(skillnumber))
+                {
+                    skillDelayText.text = "";
+                }
+                else
+                {
+                    skillDelayText.text = Convert.ToInt32(skillDelayTime).ToString() + "s";
+                }
+                skillCover.fillAmount = (skillDelayTime / UserSkillManager.instance.selectedSkills[skillnumber].skillDelayTime);
             }
-            skillDelayTime = UserSkillManager.instance.GetSkillDelayTime(skillnumber);
-            if(UserSkillManager.instance.GetSkillEnable(skillnumber))
-            {
-                skillDelayText.text = "";
-            }
-            else
-            {
-                skillDelayText.text = Convert.ToInt32(skillDelayTime).ToString() + "s";
-            }
-            skillCover.fillAmount = (skillDelayTime / UserSkillManager.instance.selectedSkills[skillnumber].skillDelayTime);
         }
+      
     }
     public void OnClick()
     {

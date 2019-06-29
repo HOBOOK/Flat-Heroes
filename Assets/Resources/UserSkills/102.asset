@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cda4ae0bc5157b489e38ea51e80947d, type: 3}
-  m_Name: Recovery
+  m_Name: 102
   m_EditorClassIdentifier: 
+  skillId: 102
   skillType: 1
   applyType: 1
   skillName: "\uD68C\uBCF5"
