@@ -217,7 +217,7 @@ public class UI_SellItem : MonoBehaviour
 
     public void OnClickBclassItemToSellList()
     {
-        List<Item> bClassItemList = userItemList.FindAll(x => x.itemClass < 5);
+        List<Item> bClassItemList = userItemList.FindAll(x => x.itemClass < 4);
         int emptySlotCount = 15 - sellItemList.Count;
         for (int i = 0; i < emptySlotCount && i< bClassItemList.Count; i++)
         {

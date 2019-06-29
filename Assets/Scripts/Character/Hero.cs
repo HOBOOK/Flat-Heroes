@@ -400,7 +400,7 @@ public class Hero : MonoBehaviour
         //점프 레이어 (필드 오브젝트)
         int layerMask = 1 << 30;
         checkJumpHit2D = Physics2D.Raycast(transform.position + new Vector3(0, -0.6f, 0), isLeftorRight ? Vector2.left : Vector2.right, 0.2f, layerMask);
-        Debug.DrawRay(transform.position + new Vector3(0, -0.6f, 0), isLeftorRight ? Vector2.left : Vector2.right, Color.red, 0.2f);
+        Debug.DrawRay(transform.position + new Vector3(0, 0, 0), isLeftorRight ? Vector2.left : Vector2.right, Color.red, 0.2f);
         if (checkJumpHit2D)
         {
             isJumping = true;
@@ -408,7 +408,7 @@ public class Hero : MonoBehaviour
         //방향전환 레이어 (필드)
         layerMask = 1 << 31;
         checkTurnHit2D = Physics2D.Raycast(transform.position + new Vector3(0, -0.5f, 0), isLeftorRight ? Vector2.left : Vector2.right, 0.2f, layerMask);
-        Debug.DrawRay(transform.position + new Vector3(0, -0.5f, 0), isLeftorRight ? Vector2.left : Vector2.right, Color.blue, 0.2f);
+        Debug.DrawRay(transform.position + new Vector3(0, 0, 0), isLeftorRight ? Vector2.left : Vector2.right, Color.blue, 0.2f);
         if (checkTurnHit2D)
         {
             isLeftorRight = !isLeftorRight;
@@ -653,22 +653,43 @@ public class Hero : MonoBehaviour
     }
     void StateChecking()
     {
-        if (isStart)
+        if(isStage)
         {
-            switch (heroState)
+            if (isStart&&StageManagement.instance.isStageStart)
             {
-                case HeroState.Normal:
-                    Normal();
-                    break;
-                case HeroState.Attack:
-                    if (!isFriend)
-                        AttackMode();
-                    else
-                        HealMode();
-                    break;
+                switch (heroState)
+                {
+                    case HeroState.Normal:
+                        Normal();
+                        break;
+                    case HeroState.Attack:
+                        if (!isFriend)
+                            AttackMode();
+                        else
+                            HealMode();
+                        break;
+                }
             }
-
         }
+        else
+        {
+            if (isStart)
+            {
+                switch (heroState)
+                {
+                    case HeroState.Normal:
+                        Normal();
+                        break;
+                    case HeroState.Attack:
+                        if (!isFriend)
+                            AttackMode();
+                        else
+                            HealMode();
+                        break;
+                }
+            }
+        }
+
     }
     #endregion
 
@@ -720,7 +741,8 @@ public class Hero : MonoBehaviour
             {
                 StageManagement.instance.SetDPoint();
             }
-            StartCoroutine("TransparentSprite");
+            if(id<1000)
+                StartCoroutine("TransparentSprite");
         }
     }
     public bool isSkillAble()
@@ -1120,9 +1142,9 @@ public class Hero : MonoBehaviour
         DamageCCUIShow("+" + healAmount.ToString());
         ShowHpBar(-healAmount);
     }
-    public void Stunned(float time=1.0f)
+    public void Stunned(float time=1.0f,bool isForce=false)
     {
-        if (!isStunning&&status.knockbackResist<10)
+        if (!isStunning&&status.knockbackResist<10|| isForce)
         {
             isStun = true;
             DamageCCUIShow("기절");
@@ -1180,6 +1202,10 @@ public class Hero : MonoBehaviour
             dropItem.GetComponent<dropItemInfo>().DropItem();
             StageManagement.instance.AddGetStageItem(randomItem.id);
             yield return new WaitForSeconds(0.1f);
+        }
+        else
+        {
+            Debugging.Log(randomItem.name + "이 아쉽게 드랍되지 않앗습니다");
         }
         yield return null;
     }
@@ -1960,7 +1986,7 @@ public class Hero : MonoBehaviour
             this.hp = this.maxHp;
             this.criticalPercent = HeroSystem.GetHeroStatusCriticalPercent(ref data);
             this.attackSpeed = HeroSystem.GetHeroStatusAttackSpeed(ref data)*0.01f;
-            this.moveSpeed = HeroSystem.GetHeroStatusMoveSpeed(ref data)*0.01f;
+            this.moveSpeed = Mathf.Clamp(HeroSystem.GetHeroStatusMoveSpeed(ref data)*0.01f,0.1f,4f);
             this.knockbackResist = HeroSystem.GetHeroStatusKnockbackResist(ref data);
             this.skillEnegry = 20 - HeroSystem.GetHeroStatusSkillEnergy(ref data);
         }

@@ -165,7 +165,7 @@ public class UserSkillManager : MonoBehaviour
                         case UserSkill.SkillType.STUN:
                             foreach(var target in targetList)
                             {
-                                target.GetComponent<Hero>().Stunned(2.0f);
+                                target.GetComponent<Hero>().Stunned(2.0f,true);
                             }
                             break;
                     }

@@ -308,8 +308,8 @@
       <AttackType>0</AttackType>
     </Hero>
     <Hero id="1001">
-      <Name>좀비자이언트</Name>
-      <Image>HeroThumbnail/thumbnail_501</Image>
+      <Name>자이언트 원숭이인간</Name>
+      <Image>HeroThumbnail/thumbnail_1001</Image>
       <Enable>false</Enable>
       <Type>1</Type>
       <Description>???</Description>
@@ -320,7 +320,25 @@
       <Intelligent>30</Intelligent>
       <Physical>150</Physical>
       <Agility>70</Agility>
-      <Chat>크우우르릉!!,크릌..!!</Chat>
+      <Chat>너희들.. 끽..은 여기서..끽.. 끝이다. 끽</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="1002">
+      <Name>나이트 크로우</Name>
+      <Image>HeroThumbnail/thumbnail_1002</Image>
+      <Enable>false</Enable>
+      <Type>1</Type>
+      <Description>???</Description>
+      <Level>20</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>200</Strength>
+      <Intelligent>50</Intelligent>
+      <Physical>200</Physical>
+      <Agility>500</Agility>
+      <Chat>까악 까악..</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>0</Skill>
       <AttackType>0</AttackType>

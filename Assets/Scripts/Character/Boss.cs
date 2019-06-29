@@ -42,7 +42,7 @@ public class Boss : MonoBehaviour
     {
         Camera.main.GetComponent<FollowCamera>().ChangeTarget(this.gameObject);
         Camera.main.GetComponent<CameraEffectHandler>().SetCameraSize(3.5f);
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(5.0f);
         StageManagement.instance.StageClear();
         this.gameObject.SetActive(false);
         yield return null;

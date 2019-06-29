@@ -63,7 +63,14 @@ public class CharactersManager : MonoBehaviour
                 heroList.Remove(id);
                 heroList.Add(id, hero);
             }
-
+            List<GameObject> enemyList = Common.FindEnemy();
+            if(enemyList!=null&&enemyList.Count>0)
+            {
+                foreach(var enemy in enemyList)
+                {
+                    enemy.GetComponent<Hero>().ResearchingEnemys(hero);
+                }
+            }
         }
     }
     public GameObject GetCurrentInStageHero(int id)

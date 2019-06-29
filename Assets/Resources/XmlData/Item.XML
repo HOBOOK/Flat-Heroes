@@ -19,7 +19,7 @@
       <Image>Equipment/equipment_001</Image>
       <Count>0</Count>
       <Enable>false</Enable>
-      <DropRate>10</DropRate>
+      <DropRate>100</DropRate>
       <Class>1</Class>
     </Item>
     <Item id="2">
@@ -40,7 +40,7 @@
       <Image>Equipment/equipment_002</Image>
       <Count>0</Count>
       <Enable>false</Enable>
-      <DropRate>10</DropRate>
+      <DropRate>30</DropRate>
       <Class>3</Class>
     </Item>
     <Item id="3">
@@ -61,7 +61,7 @@
       <Image>Equipment/equipment_003</Image>
       <Count>0</Count>
       <Enable>false</Enable>
-      <DropRate>10</DropRate>
+      <DropRate>5</DropRate>
       <Class>5</Class>
     </Item>
     <Item id="4">
@@ -82,7 +82,7 @@
       <Image>Equipment/equipment_004</Image>
       <Count>0</Count>
       <Enable>false</Enable>
-      <DropRate>10</DropRate>
+      <DropRate>50</DropRate>
       <Class>2</Class>
     </Item>
     <Item id="5">
@@ -103,7 +103,7 @@
       <Image>Equipment/equipment_005</Image>
       <Count>0</Count>
       <Enable>false</Enable>
-      <DropRate>10</DropRate>
+      <DropRate>100</DropRate>
       <Class>1</Class>
     </Item>
     <Item id="6">
@@ -124,7 +124,7 @@
       <Image>Equipment/equipment_006</Image>
       <Count>0</Count>
       <Enable>false</Enable>
-      <DropRate>10</DropRate>
+      <DropRate>50</DropRate>
       <Class>2</Class>
     </Item>
     <Item id="7">
@@ -145,7 +145,7 @@
       <Image>Equipment/equipment_007</Image>
       <Count>0</Count>
       <Enable>false</Enable>
-      <DropRate>10</DropRate>
+      <DropRate>30</DropRate>
       <Class>3</Class>
     </Item>
     <Item id="8">
@@ -187,7 +187,7 @@
       <Image>Equipment/equipment_009</Image>
       <Count>0</Count>
       <Enable>false</Enable>
-      <DropRate>10</DropRate>
+      <DropRate>100</DropRate>
       <Class>1</Class>
     </Item>
     <Item id="10">
@@ -218,13 +218,13 @@
       <Description>전설의 영웅이 착용했었던 갑옷이다.</Description>
       <ItemType>0</ItemType>
       <WeaponType>1</WeaponType>
-      <Attack>100</Attack>
-      <Defence>700</Defence>
+      <Attack>0</Attack>
+      <Defence>300</Defence>
       <Hp>1500</Hp>
       <Critical>0</Critical>
-      <AttackSpeed>10</AttackSpeed>
-      <MoveSpeed>10</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>10</SkillEnergy>
       <Value>300000</Value>
       <Image>Equipment/equipment_011</Image>
       <Count>0</Count>
@@ -244,7 +244,7 @@
       <Hp>0</Hp>
       <Critical>10</Critical>
       <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>50</MoveSpeed>
+      <MoveSpeed>30</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
       <Value>10000</Value>
       <Image>Equipment/equipment_012</Image>
@@ -253,10 +253,27 @@
       <DropRate>1</DropRate>
       <Class>5</Class>
     </Item>
-    
-    
-    
-    
+    <Item id="13">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>순백의 날개</Name>
+      <Description>고결한 순백의 날개이다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>1</WeaponType>
+      <Attack>100</Attack>
+      <Defence>200</Defence>
+      <Hp>1000</Hp>
+      <Critical>50</Critical>
+      <AttackSpeed>10</AttackSpeed>
+      <MoveSpeed>50</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>1000000</Value>
+      <Image>Equipment/equipment_013</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>1</DropRate>
+      <Class>7</Class>
+    </Item>
     <Item id="8001">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
@@ -275,8 +292,8 @@
       <Image>Items/abilityScroll</Image>
       <Count>0</Count>
       <Enable>false</Enable>
-      <DropRate>10</DropRate>
-          <Class>0</Class>
+      <DropRate>100</DropRate>
+      <Class>0</Class>
     </Item>
     <Item id="9001">
       <CustomId>0</CustomId>

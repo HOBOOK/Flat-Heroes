@@ -29,7 +29,7 @@ public class GachaSystem
         int gachaClassNumber = Random.Range(0, 1000);
         User.gachaSeed = Random.Range(0, 1000);
         GachaClass gachaClass;
-        if (gachaClassNumber <= 5)
+        if (gachaClassNumber <= 500)
             gachaClass = GachaClass.SSS;
         else if (gachaClassNumber > 5 && gachaClassNumber <= 15)
             gachaClass = GachaClass.SS;
