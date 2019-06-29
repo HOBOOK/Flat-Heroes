@@ -51,7 +51,7 @@ public class UserSkillManager : MonoBehaviour
         {
             selectedSkills[1] = Resources.Load<UserSkill>("UserSkills/" + User.playerSkill[1].ToString()) as UserSkill;
             selectedSkills[1].SetSkill();
-            skill1Button.GetComponent<UI_UserSkillButton>().StartButton(true, selectedSkills[1].skillImage);
+            skill2Button.GetComponent<UI_UserSkillButton>().StartButton(true, selectedSkills[1].skillImage);
         }
         else
         {
@@ -123,6 +123,9 @@ public class UserSkillManager : MonoBehaviour
                     case UserSkill.ApplyType.Enemys:
                         targetList = Common.FindEnemy();
                         break;
+                    case UserSkill.ApplyType.DeadAllys:
+                        targetList = Common.FindDeadAlly();
+                        break;
                 }
                 if(targetList!=null&&targetList.Count>0)
                 {
@@ -143,18 +146,27 @@ public class UserSkillManager : MonoBehaviour
                         case UserSkill.SkillType.ATTACK:
                             foreach (var target in targetList)
                             {
-                                target.GetComponent<Hero>().HittedByObject(selectedSkills[order].skillAbillity * 50,false,new Vector2(15,15));
+                                target.GetComponent<Hero>().HittedByObject(selectedSkills[order].skillAbillity,false,new Vector2(15,15));
                             }
                             break;
                         case UserSkill.SkillType.HEAL:
                             foreach (var target in targetList)
                             {
-                                target.GetComponent<Hero>().Healing((int)(target.GetComponent<Hero>().status.maxHp*(selectedSkills[order].skillAbillity*0.01f)));
+                                target.GetComponent<Hero>().Healing((int)(selectedSkills[order].skillAbillity));
                             }
                             break;
                         case UserSkill.SkillType.BUFF:
                             break;
                         case UserSkill.SkillType.DEBUFF:
+                            break;
+                        case UserSkill.SkillType.RESURRENCTION:
+                            CharactersManager.instance.ResurrectionHero(targetList[UnityEngine.Random.Range(0, targetList.Count)].GetComponent<Hero>().id);
+                            break;
+                        case UserSkill.SkillType.STUN:
+                            foreach(var target in targetList)
+                            {
+                                target.GetComponent<Hero>().Stunned(2.0f);
+                            }
                             break;
                     }
                     selectedSkillEnable[order] = false;

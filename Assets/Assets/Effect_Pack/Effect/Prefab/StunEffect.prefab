@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 198265834383859750}
   - component: {fileID: 199124956392806528}
   m_Layer: 0
-  m_Name: Status Effects_Stun
+  m_Name: StunEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

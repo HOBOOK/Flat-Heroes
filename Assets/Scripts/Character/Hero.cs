@@ -1120,13 +1120,13 @@ public class Hero : MonoBehaviour
         DamageCCUIShow("+" + healAmount.ToString());
         ShowHpBar(-healAmount);
     }
-    public void Stunned()
+    public void Stunned(float time=1.0f)
     {
         if (!isStunning&&status.knockbackResist<10)
         {
             isStun = true;
             DamageCCUIShow("기절");
-            StartCoroutine("Stunning");
+            StartCoroutine(Stunning(time));
         }
     }
     void EquipWeapon()
@@ -1679,7 +1679,7 @@ public class Hero : MonoBehaviour
         isTrack = false;
         yield return null;
     }
-    IEnumerator Stunning()
+    IEnumerator Stunning(float stunTime)
     {
         isStunning = true;
         Knockback(10, 1);
@@ -1690,7 +1690,7 @@ public class Hero : MonoBehaviour
         rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
         while (isStunning)
         {
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(stunTime);
             isStun = false;
             isStunning = false;
         }
@@ -1991,7 +1991,8 @@ public class Hero : MonoBehaviour
         {
             status.exp += nExp;
             HeroSystem.SetHero(this);
-            hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Slider>().value = (float)status.exp / (float)Common.EXP_TABLE[(status.level-1)];
+            if(hpUI!=null)
+                hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Slider>().value = (float)status.exp / (float)Common.EXP_TABLE[(status.level-1)];
             LevelUp();
         }
     }

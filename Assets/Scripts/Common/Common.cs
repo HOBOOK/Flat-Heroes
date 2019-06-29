@@ -112,7 +112,23 @@ public class Common : MonoBehaviour
         //Debugging.Log(enemys.Count + " 개의 적 발견");
         return enemys;
     }
-
+    public static List<GameObject> FindDeadAlly()
+    {
+        List<GameObject> allys = new List<GameObject>();
+        GameObject userObjects = GameObject.Find("PlayersHero").gameObject;
+        if (userObjects.transform.childCount > 0)
+        {
+            for (var i = 0; i < userObjects.transform.childCount; i++)
+            {
+                if (userObjects.transform.GetChild(i).GetComponent<Hero>() != null && userObjects.transform.GetChild(i).GetComponent<Hero>().isDead)
+                {
+                    allys.Add(userObjects.transform.GetChild(i).gameObject);
+                }
+            }
+        }
+        //Debugging.Log(allys.Count + " 개의 아군 발견");
+        return allys;
+    }
     public static List<GameObject> FindAlly()
     {
         List<GameObject> allys = new List<GameObject>();

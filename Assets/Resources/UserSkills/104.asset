@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cda4ae0bc5157b489e38ea51e80947d, type: 3}
+  m_Name: 104
+  m_EditorClassIdentifier: 
+  skillId: 104
+  skillType: 5
+  applyType: 2
+  skillName: "\uC790\uB9CC"
+  skillDescription: "\uC801 \uC804\uCCB4\uB97C 2\uCD08\uAC04 \uC2A4\uD134\uC0C1\uD0DC\uB85C
+    \uB9CC\uB4E0\uB2E4."
+  skillLevel: 1
+  skillAbillity: 3
+  skillDelayTime: 50
+  skillImage: {fileID: 21300000, guid: 37f5718333056f243b13ccc34982f725, type: 3}
+  skillEffect: {fileID: 1072648880540966, guid: d960e8deac910cf46a1803e9134000e4,
+    type: 3}
+  skillSound: {fileID: 8300000, guid: ce415b7198c9d7a498d2228effb42ce0, type: 3}

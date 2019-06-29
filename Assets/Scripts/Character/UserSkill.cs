@@ -7,11 +7,11 @@ public class UserSkill : ScriptableObject
 {
     public int skillId;
     [HideInInspector]
-    public enum SkillType { ATTACK, HEAL, BUFF, DEBUFF };
+    public enum SkillType { ATTACK, HEAL, BUFF, DEBUFF,RESURRENCTION,STUN };
     [HideInInspector]
     public SkillType skillType;
     [HideInInspector]
-    public enum ApplyType { All, Allys, Enemys };
+    public enum ApplyType { All, Allys, Enemys,DeadAllys };
     [HideInInspector]
     public ApplyType applyType;
     [HideInInspector]

@@ -50,6 +50,22 @@ public class CharactersManager : MonoBehaviour
         }
         Debugging.Log(User.stageHeros.Length + "의 리스트에서 Stage씬에 영웅소환 완료.");
     }
+    public void ResurrectionHero(int id)
+    {
+        if (PrefabsDatabaseManager.instance.GetHeroPrefab(id) != null)
+        {
+            var spawnPoint = GameObject.Find("PlayersHero").transform;
+            GameObject hero = Instantiate(PrefabsDatabaseManager.instance.GetHeroPrefab(id)) as GameObject;
+            hero.transform.parent = spawnPoint;
+            hero.transform.localPosition = Vector3.zero;
+            if (heroList.ContainsKey(id))
+            {
+                heroList.Remove(id);
+                heroList.Add(id, hero);
+            }
+
+        }
+    }
     public GameObject GetCurrentInStageHero(int id)
     {
         foreach(var h in heroList)

@@ -49,6 +49,12 @@ public class Castle : MonoBehaviour
     }
     void SetSpawnMonster()
     {
+        SpawnEnemy spawnEnemy1 = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(501), 1);
+        spawnEnemys.Add(spawnEnemy1);
+        SpawnEnemy spawnEnemy2 = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(502), 1);
+        spawnEnemys.Add(spawnEnemy2);
+        SpawnEnemy spawnEnemy3 = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(503), 1);
+        spawnEnemys.Add(spawnEnemy3);
         SpawnEnemy spawnEnemy4 = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(504), 1);
         spawnEnemys.Add(spawnEnemy4);
         SpawnEnemy spawnEnemy5 = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(505), 1);
