@@ -50,7 +50,7 @@ public class UI_HeroSelect : MonoBehaviour
             }
             foreach (var heroSlot in HeroSystem.GetUserHeros())
             {
-                if (heroSlot.type == 0&& !CharactersManager.instance.IsExistedStageHero(heroSlot.id))
+                if (heroSlot.type == 0)
                 {
                     GameObject slotPrefab = Instantiate(heroSlotPrefab, ScrollViewContent.transform);
                     foreach (var i in slotPrefab.GetComponentsInChildren<Text>())
@@ -68,6 +68,16 @@ public class UI_HeroSelect : MonoBehaviour
                     {
                         OnItemSlotClick(heroSlot);
                     });
+                    if(!CharactersManager.instance.IsExistedStageHero(heroSlot.id))
+                    {
+                        slotPrefab.GetComponent<Button>().enabled = true;
+                        slotPrefab.transform.GetChild(2).gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        slotPrefab.GetComponent<Button>().enabled = false;
+                        slotPrefab.transform.GetChild(2).gameObject.SetActive(true);
+                    }
                 }
             }
         }
@@ -94,7 +104,7 @@ public class UI_HeroSelect : MonoBehaviour
             else
             {
                 selectedHeroImage.enabled = false;
-                selectedHeroImage.sprite = ItemSystem.GetItemNoneImage();
+                selectedHeroImage.sprite = HeroSystem.GetHeroNoneImage();
                 selectedHeroNameText.text = "";
                 selectPanel.gameObject.SetActive(true);
             }

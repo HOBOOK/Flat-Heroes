@@ -343,6 +343,10 @@ public static class HeroSystem
             ItemSystem.DismountItem(dismountItemId);
         }
     }
+    public static Sprite GetHeroNoneImage()
+    {
+        return Resources.Load<Sprite>("UI/ui_none2");
+    }
     #endregion
 
     #region 전체히어로정보
