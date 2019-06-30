@@ -63,26 +63,27 @@ public class HeroSkillManager : MonoBehaviour
             skillbuttons.Add(this.transform.GetChild(heroIndex).gameObject);
         }
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if(skillbuttons!=null&&skillbuttons.Count>0&&StageManagement.instance.stageInfo!=null)
         {
             for(var i = 0; i<skillbuttons.Count; i++)
             {
-                if (!skillbuttons[i].activeSelf)
-                    continue;
+                if (skillbuttons[i]!=null)
+                {
 
-                float delay = SetEnergyPercent(i);
-                if (delay <= 0)
-                {
-                    skillbuttons[i].GetComponentInChildren<Button>().interactable = true;
-                    skillbuttons[i].GetComponentInChildren<Animator>().SetBool("isAble", true);
-                }
-                else
-                {
-                    skillbuttons[i].GetComponentInChildren<Animator>().SetBool("isAble", false);
-                    skillbuttons[i].GetComponentInChildren<Button>().interactable = false ;
-                    skillbuttons[i].GetComponentInChildren<Button>().transform.GetChild(0).GetChild(1).GetComponent<Image>().fillAmount = delay;
+                    float delay = SetEnergyPercent(i);
+                    if (delay <= 0)
+                    {
+                        skillbuttons[i].GetComponentInChildren<Button>().interactable = true;
+                        skillbuttons[i].GetComponentInChildren<Animator>().SetBool("isAble", true);
+                    }
+                    else
+                    {
+                        skillbuttons[i].GetComponentInChildren<Animator>().SetBool("isAble", false);
+                        skillbuttons[i].GetComponentInChildren<Button>().interactable = false;
+                        skillbuttons[i].GetComponentInChildren<Button>().transform.GetChild(0).GetChild(1).GetComponent<Image>().fillAmount = delay;
+                    }
                 }
             }
         }

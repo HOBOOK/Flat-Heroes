@@ -189,7 +189,7 @@ public class UI_HeroInfo : MonoBehaviour
                 OnSkillLevelUpClick(heroSkill.id, needMoney);
             });
 
-            if (SkillSystem.isPlayerSkillUpgradeAble(heroSkill.id))
+            if (SkillSystem.isHeroSkillUpgradeAble(heroSkill.id,targetHeroData))
             {
                 skillLevelUpButton.interactable = true;
                 skillLevelUpButton.transform.GetChild(2).gameObject.SetActive(false);

@@ -129,6 +129,22 @@ public class Common : MonoBehaviour
         //Debugging.Log(allys.Count + " 개의 아군 발견");
         return allys;
     }
+    public static List<GameObject> FindStageHeros()
+    {
+        List<GameObject> allys = new List<GameObject>();
+        GameObject userObjects = GameObject.Find("PlayersHero").gameObject;
+        if (userObjects.transform.childCount > 0)
+        {
+            for (var i = 0; i < userObjects.transform.childCount; i++)
+            {
+                if (userObjects.transform.GetChild(i).GetComponent<Hero>() != null)
+                {
+                    allys.Add(userObjects.transform.GetChild(i).gameObject);
+                }
+            }
+        }
+        return allys;
+    }
     public static List<GameObject> FindAlly()
     {
         List<GameObject> allys = new List<GameObject>();

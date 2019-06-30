@@ -18,7 +18,6 @@ public class GameManagement : MonoBehaviour
         Application.targetFrameRate = 60;
 
         DontDestroyOnLoad(this);
-        SaveSystem.LoadPlayer();
     }
     private void Start()
     {

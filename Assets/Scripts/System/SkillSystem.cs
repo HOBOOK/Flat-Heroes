@@ -187,7 +187,16 @@ public static class SkillSystem
     public static bool isPlayerSkillUpgradeAble(int id)
     {
         Skill skill = userSkills.Find(x => x.id == id || x.id.Equals(id));
-        if (skill != null && skill.level <= User.level)
+        Skill refSkill = skills.Find(x => x.id == id || x.id.Equals(id));
+        if (skill != null&&refSkill!=null && (refSkill.level+skill.level) <= User.level)
+            return true;
+        else
+            return false;
+    }
+    public static bool isHeroSkillUpgradeAble(int id, HeroData data)
+    {
+        Skill skill = userSkills.Find(x => x.id == id || x.id.Equals(id));
+        if (skill != null && skill.level < data.level)
             return true;
         else
             return false;

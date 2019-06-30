@@ -107,7 +107,6 @@ public class Hero : MonoBehaviour
         RemoveWeapon();
         if(isStage)
         {
-            InitEnemys();
             if (isPlayerHero)
                 StartCoroutine("StartAttackMode");
             else
@@ -476,9 +475,16 @@ public class Hero : MonoBehaviour
             {
                 Debugging.LogSystem(string.Format("{0} 의 스킬 이름 :{1} , 레벨:{2}", HeroName, skillData.name, SkillSystem.GetUserSkillLevel(skillData.id)));
             }
+            // 보스의 경우
             if(this.id>1000)
             {
-                this.GetComponent<Boss>().StartBoss();
+                if (Common.stageModeType != Common.StageModeType.Infinite)
+                {
+                    this.GetComponent<Boss>().enabled = true;
+                    this.GetComponent<Boss>().StartBoss();
+                }
+                else
+                    this.GetComponent<Boss>().enabled = false;
             }
         }
         else
@@ -1536,6 +1542,7 @@ public class Hero : MonoBehaviour
         if (initChats.Count > 0)
             Common.Chat(initChats[UnityEngine.Random.Range(0, initChats.Count)], transform);
         yield return new WaitForSeconds(3);
+        InitEnemys();
         heroState = HeroState.Attack;
         isStart = true;
         yield return new WaitForSeconds(5.0f);
@@ -1552,6 +1559,7 @@ public class Hero : MonoBehaviour
         if (initChats.Count > 0)
             Common.Chat(initChats[UnityEngine.Random.Range(0, initChats.Count)], transform);
         yield return new WaitForSeconds(1);
+        InitEnemys();
         heroState = HeroState.Attack;
         isStart = true;
         FindEnemys(true);
@@ -1878,11 +1886,20 @@ public class Hero : MonoBehaviour
     }
     private void OpenHpBar(bool isBlue = false)
     {
-        if(this.GetComponent<Boss>()==null)
+        if(id<1000)
         {
             hpUI = ObjectPool.Instance.PopFromPool("hpEnemyUI");
             hpUI.GetComponent<UI_hp>().OpenHpUI(this.gameObject, isBlue);
             hpUI.gameObject.SetActive(true);
+        }
+        else
+        {
+            if(Common.stageModeType==Common.StageModeType.Infinite)
+            {
+                hpUI = ObjectPool.Instance.PopFromPool("hpEnemyUI");
+                hpUI.GetComponent<UI_hp>().OpenHpUI(this.gameObject, isBlue);
+                hpUI.gameObject.SetActive(true);
+            }
         }
     }
     private void ShowHpBar(int dam=0)
@@ -1994,7 +2011,7 @@ public class Hero : MonoBehaviour
 
     public void LevelUp()
     {
-        if (status.exp >= Common.EXP_TABLE[status.level - 1] && status.level < 10&&!isDead)
+        if (status.exp >= Common.EXP_TABLE[status.level - 1] && status.level < Common.EXP_TABLE.Length&& !isDead)
         {
             LevelUpEffect();
             HeroSystem.LevelUpStatusSet(this.id,this);

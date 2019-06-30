@@ -40,6 +40,7 @@ public class LoadSceneManager : MonoBehaviour
         return string.Format("Loading... {0} %", (int)(percent * 100));
     }
 
+
     public void LoadScene(int sceneNumber)
     {
         if(!isLoadStart)

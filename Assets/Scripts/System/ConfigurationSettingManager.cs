@@ -8,6 +8,10 @@ public class ConfigurationSettingManager : MonoBehaviour
     public GameObject SoundSettingPanel;
     public GameObject LanguageSettingPanel;
     public GameObject CloudSettingPanel;
+    private void OnEnable()
+    {
+        EnableUI();
+    }
 
     public void OnSoundBGMToggleClick(Toggle toggle)
     {
@@ -34,5 +38,53 @@ public class ConfigurationSettingManager : MonoBehaviour
             SoundManager.instance.EffectOnOff(true);
             Debugging.Log("EFXM 끔");
         }
+    }
+    void EnableUI()
+    {
+        // 언어설정
+        foreach (var btn in LanguageSettingPanel.transform.GetComponentsInChildren<Button>())
+        {
+            if (btn.name.Equals(User.language) || btn.name == User.language)
+            {
+                btn.enabled = false;
+                btn.transform.GetChild(0).GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
+            }
+            else
+            {
+                btn.enabled = true;
+                btn.transform.GetChild(0).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
+            }
+        }
+    }
+    void RefreshUI()
+    {
+        foreach (var btn in LanguageSettingPanel.transform.GetComponentsInChildren<Button>())
+        {
+            if (btn.name.Equals(User.language) || btn.name == User.language)
+            {
+                btn.enabled = false;
+                btn.transform.GetChild(0).GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
+            }
+            else
+            {
+                btn.enabled = true;
+                btn.transform.GetChild(0).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
+            }
+        }
+        RedrawText();
+    }
+    void RedrawText()
+    {
+        foreach(var txt in this.GetComponentsInChildren<LocalizationText>())
+        {
+            txt.ReDraw();
+        }
+    }
+
+    public void OnLanguageButtonClick(string lang)
+    {
+        SaveSystem.ChangeLanguage(lang);
+        LocalizationManager.LoadLanguage(lang);
+        RefreshUI();
     }
 }

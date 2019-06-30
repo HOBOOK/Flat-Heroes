@@ -26,6 +26,7 @@ public class PlayerData
     public int[] playerSkill;
 
     public string name;
+    public string language;
 
     public PlayerData()
     {
@@ -54,6 +55,6 @@ public class PlayerData
         // End Lab//
 
         name = User.name;
-
+        language = User.language;
     }
 }

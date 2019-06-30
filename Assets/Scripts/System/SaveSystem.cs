@@ -68,6 +68,8 @@ public static class SaveSystem
             User.playerSkill = data.playerSkill;
 
             User.name = data.name;
+            if (data.language == null) data.language = "ko";
+            User.language = data.language;
             //Debugging.LogSystem("File is loaded Successfully >> Try : " + loadTryCount + "\r\n" + JsonUtility.ToJson(data));
         }
         else
@@ -132,5 +134,29 @@ public static class SaveSystem
     public static void AddUserEnergy(int amount)
     {
         User.portalEnergy += amount;
+    }
+    public static void ChangeLanguage(LanguageType languageType)
+    {
+        switch(languageType)
+        {
+            case LanguageType.ko: User.language = "ko"; break;
+            case LanguageType.en: User.language = "en"; break;
+        }
+        SavePlayer();
+        Debugging.Log(string.Format("언어가 변경되었습니다. {0}", User.language));
+    }
+    public static void ChangeLanguage(string lang)
+    {
+        foreach(var str in Enum.GetNames(typeof(LanguageType)))
+        {
+            if(str.Equals(lang)||str==lang)
+            {
+                User.language = lang;
+                break;
+            }
+        }
+        SavePlayer();
+        
+        Debugging.Log(string.Format("언어가 변경되었습니다. {0}", User.language));
     }
 }

@@ -47,4 +47,6 @@ public class User
     public static int gachaSeed;
     [SerializeField]
     public static int[] playerSkill;
+    [SerializeField]
+    public static string language;
 }

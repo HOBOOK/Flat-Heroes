@@ -1,0 +1,9 @@
+﻿startTabText=화면을 탭하면 게임이 시작됩니다.
+configTitle=설정
+configSoundTitle=사운드
+configSoundBgmTitle=배경음
+configSoundEffectTitle=효과음
+configLangTitle=언어
+configCloudTitle=데이터 저장
+configCloudSaveTitle=클라우드 저장하기
+configCloudLoadTitle=클라우드 불러오기

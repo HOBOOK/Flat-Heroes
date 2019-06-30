@@ -1,0 +1,9 @@
+startTabText=Tab to Start.
+configTitle=Setting
+configSoundTitle=Sound
+configSoundBgmTitle=Bgm
+configSoundEffectTitle=Effect
+configLangTitle=Language
+configCloudTitle=Data Save
+configCloudSaveTitle=Cloud Save
+configCloudLoadTitle=Cloud Load

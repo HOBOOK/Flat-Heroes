@@ -96,6 +96,17 @@ public class StageManagement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if(Common.stageModeType==Common.StageModeType.Main)
+        {
+            MainModeUpdate();
+        }
+        else if(Common.stageModeType==Common.StageModeType.Infinite)
+        {
+            InfinityModeUpdate();
+        }
+    }
+    private void MainModeUpdate()
+    {
         if (stageInfo != null && !isEndGame)
         {
             stageInfo.stageTime += Time.fixedUnscaledDeltaTime;
@@ -108,6 +119,27 @@ public class StageManagement : MonoBehaviour
                 {
                     HeroSystem.SaveHeros(Common.FindAlly());
                     UI_Manager.instance.OpenEndGamePanel(false);
+                    isEndGame = true;
+                    isStartGame = false;
+                }
+                checkingHeroAliveTime = 0.0f;
+            }
+        }
+    }
+    private void InfinityModeUpdate()
+    {
+        if (stageInfo != null && !isEndGame)
+        {
+            stageInfo.stageTime += Time.fixedUnscaledDeltaTime;
+            EnergyUpdate();
+
+            checkingHeroAliveTime += Time.fixedUnscaledDeltaTime;
+            if (checkingHeroAliveTime > 1.0f)
+            {
+                if (CheckHerosEnd())
+                {
+                    HeroSystem.SaveHeros(Common.FindStageHeros());
+                    UI_Manager.instance.OpenEndGamePanel(true);
                     isEndGame = true;
                     isStartGame = false;
                 }

@@ -236,7 +236,7 @@ public class UI_SellItem : MonoBehaviour
 
     public void OnSellStart()
     {
-        if (!isCheckAlertOn)
+        if (!isCheckAlertOn&&sellItemList.Count>0)
         {
             StartCoroutine("CheckingSellAlert");
         }

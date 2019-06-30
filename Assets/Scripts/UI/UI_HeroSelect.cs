@@ -60,7 +60,7 @@ public class UI_HeroSelect : MonoBehaviour
                     }
                     if (slotNameText != null)
                         slotNameText.text = heroSlot.name;
-                    slotHeroImage = slotPrefab.transform.GetChild(0).GetComponent<Image>();
+                    slotHeroImage = slotPrefab.transform.GetChild(0).GetChild(0).GetComponent<Image>();
                     if (slotHeroImage != null)
                         slotHeroImage.sprite = Resources.Load<Sprite>(heroSlot.image);
                     slotPrefab.GetComponent<Button>().onClick.RemoveAllListeners();
@@ -90,7 +90,7 @@ public class UI_HeroSelect : MonoBehaviour
     {
         for(int i = 0; i<User.stageHeros.Length; i++)
         {
-            HeroData data = HeroSystem.GetHero(User.stageHeros[i]);
+            HeroData data = HeroSystem.GetUserHero(User.stageHeros[i]);
             selectPanel = PanelHeroSelection.transform.GetChild(i).GetChild(2).gameObject;
             selectedHeroNameText = PanelHeroSelection.transform.GetChild(i).GetChild(0).GetComponent<Text>();
             selectedHeroImage = PanelHeroSelection.transform.GetChild(i).GetChild(1).GetChild(0).GetComponent<Image>();
