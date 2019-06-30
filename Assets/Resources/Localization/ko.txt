@@ -1,4 +1,72 @@
 ﻿startTabText=화면을 탭하면 게임이 시작됩니다.
+
+mainManagerText=팀관리
+mainShopText=상점
+mainGachaText=뽑기
+mainMissionText=임무
+mainLabText=연구소
+mainBattleText=전투
+
+manageTitle=관 리
+manageTab1=보유 영웅
+manageTab2=보유 아이템
+manageTab2OrderButton1=이름순
+manageTab2OrderButton2=등급순
+manageTab2SellButton=선택팔기
+manageTab3=플레이어 능력
+manageTab3Information=능력을 개방하여 영웅들의 능력치를 상승시킬 수 있습니다.
+manageTab3AbilityTitle=전체능력치
+manageTab3AbilityStartButton=능력개방
+manageTab4=플레이어 스킬
+
+shopTitle=상 점
+shopTab1=재화
+shopTab2=영웅
+shopTab3=장비
+shopTab4=무료
+
+gachaTitle=뽑 기
+gachaType1=고급 장비 뽑기 5회
+gachaType2=고급 장비 뽑기 1회
+gachaType3=일반 장비 뽑기 1회
+gachaType4=일반 장비 뽑기 5회
+gachaType5=무료 장비 뽑기 1회
+gachaSpecialClass=B 등급 ~ SSS 등급
+gachaNormalClass=D 등급 ~ S 등급
+gachaInformation=수정을 이용하여 장비를 얻을 수 있습니다.
+
+LabTitle=연구소
+LabType1=최대 플랫에너지
+LabType1Description=최대 플랫에너지량이 증가합니다.
+LabType2=플랫에너지 회복
+LabType2Description=초당 플랫에너지 회복량이 증가합니다.
+LabType3=추가 코인약탈
+LabType3Description=적 처치시 획득 코인이 증가합니다.
+LabType4=추가 경험치
+LabType4Description=적 처치시 획득 경험치가 증가합니다.
+LabType5=추가 영웅공격력
+LabType5Description=영웅들의 공격력이 증가합니다.
+LabType6=추가 영웅방어력
+LabType6Description=영웅들의 방어력이 증가합니다.
+
+modeSelectTitle=전투선택
+modeMain=메인 전투
+modeInfinity=끝없는 전투
+modeBoss=보스 전투
+
+mapSelectTitle=맵선택
+mapSelectButton=전투준비
+
+heroSelectTitle=영웅선택
+heroSelectButton=전투시작
+heroSelectInformation=영웅을 선택해주세요.
+heroSelectSlotInformation=(!) 슬롯을 선택하세요.
+heroSelectPlayerSkillButton=플레이어\r\n스킬선택
+
+skillSelectTitle=스킬선택
+skillSelectInformation=플레이어 스킬은 2개까지 선택가능합니다.
+skillSelectButton=선택완료
+
 configTitle=설정
 configSoundTitle=사운드
 configSoundBgmTitle=배경음
@@ -7,3 +75,7 @@ configLangTitle=언어
 configCloudTitle=데이터 저장
 configCloudSaveTitle=클라우드 저장하기
 configCloudLoadTitle=클라우드 불러오기
+
+alertTitle=알림
+alertYes=예
+alertNo=아니오

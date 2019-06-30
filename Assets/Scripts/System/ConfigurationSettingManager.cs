@@ -75,7 +75,7 @@ public class ConfigurationSettingManager : MonoBehaviour
     }
     void RedrawText()
     {
-        foreach(var txt in this.GetComponentsInChildren<LocalizationText>())
+        foreach (var txt in GameObject.FindObjectsOfType<LocalizationText>())
         {
             txt.ReDraw();
         }

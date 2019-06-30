@@ -1,4 +1,72 @@
 startTabText=Tab to Start.
+
+mainManagerText=Manage
+mainShopText=Shop
+mainGachaText=Gacha
+mainMissionText=Mission
+mainLabText=Lab
+mainBattleText=Battle
+
+manageTitle=Manage
+manageTab1=My Heros
+manageTab2=Inventory
+manageTab2OrderButton1=Name
+manageTab2OrderButton2=Class
+manageTab2SellButton=Sell
+manageTab3=Player Ability
+manageTab3Information=Player abilities can increase the hero's abilities
+manageTab3AbilityTitle=Overall ability
+manageTab3AbilityStartButton=Get
+manageTab4=Player Skill
+
+shopTitle=Shop
+shopTab1=Crystal
+shopTab2=Hero
+shopTab3=Equipment
+shopTab4=Free
+
+gachaTitle=Gacha
+gachaType1=Special Five
+gachaType2=Special One
+gachaType3=Normal One
+gachaType4=Normal Five
+gachaType5=Free Speical  One
+gachaSpecialClass=B class ~ SSS class
+gachaNormalClass=D class ~ S class
+gachaInformation=You can get equipment using crystal.
+
+LabTitle=Lab
+LabType1=Max Flat Power
+LabType1Description=Maximum flat energy amount increases.
+LabType2=Flat Power Charge
+LabType2Description=The flat energy charge per second increases.
+LabType3=Additional Coin
+LabType3Description=Acquired coins increase in enemy treatment.
+LabType4=Additional EXP
+LabType4Description=Acquired EXP increase in enemy treatment.
+LabType5=Heroes' ATK
+LabType5Description=Increases the damage of heroes.
+LabType6=Heroes' DEF
+LabType6Description=Increases the defence of heroes.
+
+modeSelectTitle=Mode
+modeMain=Main Battle
+modeInfinity=Infinity Battle
+modeBoss=Boss Battle
+
+mapSelectTitle=Map
+mapSelectButton=Select
+
+heroSelectTitle=Hero
+heroSelectButton=Start
+heroSelectInformation=Please choose a hero.
+heroSelectSlotInformation=(!) Please select a slot.
+heroSelectPlayerSkillButton=Player\nSkill
+
+skillSelectTitle=Player Skill
+skillSelectInformation=You can choose up to 2 player skills.
+skillSelectButton=Select
+
 configTitle=Setting
 configSoundTitle=Sound
 configSoundBgmTitle=Bgm
@@ -7,3 +75,7 @@ configLangTitle=Language
 configCloudTitle=Data Save
 configCloudSaveTitle=Cloud Save
 configCloudLoadTitle=Cloud Load
+
+alertTitle=Alert
+alertYes=Yes
+alertNo=No
