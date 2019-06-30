@@ -32,13 +32,6 @@ public class LocalizationText : MonoBehaviour
                     Debugging.LogWarning(KEY_NAME + " 의 로컬라이징 텍스트를 발견하지못함");
                 }
             }
-
-            //if(User.language!="ko")
-            //{
-            //    text.fontSize = initFontSize - 3;
-            //}
-            Debugging.Log(text.text);
-            
         }
     }
     public void ReDraw()
@@ -49,12 +42,16 @@ public class LocalizationText : MonoBehaviour
             if (KEY_NAME == "ISOCode")
                 text.text = LocalizationManager.GetLanguage();
             else
-                text.text = LocalizationManager.Fields[KEY_NAME];
-            //if (User.language != "ko")
-            //{
-            //    text.fontSize = initFontSize - 3;
-            //}
-            Debugging.Log(text.text);
+            {
+                try
+                {
+                    text.text = LocalizationManager.Fields[KEY_NAME];
+                }
+                catch (KeyNotFoundException e)
+                {
+                    Debugging.LogWarning(KEY_NAME + " 의 로컬라이징 텍스트를 발견하지못함");
+                }
+            }
         }
     }
 }

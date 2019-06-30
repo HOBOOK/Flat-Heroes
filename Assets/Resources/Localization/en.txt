@@ -67,6 +67,32 @@ skillSelectTitle=Player Skill
 skillSelectInformation=You can choose up to 2 player skills.
 skillSelectButton=Select
 
+heroInfoTitle=Information
+heroInfoToLobbyButton=Lobby >
+heroInfoExceptLobbyButton=Except >
+heroInfoEquipment=Equipment
+heroInfoEquipmentInformation=* Press the equipment slot to equip the item.
+heroInfoHeroSkill=Skill
+heroInfoHeroSkillUpgradeButton=Upgrade
+heroInfoAttack=Atk
+heroInfoDefence=Def
+heroInfoHp=Hp
+heroInfoCritical=Critical
+heroInfoAttackSpeed=A.Speed
+heroInfoMoveSpeed=Move
+heroInfoKnockbackResist=Knockback
+heroInfoSkillEnergy=Energy
+
+equipmentItemTitle=Equipment
+equipmentItemEquipButton=Equip
+equipmentItemUnEquipButton=Unequip
+
+sellItemTitle=Sell
+sellItemInformation=* Coin earned
+sellItemAllToInventory=All >
+sellItemBToSell=B class <
+sellItemButton=Sell
+
 configTitle=Setting
 configSoundTitle=Sound
 configSoundBgmTitle=Bgm

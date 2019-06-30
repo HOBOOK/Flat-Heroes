@@ -67,6 +67,32 @@ skillSelectTitle=스킬선택
 skillSelectInformation=플레이어 스킬은 2개까지 선택가능합니다.
 skillSelectButton=선택완료
 
+heroInfoTitle=영웅정보
+heroInfoToLobbyButton=로비배치 >
+heroInfoExceptLobbyButton=로비해제 >
+heroInfoEquipment=장착아이템
+heroInfoEquipmentInformation=* 장비 슬롯을 눌러 아이템을 장착하세요.
+heroInfoHeroSkill=영웅기술
+heroInfoHeroSkillUpgradeButton=기술강화
+heroInfoAttack=공격력
+heroInfoDefence=방어력
+heroInfoHp=체력
+heroInfoCritical=크리티컬
+heroInfoAttackSpeed=공격속도
+heroInfoMoveSpeed=이동속도
+heroInfoKnockbackResist=넉백저항
+heroInfoSkillEnergy=기술력
+
+equipmentItemTitle=장비장착
+equipmentItemEquipButton=장착하기
+equipmentItemUnEquipButton=장착해제
+
+sellItemTitle=판매
+sellItemInformation=* 판매시 획득 코인
+sellItemAllToInventory=모두빼기 >
+sellItemBToSell=B급이하 <
+sellItemButton=판매하기
+
 configTitle=설정
 configSoundTitle=사운드
 configSoundBgmTitle=배경음

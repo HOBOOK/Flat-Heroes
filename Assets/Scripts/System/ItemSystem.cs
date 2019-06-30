@@ -456,7 +456,7 @@ public static class ItemSystem
     }
     public static Sprite GetItemNoneImage()
     {
-        return Resources.Load<Sprite>("Items/none");
+        return Resources.Load<Sprite>("UI/ui_none2");
     }
     #endregion
 

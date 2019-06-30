@@ -99,11 +99,11 @@ public class UI_HeroInfo : MonoBehaviour
 
             if (CharactersManager.instance.GetLobbyHeros(targetHeroData.id))
             {
-                heroSetLobbyButton.GetComponentInChildren<Text>().text = "로비해체 >";
+                heroSetLobbyButton.GetComponentInChildren<Text>().text = LocalizationManager.GetText("heroInfoExceptLobbyButton");
             }
             else
             {
-                heroSetLobbyButton.GetComponentInChildren<Text>().text = "로비배치 >";
+                heroSetLobbyButton.GetComponentInChildren<Text>().text = LocalizationManager.GetText("heroInfoToLobbyButton");
             }
 
             RefreshHeroStatusEquipmentPanel();

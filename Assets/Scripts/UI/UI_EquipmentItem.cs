@@ -64,7 +64,7 @@ public class UI_EquipmentItem : MonoBehaviour
                 InformationPanel.transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(equipmentItemInfo.itemClass);
                 EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = ItemSystem.GetEquipmentItemDescription(equipmentItemInfo);
                 EquipmentActionPanel.GetComponentInChildren<Button>().enabled = true;
-                EquipmentActionPanel.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = "장착해제";
+                EquipmentActionPanel.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = LocalizationManager.GetText("equipmentItemUnEquipButton");
                 EquipmentActionPanel.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
                 EquipmentActionPanel.GetComponentInChildren<Button>().onClick.AddListener(delegate
                 {
@@ -110,7 +110,7 @@ public class UI_EquipmentItem : MonoBehaviour
             EquipmentActionPanel.SetActive(true);
             EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = ItemSystem.GetEquipmentItemDescription(item);
             EquipmentActionPanel.GetComponentInChildren<Button>().enabled = true;
-            EquipmentActionPanel.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = "장착하기";
+            EquipmentActionPanel.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = LocalizationManager.GetText("equipmentItemEquipButton");
             EquipmentActionPanel.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
             EquipmentActionPanel.GetComponentInChildren<Button>().onClick.AddListener(delegate
             {

@@ -18,6 +18,25 @@ public class LocalizationManager
         LoadLanguage(User.language);
     }
 
+    public static string GetText(string key)
+    {
+        string txt = "";
+        if (key == "ISOCode")
+            txt = LocalizationManager.GetLanguage();
+        else
+        {
+            try
+            {
+                txt = LocalizationManager.Fields[key];
+            }
+            catch (KeyNotFoundException e)
+            {
+                Debugging.LogWarning(key + " 의 로컬라이징 텍스트를 발견하지못함");
+            }
+        }
+        return txt;
+    }
+
     public static void LoadLanguage(string lang=null)
     {
         if (Fields == null)
