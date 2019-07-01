@@ -46,16 +46,16 @@ public class Common : MonoBehaviour
         switch (type)
         {
             case 0:
-                txt = "코인";
+                txt = LocalizationManager.GetText("Coin");
                 break;
             case 1:
-                txt = "수정";
+                txt = LocalizationManager.GetText("Crystal");
                 break;
             case 2:
-                txt = "포탈에너지";
+                txt = LocalizationManager.GetText("Energy");
                 break;
             case 3:
-                txt = "광고";
+                txt = LocalizationManager.GetText("Ad");
                 break;
         }
         return txt;

@@ -234,7 +234,7 @@ public static class HeroSystem
         HeroData data = GetHero(id);
         if(data!=null)
         {
-            string[] str = data.chat.Split(',');
+            string[] str = GetHeroChat(data.id).Split(',');
 
             for (int i = 0; i < str.Length; i++)
             {
@@ -346,6 +346,36 @@ public static class HeroSystem
     public static Sprite GetHeroNoneImage()
     {
         return Resources.Load<Sprite>("UI/ui_none2");
+    }
+    public static string GetHeroName(int id)
+    {
+        string name = null;
+        HeroData hero = heros.Find(x => x.id == id || x.id.Equals(id));
+        if(hero!=null)
+        {
+            name = LocalizationManager.GetText("HerosName"+id);
+        }
+        return name;
+    }
+    public static string GetHeroDescription(int id)
+    {
+        string des = null;
+        HeroData hero = heros.Find(x => x.id == id || x.id.Equals(id));
+        if (hero != null)
+        {
+            des = LocalizationManager.GetText("HerosDescription" + id);
+        }
+        return des;
+    }
+    public static string GetHeroChat(int id)
+    {
+        string chat = null;
+        HeroData hero = heros.Find(x => x.id == id || x.id.Equals(id));
+        if (hero != null)
+        {
+            chat = LocalizationManager.GetText("HerosChat" + id);
+        }
+        return chat;
     }
     #endregion
 

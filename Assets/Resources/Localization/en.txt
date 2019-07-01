@@ -1,4 +1,16 @@
+Coin=Coin
+Crystal=Crystal
+Energy=Energy
+Scroll=Scroll
+Ad=Ad
+
 startTabText=Tab to Start.
+
+lobbyTitle=Lobby
+stageTitleMainType1=Structure destruction absorbing flat energy.
+stageTitleMainType2=Destroy all enemies.
+stageTitleMainType3=Boss repulsion.
+stageTitleInfinity=Destroy all enemies until it is possible.
 
 mainManagerText=Manage
 mainShopText=Shop
@@ -6,6 +18,9 @@ mainGachaText=Gacha
 mainMissionText=Mission
 mainLabText=Lab
 mainBattleText=Battle
+missionProgress=In progress
+missionReward=Get
+missionClear=Clear
 
 manageTitle=Manage
 manageTab1=My Heros
@@ -28,8 +43,8 @@ shopTab4=Free
 gachaTitle=Gacha
 gachaType1=Special Five
 gachaType2=Special One
-gachaType3=Normal One
-gachaType4=Normal Five
+gachaType3=Normal Five
+gachaType4=Normal One
 gachaType5=Free Speical  One
 gachaSpecialClass=B class ~ SSS class
 gachaNormalClass=D class ~ S class
@@ -93,6 +108,21 @@ sellItemAllToInventory=All >
 sellItemBToSell=B class <
 sellItemButton=Sell
 
+missionTitle=Mission
+missionDay=Daily
+missionRepeat=Repeat
+missionMain=Main
+missionInformation=You can receive rewards by performing combat missions.
+
+getAbilityTitle=Get
+getAbilityTabText=Tab to screen.
+
+getEquipmentTitle=Get
+getEquipmentTabText=Tab to screen.
+
+messageBoxTitle=Post
+messageBoxInformation=(!) Items will be kept for 30 days.
+
 configTitle=Setting
 configSoundTitle=Sound
 configSoundBgmTitle=Bgm
@@ -105,3 +135,145 @@ configCloudLoadTitle=Cloud Load
 alertTitle=Alert
 alertYes=Yes
 alertNo=No
+alertEnergy=There is not enough portal energy to move to battlefield.
+alertScroll=The number of required orders is insufficient.
+alertCoin=Insufficient number of coins required.
+alertCrystal=Lack of necessary number of crystal.
+alertNeedText=Requirement
+alertNeedMessage1=Do you want to open your ability?
+alertNeedMessage2=Selected item
+alertNeedMessage3=
+alertNeedMessage4=Do you want to sell it to?
+alertNeedMessage5=Would you like to purchase it?
+alertNeedMessage6=
+alertGetMessage1=were obtained.
+alertGetMessage2=Player skill unlocked!
+alertGetMessage3=You have earned the item.
+alertGetMessage4=was acquired.
+alertGetMessage5=You can use the hero!
+alertSellText=Sell
+alertUnableSellMessage=can not be sold.
+alertUnableSellMessage2=It is mounted or there is an error in the number.
+
+stagePauseTitle=Pause
+stagePauseInformation=The game is paused. To continue, click Continue.
+stagePauseExitButton=Exit
+stagePauseContinueButton=Continue
+
+stageDefeatTitle=Result
+stageDefeatInformation=...Defeat!
+stageDefeatExitButton=Exit
+stageDefeatRetryButton=Retry
+
+stageVictoryTitle=Result
+stageVictoryInformation=Victory !!
+stageVictoryTabText=Tab to screen.
+
+stageResultTitle=Result
+stageResultCoin=Get Coin
+stageResultItem=Get Items
+stageResultLobbyButton=Go to lobby
+stageResultRetryButton=Retry
+stageResultNextButton=Next Stage
+
+StageName1=Forest of Fate
+StageName2=Destroyed Forest
+StageName3=Cities that collapsed
+StageName4=Burning Land
+StageName5=Dry desert
+StageName6=Iceberg of Silence
+StageName7=Land of Destruction
+
+MapWarningMessage=It's not accessible yet.
+
+HerosName101=Dong Hae
+HerosDescription101=A warrior who came from the east country.
+HerosChat101=Prepare your mind!,I'll defeat you all...
+
+HerosName102=White
+HerosDescription102=Legendary leader of the flat mercenary unit
+HerosChat102=Let's move on.!,Is it a start now..
+
+HerosName103=Albus
+HerosDescription103=An unidentified wizard who appeared in crisis.
+HerosChat103=There!,To Balance!
+
+HerosName104=Artemis
+HerosDescription104=Leader of the Dawn Organization
+HerosChat104=I'll protect you with this arrow...,You better run.!
+
+HerosName105=Ken
+HerosDescription105=Notorious assassin from eastern country
+HerosChat105=Watch your back..,Want to enjoy?
+
+HerosName106=Hakan
+HerosDescription106=The head of a powerful battle racial group located in the Great Plain Zone is said to have no match as a single fight.
+HerosChat106=K..hahahaha!,You'd better have it all at once.!
+
+HerosName107=Hwa yun
+HerosDescription107=An unidentified girl who lost her memory
+HerosChat107=...
+
+HerosName108=September
+HerosDescription108=It is a humanoid artificial intelligence robot developed as a secret project in the west country.
+HerosChat108=Discover target.
+
+HerosName109=Dr.Park
+HerosDescription109=A renowned surgeon who developed a new treatment for trauma patients and won the Flat Medal Award.
+HerosChat109=No more victims...,For Flat World!
+
+HerosName110=10¹ø¿µ¿õ
+HerosDescription110=null
+HerosChat110=null
+
+HerosName111=11¹ø¿µ¿õ
+HerosDescription11=null
+HerosChat111=null
+
+HerosName112=12¹ø¿µ¿õ
+HerosDescription112=null
+HerosChat112=null
+
+HerosName113=13¹ø¿µ¿õ
+HerosDescription113=null
+HerosChat113=null
+
+HerosName114=14¹ø¿µ¿õ
+HerosDescription114=null
+HerosChat114=null
+
+HerosName115=15¹ø¿µ¿õ
+HerosDescription115=null
+HerosChat115=null
+
+HerosName501=Zombie
+HerosDescription501=null
+HerosChat501=Grrrrr!
+
+HerosName502=Zombie2
+HerosDescription502=null
+HerosChat502=Krrrrr..!
+
+HerosName503=Zombie3
+HerosDescription503=null
+HerosChat503=Gibberrrr..
+
+HerosName504=Fly
+HerosDescription504=null
+HerosChat504=Whine ~
+
+HerosName505=Blue Slime
+HerosDescription505=null
+HerosChat505=Poing Poing!~
+
+HerosName506=Red Slime
+HerosDescription506=null
+HerosChat506=Boing Boing~!
+
+HerosName1001=Giant Humon
+HerosDescription1001=null
+HerosChat1001=Gibber! Gibber!
+
+HerosName1002=Knight Crow
+HerosDescription1002=null
+HerosChat1002=Caw! Caw..!

@@ -187,7 +187,7 @@ public class UI_MapSelect : MonoBehaviour
         else
         {
             mapNameText.text = MapSystem.GetStageName(stageNumber - 1);
-            mapDescriptionText.text = "감히 도달할 수 없습니다.";
+            mapDescriptionText.text = LocalizationManager.GetText("MapWarningMessage");
         }
         foreach (var node in mapNodeList)
         {

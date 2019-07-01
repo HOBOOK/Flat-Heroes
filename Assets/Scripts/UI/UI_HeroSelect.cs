@@ -59,7 +59,7 @@ public class UI_HeroSelect : MonoBehaviour
                             slotNameText = i;
                     }
                     if (slotNameText != null)
-                        slotNameText.text = heroSlot.name;
+                        slotNameText.text = HeroSystem.GetHeroName(heroSlot.id);
                     slotHeroImage = slotPrefab.transform.GetChild(0).GetChild(0).GetComponent<Image>();
                     if (slotHeroImage != null)
                         slotHeroImage.sprite = Resources.Load<Sprite>(heroSlot.image);
@@ -97,7 +97,7 @@ public class UI_HeroSelect : MonoBehaviour
             if (data!=null)
             {
                 selectPanel.gameObject.SetActive(false);
-                selectedHeroNameText.text = string.Format("<size='{0}'>레벨 {1}</size>  {2}", selectedHeroNameText.fontSize - 5, data.level, data.name);
+                selectedHeroNameText.text = string.Format("<size='{0}'>레벨 {1}</size>  {2}", selectedHeroNameText.fontSize - 5, data.level, HeroSystem.GetHeroName(data.id));
                 selectedHeroImage.enabled = true;
                 selectedHeroImage.sprite = Resources.Load<Sprite>(data.image);
             }

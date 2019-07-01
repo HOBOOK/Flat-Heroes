@@ -14,7 +14,7 @@ public class Hero : MonoBehaviour
     public string HeroName;
     public List<string> initChats = new List<string>();
     public List<string> playChats = new List<string>();
-    public List<string> endChats = new List<string>();
+    //public List<string> endChats = new List<string>();
     //boolean
     public bool isPlayerHero = false;
     public bool isStage = false;
@@ -467,7 +467,7 @@ public class Hero : MonoBehaviour
         if (heroData!=null)
         {
             this.status.SetHeroStatus(ref heroData);
-            this.HeroName = heroData.name;
+            this.HeroName = HeroSystem.GetHeroName(heroData.id);
             this.name = HeroName;
             initChats = HeroSystem.GetHeroChats(heroData.id);
             skillData = SkillSystem.GetSkill(heroData.skill);
@@ -712,8 +712,6 @@ public class Hero : MonoBehaviour
         if (status.hp <= 0 && !isDead)
         {
             isDead = true;
-            if (endChats.Count > 0)
-                Common.Chat(endChats[UnityEngine.Random.Range(0, endChats.Count)], transform);
             StopAllCoroutines();
             SetFalseAllboolean();
             rigid.constraints = RigidbodyConstraints2D.FreezeRotation;

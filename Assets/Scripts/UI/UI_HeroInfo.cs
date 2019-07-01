@@ -83,9 +83,9 @@ public class UI_HeroInfo : MonoBehaviour
             showHeroObj.gameObject.SetActive(true);
 
             if (heroNameText != null)
-                heroNameText.text = heroData.name;
+                heroNameText.text = HeroSystem.GetHeroName(heroData.id);
             if (heroDescriptionText != null)
-                heroDescriptionText.text = heroData.description;
+                heroDescriptionText.text = HeroSystem.GetHeroDescription(heroData.id);
             if (heroLevelText != null)
                 heroLevelText.text = string.Format("LV {0}", heroData.level);
             if (heroExpText != null)

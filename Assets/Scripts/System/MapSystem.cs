@@ -6,7 +6,6 @@ public static class MapSystem
 {
     public static List<Map> maps = new List<Map>();
     public static List<Map> userMaps = new List<Map>();
-    private static string[] mapStageName = { "격전의 숲", "파괴된 숲", "무너진 도시", "불타는 땅", "무언의 사막", "침묵의 빙산", "멸망의 땅" };
     public static void LoadMap()
     {
         maps.Clear();
@@ -173,10 +172,8 @@ public static class MapSystem
     }
     public static string GetStageName(int index)
     {
-        if (index < mapStageName.Length)
-            return mapStageName[index];
-        else
-            return null;
+        string name = LocalizationManager.GetText("StageName" + (index + 1));
+        return name;
     }
     public static void SetMapSprite(int stageNumber, ref Transform MapTransform)
     {

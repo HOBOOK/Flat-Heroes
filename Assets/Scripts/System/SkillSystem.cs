@@ -61,7 +61,7 @@ public static class SkillSystem
             if(s==null)
             {
                 SetObtainSkill(skill.id);
-                UI_Manager.instance.ShowGetAlert(skill.image, string.Format("<color='yellow'>'{0}'</color> 플레이어 스킬 잠금이 해제되었습니다!",skill.name));
+                UI_Manager.instance.ShowGetAlert(skill.image, string.Format("<color='yellow'>'{0}'</color> {1}",skill.name,LocalizationManager.GetText("alertGetMessage2")));
             }
         }
     }

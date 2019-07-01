@@ -60,7 +60,7 @@
       <Image>HeroThumbnail/thumbnail_004</Image>
       <Enable>false</Enable>
       <Type>0</Type>
-      <Description>여명단을 이끌고 있는 수장. 그녀의 활시위소리가 들리면 도망가기를 포기하라</Description>
+      <Description>여명단을 이끌고 있는 수장.</Description>
       <Level>1</Level>
       <Exp>0</Exp>
       <Value>150</Value>
@@ -92,7 +92,7 @@
       <AttackType>0</AttackType>
     </Hero>
     <Hero id="106">
-      <Name>그레고리우스</Name>
+      <Name>하칸</Name>
       <Image>HeroThumbnail/thumbnail_006</Image>
       <Enable>false</Enable>
       <Type>0</Type>

@@ -174,7 +174,7 @@ public class CharactersManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
         heroUITarget = hero.transform;
-        heroUIname.text = hero.HeroName;
+        heroUIname.text = HeroSystem.GetHeroName(hero.id);
         heroUIinfo.text = string.Format("레벨:{0}\r\n전투력:{1}", hero.status.level, Common.GetHeroPower(hero));
         heroInfoUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
     }

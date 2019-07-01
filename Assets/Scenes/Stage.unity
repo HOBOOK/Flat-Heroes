@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 26576842}
   - component: {fileID: 26576844}
   - component: {fileID: 26576843}
+  - component: {fileID: 26576845}
   m_Layer: 16
   m_Name: Text
   m_TagString: Untagged
@@ -443,7 +444,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1f31cc0b366b09f47a7a5de18bc3b4db, type: 3}
-    m_FontSize: 50
+    m_FontSize: 43
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -463,6 +464,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26576841}
   m_CullTransparentMesh: 0
+--- !u!114 &26576845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26576841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b5aa141c57734db2e40a38103c850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KEY_NAME: stagePauseTitle
 --- !u!1 &52054151
 GameObject:
   m_ObjectHideFlags: 0
@@ -1520,6 +1534,7 @@ GameObject:
   - component: {fileID: 153362295}
   - component: {fileID: 153362297}
   - component: {fileID: 153362296}
+  - component: {fileID: 153362299}
   m_Layer: 16
   m_Name: Text
   m_TagString: Untagged
@@ -1589,6 +1604,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 153362294}
   m_CullTransparentMesh: 0
+--- !u!114 &153362299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153362294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b5aa141c57734db2e40a38103c850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KEY_NAME: stagePauseInformation
 --- !u!1 &155891324
 GameObject:
   m_ObjectHideFlags: 0
@@ -3822,6 +3850,7 @@ GameObject:
   - component: {fileID: 466970660}
   - component: {fileID: 466970662}
   - component: {fileID: 466970661}
+  - component: {fileID: 466970663}
   m_Layer: 16
   m_Name: Text
   m_TagString: Untagged
@@ -3870,7 +3899,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1f31cc0b366b09f47a7a5de18bc3b4db, type: 3}
-    m_FontSize: 35
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -3890,6 +3919,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 466970659}
   m_CullTransparentMesh: 0
+--- !u!114 &466970663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466970659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b5aa141c57734db2e40a38103c850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KEY_NAME: stageResultRetryButton
 --- !u!1 &470909952
 GameObject:
   m_ObjectHideFlags: 0
@@ -7181,6 +7223,7 @@ GameObject:
   - component: {fileID: 1051720858}
   - component: {fileID: 1051720860}
   - component: {fileID: 1051720859}
+  - component: {fileID: 1051720861}
   m_Layer: 16
   m_Name: Text
   m_TagString: Untagged
@@ -7229,7 +7272,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1f31cc0b366b09f47a7a5de18bc3b4db, type: 3}
-    m_FontSize: 50
+    m_FontSize: 43
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -7249,6 +7292,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051720857}
   m_CullTransparentMesh: 0
+--- !u!114 &1051720861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051720857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b5aa141c57734db2e40a38103c850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KEY_NAME: stageDefeatTitle
 --- !u!1 &1053337240
 GameObject:
   m_ObjectHideFlags: 0
@@ -7757,6 +7813,7 @@ GameObject:
   - component: {fileID: 1082162934}
   - component: {fileID: 1082162936}
   - component: {fileID: 1082162935}
+  - component: {fileID: 1082162937}
   m_Layer: 16
   m_Name: Text
   m_TagString: Untagged
@@ -7805,7 +7862,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1f31cc0b366b09f47a7a5de18bc3b4db, type: 3}
-    m_FontSize: 35
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -7825,6 +7882,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1082162933}
   m_CullTransparentMesh: 0
+--- !u!114 &1082162937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082162933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b5aa141c57734db2e40a38103c850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KEY_NAME: stageResultLobbyButton
 --- !u!1 &1090487264
 GameObject:
   m_ObjectHideFlags: 0
@@ -7983,6 +8053,7 @@ GameObject:
   - component: {fileID: 1091950959}
   - component: {fileID: 1091950961}
   - component: {fileID: 1091950960}
+  - component: {fileID: 1091950962}
   m_Layer: 16
   m_Name: Text
   m_TagString: Untagged
@@ -8031,10 +8102,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1f31cc0b366b09f47a7a5de18bc3b4db, type: 3}
-    m_FontSize: 40
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -8051,6 +8122,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1091950958}
   m_CullTransparentMesh: 0
+--- !u!114 &1091950962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091950958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b5aa141c57734db2e40a38103c850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KEY_NAME: stageDefeatExitButton
 --- !u!1 &1094723227
 GameObject:
   m_ObjectHideFlags: 0
@@ -8062,6 +8146,7 @@ GameObject:
   - component: {fileID: 1094723228}
   - component: {fileID: 1094723230}
   - component: {fileID: 1094723229}
+  - component: {fileID: 1094723231}
   m_Layer: 16
   m_Name: Text
   m_TagString: Untagged
@@ -8110,7 +8195,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1f31cc0b366b09f47a7a5de18bc3b4db, type: 3}
-    m_FontSize: 35
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -8130,6 +8215,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094723227}
   m_CullTransparentMesh: 0
+--- !u!114 &1094723231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094723227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b5aa141c57734db2e40a38103c850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KEY_NAME: stageResultNextButton
 --- !u!1 &1114090742
 GameObject:
   m_ObjectHideFlags: 0
@@ -8310,6 +8408,7 @@ GameObject:
   - component: {fileID: 1143399114}
   - component: {fileID: 1143399116}
   - component: {fileID: 1143399115}
+  - component: {fileID: 1143399117}
   m_Layer: 16
   m_Name: Text
   m_TagString: Untagged
@@ -8358,10 +8457,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1f31cc0b366b09f47a7a5de18bc3b4db, type: 3}
-    m_FontSize: 40
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -8378,6 +8477,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143399113}
   m_CullTransparentMesh: 0
+--- !u!114 &1143399117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143399113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b5aa141c57734db2e40a38103c850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KEY_NAME: stageDefeatRetryButton
 --- !u!1 &1149448783
 GameObject:
   m_ObjectHideFlags: 0
@@ -8879,6 +8991,7 @@ GameObject:
   - component: {fileID: 1210903029}
   - component: {fileID: 1210903031}
   - component: {fileID: 1210903030}
+  - component: {fileID: 1210903032}
   m_Layer: 16
   m_Name: Text
   m_TagString: Untagged
@@ -8927,10 +9040,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1f31cc0b366b09f47a7a5de18bc3b4db, type: 3}
-    m_FontSize: 40
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -8947,6 +9060,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210903028}
   m_CullTransparentMesh: 0
+--- !u!114 &1210903032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210903028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b5aa141c57734db2e40a38103c850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KEY_NAME: stagePauseContinueButton
 --- !u!1 &1212403734
 GameObject:
   m_ObjectHideFlags: 0
@@ -9033,6 +9159,7 @@ GameObject:
   - component: {fileID: 1233013944}
   - component: {fileID: 1233013943}
   - component: {fileID: 1233013942}
+  - component: {fileID: 1233013945}
   m_Layer: 16
   m_Name: Text
   m_TagString: Untagged
@@ -9116,6 +9243,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1233013940}
   m_CullTransparentMesh: 0
+--- !u!114 &1233013945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233013940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b5aa141c57734db2e40a38103c850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KEY_NAME: stageResultItem
 --- !u!1 &1246500962
 GameObject:
   m_ObjectHideFlags: 0
@@ -10843,6 +10983,7 @@ GameObject:
   - component: {fileID: 1453547051}
   - component: {fileID: 1453547053}
   - component: {fileID: 1453547052}
+  - component: {fileID: 1453547054}
   m_Layer: 16
   m_Name: Text
   m_TagString: Untagged
@@ -10891,10 +11032,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1f31cc0b366b09f47a7a5de18bc3b4db, type: 3}
-    m_FontSize: 40
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -10911,6 +11052,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1453547050}
   m_CullTransparentMesh: 0
+--- !u!114 &1453547054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453547050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b5aa141c57734db2e40a38103c850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KEY_NAME: stagePauseExitButton
 --- !u!1 &1487384671
 GameObject:
   m_ObjectHideFlags: 0
@@ -11808,6 +11962,7 @@ GameObject:
   - component: {fileID: 1591486895}
   - component: {fileID: 1591486897}
   - component: {fileID: 1591486896}
+  - component: {fileID: 1591486898}
   m_Layer: 16
   m_Name: Text
   m_TagString: Untagged
@@ -11876,6 +12031,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591486894}
   m_CullTransparentMesh: 0
+--- !u!114 &1591486898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591486894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b5aa141c57734db2e40a38103c850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KEY_NAME: stageVictoryTabText
 --- !u!1 &1593059969
 GameObject:
   m_ObjectHideFlags: 0
@@ -12217,6 +12385,7 @@ GameObject:
   - component: {fileID: 1669776513}
   - component: {fileID: 1669776512}
   - component: {fileID: 1669776511}
+  - component: {fileID: 1669776515}
   m_Layer: 16
   m_Name: resultText
   m_TagString: Untagged
@@ -12354,6 +12523,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669776509}
   m_CullTransparentMesh: 0
+--- !u!114 &1669776515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669776509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b5aa141c57734db2e40a38103c850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KEY_NAME: stageDefeatInformation
 --- !u!1 &1692629536
 GameObject:
   m_ObjectHideFlags: 0
@@ -12731,6 +12913,7 @@ GameObject:
   - component: {fileID: 1724116010}
   - component: {fileID: 1724116012}
   - component: {fileID: 1724116013}
+  - component: {fileID: 1724116014}
   m_Layer: 16
   m_Name: resultText
   m_TagString: Untagged
@@ -12868,6 +13051,19 @@ MonoBehaviour:
   initialScale: {x: 0, y: 0, z: 0}
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPivot: {x: 0, y: 0}
+--- !u!114 &1724116014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724116008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b5aa141c57734db2e40a38103c850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KEY_NAME: stageVictoryInformation
 --- !u!1 &1724680853
 GameObject:
   m_ObjectHideFlags: 0
@@ -13166,6 +13362,7 @@ GameObject:
   - component: {fileID: 1734557461}
   - component: {fileID: 1734557460}
   - component: {fileID: 1734557459}
+  - component: {fileID: 1734557462}
   m_Layer: 16
   m_Name: Text
   m_TagString: Untagged
@@ -13249,6 +13446,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734557457}
   m_CullTransparentMesh: 0
+--- !u!114 &1734557462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734557457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b5aa141c57734db2e40a38103c850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KEY_NAME: stageResultCoin
 --- !u!1 &1745932611
 GameObject:
   m_ObjectHideFlags: 0
@@ -14401,6 +14611,7 @@ GameObject:
   - component: {fileID: 1838988268}
   - component: {fileID: 1838988270}
   - component: {fileID: 1838988269}
+  - component: {fileID: 1838988271}
   m_Layer: 16
   m_Name: Text
   m_TagString: Untagged
@@ -14449,7 +14660,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1f31cc0b366b09f47a7a5de18bc3b4db, type: 3}
-    m_FontSize: 50
+    m_FontSize: 43
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -14469,6 +14680,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838988267}
   m_CullTransparentMesh: 0
+--- !u!114 &1838988271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838988267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b5aa141c57734db2e40a38103c850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KEY_NAME: stageVictoryTitle
 --- !u!1 &1844350171
 GameObject:
   m_ObjectHideFlags: 0
@@ -15552,6 +15776,7 @@ GameObject:
   - component: {fileID: 1987757000}
   - component: {fileID: 1987757002}
   - component: {fileID: 1987757001}
+  - component: {fileID: 1987757003}
   m_Layer: 16
   m_Name: Text
   m_TagString: Untagged
@@ -15600,7 +15825,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1f31cc0b366b09f47a7a5de18bc3b4db, type: 3}
-    m_FontSize: 50
+    m_FontSize: 43
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -15620,6 +15845,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1987756999}
   m_CullTransparentMesh: 0
+--- !u!114 &1987757003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987756999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b5aa141c57734db2e40a38103c850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KEY_NAME: stageResultTitle
 --- !u!1001 &1993575355
 PrefabInstance:
   m_ObjectHideFlags: 0

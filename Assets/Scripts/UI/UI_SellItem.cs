@@ -244,7 +244,7 @@ public class UI_SellItem : MonoBehaviour
     IEnumerator CheckingSellAlert()
     {
         isCheckAlertOn = true;
-        var alertPanel = UI_Manager.instance.ShowNeedAlert("", string.Format("<color='red'>선택된 아이템</color> {0}개를 <color='yellow'>{1} 코인</color>  에 판매하시겠습니까?", totalCount, totalValue));
+        var alertPanel = UI_Manager.instance.ShowNeedAlert("", string.Format("<color='red'>{0}</color> {1}{2} <color='yellow'>{3} {4}</color>  {5}", LocalizationManager.GetText("alertNeedMessage2"),totalCount, LocalizationManager.GetText("alertNeedMessage3"), totalValue, LocalizationManager.GetText("Coin"), LocalizationManager.GetText("alertNeedMessage4")));
         while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
         {
             yield return new WaitForFixedUpdate();
@@ -273,7 +273,7 @@ public class UI_SellItem : MonoBehaviour
                 ItemSystem.UseItem(sellItemList[i].customId, 1);
             }
             SaveSystem.AddUserCoin(totalValue);
-            UI_Manager.instance.ShowGetAlert("Items/coin", string.Format("<color='yellow'>{0}</color> 코인을 획득했습니다.", totalValue));
+            UI_Manager.instance.ShowGetAlert("Items/coin", string.Format("<color='yellow'>{0}</color> {1} {2}", totalValue,LocalizationManager.GetText("Coin"),LocalizationManager.GetText("alertGetMessage1")));
             EnableUI();
         }
         else

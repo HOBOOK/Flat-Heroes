@@ -285,19 +285,19 @@ public class UI_Manager : MonoBehaviour
             {
                 case PopupAlertTYPE.energy:
                     shortageImage.sprite = Resources.Load<Sprite>("Items/portalEnergy");
-                    shortageText.text = string.Format("전장으로 이동할 포탈에너지가 부족합니다. \r\n <color='red;>필요 : {0}</color> 현재 : {1}", needAmount, User.portalEnergy);
+                    shortageText.text = string.Format("{0} \r\n <color='red;>{1} : {2}</color>", LocalizationManager.GetText("alertEnergy"),LocalizationManager.GetText("alertNeedText"),needAmount);
                     break;
                 case PopupAlertTYPE.scroll:
                     shortageImage.sprite = Resources.Load<Sprite>("Items/abilityScroll");
-                    shortageText.text = string.Format("주문서가 부족합니다. \r\n <color='red;>필요 : {0}</color> 현재 : {1}", needAmount, ItemSystem.GetUserScrollCount());
+                    shortageText.text = string.Format("{0} \r\n <color='red;>{1} : {2}</color>", LocalizationManager.GetText("alertScroll"), LocalizationManager.GetText("alertNeedText"), needAmount);
                     break;
                 case PopupAlertTYPE.coin:
                     shortageImage.sprite = Resources.Load<Sprite>("Items/coin");
-                    shortageText.text = string.Format("코인이 부족합니다. \r\n <color='red;>필요 : {0}</color> 현재 : {1}", needAmount, User.coin);
+                    shortageText.text = string.Format("{0} \r\n <color='red;>{1} : {2}</color>", LocalizationManager.GetText("alertCoin"), LocalizationManager.GetText("alertNeedText"), needAmount);
                     break;
                 case PopupAlertTYPE.blackCrystal:
                     shortageImage.sprite = Resources.Load<Sprite>("Items/blackCrystal");
-                    shortageText.text = string.Format("수정이 부족합니다. \r\n <color='red;>필요 : {0}</color> 현재 : {1}", needAmount, User.blackCrystal);
+                    shortageText.text = string.Format("{0} \r\n <color='red;>{1} : {2}</color>", LocalizationManager.GetText("alertCrystal"), LocalizationManager.GetText("alertNeedText"), needAmount);
                     break;
             }
             PopupAlertUI.GetComponent<AiryUIAnimatedElement>().ShowElement();

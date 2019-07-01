@@ -41,7 +41,7 @@ public class UI_Manager_HeroTab : MonoBehaviour
                             slotNameText = i;
                     }
                     if (slotNameText != null)
-                        slotNameText.text = heroSlot.name;
+                        slotNameText.text = HeroSystem.GetHeroName(heroSlot.id);
                     slotHeroImage = slotPrefab.transform.GetChild(0).GetChild(0).GetComponent<Image>();
                     if (slotHeroImage != null)
                         slotHeroImage.sprite = Resources.Load<Sprite>(heroSlot.image);

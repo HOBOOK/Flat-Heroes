@@ -205,7 +205,7 @@ public class UI_Button : MonoBehaviour
                         ItemSystem.SetObtainItem(buyItemId);
                     callBackScript.GetComponent<UI_Shop>().RefreshUI();
                     Item id = ItemSystem.GetItem(buyItemId);
-                    UI_Manager.instance.ShowGetAlert(id.image, string.Format("<color='yellow'>{0}</color> 아이템을 획득하였습니다.", id.name));
+                    UI_Manager.instance.ShowGetAlert(id.image, string.Format("<color='yellow'>{0}</color> {1}", id.name,LocalizationManager.GetText("alertGetMessage3")));
                 }
                 else
                 {
@@ -222,7 +222,7 @@ public class UI_Button : MonoBehaviour
                         ItemSystem.SetObtainItem(buyItemId);
                     callBackScript.GetComponent<UI_Shop>().RefreshUI();
                     Item id = ItemSystem.GetItem(buyItemId);
-                    UI_Manager.instance.ShowGetAlert(id.image, string.Format("<color='yellow'>{0}</color> 아이템을 획득하였습니다.", id.name));
+                    UI_Manager.instance.ShowGetAlert(id.image, string.Format("<color='yellow'>{0}</color> {1}", id.name,LocalizationManager.GetText("alertGetMessage3")));
                 }
                 else
                 {
@@ -247,7 +247,7 @@ public class UI_Button : MonoBehaviour
                     HeroSystem.SetObtainHero(characterId);
                     callBackScript.GetComponent<UI_ShopCharacter>().RefreshUI();
                     HeroData hd = HeroSystem.GetHero(characterId);
-                    UI_Manager.instance.ShowGetAlert(hd.image, string.Format("<color='yellow'>{0}</color> 영웅을 획득하였습니다.", hd.name));
+                    UI_Manager.instance.ShowGetAlert(hd.image, string.Format("<color='yellow'>{0}</color> {1}", hd.name, LocalizationManager.GetText("alertGetMessage5")));
                 }
                 else
                 {
@@ -261,7 +261,7 @@ public class UI_Button : MonoBehaviour
                     HeroSystem.SetObtainHero(characterId);
                     callBackScript.GetComponent<UI_ShopCharacter>().RefreshUI();
                     HeroData hd = HeroSystem.GetHero(characterId);
-                    UI_Manager.instance.ShowGetAlert(hd.image, string.Format("<color='yellow'>{0}</color> 영웅을 획득하였습니다.", hd.name));
+                    UI_Manager.instance.ShowGetAlert(hd.image, string.Format("<color='yellow'>{0}</color> {1}", hd.name, LocalizationManager.GetText("alertGetMessage5")));
                 }
                 else
                 {
@@ -284,7 +284,7 @@ public class UI_Button : MonoBehaviour
             if (ItemSystem.UseItem(sellItemId, 1))
             {
                 SaveSystem.AddUserCoin(value);
-                UI_Manager.instance.ShowGetAlert("Items/coin", string.Format("<color='yellow'>{0}</color> 코인을 획득했습니다.", Common.GetThousandCommaText(value)));
+                UI_Manager.instance.ShowGetAlert("Items/coin", string.Format("<color='yellow'>{0}</color> {1}{2}", Common.GetThousandCommaText(value),LocalizationManager.GetText("Coin"),LocalizationManager.GetText("alertGetMessage1")));
                 if (callBackScript != null)
                 {
                     callBackScript.GetComponent<UI_Manager_InventoryTab>().OnValidate();
@@ -295,7 +295,7 @@ public class UI_Button : MonoBehaviour
             {
                 Item item = ItemSystem.GetUserItemByCustomId(sellItemId);
                 if (item != null)
-                    UI_Manager.instance.ShowAlert(item.image, string.Format("<color='yellow'>{0}</color> 은(는) 현재 판매할 수 없습니다. \r\n <color='grey'><size='20'>판매</size></color>", item.name));
+                    UI_Manager.instance.ShowAlert(item.image, string.Format("<color='yellow'>{0}</color> {1} \r\n <color='grey'><size='20'>{2}</size></color>", item.name,LocalizationManager.GetText("alertUnableSellMessage"),LocalizationManager.GetText("alertSellText")));
 
             }
         }
@@ -303,7 +303,7 @@ public class UI_Button : MonoBehaviour
         {
             Item item = ItemSystem.GetUserItemByCustomId(sellItemId);
             if(item!=null)
-                UI_Manager.instance.ShowAlert(item.image, string.Format("<color='yellow'>{0}</color> 은(는) 현재 판매할 수 없습니다. \r\n <color='grey'><size='20'>장착중이거나 아이템의 개수에 오류가 있습니다.</size></color>",item.name));
+                UI_Manager.instance.ShowAlert(item.image, string.Format("<color='yellow'>{0}</color> {1} \r\n <color='grey'><size='20'>{2}</size></color>",item.name,LocalizationManager.GetText("alertUnableSellMessage"),LocalizationManager.GetText("alertUnableSellMessage2")));
         }
     }
 
@@ -317,7 +317,7 @@ public class UI_Button : MonoBehaviour
     IEnumerator CheckingAlert(int type)
     {
         isCheckAlertOn = true;
-        var alertPanel = UI_Manager.instance.ShowNeedAlert("Items/" + Enum.GetName(typeof(PaymentType), paymentType), string.Format("<color='yellow'>'{0}' <size='24'>x </size>{1}</color>  사용하여 구매하시겠습니까?", Common.GetCoinCrystalEnergyText(type), paymentAmount));
+        var alertPanel = UI_Manager.instance.ShowNeedAlert("Items/" + Enum.GetName(typeof(PaymentType), paymentType), string.Format("<color='yellow'>'{0}' <size='24'>x </size>{1}</color>  {2}", Common.GetCoinCrystalEnergyText(type), paymentAmount,LocalizationManager.GetText("alertNeedMessage5")));
         while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
         {
             yield return new WaitForFixedUpdate();
@@ -344,7 +344,7 @@ public class UI_Button : MonoBehaviour
     {
         isCheckAlertOn = true;
         Item sellItem = ItemSystem.GetUserItemByCustomId(sellItemId);
-        var alertPanel = UI_Manager.instance.ShowNeedAlert(sellItem.image, string.Format("<color='red'>'{0}'</color> {1}개를 <color='yellow'>{2} 코인</color>  에 판매하시겠습니까?", sellItem.name, 1, Common.GetThousandCommaText(sellItem.value)));
+        var alertPanel = UI_Manager.instance.ShowNeedAlert(sellItem.image, string.Format("<color='red'>'{0}'</color> {1}{2} <color='yellow'>{3} {4}</color>  {5}", sellItem.name, 1, LocalizationManager.GetText("alertNeedMessage3"),Common.GetThousandCommaText(sellItem.value),LocalizationManager.GetText("Coin"), LocalizationManager.GetText("alertNeedMessage4")));
         while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
         {
             yield return new WaitForFixedUpdate();
@@ -366,7 +366,7 @@ public class UI_Button : MonoBehaviour
     IEnumerator CheckingGachaAlert(int type)
     {
         isCheckAlertOn = true;
-        var alertPanel = UI_Manager.instance.ShowNeedAlert(Common.GetCoinCrystalEnergyImagePath(type), string.Format("<color='red'>'{0}'</color>을(를) <color='yellow'>{1} {2}</color>  으로 구매하시겠습니까?", GachaSystem.GachaTypeText[(int)gachaType], Common.GetThousandCommaText(paymentAmount),Common.GetCoinCrystalEnergyText(type)));
+        var alertPanel = UI_Manager.instance.ShowNeedAlert(Common.GetCoinCrystalEnergyImagePath(type), string.Format("<color='red'>'{0}'</color>{1} <color='yellow'>{2} {3}</color>  {4}", LocalizationManager.GetText("gachaType"+((int)gachaType+1)),LocalizationManager.GetText("alertNeedMessage6"), Common.GetThousandCommaText(paymentAmount),Common.GetCoinCrystalEnergyText(type),LocalizationManager.GetText("alertNeedMessage5")));
         while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
         {
             yield return new WaitForFixedUpdate();

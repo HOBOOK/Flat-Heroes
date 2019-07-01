@@ -48,14 +48,14 @@ public class StageManagement : MonoBehaviour
             switch (map.stageType)
             {
                 case 0:
-                    UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "플랫 에너지를 흡수하는 구조물 파괴.";
+                    UI_Manager.instance.Title.GetComponentInChildren<Text>().text = LocalizationManager.GetText("stageTitleMainType1");
                     InitCastle();
                     break;
                 case 1:
-                    UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "모든 적을 섬멸.";
+                    UI_Manager.instance.Title.GetComponentInChildren<Text>().text = LocalizationManager.GetText("stageTitleMainType2");
                     break;
                 case 2:
-                    UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "보스 격퇴.";
+                    UI_Manager.instance.Title.GetComponentInChildren<Text>().text = LocalizationManager.GetText("stageTitleMainType3");
                     InitBoss();
                     break;
             }
@@ -66,7 +66,7 @@ public class StageManagement : MonoBehaviour
         else if (stageModeType == Common.StageModeType.Infinite)
         {
             SoundManager.instance.BgmSourceChange(AudioClipManager.instance.StageBgm);
-            UI_Manager.instance.Title.GetComponentInChildren<Text>().text = "가능할 때까지 모든적을 섬멸.";
+            UI_Manager.instance.Title.GetComponentInChildren<Text>().text = LocalizationManager.GetText("stageTitleInfinity");
         }
 
         CharactersManager.instance.SetStagePositionHeros();

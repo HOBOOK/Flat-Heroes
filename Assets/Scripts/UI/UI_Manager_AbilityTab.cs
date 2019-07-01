@@ -181,7 +181,7 @@ public class UI_Manager_AbilityTab : MonoBehaviour
         int amount = User.abilityCount;
         Item userAbilityScroll = ItemSystem.GetItem(8001);
         Debugging.Log(amount);
-        var alertPanel = UI_Manager.instance.ShowNeedAlert(userAbilityScroll.image, string.Format("<color='yellow'>'{0}' <size='24'>x </size>{1}</color>  사용하여 능력을 개방하시겠습니까?", userAbilityScroll.name, amount));
+        var alertPanel = UI_Manager.instance.ShowNeedAlert(userAbilityScroll.image, string.Format("<color='yellow'>'{0}' <size='24'>x </size>{1}</color>  {2}", userAbilityScroll.name, amount,LocalizationManager.GetText("alertNeedMessage1")));
         while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
         {
             yield return new WaitForFixedUpdate();

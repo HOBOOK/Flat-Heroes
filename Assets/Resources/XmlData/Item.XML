@@ -15,7 +15,7 @@
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>1000</Value>
+      <Value>100</Value>
       <Image>Equipment/equipment_001</Image>
       <Count>0</Count>
       <Enable>false</Enable>
@@ -36,7 +36,7 @@
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>2000</Value>
+      <Value>1000</Value>
       <Image>Equipment/equipment_002</Image>
       <Count>0</Count>
       <Enable>false</Enable>
@@ -57,7 +57,7 @@
       <AttackSpeed>10</AttackSpeed>
       <MoveSpeed>5</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>15000</Value>
+      <Value>10000</Value>
       <Image>Equipment/equipment_003</Image>
       <Count>0</Count>
       <Enable>false</Enable>
@@ -78,7 +78,7 @@
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>2</SkillEnergy>
-      <Value>6000</Value>
+      <Value>700</Value>
       <Image>Equipment/equipment_004</Image>
       <Count>0</Count>
       <Enable>false</Enable>
@@ -99,7 +99,7 @@
       <AttackSpeed>20</AttackSpeed>
       <MoveSpeed>10</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>1000</Value>
+      <Value>500</Value>
       <Image>Equipment/equipment_005</Image>
       <Count>0</Count>
       <Enable>false</Enable>
@@ -120,7 +120,7 @@
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>1000</Value>
+      <Value>500</Value>
       <Image>Equipment/equipment_006</Image>
       <Count>0</Count>
       <Enable>false</Enable>
@@ -162,7 +162,7 @@
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>5</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>1000</Value>
+      <Value>3000</Value>
       <Image>Equipment/equipment_008</Image>
       <Count>0</Count>
       <Enable>false</Enable>
@@ -183,7 +183,7 @@
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>1000</Value>
+      <Value>500</Value>
       <Image>Equipment/equipment_009</Image>
       <Count>0</Count>
       <Enable>false</Enable>
@@ -225,7 +225,7 @@
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>10</SkillEnergy>
-      <Value>300000</Value>
+      <Value>100000</Value>
       <Image>Equipment/equipment_011</Image>
       <Count>0</Count>
       <Enable>false</Enable>
@@ -267,7 +267,7 @@
       <AttackSpeed>10</AttackSpeed>
       <MoveSpeed>50</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>1000000</Value>
+      <Value>100000</Value>
       <Image>Equipment/equipment_013</Image>
       <Count>0</Count>
       <Enable>false</Enable>
@@ -288,7 +288,7 @@
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>10000</Value>
+      <Value>1000</Value>
       <Image>Items/abilityScroll</Image>
       <Count>0</Count>
       <Enable>false</Enable>

@@ -6,7 +6,7 @@ public class GachaSystem
 {
     public enum GachaClass { D,C,B,A,S,SS,SSS};
     public enum GachaType { SpecialFive, SpecialOne, NormalFive, NormalOne, FreeAd }
-    public static string[] GachaTypeText = { "고급 장비 뽑기 5회", "고급 장비 뽑기 1회", "일반 장비 뽑기 5회", "일반 장비 뽑기 1회", "무료 장비 뽑기" };
+
     public static List<Item> StartSpeicalGachaMultiple(List<Item> items, int count)
     {
         List<Item> returnGachaItemList = new List<Item>();
