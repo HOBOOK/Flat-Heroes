@@ -60,6 +60,7 @@ public class UI_MapSelect : MonoBehaviour
     {
         ShowHero();
     }
+    
     void Start()
     {
         if (mapSlotNodePrefab!=null)
@@ -141,9 +142,9 @@ public class UI_MapSelect : MonoBehaviour
                 }
             }
             // 찾은 스테이지 정보를 뷰로 보여줌
-            mapNameText.text = MapSystem.GetMap(currentMapId).name;
-            mapDescriptionText.text = MapSystem.GetMap(currentMapId).description;
-            foreach(var node in mapNodeList)
+            mapNameText.text = string.Format("{0} <size='40'>{1}</size>", MapSystem.GetStageName(currentStageIndex), MapSystem.GetMap(currentMapId).name);
+            mapDescriptionText.text = MapSystem.GetStageDescription(currentStageIndex);
+            foreach (var node in mapNodeList)
             {
                 if(node.Key==currentMapId)
                 {
@@ -181,13 +182,13 @@ public class UI_MapSelect : MonoBehaviour
         // 현재 패널의 스테이지가 자신의 스테이지 보다 같거나 작을때
         if (stageNumber <= MapSystem.GetMap(currentMapId).stageNumber)
         {
-            mapNameText.text = MapSystem.GetMap(currentMapId).name;
-            mapDescriptionText.text = MapSystem.GetMap(currentMapId).description;
+            mapNameText.text =string.Format("{0} <size='40'>{1}</size>",MapSystem.GetStageName(stageNumber-1) , MapSystem.GetMap(currentMapId).name);
+            mapDescriptionText.text = MapSystem.GetStageDescription(stageNumber - 1);
         }
         else
         {
             mapNameText.text = MapSystem.GetStageName(stageNumber - 1);
-            mapDescriptionText.text = LocalizationManager.GetText("MapWarningMessage");
+            mapDescriptionText.text = string.Format("<color='red'>{0}</color>", LocalizationManager.GetText("MapWarningMessage"));
         }
         foreach (var node in mapNodeList)
         {
@@ -208,8 +209,7 @@ public class UI_MapSelect : MonoBehaviour
         if (MapSystem.isAbleMap(mapId))
         {
             currentMapId = mapId;
-            mapNameText.text = MapSystem.GetMap(mapId).name;
-            mapDescriptionText.text = MapSystem.GetMap(mapId).description;
+            mapNameText.text = string.Format("{0} <size='40'>{1}</size>", MapSystem.GetStageName(MapSystem.GetMap(currentMapId).stageNumber - 1), MapSystem.GetMap(currentMapId).name);
             foreach (var node in mapNodeList)
             {
                 if (node.Key == mapId)

@@ -22,9 +22,9 @@ mainBattleText=전투
 manageTitle=관 리
 manageTab1=보유 영웅
 manageTab2=보유 아이템
-manageTab2OrderButton1=이름순
-manageTab2OrderButton2=등급순
-manageTab2SellButton=선택팔기
+manageTab2OrderButton1=이\n름\n순
+manageTab2OrderButton2=등\n급\n순
+manageTab2SellButton=선\n택\n팔\n기
 manageTab3=플레이어 능력
 manageTab3Information=능력을 개방하여 영웅들의 능력치를 상승시킬 수 있습니다.
 manageTab3AbilityTitle=전체능력치
@@ -73,7 +73,7 @@ heroSelectTitle=영웅선택
 heroSelectButton=전투시작
 heroSelectInformation=영웅을 선택해주세요.
 heroSelectSlotInformation=(!) 슬롯을 선택하세요.
-heroSelectPlayerSkillButton=플레이어\r\n스킬선택
+heroSelectPlayerSkillButton=플레이어\n스킬선택
 
 skillSelectTitle=스킬선택
 skillSelectInformation=플레이어 스킬은 2개까지 선택가능합니다.
@@ -177,12 +177,19 @@ stageResultRetryButton=다시 하기
 stageResultNextButton=다음 전투
 
 StageName1=격전의 숲
+StageDescription1=이곳에 미확인 물체가 하늘에서 떨어졌다. 어서 확인 해보자.
 StageName2=파괴된 숲
+StageDescription2=끊임없이 나오는 몬스터들로 인해 숲이 거의 파괴되었다. 더이상 물러설 수 없어..
 StageName3=무너진 도시
+StageDescription3=이제 무차별적으로 도시까지 침공을 당했다. 희망은 있는것일까?
 StageName4=불타는 땅
+StageDescription4=그 괴물이 소환되던 날 모든땅이 불타버렸다.
 StageName5=무언의 사막
+StageDescription5=전설에 있던 숨겨진 땅이 실재로 존재하였다니..
 StageName6=침묵의 빙산
+StageDescription6=불안정한 에너지로 인해 기온이 급격하게 내려갔다.
 StageName7=멸망의 땅
+StageDescription7=우리의 모든것이 무너졌다. 하지만 우리에게 마지막 희망은 있어.
 
 MapWarningMessage=아직 도달할 수 없는 곳입니다.
 

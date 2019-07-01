@@ -165,8 +165,8 @@ public class UI_MapSelectNew : MonoBehaviour
     }
     void ShowMapInfo(int mapId)
     {
-        mapNameText.text = MapSystem.GetMap(mapId).name;
-        mapDescriptionText.text = MapSystem.GetMap(mapId).description;
+        //mapNameText.text = string.Format("{0} {1}", MapSystem.GetStageName(stageNumber - 1), MapSystem.GetMap(currentMapId).name);
+        //mapDescriptionText.text = MapSystem.GetStageDescription(stageNumber - 1);
         MapInfoPanel.GetComponent<AiryUIAnimatedElement>().ShowElement();
     }
 

@@ -175,6 +175,11 @@ public static class MapSystem
         string name = LocalizationManager.GetText("StageName" + (index + 1));
         return name;
     }
+    public static string GetStageDescription(int index)
+    {
+        string name = LocalizationManager.GetText("StageDescription" + (index + 1));
+        return name;
+    }
     public static void SetMapSprite(int stageNumber, ref Transform MapTransform)
     {
         Sprite[] mapSprite = Resources.LoadAll<Sprite>("Maps/Stage" + stageNumber);

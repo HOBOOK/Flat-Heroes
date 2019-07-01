@@ -25,9 +25,9 @@ missionClear=Clear
 manageTitle=Manage
 manageTab1=My Heros
 manageTab2=Inventory
-manageTab2OrderButton1=Name
-manageTab2OrderButton2=Class
-manageTab2SellButton=Sell
+manageTab2OrderButton1=N\na\nm\ne
+manageTab2OrderButton2=C\nl\na\ns\ns
+manageTab2SellButton=S\ne\nl\nl
 manageTab3=Player Ability
 manageTab3Information=Player abilities can increase the hero's abilities
 manageTab3AbilityTitle=Overall ability
@@ -177,12 +177,19 @@ stageResultRetryButton=Retry
 stageResultNextButton=Next Stage
 
 StageName1=Forest of Fate
+StageDescription1=An unidentified object fell from the sky here. Let's check it out.
 StageName2=Destroyed Forest
+StageDescription2=The forests were almost destroyed by the monsters coming out constantly. We can not stand back anymore ..
 StageName3=Cities that collapsed
+StageDescription3=Now the city was invaded indiscriminately. Is there hope?
 StageName4=Burning Land
+StageDescription4=The day the monster was summoned, all the land burned down.
 StageName5=Dry desert
+StageDescription5=The hidden land in the legend existed in reality.
 StageName6=Iceberg of Silence
+StageDescription6=Temperatures fell sharply due to unstable energy.
 StageName7=Land of Destruction
+StageDescription7=All of us have fallen. But we have last hope.
 
 MapWarningMessage=It's not accessible yet.
 
