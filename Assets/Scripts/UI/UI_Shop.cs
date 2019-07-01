@@ -75,7 +75,7 @@ public class UI_Shop : MonoBehaviour
                         slotValueText = i;
                 }
                 if (slotNameText != null)
-                    slotNameText.text = slot.name;
+                    slotNameText.text = ItemSystem.GetItemName(slot.id);
                 if (slotValueText != null)
                     slotValueText.text = Common.GetThousandCommaText(slot.value);
                 slotItemImage = slotPrefab.transform.GetChild(0).GetChild(0).GetComponent<Image>();

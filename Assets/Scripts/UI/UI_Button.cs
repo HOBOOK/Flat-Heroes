@@ -205,7 +205,7 @@ public class UI_Button : MonoBehaviour
                         ItemSystem.SetObtainItem(buyItemId);
                     callBackScript.GetComponent<UI_Shop>().RefreshUI();
                     Item id = ItemSystem.GetItem(buyItemId);
-                    UI_Manager.instance.ShowGetAlert(id.image, string.Format("<color='yellow'>{0}</color> {1}", id.name,LocalizationManager.GetText("alertGetMessage3")));
+                    UI_Manager.instance.ShowGetAlert(id.image, string.Format("<color='yellow'>{0}</color> {1}", ItemSystem.GetItemName(id.id),LocalizationManager.GetText("alertGetMessage3")));
                 }
                 else
                 {
@@ -222,7 +222,7 @@ public class UI_Button : MonoBehaviour
                         ItemSystem.SetObtainItem(buyItemId);
                     callBackScript.GetComponent<UI_Shop>().RefreshUI();
                     Item id = ItemSystem.GetItem(buyItemId);
-                    UI_Manager.instance.ShowGetAlert(id.image, string.Format("<color='yellow'>{0}</color> {1}", id.name,LocalizationManager.GetText("alertGetMessage3")));
+                    UI_Manager.instance.ShowGetAlert(id.image, string.Format("<color='yellow'>{0}</color> {1}",ItemSystem.GetItemName(id.id),LocalizationManager.GetText("alertGetMessage3")));
                 }
                 else
                 {
@@ -247,7 +247,7 @@ public class UI_Button : MonoBehaviour
                     HeroSystem.SetObtainHero(characterId);
                     callBackScript.GetComponent<UI_ShopCharacter>().RefreshUI();
                     HeroData hd = HeroSystem.GetHero(characterId);
-                    UI_Manager.instance.ShowGetAlert(hd.image, string.Format("<color='yellow'>{0}</color> {1}", hd.name, LocalizationManager.GetText("alertGetMessage5")));
+                    UI_Manager.instance.ShowGetAlert(hd.image, string.Format("<color='yellow'>{0}</color> {1}", HeroSystem.GetHeroName(hd.id), LocalizationManager.GetText("alertGetMessage5")));
                 }
                 else
                 {
@@ -261,7 +261,7 @@ public class UI_Button : MonoBehaviour
                     HeroSystem.SetObtainHero(characterId);
                     callBackScript.GetComponent<UI_ShopCharacter>().RefreshUI();
                     HeroData hd = HeroSystem.GetHero(characterId);
-                    UI_Manager.instance.ShowGetAlert(hd.image, string.Format("<color='yellow'>{0}</color> {1}", hd.name, LocalizationManager.GetText("alertGetMessage5")));
+                    UI_Manager.instance.ShowGetAlert(hd.image, string.Format("<color='yellow'>{0}</color> {1}", HeroSystem.GetHeroName(hd.id), LocalizationManager.GetText("alertGetMessage5")));
                 }
                 else
                 {
@@ -295,7 +295,7 @@ public class UI_Button : MonoBehaviour
             {
                 Item item = ItemSystem.GetUserItemByCustomId(sellItemId);
                 if (item != null)
-                    UI_Manager.instance.ShowAlert(item.image, string.Format("<color='yellow'>{0}</color> {1} \r\n <color='grey'><size='20'>{2}</size></color>", item.name,LocalizationManager.GetText("alertUnableSellMessage"),LocalizationManager.GetText("alertSellText")));
+                    UI_Manager.instance.ShowAlert(item.image, string.Format("<color='yellow'>{0}</color> {1} \r\n <color='grey'><size='20'>{2}</size></color>", ItemSystem.GetItemName(item.id),LocalizationManager.GetText("alertUnableSellMessage"),LocalizationManager.GetText("alertSellText")));
 
             }
         }
@@ -303,7 +303,7 @@ public class UI_Button : MonoBehaviour
         {
             Item item = ItemSystem.GetUserItemByCustomId(sellItemId);
             if(item!=null)
-                UI_Manager.instance.ShowAlert(item.image, string.Format("<color='yellow'>{0}</color> {1} \r\n <color='grey'><size='20'>{2}</size></color>",item.name,LocalizationManager.GetText("alertUnableSellMessage"),LocalizationManager.GetText("alertUnableSellMessage2")));
+                UI_Manager.instance.ShowAlert(item.image, string.Format("<color='yellow'>{0}</color> {1} \r\n <color='grey'><size='20'>{2}</size></color>",ItemSystem.GetItemName(item.id),LocalizationManager.GetText("alertUnableSellMessage"),LocalizationManager.GetText("alertUnableSellMessage2")));
         }
     }
 
@@ -344,7 +344,7 @@ public class UI_Button : MonoBehaviour
     {
         isCheckAlertOn = true;
         Item sellItem = ItemSystem.GetUserItemByCustomId(sellItemId);
-        var alertPanel = UI_Manager.instance.ShowNeedAlert(sellItem.image, string.Format("<color='red'>'{0}'</color> {1}{2} <color='yellow'>{3} {4}</color>  {5}", sellItem.name, 1, LocalizationManager.GetText("alertNeedMessage3"),Common.GetThousandCommaText(sellItem.value),LocalizationManager.GetText("Coin"), LocalizationManager.GetText("alertNeedMessage4")));
+        var alertPanel = UI_Manager.instance.ShowNeedAlert(sellItem.image, string.Format("<color='red'>'{0}'</color> {1}{2} <color='yellow'>{3} {4}</color>  {5}", ItemSystem.GetItemName(sellItem.id), 1, LocalizationManager.GetText("alertNeedMessage3"),Common.GetThousandCommaText(sellItem.value),LocalizationManager.GetText("Coin"), LocalizationManager.GetText("alertNeedMessage4")));
         while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
         {
             yield return new WaitForFixedUpdate();

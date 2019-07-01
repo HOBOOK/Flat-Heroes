@@ -98,7 +98,7 @@ public class UI_StageResult : MonoBehaviour
                 SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
                 GameObject itemPrefab = Instantiate(GetItemSlotPrefab, GetItemInfoPanel.transform);
                 itemPrefab.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(item.id);
-                itemPrefab.transform.GetComponentInChildren<Text>().text = item.name;
+                itemPrefab.transform.GetComponentInChildren<Text>().text = ItemSystem.GetItemName(item.id);
                 if (itemPrefab.GetComponent<AiryUIAnimatedElement>() != null)
                     itemPrefab.GetComponent<AiryUIAnimatedElement>().ShowElement();
                 yield return new WaitForSeconds(0.2f);

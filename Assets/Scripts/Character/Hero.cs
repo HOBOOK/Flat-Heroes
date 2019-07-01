@@ -246,8 +246,9 @@ public class Hero : MonoBehaviour
                 }
                 yield return new WaitForSeconds(1.0f);
             }
-            yield return new WaitForSeconds(1.0f);
+            yield return null;
         }
+        isFriend = false;
         yield return null;
 
     }
@@ -1568,7 +1569,7 @@ public class Hero : MonoBehaviour
         attackPoint.name = this.Damage().ToString();
         totalCount = Mathf.Clamp(totalCount, 1, 10);
         int cnt = 0;
-        while(cnt<totalCount)
+        while(cnt<totalCount&&!isFriend)
         {
             attackPoint.gameObject.SetActive(true);
             if (attackPoint && attackPoint.GetComponent<AudioSource>() != null)

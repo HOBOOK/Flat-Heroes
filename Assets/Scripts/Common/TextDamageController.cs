@@ -16,7 +16,7 @@ public class TextDamageController : MonoBehaviour {
     private void Awake()
     {
         parent = GameObject.Find("CanvasUI").transform;
-        textMesh = this.gameObject.transform.GetChild(0).gameObject;
+        textMesh = this.gameObject.transform.GetChild(1).gameObject;
         initColor = GetComponentInChildren<Text>().color;
     }
 

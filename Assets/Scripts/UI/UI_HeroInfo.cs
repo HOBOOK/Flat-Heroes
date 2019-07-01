@@ -169,7 +169,7 @@ public class UI_HeroInfo : MonoBehaviour
         {
             skillImage = heroSkillSlot.transform.GetChild(0).GetChild(0).GetComponent<Image>();
             skillImage.sprite = SkillSystem.GetSkillImage(heroSkill.id);
-            heroSkillSlot.transform.GetComponentInChildren<Text>().text = string.Format("<size='27'>기술레벨 : {0}</size>\r\n<color='grey'>{1}</color>", SkillSystem.GetUserSkillLevel(heroSkill.id), SkillSystem.GetUserSkillDescription(heroSkill,targetHeroData));
+            heroSkillSlot.transform.GetComponentInChildren<Text>().text = string.Format("<size='27'>{0} : {1}</size>\r\n<color='grey'>{2}</color>", LocalizationManager.GetText("SkillLevel"),SkillSystem.GetUserSkillLevel(heroSkill.id), SkillSystem.GetUserSkillDescription(heroSkill,targetHeroData));
             // 스킬강화버튼
             skillLevelUpButton = heroSkillSlot.GetComponentInChildren<Button>();
             int needMoney = SkillSystem.GetUserSkillLevelUpNeedCoin(heroSkill.id);
@@ -197,7 +197,7 @@ public class UI_HeroInfo : MonoBehaviour
             else
             {
                 skillLevelUpButton.interactable = false;
-                skillLevelUpButton.transform.GetChild(2).GetComponentInChildren<Text>().text = string.Format("! 영웅레벨 : {0}", SkillSystem.GetUserSkillLevel(heroSkill.id)+1);
+                skillLevelUpButton.transform.GetChild(2).GetComponentInChildren<Text>().text = string.Format("! {0} : {1}",LocalizationManager.GetText("HeroLevel"), SkillSystem.GetUserSkillLevel(heroSkill.id)+1);
                 skillLevelUpButton.transform.GetChild(2).gameObject.SetActive(true);
             }
         }

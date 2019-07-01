@@ -72,7 +72,7 @@ public class UI_GetGacha : MonoBehaviour
 
         itemImage.sprite = ItemSystem.GetItemImage(item.id);
         itemClassText.text = Enum.GetName(typeof(GachaSystem.GachaClass), (GachaSystem.GachaClass)item.itemClass - 1);
-        itemNameText.text = item.name;
+        itemNameText.text = ItemSystem.GetItemName(item.id);
         if (slotItem.GetComponent<AiryUIAnimatedElement>() != null)
             slotItem.GetComponent<AiryUIAnimatedElement>().ShowElement();
         else
@@ -109,7 +109,7 @@ public class UI_GetGacha : MonoBehaviour
 
             itemImage.sprite = ItemSystem.GetItemImage(items[i].id);
             itemClassText.text = Enum.GetName(typeof(GachaSystem.GachaClass), (GachaSystem.GachaClass)items[i].itemClass - 1);
-            itemNameText.text = items[i].name;
+            itemNameText.text = ItemSystem.GetItemName(items[i].id);
             if (slotItem.GetComponent<AiryUIAnimatedElement>() != null)
                 slotItem.GetComponent<AiryUIAnimatedElement>().ShowElement();
             else

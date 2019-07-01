@@ -97,7 +97,7 @@ public class UI_HeroSelect : MonoBehaviour
             if (data!=null)
             {
                 selectPanel.gameObject.SetActive(false);
-                selectedHeroNameText.text = string.Format("<size='{0}'>레벨 {1}</size>  {2}", selectedHeroNameText.fontSize - 5, data.level, HeroSystem.GetHeroName(data.id));
+                selectedHeroNameText.text = string.Format("<size='{0}'>{1} {2}</size>  {3}", selectedHeroNameText.fontSize - 5,LocalizationManager.GetText("Level"), data.level, HeroSystem.GetHeroName(data.id));
                 selectedHeroImage.enabled = true;
                 selectedHeroImage.sprite = Resources.Load<Sprite>(data.image);
             }

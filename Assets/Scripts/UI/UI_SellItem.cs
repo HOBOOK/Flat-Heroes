@@ -85,7 +85,7 @@ public class UI_SellItem : MonoBehaviour
                 GameObject itemSlot = Instantiate(ItemSlotPrefab, ItemListContentView.transform);
                 itemSlot.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(userItemList[i].image);
                 itemSlot.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(userItemList[i].itemClass);
-                itemSlot.GetComponentInChildren<Text>().text = userItemList[i].name;
+                itemSlot.GetComponentInChildren<Text>().text = ItemSystem.GetItemName(userItemList[i].id);
                 itemSlot.transform.GetChild(2).GetComponent<Image>().color = ItemColor.GetItemColor(userItemList[i].itemClass);
                 int index = i;
                 itemSlot.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
@@ -116,7 +116,7 @@ public class UI_SellItem : MonoBehaviour
                 GameObject itemSlot = Instantiate(ItemSlotPrefab, ItemListContentView.transform);
                 itemSlot.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(userItemList[i].image);
                 itemSlot.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(userItemList[i].itemClass);
-                itemSlot.GetComponentInChildren<Text>().text = userItemList[i].name;
+                itemSlot.GetComponentInChildren<Text>().text = ItemSystem.GetItemName(userItemList[i].id);
                 itemSlot.transform.GetChild(2).GetComponent<Image>().color = ItemColor.GetItemColor(userItemList[i].itemClass);
                 int index = i;
                 itemSlot.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
@@ -132,7 +132,7 @@ public class UI_SellItem : MonoBehaviour
                 GameObject itemSlot = Instantiate(ItemSlotPrefab, SellListContentView.transform);
                 itemSlot.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(sellItemList[i].image);
                 itemSlot.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(sellItemList[i].itemClass);
-                itemSlot.GetComponentInChildren<Text>().text = sellItemList[i].name;
+                itemSlot.GetComponentInChildren<Text>().text = ItemSystem.GetItemName(sellItemList[i].id);
                 itemSlot.transform.GetChild(2).GetComponent<Image>().color = ItemColor.GetItemColor(sellItemList[i].itemClass);
                 int index = i;
                 itemSlot.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
@@ -141,8 +141,6 @@ public class UI_SellItem : MonoBehaviour
                     OnClickItemToInventory(sellItemList[index], itemSlot.GetComponentInChildren<Button>());
                 });
                 itemSlot.gameObject.SetActive(true);
-
-                Debugging.Log(sellItemList[i].name);
             }
         }
     }
@@ -153,7 +151,6 @@ public class UI_SellItem : MonoBehaviour
         {
             if(sellItemList.Count < 15)
             {
-                Debugging.Log(sellItem.name + " 추가됨!");
                 userItemList.Remove(sellItem);
                 sellItemList.Add(sellItem);
 

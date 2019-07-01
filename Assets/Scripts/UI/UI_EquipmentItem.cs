@@ -49,8 +49,8 @@ public class UI_EquipmentItem : MonoBehaviour
             if(equipmentItemId==0)
             {
                 InformationPanel.transform.GetChild(0).GetComponent<Image>().enabled = false;
-                InformationPanel.transform.GetComponentInChildren<Text>().text = "비어있음";
-                EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = "장착한 장비가 없습니다.";
+                InformationPanel.transform.GetComponentInChildren<Text>().text = LocalizationManager.GetText("equipmentItemEmpty");
+                EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = LocalizationManager.GetText("equipmentItemEmptyInformation");
                 EquipmentActionPanel.GetComponentInChildren<Button>().enabled = false;
                 EquipmentActionPanel.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = "";
             }
@@ -60,7 +60,7 @@ public class UI_EquipmentItem : MonoBehaviour
                 InformationPanel.transform.GetChild(0).GetComponent<Image>().enabled = true;
                 InformationPanel.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(equipmentItemId,true);
                 InformationPanel.transform.GetComponentInChildren<Text>().enabled = true;
-                InformationPanel.transform.GetComponentInChildren<Text>().text = string.Format("{0}({1})", equipmentItemInfo.name, Enum.GetName(typeof(GachaSystem.GachaClass), (GachaSystem.GachaClass)equipmentItemInfo.itemClass - 1));
+                InformationPanel.transform.GetComponentInChildren<Text>().text = string.Format("{0}({1})", ItemSystem.GetItemName(equipmentItemInfo.id), Enum.GetName(typeof(GachaSystem.GachaClass), (GachaSystem.GachaClass)equipmentItemInfo.itemClass - 1));
                 InformationPanel.transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(equipmentItemInfo.itemClass);
                 EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = ItemSystem.GetEquipmentItemDescription(equipmentItemInfo);
                 EquipmentActionPanel.GetComponentInChildren<Button>().enabled = true;
@@ -81,7 +81,7 @@ public class UI_EquipmentItem : MonoBehaviour
                 GameObject itemSlot = Instantiate(ItemSlotPrefab, ItemListContentView.transform);
                 itemSlot.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(userEquipmentItemList[i].image);
                 itemSlot.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(userEquipmentItemList[i].itemClass);
-                itemSlot.GetComponentInChildren<Text>().text = userEquipmentItemList[i].name;
+                itemSlot.GetComponentInChildren<Text>().text = ItemSystem.GetItemName(userEquipmentItemList[i].id);
                 itemSlot.transform.GetChild(2).GetComponent<Image>().color = ItemColor.GetItemColor(userEquipmentItemList[i].itemClass);
                 int index = i;
                 itemSlot.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
@@ -105,7 +105,7 @@ public class UI_EquipmentItem : MonoBehaviour
             InformationPanel.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(item.id);
             InformationPanel.transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
             InformationPanel.transform.GetComponentInChildren<Text>().enabled = true;
-            InformationPanel.transform.GetComponentInChildren<Text>().text = string.Format("{0}({1})", item.name, Enum.GetName(typeof(GachaSystem.GachaClass), (GachaSystem.GachaClass)item.itemClass - 1));
+            InformationPanel.transform.GetComponentInChildren<Text>().text = string.Format("{0}({1})", ItemSystem.GetItemName(item.id), Enum.GetName(typeof(GachaSystem.GachaClass), (GachaSystem.GachaClass)item.itemClass - 1));
             InformationPanel.transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(item.itemClass);
             EquipmentActionPanel.SetActive(true);
             EquipmentActionPanel.transform.GetChild(0).GetComponent<Text>().text = ItemSystem.GetEquipmentItemDescription(item);

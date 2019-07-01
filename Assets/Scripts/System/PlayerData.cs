@@ -57,4 +57,8 @@ public class PlayerData
         name = User.name;
         language = User.language;
     }
+    public override string ToString()
+    {
+        return string.Format("Level : {0} Exp : {1} Coin : {2} Crystal : {3} Energy : {4} AbCount : {5} StageNumber : {6} StageDetailNumber : {7} StageHero : {8} LobbyHero : {8} GachaSeed : {9} PlayerSkill : {10} FlatEnergyChargetLevel : {11} FlatEnergyMaxLevel : {12} AddMoneyLevel : {13} AddExpLevel : {14} AddAttackLevel : {15} AddDefenceLevel : {16} Name : {17} Language : {18}",level ,exp,coin,blackCrystal,portalEnergy,abilityCount,stageNumber,stageDetailNumber,stageHeros,lobbyHeros,gachaSeed,playerSkill,flatEnergyChargingLevel,flatEnergyMaxLevel,addMoneyLevel,addExpLevel,addAttackLevel,addDefenceLevel,name,language);
+    }
 }

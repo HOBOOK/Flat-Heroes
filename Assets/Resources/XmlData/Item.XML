@@ -242,7 +242,7 @@
       <Attack>20</Attack>
       <Defence>20</Defence>
       <Hp>0</Hp>
-      <Critical>10</Critical>
+      <Critical>5</Critical>
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>30</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
@@ -263,7 +263,7 @@
       <Attack>100</Attack>
       <Defence>200</Defence>
       <Hp>1000</Hp>
-      <Critical>50</Critical>
+      <Critical>10</Critical>
       <AttackSpeed>10</AttackSpeed>
       <MoveSpeed>50</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>

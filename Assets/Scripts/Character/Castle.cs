@@ -37,6 +37,7 @@ public class Castle : MonoBehaviour
         SetSpawnMonster();
         FirstSpawn();
         SetEffect();
+        StartCoroutine("Spawn");
     }
     void SetEffect()
     {
@@ -67,7 +68,6 @@ public class Castle : MonoBehaviour
         if(!isDead)
         {
             StateUpdate();
-            SpawnUpdate();
         }
     }
     void StateUpdate()
@@ -87,16 +87,6 @@ public class Castle : MonoBehaviour
                 drainEnergyTime = 0;
             }
         }
-    }
-    void SpawnUpdate()
-    {
-        curSpawnTime += Time.deltaTime;
-        if (curSpawnTime > spawnDelay)
-        {
-            Spawn();
-            curSpawnTime = 0.0f;
-        }
-
     }
     void FirstSpawn()
     {
@@ -123,9 +113,10 @@ public class Castle : MonoBehaviour
         }
         spawnCount = Common.FindEnemysCount();
     }
-    void Spawn()
+    IEnumerator Spawn()
     {
-        if (spawnEnemys != null && spawnEnemys.Count > 0&&spawnCount<15)
+        yield return spawnDelay;
+        while(spawnEnemys != null && spawnEnemys.Count > 0)
         {
             Debugging.Log(this.name + " 소환");
             for (int i = 0; i < spawnEnemys.Count; i++)
@@ -133,9 +124,12 @@ public class Castle : MonoBehaviour
                 if (!spawnEnemys[i].isSpawnEnd&&spawnCount<15)
                 {
                     StartCoroutine(Spawning(spawnEnemys[i]));
+                    yield return new WaitForSeconds(spawnDelay);
                 }
             }
+            yield return null;
         }
+        yield return null;
     }
     IEnumerator Spawning(SpawnEnemy spawnEnemy)
     {

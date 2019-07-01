@@ -379,7 +379,7 @@ public static class ItemSystem
     public static string GetEquipmentItemDescription(Item item)
     {
         StringBuilder sb = new StringBuilder();
-        string[] itemAbilitiesTxt = { "공격력", "방어력", "체력", "치명확률", "공격속도", "이동속도", "기술력" };
+        string[] itemAbilitiesTxt = { LocalizationManager.GetText("heroInfoAttack"), LocalizationManager.GetText("heroInfoDefence"), LocalizationManager.GetText("heroInfoHp"), LocalizationManager.GetText("heroInfoCritical"), LocalizationManager.GetText("heroInfoAttackSpeed"), LocalizationManager.GetText("heroInfoMoveSpeed"), LocalizationManager.GetText("heroInfoSkillEnergy") };
         string[] itemAbilities = { item.attack.ToString(), item.defence.ToString(), item.hp.ToString(), item.critical.ToString(), item.attackSpeed.ToString(), item.moveSpeed.ToString(), item.skillEnergy.ToString() };
 
         for(int i = 0; i < itemAbilitiesTxt.Length; i++)
@@ -389,7 +389,7 @@ public static class ItemSystem
                 sb.Append(string.Format("<color='green'>{0} + {1}</color>\r\n",itemAbilitiesTxt[i],itemAbilities[i]));
             }
         }
-        sb.Append("\r\n"+item.description);
+        sb.Append("\r\n"+ItemSystem.GetItemDescription(item.id));
         return sb.ToString();
     }
 
@@ -457,6 +457,26 @@ public static class ItemSystem
     public static Sprite GetItemNoneImage()
     {
         return Resources.Load<Sprite>("UI/ui_none2");
+    }
+    public static string GetItemName(int id)
+    {
+        string name = null;
+        Item data = items.Find(x => x.id == id || x.id.Equals(id));
+        if (data != null)
+        {
+            name = LocalizationManager.GetText("ItemName" + id);
+        }
+        return name;
+    }
+    public static string GetItemDescription(int id)
+    {
+        string des = null;
+        Item data = items.Find(x => x.id == id || x.id.Equals(id));
+        if (data != null)
+        {
+            des = LocalizationManager.GetText("ItemDescription" + id);
+        }
+        return des;
     }
     #endregion
 

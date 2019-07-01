@@ -19,6 +19,11 @@ public class LocalizationText : MonoBehaviour
         var text = GetComponent<Text>();
         if (text != null)
         {
+            if (User.language == "en")
+                text.GetComponent<Text>().font = Resources.Load<Font>("Font/en");
+            else
+                text.GetComponent<Text>().font = Resources.Load<Font>("Font/ko");
+
             if (KEY_NAME == "ISOCode")
                 text.text = LocalizationManager.GetLanguage();
             else
@@ -39,6 +44,10 @@ public class LocalizationText : MonoBehaviour
         var text = GetComponent<Text>();
         if (text != null)
         {
+            if (User.language == "en")
+                text.GetComponent<Text>().font = Resources.Load<Font>("Font/en");
+            else
+                text.GetComponent<Text>().font = Resources.Load<Font>("Font/ko");
             if (KEY_NAME == "ISOCode")
                 text.text = LocalizationManager.GetLanguage();
             else

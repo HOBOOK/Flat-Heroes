@@ -25,7 +25,7 @@ public class ItemSlot : MonoBehaviour
             else
             {
                 image.sprite = ItemSystem.GetItemImage(_item.id);
-                nameText.text = _item.name;
+                nameText.text = ItemSystem.GetItemName(_item.id);
                 image.enabled = true;
                 nameText.enabled = true;
                 if(_item.itemtype==1)

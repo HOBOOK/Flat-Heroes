@@ -418,6 +418,10 @@ public static class HeroSystem
         else
             return null;
     }
+    public static List<HeroData> GetMonsters()
+    {
+        return heros.FindAll(x => x.id > 500 && x.id < 1000);
+    }
     #endregion
 
 

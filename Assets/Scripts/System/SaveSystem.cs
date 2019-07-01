@@ -4,6 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using System;
 using System.Text;
+using System.Runtime.Serialization;
 
 public static class SaveSystem
 {
@@ -14,10 +15,20 @@ public static class SaveSystem
         FileStream stream = new FileStream(path, FileMode.Create);
 
         PlayerData data = new PlayerData();
-
-        formatter.Serialize(stream, data);
-        stream.Close();
-
+        try
+        {
+            if(data.level!=0)
+                formatter.Serialize(stream, data);
+        }
+        catch(SerializationException e)
+        {
+            Debugging.LogError("유저 데이터 저장에 실패 > " + e.Message);
+            throw;
+        }
+        finally
+        {
+            stream.Close();
+        }
         Debugging.LogSystem("File is saved in Successfully.");
     }
     public static void LoadPlayer()

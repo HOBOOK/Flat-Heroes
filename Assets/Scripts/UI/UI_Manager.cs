@@ -285,19 +285,19 @@ public class UI_Manager : MonoBehaviour
             {
                 case PopupAlertTYPE.energy:
                     shortageImage.sprite = Resources.Load<Sprite>("Items/portalEnergy");
-                    shortageText.text = string.Format("{0} \r\n <color='red;>{1} : {2}</color>", LocalizationManager.GetText("alertEnergy"),LocalizationManager.GetText("alertNeedText"),needAmount);
+                    shortageText.text = string.Format("{0} \r\n <color='red;>{1} : {2}</color>", LocalizationManager.GetText("alertEnergy"),LocalizationManager.GetText("alertNeedText"),Common.GetThousandCommaText(needAmount));
                     break;
                 case PopupAlertTYPE.scroll:
                     shortageImage.sprite = Resources.Load<Sprite>("Items/abilityScroll");
-                    shortageText.text = string.Format("{0} \r\n <color='red;>{1} : {2}</color>", LocalizationManager.GetText("alertScroll"), LocalizationManager.GetText("alertNeedText"), needAmount);
+                    shortageText.text = string.Format("{0} \r\n <color='red;>{1} : {2}</color>", LocalizationManager.GetText("alertScroll"), LocalizationManager.GetText("alertNeedText"), Common.GetThousandCommaText(needAmount));
                     break;
                 case PopupAlertTYPE.coin:
                     shortageImage.sprite = Resources.Load<Sprite>("Items/coin");
-                    shortageText.text = string.Format("{0} \r\n <color='red;>{1} : {2}</color>", LocalizationManager.GetText("alertCoin"), LocalizationManager.GetText("alertNeedText"), needAmount);
+                    shortageText.text = string.Format("{0} \r\n <color='red;>{1} : {2}</color>", LocalizationManager.GetText("alertCoin"), LocalizationManager.GetText("alertNeedText"), Common.GetThousandCommaText(needAmount));
                     break;
                 case PopupAlertTYPE.blackCrystal:
                     shortageImage.sprite = Resources.Load<Sprite>("Items/blackCrystal");
-                    shortageText.text = string.Format("{0} \r\n <color='red;>{1} : {2}</color>", LocalizationManager.GetText("alertCrystal"), LocalizationManager.GetText("alertNeedText"), needAmount);
+                    shortageText.text = string.Format("{0} \r\n <color='red;>{1} : {2}</color>", LocalizationManager.GetText("alertCrystal"), LocalizationManager.GetText("alertNeedText"), Common.GetThousandCommaText(needAmount));
                     break;
             }
             PopupAlertUI.GetComponent<AiryUIAnimatedElement>().ShowElement();

@@ -3,6 +3,11 @@ Crystal=Crystal
 Energy=Energy
 Scroll=Scroll
 Ad=Ad
+Level=Lv
+SkillLevel=Skill Lv
+HeroLevel=Hero Lv
+UserLevel=Player Lv
+UnlockLevel=Unlock Lv
 
 startTabText=Tab to Start.
 
@@ -28,6 +33,8 @@ manageTab2=Inventory
 manageTab2OrderButton1=N\na\nm\ne
 manageTab2OrderButton2=C\nl\na\ns\ns
 manageTab2SellButton=S\ne\nl\nl
+manageTab2Equipped=Equipped
+manageTab2SellSingleButton=Sell
 manageTab3=Player Ability
 manageTab3Information=Player abilities can increase the hero's abilities
 manageTab3AbilityTitle=Overall ability
@@ -101,6 +108,8 @@ heroInfoSkillEnergy=Energy
 equipmentItemTitle=Equipment
 equipmentItemEquipButton=Equip
 equipmentItemUnEquipButton=Unequip
+equipmentItemEmpty=Empry
+equipmentItemEmptyInformation=No equipment installed.
 
 sellItemTitle=Sell
 sellItemInformation=* Coin earned
@@ -284,3 +293,69 @@ HerosChat1001=Gibber! Gibber!
 HerosName1002=Knight Crow
 HerosDescription1002=null
 HerosChat1002=Caw! Caw..!
+
+ItemName1=Flat Sword
+ItemDescription1=It is a weapon used by apprentices.
+
+ItemName2=Hwan do
+ItemDescription2=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
+
+ItemName3=Black Hwan do
+ItemDescription3=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
+
+ItemName4=F-5
+ItemDescription4=A special bullet can be fired with a pistol that is mainly used by the mercenary.
+
+ItemName5=Flat Knife
+ItemDescription5=It is short and wielding dagger.
+
+ItemName6=Cloth armor
+ItemDescription6=Lightweight and easy to wear armor.
+
+ItemName7=Iron armor
+ItemDescription7=It is a lightweight but sturdy armor.
+
+ItemName8=Hunter's Armor
+ItemDescription8=It is well-balanced armor.
+
+ItemName9=Round shield
+ItemDescription9=It is a round wooden shield.
+
+ItemName10=Guardian Shield
+ItemDescription10=Platinum shield with wings.
+
+ItemName11=Hero's Armor
+ItemDescription11=It is the armor that the legendary hero wore.
+
+ItemName12=Wizard's Shoes
+ItemDescription12=It is a shoe with a sense of insignificance.
+
+ItemName13=Wings of pure white
+ItemDescription13=It is a pure white wing.
+
+ItemName8001=Ability Scroll
+ItemDescription8001=It is an order book that can open the ability.
+
+ItemName9001=1000 Crystal
+ItemDescription9001=There are 1000 pieces of crystal.
+
+ItemName9002=30 Crystal
+ItemDescription9002=There are 30 pieces of crystal.
+
+ItemName9003=80 Crystal
+ItemDescription9003=There are 80 pieces of crystal.
+
+ItemName9004=150 Crystal
+ItemDescription9004=There are 150 pieces of crystal.
+
+ItemName9005=300 Crystal
+ItemDescription9005=There are 300 pieces of crystal.
+
+ItemName9006=500 Crystal
+ItemDescription9006=There are 500 pieces of crystal.
+
+ItemName9011=100 Portal Energy
+ItemDescription9011=There are 100 portal energies.
+
+ItemName0=Coin
+ItemDescription0=It is money made of gold.
