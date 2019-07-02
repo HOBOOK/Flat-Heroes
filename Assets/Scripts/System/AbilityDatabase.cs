@@ -171,9 +171,6 @@ public class AbilityDatabase
         child.Attributes.Append(id);
 
         // 자식 노드에 들어갈 속성 생성
-        XmlElement name = xmlDoc.CreateElement("Name");
-        name.InnerText = data.name;
-        child.AppendChild(name);
         XmlElement level = xmlDoc.CreateElement("Level");
         level.InnerText = "1";
         child.AppendChild(level);

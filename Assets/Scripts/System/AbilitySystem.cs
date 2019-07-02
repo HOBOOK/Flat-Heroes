@@ -104,15 +104,16 @@ public static class AbilitySystem
             }
         }
     }
-    static string[] statStrings = {"공격력 + ",
-            "방어력 + ",
-            "체력 + ",
-            "크리티컬 확률 + ",
-            "공격속도 + ",
-            "이동속도 + ", 
-            "에너지효율 + " };
     public static string GetAllAbilityStatToString()
     {
+        string[] statStrings = {LocalizationManager.GetText("heroInfoAttack")+" + ",
+            LocalizationManager.GetText("heroInfoDefence")+" + ",
+            LocalizationManager.GetText("heroInfoHp")+" + ",
+            LocalizationManager.GetText("heroInfoCritical")+" + ",
+            LocalizationManager.GetText("heroInfoAttackSpeed")+" + ",
+            LocalizationManager.GetText("heroInfoMoveSpeed")+" + ",
+            LocalizationManager.GetText("heroInfoSkillEnergy")+" + "};
+
         string statString = "";
         StringBuilder sb = new StringBuilder(statString);
         int cacheStat = 0;
@@ -126,15 +127,6 @@ public static class AbilitySystem
         }
         statString = sb.ToString();
         return statString;
-        //return string.Format(
-        //    "공격력 + {0}\r\n" +
-        //    "방어력 +{1}\r\n" +
-        //    "체력 + {2}\r\n" +
-        //    "크리티컬 확률 + {3}%\r\n" +
-        //    "공격속도 + {4}%\r\n" +
-        //    "이동속도 +{5}%\r\n" +
-        //    "에너지효율 + {6}"
-        //    ,GetAbilityStats(0), GetAbilityStats(1), GetAbilityStats(2), GetAbilityStats(3), GetAbilityStats(4), GetAbilityStats(5), GetAbilityStats(6));
     }
     #endregion
 
@@ -149,31 +141,7 @@ public static class AbilitySystem
     }
     public static string GetAbilityDescription(int powerType, int power)
     {
-        string des = "";
-        switch (powerType)
-        {
-            case 0:
-                des = string.Format("영웅들의 공격력이 <color='red'>{0}</color> 증가합니다.", power);
-                break;
-            case 1:
-                des = string.Format("영웅들의 방어력이 <color='red'>{0}</color> 증가합니다.", power);
-                break;
-            case 2:
-                des = string.Format("영웅들의 체력이 <color='red'>{0}</color> 증가합니다.", power);
-                break;
-            case 3:
-                des = string.Format("영웅들의 크리티컬 확률이 <color='red'>{0}%</color> 증가합니다.", power);
-                break;
-            case 4:
-                des = string.Format("영웅들의 공격속도가 <color='red'>{0}</color> 증가합니다.", power);
-                break;
-            case 5:
-                des = string.Format("영웅들의 이동속도가 <color='red'>{0}</color> 증가합니다.", power);
-                break;
-            case 6:
-                des = string.Format("에너지 효율이 <color='red'>{0}</color> 증가합니다.", power);
-                break;
-        }
+        string des = string.Format("{0} (<color='red'>+ {1}</color>)", LocalizationManager.GetText("AbilityDescription" + (powerType + 1)), power);
         return des;
     }
     public static bool isAbleAbility(int id)
@@ -183,6 +151,16 @@ public static class AbilitySystem
             return true;
         else
             return false;
+    }
+    public static string GetAbilityName(int id)
+    {
+        string name = null;
+        Ability ab = abilities.Find(x => x.id == id || x.id.Equals(id));
+        if(ab!=null)
+        {
+            name = LocalizationManager.GetText("AbilityName" + id);
+        }
+        return name;
     }
     #endregion
 }

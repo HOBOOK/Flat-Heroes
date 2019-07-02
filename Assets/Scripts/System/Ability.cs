@@ -9,9 +9,6 @@ public class Ability
     [XmlAttribute("id")]
     public int id;
 
-    [XmlElement("Name")]
-    public string name;
-
     [XmlElement("Level")]
     public int level;
 

@@ -202,6 +202,21 @@ StageDescription7=우리의 모든것이 무너졌다. 하지만 우리에게 �
 
 MapWarningMessage=아직 도달할 수 없는 곳입니다.
 
+AbilityName1=불의 힘
+AbilityDescription1=영웅들의 공격력이 증가합니다.
+AbilityName2=땅의 힘
+AbilityDescription2=영웅들의 방어력이 증가합니다.
+AbilityName3=물의 힘
+AbilityDescription3=영웅들의 체력이 증가합니다.
+AbilityName4=전기의 힘
+AbilityDescription4=영웅들의 치명타 확률이 증가합니다.
+AbilityName5=빛의 힘
+AbilityDescription5=영웅들의 공격속도가 증가합니다
+AbilityName6=바람의 힘
+AbilityDescription6=영웅들의 이동속도가 증가합니다.
+AbilityName7=어둠의 힘
+AbilityDescription7=에너지 효율이 증가합니다.
+
 HerosName101=동해
 HerosDescription101=동쪽 나라에서 온 실력이 출중한 무사
 HerosChat101=각오해라!,모조리 무찔러 주겠어..

@@ -23,9 +23,6 @@ mainGachaText=Gacha
 mainMissionText=Mission
 mainLabText=Lab
 mainBattleText=Battle
-missionProgress=In progress
-missionReward=Get
-missionClear=Clear
 
 manageTitle=Manage
 manageTab1=My Heros
@@ -122,6 +119,9 @@ missionDay=Daily
 missionRepeat=Repeat
 missionMain=Main
 missionInformation=You can receive rewards by performing combat missions.
+missionProgress=In progress
+missionReward=Get
+missionClear=Clear
 
 getAbilityTitle=Get
 getAbilityTabText=Tab to screen.
@@ -201,6 +201,21 @@ StageName7=Land of Destruction
 StageDescription7=All of us have fallen. But we have last hope.
 
 MapWarningMessage=It's not accessible yet.
+
+AbilityName1=The power of fire
+AbilityDescription1=Increases the Atk of heroes.
+AbilityName2=The power of the earth
+AbilityDescription2=Increases the Def of heroes.
+AbilityName3=The power of water
+AbilityDescription3=Increases the Hp of heroes.
+AbilityName4=The power of electricity
+AbilityDescription4=Increases the Critical of heroes.
+AbilityName5=The power of light
+AbilityDescription5=Increases the A.Speed of heroes.
+AbilityName6=The power of the wind
+AbilityDescription6=Increases the Move of heroes.
+AbilityName7=The power of darkness
+AbilityDescription7=Increases the Energy of heroes.
 
 HerosName101=Dong Hae
 HerosDescription101=A warrior who came from the east country.
