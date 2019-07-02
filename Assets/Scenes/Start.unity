@@ -3212,6 +3212,7 @@ GameObject:
   - component: {fileID: 2023189877}
   - component: {fileID: 2023189878}
   - component: {fileID: 2023189876}
+  - component: {fileID: 2023189879}
   m_Layer: 0
   m_Name: StartManager
   m_TagString: Untagged
@@ -3284,6 +3285,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gpgsManager: {fileID: 2023189876}
+--- !u!114 &2023189879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023189873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c09ad7e3992c1445aa814a815f553aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggleKey: 96
+  openOnStart: 0
+  shakeToOpen: 1
+  shakeAcceleration: 3
+  restrictLogCount: 0
+  maxLogCount: 1000
 --- !u!1 &2035950740
 GameObject:
   m_ObjectHideFlags: 0
