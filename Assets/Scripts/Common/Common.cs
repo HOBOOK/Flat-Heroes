@@ -520,4 +520,26 @@ public class Common : MonoBehaviour
 
         return output;
     }
+
+    public static void DestroyAllDontDestroyOnLoadObjects()
+    {
+
+        var go = new GameObject("Sacrificial Lamb");
+        DontDestroyOnLoad(go);
+
+        foreach (var root in go.scene.GetRootGameObjects())
+        {
+            if(!root.name.Equals("StartManager")&&root.name!="StartManager")
+                Destroy(root);
+            else
+            {
+                foreach(Transform child in root.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+        }
+
+
+    }
 }

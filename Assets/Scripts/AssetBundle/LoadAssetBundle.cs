@@ -11,7 +11,7 @@ public class LoadAssetBundle : MonoBehaviour
 
     IEnumerator Start()
     {
-        Caching.ClearCache();
+        //Caching.ClearCache();
         UI_StartManager.instance.ShowDownloadUI();
         yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetBundle(BundleManagerURL, version, false,0.0f,"게임매니저"));
         UI_StartManager.instance.SetDownloadCount(4);
@@ -69,7 +69,9 @@ public class LoadAssetBundle : MonoBehaviour
             PrefabsDatabaseManager.instance.GetPrefabList();
         }
         Debugging.Log("영웅다운 끝");
-        UI_StartManager.instance.ShowStartUI();
+        AssetBundleManager.Instance.RemoveAllAssetBundles();
+        // 로그인 시도
+        App.Instance.StartLogin();
     }
 
     void InstantiateAsset(GameObject obj, Transform parent)

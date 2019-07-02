@@ -59,6 +59,45 @@ public class MapDatabase
     }
     #endregion
     #region 유저맵정보
+    public static string GetMapDataToCloud()
+    {
+        string path = Application.persistentDataPath + "/Xml/Map.Xml";
+        if (System.IO.File.Exists(path))
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
+            XmlElement elmRoot = xmlDoc.DocumentElement;
+            return elmRoot.InnerText;
+        }
+        return null;
+    }
+    public static void SetCloudDataToMap(CloudDataInfo data)
+    {
+        SaveCloudData(data.MapData);
+    }
+    public static void SaveCloudData(string data)
+    {
+        string path = Application.persistentDataPath + "/Xml/Map.Xml";
+        XmlDocument xmlDoc = new XmlDocument();
+        if (System.IO.File.Exists(path))
+            xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
+        else
+        {
+            InitSetting();
+            xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
+        }
+
+        //복호화////
+        XmlElement elmRoot = xmlDoc.DocumentElement;
+        elmRoot.RemoveAll();
+        var decrpytData = DataSecurityManager.DecryptData(data);
+        elmRoot.InnerXml = decrpytData;
+        // 암호화/////
+        var encrpytData = DataSecurityManager.EncryptData(elmRoot.InnerXml);
+        elmRoot.InnerText = encrpytData;
+        ////////////
+        xmlDoc.Save(path);
+    }
     public static MapDatabase LoadUser()
     {
         string path = Application.persistentDataPath + "/Xml/Map.Xml";

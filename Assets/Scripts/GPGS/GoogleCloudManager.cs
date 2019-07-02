@@ -16,7 +16,7 @@ public class GoogleCloudManager : MonoBehaviour
     public Action<SavedGameRequestStatus, ISavedGameMetadata> OnSavedGameDataWrittenComplete;
 
     private bool isSaving;
-    private const string FILE_NAME = "player.fun";
+    private const string FILE_NAME = "CloudDataInfo.bin";
 
     // 초기화
     public void Init()
@@ -70,11 +70,11 @@ public class GoogleCloudManager : MonoBehaviour
 
     private void SaveLocal()
     {
-        var path = Application.persistentDataPath + "/AppSmilejsuGameInfo.bin";
-        var json = JsonConvert.SerializeObject(App.Instance.gameInfo);
+        var path = Application.persistentDataPath + "/CloudDataInfo.bin";
+        var json = JsonConvert.SerializeObject(App.Instance.SaveData());
         byte[] bytes = Encoding.UTF8.GetBytes(json);
         File.WriteAllBytes(path, bytes);
-        Debugging.Log(json);
+        Debugging.Log(Application.persistentDataPath + "/CloudDataInfo.bin 저장완료. >> " + DateTime.Now.ToString());
     }
     private void SaveGame(ISavedGameMetadata data)
     {
@@ -91,7 +91,7 @@ public class GoogleCloudManager : MonoBehaviour
 
     #region 불러오기
 
-    public void LoadData()
+    public void LoadData(bool reload=false)
     {
         if(Social.localUser.authenticated)
         {
@@ -102,15 +102,19 @@ public class GoogleCloudManager : MonoBehaviour
         {
             this.LoadLocal();
         }
+        if(reload)
+        {
+            LoadSceneManager.instance.LoadReStart();
+        }
     }
 
     public void LoadLocal()
     {
-        var path = Application.persistentDataPath + "/AppSmilejsuGameInfo.bin";
+        var path = Application.persistentDataPath + "/CloudDataInfo.bin";
         byte[] bytes = File.ReadAllBytes(path);
         var json = Encoding.UTF8.GetString(bytes);
         this.StringToGameInfo(json);
-        Debugging.Log(json);
+        Debugging.Log(Application.persistentDataPath + "/CloudDataInfo.bin 로드완료. >> " + DateTime.Now.ToString());
     }
 
     private void LoadGame(ISavedGameMetadata data)
@@ -151,12 +155,13 @@ public class GoogleCloudManager : MonoBehaviour
     {
         if (localData != string.Empty)
         {
-            App.Instance.gameInfo = JsonConvert.DeserializeObject<TestGameInfo>(localData);
+            App.Instance.gameInfo = JsonConvert.DeserializeObject<CloudDataInfo>(localData);
+            App.Instance.SetCloudDataToLocal();
         }
     }
 
     private string GameInfoToString()
     {
-        return JsonConvert.SerializeObject(App.Instance.gameInfo);
+        return JsonConvert.SerializeObject(App.Instance.SaveData());
     }
 }

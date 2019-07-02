@@ -13,14 +13,14 @@ public class App : MonoBehaviour
 {
     public static App Instance;
     public GoogleCloudManager gpgsManager;
-    public TestGameInfo gameInfo;
+    public CloudDataInfo gameInfo;
 
     private void Awake()
     {
         App.Instance = this;
     }
 
-    private void Start()
+    public void StartLogin()
     {
         this.gpgsManager.OnSavedGameDataReadComplete = (status, bytes) => {
             if (status == SavedGameRequestStatus.Success)
@@ -35,7 +35,7 @@ public class App : MonoBehaviour
                 else
                 {
                     strCloudData = Encoding.UTF8.GetString(bytes);
-                    this.gameInfo = JsonConvert.DeserializeObject<TestGameInfo>(strCloudData);
+                    this.gameInfo = JsonConvert.DeserializeObject<CloudDataInfo>(strCloudData);
                     Debugging.Log("클라우드로부터 데이터를 불러왔습니다.");
                 }
             }
@@ -63,21 +63,21 @@ public class App : MonoBehaviour
                 Debugging.Log(Social.localUser.userName);
                 //로그인성공
                 this.Init();
+                UI_StartManager.instance.ShowStartUI(true);
             }
             else
             {
                 Debugging.Log("로그인 실패");
-
                 this.Init();
+                UI_StartManager.instance.ShowStartUI(false);
             }
         });
     }
 
     private void Init()
     {
-        var path = Application.persistentDataPath + "/AppSmilejsuGameInfo.bin";
-
-        Debug.Log(path);
+        var path = Application.persistentDataPath + "/CloudDataInfo.bin";
+ 
 
         Debug.LogFormat("Exists: {0}", File.Exists(path));
 
@@ -87,15 +87,38 @@ public class App : MonoBehaviour
         }
         else
         {
-            this.gameInfo = new TestGameInfo();
-            this.gameInfo.id = Social.localUser.id;
-            this.gameInfo.lastSavedTime = DateTime.Now.ToString();
-
-            var json = JsonConvert.SerializeObject(User.name);
+            this.gameInfo = new CloudDataInfo();
+            this.gameInfo.SetDataToCloud(Social.localUser.id, DateTime.Now.ToString());
+            var json = JsonConvert.SerializeObject(gameInfo);
             byte[] bytes = Encoding.UTF8.GetBytes(json);
             File.WriteAllBytes(path, bytes);
-
+            Debugging.Log(json);
             //PlayerPrefs.SetString(FILE_NAME, JsonConvert.SerializeObject(App.Instance.gameInfo));
         }
+    }
+    public CloudDataInfo SaveData()
+    {
+        this.gameInfo = new CloudDataInfo();
+        this.gameInfo.SetDataToCloud(Social.localUser.id, DateTime.Now.ToString());
+        return this.gameInfo;
+    }
+
+    public void SetCloudDataToLocal()
+    {
+        if(this.gameInfo!=null)
+        {
+            SaveSystem.SetCloudDataToUser(gameInfo);
+            ItemDatabase.SetCloudDataToItem(gameInfo);
+            HeroDatabase.SetCloudDataToHero(gameInfo);
+            AbilityDatabase.SetCloudDataToAbility(gameInfo);
+            SkillDatabase.SetCloudDataToSkill(gameInfo);
+            MissionDatabase.SetCloudDataToMission(gameInfo);
+            MapDatabase.SetCloudDataToMap(gameInfo);
+        }
+        else
+        {
+            Debugging.LogWarning("클라우드 데이터 로컬저장중 오류 발생");
+        }
+
     }
 }

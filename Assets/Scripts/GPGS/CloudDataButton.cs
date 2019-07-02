@@ -11,7 +11,7 @@ public class CloudDataButton : MonoBehaviour
     }
     public void OnCloudLoadClick()
     {
-        App.Instance.gpgsManager.LoadData();
+        App.Instance.gpgsManager.LoadData(true);
         UI_Manager.instance.ShowAlert("", "클라우드 로드에 성공하였습니다.");
     }
 }

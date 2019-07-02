@@ -9,7 +9,16 @@ HeroLevel=영웅레벨
 UserLevel=유저레벨
 UnlockLevel=해제레벨
 
+TipText1=게스트 로그인시 게임을 삭제할 경우 데이터가 사라집니다.
+TipText2=강한 적을 처치할수록 좋은 장비가 나올 확률이 높습니다.
+TipText3=플레이어 능력은 모든 영웅들에게 적용됩니다.
+
+AssetBundleDownText=플랫월드에 필요한 플랫데이터 서버로부터 다운로드중...
+AssetBundleLoadText=플랫데이터를 플랫월드에 구성중...
+
 startTabText=화면을 탭하면 게임이 시작됩니다.
+startTabGPGS=(!) 구글 플레이 게임 서비스에 저장된 데이터가 없습니다.
+startTabButton=게스트 로그인
 
 lobbyTitle=로비
 stageTitleMainType1=플랫 에너지를 흡수하는 구조물 파괴.

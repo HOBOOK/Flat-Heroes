@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class StartManagement : MonoBehaviour
 {
-    private void Awake()
+    private void Start()
     {
         DontDestroyOnLoad(this);
-        SaveSystem.LoadPlayer();
+        if(Common.GetSceneCompareTo(Common.SCENE.MAIN))
+        {
+            if (this.transform.childCount < 1)
+                Destroy(this.gameObject);
+        }
     }
 }

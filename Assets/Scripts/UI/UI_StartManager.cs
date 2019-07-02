@@ -42,11 +42,12 @@ public class UI_StartManager : MonoBehaviour
         MaxDownloadCount = maxCount;
         CurrentDownloadCount = 0;
     }
-    public void ShowStartUI()
+    public void ShowStartUI(bool isCloudLoad)
     {
+        LocalizationManager.LoadLanguage(User.language);
         DownloadUI.gameObject.SetActive(false);
         StartAbleUI.gameObject.SetActive(true);
-        if(Common.CheckingLocalFileExist())
+        if(isCloudLoad)
         {
             StartAbleUI.transform.GetChild(0).gameObject.SetActive(false);
             StartAbleUI.transform.GetChild(1).gameObject.SetActive(true);
@@ -84,7 +85,7 @@ public class UI_StartManager : MonoBehaviour
         if(downloadProgressBar != null)
         {
             downloadProgressBar.value = v;
-            downloadProgressBar.transform.GetComponentInChildren<Text>().text = string.Format("실행에 필요한 {0} 서버로부터 다운로드중... {1}%", downloadBundleName, (v * 100f).ToString("N0"));
+            downloadProgressBar.transform.GetComponentInChildren<Text>().text = string.Format("{0} {1}%",LocalizationManager.GetText("AssetBundleDownText") ,(v * 100f).ToString("N0"));
         }
     }
     public void SetAssetLoadUIProgressbarValue(float v, string assetName, int count)
@@ -92,7 +93,7 @@ public class UI_StartManager : MonoBehaviour
         if (downloadProgressBar != null)
         {
             downloadProgressBar.value = v;
-            downloadProgressBar.transform.GetComponentInChildren<Text>().text = string.Format("다운받은 {0} 로컬에 로드중... ({1}/{2})", assetName, count, MaxDownloadCount);
+            downloadProgressBar.transform.GetComponentInChildren<Text>().text = string.Format("{0} ({1}/{2})", LocalizationManager.GetText("AssetBundleLoadText"), count, MaxDownloadCount);
         }
     }
 

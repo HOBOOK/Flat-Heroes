@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System;
 using System.Text;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 public static class SaveSystem
 {
@@ -30,6 +31,51 @@ public static class SaveSystem
             stream.Close();
         }
         Debugging.LogSystem("File is saved in Successfully.");
+    }
+    public static void SaveCloudPlayer(string cloudData)
+    {
+        LoadPlayer();
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/player.fun";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        PlayerData data = JsonConvert.DeserializeObject<PlayerData>(cloudData);
+        try
+        {
+            if (data.level != 0)
+            {
+                formatter.Serialize(stream, data);
+            }
+        }
+        catch (SerializationException e)
+        {
+            Debugging.LogError("유저 클라우드 데이터 저장에 실패 > " + e.Message);
+            throw;
+        }
+        finally
+        {
+            stream.Close();
+            Debugging.LogSystem(data.name + " 의 클라우드 데이터 성공"); ;
+        }
+    }
+    public static string GetUserDataToCloud()
+    {
+        PlayerData userData = new PlayerData();
+        string dataStream = JsonConvert.SerializeObject(userData);
+        if(!string.IsNullOrEmpty(dataStream))
+        {
+            string encrpytData = DataSecurityManager.EncryptData(dataStream);
+            return encrpytData;
+        }
+        return null;
+    }
+    public static void SetCloudDataToUser(CloudDataInfo data)
+    {
+        if (!string.IsNullOrEmpty(data.UserData))
+        {
+            string decryptData = DataSecurityManager.DecryptData(data.UserData);
+            SaveCloudPlayer(decryptData);
+        }
     }
     public static void LoadPlayer()
     {
@@ -82,6 +128,7 @@ public static class SaveSystem
             User.name = data.name;
             if (data.language == null) data.language = "ko";
             User.language = data.language;
+
             //Debugging.LogSystem("File is loaded Successfully >> Try : " + loadTryCount + "\r\n" + JsonUtility.ToJson(data));
         }
         else
@@ -110,7 +157,7 @@ public static class SaveSystem
         User.addDefenceLevel = 0;
         User.gachaSeed = UnityEngine.Random.Range(0, 100);
         User.playerSkill = new int[2];
-
+        SavePlayer();
         Debugging.LogSystem("Init Player");
     }
     public static void ExpUp(int exp)

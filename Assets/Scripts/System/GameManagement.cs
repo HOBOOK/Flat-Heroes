@@ -21,6 +21,7 @@ public class GameManagement : MonoBehaviour
     }
     private void Start()
     {
+        SaveSystem.LoadPlayer();
         HeroSystem.LoadHero();
         SkillSystem.LoadSkill();
         AbilitySystem.LoadAbility();
@@ -36,7 +37,7 @@ public class GameManagement : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        SaveSystem.SavePlayer();
+        App.Instance.gpgsManager.SaveData();
     }
 
     #region 유저정보
@@ -107,6 +108,27 @@ public class GameManagement : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.F4))
         {
             ItemSystem.SetObtainItem(8001, 1);
+        }
+        else if (Input.GetKeyDown(KeyCode.F5))
+        {
+            Debugging.Log(
+                "<color='red'>@@@@@ 클라우드 데이터 시작 @@@@@</color>\r\n" +
+                "\r\n==============<유저데이터>===============\r\n" +
+                SaveSystem.GetUserDataToCloud()+
+               "\r\n==============<아이템데이터>===============\r\n" +
+                ItemDatabase.GetItemDataToCloud() +
+                "\r\n==============<영웅데이터>===============\r\n" +
+                HeroDatabase.GetHeroDataToCloud() +
+                "\r\n==============<어빌리티데이터>===============\r\n" +
+                AbilityDatabase.GetAbilityDataToCloud() +
+                "\r\n==============<스킬데이터>===============\r\n" +
+                SkillDatabase.GetSkillDataToCloud() +
+                "\r\n==============<임무데이터>===============\r\n" +
+                MissionDatabase.GetMissionDataToCloud() +
+                "\r\n==============<맵데이터>===============\r\n" +
+                MapDatabase.GetMapDataToCloud() +
+                "\r\n<color='red'>@@@@@ 클라우드 데이터 종료 @@@@@</color>"
+            );
         }
     }
     void DebugInitXmlData()

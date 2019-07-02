@@ -9,7 +9,16 @@ HeroLevel=Hero Lv
 UserLevel=Player Lv
 UnlockLevel=Unlock Lv
 
+TipText1=If you delete the game at guest login, the data will disappear.
+TipText2=The stronger the enemy is, the more likely it is to get good equipment.
+TipText3=The player ability applies to all heroes.
+
+AssetBundleDownText=Flat data required for 'Flat World' is being downloaded from server...
+AssetBundleLoadText=Configuring flat data in 'Flat World'...
+
 startTabText=Tab to Start.
+startTabGPGS=(!) No data is stored in Google Play Game Services.
+startTabButton=Guest Login
 
 lobbyTitle=Lobby
 stageTitleMainType1=Structure destruction absorbing flat energy.
