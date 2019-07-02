@@ -62,19 +62,18 @@ public class App : MonoBehaviour
             {
                 Debugging.Log(Social.localUser.userName);
                 //로그인성공
-                this.Init();
-                UI_StartManager.instance.ShowStartUI(true);
+                this.Init(true);
             }
             else
             {
                 Debugging.Log("로그인 실패");
                 this.Init();
-                UI_StartManager.instance.ShowStartUI(false);
+
             }
         });
     }
 
-    private void Init()
+    private void Init(bool isCloudLoad=false)
     {
         var path = Application.persistentDataPath + "/CloudDataInfo.bin";
  
@@ -88,18 +87,22 @@ public class App : MonoBehaviour
         else
         {
             this.gameInfo = new CloudDataInfo();
-            this.gameInfo.SetDataToCloud(Social.localUser.id, DateTime.Now.ToString());
-            var json = JsonConvert.SerializeObject(gameInfo);
-            byte[] bytes = Encoding.UTF8.GetBytes(json);
-            File.WriteAllBytes(path, bytes);
-            Debugging.Log(json);
+            this.gameInfo.SetDataToCloud("", DateTime.Now.ToString());
+            if(!gameInfo.IsNullData())
+            {
+                var json = JsonConvert.SerializeObject(gameInfo);
+                byte[] bytes = Encoding.UTF8.GetBytes(json);
+                File.WriteAllBytes(path, bytes);
+                Debugging.Log(json);
+            }
             //PlayerPrefs.SetString(FILE_NAME, JsonConvert.SerializeObject(App.Instance.gameInfo));
         }
+        UI_StartManager.instance.ShowStartUI(isCloudLoad);
     }
     public CloudDataInfo SaveData()
     {
         this.gameInfo = new CloudDataInfo();
-        this.gameInfo.SetDataToCloud(Social.localUser.id, DateTime.Now.ToString());
+        this.gameInfo.SetDataToCloud(User.name, DateTime.Now.ToString());
         return this.gameInfo;
     }
 

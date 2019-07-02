@@ -27,4 +27,11 @@ public class CloudDataInfo
         MissionData = MissionDatabase.GetMissionDataToCloud();
         MapData = MapDatabase.GetMapDataToCloud();
     }
+    public bool IsNullData()
+    {
+        if (UserData != null && ItemData != null && HeroData != null && AbilityData != null && SkillData != null && MissionData != null && MapData != null)
+            return false;
+        else
+            return true;
+    }
 }
