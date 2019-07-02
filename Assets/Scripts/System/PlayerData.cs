@@ -25,6 +25,7 @@ public class PlayerData
     public int gachaSeed;
     public int[] playerSkill;
 
+    public string id;
     public string name;
     public string language;
 
@@ -54,6 +55,7 @@ public class PlayerData
         addDefenceLevel = User.addDefenceLevel;
         // End Lab//
 
+        id = User.id;
         name = User.name;
         language = User.language;
     }

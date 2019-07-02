@@ -140,6 +140,8 @@ configLangTitle=Language
 configCloudTitle=Data Save
 configCloudSaveTitle=Cloud Save
 configCloudLoadTitle=Cloud Load
+configPlayerIdText=Player ID
+configGameVersionText=Version
 
 alertTitle=Alert
 alertYes=Yes

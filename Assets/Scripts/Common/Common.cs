@@ -2,7 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -467,5 +470,54 @@ public class Common : MonoBehaviour
         }
         maxId += 1;
         return maxId;
+    }
+
+    public static string Hasing(string key, string msg)
+    {
+        byte[] result;
+
+        byte[] msg_buffer = new ASCIIEncoding().GetBytes(msg);
+        byte[] key_buffer = new ASCIIEncoding().GetBytes(key);
+
+        HMACSHA1 h = new HMACSHA1(key_buffer);
+
+        result = h.ComputeHash(msg_buffer);
+
+        return Convert.ToBase64String(result);
+
+    }
+    public static string Compression(string str)
+    {
+        var rowData = Encoding.UTF8.GetBytes(str);
+        byte[] compressed = null;
+        using (var outStream = new MemoryStream())
+        {
+            using (var hgs = new GZipStream(outStream, CompressionMode.Compress))
+            {
+                //outStream에 압축을 시킨다.
+                hgs.Write(rowData, 0, rowData.Length);
+            }
+            compressed = outStream.ToArray();
+        }
+
+        return Convert.ToBase64String(compressed);
+    }
+    public static string DeCompression(string compressedStr)
+    {
+        string output = null;
+        byte[] cmpData = Convert.FromBase64String(compressedStr);
+        using (var decomStream = new MemoryStream(cmpData))
+        {
+            using (var hgs = new GZipStream(decomStream, CompressionMode.Decompress))
+            {
+                //decomStream에 압축 헤제된 데이타를 저장한다.
+                using (var reader = new StreamReader(hgs))
+                {
+                    output = reader.ReadToEnd();
+                }
+            }
+        }
+
+        return output;
     }
 }

@@ -16,7 +16,7 @@ public class GoogleCloudManager : MonoBehaviour
     public Action<SavedGameRequestStatus, ISavedGameMetadata> OnSavedGameDataWrittenComplete;
 
     private bool isSaving;
-    private const string FILE_NAME = "파일이름";
+    private const string FILE_NAME = "player.fun";
 
     // 초기화
     public void Init()
@@ -26,20 +26,6 @@ public class GoogleCloudManager : MonoBehaviour
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
     }
-    private void Awake()
-    {
-        //this.Init();
-    }
-
-    private void Start()
-    {
-
-        //this.SignIn((result) =>
-        //{
-
-        //});
-    }
-
     // 로그인
     public void SignIn(System.Action<bool> onComplete)
     {
@@ -67,108 +53,110 @@ public class GoogleCloudManager : MonoBehaviour
         Debug.LogFormat("image:{0}", Social.localUser.image);
     }
 
-    //#region 저장
-    //public void SaveData()
-    //{
-    //    if(Social.localUser.authenticated)
-    //    {
-    //        this.isSaving = true;
-    //        ISavedGameClient savedGAmeClient = PlayGamesPlatform.Instance.SavedGame;
-    //        savedGAmeClient.OpenWithAutomaticConflictResolution(FILE_NAME, DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLongestPlaytime, OnSavedGameOpened);
-    //    }
-    //    else
-    //    {
-    //        this.SaveLocal();
-    //    }
-    //}
+    #region 저장
+    public void SaveData()
+    {
+        if (Social.localUser.authenticated)
+        {
+            this.isSaving = true;
+            ISavedGameClient savedGAmeClient = PlayGamesPlatform.Instance.SavedGame;
+            savedGAmeClient.OpenWithAutomaticConflictResolution(FILE_NAME, DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLongestPlaytime, OnSavedGameOpened);
+        }
+        else
+        {
+            this.SaveLocal();
+        }
+    }
 
-    //private void SaveLocal()
-    //{
-    //    var path = Application.persistentDataPath + "/FlatHerosGameInfo.bin";
-    //    var json = JsonConvert.SerializeObject(App.Instance.gameInfo);
-    //    byte[] bytes = Encoding.UTF8.GetBytes(json);
-    //    File.WriteAllBytes(path, bytes);
-    //}
-    //private void SaveGame(ISavedGameMetadata data)
-    //{
-    //    this.SaveLocal();
+    private void SaveLocal()
+    {
+        var path = Application.persistentDataPath + "/AppSmilejsuGameInfo.bin";
+        var json = JsonConvert.SerializeObject(App.Instance.gameInfo);
+        byte[] bytes = Encoding.UTF8.GetBytes(json);
+        File.WriteAllBytes(path, bytes);
+        Debugging.Log(json);
+    }
+    private void SaveGame(ISavedGameMetadata data)
+    {
+        this.SaveLocal();
 
-    //    ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
-    //    SavedGameMetadataUpdate updata = new SavedGameMetadataUpdate.Builder().Build();
-    //    var stringToSave = this.GameInfoToString();
-    //    byte[] bytes = Encoding.UTF8.GetBytes(stringToSave);
-    //    savedGameClient.CommitUpdate(data, updata, bytes, OnSavedGameDataWrittenComplete);
-    //}
-    //#endregion
+        ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
+        SavedGameMetadataUpdate updata = new SavedGameMetadataUpdate.Builder().Build();
+        var stringToSave = this.GameInfoToString();
+        byte[] bytes = Encoding.UTF8.GetBytes(stringToSave);
+        savedGameClient.CommitUpdate(data, updata, bytes, OnSavedGameDataWrittenComplete);
+        Debugging.Log(stringToSave);
+    }
+    #endregion
 
-    //#region 불러오기
+    #region 불러오기
 
-    //public void LoadData()
-    //{
-    //    if(Social.localUser.authenticated)
-    //    {
-    //        this.isSaving = false;
-    //        ((PlayGamesPlatform)Social.Active).SavedGame.OpenWithAutomaticConflictResolution(FILE_NAME, DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLongestPlaytime,this.OnSavedGameOpened); ;
-    //    }
-    //    else
-    //    {
-    //        this.LoadLocal();
-    //    }
-    //}
+    public void LoadData()
+    {
+        if(Social.localUser.authenticated)
+        {
+            this.isSaving = false;
+            ((PlayGamesPlatform)Social.Active).SavedGame.OpenWithAutomaticConflictResolution(FILE_NAME, DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLongestPlaytime,this.OnSavedGameOpened); ;
+        }
+        else
+        {
+            this.LoadLocal();
+        }
+    }
 
-    //public void LoadLocal()
-    //{
-    //    var path = Application.persistentDataPath + "/FlatHerosGameInfo.bin";
-    //    byte[] bytes = File.ReadAllBytes(path);
-    //    var json = Encoding.UTF8.GetString(bytes);
+    public void LoadLocal()
+    {
+        var path = Application.persistentDataPath + "/AppSmilejsuGameInfo.bin";
+        byte[] bytes = File.ReadAllBytes(path);
+        var json = Encoding.UTF8.GetString(bytes);
+        this.StringToGameInfo(json);
+        Debugging.Log(json);
+    }
 
-    //    this.StringToGameInfo(json);
-    //}
+    private void LoadGame(ISavedGameMetadata data)
+    {
+        ((PlayGamesPlatform)Social.Active).SavedGame.ReadBinaryData(data, OnSavedGameDataReadComplete);
+    }
+    #endregion
 
-    //private void LoadGame(ISavedGameMetadata data)
-    //{
-    //    ((PlayGamesPlatform)Social.Active).SavedGame.ReadBinaryData(data, OnSavedGameDataReadComplete);
-    //}
-    //#endregion
+    private void OnSavedGameOpened(SavedGameRequestStatus status, ISavedGameMetadata game)
+    {
+        Debug.LogFormat("OnSavedGameOpened : {0}, {1}", status, isSaving);
 
-    //private void OnSavedGameOpened(SavedGameRequestStatus status, ISavedGameMetadata game)
-    //{
-    //    Debug.LogFormat("OnSavedGameOpened : {0}, {1}", status, isSaving);
+        if(status == SavedGameRequestStatus.Success)
+        {
+            if(!isSaving)
+            {
+                this.LoadGame(game);
+            }
+            else
+            {
+                this.SaveGame(game);
+            }
+        }
+        else
+        {
+            if (!isSaving)
+            {
+                this.LoadLocal();
+            }
+            else
+            {
+                this.SaveLocal();
+            }
+        }
+    }
 
-    //    if(status == SavedGameRequestStatus.Success)
-    //    {
-    //        if(!isSaving)
-    //        {
-    //            this.LoadGame(game);
-    //        }
-    //        else
-    //        {
-    //            this.SaveGame(game);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        if (!isSaving)
-    //        {
-    //            this.LoadLocal();
-    //        }
-    //        else
-    //        {
-    //            this.SaveLocal();
-    //        }
-    //    }
-    //}
+    public void StringToGameInfo(string localData)
+    {
+        if (localData != string.Empty)
+        {
+            App.Instance.gameInfo = JsonConvert.DeserializeObject<TestGameInfo>(localData);
+        }
+    }
 
-    //public void StringToGameInfo(string localData)
-    //{
-    //    if(localData!=string.Empty)
-    //    {
-    //        App.Instance.gameInfo = JsonConvert.DeserializeObject<GameInfo>(localData);
-    //    }
-    //}
-
-    //private string GameInfoToString()
-    //{
-    //    return JsonConvert.SerializeObject(App.Instance.gameInfo);
-    //}
+    private string GameInfoToString()
+    {
+        return JsonConvert.SerializeObject(App.Instance.gameInfo);
+    }
 }

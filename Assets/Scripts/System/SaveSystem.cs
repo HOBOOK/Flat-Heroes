@@ -57,6 +57,7 @@ public static class SaveSystem
             User.isDead = false;
             User.isPlaying = false;
 
+            User.id = data.id;
             User.level = data.level;
             User.exp = data.exp;
             User.coin = data.coin;
@@ -91,12 +92,13 @@ public static class SaveSystem
     }
     public static void InitPlayer()
     {
+        User.id = Common.GetRandomID(8);
         User.level = 1;
         User.exp = 0;
         User.coin = 1000;
         User.blackCrystal = 100;
         User.portalEnergy = 5;
-        User.name = Common.GetRandomID(6);
+        User.name = Common.GetRandomID(8);
         User.abilityCount = 1;
         User.lobbyHeros = new int[5];
         User.stageHeros = new int[5];

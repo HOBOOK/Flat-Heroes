@@ -5190,7 +5190,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f2f608bb0a0524646adf305f7138d3b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c1d4ed38cdbbebc49a011f0a2489950d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -26074,7 +26074,7 @@ RectTransform:
   m_Children:
   - {fileID: 761146182}
   m_Father: {fileID: 1126889221}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -44798,7 +44798,7 @@ RectTransform:
   - {fileID: 1332073584}
   - {fileID: 2097896514}
   m_Father: {fileID: 1126889221}
-  m_RootOrder: 14
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -48422,9 +48422,9 @@ RectTransform:
   - {fileID: 982945692}
   - {fileID: 449290582}
   - {fileID: 1186221657}
-  - {fileID: 1035873738}
   - {fileID: 596696616}
   - {fileID: 1880272422}
+  - {fileID: 1035873738}
   - {fileID: 1478207802}
   m_Father: {fileID: 343822456}
   m_RootOrder: 0
@@ -51773,7 +51773,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c1d4ed38cdbbebc49a011f0a2489950d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f2f608bb0a0524646adf305f7138d3b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -55627,8 +55627,9 @@ GameObject:
   - component: {fileID: 1325343525}
   - component: {fileID: 1325343524}
   - component: {fileID: 1325343523}
+  - component: {fileID: 1325343526}
   m_Layer: 16
-  m_Name: Button
+  m_Name: SaveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55696,7 +55697,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1325343524}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1325343526}
+        m_MethodName: OnCloudSaveClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1325343524
@@ -55736,6 +55748,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1325343521}
   m_CullTransparentMesh: 0
+--- !u!114 &1325343526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325343521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f30a6850a9d3db4b8e9ecaa0336677b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1330515804
 GameObject:
   m_ObjectHideFlags: 0
@@ -62189,7 +62213,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c1d4ed38cdbbebc49a011f0a2489950d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f2f608bb0a0524646adf305f7138d3b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -66082,7 +66106,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f2f608bb0a0524646adf305f7138d3b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c1d4ed38cdbbebc49a011f0a2489950d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -70678,8 +70702,9 @@ GameObject:
   - component: {fileID: 1695361932}
   - component: {fileID: 1695361931}
   - component: {fileID: 1695361930}
+  - component: {fileID: 1695361933}
   m_Layer: 16
-  m_Name: Button (1)
+  m_Name: LoadButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70747,7 +70772,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1695361931}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1325343526}
+        m_MethodName: OnCloudLoadClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1695361931
@@ -70787,6 +70823,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1695361928}
   m_CullTransparentMesh: 0
+--- !u!114 &1695361933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695361928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f30a6850a9d3db4b8e9ecaa0336677b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1698956796
 GameObject:
   m_ObjectHideFlags: 0
@@ -78609,7 +78657,6 @@ GameObject:
   - component: {fileID: 1880272424}
   - component: {fileID: 1880272423}
   - component: {fileID: 1880272426}
-  - component: {fileID: 1880272427}
   m_Layer: 16
   m_Name: PanelPopConfiguration
   m_TagString: Untagged
@@ -78630,7 +78677,7 @@ RectTransform:
   m_Children:
   - {fileID: 754046222}
   m_Father: {fileID: 1126889221}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -78743,18 +78790,6 @@ MonoBehaviour:
   SoundSettingPanel: {fileID: 2140298896}
   LanguageSettingPanel: {fileID: 474802574}
   CloudSettingPanel: {fileID: 0}
---- !u!114 &1880272427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880272421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdbb03c2ed97361478435dec3489c82c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   UserDeviceIdentifierText: {fileID: 622960762}
 --- !u!1 &1885434494
 GameObject:

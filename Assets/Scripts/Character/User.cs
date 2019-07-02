@@ -6,6 +6,8 @@ using UnityEngine;
 public class User
 {
     [SerializeField]
+    public static string id;
+    [SerializeField]
     public static bool isDead;
     [SerializeField]
     public static bool isPlaying;
@@ -49,4 +51,11 @@ public class User
     public static int[] playerSkill;
     [SerializeField]
     public static string language;
+}
+
+public class TestGameInfo
+{
+    public string id;
+    public string description;
+    public string lastSavedTime;
 }

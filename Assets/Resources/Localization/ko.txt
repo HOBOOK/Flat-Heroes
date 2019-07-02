@@ -140,6 +140,8 @@ configLangTitle=언어
 configCloudTitle=데이터 저장
 configCloudSaveTitle=클라우드 저장하기
 configCloudLoadTitle=클라우드 불러오기
+configPlayerIdText=플레이어 ID
+configGameVersionText=게임버전
 
 alertTitle=알림
 alertYes=예

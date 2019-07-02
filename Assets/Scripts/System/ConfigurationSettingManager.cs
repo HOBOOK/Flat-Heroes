@@ -8,6 +8,7 @@ public class ConfigurationSettingManager : MonoBehaviour
     public GameObject SoundSettingPanel;
     public GameObject LanguageSettingPanel;
     public GameObject CloudSettingPanel;
+    public Text UserDeviceIdentifierText;
     private void OnEnable()
     {
         EnableUI();
@@ -41,6 +42,8 @@ public class ConfigurationSettingManager : MonoBehaviour
     }
     void EnableUI()
     {
+        UserDeviceIdentifierText.text = string.Format("{0} : {1}\r\n{2} : {3}", LocalizationManager.GetText("configPlayerIdText"), User.id, LocalizationManager.GetText("configGameVersionText"), Application.version);
+
         // 언어설정
         foreach (var btn in LanguageSettingPanel.transform.GetComponentsInChildren<Button>())
         {
@@ -58,6 +61,8 @@ public class ConfigurationSettingManager : MonoBehaviour
     }
     void RefreshUI()
     {
+        UserDeviceIdentifierText.text = string.Format("{0} : {1}\r\n{2} : {3}", LocalizationManager.GetText("configPlayerIdText"), User.id, LocalizationManager.GetText("configGameVersionText"), Application.version);
+
         foreach (var btn in LanguageSettingPanel.transform.GetComponentsInChildren<Button>())
         {
             if (btn.name.Equals(User.language) || btn.name == User.language)

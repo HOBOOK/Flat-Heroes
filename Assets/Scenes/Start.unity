@@ -3209,8 +3209,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2023189874}
   - component: {fileID: 2023189875}
-  - component: {fileID: 2023189876}
   - component: {fileID: 2023189877}
+  - component: {fileID: 2023189878}
+  - component: {fileID: 2023189876}
   m_Layer: 0
   m_Name: StartManager
   m_TagString: Untagged
@@ -3270,6 +3271,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProgressViewUI: {fileID: 2035950740}
   version: 0
+--- !u!114 &2023189878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023189873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 761369eb5e3997546829086ccf981a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gpgsManager: {fileID: 2023189876}
 --- !u!1 &2035950740
 GameObject:
   m_ObjectHideFlags: 0
