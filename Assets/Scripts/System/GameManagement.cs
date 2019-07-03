@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
-using GooglePlayGames;
 
 public class GameManagement : MonoBehaviour
 {
@@ -37,7 +36,7 @@ public class GameManagement : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        App.Instance.gpgsManager.SaveData();
+        //App.Instance.gpgsManager.SaveData();
     }
 
     #region 유저정보
