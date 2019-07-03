@@ -23,7 +23,6 @@ public class DataSecurityManager
         ICryptoTransform cTransform = rDel.CreateEncryptor();
 
         byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
-        Debugging.Log("데이터 암호화 성공");
         return Convert.ToBase64String(resultArray, 0, resultArray.Length);
     }
 
@@ -40,7 +39,6 @@ public class DataSecurityManager
         ICryptoTransform cTransform = rDel.CreateDecryptor();
 
         byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
-        Debugging.Log("데이터 복호화 성공");
         return UTF8Encoding.UTF8.GetString(resultArray);
     }
 }

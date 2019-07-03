@@ -105,8 +105,6 @@ public class AssetLoadManager : MonoBehaviour
         if(abManager.isVersionAdded(url,version)&&this.IsAssetLoaded(url,version,assetName))
         {
             obj = dicAsset[keyName][assetName];
-            Debugging.Log(assetName + "체크.");
-
             if (remove)
             {
                 dicAsset[keyName].Remove(assetName);

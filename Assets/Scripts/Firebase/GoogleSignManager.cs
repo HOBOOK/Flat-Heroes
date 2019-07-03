@@ -182,12 +182,13 @@ public class GoogleSignManager : MonoBehaviour
                     else
                     {
                         this.gameInfo = new CloudDataInfo();
-                        this.gameInfo.SetDataToCloud("", DateTime.Now.ToString());
+                        this.gameInfo.SetDataToCloud(Common.GoogleUserId, DateTime.Now.ToString());
                         var json = JsonConvert.SerializeObject(gameInfo);
                         byte[] bytes = Encoding.UTF8.GetBytes(json);
                         File.WriteAllBytes(path, bytes);
                     }
-                    UI_StartManager.instance.ShowStartUI(false);
+                    //최초생성
+                    UI_StartManager.instance.ShowStartUI(true);
                 }
             });
         }

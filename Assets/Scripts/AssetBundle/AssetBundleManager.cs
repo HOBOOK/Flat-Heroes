@@ -90,7 +90,6 @@ public class AssetBundleManager : MonoBehaviour
                 else
                 {
                     AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(uwr);
-                    Debugging.Log(bundle.name);
                     //var materials = bundle.LoadAllAssets<Material>();
                     //foreach (Material m in materials)
                     //{
