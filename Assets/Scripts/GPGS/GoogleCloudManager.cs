@@ -33,7 +33,7 @@
 
 //        Social.localUser.Authenticate((result) =>
 //        {
-//            if(result)
+//            if (result)
 //            {
 //                Debug.Log("인증성공");
 //                Debug.LogFormat("id:{0}, username:{1}, underage:{2}", Social.localUser.id, Social.localUser.userName, Social.localUser.underage);
@@ -91,18 +91,18 @@
 
 //    #region 불러오기
 
-//    public void LoadData(bool reload=false)
+//    public void LoadData(bool reload = false)
 //    {
-//        if(Social.localUser.authenticated)
+//        if (Social.localUser.authenticated)
 //        {
 //            this.isSaving = false;
-//            ((PlayGamesPlatform)Social.Active).SavedGame.OpenWithAutomaticConflictResolution(FILE_NAME, DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLongestPlaytime,this.OnSavedGameOpened); ;
+//            ((PlayGamesPlatform)Social.Active).SavedGame.OpenWithAutomaticConflictResolution(FILE_NAME, DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLongestPlaytime, this.OnSavedGameOpened); ;
 //        }
 //        else
 //        {
 //            this.LoadLocal();
 //        }
-//        if(reload)
+//        if (reload)
 //        {
 //            LoadSceneManager.instance.LoadReStart();
 //        }
@@ -127,9 +127,9 @@
 //    {
 //        Debug.LogFormat("OnSavedGameOpened : {0}, {1}", status, isSaving);
 
-//        if(status == SavedGameRequestStatus.Success)
+//        if (status == SavedGameRequestStatus.Success)
 //        {
-//            if(!isSaving)
+//            if (!isSaving)
 //            {
 //                this.LoadGame(game);
 //            }

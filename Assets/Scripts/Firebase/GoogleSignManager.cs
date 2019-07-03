@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using Google;
+using Newtonsoft.Json;
+using Proyecto26;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,12 +15,15 @@ public class GoogleSignManager : MonoBehaviour
     public Text statusText;
     public string webClientId = "312752000151-4iql3uip7a39ujqejem5st36e03v2gki.apps.googleusercontent.com";
 
+    public static GoogleSignManager Instance;
+    public CloudDataInfo gameInfo;
     private GoogleSignInConfiguration configuration;
 
     // Defer the configuration creation until Awake so the web Client ID
     // Can be set via the property inspector in the Editor.
     void Awake()
     {
+        GoogleSignManager.Instance = this;
         configuration = new GoogleSignInConfiguration
         {
             WebClientId = webClientId,
@@ -23,96 +31,252 @@ public class GoogleSignManager : MonoBehaviour
             RequestIdToken = true
         };
     }
-
     public void OnSignIn()
     {
         GoogleSignIn.Configuration = configuration;
         GoogleSignIn.Configuration.UseGameSignIn = false;
         GoogleSignIn.Configuration.RequestIdToken = true;
-        AddStatusText("Calling SignIn");
+        Debug.Log("Calling SignIn");
 
         GoogleSignIn.DefaultInstance.SignIn().ContinueWith(
           OnAuthenticationFinished);
     }
-
     public void OnSignOut()
     {
-        AddStatusText("Calling SignOut");
+        Debug.Log("Calling SignOut");
         GoogleSignIn.DefaultInstance.SignOut();
     }
-
     public void OnDisconnect()
     {
-        AddStatusText("Calling Disconnect");
+        Debug.LogWarning("Calling Disconnect");
         GoogleSignIn.DefaultInstance.Disconnect();
     }
-
     internal void OnAuthenticationFinished(Task<GoogleSignInUser> task)
     {
-        if (task.IsFaulted)
+        try
         {
-            using (IEnumerator<System.Exception> enumerator =
-                    task.Exception.InnerExceptions.GetEnumerator())
+            if (task.IsFaulted)
             {
-                if (enumerator.MoveNext())
+                using (IEnumerator<System.Exception> enumerator =
+                        task.Exception.InnerExceptions.GetEnumerator())
                 {
-                    GoogleSignIn.SignInException error =
-                            (GoogleSignIn.SignInException)enumerator.Current;
-                    AddStatusText("Got Error: " + error.Status + " " + error.Message);
+                    if (enumerator.MoveNext())
+                    {
+                        GoogleSignIn.SignInException error =
+                                (GoogleSignIn.SignInException)enumerator.Current;
+                        Debug.LogWarning("Got Error: " + error.Status + " " + error.Message);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Got Unexpected Exception?!?" + task.Exception);
+                    }
                 }
-                else
-                {
-                    AddStatusText("Got Unexpected Exception?!?" + task.Exception);
-                }
+                Common.GoogleUserId = null;
+            }
+            else if (task.IsCanceled)
+            {
+                Debug.LogWarning("Canceled");
+                Common.GoogleUserId = null;
+            }
+            else
+            {
+                Common.GoogleUserId = task.Result.UserId;
             }
         }
-        else if (task.IsCanceled)
+        catch(Exception e)
         {
-            AddStatusText("Canceled");
+            Debug.LogWarning(e.Message);
         }
-        else
-        {
-            AddStatusText("Welcome: " + task.Result.DisplayName + "!");
-        }
+        Init();
     }
-
     public void OnSignInSilently()
     {
         GoogleSignIn.Configuration = configuration;
         GoogleSignIn.Configuration.UseGameSignIn = false;
         GoogleSignIn.Configuration.RequestIdToken = true;
-        AddStatusText("Calling SignIn Silently");
+        Debug.Log("Calling SignIn Silently");
 
         GoogleSignIn.DefaultInstance.SignInSilently()
               .ContinueWith(OnAuthenticationFinished);
     }
-
-
     public void OnGamesSignIn()
     {
         GoogleSignIn.Configuration = configuration;
         GoogleSignIn.Configuration.UseGameSignIn = true;
         GoogleSignIn.Configuration.RequestIdToken = false;
 
-        AddStatusText("Calling Games SignIn");
+        Debug.Log("Calling Games SignIn");
 
         GoogleSignIn.DefaultInstance.SignIn().ContinueWith(
           OnAuthenticationFinished);
+        Common.GoogleUserId = null;
+    }
+    private List<string> messages = new List<string>();
+
+
+    public void Init()
+    {
+        LoadData();
     }
 
-    private List<string> messages = new List<string>();
-    void AddStatusText(string text)
+    // 구글 데이터 전송
+    public void PutToDatabase()
     {
-        if (messages.Count == 5)
+        if (Common.GoogleUserId != null)
         {
-            messages.RemoveAt(0);
+            this.gameInfo.SetDataToCloud(Common.GoogleUserId, DateTime.Now.ToString());
+            RestClient.Put("https://api-project-81117173.firebaseio.com/" + Common.GoogleUserId + ".json", this.gameInfo);
+            Debug.Log(this.gameInfo.id + this.gameInfo.lastSavedTime + " put 성공");
         }
-        messages.Add(text);
-        string txt = "";
-        foreach (string s in messages)
+        else
         {
-            txt += "\n" + s;
+            Debug.LogWarning("구글 로그인 실패");
         }
-        statusText.text = txt;
+    }
+    public void InitToDatabase()
+    {
+        if (Common.GoogleUserId != null)
+        {
+            string id = null;
+            RestClient.Get<CloudDataInfo>("https://api-project-81117173.firebaseio.com/" + Common.GoogleUserId + ".json").Then(response =>
+            {
+                id = response.id;
+            });
+            if (string.IsNullOrEmpty(id))
+            {
+                this.gameInfo.SetDataToCloud(id, DateTime.Now.ToString());
+                RestClient.Put("https://api-project-81117173.firebaseio.com/" + Common.GoogleUserId + ".json", this.gameInfo);
+                Debug.Log(this.gameInfo.id + this.gameInfo.lastSavedTime + " put 성공");
+            }
+            else
+            {
+                //DB에 저장되어있는 데이터없음
+            }
+        }
+        else
+        {
+            Debug.LogWarning("구글 로그인 실패");
+        }
+    }
+    public void GetFromDatabase()
+    {
+        if (Common.GoogleUserId != null)
+        {
+            RestClient.Get<CloudDataInfo>("https://api-project-81117173.firebaseio.com/" + Common.GoogleUserId + ".json").Then(response =>
+            {
+                if(response!=null)
+                {
+                    Debug.Log(response.id + " 파이어 베이스 데이터베이스로 부터 불러옴");
+                    this.gameInfo = response;
+                    SetCloudDataToLocal();
+                    UI_StartManager.instance.ShowStartUI(true);
+                }
+                else
+                {
+                    Debug.LogWarning("구글 로그인은 성공했으나 DB가 없음");
+                    var path = Application.persistentDataPath + "/CloudDataInfo.bin";
+                    if (File.Exists(path))
+                    {
+                        LoadLocalData();
+                    }
+                    else
+                    {
+                        this.gameInfo = new CloudDataInfo();
+                        this.gameInfo.SetDataToCloud("", DateTime.Now.ToString());
+                        var json = JsonConvert.SerializeObject(gameInfo);
+                        byte[] bytes = Encoding.UTF8.GetBytes(json);
+                        File.WriteAllBytes(path, bytes);
+                    }
+                    UI_StartManager.instance.ShowStartUI(false);
+                }
+            });
+        }
+        else
+        {
+            Debug.LogWarning("구글 로그인 실패");
+            var path = Application.persistentDataPath + "/CloudDataInfo.bin";
+            if (File.Exists(path))
+            {
+                LoadLocalData();
+            }
+            else
+            {
+                this.gameInfo = new CloudDataInfo();
+                this.gameInfo.SetDataToCloud("", DateTime.Now.ToString());
+                var json = JsonConvert.SerializeObject(gameInfo);
+                byte[] bytes = Encoding.UTF8.GetBytes(json);
+                File.WriteAllBytes(path, bytes);
+            }
+            UI_StartManager.instance.ShowStartUI(false);
+        }
+    }
+    //
+
+    // 데이터 저장
+    public void SaveData()
+    {
+        this.gameInfo.SetDataToCloud(Common.GoogleUserId, DateTime.Now.ToString());
+        SaveLocalData(this.gameInfo);
+        SaveCloudData();
+    }
+    private void SaveCloudData()
+    {
+        PutToDatabase();
+    }
+    private void SaveLocalData(CloudDataInfo data)
+    {
+        var path = Application.persistentDataPath + "/CloudDataInfo.bin";
+        var json = JsonConvert.SerializeObject(data);
+        byte[] bytes = Encoding.UTF8.GetBytes(json);
+        File.WriteAllBytes(path, bytes);
+        Debug.Log(Application.persistentDataPath + "/CloudDataInfo.bin 저장완료. >> " + DateTime.Now.ToString());
+    }
+    // 데이터 로드
+    public void LoadData()
+    {
+        GetFromDatabase();
+    }
+    private void LoadLocalData()
+    {
+        var path = Application.persistentDataPath + "/CloudDataInfo.bin";
+        // 기존 로컬 파일 로드
+        if(File.Exists(path))
+        {
+            byte[] bytes = File.ReadAllBytes(path);
+            var json = Encoding.UTF8.GetString(bytes);
+            this.StringToGameInfo(json);
+            Debug.Log("CloudDataInfo.bin 로컬로드완료. >> " + this.gameInfo.id);
+        }
+    }
+    public void StringToGameInfo(string localData)
+    {
+        if (localData != string.Empty)
+        {
+            this.gameInfo = JsonConvert.DeserializeObject<CloudDataInfo>(localData);
+            SetCloudDataToLocal();
+        }
+    }
+    private string GameInfoToString(CloudDataInfo data)
+    {
+        return JsonConvert.SerializeObject(data);
+    }
+
+
+    public void SetCloudDataToLocal()
+    {
+        if (this.gameInfo != null)
+        {
+            SaveSystem.SetCloudDataToUser(gameInfo);
+            ItemDatabase.SetCloudDataToItem(gameInfo);
+            HeroDatabase.SetCloudDataToHero(gameInfo);
+            AbilityDatabase.SetCloudDataToAbility(gameInfo);
+            SkillDatabase.SetCloudDataToSkill(gameInfo);
+            MissionDatabase.SetCloudDataToMission(gameInfo);
+            MapDatabase.SetCloudDataToMap(gameInfo);
+        }
+        else
+        {
+            Debug.LogWarning("클라우드 데이터 로컬저장중 오류 발생");
+        }
     }
 }

@@ -37,6 +37,7 @@ public class GameManagement : MonoBehaviour
     private void OnApplicationQuit()
     {
         //App.Instance.gpgsManager.SaveData();
+        GoogleSignManager.Instance.SaveData();
     }
 
     #region 유저정보

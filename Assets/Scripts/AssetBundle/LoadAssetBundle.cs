@@ -71,7 +71,7 @@ public class LoadAssetBundle : MonoBehaviour
         Debugging.Log("영웅다운 끝");
         AssetBundleManager.Instance.RemoveAllAssetBundles();
         // 로그인 시도
-        //App.Instance.StartLogin();
+        GoogleSignManager.Instance.OnSignIn();
     }
 
     void InstantiateAsset(GameObject obj, Transform parent)

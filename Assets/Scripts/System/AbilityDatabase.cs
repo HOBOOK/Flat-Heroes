@@ -87,7 +87,6 @@ public class AbilityDatabase
             xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
         }
 
-
         //복호화////
         XmlElement elmRoot = xmlDoc.DocumentElement;
         elmRoot.RemoveAll();

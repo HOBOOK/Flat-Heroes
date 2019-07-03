@@ -133,8 +133,8 @@ public static class SaveSystem
         }
         else
         {
-            Debugging.LogSystemWarning("Save file not fount in " + path);
             InitPlayer();
+            Debugging.LogSystemWarning("Save file not fount in " + path);
         }
     }
     public static void InitPlayer()

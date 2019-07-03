@@ -14,7 +14,7 @@ public class Common : MonoBehaviour
 {
     public static int[] EXP_TABLE = { 100, 150, 250, 400, 600, 850, 1200, 1500, 1800, 2100, 2400, 2700, 3000, 3500, 4000, 4700, 5500, 6500, 7500, 9000 };
     public static int[] USER_EXP_TABLE = { 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 12000 };
-
+    public static string GoogleUserId;
     public static Common instance = null;
     private void Awake()
     {
