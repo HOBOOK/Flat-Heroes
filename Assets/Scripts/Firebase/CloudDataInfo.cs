@@ -1,11 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class CloudDataInfo
 {
-    public string id;
+    public string localId;
+    public string name;
     public string lastSavedTime;
     public string UserData;
     public string ItemData;
@@ -15,9 +17,13 @@ public class CloudDataInfo
     public string MissionData;
     public string MapData;
 
+    public CloudDataInfo()
+    {
+        lastSavedTime = DateTime.Now.ToString();
+    }
+
     public void SetDataToCloud(string socialUserId,string saveTime)
     {
-        id = socialUserId;
         lastSavedTime = saveTime;
         UserData = SaveSystem.GetUserDataToCloud();
         ItemData = ItemDatabase.GetItemDataToCloud();

@@ -71,7 +71,7 @@ public class LoadAssetBundle : MonoBehaviour
         Debugging.Log("영웅다운 끝");
         AssetBundleManager.Instance.RemoveAllAssetBundles();
         // 로그인 시도
-        GoogleSignManager.Instance.OnSignIn();
+        //GoogleSignManager.Instance.OnSignIn();
         //GoogleSignManager.Instance.Init();
     }
 

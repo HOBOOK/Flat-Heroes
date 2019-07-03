@@ -31,6 +31,8 @@ public class GoogleSignManager : MonoBehaviour
             RequestIdToken = true
         };
     }
+
+    #region Default 인증
     public void OnSignIn()
     {
         GoogleSignIn.Configuration = configuration;
@@ -111,8 +113,73 @@ public class GoogleSignManager : MonoBehaviour
           OnAuthenticationFinished);
         Common.GoogleUserId = null;
     }
-    private List<string> messages = new List<string>();
+    #endregion
 
+    #region 인증
+    private string idToken;
+    public static string localId;
+    public string AuthKey = "AIzaSyDScfZ8X1nVmJ1XOaKP3EJnAKNdwlSPFvk";
+    private string databaseURL = "https://api-project-81117173.firebaseio.com/users/";
+
+    public InputField emailText;
+    public InputField usernameText;
+    public InputField passwordText;
+
+    public void SignUpUserButton()
+    {
+        SignUpUser(emailText.text,usernameText.text,passwordText.text);
+    }
+
+    public void SignInUserButton()
+    {
+        SignInUser(emailText.text,passwordText.text);
+    }
+
+    public void SignUpUser(string email, string username ,string password)
+    {
+        string userData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"returnSecureToken\":true}";
+        RestClient.Post<SignResponse>("https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key="+ AuthKey, userData).Then(response =>
+        {
+            idToken = response.idToken;
+            localId = response.localId;
+            Common.GoogleUserId = username;
+            Debug.Log(idToken +"##"+ localId +"##" +username);
+            PostToDatabase();
+        }).Catch(error =>
+        {
+            Debug.Log(error);
+        });
+    }
+    public void SignInUser(string email, string password)
+    {
+        string userData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"returnSecureToken\":true}";
+        RestClient.Post<SignResponse>("https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken?key=" + AuthKey, userData).Then(response =>
+        {
+            idToken = response.idToken;
+            localId = response.localId;
+        }).Catch(error =>
+        {
+            Debug.Log(error);
+        });
+    }
+
+    private void GetUsername()
+    {
+        RestClient.Get<CloudDataInfo>(databaseURL + localId + ".json").Then(response =>
+        {
+            response.name = Common.GoogleUserId;
+        });
+    }
+
+    private void GetLocalId()
+    {
+        RestClient.Get<CloudDataInfo>(databaseURL + localId + ".json").Then(response =>
+        {
+            response.name = Common.GoogleUserId;
+        });
+    }
+
+    #endregion
 
     public void Init()
     {
@@ -120,53 +187,32 @@ public class GoogleSignManager : MonoBehaviour
     }
 
     // 구글 데이터 전송
+    public void PostToDatabase()
+    {
+        this.gameInfo.SetDataToCloud(localId, DateTime.Now.ToString());
+        RestClient.Put(databaseURL + localId + ".json", this.gameInfo);
+    }
     public void PutToDatabase()
     {
         if (Common.GoogleUserId != null)
         {
             this.gameInfo.SetDataToCloud(Common.GoogleUserId, DateTime.Now.ToString());
-            RestClient.Put("https://api-project-81117173.firebaseio.com/" + Common.GoogleUserId + ".json", this.gameInfo);
-            Debug.Log(this.gameInfo.id + this.gameInfo.lastSavedTime + " put 성공");
+            RestClient.Put(databaseURL + Common.GoogleUserId + ".json", this.gameInfo);
         }
         else
         {
             Debug.LogWarning("구글 로그인 실패");
         }
     }
-    public void InitToDatabase()
-    {
-        if (Common.GoogleUserId != null)
-        {
-            string id = null;
-            RestClient.Get<CloudDataInfo>("https://api-project-81117173.firebaseio.com/" + Common.GoogleUserId + ".json").Then(response =>
-            {
-                id = response.id;
-            });
-            if (string.IsNullOrEmpty(id))
-            {
-                this.gameInfo.SetDataToCloud(id, DateTime.Now.ToString());
-                RestClient.Put("https://api-project-81117173.firebaseio.com/" + Common.GoogleUserId + ".json", this.gameInfo);
-                Debug.Log(this.gameInfo.id + this.gameInfo.lastSavedTime + " put 성공");
-            }
-            else
-            {
-                //DB에 저장되어있는 데이터없음
-            }
-        }
-        else
-        {
-            Debug.LogWarning("구글 로그인 실패");
-        }
-    }
+
     public void GetFromDatabase()
     {
         if (Common.GoogleUserId != null)
         {
-            RestClient.Get<CloudDataInfo>("https://api-project-81117173.firebaseio.com/" + Common.GoogleUserId + ".json").Then(response =>
+            RestClient.Get<CloudDataInfo>(databaseURL + Common.GoogleUserId + ".json").Then(response =>
             {
                 if(response!=null)
                 {
-                    Debug.Log(response.id + " 파이어 베이스 데이터베이스로 부터 불러옴");
                     this.gameInfo = response;
                     SetCloudDataToLocal();
                     UI_StartManager.instance.ShowStartUI(true);
@@ -211,8 +257,6 @@ public class GoogleSignManager : MonoBehaviour
             UI_StartManager.instance.ShowStartUI(false);
         }
     }
-    //
-
     // 데이터 저장
     public void SaveData()
     {
@@ -246,7 +290,6 @@ public class GoogleSignManager : MonoBehaviour
             byte[] bytes = File.ReadAllBytes(path);
             var json = Encoding.UTF8.GetString(bytes);
             this.StringToGameInfo(json);
-            Debug.Log("CloudDataInfo.bin 로컬로드완료. >> " + this.gameInfo.id);
         }
     }
     public void StringToGameInfo(string localData)
