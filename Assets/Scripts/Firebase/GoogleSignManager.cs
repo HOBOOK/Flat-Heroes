@@ -167,15 +167,27 @@ public class GoogleSignManager : MonoBehaviour
     {
         this.gameInfo.SetDataToCloud(localId, playerName, DateTime.Now.ToString());
         Debug.LogFormat("localID : {0}, playerName : {1} 데이터베이스 저장 \r\n idToken = {2}",this.gameInfo.localId, this.gameInfo.name,DBidToken);
-        RestClient.Put(databaseURL + "/" + localId + ".json?auth=" + DBidToken, this.gameInfo).Done(x=>
+        RestClient.Put(databaseURL + "/" + localId + ".json", this.gameInfo).Done(x=>
         {
             Debug.Log("성공적으로 DB 저장완료");
         });
 
     }
+    public void InitToDatabase()
+    {
+        this.gameInfo.SetDataToCloud(localId, playerName, DateTime.Now.ToString());
+        Debug.LogFormat("localID : {0}, playerName : {1} 데이터베이스 저장 \r\n idToken = {2}", this.gameInfo.localId, this.gameInfo.name, DBidToken);
+        RestClient.Put(databaseURL + "/" + localId + ".json", this.gameInfo).Done(x =>
+        {
+            Debug.Log("성공적으로 DB 생성완료");
+            SaveData();
+            isInitLogin = false;
+            Init();
+        });
+    }
     public void GetFromDatabase()
     {
-        RestClient.Get<CloudDataInfo>(databaseURL + "/" + getLocalId + ".json?auth=" + DBidToken).Then(response =>
+        RestClient.Get<CloudDataInfo>(databaseURL + "/" + getLocalId + ".json").Then(response =>
         {
             this.gameInfo = response;
             SetCloudDataToLocal();
@@ -184,14 +196,14 @@ public class GoogleSignManager : MonoBehaviour
     }
     private void GetUsername()
     {
-        RestClient.Get<CloudDataInfo>(databaseURL + "/" + localId + ".json?auth=" + DBidToken).Then(response =>
+        RestClient.Get<CloudDataInfo>(databaseURL + "/" + localId + ".json").Then(response =>
         {
             playerName = response.name;
         });
     }
     private void GetLocalId()
     {
-        RestClient.Get(databaseURL + ".json?auth=" + DBidToken).Then(response =>
+        RestClient.Get(databaseURL + ".json").Then(response =>
         {
             fsData cloudDatas = fsJsonParser.Parse(response.Text);
 
@@ -262,7 +274,7 @@ public class GoogleSignManager : MonoBehaviour
     {
         if(isServerLogin)
         {
-            this.gameInfo.SetDataToCloud(localId, Common.GoogleUserId, DateTime.Now.ToString());
+            this.gameInfo.SetDataToCloud(localId, playerName, DateTime.Now.ToString());
             SaveLocalData(this.gameInfo);
             SaveCloudData();
         }
@@ -312,8 +324,7 @@ public class GoogleSignManager : MonoBehaviour
     public void GoogleDatabaseInitbutton(Text text)
     {
         playerName = text.text;
-        Debug.Log("생성 이름 > " + playerName);
-        PostToDatabase();
+        InitToDatabase();
     }
     #endregion
 
