@@ -74,6 +74,7 @@ public class GoogleSignManager : MonoBehaviour
             {
                 Debug.Log("Sign In Successful. >> \r\n" + idToken);
                 DBidToken = idToken;
+                localId = task.Result.UserId;
                 ServerInit();
             }
         });
@@ -165,7 +166,12 @@ public class GoogleSignManager : MonoBehaviour
     public void PostToDatabase()
     {
         this.gameInfo.SetDataToCloud(localId, playerName, DateTime.Now.ToString());
-        RestClient.Put(databaseURL + "/" + localId + ".json?auth=" + DBidToken, this.gameInfo);
+        Debug.LogFormat("localID : {0}, playerName : {1} 데이터베이스 저장 \r\n idToken = {2}",this.gameInfo.localId, this.gameInfo.name,DBidToken);
+        RestClient.Put(databaseURL + "/" + localId + ".json?auth=" + DBidToken, this.gameInfo).Done(x=>
+        {
+            Debug.Log("성공적으로 DB 저장완료");
+        });
+
     }
     public void GetFromDatabase()
     {
@@ -194,7 +200,7 @@ public class GoogleSignManager : MonoBehaviour
 
             foreach (var user in users.Values)
             {
-                if (user.localId == DBidToken)
+                if (user.name == playerName)
                 {
                     getLocalId = user.localId;
                     GetFromDatabase();
@@ -306,6 +312,7 @@ public class GoogleSignManager : MonoBehaviour
     public void GoogleDatabaseInitbutton(Text text)
     {
         playerName = text.text;
+        Debug.Log("생성 이름 > " + playerName);
         PostToDatabase();
     }
     #endregion
