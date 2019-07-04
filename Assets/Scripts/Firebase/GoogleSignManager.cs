@@ -33,6 +33,7 @@ public class GoogleSignManager : MonoBehaviour
             RequestEmail=true,
             RequestIdToken = true
         };
+        CheckFirebaseDependencies();
     }
     #region 인증
     private void CheckFirebaseDependencies()
