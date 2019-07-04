@@ -330,6 +330,7 @@ public class Common : MonoBehaviour
         if(PaymentAbleCheck(ref target,payment))
         {
             target -= payment;
+            SaveSystem.SavePlayer();
             return true;
         }
         else
