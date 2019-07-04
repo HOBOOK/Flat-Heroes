@@ -17,8 +17,9 @@ AssetBundleDownText=Flat data required for 'Flat World' is being downloaded from
 AssetBundleLoadText=Configuring flat data in 'Flat World'...
 
 startTabText=Tab to Start.
-startTabGPGS=(!) No data is stored in Google Play Game Services.
-startTabButton=Guest Login
+startTabWarningMessage=(!) No data is stored in Server.
+startTabGuestButton=Guest Login
+startTabGoogleButton=Google Login
 
 lobbyTitle=Lobby
 stageTitleMainType1=Structure destruction absorbing flat energy.

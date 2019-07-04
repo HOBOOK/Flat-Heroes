@@ -22,8 +22,10 @@ public class CloudDataInfo
         lastSavedTime = DateTime.Now.ToString();
     }
 
-    public void SetDataToCloud(string socialUserId,string saveTime)
+    public void SetDataToCloud(string socialUserId,string socialName, string saveTime)
     {
+        localId = socialUserId;
+        name = socialName;
         lastSavedTime = saveTime;
         UserData = SaveSystem.GetUserDataToCloud();
         ItemData = ItemDatabase.GetItemDataToCloud();

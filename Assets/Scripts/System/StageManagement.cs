@@ -226,7 +226,6 @@ public class StageManagement : MonoBehaviour
         MissionSystem.PointSave();
         SaveSystem.AddUserCoin(stageInfo.stageCoin);
         SaveSystem.ExpUp(stageInfo.stageExp);
-        SaveSystem.SavePlayer();
         var getItems = GetStageItems();
         for (var i = 0; i < getItems.Count; i++)
         {

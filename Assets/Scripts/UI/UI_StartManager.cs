@@ -42,24 +42,24 @@ public class UI_StartManager : MonoBehaviour
         MaxDownloadCount = maxCount;
         CurrentDownloadCount = 0;
     }
-    public void ShowStartUI(bool isCloudLoad)
+    public void ShowStartUI(bool isServerLogin)
     {
         LocalizationManager.LoadLanguage(User.language);
         DownloadUI.gameObject.SetActive(false);
         StartAbleUI.gameObject.SetActive(true);
-        if(isCloudLoad)
+
+        if(isServerLogin)
         {
-            StartAbleUI.transform.GetChild(0).gameObject.SetActive(false);
-            StartAbleUI.transform.GetChild(1).gameObject.SetActive(true);
+            StartAbleUI.transform.GetChild(0).gameObject.SetActive(true);
+            StartAbleUI.transform.GetChild(1).gameObject.SetActive(false);
             startButton.interactable = true;
         }
         else
         {
-            StartAbleUI.transform.GetChild(0).gameObject.SetActive(true);
-            StartAbleUI.transform.GetChild(1).gameObject.SetActive(false);
+            StartAbleUI.transform.GetChild(0).gameObject.SetActive(false);
+            StartAbleUI.transform.GetChild(1).gameObject.SetActive(true);
             startButton.interactable = false;
         }
-
         TitleUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
     }
     public void ShowDownloadUI()

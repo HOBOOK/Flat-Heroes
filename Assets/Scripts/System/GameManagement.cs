@@ -17,10 +17,11 @@ public class GameManagement : MonoBehaviour
         Application.targetFrameRate = 60;
 
         DontDestroyOnLoad(this);
+        SaveSystem.LoadPlayer();
     }
     private void Start()
     {
-        SaveSystem.LoadPlayer();
+
         HeroSystem.LoadHero();
         SkillSystem.LoadSkill();
         AbilitySystem.LoadAbility();
@@ -37,7 +38,10 @@ public class GameManagement : MonoBehaviour
     private void OnApplicationQuit()
     {
         //App.Instance.gpgsManager.SaveData();
-        GoogleSignManager.Instance.SaveData();
+        if (GoogleSignManager.isServerLogin)
+            GoogleSignManager.Instance.SaveData();
+        else
+            SaveSystem.SavePlayer();
     }
 
     #region 유저정보

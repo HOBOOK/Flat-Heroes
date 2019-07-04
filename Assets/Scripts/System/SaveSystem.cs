@@ -177,6 +177,7 @@ public static class SaveSystem
         {
             User.exp += exp;
         }
+        SavePlayer();
     }
     public static void LevelUp(int departExp)
     {
@@ -188,18 +189,22 @@ public static class SaveSystem
         }
         else
             Debugging.Log("유저레벨이 MAX입니다.");
+        SavePlayer();
     }
     public static void AddUserCoin(int amount)
     {
         User.coin += amount;
+        SavePlayer();
     }
     public static void AddUserCrystal(int amount)
     {
         User.blackCrystal += amount;
+        SavePlayer();
     }
     public static void AddUserEnergy(int amount)
     {
         User.portalEnergy += amount;
+        SavePlayer();
     }
     public static void ChangeLanguage(LanguageType languageType)
     {
