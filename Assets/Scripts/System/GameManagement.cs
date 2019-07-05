@@ -37,11 +37,7 @@ public class GameManagement : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        //App.Instance.gpgsManager.SaveData();
-        if (GoogleSignManager.isServerLogin)
-            GoogleSignManager.Instance.SaveData();
-        else
-            SaveSystem.SavePlayer();
+        GoogleSignManager.SaveData();
     }
 
     #region 유저정보

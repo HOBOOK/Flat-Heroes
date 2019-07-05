@@ -205,6 +205,7 @@ public class UI_Button : MonoBehaviour
                         ItemSystem.SetObtainItem(buyItemId);
                     callBackScript.GetComponent<UI_Shop>().RefreshUI();
                     Item id = ItemSystem.GetItem(buyItemId);
+                    GoogleSignManager.SaveData();
                     UI_Manager.instance.ShowGetAlert(id.image, string.Format("<color='yellow'>{0}</color> {1}", ItemSystem.GetItemName(id.id),LocalizationManager.GetText("alertGetMessage3")));
                 }
                 else
@@ -222,6 +223,7 @@ public class UI_Button : MonoBehaviour
                         ItemSystem.SetObtainItem(buyItemId);
                     callBackScript.GetComponent<UI_Shop>().RefreshUI();
                     Item id = ItemSystem.GetItem(buyItemId);
+                    GoogleSignManager.SaveData();
                     UI_Manager.instance.ShowGetAlert(id.image, string.Format("<color='yellow'>{0}</color> {1}",ItemSystem.GetItemName(id.id),LocalizationManager.GetText("alertGetMessage3")));
                 }
                 else
@@ -247,6 +249,7 @@ public class UI_Button : MonoBehaviour
                     HeroSystem.SetObtainHero(characterId);
                     callBackScript.GetComponent<UI_ShopCharacter>().RefreshUI();
                     HeroData hd = HeroSystem.GetHero(characterId);
+                    GoogleSignManager.SaveData();
                     UI_Manager.instance.ShowGetAlert(hd.image, string.Format("<color='yellow'>{0}</color> {1}", HeroSystem.GetHeroName(hd.id), LocalizationManager.GetText("alertGetMessage5")));
                 }
                 else
@@ -261,6 +264,7 @@ public class UI_Button : MonoBehaviour
                     HeroSystem.SetObtainHero(characterId);
                     callBackScript.GetComponent<UI_ShopCharacter>().RefreshUI();
                     HeroData hd = HeroSystem.GetHero(characterId);
+                    GoogleSignManager.SaveData();
                     UI_Manager.instance.ShowGetAlert(hd.image, string.Format("<color='yellow'>{0}</color> {1}", HeroSystem.GetHeroName(hd.id), LocalizationManager.GetText("alertGetMessage5")));
                 }
                 else
@@ -270,6 +274,7 @@ public class UI_Button : MonoBehaviour
                 break;
             case PaymentType.Cash:
                 OnButtonEffectSound();
+                GoogleSignManager.SaveData();
                 Debugging.Log(characterId + " 현금거래 버튼 입니다. >> Cash : " + paymentAmount);
                 break;
         }
@@ -284,6 +289,7 @@ public class UI_Button : MonoBehaviour
             if (ItemSystem.UseItem(sellItemId, 1))
             {
                 SaveSystem.AddUserCoin(value);
+                GoogleSignManager.SaveData();
                 UI_Manager.instance.ShowGetAlert("Items/coin", string.Format("<color='yellow'>{0}</color> {1}{2}", Common.GetThousandCommaText(value),LocalizationManager.GetText("Coin"),LocalizationManager.GetText("alertGetMessage1")));
                 if (callBackScript != null)
                 {

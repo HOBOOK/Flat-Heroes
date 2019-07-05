@@ -1089,7 +1089,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &373797733
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1591,7 +1591,6 @@ GameObject:
   - component: {fileID: 589199561}
   - component: {fileID: 589199560}
   - component: {fileID: 589199559}
-  - component: {fileID: 589199558}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -1620,30 +1619,6 @@ RectTransform:
   m_AnchoredPosition: {x: 785, y: -60}
   m_SizeDelta: {x: 350, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &589199558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 589199556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1fb07155df5d604e81ff5c585558b43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonType: 2
-  targetUI: {fileID: 0}
-  targetSceneNumber: 1
-  paymentType: 0
-  gachaType: 0
-  stageType: 0
-  paymentAmount: 0
-  buyItemId: 0
-  characterId: 0
-  sellItemId: 0
-  callBackScript: {fileID: 0}
-  audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!114 &589199559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1687,8 +1662,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 589199558}
-        m_MethodName: OnClick
+      - m_Target: {fileID: 2023189876}
+        m_MethodName: GuestInitbutton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6569,19 +6544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   webClientId: 312752000151-4iql3uip7a39ujqejem5st36e03v2gki.apps.googleusercontent.com
-  gameInfo:
-    localId: 
-    name: 
-    lastSavedTime: 
-    UserData: 
-    ItemData: 
-    HeroData: 
-    AbilityData: 
-    SkillData: 
-    MissionData: 
-    MapData: 
   NameInputPanel: {fileID: 680007516}
-  AuthKey: AIzaSyDScfZ8X1nVmJ1XOaKP3EJnAKNdwlSPFvk
 --- !u!114 &2023189877
 MonoBehaviour:
   m_ObjectHideFlags: 0

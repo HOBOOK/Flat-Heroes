@@ -231,6 +231,7 @@ public class StageManagement : MonoBehaviour
         {
             ItemSystem.SetObtainItem(getItems[i].id);
         }
+        GoogleSignManager.SaveData();
         UI_Manager.instance.OpenEndGamePanel(true);
         yield return null;
     }

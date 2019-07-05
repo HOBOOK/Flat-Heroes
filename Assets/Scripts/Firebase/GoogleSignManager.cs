@@ -17,10 +17,9 @@ public class GoogleSignManager : MonoBehaviour
 {
     #region 변수
     public string webClientId = "312752000151-4iql3uip7a39ujqejem5st36e03v2gki.apps.googleusercontent.com";
-    public static bool isInitLogin = false;
 
     public static GoogleSignManager Instance;
-    public CloudDataInfo gameInfo;
+    private static CloudDataInfo gameInfo;
     private GoogleSignInConfiguration configuration;
     private FirebaseAuth auth;
     #endregion
@@ -75,7 +74,8 @@ public class GoogleSignManager : MonoBehaviour
                 Debug.Log("Sign In Successful. >> \r\n" + idToken);
                 DBidToken = idToken;
                 localId = task.Result.UserId;
-                ServerInit();
+                isServerLogin = true;
+                GetLocalId();
             }
         });
     }
@@ -156,40 +156,52 @@ public class GoogleSignManager : MonoBehaviour
     #endregion
 
     #region 파이어베이스 DB
-    private string DBidToken;
+    private static string DBidToken;
     public static string playerName;
     public static string localId;
-    private static string getLocalId;
+
     public static bool isServerLogin;
     public static fsSerializer serializer = new fsSerializer();
 
-    public void PostToDatabase()
+    private static string AuthKey = "AIzaSyDScfZ8X1nVmJ1XOaKP3EJnAKNdwlSPFvk";
+    private static string databaseURL = "https://api-project-81117173.firebaseio.com/users/";
+
+    private static void PostToDatabase()
     {
-        this.gameInfo.SetDataToCloud(localId, playerName, DateTime.Now.ToString());
-        Debug.LogFormat("localID : {0}, playerName : {1} 데이터베이스 저장 \r\n idToken = {2}",this.gameInfo.localId, this.gameInfo.name,DBidToken);
-        RestClient.Put(databaseURL + "/" + localId + ".json", this.gameInfo).Done(x=>
+        gameInfo.SetDataToCloud(localId, playerName, DateTime.Now.ToString());
+        Debug.LogFormat("localID : {0}, playerName : {1} 데이터베이스 저장 \r\n idToken = {2}",gameInfo.localId, gameInfo.name,DBidToken);
+        RestClient.Put(databaseURL + "/" + localId + ".json", gameInfo).Done(x=>
         {
             Debug.Log("성공적으로 DB 저장완료");
         });
 
     }
-    public void InitToDatabase()
+    private static void InitToDatabase()
     {
-        this.gameInfo.SetDataToCloud(localId, playerName, DateTime.Now.ToString());
-        Debug.LogFormat("localID : {0}, playerName : {1} 데이터베이스 저장 \r\n idToken = {2}", this.gameInfo.localId, this.gameInfo.name, DBidToken);
-        RestClient.Put(databaseURL + "/" + localId + ".json", this.gameInfo).Done(x =>
+        InitUserData(localId, playerName);
+        gameInfo.SetDataToCloud(localId, playerName, DateTime.Now.ToString());
+        Debug.LogFormat("localID : {0}, playerName : {1} 데이터베이스 저장 \r\n idToken = {2}", gameInfo.localId, gameInfo.name, DBidToken);
+        RestClient.Put(databaseURL + "/" + localId + ".json", gameInfo).Done(x =>
         {
             Debug.Log("성공적으로 DB 생성완료");
             SaveData();
-            isInitLogin = false;
-            Init();
+            LoadSceneManager.instance.LoadScene(0);
         });
     }
-    public void GetFromDatabase()
+    public void TestButton()
     {
-        RestClient.Get<CloudDataInfo>(databaseURL + "/" + getLocalId + ".json").Then(response =>
+        localId = "J2GAcy9Gr3MOfLbFnKLPsd1BaDc2";
+        RestClient.Get<CloudDataInfo>(databaseURL + "/" + localId + ".json").Then(response =>
         {
-            this.gameInfo = response;
+            Debug.Log(response.name + " 로 드  성공했습니다");
+            UI_StartManager.instance.ShowStartUI(true);
+        });
+    }
+    public static void GetFromDatabase()
+    {
+        RestClient.Get<CloudDataInfo>(databaseURL + "/" + localId + ".json").Then(response =>
+        {
+            gameInfo = response;
             SetCloudDataToLocal();
             UI_StartManager.instance.ShowStartUI(true);
         });
@@ -212,43 +224,43 @@ public class GoogleSignManager : MonoBehaviour
 
             foreach (var user in users.Values)
             {
-                if (user.name == playerName)
+                if (user.localId == localId)
                 {
-                    getLocalId = user.localId;
                     GetFromDatabase();
-                    Debug.Log(getLocalId + " 가져오기 성공");
-                    break;
+                    Debug.Log(localId + " 가져오기 성공함");
+                    return;
                 }
             }
+            NameInputPanel.GetComponent<AiryUIAnimatedElement>().ShowElement();
         });
     }
     #endregion
     // 시작
     public void Init()
     {
-        var path = Application.persistentDataPath + "/CloudDataInfo.bin";
-        if (File.Exists(path))
+        if(isServerLocalDataExist())
         {
-            SignInWithGoogle();
+            // 정상진행중
+            if(isLocalDataExist())
+                SignInWithGoogle();
+            else
+                Debug.LogWarning("Error 팝업");
         }
         else
         {
-            UI_StartManager.instance.ShowStartUI(false);
+            if(isLocalDataExist())
+            {
+                //게스트시작
+                UI_StartManager.instance.ShowStartUI(false);
+            }
+            else
+            {
+                //최초시작
+                UI_StartManager.instance.ShowStartUI(false);
+            }
         }
     }
-    private void ServerInit()
-    {
-        isServerLogin = true;
-        if (!isInitLogin)
-        {
-            GetLocalId();
-        }
-        else
-        {
-            NameInputPanel.GetComponent<AiryUIAnimatedElement>().ShowElement();
-            isInitLogin = false;
-        }
-    }
+
     private void LocalInit()
     {
         isServerLogin = false;
@@ -257,33 +269,34 @@ public class GoogleSignManager : MonoBehaviour
         {
             byte[] bytes = File.ReadAllBytes(path);
             var json = Encoding.UTF8.GetString(bytes);
-            this.gameInfo = JsonConvert.DeserializeObject<CloudDataInfo>(json);
+            gameInfo = JsonConvert.DeserializeObject<CloudDataInfo>(json);
             SetCloudDataToLocal();
         }
         else
         {
-            this.gameInfo = new CloudDataInfo();
-            this.gameInfo.SetDataToCloud(localId, Common.GoogleUserId, DateTime.Now.ToString());
+            gameInfo = new CloudDataInfo();
+            gameInfo.SetDataToCloud(localId, playerName, DateTime.Now.ToString());
             var json = JsonConvert.SerializeObject(gameInfo);
             byte[] bytes = Encoding.UTF8.GetBytes(json);
             File.WriteAllBytes(path, bytes);
         }
     }
     // 데이터 저장
-    public void SaveData()
+    public static void SaveData()
     {
         if(isServerLogin)
         {
-            this.gameInfo.SetDataToCloud(localId, playerName, DateTime.Now.ToString());
-            SaveLocalData(this.gameInfo);
-            SaveCloudData();
+            gameInfo.SetDataToCloud(localId, playerName, DateTime.Now.ToString());
+            SaveLocalData(gameInfo);
+            PostToDatabase();
+        }
+        else
+        {
+            SaveSystem.SavePlayer();
         }
     }
-    private void SaveCloudData()
-    {
-        PostToDatabase();
-    }
-    private void SaveLocalData(CloudDataInfo data)
+
+    private static void SaveLocalData(CloudDataInfo data)
     {
         var path = Application.persistentDataPath + "/CloudDataInfo.bin";
         var json = JsonConvert.SerializeObject(data);
@@ -296,9 +309,9 @@ public class GoogleSignManager : MonoBehaviour
     {
         return JsonConvert.SerializeObject(data);
     }
-    public void SetCloudDataToLocal()
+    private static void SetCloudDataToLocal()
     {
-        if (this.gameInfo != null)
+        if (gameInfo != null)
         {
             SaveSystem.SetCloudDataToUser(gameInfo);
             ItemDatabase.SetCloudDataToItem(gameInfo);
@@ -313,12 +326,70 @@ public class GoogleSignManager : MonoBehaviour
             Debug.LogWarning("클라우드 데이터 로컬저장중 오류 발생");
         }
     }
+    private static void InitUserData(string localId, string name)
+    {
+        SaveSystem.InitPlayer(localId, name);
+        ItemDatabase.InitSetting();
+        HeroDatabase.InitSetting();
+        AbilityDatabase.InitSetting();
+        SkillDatabase.InitSetting();
+        MissionDatabase.InitSetting();
+        MapDatabase.InitSetting();
+    }
+    //private bool isServerDataExist()
+    //{
+    //    bool isExist = false;
+    //    RestClient.Get(databaseURL + ".json").Then(response =>
+    //    {
+    //        fsData cloudDatas = fsJsonParser.Parse(response.Text);
+
+    //        Dictionary<string, CloudDataInfo> users = null;
+    //        serializer.TryDeserialize(cloudDatas, ref users);
+
+    //        foreach (var user in users.Values)
+    //        {
+    //            if (user.localId == localId)
+    //            {
+    //                isExist = true;
+    //                break;
+    //            }
+    //        }
+    //    });
+    //    return isExist;
+    //}
+    private bool isLocalDataExist()
+    {
+        string[] localUserDataPaths = {"/player.fun"
+                                            + "/Xml/Ability.Xml"
+                                            + "/Xml/Item.Xml"
+                                            + "/Xml/Map.Xml"
+                                            + "/Xml/Mission.Xml"
+                                            + "/Xml/Skill.Xml"
+        };
+        for (var i = 0; i < localUserDataPaths.Length; i++)
+        {
+            var path = Application.persistentDataPath + localUserDataPaths[i];
+            if (!File.Exists(path))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    private bool isServerLocalDataExist()
+    {
+        var serverlocalDataPath = Application.persistentDataPath + "/CloudDataInfo.bin";
+        if (File.Exists(serverlocalDataPath))
+        {
+            return true;
+        }
+        return false;
+    }
 
     #region 최초생성
     public GameObject NameInputPanel;
     public void GoogleLoginInitButton()
     {
-        isInitLogin = true;
         SignInWithGoogle();
     }
     public void GoogleDatabaseInitbutton(Text text)
@@ -326,11 +397,23 @@ public class GoogleSignManager : MonoBehaviour
         playerName = text.text;
         InitToDatabase();
     }
+    public void GuestInitbutton()
+    {
+        if (!isLocalDataExist())
+        {
+            var geustId = "guest_" + Common.GetRandomID(6);
+            InitUserData(geustId, geustId);
+            LoadSceneManager.instance.LoadScene(1);
+        }
+        else
+        {
+            LoadSceneManager.instance.LoadScene(1);
+        }
+    }
     #endregion
 
     #region 이메일 인증(Deprecated)
-    public string AuthKey = "AIzaSyDScfZ8X1nVmJ1XOaKP3EJnAKNdwlSPFvk";
-    private string databaseURL = "https://api-project-81117173.firebaseio.com/users/";
+
     public void SignUpUser(string email, string username, string password)
     {
         string userData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"returnSecureToken\":true}";

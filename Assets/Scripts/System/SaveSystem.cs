@@ -136,35 +136,35 @@ public static class SaveSystem
         }
         else
         {
-            InitPlayer();
             Debugging.LogSystemWarning("Save file not fount in " + path);
         }
     }
-    public static void InitPlayer()
+    public static void InitPlayer(string localId, string name)
     {
-        if (!string.IsNullOrEmpty(Common.GoogleUserId))
-            User.id = Common.GoogleUserId;
-        else
-            User.id = "GUEST_" + Common.GetRandomID(6);
-        User.level = 1;
-        User.exp = 0;
-        User.coin = 1000;
-        User.blackCrystal = 100;
-        User.portalEnergy = 5;
-        User.name = "박똘이";
-        User.abilityCount = 1;
-        User.lobbyHeros = new int[5];
-        User.stageHeros = new int[5];
-        User.flatEnergyChargingLevel = 0;
-        User.flatEnergyMaxLevel = 0;
-        User.addMoneyLevel = 0;
-        User.addExpLevel = 0;
-        User.addAttackLevel = 0;
-        User.addDefenceLevel = 0;
-        User.gachaSeed = UnityEngine.Random.Range(0, 100);
-        User.playerSkill = new int[2];
-        SavePlayer();
-        Debugging.LogSystem("Init Player");
+        string path = Application.persistentDataPath + "/player.fun";
+        if (!File.Exists(path)&&string.IsNullOrEmpty(User.id))
+        {
+            User.id = localId;
+            User.level = 1;
+            User.exp = 0;
+            User.coin = 1000;
+            User.blackCrystal = 100;
+            User.portalEnergy = 5;
+            User.name = name;
+            User.abilityCount = 1;
+            User.lobbyHeros = new int[5];
+            User.stageHeros = new int[5];
+            User.flatEnergyChargingLevel = 0;
+            User.flatEnergyMaxLevel = 0;
+            User.addMoneyLevel = 0;
+            User.addExpLevel = 0;
+            User.addAttackLevel = 0;
+            User.addDefenceLevel = 0;
+            User.gachaSeed = UnityEngine.Random.Range(0, 100);
+            User.playerSkill = new int[2];
+            SavePlayer();
+            Debugging.LogSystem("Init Player");
+        }
     }
     public static void ExpUp(int exp)
     {
