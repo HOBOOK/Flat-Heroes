@@ -188,31 +188,17 @@ public class GoogleSignManager : MonoBehaviour
             LoadSceneManager.instance.LoadScene(0);
         });
     }
-    public void TestButton()
-    {
-        localId = "J2GAcy9Gr3MOfLbFnKLPsd1BaDc2";
-        RestClient.Get<CloudDataInfo>(databaseURL + "/" + localId + ".json").Then(response =>
-        {
-            Debug.Log(response.name + " 로 드  성공했습니다");
-            UI_StartManager.instance.ShowStartUI(true);
-        });
-    }
     public static void GetFromDatabase()
     {
-        RestClient.Get<CloudDataInfo>(databaseURL + "/" + localId + ".json").Then(response =>
+        RestClient.Get<CloudDataInfo>(databaseURL + "/" + localId + ".json").Done(response =>
         {
+            Debugging.Log(localId + " 의 DB가져오기 성공 > " + response.name);
             gameInfo = response;
             SetCloudDataToLocal();
             UI_StartManager.instance.ShowStartUI(true);
         });
     }
-    private void GetUsername()
-    {
-        RestClient.Get<CloudDataInfo>(databaseURL + "/" + localId + ".json").Then(response =>
-        {
-            playerName = response.name;
-        });
-    }
+
     private void GetLocalId()
     {
         RestClient.Get(databaseURL + ".json").Then(response =>
@@ -286,6 +272,7 @@ public class GoogleSignManager : MonoBehaviour
     {
         if(isServerLogin)
         {
+            SaveSystem.SavePlayer();
             gameInfo.SetDataToCloud(localId, playerName, DateTime.Now.ToString());
             SaveLocalData(gameInfo);
             PostToDatabase();
@@ -335,6 +322,7 @@ public class GoogleSignManager : MonoBehaviour
         SkillDatabase.InitSetting();
         MissionDatabase.InitSetting();
         MapDatabase.InitSetting();
+        SaveData();
     }
     //private bool isServerDataExist()
     //{
@@ -360,17 +348,18 @@ public class GoogleSignManager : MonoBehaviour
     private bool isLocalDataExist()
     {
         string[] localUserDataPaths = {"/player.fun"
-                                            + "/Xml/Ability.Xml"
-                                            + "/Xml/Item.Xml"
-                                            + "/Xml/Map.Xml"
-                                            + "/Xml/Mission.Xml"
-                                            + "/Xml/Skill.Xml"
+                                            , "/Xml/Ability.Xml"
+                                            , "/Xml/Item.Xml"
+                                            , "/Xml/Map.Xml"
+                                            , "/Xml/Mission.Xml"
+                                            , "/Xml/Skill.Xml"
         };
         for (var i = 0; i < localUserDataPaths.Length; i++)
         {
             var path = Application.persistentDataPath + localUserDataPaths[i];
             if (!File.Exists(path))
             {
+                Debug.Log(path + " 의 파일이 존재하지않음");
                 return false;
             }
         }
@@ -383,6 +372,7 @@ public class GoogleSignManager : MonoBehaviour
         {
             return true;
         }
+        Debug.Log(Application.persistentDataPath + "/CloudDataInfo.bin 파일이 로컬에 없음");
         return false;
     }
 
@@ -437,7 +427,6 @@ public class GoogleSignManager : MonoBehaviour
             DBidToken = response.idToken;
             localId = response.localId;
             Debug.Log(localId + " 로그인 성공");
-            GetUsername();
         }).Catch(error =>
         {
             Debug.Log(error);

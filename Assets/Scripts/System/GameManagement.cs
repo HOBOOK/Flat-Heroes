@@ -40,6 +40,8 @@ public class GameManagement : MonoBehaviour
         GoogleSignManager.SaveData();
     }
 
+
+
     #region 유저정보
     private float userUpdateTime=120;
     private void UserUpdate()

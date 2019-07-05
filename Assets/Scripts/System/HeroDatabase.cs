@@ -74,6 +74,7 @@ public class HeroDatabase
     }
     public static void SetCloudDataToHero(CloudDataInfo data)
     {
+        Debug.Log("서버 HeroData 로컬 저장 중");
         SaveCloudData(data.HeroData);
     }
     public static void SaveCloudData(string data)
@@ -82,6 +83,11 @@ public class HeroDatabase
         XmlDocument xmlDoc = new XmlDocument();
         if (System.IO.File.Exists(path))
             xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
+        else
+        {
+            InitSetting();
+            xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
+        }
 
         //복호화////
         XmlElement elmRoot = xmlDoc.DocumentElement;

@@ -73,6 +73,7 @@ public static class SaveSystem
     {
         if (!string.IsNullOrEmpty(data.UserData))
         {
+            Debug.Log("서버 UserData 로컬 저장 중");
             string decryptData = DataSecurityManager.DecryptData(data.UserData);
             SaveCloudPlayer(decryptData);
         }

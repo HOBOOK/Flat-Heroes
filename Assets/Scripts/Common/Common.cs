@@ -330,7 +330,7 @@ public class Common : MonoBehaviour
         if(PaymentAbleCheck(ref target,payment))
         {
             target -= payment;
-            SaveSystem.SavePlayer();
+            GoogleSignManager.SaveData();
             return true;
         }
         else

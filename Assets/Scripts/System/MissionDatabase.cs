@@ -75,6 +75,7 @@ public class MissionDatabase
     }
     public static void SetCloudDataToMission(CloudDataInfo data)
     {
+        Debug.Log("서버 MissionData 로컬 저장 중");
         SaveCloudData(data.MissionData);
     }
     public static void SaveCloudData(string data)
@@ -83,6 +84,11 @@ public class MissionDatabase
         XmlDocument xmlDoc = new XmlDocument();
         if (System.IO.File.Exists(path))
             xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
+        else
+        {
+            InitSetting();
+            xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
+        }
 
         //복호화////
         XmlElement elmRoot = xmlDoc.DocumentElement;
