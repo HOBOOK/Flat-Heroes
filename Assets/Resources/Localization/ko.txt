@@ -8,6 +8,10 @@ SkillLevel=기술레벨
 HeroLevel=영웅레벨
 UserLevel=유저레벨
 UnlockLevel=해제레벨
+SkillAttack=스킬 공격력
+SkillDelay=재사용 대기시간
+SkillUserEnergy=소모에너지
+Sec=초
 
 TipText1=게스트 로그인시 게임을 삭제할 경우 데이터가 사라집니다.
 TipText2=강한 적을 처치할수록 좋은 장비가 나올 확률이 높습니다.
@@ -148,10 +152,12 @@ configSoundBgmTitle=배경음
 configSoundEffectTitle=효과음
 configLangTitle=언어
 configCloudTitle=데이터 저장
-configCloudSaveTitle=클라우드 저장하기
-configCloudLoadTitle=클라우드 불러오기
+configNoSyncWarningMessage=(!) 현재 구글 연동이 되어있지 않습니다. 앱 삭제 시 데이터가 날아갑니다.
+configPassiveSaveButton=데이터 수동저장
+configSyncButton=Google 연동
 configPlayerIdText=플레이어 ID
 configGameVersionText=게임버전
+configLastSaveTimeText=* 마지막 저장 시간 :
 
 alertTitle=알림
 alertYes=예
@@ -175,6 +181,8 @@ alertGetMessage5=영웅을 획득하였습니다.
 alertSellText=판매
 alertUnableSellMessage=은(는) 현재 판매할 수 없습니다.
 alertUnableSellMessage2=장착중이거나 아이템의 개수에 오류가 있습니다.
+
+warningTitle=경고
 
 stagePauseTitle=일시정지
 stagePauseInformation=게임이 일시정지 중입니다. 다시 진행하려면 계속하기를 눌러주세요.
@@ -214,6 +222,43 @@ StageDescription7=우리의 모든것이 무너졌다. 하지만 우리에게 �
 
 MapWarningMessage=아직 도달할 수 없는 곳입니다.
 
+MissionName1=적 소탕하기 1
+MissionDescription1=
+MissionName2=적 소탕하기 2
+MissionDescription2=
+MissionName3=적 소탕하기 3
+MissionDescription3=
+MissionName4=적 소탕하기 4
+MissionDescription4=
+MissionName5=적 소탕하기 5
+MissionDescription5=
+MissionName6=소환석 파괴 1
+MissionDescription6=
+MissionName7=소환석 파괴 2
+MissionDescription7=
+MissionName8=소환석 파괴 3
+MissionDescription8=
+MissionName9=소환석 파괴 4
+MissionDescription9=
+MissionName10=소환석 파괴 5
+MissionDescription10=
+
+MissionName101=업적 퀘스트 1
+MissionDescription101=
+MissionName102=업적 퀘스트2
+MissionDescription102=
+
+MissionName201=반복 퀘스트 1
+MissionDescription201=
+MissionName202=반복 퀘스트2
+MissionDescription202=
+MissionName203=반복 퀘스트3
+MissionDescription203=
+MissionName204=반복 퀘스트4
+MissionDescription204=
+MissionName205=반복 퀘스트5
+MissionDescription205=
+
 AbilityName1=불의 힘
 AbilityDescription1=영웅들의 공격력이 증가합니다.
 AbilityName2=땅의 힘
@@ -228,6 +273,49 @@ AbilityName6=바람의 힘
 AbilityDescription6=영웅들의 이동속도가 증가합니다.
 AbilityName7=어둠의 힘
 AbilityDescription7=에너지 효율이 증가합니다.
+
+SkillName1=바람 가르기
+SkillDescription1=순간적으로 앞으로 나아가면서 다수의 적을 공격한다.
+SkillName2=수류탄 투척
+SkillDescription2=3초후 폭발하는 수류탄을 적에게 투척한다.
+SkillName3=살라만더
+SkillDescription3=불꽃들을 소환하여 전방에 무차별 폭격을 가한다.
+SkillName4=퀵스나이핑
+SkillDescription4=엄청난 속도로 연속으로 화살을 발사한다.
+SkillName5=스모크 나이프
+SkillDescription5=나이프를 던진곳으로 날아가 적을 공격한다.
+SkillName6=6번째 스킬
+SkillDescription6=
+SkillName7=7번째 스킬
+SkillDescription7=
+SkillName8=8번째 스킬
+SkillDescription8=
+SkillName9=9번째 스킬
+SkillDescription9=
+SkillName10=10번째 스킬
+SkillDescription10=
+SkillName11=11번째 스킬
+SkillDescription11=
+SkillName12=12번째 스킬
+SkillDescription12=
+SkillName13=13번째 스킬
+SkillDescription13=
+SkillName14=14번째 스킬
+SkillDescription14=
+SkillName15=15번째 스킬
+SkillDescription15=
+
+SkillName101=절망
+SkillDescription101=적 전체에게 강력한 폭발공격을 가한다.
+SkillName102=희망
+SkillDescription102=아군 전체의 체력을 회복한다.
+SkillName103=후회
+SkillDescription103=아군 한명을 랜덤으로 부활시킨다.
+SkillName104=자만
+SkillDescription104=적 전체를 2초간 스턴상태로 만든다.
+SkillName105=희생
+SkillDescription105=아군 한명을 희생시켜 가장강한 적의 체력을 희생한 아군의 체력만큼 감소시킨다.
+
 
 HerosName101=동해
 HerosDescription101=동쪽 나라에서 온 실력이 출중한 무사

@@ -28,6 +28,7 @@ public class GameManagement : MonoBehaviour
         ItemSystem.LoadItem();
         MapSystem.LoadMap();
         MissionSystem.LoadMission();
+        LocalizationManager.LoadLanguage(User.language);
     }
     private void Update()
     {

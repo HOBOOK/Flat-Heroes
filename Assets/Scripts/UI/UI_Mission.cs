@@ -64,8 +64,8 @@ public class UI_Mission : MonoBehaviour
             clearPanel = missionSlot.transform.GetChild(3).gameObject;
 
             missionImage.sprite = Resources.Load<Sprite>(mission.image);
-            missionTitleText.text = mission.name;
-            missionDescriptionText.text = mission.description + string.Format(" ({0}/{1})",mission.point,mission.clearPoint);
+            missionTitleText.text = MissionSystem.GetMissionName(mission.id);
+            missionDescriptionText.text = MissionSystem.GetMissionDescription(mission.id) + string.Format(" ({0}/{1})",mission.point,mission.clearPoint);
             if(mission.rewardType==3)
                 rewardItemImage.sprite = Resources.Load<Sprite>(ItemSystem.GetItem(mission.rewardItemId).image);
             else

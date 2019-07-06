@@ -190,7 +190,6 @@ public class MissionDatabase
         elmRoot.InnerText = encrpytData;
         ////////////
         xmlDoc.Save(path);
-        Debugging.Log(mission.name + " 일일미션클리어 xml 저장 완료");
     }
     public static void PointSave(List<Mission> missons)
     {
@@ -260,12 +259,6 @@ public class MissionDatabase
         child.Attributes.Append(id);
 
         // 자식 노드에 들어갈 속성 생성
-        XmlElement name = xmlDoc.CreateElement("Name");
-        name.InnerText = data.name;
-        child.AppendChild(name);
-        XmlElement description = xmlDoc.CreateElement("Description");
-        description.InnerText = data.description;
-        child.AppendChild(description);
         XmlElement type = xmlDoc.CreateElement("MissionType");
         type.InnerText = data.missionType.ToString();
         child.AppendChild(type);
@@ -321,12 +314,6 @@ public class MissionDatabase
             child.Attributes.Append(id);
 
             // 자식 노드에 들어갈 속성 생성
-            XmlElement name = xmlDoc.CreateElement("Name");
-            name.InnerText = data[i].name;
-            child.AppendChild(name);
-            XmlElement description = xmlDoc.CreateElement("Description");
-            description.InnerText = data[i].description;
-            child.AppendChild(description);
             XmlElement type = xmlDoc.CreateElement("MissionType");
             type.InnerText = data[i].missionType.ToString();
             child.AppendChild(type);

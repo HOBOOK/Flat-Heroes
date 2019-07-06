@@ -14,6 +14,8 @@ public class UI_StartManager : MonoBehaviour
     public GameObject CoverUI;
     public GameObject TitleUI;
     public GameObject ErrorAlertUI;
+    public GameObject ConsentAlertUI;
+
     public Button startButton;
     public Text versionText;
 
@@ -42,6 +44,7 @@ public class UI_StartManager : MonoBehaviour
         MaxDownloadCount = maxCount;
         CurrentDownloadCount = 0;
     }
+
     public void ShowStartUI(bool isServerLogin)
     {
         LocalizationManager.LoadLanguage(User.language);
@@ -77,7 +80,14 @@ public class UI_StartManager : MonoBehaviour
             //ErrorAlertUI.gameObject.SetActive(true);
             ErrorAlertUI.transform.GetChild(0).GetChild(0).GetComponentInChildren<Text>().text = errorMsg;
         }
+    }
 
+    public void ShowConsnetUI()
+    {
+        if(ConsentAlertUI!=null)
+        {
+            ConsentAlertUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
+        }
     }
 
     public void SetDownLoadUIProgressbarValue(float v, string downloadBundleName)

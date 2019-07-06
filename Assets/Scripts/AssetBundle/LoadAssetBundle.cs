@@ -71,7 +71,15 @@ public class LoadAssetBundle : MonoBehaviour
         Debugging.Log("영웅다운 끝");
         AssetBundleManager.Instance.RemoveAllAssetBundles();
         // 로그인 시도
-        GoogleSignManager.Instance.Init();
+        if(PlayerPrefs.GetInt("ServiceConsent")!=1)
+        {
+            UI_StartManager.instance.ShowConsnetUI();
+        }
+        else
+        {
+            GoogleSignManager.Instance.Init();
+
+        }
     }
 
     void InstantiateAsset(GameObject obj, Transform parent)

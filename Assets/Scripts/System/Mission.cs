@@ -9,12 +9,6 @@ public class Mission
     [XmlAttribute("id")]
     public int id;
 
-    [XmlElement("Name")]
-    public string name;
-
-    [XmlElement("Description")]
-    public string description;
-
     [XmlElement("MissionType")]
     public int missionType;
 

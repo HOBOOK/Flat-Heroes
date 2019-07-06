@@ -131,7 +131,7 @@ public static class SkillSystem
     }
     public static string GetUserSkillDescription(Skill skillData, HeroData heroData)
     {
-        return string.Format("\r\n{0}\r\n\r\n<color='yellow'>스킬공격력 : {1}</color>  <color='cyan'>소모에너지 : {2}</color><color='yellow'>(-{3})</color>",GetSkill(skillData.id).description,GetUserSkillPower(skillData.id), HeroSystem.GetHeroNeedEnergy(heroData.id,skillData),HeroSystem.GetHeroStatusSkillEnergy(ref heroData));
+        return string.Format("\r\n{0}\r\n\r\n<color='yellow'>{1} : {2}</color>  <color='cyan'>{3} : {4}</color><color='yellow'>(-{5})</color>", GetSkillDescription(GetSkill(skillData.id).id),LocalizationManager.GetText("SkillAttack"),GetUserSkillPower(skillData.id), LocalizationManager.GetText("SkillUseEnergy"), HeroSystem.GetHeroNeedEnergy(heroData.id,skillData),HeroSystem.GetHeroStatusSkillEnergy(ref heroData));
     }
     public static List<Skill> GetPlayerSkillList()
     {
@@ -172,7 +172,7 @@ public static class SkillSystem
     {
         string des = "";
 
-        des = string.Format("Lv{0} {1}\r\n\r\n{2}\r\n<color='yellow'><size='20'>스킬 공격력 : {3}\r\n재사용 대기시간 : {4}초</size></color>", GetUserSkillLevel(skill.id), skill.name, skill.description,GetUserSkillPower(skill.id),skill.energy);
+        des = string.Format("Lv{0} {1}\r\n\r\n{2}\r\n<color='yellow'><size='20'>{3} : {4}\r\n{5} : {6}초</size></color>", GetUserSkillLevel(skill.id), GetSkillName(skill.id), GetSkillDescription(skill.id), LocalizationManager.GetText("SkillAttack"), GetUserSkillPower(skill.id), LocalizationManager.GetText("SkillDelay"), skill.energy);
 
         return des;
     }
@@ -200,6 +200,27 @@ public static class SkillSystem
             return true;
         else
             return false;
+    }
+    public static string GetSkillName(int id)
+    {
+        string str = null;
+        Skill skill = skills.Find(x => x.id == id || x.id.Equals(id));
+        if(skill!=null)
+        {
+            str = LocalizationManager.GetText("SkillName" + skill.id);
+;        }
+        return str;
+    }
+    public static string GetSkillDescription(int id)
+    {
+        string str = null;
+        Skill skill = skills.Find(x => x.id == id || x.id.Equals(id));
+        if (skill != null)
+        {
+            str = LocalizationManager.GetText("SkillDescription" + skill.id);
+            ;
+        }
+        return str;
     }
     #endregion
 

@@ -2,8 +2,6 @@
 <MissionCollection>
   <Missions>
     <Mission id="1">
-      <Name>일일퀘스트1</Name>
-      <Description>몬스터 10마리 처치</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_001</Image>
@@ -17,8 +15,6 @@
       <RewardItemCount>10000</RewardItemCount>
     </Mission>
     <Mission id="2">
-      <Name>일일퀘스트2</Name>
-      <Description>몬스터 15마리 처치</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_002</Image>
@@ -32,29 +28,25 @@
       <RewardItemCount>10</RewardItemCount>
     </Mission>
         <Mission id="3">
-      <Name>일일퀘스트3</Name>
-      <Description>몬스터 7마리 처치</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_003</Image>
                 <Point>0</Point>
-                <ClearPoint>8</ClearPoint>
+                <ClearPoint>20</ClearPoint>
                 <ClearType>0</ClearType>
       <Clear>false</Clear>
       <Enable>false</Enable>
                 <RewardType>1</RewardType>
       <RewardItemId>0</RewardItemId>
-      <RewardItemCount>5</RewardItemCount>
+      <RewardItemCount>10</RewardItemCount>
     </Mission>
         <Mission id="4">
-      <Name>일일퀘스트4</Name>
-      <Description>스테이지 3번 클리어</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_004</Image>
                 <Point>0</Point>
-                <ClearPoint>3</ClearPoint>
-                <ClearType>1</ClearType>
+                <ClearPoint>25</ClearPoint>
+                <ClearType>0</ClearType>
       <Clear>false</Clear>
       <Enable>false</Enable>
                 <RewardType>1</RewardType>
@@ -62,23 +54,19 @@
       <RewardItemCount>12</RewardItemCount>
     </Mission>
       <Mission id="5">
-      <Name>일일퀘스트5</Name>
-      <Description>스테이지 2번 클리어</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_005</Image>
               <Point>0</Point>
-              <ClearPoint>2</ClearPoint>
-              <ClearType>1</ClearType>
+              <ClearPoint>30</ClearPoint>
+              <ClearType>0</ClearType>
       <Clear>false</Clear>
       <Enable>false</Enable>
               <RewardType>0</RewardType>
       <RewardItemId>0</RewardItemId>
-      <RewardItemCount>10000</RewardItemCount>
+      <RewardItemCount>20000</RewardItemCount>
     </Mission>
     <Mission id="6">
-      <Name>일일퀘스트6</Name>
-      <Description>스테이지 5번 클리어</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_006</Image>
@@ -92,14 +80,12 @@
       <RewardItemCount>20000</RewardItemCount>
     </Mission>
     <Mission id="7">
-      <Name>일일퀘스트7</Name>
-      <Description>몬스터 50마리 처치</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_007</Image>
             <Point>0</Point>
-            <ClearPoint>50</ClearPoint>
-            <ClearType>0</ClearType>
+            <ClearPoint>7</ClearPoint>
+            <ClearType>1</ClearType>
       <Clear>false</Clear>
       <Enable>false</Enable>
             <RewardType>1</RewardType>
@@ -107,14 +93,12 @@
       <RewardItemCount>15</RewardItemCount>
     </Mission>
     <Mission id="8">
-      <Name>일일퀘스트8</Name>
-      <Description>몬스터 20마리 처치</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_008</Image>
             <Point>0</Point>
-            <ClearPoint>20</ClearPoint>
-            <ClearType>0</ClearType>
+            <ClearPoint>3</ClearPoint>
+            <ClearType>1</ClearType>
       <Clear>false</Clear>
       <Enable>false</Enable>
             <RewardType>1</RewardType>
@@ -122,13 +106,11 @@
       <RewardItemCount>10</RewardItemCount>
     </Mission>
     <Mission id="9">
-      <Name>일일퀘스트9</Name>
-      <Description>스테이지3번 클리어</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_009</Image>
             <Point>0</Point>
-            <ClearPoint>3</ClearPoint>
+            <ClearPoint>4</ClearPoint>
             <ClearType>1</ClearType>
       <Clear>false</Clear>
       <Enable>false</Enable>
@@ -137,14 +119,12 @@
       <RewardItemCount>12</RewardItemCount>
     </Mission>
     <Mission id="10">
-      <Name>일일퀘스트10</Name>
-      <Description>몬스터 80마리 처치</Description>
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_010</Image>
             <Point>0</Point>
-            <ClearPoint>80</ClearPoint>
-            <ClearType>0</ClearType>
+            <ClearPoint>10</ClearPoint>
+            <ClearType>1</ClearType>
       <Clear>false</Clear>
       <Enable>false</Enable>
             <RewardType>1</RewardType>
@@ -152,8 +132,6 @@
       <RewardItemCount>20</RewardItemCount>
     </Mission>
     <Mission id="101">
-      <Name>주퀘스트1</Name>
-      <Description>스테이지 1-1을 클리어</Description>
       <MissionType>1</MissionType>
       <MissionLevel>1</MissionLevel>
       <Image>Mission/mission_101</Image>
@@ -167,8 +145,6 @@
       <RewardItemCount>1</RewardItemCount>
     </Mission>
       <Mission id="102">
-      <Name>주퀘스트2</Name>
-      <Description>스테이지 1-2을 클리어</Description>
       <MissionType>1</MissionType>
       <MissionLevel>1</MissionLevel>
       <Image>Mission/mission_101</Image>
@@ -182,8 +158,6 @@
       <RewardItemCount>1</RewardItemCount>
     </Mission>
     <Mission id="201">
-      <Name>반복퀘스트1</Name>
-      <Description>반복퀘스트 1입니다.</Description>
       <MissionType>2</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_201</Image>
@@ -197,8 +171,6 @@
       <RewardItemCount>1</RewardItemCount>
     </Mission>
         <Mission id="202">
-      <Name>반복퀘스트2</Name>
-      <Description>반복퀘스트 2입니다.</Description>
       <MissionType>2</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_202</Image>
@@ -212,8 +184,6 @@
       <RewardItemCount>1</RewardItemCount>
     </Mission>
     <Mission id="203">
-      <Name>반복퀘스트3</Name>
-      <Description>반복퀘스트 3입니다.</Description>
       <MissionType>2</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_203</Image>
@@ -227,8 +197,6 @@
       <RewardItemCount>1</RewardItemCount>
     </Mission>
     <Mission id="204">
-      <Name>반복퀘스트4</Name>
-      <Description>반복퀘스트 4입니다.</Description>
       <MissionType>2</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_204</Image>
@@ -242,8 +210,6 @@
       <RewardItemCount>1</RewardItemCount>
     </Mission>
     <Mission id="205">
-      <Name>반복퀘스트5</Name>
-      <Description>반복퀘스트 5입니다.</Description>
       <MissionType>2</MissionType>
       <MissionLevel>0</MissionLevel>
       <Image>Mission/mission_205</Image>

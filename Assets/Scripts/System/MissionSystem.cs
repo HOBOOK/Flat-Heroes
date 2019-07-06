@@ -140,6 +140,27 @@ public class MissionSystem
         return missions;
     }
 
+    public static string GetMissionName(int id)
+    {
+        string name = null;
+        Mission mission = missions.Find(x => x.id == id || x.id.Equals(id));
+        if (mission != null)
+        {
+            name = LocalizationManager.GetText("MissionName" + id);
+        }
+        return name;
+    }
+    public static string GetMissionDescription(int id)
+    {
+        string des = null;
+        Mission mission = missions.Find(x => x.id == id || x.id.Equals(id));
+        if (mission != null)
+        {
+            des = LocalizationManager.GetText("MissionDescription" + id);
+        }
+        return des;
+    }
+
     // 퀘스트 클리어 타입 0:몬스터 처치 1:스테이지 클리어
 
     public static void AddClearPoint(ClearType clearType)
@@ -148,7 +169,6 @@ public class MissionSystem
         for(var i = 0; i < currentMissions.Count; i++)
         {
             currentMissions[i].point += 1;
-            Debugging.Log(string.Format("{0} 미션 포인트 ({1}/{2})",currentMissions[i].name,currentMissions[i].point,currentMissions[i].clearPoint));
             if(currentMissions[i].point>=currentMissions[i].clearPoint)
             {
                 currentMissions[i].enable = true;

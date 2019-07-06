@@ -17,7 +17,8 @@ public class GoogleSignManager : MonoBehaviour
 {
     #region 변수
     public string webClientId = "312752000151-4iql3uip7a39ujqejem5st36e03v2gki.apps.googleusercontent.com";
-
+    private static GameObject ProgressCircle;
+    public GameObject ProgressCirclePrefab;
     public static GoogleSignManager Instance;
     private static CloudDataInfo gameInfo;
     private GoogleSignInConfiguration configuration;
@@ -32,6 +33,12 @@ public class GoogleSignManager : MonoBehaviour
             RequestEmail=true,
             RequestIdToken = true
         };
+        if(ProgressCircle==null&&ProgressCirclePrefab!=null)
+        {
+            ProgressCircle = Instantiate(ProgressCirclePrefab, this.transform);
+            ProgressCircle.transform.localPosition = Vector3.zero;
+            ProgressCircle.gameObject.SetActive(false);
+        }
         CheckFirebaseDependencies();
     }
     #region 인증
@@ -159,6 +166,7 @@ public class GoogleSignManager : MonoBehaviour
     private static string DBidToken;
     public static string playerName;
     public static string localId;
+    public static string lastSaveTime;
 
     public static bool isServerLogin;
     public static fsSerializer serializer = new fsSerializer();
@@ -170,7 +178,11 @@ public class GoogleSignManager : MonoBehaviour
     {
         gameInfo.SetDataToCloud(localId, playerName, DateTime.Now.ToString());
         Debug.LogFormat("localID : {0}, playerName : {1} 데이터베이스 저장 \r\n idToken = {2}",gameInfo.localId, gameInfo.name,DBidToken);
-        RestClient.Put(databaseURL + "/" + localId + ".json", gameInfo).Done(x=>
+        RestClient.Put(databaseURL + "/" + localId + ".json", gameInfo).Progress(p=>
+        {
+            ShowProgressCircle(p);
+            Debug.Log("데이터 DB에 쓰는중 .. " + p);
+        }).Done(x=>
         {
             Debug.Log("성공적으로 DB 저장완료");
         });
@@ -181,7 +193,11 @@ public class GoogleSignManager : MonoBehaviour
         InitUserData(localId, playerName);
         gameInfo.SetDataToCloud(localId, playerName, DateTime.Now.ToString());
         Debug.LogFormat("localID : {0}, playerName : {1} 데이터베이스 저장 \r\n idToken = {2}", gameInfo.localId, gameInfo.name, DBidToken);
-        RestClient.Put(databaseURL + "/" + localId + ".json", gameInfo).Done(x =>
+        RestClient.Put(databaseURL + "/" + localId + ".json", gameInfo).Progress(p=>
+        {
+            ShowProgressCircle(p);
+            Debug.Log("데이터 DB에 쓰는중 .. " + p);
+        }).Done(x =>
         {
             Debug.Log("성공적으로 DB 생성완료");
             SaveData();
@@ -190,10 +206,16 @@ public class GoogleSignManager : MonoBehaviour
     }
     public static void GetFromDatabase()
     {
-        RestClient.Get<CloudDataInfo>(databaseURL + "/" + localId + ".json").Done(response =>
+        RestClient.Get<CloudDataInfo>(databaseURL + "/" + localId + ".json").Progress(p=>
         {
+            ShowProgressCircle(p);
+            Debug.Log("DB에서 데이터 받는중 .. " + p);
+        }).Done(response =>
+        {
+
             Debugging.Log(localId + " 의 DB가져오기 성공 > " + response.name);
             gameInfo = response;
+            lastSaveTime = response.lastSavedTime;
             SetCloudDataToLocal();
             UI_StartManager.instance.ShowStartUI(true);
         });
@@ -270,16 +292,19 @@ public class GoogleSignManager : MonoBehaviour
     // 데이터 저장
     public static void SaveData()
     {
-        if(isServerLogin)
+        if (isServerLogin)
         {
             SaveSystem.SavePlayer();
             gameInfo.SetDataToCloud(localId, playerName, DateTime.Now.ToString());
+            lastSaveTime = DateTime.Now.ToString();
             SaveLocalData(gameInfo);
             PostToDatabase();
         }
         else
         {
+            ShowProgressCircle(10);
             SaveSystem.SavePlayer();
+            ShowProgressCircle(100);
         }
     }
 
@@ -374,6 +399,19 @@ public class GoogleSignManager : MonoBehaviour
         }
         Debug.Log(Application.persistentDataPath + "/CloudDataInfo.bin 파일이 로컬에 없음");
         return false;
+    }
+
+    public static void ShowProgressCircle(float p)
+    {
+
+        if(p>0 && p<100)
+        {
+            ProgressCircle.gameObject.SetActive(true);
+        }
+        else
+        {
+            ProgressCircle.gameObject.SetActive(false);
+        }
     }
 
     #region 최초생성

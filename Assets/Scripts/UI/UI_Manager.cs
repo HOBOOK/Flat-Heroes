@@ -35,7 +35,6 @@ public class UI_Manager : MonoBehaviour
         //    Camera.main.GetComponent<BlurOptimized>().enabled = false;
         if (Common.GetSceneCompareTo(Common.SCENE.MAIN))
             ShowTitle();
-
     }
     public void ShowTitle()
     {

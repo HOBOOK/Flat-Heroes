@@ -24,7 +24,7 @@
       <Energy>55</Energy>
     </Skill>
     <Skill id="3">
-      <Name>살라만다</Name>
+      <Name>살라만더</Name>
       <Description>불꽃들을 소환하여 전방에 무차별 폭격을 가한다.</Description>
       <Image>Skill/skill_003</Image>
       <Level>1</Level>

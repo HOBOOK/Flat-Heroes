@@ -8,6 +8,10 @@ SkillLevel=Skill Lv
 HeroLevel=Hero Lv
 UserLevel=Player Lv
 UnlockLevel=Unlock Lv
+SkillAttack=Skill Attack
+SkillDelay=Delay
+SkillUserEnergy=Energy
+Sec=Sec
 
 TipText1=If you delete the game at guest login, the data will disappear.
 TipText2=The stronger the enemy is, the more likely it is to get good equipment.
@@ -148,10 +152,12 @@ configSoundBgmTitle=Bgm
 configSoundEffectTitle=Effect
 configLangTitle=Language
 configCloudTitle=Data Save
-configCloudSaveTitle=Cloud Save
-configCloudLoadTitle=Cloud Load
+configNoSyncWarningMessage=(!) Google sync is not enabled. The data will be flushed when the app is deleted.
+configPassiveSaveButton=Passive Save
+configSyncButton=Google Sync
 configPlayerIdText=Player ID
 configGameVersionText=Version
+configLastSaveTimeText=* Last Saved Time :
 
 alertTitle=Alert
 alertYes=Yes
@@ -175,6 +181,8 @@ alertGetMessage5=You can use the hero!
 alertSellText=Sell
 alertUnableSellMessage=can not be sold.
 alertUnableSellMessage2=It is mounted or there is an error in the number.
+
+warningTitle=Warning
 
 stagePauseTitle=Pause
 stagePauseInformation=The game is paused. To continue, click Continue.
@@ -214,6 +222,43 @@ StageDescription7=All of us have fallen. But we have last hope.
 
 MapWarningMessage=It's not accessible yet.
 
+MissionName1=Sweep 1
+MissionDescription1=
+MissionName2=Sweep 2
+MissionDescription2=
+MissionName3=Sweep 3
+MissionDescription3=
+MissionName4=Sweep 4
+MissionDescription4=
+MissionName5=Sweep 5
+MissionDescription5=
+MissionName6=Destroy Summoned Stone 1
+MissionDescription6=
+MissionName7=Destroy Summoned Stone 2
+MissionDescription7=
+MissionName8=Destroy Summoned Stone 3
+MissionDescription8=
+MissionName9=Destroy Summoned Stone 4
+MissionDescription9=
+MissionName10=Destroy Summoned Stone 5
+MissionDescription10=
+
+MissionName101=Achievements 1
+MissionDescription101=
+MissionName102=Achievements 2
+MissionDescription102=
+
+MissionName201=Repeat 1
+MissionDescription201=
+MissionName202=Repeat 2
+MissionDescription202=
+MissionName203=Repeat 3
+MissionDescription203=
+MissionName204=Repeat 4
+MissionDescription204=
+MissionName205=Repeat 5
+MissionDescription205=
+
 AbilityName1=The power of fire
 AbilityDescription1=Increases the Atk of heroes.
 AbilityName2=The power of the earth
@@ -228,6 +273,48 @@ AbilityName6=The power of the wind
 AbilityDescription6=Increases the Move of heroes.
 AbilityName7=The power of darkness
 AbilityDescription7=Increases the Energy of heroes.
+
+SkillName1=Wind cut
+SkillDescription1=Attacks multiple enemies in front.
+SkillName2=Fire in the hole
+SkillDescription2=Throw an explosive grenade into the enemy in 3 seconds.
+SkillName3=Salamander
+SkillDescription3=Summons the flames and bombard them in front of them.
+SkillName4=Quick Sniping
+SkillDescription4=Fires arrows in a row at great speed.
+SkillName5=Smoke Knife
+SkillDescription5=Throw a dagger and attack it by moving back to enemy.
+SkillName6=sixth skill
+SkillDescription6=
+SkillName7=7
+SkillDescription7=
+SkillName8=8
+SkillDescription8=
+SkillName9=9
+SkillDescription9=
+SkillName10=10
+SkillDescription10=
+SkillName11=11
+SkillDescription11=
+SkillName12=12
+SkillDescription12=
+SkillName13=13
+SkillDescription13=
+SkillName14=14
+SkillDescription14=
+SkillName15=15
+SkillDescription15=
+
+SkillName101=Despair
+SkillDescription101=Makes a powerful explosive attack on the enemy.
+SkillName102=Hope
+SkillDescription102=Recovers all ally's stamina.
+SkillName103=Regret
+SkillDescription103=Resurrects one of your friends at random.
+SkillName104=Conceit
+SkillDescription104=Make all enemies stun for 2 seconds.
+SkillName105=Sacrifice
+SkillDescription105=Sacrifice a friendly ally to reduce the strength of the ally's most powerful enemy's sacrifice.
 
 HerosName101=Dong Hae
 HerosDescription101=A warrior who came from the east country.
