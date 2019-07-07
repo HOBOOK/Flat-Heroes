@@ -34,14 +34,13 @@ public class HeroSkillManager : MonoBehaviour
             int heroIndex = i;
             if (User.stageHeros[i] == 0)
             {
-                Debugging.Log(this.transform.GetChild(heroIndex).name);
                 this.transform.GetChild(heroIndex).gameObject.SetActive(false);
                 this.transform.GetChild(heroIndex).gameObject.SetActive(false);
                 skillNeedEnergys.Add(0);
             }
             else
             {
-                this.transform.GetChild(heroIndex).transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = HeroSystem.GetHeroThumbnail(User.stageHeros[heroIndex]);
+                HeroProfileSet(heroIndex);
                 skillImage = this.transform.GetChild(heroIndex).GetChild(0).GetChild(0).GetComponent<Image>();
                 skillEnergyText = this.transform.GetChild(heroIndex).GetComponentInChildren<Button>().GetComponentInChildren<Text>();
                 int skillId = HeroSystem.GetUserHero(User.stageHeros[heroIndex]).skill;
@@ -62,6 +61,11 @@ public class HeroSkillManager : MonoBehaviour
             }
             skillbuttons.Add(this.transform.GetChild(heroIndex).gameObject);
         }
+    }
+    public void HeroProfileSet(int index)
+    {
+        this.transform.GetChild(index).GetChild(1).GetComponent<UI_StageHeroProfile>().SetHero(StageManagement.instance.GetStageHero(User.stageHeros[index]));
+        this.transform.GetChild(index).GetChild(1).GetChild(0).GetComponent<Image>().sprite = HeroSystem.GetHeroThumbnail(User.stageHeros[index]);
     }
     private void Update()
     {

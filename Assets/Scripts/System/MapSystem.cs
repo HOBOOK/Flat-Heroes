@@ -44,6 +44,22 @@ public static class MapSystem
         }
     }
 
+    public static bool IsAbleBossMode()
+    {
+        Map bossModeMap = userMaps.Find(x => x.id > 10);
+        if(bossModeMap!=null)
+        {
+            return true;
+        }
+        return false;
+    }
+    public static bool IsAbleInfinityMode()
+    {
+        if (User.level >= 10)
+            return true;
+        return false;
+    }
+
     #region 유저맵정보
     public static Map GetUserMap(int id)
     {
@@ -180,6 +196,11 @@ public static class MapSystem
         string name = LocalizationManager.GetText("StageDescription" + (index + 1));
         return name;
     }
+    public static Sprite GetStageThumbnailImage(int stageNumber)
+    {
+        Sprite mapSprite = Resources.Load<Sprite>("Maps/Stage" + stageNumber+"/stage"+stageNumber+"_background");
+        return mapSprite;
+    }
     public static void SetMapSprite(int stageNumber, ref Transform MapTransform)
     {
         Sprite[] mapSprite = Resources.LoadAll<Sprite>("Maps/Stage" + stageNumber);
@@ -205,6 +226,7 @@ public static class MapSystem
         }
         Debugging.Log(stageNumber + " 스테이지 맵이미지 로드 완료");
     }
+    
     #endregion
 
 

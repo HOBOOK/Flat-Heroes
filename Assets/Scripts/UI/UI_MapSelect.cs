@@ -35,6 +35,7 @@ public class UI_MapSelect : MonoBehaviour
     GameObject hero;
     // 선택된 맵 ID
     int currentMapId;
+    
 
     #endregion
 
@@ -82,7 +83,7 @@ public class UI_MapSelect : MonoBehaviour
             // 추가된 스테이지 슬롯에맞는 맵 노드 추가
             for (var j = 0; j < ContentView.transform.childCount; j++)
             {
-                ContentView.transform.GetChild(j).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(string.Format("Maps/Stage{0}/stage{0}_thumbnail", (j + 1)));
+                ContentView.transform.GetChild(j).GetChild(1).GetChild(0).GetComponent<Image>().sprite = MapSystem.GetStageThumbnailImage(j + 1);
 
                 mapSlotList.Add(ContentView.transform.GetChild(j).gameObject);
                 foreach(var mapNode in MapSystem.GetMapNode(j+1))
@@ -134,11 +135,11 @@ public class UI_MapSelect : MonoBehaviour
             {
                 if(i> currentStageIndex)
                 {
-                    mapSlotList[i].transform.GetChild(1).gameObject.SetActive(true);
+                    mapSlotList[i].transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
                 }
                 else
                 {
-                    mapSlotList[i].transform.GetChild(1).gameObject.SetActive(false);
+                    mapSlotList[i].transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
                 }
             }
             // 찾은 스테이지 정보를 뷰로 보여줌

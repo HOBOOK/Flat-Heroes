@@ -22,7 +22,11 @@ public class Castle : MonoBehaviour
     bool isUnBeat;
     bool isShake;
     public bool isGod;
+    public bool isPlayerCastle;
     Vector3 firstPos;
+
+    GameObject shieldEffect;
+    GameObject auraEffect;
     private void Awake()
     {
         maxHp = hp;
@@ -31,37 +35,21 @@ public class Castle : MonoBehaviour
     }
     void Start()
     {
-        Common.hitTargetObject = this.gameObject;
-        GUI_Manager.instance.OpenHpUI(this.gameObject);
         firstPos = this.transform.position;
-        SetSpawnMonster();
-        FirstSpawn();
-        SetEffect();
-        StartCoroutine("Spawn");
-    }
-    void SetEffect()
-    {
-        GameObject shieldEffect = EffectPool.Instance.PopFromPool("ShieldYellow", this.transform);
-        shieldEffect.transform.position = transform.position;
-        shieldEffect.gameObject.SetActive(true);
-        GameObject auraEffect = EffectPool.Instance.PopFromPool("MagicAuraYellow", this.transform);
-        auraEffect.transform.position = transform.position;
-        auraEffect.gameObject.SetActive(true);
-    }
-    void SetSpawnMonster()
-    {
-        SpawnEnemy spawnEnemy1 = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(501), 1);
-        spawnEnemys.Add(spawnEnemy1);
-        SpawnEnemy spawnEnemy2 = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(502), 1);
-        spawnEnemys.Add(spawnEnemy2);
-        SpawnEnemy spawnEnemy3 = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(503), 1);
-        spawnEnemys.Add(spawnEnemy3);
-        SpawnEnemy spawnEnemy4 = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(504), 1);
-        spawnEnemys.Add(spawnEnemy4);
-        SpawnEnemy spawnEnemy5 = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(505), 1);
-        spawnEnemys.Add(spawnEnemy5);
-        SpawnEnemy spawnEnemy6 = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(506), 1);
-        spawnEnemys.Add(spawnEnemy6);
+        if (isPlayerCastle)
+        {
+            Common.allyTargetObject = this.gameObject;
+            SetEffect();
+        }
+        else
+        {
+            Common.hitTargetObject = this.gameObject;
+            SetSpawnMonster();
+            FirstSpawn();
+            SetEffect();
+            StartCoroutine("Spawn");
+        }
+        GUI_Manager.instance.OpenHpUI(this.gameObject);
     }
     private void Update()
     {
@@ -70,22 +58,59 @@ public class Castle : MonoBehaviour
             StateUpdate();
         }
     }
+    private void OnDisable()
+    {
+        OffEffect();
+    }
     void StateUpdate()
     {
-        if(hp<=0)
+        if (hp <= 0)
         {
             isDead = true;
+            OffEffect();
             StopAllCoroutines();
             StartCoroutine("CastleExplosionEffect");
         }
-        else
+        if (!isPlayerCastle)
         {
-            drainEnergyTime += Time.deltaTime;
-            if(drainEnergyTime>5.0f)
+            if(hp>0)
             {
-                StageManagement.instance.DrainStageEnergy();
-                drainEnergyTime = 0;
+                drainEnergyTime += Time.deltaTime;
+                if (drainEnergyTime > 5.0f)
+                {
+                    StageManagement.instance.DrainStageEnergy();
+                    drainEnergyTime = 0;
+                }
             }
+        }
+    }
+    void SetEffect()
+    {
+        shieldEffect = EffectPool.Instance.PopFromPool("ShieldYellow", this.transform);
+        shieldEffect.transform.position = transform.position;
+        shieldEffect.gameObject.SetActive(true);
+        auraEffect = EffectPool.Instance.PopFromPool("MagicAuraYellow", this.transform);
+        auraEffect.transform.position = transform.position;
+        auraEffect.gameObject.SetActive(true);
+    }
+    void OffEffect()
+    {
+        if(shieldEffect!=null)
+        {
+            EffectPool.Instance.PushToPool("ShieldYellow",shieldEffect);
+        }
+        if (auraEffect != null)
+        {
+            EffectPool.Instance.PushToPool("MagicAuraYellow", auraEffect);
+        }
+    }
+    void SetSpawnMonster()
+    {
+
+        foreach (var mon in HeroSystem.GetStageMonster(StageManagement.instance.stageInfo.stageNumber))
+        {
+            SpawnEnemy spawnEnemy = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(mon.id), 1);
+            spawnEnemys.Add(spawnEnemy);
         }
     }
     void FirstSpawn()
@@ -248,7 +273,10 @@ public class Castle : MonoBehaviour
             effect.SetActive(true);
             yield return new WaitForSeconds(0.2f);
         }
-        StageManagement.instance.StageClear();
+        if (isPlayerCastle)
+            StageManagement.instance.StageFail();
+        else
+            StageManagement.instance.StageClear();
         this.gameObject.SetActive(false);
         yield return null;
     }
@@ -280,15 +308,15 @@ public class Castle : MonoBehaviour
         {
             try
             {
-                if (collision.gameObject.CompareTag("bullet") && !isUnBeat && collision.GetComponent<bulletController>() != null && collision.GetComponent<bulletController>().isAlly && collision.GetComponent<bulletController>().Target.GetInstanceID() == this.transform.GetInstanceID())
+                if (collision.gameObject.CompareTag("bullet") && !isUnBeat && collision.GetComponent<bulletController>() != null && collision.GetComponent<bulletController>().isAlly != isPlayerCastle && collision.GetComponent<bulletController>().Target.GetInstanceID() == this.transform.GetInstanceID())
                 {
                     collision.GetComponent<bulletController>().BulletStand(this.transform);
                 }
-                if (collision.gameObject.CompareTag("arrow") && !isUnBeat && collision.GetComponent<arrowController>() != null && collision.GetComponent<arrowController>().isAlly && !collision.GetComponent<arrowController>().isStand && collision.GetComponent<arrowController>().target.transform.GetInstanceID() == this.transform.GetInstanceID())
+                if (collision.gameObject.CompareTag("arrow") && !isUnBeat && collision.GetComponent<arrowController>() != null && collision.GetComponent<arrowController>().isAlly != isPlayerCastle && !collision.GetComponent<arrowController>().isStand && collision.GetComponent<arrowController>().target.transform.GetInstanceID() == this.transform.GetInstanceID())
                 {
                     collision.GetComponent<arrowController>().ArrowStand(this.transform);
                 }
-                if (collision.gameObject.layer == 9 && collision.GetComponent<Collider2D>()!=null&& collision.isTrigger && !isUnBeat && collision.GetComponentInParent<Hero>() != null && collision.GetComponentInParent<Hero>().isPlayerHero && collision.GetComponentInParent<Hero>().target.transform.GetInstanceID() == this.transform.GetInstanceID())
+                if (collision.gameObject.layer == 9 && collision.GetComponent<Collider2D>()!=null&& collision.isTrigger && !isUnBeat && collision.GetComponentInParent<Hero>() != null && collision.GetComponentInParent<Hero>().isPlayerHero!=isPlayerCastle && collision.GetComponentInParent<Hero>().target.transform.GetInstanceID() == this.transform.GetInstanceID())
                 {
                     Hitted(collision, collision.GetComponentInParent<Hero>().Damage(), 3f, 3f);
                 }

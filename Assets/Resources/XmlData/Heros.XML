@@ -205,7 +205,7 @@
       <Enable>false</Enable>
       <Type>1</Type>
       <Description>???</Description>
-      <Level>9</Level>
+      <Level>13</Level>
       <Exp>0</Exp>
       <Value>0</Value>
       <Strength>23</Strength>
@@ -223,7 +223,7 @@
       <Enable>false</Enable>
       <Type>1</Type>
       <Description>???</Description>
-      <Level>9</Level>
+      <Level>12</Level>
       <Exp>0</Exp>
       <Value>0</Value>
       <Strength>25</Strength>
@@ -241,7 +241,7 @@
       <Enable>false</Enable>
       <Type>1</Type>
       <Description>???</Description>
-      <Level>10</Level>
+      <Level>11</Level>
       <Exp>0</Exp>
       <Value>0</Value>
       <Strength>30</Strength>
@@ -277,7 +277,7 @@
       <Enable>false</Enable>
       <Type>1</Type>
       <Description>???</Description>
-      <Level>1</Level>
+      <Level>2</Level>
       <Exp>0</Exp>
       <Value>0</Value>
       <Strength>10</Strength>
@@ -295,7 +295,7 @@
       <Enable>false</Enable>
       <Type>1</Type>
       <Description>???</Description>
-      <Level>1</Level>
+      <Level>3</Level>
       <Exp>0</Exp>
       <Value>0</Value>
       <Strength>10</Strength>

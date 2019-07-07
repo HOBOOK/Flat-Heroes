@@ -36,6 +36,13 @@ public class LocalizationManager
         }
         return txt;
     }
+    public static void RedrawLanguage()
+    {
+        foreach (var txt in GameObject.FindObjectsOfType<LocalizationText>())
+        {
+            txt.ReDraw();
+        }
+    }
 
     public static void LoadLanguage(string lang=null)
     {
@@ -66,6 +73,7 @@ public class LocalizationManager
                 Fields.Add(key, value);
             }
         }
+        RedrawLanguage();
         Debugging.Log(lang + " 매니저에서 언어변경완료");
     }
 

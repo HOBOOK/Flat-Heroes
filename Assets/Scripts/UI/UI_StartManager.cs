@@ -47,7 +47,6 @@ public class UI_StartManager : MonoBehaviour
 
     public void ShowStartUI(bool isServerLogin)
     {
-        LocalizationManager.LoadLanguage(User.language);
         DownloadUI.gameObject.SetActive(false);
         StartAbleUI.gameObject.SetActive(true);
 

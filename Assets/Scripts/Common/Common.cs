@@ -206,6 +206,7 @@ public class Common : MonoBehaviour
     public static bool isBlackUpDown;
 
     public static GameObject hitTargetObject;
+    public static GameObject allyTargetObject;
 
     public static int looMinus(int hp, int amount)
     {

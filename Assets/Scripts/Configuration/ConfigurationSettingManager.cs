@@ -76,14 +76,7 @@ public class ConfigurationSettingManager : MonoBehaviour
                 btn.transform.GetChild(0).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
             }
         }
-        RedrawText();
-    }
-    void RedrawText()
-    {
-        foreach (var txt in GameObject.FindObjectsOfType<LocalizationText>())
-        {
-            txt.ReDraw();
-        }
+        LocalizationManager.RedrawLanguage();
     }
 
     public void OnLanguageButtonClick(string lang)

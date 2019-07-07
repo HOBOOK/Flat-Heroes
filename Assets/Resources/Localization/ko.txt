@@ -10,7 +10,7 @@ UserLevel=유저레벨
 UnlockLevel=해제레벨
 SkillAttack=스킬 공격력
 SkillDelay=재사용 대기시간
-SkillUserEnergy=소모에너지
+SkillUseEnergy=소모에너지
 Sec=초
 
 TipText1=게스트 로그인시 게임을 삭제할 경우 데이터가 사라집니다.
@@ -21,12 +21,12 @@ AssetBundleDownText=플랫월드에 필요한 플랫데이터 서버로부터 �
 AssetBundleLoadText=플랫데이터를 플랫월드에 구성중...
 
 startTabText=화면을 탭하면 게임이 시작됩니다.
-startTabWarningMessage=(!) 서버에 연동되어있는 데이터가 없습니다.
+startTabWarningMessage=(!) 게스트 로그인은 앱 삭제시 데이터가 모두 삭제됩니다.
 startTabGuestButton=게스트 로그인
 startTabGoogleButton=구글 로그인
 
 lobbyTitle=로비
-stageTitleMainType1=플랫 에너지를 흡수하는 구조물 파괴.
+stageTitleMainType1=소환석을 파괴.
 stageTitleMainType2=모든 적을 섬멸.
 stageTitleMainType3=보스 격퇴.
 stageTitleInfinity=가능할 때까지 모든적을 섬멸.
@@ -86,6 +86,8 @@ modeSelectTitle=전투선택
 modeMain=메인 전투
 modeInfinity=끝없는 전투
 modeBoss=보스 전투
+modeWarningMessage1=(!) 유저레벨 10
+modeWarningMessage2=(!) 스테이지 1 완료
 
 mapSelectTitle=맵선택
 mapSelectButton=전투준비
@@ -178,6 +180,7 @@ alertGetMessage2=플레이어 스킬 잠금이 해제되었습니다!
 alertGetMessage3=아이템을 획득하였습니다.
 alertGetMessage4=개를 획득하였습니다.
 alertGetMessage5=영웅을 획득하였습니다.
+alertGetMessage6=모드가 해제되었습니다!
 alertSellText=판매
 alertUnableSellMessage=은(는) 현재 판매할 수 없습니다.
 alertUnableSellMessage2=장착중이거나 아이템의 개수에 오류가 있습니다.

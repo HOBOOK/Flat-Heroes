@@ -21,7 +21,6 @@ public class GameManagement : MonoBehaviour
     }
     private void Start()
     {
-
         HeroSystem.LoadHero();
         SkillSystem.LoadSkill();
         AbilitySystem.LoadAbility();

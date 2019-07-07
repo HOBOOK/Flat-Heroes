@@ -377,6 +377,29 @@ public static class HeroSystem
         }
         return chat;
     }
+    public static float GetHeroResurrectionTime(int id, float addTime)
+    {
+        float time = 0.0f;
+        HeroData hero = userHeros.Find(x => x.id == id || x.id.Equals(id));
+        if(hero!=null)
+        {
+            time = 10 + (hero.level * 2) + addTime;
+        }
+        return time;
+    }
+    public static int GetStageSlotIndex(int id)
+    {
+        int index = 0;
+        for(var i = 0; i<User.stageHeros.Length; i++)
+        {
+            if(User.stageHeros[i]==id)
+            {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
     #endregion
 
     #region 전체히어로정보
@@ -421,6 +444,11 @@ public static class HeroSystem
     public static List<HeroData> GetMonsters()
     {
         return heros.FindAll(x => x.id > 500 && x.id < 1000);
+    }
+    public static List<HeroData> GetStageMonster(int stageNumber)
+    {
+        List<HeroData> allMonsters = GetMonsters().FindAll(x=>x.level<stageNumber*10&&x.level>=(stageNumber-1)*10);
+        return allMonsters;
     }
     #endregion
 

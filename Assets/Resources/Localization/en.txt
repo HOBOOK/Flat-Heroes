@@ -10,7 +10,7 @@ UserLevel=Player Lv
 UnlockLevel=Unlock Lv
 SkillAttack=Skill Attack
 SkillDelay=Delay
-SkillUserEnergy=Energy
+SkillUseEnergy=Energy
 Sec=Sec
 
 TipText1=If you delete the game at guest login, the data will disappear.
@@ -21,12 +21,12 @@ AssetBundleDownText=Flat data required for 'Flat World' is being downloaded from
 AssetBundleLoadText=Configuring flat data in 'Flat World'...
 
 startTabText=Tab to Start.
-startTabWarningMessage=(!) No data is stored in Server.
+startTabWarningMessage=(!) Guest logins will delete all data when you delete the app.
 startTabGuestButton=Guest Login
 startTabGoogleButton=Google Login
 
 lobbyTitle=Lobby
-stageTitleMainType1=Structure destruction absorbing flat energy.
+stageTitleMainType1=Destory summoner.
 stageTitleMainType2=Destroy all enemies.
 stageTitleMainType3=Boss repulsion.
 stageTitleInfinity=Destroy all enemies until it is possible.
@@ -86,6 +86,8 @@ modeSelectTitle=Mode
 modeMain=Main Battle
 modeInfinity=Infinity Battle
 modeBoss=Boss Battle
+modeWarningMessage1=(!) Player Level 10
+modeWarningMessage2=(!) Stage 1 Clear
 
 mapSelectTitle=Map
 mapSelectButton=Select
@@ -178,6 +180,7 @@ alertGetMessage2=Player skill unlocked!
 alertGetMessage3=You have earned the item.
 alertGetMessage4=was acquired.
 alertGetMessage5=You can use the hero!
+alertGetMessage6=Mode is off!
 alertSellText=Sell
 alertUnableSellMessage=can not be sold.
 alertUnableSellMessage2=It is mounted or there is an error in the number.

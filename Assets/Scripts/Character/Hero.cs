@@ -54,6 +54,7 @@ public class Hero : MonoBehaviour
     List<GameObject> allys = new List<GameObject>();
     public GameObject weaponPoint;
     public GameObject attackPoint;
+    public GameObject stageHeroProfileUI;
     GameObject hpUI;
     //Vector3
     Vector3 firstPos = Vector3.zero;
@@ -334,14 +335,32 @@ public class Hero : MonoBehaviour
                         }
                     }
                 }
-                //else if (target == Common.hitTargetObject && enemys.Count > 0)
-                //{
-                //    target = null;
-                //}
+            }
+            else
+            {
+                if (target == null && enemys.Count < 1)
+                {
+                    enemys = Common.FindAlly();
+
+                    // 캐슬타겟
+                    if (Common.allyTargetObject != null)
+                    {
+                        if (Common.allyTargetObject.GetComponent<Castle>() != null && !Common.allyTargetObject.GetComponent<Castle>().isDead)
+                        {
+                            target = Common.allyTargetObject;
+                        }
+                    }
+                }
             }
             if(Common.hitTargetObject==null&&Common.stageModeType==Common.StageModeType.Main)
             {
                 if (!isPlayerHero)
+                    status.hp = 0;
+                target = null;
+            }
+            else if(Common.allyTargetObject==null && Common.stageModeType == Common.StageModeType.Main)
+            {
+                if (isPlayerHero)
                     status.hp = 0;
                 target = null;
             }
@@ -352,12 +371,11 @@ public class Hero : MonoBehaviour
         if(!TargetDeadCheck(enemy))
         {
             enemys.Add(enemy);
-            if (target == Common.hitTargetObject)
+            if (target == Common.hitTargetObject||target==Common.allyTargetObject)
             {
                 target = null;
                 FindEnemys(true);
             }
-
         }
     }
     bool TargetAliveCheck(GameObject obj)
@@ -745,6 +763,10 @@ public class Hero : MonoBehaviour
             else
             {
                 StageManagement.instance.SetDPoint();
+                if(stageHeroProfileUI!=null)
+                {
+                    stageHeroProfileUI.GetComponent<UI_StageHeroProfile>().ShowResurrectionTime();
+                }
             }
             if(id<1000)
                 StartCoroutine("TransparentSprite");
@@ -1990,6 +2012,9 @@ public class Hero : MonoBehaviour
         public float moveSpeed;
         [Range(0, 10)]
         public float knockbackResist;
+        [Range(10, 120)]
+        public float resurrectionTime;
+
         public Status() { level = 1; exp = 0;}
 
         public void SetHeroStatus(ref HeroData data)
@@ -2005,6 +2030,7 @@ public class Hero : MonoBehaviour
             this.moveSpeed = Mathf.Clamp(HeroSystem.GetHeroStatusMoveSpeed(ref data)*0.01f,0.1f,4f);
             this.knockbackResist = HeroSystem.GetHeroStatusKnockbackResist(ref data);
             this.skillEnegry = 20 - HeroSystem.GetHeroStatusSkillEnergy(ref data);
+            this.resurrectionTime = HeroSystem.GetHeroResurrectionTime(data.id, 0);
         }
     }
 

@@ -18,6 +18,8 @@ public class StageManagement : MonoBehaviour
     private static int dPoint;
     private static int MonsterCount;
     public Common.StageModeType stageModeType;
+    List<Hero> stageHeros = new List<Hero>();
+    
 
     public Transform CastlePoint;
     public Transform BossPoint;
@@ -72,6 +74,22 @@ public class StageManagement : MonoBehaviour
         CharactersManager.instance.SetStagePositionHeros();
         StartCoroutine("StageStartEffect");
     }
+    public Hero GetStageHero(int id)
+    {
+        stageHeros = new List<Hero>();
+        foreach (var hero in Common.FindAlly())
+        {
+            stageHeros.Add(hero.GetComponent<Hero>());
+        }
+        foreach (var hero in stageHeros)
+        {
+            if(hero.id==id||hero.id.Equals(id))
+            {
+                return hero;
+            }
+        }
+        return null;
+    }
     private void InitCastle()
     {
         GameObject castle = Instantiate(PrefabsDatabaseManager.instance.GetCastlePrefab(1), CastlePoint);
@@ -111,19 +129,6 @@ public class StageManagement : MonoBehaviour
         {
             stageInfo.stageTime += Time.fixedUnscaledDeltaTime;
             EnergyUpdate();
-
-            checkingHeroAliveTime += Time.fixedUnscaledDeltaTime;
-            if (checkingHeroAliveTime > 1.0f)
-            {
-                if (CheckHerosEnd())
-                {
-                    HeroSystem.SaveHeros(Common.FindAlly());
-                    UI_Manager.instance.OpenEndGamePanel(false);
-                    isEndGame = true;
-                    isStartGame = false;
-                }
-                checkingHeroAliveTime = 0.0f;
-            }
         }
     }
     private void InfinityModeUpdate()
@@ -138,10 +143,7 @@ public class StageManagement : MonoBehaviour
             {
                 if (CheckHerosEnd())
                 {
-                    HeroSystem.SaveHeros(Common.FindStageHeros());
-                    UI_Manager.instance.OpenEndGamePanel(true);
-                    isEndGame = true;
-                    isStartGame = false;
+                    StageFail();
                 }
                 checkingHeroAliveTime = 0.0f;
             }
@@ -189,6 +191,13 @@ public class StageManagement : MonoBehaviour
         else
             return false;
     }
+    private bool CheckAllyCastleEnd()
+    {
+        if (Common.allyTargetObject == null)
+            return true;
+        else
+            return false;
+    }
     public string GetStageTime()
     {
         return string.Format("{0:00}:{1:00}", (int)(stageInfo.stageTime % 3600 / 60), (int)(stageInfo.stageTime % 3600 % 60));
@@ -214,6 +223,19 @@ public class StageManagement : MonoBehaviour
     public void StageClear()
     {
         StartCoroutine("StageClearing");
+    }
+    public void StageFail()
+    {
+        StartCoroutine("StageFailing");
+    }
+    public IEnumerator StageFailing()
+    {
+        HeroSystem.SaveHeros(Common.FindAlly());
+        isEndGame = true;
+        isStartGame = false;
+        GoogleSignManager.SaveData();
+        UI_Manager.instance.OpenEndGamePanel(false);
+        yield return null;
     }
 
     public IEnumerator StageClearing()
@@ -258,7 +280,11 @@ public class StageManagement : MonoBehaviour
     }
     public void DrainStageEnergy()
     {
-        stageInfo.stageEnergy -= MonsterCount*3;
+        int drainEnergy = stageInfo.mapNumber;
+        if (stageInfo.stageEnergy - drainEnergy < 0)
+            stageInfo.stageEnergy = 0;
+        else
+            stageInfo.stageEnergy -= drainEnergy;
     }
 
     public bool IsSkillAble(int skillenergy)
