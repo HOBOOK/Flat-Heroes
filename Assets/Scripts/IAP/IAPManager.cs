@@ -8,21 +8,23 @@ public class IAPManager : MonoBehaviour, IStoreListener
 {
 	static IStoreController storeController = null;
 	static string[] sProductIds;
-
-	[SerializeField] Text txtCoin;
 	int nCoin;
-
-	[SerializeField] Text txtLog;
+    public static IAPManager instance;
+    public int buyItemId;
 
 	void Awake()
 	{
         if (storeController == null)
 		{
-			sProductIds = new string[] { "coin_1000", "coin_5000" };
+			sProductIds = new string[] { "9001", "9002","9003","9004","9005","9006","9011" };
 			InitStore();
 		}
+        if (instance == null)
+            instance = this;
 		nCoin = 0;
-	}
+        buyItemId = 0;
+
+    }
 
 	void InitStore()
 	{
@@ -36,25 +38,37 @@ public class IAPManager : MonoBehaviour, IStoreListener
 	void IStoreListener.OnInitialized(IStoreController controller, IExtensionProvider extensions)
 	{
 		storeController = controller;
-		txtLog.text = "결제 기능 초기화 완료";
-		Debug.Log(txtLog.text);
+		Debug.Log("결제기능 초기화");
 	}
 
 	void IStoreListener.OnInitializeFailed(InitializationFailureReason error)
 	{
-		txtLog.text = "OnInitializeFailed" + error;
-		Debug.Log(txtLog.text);
+		Debug.Log("OnInitializeFailed" + error);
     }
 
-	public void OnBtnPurchaseClicked(int index)
+	public void OnBtnPurchaseClicked(int itemId)
 	{
 		if (storeController == null)
 		{
-			txtLog.text = "구매 실패 : 결제 기능 초기화 실패";
-			Debug.Log(txtLog.text);
+			Debug.Log("구매 실패 : 결제 기능 초기화 실패");
         }
 		else
-			storeController.InitiatePurchase(sProductIds[index]);
+        {
+            buyItemId = itemId;
+            int index = -1;
+            for(var i = 0; i < sProductIds.Length; i++)
+            {
+                if(sProductIds[i].Equals(buyItemId)||sProductIds[i]==buyItemId.ToString())
+                {
+                    index = i;
+                    break;
+                }
+            }
+            if (index != -1)
+                storeController.InitiatePurchase(sProductIds[index]);
+            else
+                Debug.Log("구매 실패 : 결제 상품 존재하지 않음");
+        }
 	}
 
 	PurchaseProcessingResult IStoreListener.ProcessPurchase(PurchaseEventArgs e)
@@ -76,15 +90,24 @@ public class IAPManager : MonoBehaviour, IStoreListener
 		if (isSuccess)
 		{
 			Debug.Log("구매 완료");
-			if (e.purchasedProduct.definition.id.Equals(sProductIds[0]))
-				AddCoin(1000);
-			else if (e.purchasedProduct.definition.id.Equals(sProductIds[1]))
-				AddCoin(5000);
-		}
+            if (e.purchasedProduct.definition.id.Equals(sProductIds[0]))
+                SuccessPurchase(buyItemId);
+            else if (e.purchasedProduct.definition.id.Equals(sProductIds[1]))
+                SuccessPurchase(buyItemId);
+            else if (e.purchasedProduct.definition.id.Equals(sProductIds[2]))
+                SuccessPurchase(buyItemId);
+            else if (e.purchasedProduct.definition.id.Equals(sProductIds[3]))
+                SuccessPurchase(buyItemId);
+            else if (e.purchasedProduct.definition.id.Equals(sProductIds[4]))
+                SuccessPurchase(buyItemId);
+            else if (e.purchasedProduct.definition.id.Equals(sProductIds[5]))
+                SuccessPurchase(buyItemId);
+            else if (e.purchasedProduct.definition.id.Equals(sProductIds[6]))
+                SuccessPurchase(buyItemId);
+        }
 		else
 		{
-			txtLog.text = "구매 실패 : 비정상 결제";
-            Debug.Log(txtLog.text);
+            Debug.Log("구매 실패 : 비정상 결제");
 		}
 
 		return PurchaseProcessingResult.Complete;
@@ -94,17 +117,19 @@ public class IAPManager : MonoBehaviour, IStoreListener
 	{
 		if (!error.Equals(PurchaseFailureReason.UserCancelled))
 		{
-			txtLog.text = "구매 실패 : " + error;
-			Debug.Log(txtLog.text);
+			Debug.Log("구매 실패 : " + error);
 		}
 	}
 
-	void AddCoin(int value)
-	{
-		txtLog.text = "AddCoin : " + value;
-		Debug.Log(txtLog.text);
-		nCoin += value;
-		txtCoin.text = "Coin : " + nCoin.ToString("N0");
+    void SuccessPurchase(int buyItemId)
+    {
+        if (buyItemId > 9000)
+            ItemSystem.SetObtainMoney(buyItemId);
+        else
+            ItemSystem.SetObtainItem(buyItemId);
+        Item id = ItemSystem.GetItem(buyItemId);
+        GoogleSignManager.SaveData();
+        UI_Manager.instance.ShowGetAlert(id.image, string.Format("<color='yellow'>{0}</color> {1}", ItemSystem.GetItemName(id.id), LocalizationManager.GetText("alertGetMessage3")));
     }
 }
 

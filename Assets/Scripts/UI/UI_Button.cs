@@ -154,7 +154,7 @@ public class UI_Button : MonoBehaviour
                 break;
             case PaymentType.Advertisement:
                 OnButtonEffectSound();
-                UI_Manager.instance.PopupGetGacha(gachaType);
+                UnityAdsManager.instance.ShowRewardedAd(UnityAdsManager.RewardItems.SpeicalGachaOne);
                 break;
         }
 
@@ -228,11 +228,12 @@ public class UI_Button : MonoBehaviour
                 }
                 else
                 {
-                    OnButtonEffectSound();
                     UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.blackCrystal, paymentAmount);
                 }
                 break;
             case PaymentType.Cash:
+                OnButtonEffectSound();
+                IAPManager.instance.OnBtnPurchaseClicked(buyItemId);
                 Debugging.Log(buyItemId + " 현금거래 버튼 입니다. >> Cash : " + paymentAmount);
                 break;
         }
@@ -274,7 +275,8 @@ public class UI_Button : MonoBehaviour
                 break;
             case PaymentType.Cash:
                 OnButtonEffectSound();
-                GoogleSignManager.SaveData();
+                OnButtonEffectSound();
+                IAPManager.instance.OnBtnPurchaseClicked(buyItemId);
                 Debugging.Log(characterId + " 현금거래 버튼 입니다. >> Cash : " + paymentAmount);
                 break;
         }
