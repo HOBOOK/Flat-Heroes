@@ -121,9 +121,16 @@ public class UI_Button : MonoBehaviour
     }
     void GachaStart()
     {
-        if (!isCheckAlertOn)
+        if(paymentType!=PaymentType.Advertisement)
         {
-            StartCoroutine(CheckingGachaAlert((int)paymentType));
+            if (!isCheckAlertOn)
+            {
+                StartCoroutine(CheckingGachaAlert((int)paymentType));
+            }
+        }
+        else
+        {
+            GachaProcessing();
         }
     }
     void GachaProcessing()

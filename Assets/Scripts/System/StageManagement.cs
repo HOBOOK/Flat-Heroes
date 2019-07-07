@@ -235,7 +235,7 @@ public class StageManagement : MonoBehaviour
         isStartGame = false;
         GoogleSignManager.SaveData();
         UI_Manager.instance.OpenEndGamePanel(false);
-        UnityAdsManager.instance.ShowRewardedAd(0);
+        GoogleAdMobManager.instance.OnBtnViewAdClicked();
         yield return null;
     }
 
@@ -256,7 +256,7 @@ public class StageManagement : MonoBehaviour
         }
         GoogleSignManager.SaveData();
         UI_Manager.instance.OpenEndGamePanel(true);
-        UnityAdsManager.instance.ShowRewardedAd(0);
+        GoogleAdMobManager.instance.OnBtnViewAdClicked();
         yield return null;
     }
     public UserInfo GetUserInfo()
