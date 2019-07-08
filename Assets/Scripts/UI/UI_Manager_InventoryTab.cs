@@ -11,12 +11,14 @@ public class UI_Manager_InventoryTab : MonoBehaviour
 
     public GameObject ItemSlotPrefab;
     public GameObject PanelItemInfo;
+    public GameObject PanelEvolutionPanel;
     public GameObject ScrollContentView;
     Image itemInfoImage;
     Text itemInfoName;
     Text itemInfoDescription;
     Button itemSellButton;
     GameObject isEquipPanel;
+    Item selectedItem;
 
     private void Awake()
     {
@@ -62,6 +64,8 @@ public class UI_Manager_InventoryTab : MonoBehaviour
                 itemSlots[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.BC;
                 isEquipPanel = itemSlots[i].transform.GetChild(0).GetChild(2).gameObject;
                 isEquipPanel.SetActive(false);
+                itemSlots[i].transform.GetChild(3).gameObject.SetActive(false);
+                itemSlots[i].transform.GetChild(4).gameObject.SetActive(false);
                 if (i < items.Count && i < itemSlots.Length)
                 {
                     itemSlots[i].Item = items[i];
@@ -87,28 +91,37 @@ public class UI_Manager_InventoryTab : MonoBehaviour
     private void OnEnable()
     {
         RefreshUI();
+        PanelItemInfo.SetActive(true);
+        PanelEvolutionPanel.SetActive(false);
     }
 
     public void OnItemSlotClick(int index)
     {
         SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_button_default);
-        if (itemSlots[index]!=null)
+        if (itemSlots[index]!=null&& PanelItemInfo.activeSelf)
         {
-            itemInfoImage.sprite = ItemSystem.GetItemImage(itemSlots[index].Item.id);
-            itemInfoName.text = ItemSystem.GetItemName(itemSlots[index].Item.id);
-            itemInfoName.color = ItemColor.GetItemColor(itemSlots[index].Item.itemClass);
-            itemInfoDescription.text = ItemSystem.GetEquipmentItemDescription(itemSlots[index].Item);
-            itemInfoImage.enabled = true;
-            itemInfoName.enabled = true;
-            itemInfoDescription.enabled = true;
-            itemSellButton.enabled = true;
-            itemSellButton.GetComponent<Image>().enabled = true;
-            itemSellButton.GetComponentInChildren<Text>().enabled = true;
-            itemSellButton.GetComponent<UI_Button>().callBackScript = this.gameObject;
-            itemSellButton.GetComponent<UI_Button>().sellItemId = itemSlots[index].Item.customId;
-            if (itemInfoImage.GetComponent<AiryUIAnimatedElement>() != null)
-                itemInfoImage.GetComponent<AiryUIAnimatedElement>().ShowElement();
-            Debugging.Log(index + " 아이템 슬롯버튼 클릭");
+            if(!PanelItemInfo.activeSelf)
+            {
+                selectedItem = itemSlots[index].Item;
+            }
+            else
+            {
+                selectedItem = itemSlots[index].Item;
+                itemInfoImage.sprite = ItemSystem.GetItemImage(itemSlots[index].Item.id);
+                itemInfoName.text = ItemSystem.GetItemName(itemSlots[index].Item.id) + string.Format(" {0}", ItemSystem.GetIemClassName(itemSlots[index].Item.itemClass));
+                itemInfoName.color = ItemColor.GetItemColor(itemSlots[index].Item.itemClass);
+                itemInfoDescription.text = ItemSystem.GetEquipmentItemDescription(itemSlots[index].Item);
+                itemInfoImage.enabled = true;
+                itemInfoName.enabled = true;
+                itemInfoDescription.enabled = true;
+                itemSellButton.enabled = true;
+                itemSellButton.GetComponent<Image>().enabled = true;
+                itemSellButton.GetComponentInChildren<Text>().enabled = true;
+                if (itemInfoImage.GetComponent<AiryUIAnimatedElement>() != null)
+                    itemInfoImage.GetComponent<AiryUIAnimatedElement>().ShowElement();
+                Debugging.Log(index + " 아이템 슬롯버튼 클릭");
+            }
+
         }
     }
 
@@ -119,5 +132,125 @@ public class UI_Manager_InventoryTab : MonoBehaviour
         SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_button_default);
         items = null;
         RefreshUI((Common.OrderByType)type);
+    }
+
+    public void OnClickEvolutionButton()
+    {
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_button_default);
+        PanelItemInfo.gameObject.SetActive(false);
+        PanelEvolutionPanel.gameObject.SetActive(true);
+        PanelEvolutionPanel.GetComponent<UI_EvolutionItem>().OpenUI(selectedItem);
+        RefreshEvolutionUI();
+    }
+    public void OnItemSlotToEvolutionButton(Item item)
+    {
+        Debugging.Log("합성 재료 선택 > " + item.customId);
+        selectedItem = item;
+        PanelEvolutionPanel.GetComponent<UI_EvolutionItem>().AddMatItem(item);
+        RefreshEvolutionUI();
+    }
+    public void SetSelectedItem(Item itemSlot)
+    {
+        selectedItem = itemSlot;
+        itemInfoImage.sprite = ItemSystem.GetItemImage(itemSlot.id);
+        itemInfoName.text = ItemSystem.GetItemName(itemSlot.id) + string.Format(" {0}", ItemSystem.GetIemClassName(itemSlot.itemClass));
+        itemInfoName.color = ItemColor.GetItemColor(itemSlot.itemClass);
+        itemInfoDescription.text = ItemSystem.GetEquipmentItemDescription(itemSlot);
+        itemInfoImage.enabled = true;
+        itemInfoName.enabled = true;
+        itemInfoDescription.enabled = true;
+        itemSellButton.enabled = true;
+        itemSellButton.GetComponent<Image>().enabled = true;
+        itemSellButton.GetComponentInChildren<Text>().enabled = true;
+        if (itemInfoImage.GetComponent<AiryUIAnimatedElement>() != null)
+            itemInfoImage.GetComponent<AiryUIAnimatedElement>().ShowElement();
+        Debugging.Log(itemSlot.customId + " 아이템 슬롯버튼 클릭");
+    }
+
+    public void RefreshEvolutionUI()
+    {
+        items = ItemSystem.GetUserItems();
+        if (items != null)
+        {
+            for (int i = 0; i < itemSlots.Length; i++)
+            {
+                itemSlots[i].Item = null;
+                itemSlots[i].GetComponent<Button>().enabled = false;
+                itemSlots[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.BC;
+                isEquipPanel = itemSlots[i].transform.GetChild(0).GetChild(2).gameObject;
+                isEquipPanel.SetActive(false);
+                itemSlots[i].transform.GetChild(3).gameObject.SetActive(false);
+                itemSlots[i].transform.GetChild(4).gameObject.SetActive(false);
+                if (i < items.Count && i < itemSlots.Length)
+                {
+                    itemSlots[i].Item = items[i];
+                    itemSlots[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.GetItemColor(items[i].itemClass);
+                    itemSlots[i].transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(items[i].itemClass);
+                    itemSlots[i].GetComponent<Button>().enabled = true;
+                    if (items[i].equipCharacterId > 0)
+                        isEquipPanel.SetActive(true);
+                    int index = i;
+                    if (index < items.Count && index < itemSlots.Length)
+                    {
+                        itemSlots[i].GetComponent<Button>().onClick.RemoveAllListeners();
+                    }
+                    // Lock
+
+                    if(PanelEvolutionPanel.GetComponent<UI_EvolutionItem>().isEndEvolution)
+                    {
+                        if (itemSlots[i].Item.equipCharacterId != 0)
+                        {
+                            itemSlots[i].transform.GetChild(3).gameObject.SetActive(true);
+                            itemSlots[i].GetComponent<Button>().enabled = false;
+                        }
+                        else
+                        {
+                            itemSlots[i].transform.GetChild(3).gameObject.SetActive(false);
+                            itemSlots[i].GetComponent<Button>().enabled = true;
+                            itemSlots[i].GetComponent<Button>().onClick.RemoveAllListeners();
+                            itemSlots[i].GetComponent<Button>().onClick.AddListener(delegate
+                            {
+                                OnItemSlotToEvolutionButton(itemSlots[index].Item);
+                            });
+                        }
+                    }
+                    else
+                    {
+                        if (itemSlots[i].Item.id != selectedItem.id|| itemSlots[i].Item.equipCharacterId != 0)
+                        {
+                            itemSlots[i].transform.GetChild(3).gameObject.SetActive(true);
+                            itemSlots[i].GetComponent<Button>().enabled = false;
+                        }
+                        else
+                        {
+                            itemSlots[i].transform.GetChild(3).gameObject.SetActive(false);
+                            itemSlots[i].GetComponent<Button>().enabled = true;
+                            itemSlots[i].GetComponent<Button>().onClick.RemoveAllListeners();
+                            itemSlots[i].GetComponent<Button>().onClick.AddListener(delegate
+                            {
+                                OnItemSlotToEvolutionButton(itemSlots[index].Item);
+                            });
+
+                            // Select
+                            if (PanelEvolutionPanel.GetComponent<UI_EvolutionItem>().IsSelectedItem(itemSlots[index].Item))
+                            {
+                                itemSlots[i].transform.GetChild(4).gameObject.SetActive(true);
+                                itemSlots[i].GetComponent<Button>().enabled = false;
+                            }
+                            else
+                            {
+                                itemSlots[i].transform.GetChild(4).gameObject.SetActive(false);
+                                itemSlots[i].GetComponent<Button>().enabled = true;
+                                itemSlots[i].GetComponent<Button>().onClick.RemoveAllListeners();
+                                itemSlots[i].GetComponent<Button>().onClick.AddListener(delegate
+                                {
+                                    OnItemSlotToEvolutionButton(itemSlots[index].Item);
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

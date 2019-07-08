@@ -45,7 +45,7 @@ manageTab2OrderButton1=N\na\nm\ne
 manageTab2OrderButton2=C\nl\na\ns\ns
 manageTab2SellButton=S\ne\nl\nl
 manageTab2Equipped=Equipped
-manageTab2SellSingleButton=Sell
+manageTab2EvolutionButton=Evolution
 manageTab3=Player Ability
 manageTab3Information=Player abilities can increase the hero's abilities
 manageTab3AbilityTitle=Overall ability
@@ -411,44 +411,56 @@ HerosName1002=Knight Crow
 HerosDescription1002=null
 HerosChat1002=Caw! Caw..!
 
-ItemName1=Flat Sword
+ItemName1=Old Flat Sword
 ItemDescription1=It is a weapon used by apprentices.
+ItemName2=Normal Flat Sword
+ItemDescription2=It is a weapon used by apprentices.
+ItemName3=Solid Flat Sword
+ItemDescription3=It is a weapon used by apprentices.
+ItemName4=Rare Flat Sword
+ItemDescription4=It is a weapon used by apprentices.
+ItemName5=Superior Flat Sword
+ItemDescription5=It is a weapon used by apprentices.
+ItemName6=Perfect Flat Sword
+ItemDescription6=It is a weapon used by apprentices.
+ItemName7=Hero's Flat Sword
+ItemDescription7=It is a weapon used by apprentices.
 
-ItemName2=Hwan do
-ItemDescription2=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
+ItemName11=Hwan do
+ItemDescription11=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
 
-ItemName3=Black Hwan do
-ItemDescription3=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
+ItemName21=Black Hwan do
+ItemDescription21=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
 
-ItemName4=F-5
-ItemDescription4=A special bullet can be fired with a pistol that is mainly used by the mercenary.
+ItemName31=F-5
+ItemDescription31=A special bullet can be fired with a pistol that is mainly used by the mercenary.
 
-ItemName5=Flat Knife
-ItemDescription5=It is short and wielding dagger.
+ItemName41=Flat Knife
+ItemDescription41=It is short and wielding dagger.
 
-ItemName6=Cloth armor
-ItemDescription6=Lightweight and easy to wear armor.
+ItemName51=Cloth armor
+ItemDescription51=Lightweight and easy to wear armor.
 
-ItemName7=Iron armor
-ItemDescription7=It is a lightweight but sturdy armor.
+ItemName61=Iron armor
+ItemDescription61=It is a lightweight but sturdy armor.
 
-ItemName8=Hunter's Armor
-ItemDescription8=It is well-balanced armor.
+ItemName71=Hunter's Armor
+ItemDescription71=It is well-balanced armor.
 
-ItemName9=Round shield
-ItemDescription9=It is a round wooden shield.
+ItemName81=Round shield
+ItemDescription81=It is a round wooden shield.
 
-ItemName10=Guardian Shield
-ItemDescription10=Platinum shield with wings.
+ItemName91=Guardian Shield
+ItemDescription91=Platinum shield with wings.
 
-ItemName11=Hero's Armor
-ItemDescription11=It is the armor that the legendary hero wore.
+ItemName101=Hero's Armor
+ItemDescription101=It is the armor that the legendary hero wore.
 
-ItemName12=Wizard's Shoes
-ItemDescription12=It is a shoe with a sense of insignificance.
+ItemName111=Wizard's Shoes
+ItemDescription111=It is a shoe with a sense of insignificance.
 
-ItemName13=Wings of pure white
-ItemDescription13=It is a pure white wing.
+ItemName121=Wings of pure white
+ItemDescription121=It is a pure white wing.
 
 ItemName8001=Ability Scroll
 ItemDescription8001=It is an order book that can open the ability.

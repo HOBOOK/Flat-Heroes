@@ -644,6 +644,7 @@ GameObject:
   - component: {fileID: 9035664128700464588}
   - component: {fileID: 9035664128700464578}
   - component: {fileID: 9035664128700464579}
+  - component: {fileID: -4739409939250770370}
   m_Layer: 0
   m_Name: hpCastleUI
   m_TagString: Untagged
@@ -710,6 +711,20 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &-4739409939250770370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035664128700464589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5c03d1ab2959b428dd76bdc3041fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelHpTime: 0
+  target: {fileID: 0}
 --- !u!1 &9035664128705308738
 GameObject:
   m_ObjectHideFlags: 0

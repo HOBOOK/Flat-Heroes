@@ -25,6 +25,196 @@
     <Item id="2">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
+      <Name>완벽한 플랫소드</Name>
+      <Description>견습기사들이 사용하는 무기이다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>40</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>100</Value>
+      <Image>Equipment/equipment_001</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>100</DropRate>
+      <Class>2</Class>
+    </Item>
+    <Item id="2">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>완벽한 플랫소드</Name>
+      <Description>견습기사들이 사용하는 무기이다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>40</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>100</Value>
+      <Image>Equipment/equipment_001</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>100</DropRate>
+      <Class>2</Class>
+    </Item>
+    <Item id="2">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>플랫소드</Name>
+      <Description>견습기사들이 사용하는 무기이다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>40</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>100</Value>
+      <Image>Equipment/equipment_001</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>100</DropRate>
+      <Class>2</Class>
+    </Item>
+    <Item id="2">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>플랫소드</Name>
+      <Description>견습기사들이 사용하는 무기이다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>40</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>100</Value>
+      <Image>Equipment/equipment_001</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>100</DropRate>
+      <Class>2</Class>
+    </Item>
+    <Item id="3">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>플랫소드</Name>
+      <Description>견습기사들이 사용하는 무기이다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>40</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>100</Value>
+      <Image>Equipment/equipment_001</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>100</DropRate>
+      <Class>3</Class>
+    </Item>
+    <Item id="4">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>플랫소드</Name>
+      <Description>견습기사들이 사용하는 무기이다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>40</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>100</Value>
+      <Image>Equipment/equipment_001</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>100</DropRate>
+      <Class>4</Class>
+    </Item>
+    <Item id="5">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>플랫소드</Name>
+      <Description>견습기사들이 사용하는 무기이다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>40</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>100</Value>
+      <Image>Equipment/equipment_001</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>100</DropRate>
+      <Class>5</Class>
+    </Item>
+    <Item id="6">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>플랫소드</Name>
+      <Description>견습기사들이 사용하는 무기이다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>40</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>100</Value>
+      <Image>Equipment/equipment_001</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>100</DropRate>
+      <Class>6</Class>
+    </Item>
+    <Item id="7">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>플랫소드</Name>
+      <Description>견습기사들이 사용하는 무기이다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>40</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>100</Value>
+      <Image>Equipment/equipment_001</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>100</DropRate>
+      <Class>7</Class>
+    </Item>
+    
+    <Item id="11">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
       <Name>환도</Name>
       <Description>환도라고 불리는 동쪽나라의 전통무기이다. 끝이 날카롭게 휘어있다.</Description>
       <ItemType>0</ItemType>
@@ -43,7 +233,7 @@
       <DropRate>30</DropRate>
       <Class>3</Class>
     </Item>
-    <Item id="3">
+    <Item id="21">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
       <Name>흑환도</Name>
@@ -64,7 +254,7 @@
       <DropRate>5</DropRate>
       <Class>5</Class>
     </Item>
-    <Item id="4">
+    <Item id="31">
        <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
       <Name>F-5</Name>
@@ -85,7 +275,7 @@
       <DropRate>50</DropRate>
       <Class>2</Class>
     </Item>
-    <Item id="5">
+    <Item id="41">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
       <Name>플랫나이프</Name>
@@ -106,7 +296,7 @@
       <DropRate>100</DropRate>
       <Class>1</Class>
     </Item>
-    <Item id="6">
+    <Item id="51">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
       <Name>천갑옷</Name>
@@ -127,7 +317,7 @@
       <DropRate>50</DropRate>
       <Class>2</Class>
     </Item>
-    <Item id="7">
+    <Item id="61">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
       <Name>철갑옷</Name>
@@ -148,7 +338,7 @@
       <DropRate>30</DropRate>
       <Class>3</Class>
     </Item>
-    <Item id="8">
+    <Item id="71">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
       <Name>사냥꾼의 갑옷</Name>
@@ -169,7 +359,7 @@
       <DropRate>10</DropRate>
       <Class>4</Class>
     </Item>
-    <Item id="9">
+    <Item id="81">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
       <Name>동그란 방패</Name>
@@ -190,7 +380,7 @@
       <DropRate>100</DropRate>
       <Class>1</Class>
     </Item>
-    <Item id="10">
+    <Item id="91">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
       <Name>수호방패</Name>
@@ -211,7 +401,7 @@
       <DropRate>1</DropRate>
       <Class>6</Class>
     </Item>
-    <Item id="11">
+    <Item id="101">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
       <Name>영웅의 갑옷</Name>
@@ -232,7 +422,7 @@
       <DropRate>1</DropRate>
       <Class>7</Class>
     </Item>
-    <Item id="12">
+    <Item id="111">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
       <Name>마법사의 신발</Name>
@@ -253,7 +443,7 @@
       <DropRate>1</DropRate>
       <Class>5</Class>
     </Item>
-    <Item id="13">
+    <Item id="121">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
       <Name>순백의 날개</Name>

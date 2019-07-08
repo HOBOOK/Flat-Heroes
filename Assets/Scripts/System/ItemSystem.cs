@@ -392,7 +392,14 @@ public static class ItemSystem
         sb.Append("\r\n"+ItemSystem.GetItemDescription(item.id));
         return sb.ToString();
     }
-
+    public static int GetNextClassItemId(Item item)
+    {
+        if(items.Find(x=>x.id==(item.id+1)||x.id.Equals((item.id+1)))!=null&&item.itemClass<7)
+        {
+            return item.id + 1;
+        }
+        return -1;
+    }
     #endregion
 
     #region 전체아이템정보
@@ -477,6 +484,29 @@ public static class ItemSystem
             des = LocalizationManager.GetText("ItemDescription" + id);
         }
         return des;
+    }
+    public static string GetIemClassName(int classNumber)
+    {
+        switch(classNumber)
+        {
+            case 1:
+                return "(D)";
+            case 2:
+                return "(C)";
+            case 3:
+                return "(B)";
+            case 4:
+                return "(A)";
+            case 5:
+                return "(S)";
+            case 6:
+                return "(SS)";
+            case 7:
+                return "(SSS)";
+            case 8:
+                return "(Lengedary)";
+        }
+        return "";
     }
     #endregion
 

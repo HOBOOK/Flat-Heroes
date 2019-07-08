@@ -6,6 +6,10 @@ public class ItemColor
 {
     public static Color GetItemColor(int itemClass)
     {
+        if(itemClass==8)
+        {
+            return Legend;
+        }
         if(itemClass==7)
         {
             return SSS;
@@ -33,6 +37,13 @@ public class ItemColor
     }
 
     #region 아이템 클래스별 색상
+    public static Color Legend
+    {
+        get
+        {
+            return Color.black;
+        }
+    }
     public static Color SSS
     {
         get

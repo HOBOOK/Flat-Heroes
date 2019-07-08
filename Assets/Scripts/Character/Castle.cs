@@ -27,6 +27,7 @@ public class Castle : MonoBehaviour
 
     GameObject shieldEffect;
     GameObject auraEffect;
+    GameObject hpUI;
     private void Awake()
     {
         maxHp = hp;
@@ -49,7 +50,8 @@ public class Castle : MonoBehaviour
             SetEffect();
             StartCoroutine("Spawn");
         }
-        GUI_Manager.instance.OpenHpUI(this.gameObject);
+        //GUI_Manager.instance.OpenHpUI(this.gameObject);
+        OpenHpBar(isPlayerCastle);
     }
     private void Update()
     {
@@ -283,6 +285,7 @@ public class Castle : MonoBehaviour
     IEnumerator UnBeatTime(int dam)
     {
         SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.damage2);
+        ShowHpBar(dam);
         while (isUnBeat)
         {
             yield return new WaitForFixedUpdate();
@@ -328,6 +331,28 @@ public class Castle : MonoBehaviour
 
         }
     }
+
+    #region UI
+    private void OpenHpBar(bool isBlue = false)
+    {
+        hpUI = ObjectPool.Instance.PopFromPool("hpCastleUI");
+        hpUI.GetComponent<UI_castleHp>().OpenHpUI(this.gameObject, isBlue);
+        hpUI.gameObject.SetActive(true);
+    }
+    private void ShowHpBar(int dam = 0)
+    {
+        if (!isDead && hp > 0 && hpUI != null)
+        {
+            if (!hpUI.gameObject.activeSelf)
+            {
+                hpUI.GetComponent<UI_castleHp>().panelHpTime = 0;
+                hpUI.gameObject.SetActive(true);
+            }
+            if (dam > 0)
+                hpUI.GetComponent<UI_castleHp>().GetDamage(dam);
+        }
+    }
+    #endregion
 
     [Serializable]
     public class SpawnEnemy
