@@ -26,9 +26,13 @@ public class ItemColor
         {
             return A;
         }
-        else if(itemClass>1 && itemClass<4)
+        else if(itemClass==3)
         {
-            return BC;
+            return B;
+        }
+        else if(itemClass==2)
+        {
+            return C;
         }
         else
         {
@@ -41,7 +45,7 @@ public class ItemColor
     {
         get
         {
-            return Color.black;
+            return Color.blue;
         }
     }
     public static Color SSS
@@ -72,7 +76,14 @@ public class ItemColor
             return Color.green;
         }
     }
-    public static Color BC
+    public static Color B
+    {
+        get
+        {
+            return Color.cyan;
+        }
+    }
+    public static Color C
     {
         get
         {

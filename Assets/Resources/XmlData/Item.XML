@@ -19,54 +19,12 @@
       <Image>Equipment/equipment_001</Image>
       <Count>0</Count>
       <Enable>false</Enable>
-      <DropRate>100</DropRate>
+      <DropRate>200</DropRate>
       <Class>1</Class>
     </Item>
     <Item id="2">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
-      <Name>완벽한 플랫소드</Name>
-      <Description>견습기사들이 사용하는 무기이다.</Description>
-      <ItemType>0</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>40</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>100</Value>
-      <Image>Equipment/equipment_001</Image>
-      <Count>0</Count>
-      <Enable>false</Enable>
-      <DropRate>100</DropRate>
-      <Class>2</Class>
-    </Item>
-    <Item id="2">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>완벽한 플랫소드</Name>
-      <Description>견습기사들이 사용하는 무기이다.</Description>
-      <ItemType>0</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>40</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>100</Value>
-      <Image>Equipment/equipment_001</Image>
-      <Count>0</Count>
-      <Enable>false</Enable>
-      <DropRate>100</DropRate>
-      <Class>2</Class>
-    </Item>
-    <Item id="2">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
       <Name>플랫소드</Name>
       <Description>견습기사들이 사용하는 무기이다.</Description>
       <ItemType>0</ItemType>
@@ -78,32 +36,11 @@
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>100</Value>
+      <Value>300</Value>
       <Image>Equipment/equipment_001</Image>
       <Count>0</Count>
       <Enable>false</Enable>
-      <DropRate>100</DropRate>
-      <Class>2</Class>
-    </Item>
-    <Item id="2">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>플랫소드</Name>
-      <Description>견습기사들이 사용하는 무기이다.</Description>
-      <ItemType>0</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>40</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>100</Value>
-      <Image>Equipment/equipment_001</Image>
-      <Count>0</Count>
-      <Enable>false</Enable>
-      <DropRate>100</DropRate>
+      <DropRate>200</DropRate>
       <Class>2</Class>
     </Item>
     <Item id="3">
@@ -113,18 +50,18 @@
       <Description>견습기사들이 사용하는 무기이다.</Description>
       <ItemType>0</ItemType>
       <WeaponType>0</WeaponType>
-      <Attack>40</Attack>
+      <Attack>70</Attack>
       <Defence>0</Defence>
       <Hp>0</Hp>
       <Critical>0</Critical>
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>100</Value>
+      <Value>700</Value>
       <Image>Equipment/equipment_001</Image>
       <Count>0</Count>
       <Enable>false</Enable>
-      <DropRate>100</DropRate>
+      <DropRate>200</DropRate>
       <Class>3</Class>
     </Item>
     <Item id="4">
@@ -134,14 +71,14 @@
       <Description>견습기사들이 사용하는 무기이다.</Description>
       <ItemType>0</ItemType>
       <WeaponType>0</WeaponType>
-      <Attack>40</Attack>
+      <Attack>100</Attack>
       <Defence>0</Defence>
       <Hp>0</Hp>
       <Critical>0</Critical>
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>100</Value>
+      <Value>1500</Value>
       <Image>Equipment/equipment_001</Image>
       <Count>0</Count>
       <Enable>false</Enable>
@@ -155,14 +92,14 @@
       <Description>견습기사들이 사용하는 무기이다.</Description>
       <ItemType>0</ItemType>
       <WeaponType>0</WeaponType>
-      <Attack>40</Attack>
+      <Attack>140</Attack>
       <Defence>0</Defence>
       <Hp>0</Hp>
       <Critical>0</Critical>
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>100</Value>
+      <Value>5000</Value>
       <Image>Equipment/equipment_001</Image>
       <Count>0</Count>
       <Enable>false</Enable>
@@ -176,18 +113,18 @@
       <Description>견습기사들이 사용하는 무기이다.</Description>
       <ItemType>0</ItemType>
       <WeaponType>0</WeaponType>
-      <Attack>40</Attack>
+      <Attack>200</Attack>
       <Defence>0</Defence>
       <Hp>0</Hp>
       <Critical>0</Critical>
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>100</Value>
+      <Value>15000</Value>
       <Image>Equipment/equipment_001</Image>
       <Count>0</Count>
       <Enable>false</Enable>
-      <DropRate>100</DropRate>
+      <DropRate>10</DropRate>
       <Class>6</Class>
     </Item>
     <Item id="7">
@@ -197,19 +134,40 @@
       <Description>견습기사들이 사용하는 무기이다.</Description>
       <ItemType>0</ItemType>
       <WeaponType>0</WeaponType>
-      <Attack>40</Attack>
+      <Attack>320</Attack>
       <Defence>0</Defence>
       <Hp>0</Hp>
       <Critical>0</Critical>
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>100</Value>
+      <Value>100000</Value>
       <Image>Equipment/equipment_001</Image>
       <Count>0</Count>
       <Enable>false</Enable>
-      <DropRate>100</DropRate>
+      <DropRate>1</DropRate>
       <Class>7</Class>
+    </Item>
+    <Item id="8">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>플랫소드</Name>
+      <Description>견습기사들이 사용하는 무기이다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>480</Attack>
+      <Defence>0</Defence>
+      <Hp>200</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>10</AttackSpeed>
+      <MoveSpeed>10</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>500000</Value>
+      <Image>Equipment/equipment_001</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>0</DropRate>
+      <Class>8</Class>
     </Item>
     
     <Item id="11">

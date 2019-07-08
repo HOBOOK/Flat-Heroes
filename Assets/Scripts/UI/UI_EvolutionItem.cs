@@ -17,7 +17,10 @@ public class UI_EvolutionItem : MonoBehaviour
     public Item targetItem;
     public Item resultItem;
     public Button evolutionButton;
+    public Text evolutionInformationText;
     public bool isEndEvolution = false;
+    int paymentType;
+    int paymentAmount;
 
     Dictionary<int, Item> matItems = new Dictionary<int, Item>();
 
@@ -37,6 +40,10 @@ public class UI_EvolutionItem : MonoBehaviour
         matItems.Clear();
         matItems = new Dictionary<int, Item>();
 
+        if (targetItem.itemClass < 5)
+            paymentType = 0;
+        else
+            paymentType = 1;
         targetItemSlot.gameObject.SetActive(true);
         matItemSlotImage1.gameObject.SetActive(true);
         matItemSlotImage2.gameObject.SetActive(true);
@@ -102,6 +109,25 @@ public class UI_EvolutionItem : MonoBehaviour
                 });
             }
         }
+        int itemClass = targetItem.itemClass;
+        if (matItems.Count==2&&itemClass<8)
+        {
+            evolutionButton.gameObject.SetActive(true);
+            if(itemClass < 5)
+                paymentAmount = itemClass * itemClass* (300+(itemClass*itemClass*100));
+            else
+                paymentAmount = itemClass * itemClass * 2;
+
+            evolutionButton.GetComponentInChildren<Text>().text = Common.GetThousandCommaText(paymentAmount);
+            evolutionButton.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(Common.GetCoinCrystalEnergyImagePath(paymentType));
+
+            evolutionInformationText.gameObject.SetActive(false);
+        }
+        else
+        {
+            evolutionButton.gameObject.SetActive(false);
+            evolutionInformationText.gameObject.SetActive(true);
+        }
         if (parentPanel.GetComponent<UI_Manager_InventoryTab>() != null)
         {
             parentPanel.GetComponent<UI_Manager_InventoryTab>().RefreshEvolutionUI();
@@ -144,7 +170,7 @@ public class UI_EvolutionItem : MonoBehaviour
 
     IEnumerator CheckingAlert()
     {
-        var alertPanel = UI_Manager.instance.ShowNeedAlert(Common.GetCoinCrystalEnergyImagePath(0), string.Format("<color='yellow'>'{0}' <size='24'>x </size>{1}</color>  {2}", Common.GetCoinCrystalEnergyText(0), 1000, LocalizationManager.GetText("alertNeedMessage5")));
+        var alertPanel = UI_Manager.instance.ShowNeedAlert(Common.GetCoinCrystalEnergyImagePath(paymentType), string.Format("<color='yellow'>'{0}' <size='24'>x </size>{1}</color>  {2}", Common.GetCoinCrystalEnergyText(paymentType), paymentAmount, LocalizationManager.GetText("alertNeedMessage5")));
         while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
         {
             yield return new WaitForFixedUpdate();
@@ -152,7 +178,28 @@ public class UI_EvolutionItem : MonoBehaviour
         if (alertPanel.GetComponentInChildren<UI_CheckButton>().isResult)
         {
             UI_Manager.instance.ClosePopupAlertUI();
-            StartCoroutine("StartEvolution");
+            if(paymentType==0)
+            {
+                if(Common.PaymentCheck(ref User.coin, paymentAmount))
+                {
+                    StartCoroutine("StartEvolution");
+                }
+                else
+                {
+                    UI_Manager.instance.ShowNeedAlert(Common.GetCoinCrystalEnergyImagePath(paymentType), LocalizationManager.GetText("manageTab2EvolutionPaymentWarning1"));
+                }
+            }
+            else
+            {
+                if(Common.PaymentCheck(ref User.blackCrystal, paymentAmount))
+                {
+                    StartCoroutine("StartEvolution");
+                }
+                else
+                {
+                    UI_Manager.instance.ShowNeedAlert(Common.GetCoinCrystalEnergyImagePath(paymentType), LocalizationManager.GetText("manageTab2EvolutionPaymentWarning2"));
+                }
+            }
         }
         else
         {

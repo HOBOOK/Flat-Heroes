@@ -61,7 +61,7 @@ public class UI_Manager_InventoryTab : MonoBehaviour
             {
                 itemSlots[i].Item = null;
                 itemSlots[i].GetComponent<Button>().enabled = false;
-                itemSlots[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.BC;
+                itemSlots[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.C;
                 isEquipPanel = itemSlots[i].transform.GetChild(0).GetChild(2).gameObject;
                 isEquipPanel.SetActive(false);
                 itemSlots[i].transform.GetChild(3).gameObject.SetActive(false);
@@ -176,7 +176,7 @@ public class UI_Manager_InventoryTab : MonoBehaviour
             {
                 itemSlots[i].Item = null;
                 itemSlots[i].GetComponent<Button>().enabled = false;
-                itemSlots[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.BC;
+                itemSlots[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.C;
                 isEquipPanel = itemSlots[i].transform.GetChild(0).GetChild(2).gameObject;
                 isEquipPanel.SetActive(false);
                 itemSlots[i].transform.GetChild(3).gameObject.SetActive(false);

@@ -394,7 +394,7 @@ public static class ItemSystem
     }
     public static int GetNextClassItemId(Item item)
     {
-        if(items.Find(x=>x.id==(item.id+1)||x.id.Equals((item.id+1)))!=null&&item.itemClass<7)
+        if(items.Find(x=>x.id==(item.id+1)||x.id.Equals((item.id+1)))!=null&&item.itemClass<8)
         {
             return item.id + 1;
         }
