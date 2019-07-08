@@ -17,8 +17,8 @@ public class Boss : MonoBehaviour
             bossPrefabData = this.GetComponent<Hero>();
             maxHp = bossPrefabData.status.maxHp;
             hp = bossPrefabData.status.hp;
-            GUI_Manager.instance.OpenHpUI(this.gameObject);
         }
+        Common.hitTargetObject = this.gameObject;
     }
     private void Update()
     {

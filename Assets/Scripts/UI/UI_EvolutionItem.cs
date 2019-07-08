@@ -79,9 +79,35 @@ public class UI_EvolutionItem : MonoBehaviour
     void RefreshUI()
     {
         if (targetItem == null)
+        {
             targetItemSlot.sprite = ItemSystem.GetItemNoneImage();
+            evolutionButton.gameObject.SetActive(false);
+            evolutionInformationText.gameObject.SetActive(true);
+        }
         else
+        {
             targetItemSlot.sprite = ItemSystem.GetItemImage(targetItem.id);
+            int itemClass = targetItem.itemClass;
+            if (matItems.Count == 2 && itemClass < 8)
+            {
+                evolutionButton.gameObject.SetActive(true);
+                if (itemClass < 5)
+                    paymentAmount = itemClass * itemClass * (300 + (itemClass * itemClass * 100));
+                else
+                    paymentAmount = itemClass * itemClass * 2;
+
+                evolutionButton.GetComponentInChildren<Text>().text = Common.GetThousandCommaText(paymentAmount);
+                evolutionButton.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(Common.GetCoinCrystalEnergyImagePath(paymentType));
+
+                evolutionInformationText.gameObject.SetActive(false);
+            }
+            else
+            {
+                evolutionButton.gameObject.SetActive(false);
+                evolutionInformationText.gameObject.SetActive(true);
+            }
+        }
+
         if (resultItem == null)
             resultItemSlot.sprite = ItemSystem.GetItemNoneImage();
         else
@@ -108,25 +134,6 @@ public class UI_EvolutionItem : MonoBehaviour
                     RemoveMatItem(i);
                 });
             }
-        }
-        int itemClass = targetItem.itemClass;
-        if (matItems.Count==2&&itemClass<8)
-        {
-            evolutionButton.gameObject.SetActive(true);
-            if(itemClass < 5)
-                paymentAmount = itemClass * itemClass* (300+(itemClass*itemClass*100));
-            else
-                paymentAmount = itemClass * itemClass * 2;
-
-            evolutionButton.GetComponentInChildren<Text>().text = Common.GetThousandCommaText(paymentAmount);
-            evolutionButton.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(Common.GetCoinCrystalEnergyImagePath(paymentType));
-
-            evolutionInformationText.gameObject.SetActive(false);
-        }
-        else
-        {
-            evolutionButton.gameObject.SetActive(false);
-            evolutionInformationText.gameObject.SetActive(true);
         }
         if (parentPanel.GetComponent<UI_Manager_InventoryTab>() != null)
         {

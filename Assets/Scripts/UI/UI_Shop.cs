@@ -14,6 +14,7 @@ public class UI_Shop : MonoBehaviour
     Image slotItemImage;
     Image slotMoneyImage;
     GameObject BuyButton;
+    public GameObject detailButton;
 
     //정보창
     public GameObject ItemInfoView;
@@ -51,6 +52,7 @@ public class UI_Shop : MonoBehaviour
         infoItemValueText.text = "";
         ItemInfoView.SetActive(false);
         BuyButton.GetComponent<Button>().enabled = false;
+        detailButton.gameObject.SetActive(false);
     }
     void Start()
     {

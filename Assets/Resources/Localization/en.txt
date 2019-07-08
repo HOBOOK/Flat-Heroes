@@ -12,6 +12,8 @@ SkillAttack=Skill Attack
 SkillDelay=Delay
 SkillUseEnergy=Energy
 Sec=Sec
+Stun=Stunned
+Defence=Defence
 
 TipText1=If you delete the game at guest login, the data will disappear.
 TipText2=The stronger the enemy is, the more likely it is to get good equipment.
@@ -428,6 +430,8 @@ ItemName6=Perfect Flat Sword
 ItemDescription6=It is a weapon used by apprentices.
 ItemName7=Hero's Flat Sword
 ItemDescription7=It is a weapon used by apprentices.
+ItemName8=Legendary Flat Sword
+ItemDescription8=It is a weapon used by apprentices.
 
 ItemName11=Hwan do
 ItemDescription11=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.

@@ -101,7 +101,8 @@ public class StageManagement : MonoBehaviour
     }
     private void InitBoss()
     {
-        GameObject boss = Instantiate(PrefabsDatabaseManager.instance.GetMonsterPrefab(1002), BossPoint);
+        int bossId = 1000 + stageInfo.stageNumber;
+        GameObject boss = Instantiate(PrefabsDatabaseManager.instance.GetMonsterPrefab(bossId), BossPoint);
         if (boss != null)
         {
             boss.transform.position = BossPoint.position;

@@ -264,6 +264,10 @@ public class Castle : MonoBehaviour
     }
     public IEnumerator CastleExplosionEffect()
     {
+        if (isPlayerCastle)
+            Common.allyTargetObject = null;
+        else
+            Common.hitTargetObject = null;
         Camera.main.GetComponent<FollowCamera>().ChangeTarget(this.gameObject);
         Camera.main.GetComponent<CameraEffectHandler>().SetCameraSize(3.5f);
         yield return new WaitForSeconds(2.0f);

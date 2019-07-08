@@ -116,7 +116,7 @@
       <Description>아군 전체의 체력을 회복한다.</Description>
       <Image>Skill/skill_102</Image>
       <Level>1</Level>
-      <SkillType>0</SkillType>
+      <SkillType>1</SkillType>
       <TargetType>1</TargetType>
       <Power>100</Power>
       <AddPower>10</AddPower>

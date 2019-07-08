@@ -14,6 +14,8 @@ public class UI_ShopCharacter : MonoBehaviour
     Image slotItemImage;
     Image slotMoneyImage;
     GameObject BuyButton;
+    public Button detailButton;
+    public GameObject detailPanel;
 
     //정보창
     public GameObject ItemInfoView;
@@ -21,6 +23,7 @@ public class UI_ShopCharacter : MonoBehaviour
     Text infoItemNameText;
     Text infoItemDescriptionText;
     Text infoItemValueText;
+    HeroData selectedHeroData;
     #endregion
     private void Awake()
     {
@@ -51,6 +54,7 @@ public class UI_ShopCharacter : MonoBehaviour
         infoItemValueText.text = "";
         ItemInfoView.SetActive(false);
         BuyButton.GetComponent<Button>().enabled = false;
+        detailButton.gameObject.SetActive(true);
     }
     void Start()
     {
@@ -100,6 +104,11 @@ public class UI_ShopCharacter : MonoBehaviour
         infoItemValueText.text = "";
         ItemInfoView.SetActive(false);
         BuyButton.GetComponent<Button>().enabled = false;
+        detailButton.onClick.RemoveAllListeners();
+        detailButton.onClick.AddListener(delegate
+        {
+            OnHeroDetailClick();
+        });
     }
 
     public void OnItemSlotClick(Transform trans, HeroData heroData)
@@ -113,6 +122,7 @@ public class UI_ShopCharacter : MonoBehaviour
             else if (i.name.Equals("ItemValue"))
                 slotValueText = i;
         }
+        selectedHeroData = heroData;
         slotItemImage = trans.GetChild(0).GetChild(0).GetComponent<Image>();
         infoImage.sprite = slotItemImage.sprite;
         infoImage.enabled = true;
@@ -128,5 +138,11 @@ public class UI_ShopCharacter : MonoBehaviour
         BuyButton.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/blackCrystal");
         BuyButton.GetComponent<UI_Button>().paymentAmount = heroData.value;
         BuyButton.GetComponentInChildren<Text>().text = Common.GetThousandCommaText(heroData.value);
+    }
+
+    public void OnHeroDetailClick()
+    {
+        detailPanel.gameObject.SetActive(true);
+        detailPanel.GetComponentInChildren<UI_HeroDetailPanel>().OpenUI(selectedHeroData);
     }
 }

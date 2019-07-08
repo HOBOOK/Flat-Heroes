@@ -1085,7 +1085,7 @@ public class Hero : MonoBehaviour
                 faceAnimator.SetTrigger("Do");
             Knockback(1, 1, collision);
         }
-        DamageCCUIShow("막음");
+        DamageCCUIShow(LocalizationManager.GetText("Defence"));
 
         if (target != null)
         {
@@ -1174,7 +1174,8 @@ public class Hero : MonoBehaviour
         if (!isStunning&&status.knockbackResist<10|| isForce)
         {
             isStun = true;
-            DamageCCUIShow("기절");
+            DamageCCUIShow(LocalizationManager.GetText("Stun"));
+            StunEffect();
             StartCoroutine(Stunning(time));
         }
     }
@@ -1246,6 +1247,19 @@ public class Hero : MonoBehaviour
     #endregion
 
     #region 이펙트
+    public void StunEffect()
+    {
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.stoneCrack);
+        if (EffectPool.Instance != null)
+        {
+            GameObject effect = EffectPool.Instance.PopFromPool("StunEffect");
+            if(effect!=null)
+            {
+                effect.transform.position = transform.GetChild(0).position;
+                effect.SetActive(true);
+            }
+        }
+    }
     public void PunchEffect(float distance)
     {
         if (EffectPool.Instance != null)
@@ -1915,12 +1929,9 @@ public class Hero : MonoBehaviour
         }
         else
         {
-            if(Common.stageModeType==Common.StageModeType.Infinite)
-            {
-                hpUI = ObjectPool.Instance.PopFromPool("hpEnemyUI");
-                hpUI.GetComponent<UI_hp>().OpenHpUI(this.gameObject, isBlue);
-                hpUI.gameObject.SetActive(true);
-            }
+            hpUI = ObjectPool.Instance.PopFromPool("hpCastleUI");
+            hpUI.GetComponent<UI_castleHp>().OpenHpUI(this.gameObject, isBlue);
+            hpUI.gameObject.SetActive(true);
         }
     }
     private void ShowHpBar(int dam=0)
@@ -1929,11 +1940,20 @@ public class Hero : MonoBehaviour
         {
             if (!hpUI.gameObject.activeSelf)
             {
-                hpUI.GetComponent<UI_hp>().panelHpTime = 0;
+                if(id>1000)
+                    hpUI.GetComponent<UI_castleHp>().panelHpTime = 0;
+                else
+                    hpUI.GetComponent<UI_hp>().panelHpTime = 0;
                 hpUI.gameObject.SetActive(true);
             }
             if(dam>0)
-                hpUI.GetComponent<UI_hp>().GetDamage(dam);
+            {
+                if(id>1000)
+                    hpUI.GetComponent<UI_castleHp>().GetDamage(dam);
+                else
+                    hpUI.GetComponent<UI_hp>().GetDamage(dam);
+            }
+
         }
     }
     #endregion
@@ -2040,7 +2060,7 @@ public class Hero : MonoBehaviour
         {
             LevelUpEffect();
             HeroSystem.LevelUpStatusSet(this.id,this);
-            if (hpUI != null)
+            if (hpUI != null&&id<1000)
             {
                 hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Text>().text = status.level.ToString();
                 if (status.level < 10)
@@ -2059,7 +2079,7 @@ public class Hero : MonoBehaviour
         {
             status.exp += nExp;
             HeroSystem.SetHero(this);
-            if(hpUI!=null)
+            if(hpUI!=null&&id<1000)
                 hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Slider>().value = (float)status.exp / (float)Common.EXP_TABLE[(status.level-1)];
             LevelUp();
         }

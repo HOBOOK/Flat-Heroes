@@ -262,10 +262,10 @@
       <Level>2</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>12</Strength>
+      <Strength>1</Strength>
       <Intelligent>0</Intelligent>
-      <Physical>7</Physical>
-      <Agility>0</Agility>
+      <Physical>2</Physical>
+      <Agility>1</Agility>
       <Chat>윙~~~</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>0</Skill>
@@ -280,9 +280,9 @@
       <Level>2</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>10</Strength>
+      <Strength>3</Strength>
       <Intelligent>0</Intelligent>
-      <Physical>10</Physical>
+      <Physical>5</Physical>
       <Agility>0</Agility>
       <Chat>포옹포옹~</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
@@ -298,10 +298,10 @@
       <Level>3</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>10</Strength>
+      <Strength>3</Strength>
       <Intelligent>0</Intelligent>
-      <Physical>10</Physical>
-      <Agility>0</Agility>
+      <Physical>7</Physical>
+      <Agility>1</Agility>
       <Chat>포옹포옹~</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>0</Skill>

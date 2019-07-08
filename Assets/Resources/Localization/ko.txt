@@ -12,6 +12,8 @@ SkillAttack=스킬 공격력
 SkillDelay=재사용 대기시간
 SkillUseEnergy=소모에너지
 Sec=초
+Stun=기절
+Defence=막음
 
 TipText1=게스트 로그인시 게임을 삭제할 경우 데이터가 사라집니다.
 TipText2=강한 적을 처치할수록 좋은 장비가 나올 확률이 높습니다.
