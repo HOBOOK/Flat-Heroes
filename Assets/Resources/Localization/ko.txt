@@ -60,8 +60,7 @@ manageTab4=플레이어 스킬
 shopTitle=상 점
 shopTab1=재화
 shopTab2=영웅
-shopTab3=장비
-shopTab4=무료
+shopTab3=기타
 
 gachaTitle=뽑 기
 gachaType1=고급 장비 뽑기 5회
@@ -475,26 +474,26 @@ ItemDescription8001=능력을 개방할 수 있는 주문서이다.
 
 ItemName9001=흑수정 1000개
 ItemDescription9001=흑수정이 1000개가 들어있다.
-
 ItemName9002=흑수정 30개
 ItemDescription9002=흑수정이 30개가 들어있다.
-
 ItemName9003=흑수정 80개
 ItemDescription9003=수정이 80개가 들어있다.
-
 ItemName9004=흑수정 150개
 ItemDescription9004=흑수정이 150개가 들어있다.
-
 ItemName9005=흑수정 300개
 ItemDescription9005=흑수정이 300개가 들어있다.
-
 ItemName9006=흑수정 500개
 ItemDescription9006=흑수정이 500개가 들어있다.
 
 ItemName9011=포탈에너지 100개
 ItemDescription9011=포탈에너지가 100개 담겨져있다.
+ItemName9012=포탈에너지 300개
+ItemDescription9012=포탈에너지가 300개 담겨져있다.
 
-ItemName0=코인
-ItemDescription0=금으로 만들어진 화폐이다.
+ItemName9021=능력개방주문서 30개
+ItemDescription9021=능력을 개방할 수 있는 주문서이다.
+ItemName9022=능력개방주문서 70개
+ItemDescription9022=능력을 개방할 수 있는 주문서이다.
+
 
 

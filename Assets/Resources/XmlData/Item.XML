@@ -574,7 +574,7 @@
       <EquipCharacterId>0</EquipCharacterId>
       <Name>포탈에너지 100개</Name>
       <Description>포탈에너지가 100개 담겨져있다.</Description>
-      <ItemType>100</ItemType>
+      <ItemType>101</ItemType>
       <WeaponType>0</WeaponType>
       <Attack>0</Attack>
       <Defence>0</Defence>
@@ -583,19 +583,19 @@
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>1100</Value>
+      <Value>100</Value>
       <Image>Items/portalEnergy</Image>
       <Count>100</Count>
       <Enable>true</Enable>
       <DropRate>0</DropRate>
       <Class>0</Class>
     </Item>
-    <Item id="0">
+    <Item id="9012">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
-      <Name>코인</Name>
-      <Description>금으로 만들어진 화폐이다.</Description>
-      <ItemType>100</ItemType>
+      <Name>포탈에너지 300개</Name>
+      <Description>포탈에너지가 300개 담겨져있다.</Description>
+      <ItemType>101</ItemType>
       <WeaponType>0</WeaponType>
       <Attack>0</Attack>
       <Defence>0</Defence>
@@ -604,9 +604,51 @@
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>1</Value>
-      <Image>Items/coin</Image>
-      <Count>1</Count>
+      <Value>250</Value>
+      <Image>Items/portalEnergy</Image>
+      <Count>300</Count>
+      <Enable>true</Enable>
+      <DropRate>0</DropRate>
+      <Class>0</Class>
+    </Item>
+    <Item id="9021">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>능력개방주문서 30개</Name>
+      <Description>능력을 개방할 수 있는 주문서이다.</Description>
+      <ItemType>101</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>0</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>120</Value>
+      <Image>Items/abilityScroll</Image>
+      <Count>30</Count>
+      <Enable>true</Enable>
+      <DropRate>0</DropRate>
+      <Class>0</Class>
+    </Item>
+    <Item id="9022">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>능력개방주문서 70개</Name>
+      <Description>능력을 개방할 수 있는 주문서이다.</Description>
+      <ItemType>101</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>0</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>230</Value>
+      <Image>Items/abilityScroll</Image>
+      <Count>70</Count>
       <Enable>true</Enable>
       <DropRate>0</DropRate>
       <Class>0</Class>

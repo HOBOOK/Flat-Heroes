@@ -54,7 +54,7 @@ public static class ItemSystem
     public static List<Item> GetUserItems(Common.OrderByType orderByType = Common.OrderByType.NONE)
     {
         List<Item> itemList = new List<Item>();
-        foreach (var item in userItems.FindAll(item => item.count > 0 && item.itemtype != 100))
+        foreach (var item in userItems.FindAll(item => item.count > 0 && item.itemtype < 100))
         {
             if (item.itemtype == 0)
             {
@@ -104,10 +104,15 @@ public static class ItemSystem
 
         if (obtainMoney != null)
         {
+            // 수정
             if (obtainMoney.id > 9000 && obtainMoney.id < 9010)
                 SaveSystem.AddUserCrystal(obtainMoney.count);
+            // 에너지
             else if (obtainMoney.id > 9010 && obtainMoney.id < 9020)
                 SaveSystem.AddUserEnergy(obtainMoney.count);
+            // 주문서
+            else if (obtainMoney.id > 9020 && obtainMoney.id < 9030)
+                SetObtainItem(8001, obtainMoney.count);
             SaveSystem.SavePlayer();
         }
         else
@@ -419,9 +424,13 @@ public static class ItemSystem
     {
         return items.FindAll(item => item.itemtype == 100 || item.itemtype.Equals(100));
     }
+    public static List<Item> GetCrystalShopItems()
+    {
+        return items.FindAll(item => item.itemtype == 101 || item.itemtype.Equals(101));
+    }
     public static Item GetRandomItem()
     {
-        List<Item> ranitems = items.FindAll(item => item.itemtype != 100);
+        List<Item> ranitems = items.FindAll(item => item.itemtype < 100);
         return ranitems[UnityEngine.Random.Range(0, ranitems.Count)];
     }
     private static List<Item> SetOrderByItemList(List<Item> itemList, Common.OrderByType orderByType)

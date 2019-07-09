@@ -197,6 +197,15 @@ public class UI_Button : MonoBehaviour
             StartCoroutine(CheckingAlert(type));
         }
     }
+    void CallbackScriptRefresh()
+    {
+        if (callBackScript.GetComponent<UI_Shop>() != null)
+            callBackScript.GetComponent<UI_Shop>().RefreshUI();
+        else if (callBackScript.GetComponent<UI_ShopCharacter>() != null)
+            callBackScript.GetComponent<UI_ShopCharacter>().RefreshUI();
+        else if (callBackScript.GetComponent<UI_ShopETC>() != null)
+            callBackScript.GetComponent<UI_ShopETC>().RefreshUI();
+    }
 
     void BuyItemProcessing()
     {
@@ -210,7 +219,7 @@ public class UI_Button : MonoBehaviour
                         ItemSystem.SetObtainMoney(buyItemId);
                     else
                         ItemSystem.SetObtainItem(buyItemId);
-                    callBackScript.GetComponent<UI_Shop>().RefreshUI();
+                    CallbackScriptRefresh();
                     Item id = ItemSystem.GetItem(buyItemId);
                     GoogleSignManager.SaveData();
                     UI_Manager.instance.ShowGetAlert(id.image, string.Format("<color='yellow'>{0}</color> {1}", ItemSystem.GetItemName(id.id),LocalizationManager.GetText("alertGetMessage3")));
@@ -228,7 +237,7 @@ public class UI_Button : MonoBehaviour
                         ItemSystem.SetObtainMoney(buyItemId);
                     else
                         ItemSystem.SetObtainItem(buyItemId);
-                    callBackScript.GetComponent<UI_Shop>().RefreshUI();
+                    CallbackScriptRefresh();
                     Item id = ItemSystem.GetItem(buyItemId);
                     GoogleSignManager.SaveData();
                     UI_Manager.instance.ShowGetAlert(id.image, string.Format("<color='yellow'>{0}</color> {1}",ItemSystem.GetItemName(id.id),LocalizationManager.GetText("alertGetMessage3")));
@@ -241,6 +250,7 @@ public class UI_Button : MonoBehaviour
             case PaymentType.Cash:
                 OnButtonEffectSound();
                 IAPManager.instance.OnBtnPurchaseClicked(buyItemId);
+                CallbackScriptRefresh();
                 Debugging.Log(buyItemId + " 현금거래 버튼 입니다. >> Cash : " + paymentAmount);
                 break;
         }
@@ -255,7 +265,7 @@ public class UI_Button : MonoBehaviour
                 {
                     OnButtonEffectSound();
                     HeroSystem.SetObtainHero(characterId);
-                    callBackScript.GetComponent<UI_ShopCharacter>().RefreshUI();
+                    CallbackScriptRefresh();
                     HeroData hd = HeroSystem.GetHero(characterId);
                     GoogleSignManager.SaveData();
                     UI_Manager.instance.ShowGetAlert(hd.image, string.Format("<color='yellow'>{0}</color> {1}", HeroSystem.GetHeroName(hd.id), LocalizationManager.GetText("alertGetMessage5")));
@@ -270,7 +280,7 @@ public class UI_Button : MonoBehaviour
                 {
                     OnButtonEffectSound();
                     HeroSystem.SetObtainHero(characterId);
-                    callBackScript.GetComponent<UI_ShopCharacter>().RefreshUI();
+                    CallbackScriptRefresh();
                     HeroData hd = HeroSystem.GetHero(characterId);
                     GoogleSignManager.SaveData();
                     UI_Manager.instance.ShowGetAlert(hd.image, string.Format("<color='yellow'>{0}</color> {1}", HeroSystem.GetHeroName(hd.id), LocalizationManager.GetText("alertGetMessage5")));
@@ -284,6 +294,7 @@ public class UI_Button : MonoBehaviour
                 OnButtonEffectSound();
                 OnButtonEffectSound();
                 IAPManager.instance.OnBtnPurchaseClicked(buyItemId);
+                CallbackScriptRefresh();
                 Debugging.Log(characterId + " 현금거래 버튼 입니다. >> Cash : " + paymentAmount);
                 break;
         }

@@ -60,8 +60,7 @@ manageTab4=Player Skill
 shopTitle=Shop
 shopTab1=Crystal
 shopTab2=Hero
-shopTab3=Equipment
-shopTab4=Free
+shopTab3=Etc
 
 gachaTitle=Gacha
 gachaType1=Special Five
@@ -474,24 +473,23 @@ ItemDescription8001=It is an order book that can open the ability.
 
 ItemName9001=1000 Crystal
 ItemDescription9001=There are 1000 pieces of crystal.
-
 ItemName9002=30 Crystal
 ItemDescription9002=There are 30 pieces of crystal.
-
 ItemName9003=80 Crystal
 ItemDescription9003=There are 80 pieces of crystal.
-
 ItemName9004=150 Crystal
 ItemDescription9004=There are 150 pieces of crystal.
-
 ItemName9005=300 Crystal
 ItemDescription9005=There are 300 pieces of crystal.
-
 ItemName9006=500 Crystal
 ItemDescription9006=There are 500 pieces of crystal.
 
 ItemName9011=100 Portal Energy
 ItemDescription9011=There are 100 portal energies.
+ItemName9012=300 Portal Energy
+ItemDescription9012=There are 100 portal energies.
 
-ItemName0=Coin
-ItemDescription0=It is money made of gold.
+ItemName9021=30 Ability Scroll
+ItemDescription9021=It is an order book that can open the ability.
+ItemName9022=70 Ability Scroll
+ItemDescription9022=It is an order book that can open the ability.
