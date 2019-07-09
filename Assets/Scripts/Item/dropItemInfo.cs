@@ -28,7 +28,7 @@ public class dropItemInfo : MonoBehaviour
             dropItemUI.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
             dropItemUI.SetActive(true);
             dropItem.GetComponent<SpriteRenderer>().sprite = ItemSystem.GetItemImage(dropItemID);
-            dropItemUI.GetComponentInChildren<Text>().text = ItemSystem.GetItem(dropItemID).name;
+            dropItemUI.GetComponentInChildren<Text>().text = ItemSystem.GetItemName(dropItemID);
             Invoke("ShowDropEffect", 2);
         }
     }

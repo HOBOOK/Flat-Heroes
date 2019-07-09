@@ -8,14 +8,14 @@
       <Description>견습기사들이 사용하는 무기이다.</Description>
       <ItemType>0</ItemType>
       <WeaponType>0</WeaponType>
-      <Attack>20</Attack>
+      <Attack>30</Attack>
       <Defence>0</Defence>
       <Hp>0</Hp>
       <Critical>0</Critical>
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>100</Value>
+      <Value>300</Value>
       <Image>Equipment/equipment_001</Image>
       <Count>0</Count>
       <Enable>false</Enable>
@@ -157,10 +157,10 @@
       <WeaponType>0</WeaponType>
       <Attack>480</Attack>
       <Defence>0</Defence>
-      <Hp>200</Hp>
+      <Hp>0</Hp>
       <Critical>0</Critical>
-      <AttackSpeed>10</AttackSpeed>
-      <MoveSpeed>10</MoveSpeed>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
       <Value>500000</Value>
       <Image>Equipment/equipment_001</Image>
@@ -169,8 +169,28 @@
       <DropRate>0</DropRate>
       <Class>8</Class>
     </Item>
-    
     <Item id="11">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>환도</Name>
+      <Description>환도라고 불리는 동쪽나라의 전통무기이다. 끝이 날카롭게 휘어있다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>27</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>2</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>400</Value>
+      <Image>Equipment/equipment_002</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>30</DropRate>
+      <Class>3</Class>
+    </Item>
+    <Item id="12">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
       <Name>환도</Name>
@@ -190,6 +210,132 @@
       <Enable>false</Enable>
       <DropRate>30</DropRate>
       <Class>3</Class>
+    </Item>
+    <Item id="13">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>환도</Name>
+      <Description>환도라고 불리는 동쪽나라의 전통무기이다. 끝이 날카롭게 휘어있다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>40</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>1000</Value>
+      <Image>Equipment/equipment_002</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>30</DropRate>
+      <Class>3</Class>
+    </Item>
+    <Item id="14">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>환도</Name>
+      <Description>환도라고 불리는 동쪽나라의 전통무기이다. 끝이 날카롭게 휘어있다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>40</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>1000</Value>
+      <Image>Equipment/equipment_002</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>30</DropRate>
+      <Class>4</Class>
+    </Item>
+    <Item id="15">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>환도</Name>
+      <Description>환도라고 불리는 동쪽나라의 전통무기이다. 끝이 날카롭게 휘어있다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>40</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>1000</Value>
+      <Image>Equipment/equipment_002</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>30</DropRate>
+      <Class>5</Class>
+    </Item>
+    <Item id="16">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>환도</Name>
+      <Description>환도라고 불리는 동쪽나라의 전통무기이다. 끝이 날카롭게 휘어있다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>40</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>1000</Value>
+      <Image>Equipment/equipment_002</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>30</DropRate>
+      <Class>6</Class>
+    </Item>
+    <Item id="17">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>환도</Name>
+      <Description>환도라고 불리는 동쪽나라의 전통무기이다. 끝이 날카롭게 휘어있다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>40</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>1000</Value>
+      <Image>Equipment/equipment_002</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>30</DropRate>
+      <Class>7</Class>
+    </Item>
+    <Item id="18">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>환도</Name>
+      <Description>환도라고 불리는 동쪽나라의 전통무기이다. 끝이 날카롭게 휘어있다.</Description>
+      <ItemType>0</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>40</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>1000</Value>
+      <Image>Equipment/equipment_002</Image>
+      <Count>0</Count>
+      <Enable>false</Enable>
+      <DropRate>30</DropRate>
+      <Class>8</Class>
     </Item>
     <Item id="21">
       <CustomId>0</CustomId>

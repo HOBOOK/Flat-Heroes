@@ -122,7 +122,11 @@ public class UI_EvolutionItem : MonoBehaviour
             resultItemSlot.GetComponent<Image>().color = Color.white;
         }
         else
+        {
             resultItemSlotImage.sprite = ItemSystem.GetItemImage(resultItem.id);
+            resultItemSlot.GetComponent<Image>().color = ItemColor.GetItemColor(resultItem.itemClass);
+        }
+
         matItemSlotButton1.onClick.RemoveAllListeners();
         matItemSlotButton2.onClick.RemoveAllListeners();
         matItemSlot1.GetComponent<Image>().color = Color.white;

@@ -415,21 +415,25 @@ HerosName1002=Knight Crow
 HerosDescription1002=null
 HerosChat1002=Caw! Caw..!
 
+ItemNameNull=null
+
+ItemClassName1=Old
+ItemClassName2=Normal
+ItemClassName3=Solid
+ItemClassName4=Rare
+ItemClassName5=Superior
+ItemClassName6=Perfect
+ItemClassName7=Hero's
+ItemClassName8=Legendary
+
 ItemName1=Old Flat Sword
 ItemDescription1=It is a weapon used by apprentices.
-ItemName2=Normal Flat Sword
 ItemDescription2=It is a weapon used by apprentices.
-ItemName3=Solid Flat Sword
 ItemDescription3=It is a weapon used by apprentices.
-ItemName4=Rare Flat Sword
 ItemDescription4=It is a weapon used by apprentices.
-ItemName5=Superior Flat Sword
 ItemDescription5=It is a weapon used by apprentices.
-ItemName6=Perfect Flat Sword
 ItemDescription6=It is a weapon used by apprentices.
-ItemName7=Hero's Flat Sword
 ItemDescription7=It is a weapon used by apprentices.
-ItemName8=Legendary Flat Sword
 ItemDescription8=It is a weapon used by apprentices.
 
 ItemName11=Hwan do

@@ -273,7 +273,7 @@ public static class ItemSystem
             {
                 Item item = ItemSystem.GetUserEquipmentItem(heroItems[i]);
 
-                attack += item != null ? item.attack : 0;
+                attack += item != null ? ItemAttack(item) : 0;
             }
         }
         return attack;
@@ -287,7 +287,7 @@ public static class ItemSystem
             if (heroItems[i] != 0)
             {
                 Item item = ItemSystem.GetUserEquipmentItem(heroItems[i]);
-                defence += item != null ? item.defence : 0;
+                defence += item != null ? ItemDefence(item) : 0;
             }
         }
         return defence;
@@ -302,7 +302,7 @@ public static class ItemSystem
             {
                 Item item = ItemSystem.GetUserEquipmentItem(heroItems[i]);
 
-                hp += item != null ? item.hp : 0;
+                hp += item != null ? ItemHp(item) : 0;
             }
         }
         return hp;
@@ -316,7 +316,7 @@ public static class ItemSystem
             if (heroItems[i] != 0)
             {
                 Item item = ItemSystem.GetUserEquipmentItem(heroItems[i]);
-                cri += item != null ? item.critical : 0;
+                cri += item != null ? ItemCritical(item): 0;
             }
         }
         return cri;
@@ -330,7 +330,7 @@ public static class ItemSystem
             if (heroItems[i] != 0)
             {
                 Item item = ItemSystem.GetUserEquipmentItem(heroItems[i]);
-                aSpeed += item != null ? item.attackSpeed : 0;
+                aSpeed += item != null ? ItemAttackSpeed(item) : 0;
             }
         }
         return aSpeed;
@@ -344,7 +344,7 @@ public static class ItemSystem
             if (heroItems[i] != 0)
             {
                 Item item = ItemSystem.GetUserEquipmentItem(heroItems[i]);
-                mSpeed += item != null ? item.moveSpeed : 0;
+                mSpeed += item != null ? ItemMoveSpeed(item) : 0;
             }
         }
         return mSpeed;
@@ -358,7 +358,7 @@ public static class ItemSystem
             if (heroItems[i] != 0)
             {
                 Item item = ItemSystem.GetUserEquipmentItem(heroItems[i]);
-                energy += item != null ? item.skillEnergy : 0;
+                energy += item != null ? ItemSkillEnergy(item) : 0;
             }
         }
         return energy;
@@ -367,7 +367,7 @@ public static class ItemSystem
     {
         StringBuilder sb = new StringBuilder();
         string[] itemAbilitiesTxt = { LocalizationManager.GetText("heroInfoAttack"), LocalizationManager.GetText("heroInfoDefence"), LocalizationManager.GetText("heroInfoHp"), LocalizationManager.GetText("heroInfoCritical"), LocalizationManager.GetText("heroInfoAttackSpeed"), LocalizationManager.GetText("heroInfoMoveSpeed"), LocalizationManager.GetText("heroInfoSkillEnergy") };
-        string[] itemAbilities = { item.attack.ToString(), item.defence.ToString(), item.hp.ToString(), item.critical.ToString(), item.attackSpeed.ToString(), item.moveSpeed.ToString(), item.skillEnergy.ToString() };
+        string[] itemAbilities = { ItemAttack(item).ToString(), ItemDefence(item).ToString(),ItemHp(item).ToString(), ItemCritical(item).ToString(), ItemAttackSpeed(item).ToString(), ItemMoveSpeed(item).ToString(), ItemSkillEnergy(item).ToString() };
 
         for(int i = 0; i < itemAbilitiesTxt.Length; i++)
         {
@@ -376,7 +376,7 @@ public static class ItemSystem
                 sb.Append(string.Format("<color='green'>{0} + {1}</color>\r\n",itemAbilitiesTxt[i],itemAbilities[i]));
             }
         }
-        sb.Append("\r\n"+ItemSystem.GetItemDescription(item.id));
+        sb.Append("\r\n"+GetItemDescription(item.id));
         return sb.ToString();
     }
     public static int GetNextClassItemId(Item item)
@@ -386,6 +386,100 @@ public static class ItemSystem
             return item.id + 1;
         }
         return -1;
+    }
+    public static Item GetPrimeItem(Item item)
+    {
+        if(item.itemtype==0)
+        {
+            int primeItemId = item.id - item.itemClass+1;
+            Item primeItem = items.Find(x => x.id == primeItemId || x.id.Equals(primeItemId));
+            if (primeItem != null)
+                return primeItem;
+        }
+        return null;
+    }
+    public static int ItemAttack(Item item)
+    {
+        Item primeItem = GetPrimeItem(item);
+        if(primeItem!=null)
+        {
+            int val = primeItem.attack + (int)((primeItem.attack * item.itemClass * item.itemClass) * 0.2f);
+            return val;
+        }
+        return 0;
+    }
+    public static int ItemDefence(Item item)
+    {
+        Item primeItem = GetPrimeItem(item);
+        if (primeItem != null)
+        {
+            int val = primeItem.defence + (int)((primeItem.defence * item.itemClass * item.itemClass) * 0.15f);
+            return val;
+        }
+        return 0;
+    }
+    public static int ItemHp(Item item)
+    {
+        Item primeItem = GetPrimeItem(item);
+        if (primeItem != null)
+        {
+            int val = primeItem.hp + (int)((primeItem.hp * item.itemClass * item.itemClass) * 0.2f);
+            return val;
+        }
+        return 0;
+    }
+    public static int ItemCritical(Item item)
+    {
+        Item primeItem = GetPrimeItem(item);
+        if (primeItem != null)
+        {
+            int val = primeItem.critical + (int)((primeItem.critical * item.itemClass * item.itemClass) * 0.07f);
+            return val;
+        }
+        return 0;
+    }
+    public static int ItemAttackSpeed(Item item)
+    {
+        Item primeItem = GetPrimeItem(item);
+        if (primeItem != null)
+        {
+            int val = primeItem.critical + (int)((primeItem.attackSpeed * item.itemClass * item.itemClass) * 0.1f);
+            return val;
+        }
+        return 0;
+    }
+    public static int ItemMoveSpeed(Item item)
+    {
+        Item primeItem = GetPrimeItem(item);
+        if (primeItem != null)
+        {
+            int val = primeItem.critical + (int)((primeItem.moveSpeed * item.itemClass * item.itemClass) * 0.09f);
+            return val;
+        }
+        return 0;
+    }
+    public static int ItemSkillEnergy(Item item)
+    {
+        Item primeItem = GetPrimeItem(item);
+        if (primeItem != null)
+        {
+            int val = primeItem.critical + (int)((primeItem.skillEnergy * item.itemClass * item.itemClass) * 0.2f);
+            return val;
+        }
+        return 0;
+    }
+    public static int ItemValue(Item item)
+    {
+        if (item.itemtype == 0)
+        {
+            int val = 0;
+            if (GetPrimeItem(item)!=null)
+                val = GetPrimeItem(item).value;
+            int finalVal = val + (int)((val * item.itemClass * item.itemClass * item.itemClass * item.itemClass) * 0.1f);
+            return finalVal;
+        }
+        else
+            return item.value;
     }
     #endregion
 
@@ -444,9 +538,10 @@ public static class ItemSystem
     {
         Item item;
         if (isEquipment)
-            item = userItems.Find(x => x.customId == id);
-        else
-            item = userItems.Find(x => x.id == id);
+        {
+            id = userItems.Find(x => x.customId == id).id;
+        }
+        item = items.Find(x => x.id == id);
         if (item == null)
             return GetItemNoneImage();
         else
@@ -462,8 +557,13 @@ public static class ItemSystem
         Item data = items.Find(x => x.id == id || x.id.Equals(id));
         if (data != null)
         {
-            name = LocalizationManager.GetText("ItemName" + id);
+            if(GetPrimeItem(data)!=null)
+                name = string.Format("{0} {1}",LocalizationManager.GetText("ItemClassName" +data.itemClass), LocalizationManager.GetText("ItemName" + GetPrimeItem(data).id));
+            else
+                name = string.Format("{0}", LocalizationManager.GetText("ItemNameNull"));
         }
+        else
+            name = string.Format("{0}", LocalizationManager.GetText("ItemNameNull"));
         return name;
     }
     public static string GetItemDescription(int id)

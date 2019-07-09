@@ -416,21 +416,25 @@ HerosName1002=나이트 크로우
 HerosDescription1002=null
 HerosChat1002=가소로운것들이군. 까악!!
 
-ItemName1=낡은 플랫소드
+ItemClassName1=낡은
+ItemClassName2=평범한
+ItemClassName3=견고한
+ItemClassName4=희귀한
+ItemClassName5=특별한
+ItemClassName6=완벽한
+ItemClassName7=영웅의
+ItemClassName8=전설의
+
+ItemNameNull=null
+
+ItemName1=플랫소드
 ItemDescription1=견습기사들이 사용하는 무기이다.
-ItemName2=평범한 플랫소드
 ItemDescription2=견습기사들이 사용하는 무기이다.
-ItemName3=견고한 플랫소드
 ItemDescription3=견습기사들이 사용하는 무기이다.
-ItemName4=뛰어난 플랫소드
 ItemDescription4=견습기사들이 사용하는 무기이다.
-ItemName5=희귀한 플랫소드
 ItemDescription5=견습기사들이 사용하는 무기이다.
-ItemName6=완벽한 플랫소드
 ItemDescription6=견습기사들이 사용하는 무기이다.
-ItemName7=영웅의 플랫소드
 ItemDescription7=견습기사들이 사용하는 무기이다.
-ItemName8=전설의 플랫소드
 ItemDescription8=견습기사들이 사용하는 무기이다.
 
 ItemName11=환도

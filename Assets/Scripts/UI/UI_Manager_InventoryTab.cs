@@ -114,9 +114,19 @@ public class UI_Manager_InventoryTab : MonoBehaviour
                 itemInfoImage.enabled = true;
                 itemInfoName.enabled = true;
                 itemInfoDescription.enabled = true;
-                itemSellButton.enabled = true;
-                itemSellButton.GetComponent<Image>().enabled = true;
-                itemSellButton.GetComponentInChildren<Text>().enabled = true;
+                if(selectedItem.itemClass<8)
+                {
+                    itemSellButton.enabled = true;
+                    itemSellButton.GetComponent<Image>().enabled = true;
+                    itemSellButton.GetComponentInChildren<Text>().enabled = true;
+                }
+                else
+                {
+                    itemSellButton.enabled = false;
+                    itemSellButton.GetComponent<Image>().enabled = false;
+                    itemSellButton.GetComponentInChildren<Text>().enabled = false;
+                }
+
                 if (itemInfoImage.GetComponent<AiryUIAnimatedElement>() != null)
                     itemInfoImage.GetComponent<AiryUIAnimatedElement>().ShowElement();
                 Debugging.Log(index + " 아이템 슬롯버튼 클릭");

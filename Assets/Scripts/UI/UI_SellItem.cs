@@ -83,7 +83,7 @@ public class UI_SellItem : MonoBehaviour
             for (var i = 0; i < userItemList.Count; i++)
             {
                 GameObject itemSlot = Instantiate(ItemSlotPrefab, ItemListContentView.transform);
-                itemSlot.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(userItemList[i].image);
+                itemSlot.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(userItemList[i].id);
                 itemSlot.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(userItemList[i].itemClass);
                 itemSlot.GetComponentInChildren<Text>().text = ItemSystem.GetItemName(userItemList[i].id);
                 itemSlot.transform.GetChild(2).GetComponent<Image>().color = ItemColor.GetItemColor(userItemList[i].itemClass);
@@ -114,7 +114,7 @@ public class UI_SellItem : MonoBehaviour
             for (var i = 0; i < userItemList.Count; i++)
             {
                 GameObject itemSlot = Instantiate(ItemSlotPrefab, ItemListContentView.transform);
-                itemSlot.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(userItemList[i].image);
+                itemSlot.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(userItemList[i].id);
                 itemSlot.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(userItemList[i].itemClass);
                 itemSlot.GetComponentInChildren<Text>().text = ItemSystem.GetItemName(userItemList[i].id);
                 itemSlot.transform.GetChild(2).GetComponent<Image>().color = ItemColor.GetItemColor(userItemList[i].itemClass);
@@ -130,7 +130,7 @@ public class UI_SellItem : MonoBehaviour
             for(var i = 0; i< sellItemList.Count&&i<15; i++)
             {
                 GameObject itemSlot = Instantiate(ItemSlotPrefab, SellListContentView.transform);
-                itemSlot.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(sellItemList[i].image);
+                itemSlot.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(sellItemList[i].id);
                 itemSlot.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(sellItemList[i].itemClass);
                 itemSlot.GetComponentInChildren<Text>().text = ItemSystem.GetItemName(sellItemList[i].id);
                 itemSlot.transform.GetChild(2).GetComponent<Image>().color = ItemColor.GetItemColor(sellItemList[i].itemClass);
@@ -158,7 +158,7 @@ public class UI_SellItem : MonoBehaviour
                 totalCount = sellItemList.Count;
                 foreach (var item in sellItemList)
                 {
-                    totalValue += item.value;
+                    totalValue += ItemSystem.ItemValue(item);
                 }
                 SetActionInfo(totalCount, totalValue, true);
                 RefreshUI();
@@ -182,7 +182,7 @@ public class UI_SellItem : MonoBehaviour
                 totalCount = sellItemList.Count;
                 foreach (var item in sellItemList)
                 {
-                    totalValue += item.value;
+                    totalValue += ItemSystem.ItemValue(item);
                 }
                 SetActionInfo(totalCount, totalValue, true);
                 RefreshUI();
@@ -206,7 +206,7 @@ public class UI_SellItem : MonoBehaviour
         totalCount = sellItemList.Count;
         foreach (var item in sellItemList)
         {
-            totalValue += item.value;
+            totalValue += ItemSystem.ItemValue(item);
         }
         SetActionInfo(totalCount, totalValue, true);
         RefreshUI();
@@ -225,7 +225,7 @@ public class UI_SellItem : MonoBehaviour
         totalCount = sellItemList.Count;
         foreach (var item in sellItemList)
         {
-            totalValue += item.value;
+            totalValue += ItemSystem.ItemValue(item);
         }
         SetActionInfo(totalCount, totalValue, true);
         RefreshUI();

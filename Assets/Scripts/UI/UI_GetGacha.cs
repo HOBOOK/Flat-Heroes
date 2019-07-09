@@ -10,6 +10,7 @@ public class UI_GetGacha : MonoBehaviour
     public Transform ItemView;
     public Text tabText;
 
+    Image itemContainerImage;
     Image itemImage;
     Text itemClassText;
     Text itemNameText;
@@ -53,6 +54,7 @@ public class UI_GetGacha : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         GameObject slotItem = Instantiate(slotGachaPrefab, ItemView);
+        itemContainerImage = slotItem.GetComponent<Image>();
         itemImage = slotItem.transform.GetChild(0).GetComponent<Image>();
         itemClassText = slotItem.transform.GetChild(1).GetComponentInChildren<Text>();
         itemNameText = slotItem.transform.GetChild(2).GetComponent<Text>();
@@ -68,6 +70,7 @@ public class UI_GetGacha : MonoBehaviour
 
         itemClassText.color = ItemColor.GetItemColor(itemClass);
         itemNameText.color = ItemColor.GetItemColor(itemClass);
+        itemContainerImage.color = ItemColor.GetItemColor(itemClass);
         //
 
         itemImage.sprite = ItemSystem.GetItemImage(item.id);
