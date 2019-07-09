@@ -267,6 +267,7 @@ public class UI_SellItem : MonoBehaviour
             SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.coinGet);
             for(int i = 0; i < sellItemList.Count; i++)
             {
+                Debugging.Log("#1 >>"+sellItemList[i].name +"#"+ sellItemList[i].customId +"#" +sellItemList[i].id);
                 ItemSystem.UseItem(sellItemList[i].customId, 1);
             }
             SaveSystem.AddUserCoin(totalValue);
@@ -283,7 +284,7 @@ public class UI_SellItem : MonoBehaviour
     {
         foreach(var item in sellItemList)
         {
-            if(item.count==0 && item.equipCharacterId>0)
+            if(item.count==0 && item.equipCharacterId>0&&item.itemtype!=0)
             {
                 return false;
             }

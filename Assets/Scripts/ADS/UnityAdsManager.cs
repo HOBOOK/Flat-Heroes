@@ -7,17 +7,31 @@ public class UnityAdsManager : MonoBehaviour
 {
     public static UnityAdsManager instance;
     public enum RewardItems { None, Coin, Crystal, Energy, SpeicalGachaOne};
+    int[] defaultRewardAmount = { 0, 30000, 15, 30, 1};
     RewardItems rewardItems;
+    int rewardAmount;
     private void Awake()
     {
         if (instance == null)
             instance = this;
     }
-    public void ShowRewardedAd(RewardItems reward)
+    public void ShowRewardedAd(RewardItems reward, int amount=0)
     {
         if (Advertisement.IsReady("rewardedVideo"))
         {
             rewardItems = reward;
+            rewardAmount = amount;
+            var options = new ShowOptions { resultCallback = HandleShowResult };
+            Advertisement.Show("rewardedVideo", options);
+        }
+    }
+
+    public void ShowDefaultRewardedAd(int reward)
+    {
+        if (Advertisement.IsReady("rewardedVideo"))
+        {
+            rewardItems = (RewardItems)reward;
+            rewardAmount = defaultRewardAmount[reward];
             var options = new ShowOptions { resultCallback = HandleShowResult };
             Advertisement.Show("rewardedVideo", options);
         }
@@ -47,10 +61,13 @@ public class UnityAdsManager : MonoBehaviour
             switch (rewardItems)
             {
                 case RewardItems.Coin:
+                    SaveSystem.AddUserCoin(rewardAmount);
                     break;
                 case RewardItems.Crystal:
+                    SaveSystem.AddUserCrystal(rewardAmount);
                     break;
                 case RewardItems.Energy:
+                    SaveSystem.AddUserEnergy(rewardAmount);
                     break;
                 case RewardItems.SpeicalGachaOne:
                     UI_Manager.instance.PopupGetGacha(GachaSystem.GachaType.SpecialOne);

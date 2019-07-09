@@ -7,31 +7,52 @@ using UnityEngine.UI;
 public class UnityAdsButton : MonoBehaviour
 {
     public double msToWait;
-    private Text gachaTimeText;
-    private Button gachaButton;
-    private UI_Button buttonScript;
+    public Text gachaTimeText;
+    public Button gachaButton;
+    public UI_Button buttonScript;
     private ulong lastGachaOpen;
+    public int type;
 
     private void Start()
     {
-        gachaButton = GetComponent<Button>();
-        gachaTimeText = GetComponentInChildren<Text>();
-        buttonScript = GetComponent<UI_Button>();
-        if(PlayerPrefs.HasKey("LastGachaOpen"))
+        if(gachaButton==null)
+            gachaButton = GetComponent<Button>();
+        if(gachaTimeText==null)
+            gachaTimeText = GetComponentInChildren<Text>();
+        if(buttonScript==null&&GetComponent<UI_Button>()!=null)
+            buttonScript = GetComponent<UI_Button>();
+        if(type==0)
         {
-            lastGachaOpen = ulong.Parse(PlayerPrefs.GetString("LastGachaOpen"));
+            if (PlayerPrefs.HasKey("LastGachaOpen"))
+            {
+                lastGachaOpen = ulong.Parse(PlayerPrefs.GetString("LastGachaOpen"));
+            }
+            else
+            {
+                lastGachaOpen = (ulong)DateTime.Now.Ticks;
+                PlayerPrefs.SetString("LastGachaOpen", lastGachaOpen.ToString());
+            }
         }
-        else
+        else if(type==1)
         {
-            lastGachaOpen = (ulong)DateTime.Now.Ticks;
-            PlayerPrefs.SetString("LastGachaOpen", lastGachaOpen.ToString());
+            if (PlayerPrefs.HasKey("LastCrystalOpen"))
+            {
+                lastGachaOpen = ulong.Parse(PlayerPrefs.GetString("LastCrystalOpen"));
+            }
+            else
+            {
+                lastGachaOpen = (ulong)DateTime.Now.Ticks;
+                PlayerPrefs.SetString("LastCrystalOpen", lastGachaOpen.ToString());
+            }
         }
+
 
 
         if(!IsGachaReady())
         {
             gachaButton.interactable = false;
-            buttonScript.enabled = false;
+            if(buttonScript!=null)
+                buttonScript.enabled = false;
         }
     }
 
@@ -42,7 +63,8 @@ public class UnityAdsButton : MonoBehaviour
             if(IsGachaReady())
             {
                 gachaButton.interactable = true;
-                buttonScript.enabled = true;
+                if(buttonScript!=null)
+                    buttonScript.enabled = true;
                 return;
             }
 
@@ -61,7 +83,14 @@ public class UnityAdsButton : MonoBehaviour
     public void  GachaClick()
     {
         lastGachaOpen = (ulong)DateTime.Now.Ticks;
-        PlayerPrefs.SetString("LastGachaOpen", lastGachaOpen.ToString());
+        if(type==0)
+        {
+            PlayerPrefs.SetString("LastGachaOpen", lastGachaOpen.ToString());
+        }
+        else
+        {
+            PlayerPrefs.SetString("LastCrystalOpen", lastGachaOpen.ToString());
+        }
         gachaButton.interactable = false;
         buttonScript.enabled = false;
 

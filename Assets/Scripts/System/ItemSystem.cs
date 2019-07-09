@@ -54,7 +54,7 @@ public static class ItemSystem
     public static List<Item> GetUserItems(Common.OrderByType orderByType = Common.OrderByType.NONE)
     {
         List<Item> itemList = new List<Item>();
-        foreach (var item in userItems.FindAll(item => item.count > 0 && item.itemtype < 100))
+        foreach (var item in userItems.FindAll(item => item.count > 0 && item.itemtype ==0))
         {
             if (item.itemtype == 0)
             {
@@ -159,6 +159,7 @@ public static class ItemSystem
                     newItem.enable = true;
                     newItem.count = count;
                     userItems.Add(newItem);
+                    Debugging.Log(newItem.customId);
                     ItemDatabase.AddItemSave(newItem);
                 }
             }
@@ -168,6 +169,7 @@ public static class ItemSystem
     public static bool UseItem(int id, int count)
     {
         Item useItem = userItems.Find(item => item.customId == id || item.customId.Equals(id));
+        Debugging.Log("#2 >>" + useItem.name + "#" + useItem.customId + "#" + useItem.id);
         if (useItem != null)
         {
             if(useItem.count-count<=0)
@@ -199,26 +201,6 @@ public static class ItemSystem
         {
             Debugging.LogWarning(id+" 아이템이 NULL 입니다.");
             return false;
-        }
-    }
-    public static void UseEquipmentItem(int id, int count)
-    {
-        Item useItem = userItems.Find(item => (item.customId == id || item.customId.Equals(id)) && item.itemtype == 0);
-        if (useItem != null)
-        {
-            if (useItem.count - count <= 0)
-            {
-                //xml삭제
-                userItems.Remove(useItem);
-                ItemDatabase.DeleteItemSave(id);
-                Debugging.Log(useItem.name + "을 " + count + "개 사용하여 0개가 남아서 XML에서 삭제되었습니다.");
-            }
-            else
-            {
-                useItem.count -= count;
-                ItemDatabase.ItemSave(id);
-                Debugging.Log(useItem.name + "을 " + count + "개 사용하여 " + useItem.count + "개 남았습니다.");
-            }
         }
     }
     public static void EquipItem(int dismountId, int equipId, ref HeroData heroData)

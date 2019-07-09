@@ -471,6 +471,8 @@ ItemDescription121=It is a pure white wing.
 ItemName8001=Ability Scroll
 ItemDescription8001=It is an order book that can open the ability.
 
+ItemName9000=15 Crystal
+ItemDescription9000=There are 15 pieces of crystal.
 ItemName9001=1000 Crystal
 ItemDescription9001=There are 1000 pieces of crystal.
 ItemName9002=30 Crystal

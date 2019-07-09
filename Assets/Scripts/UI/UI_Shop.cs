@@ -64,7 +64,8 @@ public class UI_Shop : MonoBehaviour
         {
             foreach (Transform child in ScrollViewContent.transform)
             {
-                Destroy(child.gameObject);
+                if(child.GetComponent<ItemSlot>()!=null)
+                    Destroy(child.gameObject);
             }
             foreach (var slot in ItemSystem.GetShopItems())
             {
@@ -133,7 +134,7 @@ public class UI_Shop : MonoBehaviour
         infoImage.sprite = slotItemImage.sprite;
         infoImage.enabled = true;
         infoImage.GetComponent<AiryUIAnimatedElement>().ShowElement();
-        infoItemDescriptionText.text = itemData.description;
+        infoItemDescriptionText.text = ItemSystem.GetItemDescription(itemData.id);
         infoItemNameText.text = slotNameText.text;
         infoItemValueText.text = slotValueText.text;
         BuyButton.GetComponent<Button>().enabled = true;

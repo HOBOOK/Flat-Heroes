@@ -461,7 +461,7 @@ public class Common : MonoBehaviour
         int maxId = 0;
         for(var i = 0; i < userEquipmentItems.Count; i++)
         {
-            if (userEquipmentItems[i].itemtype == 0)
+            if (userEquipmentItems[i].itemtype < 100)
             {
                 if (maxId < userEquipmentItems[i].customId)
                     maxId = userEquipmentItems[i].customId;

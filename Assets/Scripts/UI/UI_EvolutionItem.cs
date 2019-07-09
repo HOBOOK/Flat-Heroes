@@ -6,14 +6,16 @@ using UnityEngine.UI;
 public class UI_EvolutionItem : MonoBehaviour
 {
     public GameObject parentPanel;
+    public GameObject targetItemSlot;
     public GameObject matItemSlot1;
     public GameObject matItemSlot2;
+    public GameObject resultItemSlot;
     private Button matItemSlotButton1;
     private Button matItemSlotButton2;
-    public Image targetItemSlot;
+    private Image targetItemSlotImage;
     private Image matItemSlotImage1;
     private Image matItemSlotImage2;
-    public Image resultItemSlot;
+    private Image resultItemSlotImage;
     public Item targetItem;
     public Item resultItem;
     public Button evolutionButton;
@@ -28,8 +30,11 @@ public class UI_EvolutionItem : MonoBehaviour
     {
         matItemSlotButton1 = matItemSlot1.GetComponent<Button>();
         matItemSlotButton2 = matItemSlot2.GetComponent<Button>();
+
         matItemSlotImage1 = matItemSlot1.transform.GetChild(0).GetComponent<Image>();
         matItemSlotImage2 = matItemSlot2.transform.GetChild(0).GetComponent<Image>();
+        targetItemSlotImage = targetItemSlot.transform.GetChild(0).GetComponent<Image>();
+        resultItemSlotImage = resultItemSlot.transform.GetChild(0).GetComponent<Image>();
     }
 
     public void OpenUI(Item item)
@@ -44,10 +49,11 @@ public class UI_EvolutionItem : MonoBehaviour
             paymentType = 0;
         else
             paymentType = 1;
-        targetItemSlot.gameObject.SetActive(true);
+        targetItemSlotImage.gameObject.SetActive(true);
         matItemSlotImage1.gameObject.SetActive(true);
         matItemSlotImage2.gameObject.SetActive(true);
-        resultItemSlot.gameObject.SetActive(true);
+        resultItemSlotImage.gameObject.SetActive(true);
+
         RefreshUI();
     }
 
@@ -80,13 +86,15 @@ public class UI_EvolutionItem : MonoBehaviour
     {
         if (targetItem == null)
         {
-            targetItemSlot.sprite = ItemSystem.GetItemNoneImage();
+            targetItemSlotImage.sprite = ItemSystem.GetItemNoneImage();
             evolutionButton.gameObject.SetActive(false);
             evolutionInformationText.gameObject.SetActive(true);
+            targetItemSlot.GetComponent<Image>().color = Color.white;
         }
         else
         {
-            targetItemSlot.sprite = ItemSystem.GetItemImage(targetItem.id);
+            targetItemSlot.GetComponent<Image>().color = ItemColor.GetItemColor(targetItem.itemClass);
+            targetItemSlotImage.sprite = ItemSystem.GetItemImage(targetItem.id);
             int itemClass = targetItem.itemClass;
             if (matItems.Count == 2 && itemClass < 8)
             {
@@ -109,17 +117,23 @@ public class UI_EvolutionItem : MonoBehaviour
         }
 
         if (resultItem == null)
-            resultItemSlot.sprite = ItemSystem.GetItemNoneImage();
+        {
+            resultItemSlotImage.sprite = ItemSystem.GetItemNoneImage();
+            resultItemSlot.GetComponent<Image>().color = Color.white;
+        }
         else
-            resultItemSlot.sprite = ItemSystem.GetItemImage(resultItem.id);
+            resultItemSlotImage.sprite = ItemSystem.GetItemImage(resultItem.id);
         matItemSlotButton1.onClick.RemoveAllListeners();
         matItemSlotButton2.onClick.RemoveAllListeners();
+        matItemSlot1.GetComponent<Image>().color = Color.white;
+        matItemSlot2.GetComponent<Image>().color = Color.white;
         matItemSlotImage1.sprite = ItemSystem.GetItemNoneImage();
         matItemSlotImage2.sprite = ItemSystem.GetItemNoneImage();
         foreach (var i in matItems.Values)
         {
             if(matItemSlotImage1.sprite.name==ItemSystem.GetItemNoneImage().name)
             {
+                matItemSlot1.GetComponent<Image>().color = ItemColor.GetItemColor(i.itemClass);
                 matItemSlotImage1.sprite = ItemSystem.GetItemImage(i.id);
                 matItemSlotButton1.onClick.AddListener(delegate
                 {
@@ -128,6 +142,7 @@ public class UI_EvolutionItem : MonoBehaviour
             }
             else if(matItemSlotImage2.sprite.name==ItemSystem.GetItemNoneImage().name)
             {
+                matItemSlot2.GetComponent<Image>().color = ItemColor.GetItemColor(i.itemClass);
                 matItemSlotImage2.sprite = ItemSystem.GetItemImage(i.id);
                 matItemSlotButton2.onClick.AddListener(delegate
                 {
@@ -193,7 +208,7 @@ public class UI_EvolutionItem : MonoBehaviour
                 }
                 else
                 {
-                    UI_Manager.instance.ShowNeedAlert(Common.GetCoinCrystalEnergyImagePath(paymentType), LocalizationManager.GetText("manageTab2EvolutionPaymentWarning1"));
+                    UI_Manager.instance.ShowAlert(Common.GetCoinCrystalEnergyImagePath(paymentType), LocalizationManager.GetText("manageTab2EvolutionPaymentWarning1"));
                 }
             }
             else
@@ -204,7 +219,7 @@ public class UI_EvolutionItem : MonoBehaviour
                 }
                 else
                 {
-                    UI_Manager.instance.ShowNeedAlert(Common.GetCoinCrystalEnergyImagePath(paymentType), LocalizationManager.GetText("manageTab2EvolutionPaymentWarning2"));
+                    UI_Manager.instance.ShowAlert(Common.GetCoinCrystalEnergyImagePath(paymentType), LocalizationManager.GetText("manageTab2EvolutionPaymentWarning2"));
                 }
             }
         }
@@ -222,7 +237,7 @@ public class UI_EvolutionItem : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         //ItemSystem.UseEquipmentItem(targetItem.customId, 1);
-        targetItemSlot.GetComponent<AiryUIAnimatedElement>().HideElement();
+        targetItemSlotImage.GetComponent<AiryUIAnimatedElement>().HideElement();
         yield return new WaitForSeconds(0.1f);
         SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.equip);
         ItemSystem.UseItem(targetItem.customId, 1);
@@ -239,7 +254,8 @@ public class UI_EvolutionItem : MonoBehaviour
         SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.dropItem);
         ItemSystem.SetObtainItem(ItemSystem.GetNextClassItemId(targetItem));
         resultItem = ItemSystem.GetItem(ItemSystem.GetNextClassItemId(targetItem));
-        resultItemSlot.GetComponent<AiryUIAnimatedElement>().ShowElement();
+        resultItemSlotImage.GetComponent<AiryUIAnimatedElement>().ShowElement();
+
         Debugging.Log("합성성공!");
         targetItem = null;
         matItems.Clear();

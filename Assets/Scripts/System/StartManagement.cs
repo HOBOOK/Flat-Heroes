@@ -26,7 +26,6 @@ public class StartManagement : MonoBehaviour
         {
             LocalizationManager.LoadLanguage();
         }
-
     }
     private void Start()
     {
