@@ -136,9 +136,11 @@ sellItemButton=판매하기
 
 missionTitle=임무
 missionDay=일일 임무
-missionRepeat=반복 임무
-missionMain=주요 임무
+missionWeek=주간 임무
+missionArchivement=업적
 missionInformation=전투임무를 수행하여 보상을 받을 수 있습니다.
+missionClearAlertMessage=개의 임무를 완수하였습니다. 보상을 확인해주세요. 
+missionClearAlertMessage2=외
 missionProgress=진행중
 missionReward=보상받기
 missionClear=임무완료

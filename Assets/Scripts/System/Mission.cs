@@ -15,9 +15,6 @@ public class Mission
     [XmlElement("MissionLevel")]
     public int missionLevel;
 
-    [XmlElement("Image")]
-    public string image;
-
     [XmlElement("Point")]
     public int point;
 

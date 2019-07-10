@@ -4,7 +4,6 @@
     <Mission id="1">
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
-      <Image>Mission/mission_001</Image>
       <Point>0</Point>
       <ClearPoint>10</ClearPoint>
       <ClearType>0</ClearType>
@@ -17,7 +16,6 @@
     <Mission id="2">
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
-      <Image>Mission/mission_002</Image>
             <Point>0</Point>
             <ClearPoint>15</ClearPoint>
             <ClearType>0</ClearType>
@@ -30,7 +28,6 @@
         <Mission id="3">
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
-      <Image>Mission/mission_003</Image>
                 <Point>0</Point>
                 <ClearPoint>20</ClearPoint>
                 <ClearType>0</ClearType>
@@ -43,7 +40,6 @@
         <Mission id="4">
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
-      <Image>Mission/mission_004</Image>
                 <Point>0</Point>
                 <ClearPoint>25</ClearPoint>
                 <ClearType>0</ClearType>
@@ -56,7 +52,6 @@
       <Mission id="5">
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
-      <Image>Mission/mission_005</Image>
               <Point>0</Point>
               <ClearPoint>30</ClearPoint>
               <ClearType>0</ClearType>
@@ -69,7 +64,6 @@
     <Mission id="6">
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
-      <Image>Mission/mission_006</Image>
             <Point>0</Point>
             <ClearPoint>5</ClearPoint>
             <ClearType>1</ClearType>
@@ -82,7 +76,6 @@
     <Mission id="7">
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
-      <Image>Mission/mission_007</Image>
             <Point>0</Point>
             <ClearPoint>7</ClearPoint>
             <ClearType>1</ClearType>
@@ -95,7 +88,6 @@
     <Mission id="8">
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
-      <Image>Mission/mission_008</Image>
             <Point>0</Point>
             <ClearPoint>3</ClearPoint>
             <ClearType>1</ClearType>
@@ -108,7 +100,6 @@
     <Mission id="9">
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
-      <Image>Mission/mission_009</Image>
             <Point>0</Point>
             <ClearPoint>4</ClearPoint>
             <ClearType>1</ClearType>
@@ -121,7 +112,6 @@
     <Mission id="10">
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
-      <Image>Mission/mission_010</Image>
             <Point>0</Point>
             <ClearPoint>10</ClearPoint>
             <ClearType>1</ClearType>
@@ -134,7 +124,6 @@
     <Mission id="101">
       <MissionType>1</MissionType>
       <MissionLevel>1</MissionLevel>
-      <Image>Mission/mission_101</Image>
             <Point>0</Point>
             <ClearPoint>0</ClearPoint>
             <ClearType>0</ClearType>
@@ -147,7 +136,6 @@
       <Mission id="102">
       <MissionType>1</MissionType>
       <MissionLevel>1</MissionLevel>
-      <Image>Mission/mission_101</Image>
               <Point>0</Point>
               <ClearPoint>0</ClearPoint>
               <ClearType>0</ClearType>
@@ -160,7 +148,6 @@
     <Mission id="201">
       <MissionType>2</MissionType>
       <MissionLevel>0</MissionLevel>
-      <Image>Mission/mission_201</Image>
             <Point>0</Point>
             <ClearPoint>0</ClearPoint>
             <ClearType>0</ClearType>
@@ -173,7 +160,6 @@
         <Mission id="202">
       <MissionType>2</MissionType>
       <MissionLevel>0</MissionLevel>
-      <Image>Mission/mission_202</Image>
                 <Point>0</Point>
                 <ClearPoint>0</ClearPoint>
                 <ClearType>0</ClearType>
@@ -186,7 +172,6 @@
     <Mission id="203">
       <MissionType>2</MissionType>
       <MissionLevel>0</MissionLevel>
-      <Image>Mission/mission_203</Image>
             <Point>0</Point>
             <ClearPoint>0</ClearPoint>
             <ClearType>0</ClearType>
@@ -199,7 +184,6 @@
     <Mission id="204">
       <MissionType>2</MissionType>
       <MissionLevel>0</MissionLevel>
-      <Image>Mission/mission_204</Image>
             <Point>0</Point>
             <ClearPoint>0</ClearPoint>
             <ClearType>0</ClearType>
@@ -212,7 +196,6 @@
     <Mission id="205">
       <MissionType>2</MissionType>
       <MissionLevel>0</MissionLevel>
-      <Image>Mission/mission_205</Image>
             <Point>0</Point>
             <ClearPoint>0</ClearPoint>
             <ClearType>0</ClearType>

@@ -8,8 +8,8 @@ public class UI_Mission : MonoBehaviour
     #region 변수
     public GameObject slotMissionPrefab;
     protected GameObject ScrollContentViewDailyMission;
-    protected GameObject ScrollContentViewRepeatMission;
-    protected GameObject ScrollContentViewMainMission;
+    protected GameObject ScrollContentViewWeekMission;
+    protected GameObject ScrollContentViewArchivement;
 
     Image missionImage;
     Text missionTitleText;
@@ -23,21 +23,21 @@ public class UI_Mission : MonoBehaviour
     {
         if (ScrollContentViewDailyMission == null)
             ScrollContentViewDailyMission = this.GetComponentInChildren<UI_TabManager>().transform.GetChild(0).GetChild(0).GetComponentInChildren<VerticalLayoutGroup>().gameObject;
-        if (ScrollContentViewRepeatMission == null)
-            ScrollContentViewRepeatMission = this.GetComponentInChildren<UI_TabManager>().transform.GetChild(0).GetChild(1).GetComponentInChildren<VerticalLayoutGroup>().gameObject;
-        if (ScrollContentViewMainMission == null)
-            ScrollContentViewMainMission = this.GetComponentInChildren<UI_TabManager>().transform.GetChild(0).GetChild(2).GetComponentInChildren<VerticalLayoutGroup>().gameObject;
+        if (ScrollContentViewWeekMission == null)
+            ScrollContentViewWeekMission = this.GetComponentInChildren<UI_TabManager>().transform.GetChild(0).GetChild(1).GetComponentInChildren<VerticalLayoutGroup>().gameObject;
+        if (ScrollContentViewArchivement == null)
+            ScrollContentViewArchivement = this.GetComponentInChildren<UI_TabManager>().transform.GetChild(0).GetChild(2).GetComponentInChildren<VerticalLayoutGroup>().gameObject;
     }
     void RefreshUI()
     {
-        if(slotMissionPrefab!=null&&ScrollContentViewDailyMission!=null&ScrollContentViewMainMission!=null&& ScrollContentViewRepeatMission!=null)
+        if(slotMissionPrefab!=null&&ScrollContentViewDailyMission!=null& ScrollContentViewWeekMission != null&& ScrollContentViewArchivement != null)
         {
             ClearView(ScrollContentViewDailyMission.transform);
-            ClearView(ScrollContentViewRepeatMission.transform);
-            ClearView(ScrollContentViewMainMission.transform);
+            ClearView(ScrollContentViewWeekMission.transform);
+            ClearView(ScrollContentViewArchivement.transform);
             LoadMissions(MissionSystem.GetDayMissions(), ScrollContentViewDailyMission.transform);
-            LoadMissions(MissionSystem.GetRepeatMissions(), ScrollContentViewRepeatMission.transform);
-            LoadMissions(MissionSystem.GetMainMissions(), ScrollContentViewMainMission.transform);
+            LoadMissions(MissionSystem.GetWeekMissions(), ScrollContentViewWeekMission.transform);
+            LoadMissions(MissionSystem.GetArchivement(), ScrollContentViewArchivement.transform);
         }
     }
     void ClearView(Transform parent)
@@ -63,11 +63,11 @@ public class UI_Mission : MonoBehaviour
             rewardButton = missionSlot.transform.GetChild(2).GetComponentInChildren<Button>();
             clearPanel = missionSlot.transform.GetChild(3).gameObject;
 
-            missionImage.sprite = Resources.Load<Sprite>(mission.image);
+            missionImage.sprite = MissionSystem.GetMissionImage(mission);
             missionTitleText.text = MissionSystem.GetMissionName(mission.id);
             missionDescriptionText.text = MissionSystem.GetMissionDescription(mission.id) + string.Format(" ({0}/{1})",mission.point,mission.clearPoint);
             if(mission.rewardType==3)
-                rewardItemImage.sprite = Resources.Load<Sprite>(ItemSystem.GetItem(mission.rewardItemId).image);
+                rewardItemImage.sprite = ItemSystem.GetItemImage(mission.rewardItemId);
             else
                 rewardItemImage.sprite = Resources.Load<Sprite>(Common.GetCoinCrystalEnergyImagePath(mission.rewardType));
             rewardItemCountText.text = "x " + Common.GetThousandCommaText(mission.rewardItemCount);
@@ -128,7 +128,7 @@ public class UI_Mission : MonoBehaviour
                     SaveSystem.AddUserEnergy(mission.rewardItemCount);
                     UI_Manager.instance.ShowGetAlert(Common.GetCoinCrystalEnergyImagePath(2), string.Format("<color='yellow'>{0}</color> {1} {2}", LocalizationManager.GetText("Energy"), mission.rewardItemCount, LocalizationManager.GetText("alertGetMessage4")));
                     break;
-                case MissionSystem.RewardType.item:
+                case MissionSystem.RewardType.scroll:
                     ItemSystem.SetObtainItem(mission.rewardItemId, mission.rewardItemCount);
                     Item rewardItem = ItemSystem.GetItem(mission.rewardItemId);
                     UI_Manager.instance.ShowGetAlert(rewardItem.image, string.Format("<color='yellow'>{0}</color> {1}", rewardItem.name,LocalizationManager.GetText("alertGetMessage3")));

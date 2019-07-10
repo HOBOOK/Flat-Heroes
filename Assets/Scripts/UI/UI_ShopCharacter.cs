@@ -110,7 +110,7 @@ public class UI_ShopCharacter : MonoBehaviour
             OnHeroDetailClick();
         });
     }
-
+     
     public void OnItemSlotClick(Transform trans, HeroData heroData)
     {
         SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_button_default);

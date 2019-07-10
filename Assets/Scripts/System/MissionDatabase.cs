@@ -161,6 +161,32 @@ public class MissionDatabase
         CreateNodes(dayMissions, xmlDoc, path);
         Debugging.Log("일일 미션 초기화 완료");
     }
+    public static void RegenerateWeekMission(List<Mission> weekMissions)
+    {
+        string path = Application.persistentDataPath + "/Xml/Mission.Xml";
+        XmlDocument xmlDoc = new XmlDocument();
+        if (System.IO.File.Exists(path))
+            xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
+
+        //복호화////
+        XmlElement elmRoot = xmlDoc.DocumentElement;
+
+        var decrpytData = DataSecurityManager.DecryptData(elmRoot.InnerText);
+        elmRoot.InnerXml = decrpytData;
+        //////////
+
+        XmlNodeList nodes = xmlDoc.SelectNodes("MissionCollection/Missions/Mission");
+
+        foreach (XmlNode node in nodes)
+        {
+            if (node.SelectSingleNode("MissionType").InnerText.Equals("1"))
+            {
+                node.ParentNode.RemoveChild(node);
+            }
+        }
+        CreateNodes(weekMissions, xmlDoc, path);
+        Debugging.Log("주간 미션 초기화 완료");
+    }
     public static void ClearMission(Mission mission)
     {
         string path = Application.persistentDataPath + "/Xml/Mission.Xml";
@@ -265,9 +291,6 @@ public class MissionDatabase
         XmlElement level = xmlDoc.CreateElement("MissionLevel");
         level.InnerText = data.missionLevel.ToString();
         child.AppendChild(level);
-        XmlElement image = xmlDoc.CreateElement("Image");
-        image.InnerText = data.image;
-        child.AppendChild(image);
         XmlElement point = xmlDoc.CreateElement("Point");
         point.InnerText = data.point.ToString();
         child.AppendChild(point);
@@ -320,9 +343,6 @@ public class MissionDatabase
             XmlElement level = xmlDoc.CreateElement("MissionLevel");
             level.InnerText = data[i].missionLevel.ToString();
             child.AppendChild(level);
-            XmlElement image = xmlDoc.CreateElement("Image");
-            image.InnerText = data[i].image;
-            child.AppendChild(image);
             XmlElement point = xmlDoc.CreateElement("Point");
             point.InnerText = data[i].point.ToString();
             child.AppendChild(point);

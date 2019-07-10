@@ -136,9 +136,11 @@ sellItemButton=Sell
 
 missionTitle=Mission
 missionDay=Daily
-missionRepeat=Repeat
-missionMain=Main
+missionWeek=Week
+missionArchivement=Archivement
 missionInformation=You can receive rewards by performing combat missions.
+missionClearAlertMessage=Three missions have been completed. Please check the compensation.
+missionClearAlertMessage2=
 missionProgress=In progress
 missionReward=Get
 missionClear=Clear
