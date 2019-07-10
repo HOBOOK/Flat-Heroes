@@ -124,7 +124,7 @@ public static class SaveSystem
             User.addMoneyLevel = data.addMoneyLevel;
             User.addExpLevel = data.addExpLevel;
             User.addAttackLevel = data.addAttackLevel;
-            User.addDefenceLevel = data.addExpLevel;
+            User.addDefenceLevel = data.addDefenceLevel;
             User.gachaSeed = data.gachaSeed;
             if (data.playerSkill == null) data.playerSkill = new int[2];
             User.playerSkill = data.playerSkill;

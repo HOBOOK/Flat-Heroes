@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityStandardAssets.ImageEffects;
 
 public class Hero : MonoBehaviour
 {
@@ -162,7 +161,7 @@ public class Hero : MonoBehaviour
         else
             isCriticalAttack = false;
         float dam = isCriticalAttack ? ATTACK * 1.5f: ATTACK;
-        dam = isSkillAttack ? dam + SkillSystem.GetUserSkillPower(heroData.skill) : dam;
+        dam = isSkillAttack ? dam * (SkillSystem.GetUserSkillPower(heroData.skill)*0.01f) : dam;
         dam = UnityEngine.Random.Range(dam * 0.8f, dam * 1.2f);
         return (int)dam;
     }
@@ -1220,9 +1219,9 @@ public class Hero : MonoBehaviour
         }
         // 아이템 획득 파트
         Item randomItem = ItemSystem.GetRandomItem();
-        if(UnityEngine.Random.Range(0,1000)<randomItem.droprate)
+        if(UnityEngine.Random.Range(0,1000)<ItemSystem.GetDroprate(randomItem))
         {
-            Debugging.Log(randomItem.droprate + " 의 확률수치의 " + randomItem.name + "의 아이템이 드랍되었습니다.");
+            Debugging.Log(ItemSystem.GetDroprate(randomItem) + " 의 확률수치의 " + randomItem.name + "의 아이템이 드랍되었습니다.");
             GameObject dropItem = ObjectPool.Instance.PopFromPool("dropItemPrefab");
             dropItem.transform.position = transform.position;
             dropItem.GetComponent<dropItemInfo>().dropItemID = randomItem.id;
@@ -2089,20 +2088,14 @@ public class Hero : MonoBehaviour
     #region 영웅스킬모음
     public IEnumerator Skill001()
     {
-        int totalCount = SkillSystem.GetUserSkillLevel(skillData.id);
         attackPoint.name = this.Damage().ToString();
-        int cnt = 0;
-        while (cnt < totalCount)
+        attackPoint.gameObject.SetActive(true);
+        if (attackPoint && attackPoint.GetComponent<AudioSource>() != null)
         {
-            attackPoint.gameObject.SetActive(true);
-            if (attackPoint && attackPoint.GetComponent<AudioSource>() != null)
-            {
-                attackPoint.GetComponent<AudioSource>().Play();
-            }
-            yield return new WaitForSeconds(0.2f);
-            attackPoint.gameObject.SetActive(false);
-            cnt++;
+            attackPoint.GetComponent<AudioSource>().Play();
         }
+        yield return new WaitForSeconds(0.3f);
+        attackPoint.gameObject.SetActive(false);
         yield return null;
     }
     public IEnumerator Skill002()

@@ -324,7 +324,7 @@ SkillName105=Sacrifice
 SkillDescription105=Sacrifice a friendly ally to reduce the strength of the ally's most powerful enemy's sacrifice.
 
 HerosName101=Dong Hae
-HerosDescription101=A warrior who came from the east country.
+HerosDescription101=Instantly cuts off one enemy.
 HerosChat101=Prepare your mind!,I'll defeat you all...
 
 HerosName102=White
@@ -359,27 +359,27 @@ HerosName109=Dr.Park
 HerosDescription109=A renowned surgeon who developed a new treatment for trauma patients and won the Flat Medal Award.
 HerosChat109=No more victims...,For Flat World!
 
-HerosName110=10¹ø¿µ¿õ
+HerosName110=10
 HerosDescription110=null
 HerosChat110=null
 
-HerosName111=11¹ø¿µ¿õ
+HerosName111=11
 HerosDescription11=null
 HerosChat111=null
 
-HerosName112=12¹ø¿µ¿õ
+HerosName112=12
 HerosDescription112=null
 HerosChat112=null
 
-HerosName113=13¹ø¿µ¿õ
+HerosName113=13
 HerosDescription113=null
 HerosChat113=null
 
-HerosName114=14¹ø¿µ¿õ
+HerosName114=14
 HerosDescription114=null
 HerosChat114=null
 
-HerosName115=15¹ø¿µ¿õ
+HerosName115=15
 HerosDescription115=null
 HerosChat115=null
 
@@ -438,36 +438,113 @@ ItemDescription8=It is a weapon used by apprentices.
 
 ItemName11=Hwan do
 ItemDescription11=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
+ItemDescription12=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
+ItemDescription13=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
+ItemDescription14=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
+ItemDescription15=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
+ItemDescription16=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
+ItemDescription17=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
+ItemDescription18=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
 
 ItemName21=Black Hwan do
 ItemDescription21=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
+ItemDescription22=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
+ItemDescription23=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
+ItemDescription24=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
+ItemDescription25=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
+ItemDescription26=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
+ItemDescription27=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
+ItemDescription28=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
 
 ItemName31=F-5
 ItemDescription31=A special bullet can be fired with a pistol that is mainly used by the mercenary.
+ItemDescription32=A special bullet can be fired with a pistol that is mainly used by the mercenary.
+ItemDescription33=A special bullet can be fired with a pistol that is mainly used by the mercenary.
+ItemDescription34=A special bullet can be fired with a pistol that is mainly used by the mercenary.
+ItemDescription35=A special bullet can be fired with a pistol that is mainly used by the mercenary.
+ItemDescription36=A special bullet can be fired with a pistol that is mainly used by the mercenary.
+ItemDescription37=A special bullet can be fired with a pistol that is mainly used by the mercenary.
+ItemDescription38=A special bullet can be fired with a pistol that is mainly used by the mercenary.
 
 ItemName41=Flat Knife
 ItemDescription41=It is short and wielding dagger.
+ItemDescription42=It is short and wielding dagger.
+ItemDescription43=It is short and wielding dagger.
+ItemDescription44=It is short and wielding dagger.
+ItemDescription45=It is short and wielding dagger.
+ItemDescription46=It is short and wielding dagger.
+ItemDescription47=It is short and wielding dagger.
+ItemDescription48=It is short and wielding dagger.
 
 ItemName51=Cloth armor
 ItemDescription51=Lightweight and easy to wear armor.
+ItemDescription52=Lightweight and easy to wear armor.
+ItemDescription53=Lightweight and easy to wear armor.
+ItemDescription54=Lightweight and easy to wear armor.
+ItemDescription55=Lightweight and easy to wear armor.
+ItemDescription56=Lightweight and easy to wear armor.
+ItemDescription57=Lightweight and easy to wear armor.
+ItemDescription58=Lightweight and easy to wear armor.
 
 ItemName61=Iron armor
 ItemDescription61=It is a lightweight but sturdy armor.
+ItemDescription62=It is a lightweight but sturdy armor.
+ItemDescription63=It is a lightweight but sturdy armor.
+ItemDescription64=It is a lightweight but sturdy armor.
+ItemDescription65=It is a lightweight but sturdy armor.
+ItemDescription66=It is a lightweight but sturdy armor.
+ItemDescription67=It is a lightweight but sturdy armor.
+ItemDescription68=It is a lightweight but sturdy armor.
 
 ItemName71=Hunter's Armor
 ItemDescription71=It is well-balanced armor.
+ItemDescription72=It is well-balanced armor.
+ItemDescription73=It is well-balanced armor.
+ItemDescription74=It is well-balanced armor.
+ItemDescription75=It is well-balanced armor.
+ItemDescription76=It is well-balanced armor.
+ItemDescription77=It is well-balanced armor.
+ItemDescription78=It is well-balanced armor.
 
 ItemName81=Round shield
 ItemDescription81=It is a round wooden shield.
+ItemDescription82=It is a round wooden shield.
+ItemDescription83=It is a round wooden shield.
+ItemDescription84=It is a round wooden shield.
+ItemDescription85=It is a round wooden shield.
+ItemDescription86=It is a round wooden shield.
+ItemDescription87=It is a round wooden shield.
+ItemDescription88=It is a round wooden shield.
 
 ItemName91=Guardian Shield
 ItemDescription91=Platinum shield with wings.
+ItemDescription92=Platinum shield with wings.
+ItemDescription93=Platinum shield with wings.
+ItemDescription94=Platinum shield with wings.
+ItemDescription95=Platinum shield with wings.
+ItemDescription96=Platinum shield with wings.
+ItemDescription97=Platinum shield with wings.
+ItemDescription98=Platinum shield with wings.
 
 ItemName101=Hero's Armor
 ItemDescription101=It is the armor that the legendary hero wore.
+ItemDescription102=It is the armor that the legendary hero wore.
+ItemDescription103=It is the armor that the legendary hero wore.
+ItemDescription104=It is the armor that the legendary hero wore.
+ItemDescription105=It is the armor that the legendary hero wore.
+ItemDescription106=It is the armor that the legendary hero wore.
+ItemDescription107=It is the armor that the legendary hero wore.
+ItemDescription108=It is the armor that the legendary hero wore.
 
 ItemName111=Wizard's Shoes
 ItemDescription111=It is a shoe with a sense of insignificance.
+ItemDescription112=It is a shoe with a sense of insignificance.
+ItemDescription113=It is a shoe with a sense of insignificance.
+ItemDescription114=It is a shoe with a sense of insignificance.
+ItemDescription115=It is a shoe with a sense of insignificance.
+ItemDescription116=It is a shoe with a sense of insignificance.
+ItemDescription117=It is a shoe with a sense of insignificance.
+ItemDescription118=It is a shoe with a sense of insignificance.
 
 ItemName121=Wings of pure white
 ItemDescription121=It is a pure white wing.

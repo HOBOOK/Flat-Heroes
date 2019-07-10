@@ -13,7 +13,10 @@ public class UI_Manager_InventoryTab : MonoBehaviour
     public GameObject PanelItemInfo;
     public GameObject PanelEvolutionPanel;
     public GameObject ScrollContentView;
+    GameObject itemInfoParent;
     Image itemInfoImage;
+    Image itemInfoCoverImage;
+    Image itemInfoContainerImage;
     Text itemInfoName;
     Text itemInfoDescription;
     Button itemSellButton;
@@ -23,27 +26,30 @@ public class UI_Manager_InventoryTab : MonoBehaviour
     private void Awake()
     {
         ScrollContentView = transform.GetComponentInChildren<ContentSizeFitter>().gameObject;
-    }
-    public void OnValidate()
-    {
-        if(itemParent!=null)
+      
+        if (itemParent != null)
         {
             itemSlots = itemParent.GetComponentsInChildren<ItemSlot>();
         }
-        if(PanelItemInfo!=null)
+        if (PanelItemInfo != null)
         {
+            itemInfoParent = PanelItemInfo.transform.GetChild(0).gameObject;
             if (itemInfoImage == null)
-                itemInfoImage = PanelItemInfo.transform.GetChild(0).GetComponent<Image>();
-            if(itemInfoName==null||itemInfoDescription==null)
+                itemInfoImage = itemInfoParent.transform.GetChild(0).GetChild(0).GetComponent<Image>();
+            if(itemInfoCoverImage==null)
+                itemInfoCoverImage = itemInfoParent.transform.GetChild(0).GetComponent<Image>();
+            if (itemInfoContainerImage == null)
+                itemInfoContainerImage = itemInfoParent.transform.GetChild(1).GetComponent<Image>();
+            if (itemInfoName == null || itemInfoDescription == null)
             {
                 itemInfoName = PanelItemInfo.transform.GetChild(1).GetComponent<Text>();
                 itemInfoDescription = PanelItemInfo.transform.GetChild(2).GetComponent<Text>();
             }
-            if (itemSellButton==null)
+            if (itemSellButton == null)
             {
                 itemSellButton = PanelItemInfo.GetComponentInChildren<Button>();
             }
-            itemInfoImage.enabled = false;
+            itemInfoParent.gameObject.SetActive(false);
             itemInfoName.enabled = false;
             itemInfoDescription.enabled = false;
             itemSellButton.enabled = false;
@@ -52,7 +58,7 @@ public class UI_Manager_InventoryTab : MonoBehaviour
         }
     }
 
-    public void RefreshUI(Common.OrderByType orderByType=Common.OrderByType.NONE)
+    public void RefreshUI(Common.OrderByType orderByType=Common.OrderByType.VALUE)
     {
         items = ItemSystem.GetUserItems(orderByType);
         if (items!=null)
@@ -61,15 +67,16 @@ public class UI_Manager_InventoryTab : MonoBehaviour
             {
                 itemSlots[i].Item = null;
                 itemSlots[i].GetComponent<Button>().enabled = false;
-                itemSlots[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.C;
-                isEquipPanel = itemSlots[i].transform.GetChild(0).GetChild(2).gameObject;
+
+                itemSlots[i].transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.C;
+                isEquipPanel = itemSlots[i].transform.GetChild(0).GetChild(0).GetChild(2).gameObject;
                 isEquipPanel.SetActive(false);
                 itemSlots[i].transform.GetChild(3).gameObject.SetActive(false);
                 itemSlots[i].transform.GetChild(4).gameObject.SetActive(false);
                 if (i < items.Count && i < itemSlots.Length)
                 {
                     itemSlots[i].Item = items[i];
-                    itemSlots[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.GetItemColor(items[i].itemClass);
+                    itemSlots[i].transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.GetItemColor(items[i].itemClass);
                     itemSlots[i].transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(items[i].itemClass);
                     itemSlots[i].GetComponent<Button>().enabled = true;
                     if (items[i].equipCharacterId > 0)
@@ -90,6 +97,7 @@ public class UI_Manager_InventoryTab : MonoBehaviour
     }
     private void OnEnable()
     {
+
         RefreshUI();
         PanelItemInfo.SetActive(true);
         PanelEvolutionPanel.SetActive(false);
@@ -108,13 +116,15 @@ public class UI_Manager_InventoryTab : MonoBehaviour
             {
                 selectedItem = itemSlots[index].Item;
                 itemInfoImage.sprite = ItemSystem.GetItemImage(itemSlots[index].Item.id);
+                itemInfoContainerImage.color = ItemColor.GetItemColor(itemSlots[index].Item.itemClass);
+                itemInfoCoverImage.sprite = ItemSystem.GetItemClassImage(itemSlots[index].Item.id);
                 itemInfoName.text = ItemSystem.GetItemName(itemSlots[index].Item.id) + string.Format(" {0}", ItemSystem.GetIemClassName(itemSlots[index].Item.itemClass));
                 itemInfoName.color = ItemColor.GetItemColor(itemSlots[index].Item.itemClass);
                 itemInfoDescription.text = ItemSystem.GetEquipmentItemDescription(itemSlots[index].Item);
-                itemInfoImage.enabled = true;
+                itemInfoParent.gameObject.SetActive(true);
                 itemInfoName.enabled = true;
                 itemInfoDescription.enabled = true;
-                if(selectedItem.itemClass<8)
+                if(selectedItem.itemClass<8&&selectedItem.equipCharacterId==0)
                 {
                     itemSellButton.enabled = true;
                     itemSellButton.GetComponent<Image>().enabled = true;
@@ -127,8 +137,8 @@ public class UI_Manager_InventoryTab : MonoBehaviour
                     itemSellButton.GetComponentInChildren<Text>().enabled = false;
                 }
 
-                if (itemInfoImage.GetComponent<AiryUIAnimatedElement>() != null)
-                    itemInfoImage.GetComponent<AiryUIAnimatedElement>().ShowElement();
+                if (itemInfoParent.GetComponent<AiryUIAnimatedElement>() != null)
+                    itemInfoParent.GetComponent<AiryUIAnimatedElement>().ShowElement();
                 Debugging.Log(index + " 아이템 슬롯버튼 클릭");
             }
 
@@ -163,38 +173,39 @@ public class UI_Manager_InventoryTab : MonoBehaviour
     {
         selectedItem = itemSlot;
         itemInfoImage.sprite = ItemSystem.GetItemImage(itemSlot.id);
+        itemInfoContainerImage.color = ItemColor.GetItemColor(itemSlot.itemClass);
         itemInfoName.text = ItemSystem.GetItemName(itemSlot.id) + string.Format(" {0}", ItemSystem.GetIemClassName(itemSlot.itemClass));
         itemInfoName.color = ItemColor.GetItemColor(itemSlot.itemClass);
         itemInfoDescription.text = ItemSystem.GetEquipmentItemDescription(itemSlot);
-        itemInfoImage.enabled = true;
+        itemInfoParent.gameObject.SetActive(true);
         itemInfoName.enabled = true;
         itemInfoDescription.enabled = true;
         itemSellButton.enabled = true;
         itemSellButton.GetComponent<Image>().enabled = true;
         itemSellButton.GetComponentInChildren<Text>().enabled = true;
-        if (itemInfoImage.GetComponent<AiryUIAnimatedElement>() != null)
-            itemInfoImage.GetComponent<AiryUIAnimatedElement>().ShowElement();
+        if (itemInfoParent.GetComponent<AiryUIAnimatedElement>() != null)
+            itemInfoParent.GetComponent<AiryUIAnimatedElement>().ShowElement();
         Debugging.Log(itemSlot.customId + " 아이템 슬롯버튼 클릭");
     }
 
     public void RefreshEvolutionUI()
     {
-        items = ItemSystem.GetUserItems();
+        items = ItemSystem.GetUserItems(Common.OrderByType.VALUE);
         if (items != null)
         {
             for (int i = 0; i < itemSlots.Length; i++)
             {
                 itemSlots[i].Item = null;
                 itemSlots[i].GetComponent<Button>().enabled = false;
-                itemSlots[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.C;
-                isEquipPanel = itemSlots[i].transform.GetChild(0).GetChild(2).gameObject;
+                itemSlots[i].transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.C;
+                isEquipPanel = itemSlots[i].transform.GetChild(0).GetChild(0).GetChild(2).gameObject;
                 isEquipPanel.SetActive(false);
                 itemSlots[i].transform.GetChild(3).gameObject.SetActive(false);
                 itemSlots[i].transform.GetChild(4).gameObject.SetActive(false);
                 if (i < items.Count && i < itemSlots.Length)
                 {
                     itemSlots[i].Item = items[i];
-                    itemSlots[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.GetItemColor(items[i].itemClass);
+                    itemSlots[i].transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.GetItemColor(items[i].itemClass);
                     itemSlots[i].transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(items[i].itemClass);
                     itemSlots[i].GetComponent<Button>().enabled = true;
                     if (items[i].equipCharacterId > 0)

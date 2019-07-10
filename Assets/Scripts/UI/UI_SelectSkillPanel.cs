@@ -8,6 +8,7 @@ public class UI_SelectSkillPanel : MonoBehaviour
     public GameObject ScrollContentView;
     public GameObject slotPrefab;
     public GameObject SelectSkillPanel;
+    public GameObject SelectSkillInformationPanel;
 
     public List<Skill> playerSkillList = new List<Skill>();
     public List<Skill> selectedSkillList = new List<Skill>();
@@ -88,7 +89,15 @@ public class UI_SelectSkillPanel : MonoBehaviour
                 {
                     OnCancleSelectedSkill(selectedSkillList[index]);
                 });
+
+                SelectSkillInformationPanel.transform.GetChild(i).gameObject.SetActive(true);
+                SelectSkillInformationPanel.transform.GetChild(i).GetChild(0).GetComponent<Text>().text = SkillSystem.GetSkillName(selectedSkillList[i].id);
+                SelectSkillInformationPanel.transform.GetChild(i).GetChild(1).GetComponent<Text>().text = SkillSystem.GetSkillDescription(selectedSkillList[i].id);
             }
+        }
+        for(var i = selectedSkillList.Count; i <SelectSkillInformationPanel.transform.childCount; i++)
+        {
+            SelectSkillInformationPanel.transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 

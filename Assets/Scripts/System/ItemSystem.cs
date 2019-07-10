@@ -373,7 +373,14 @@ public static class ItemSystem
         {
             if(itemAbilities[i]!="0"||!itemAbilities[i].Equals("0"))
             {
-                sb.Append(string.Format("<color='green'>{0} + {1}</color>\r\n",itemAbilitiesTxt[i],itemAbilities[i]));
+                if(int.Parse(itemAbilities[i])<0)
+                {
+                    sb.Append(string.Format("<color='red'>{0} {1}</color>\r\n", itemAbilitiesTxt[i], itemAbilities[i]));
+                }
+                else
+                {
+                    sb.Append(string.Format("<color='white'>{0} + {1}</color>\r\n", itemAbilitiesTxt[i], itemAbilities[i]));
+                }
             }
         }
         sb.Append("\r\n"+GetItemDescription(item.id));
@@ -443,7 +450,7 @@ public static class ItemSystem
         Item primeItem = GetPrimeItem(item);
         if (primeItem != null)
         {
-            int val = primeItem.critical + (int)((primeItem.attackSpeed * item.itemClass * item.itemClass) * 0.1f);
+            int val = primeItem.attackSpeed + (int)((primeItem.attackSpeed * item.itemClass * item.itemClass) * 0.1f);
             return val;
         }
         return 0;
@@ -453,7 +460,7 @@ public static class ItemSystem
         Item primeItem = GetPrimeItem(item);
         if (primeItem != null)
         {
-            int val = primeItem.critical + (int)((primeItem.moveSpeed * item.itemClass * item.itemClass) * 0.09f);
+            int val = primeItem.moveSpeed + (int)((primeItem.moveSpeed * item.itemClass * item.itemClass) * 0.09f);
             return val;
         }
         return 0;
@@ -463,7 +470,7 @@ public static class ItemSystem
         Item primeItem = GetPrimeItem(item);
         if (primeItem != null)
         {
-            int val = primeItem.critical + (int)((primeItem.skillEnergy * item.itemClass * item.itemClass) * 0.2f);
+            int val = primeItem.skillEnergy + (int)((primeItem.skillEnergy * item.itemClass * item.itemClass) * 0.2f);
             return val;
         }
         return 0;
@@ -480,6 +487,11 @@ public static class ItemSystem
         }
         else
             return item.value;
+    }
+    public static int GetDroprate(Item item)
+    {
+        int itemClass = item.itemClass;
+        return (int)(200 * (128 - (itemClass * itemClass * 3)) * 0.005f);
     }
     #endregion
 
@@ -534,10 +546,10 @@ public static class ItemSystem
     {
         return items.Find(item => item.id == id).weapontype;
     }
-    public static Sprite GetItemImage(int id, bool isEquipment = false)
+    public static Sprite GetItemImage(int id, bool isCustomId = false)
     {
         Item item;
-        if (isEquipment)
+        if (isCustomId)
         {
             id = userItems.Find(x => x.customId == id).id;
         }
@@ -557,10 +569,16 @@ public static class ItemSystem
         Item data = items.Find(x => x.id == id || x.id.Equals(id));
         if (data != null)
         {
-            if(GetPrimeItem(data)!=null)
-                name = string.Format("{0} {1}",LocalizationManager.GetText("ItemClassName" +data.itemClass), LocalizationManager.GetText("ItemName" + GetPrimeItem(data).id));
+            if(data.itemtype==0)
+            {
+                if (GetPrimeItem(data) != null)
+                    name = string.Format("{0} {1}", LocalizationManager.GetText("ItemClassName" + data.itemClass), LocalizationManager.GetText("ItemName" + GetPrimeItem(data).id));
+                else
+                    name = string.Format("{0}", LocalizationManager.GetText("ItemNameNull"));
+            }
             else
-                name = string.Format("{0}", LocalizationManager.GetText("ItemNameNull"));
+                name = string.Format("{0}", LocalizationManager.GetText("ItemName"+data.id));
+
         }
         else
             name = string.Format("{0}", LocalizationManager.GetText("ItemNameNull"));
@@ -598,6 +616,31 @@ public static class ItemSystem
                 return "(Lengedary)";
         }
         return "";
+    }
+    public static Sprite GetItemClassImage(int id, bool isCustomId=false)
+    {
+        Item item;
+        if (isCustomId)
+        {
+            id = userItems.Find(x => x.customId == id).id;
+        }
+        item = items.Find(x => x.id == id);
+        if (item!=null&&item.itemtype==0)
+        {
+            switch(item.itemClass)
+            {
+                case 8:
+                    return Resources.Load<Sprite>("Class/Legend");
+                case 7:
+                    return Resources.Load<Sprite>("Class/SSS");
+                case 6:
+                    return Resources.Load<Sprite>("Class/SS");
+                case 5:
+                    return Resources.Load<Sprite>("Class/S");
+            }
+            return GetItemNoneImage();
+        }
+        return GetItemNoneImage();
     }
     #endregion
 

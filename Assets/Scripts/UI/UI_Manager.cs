@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityStandardAssets.ImageEffects;
 
 public class UI_Manager : MonoBehaviour
 {
@@ -135,10 +134,6 @@ public class UI_Manager : MonoBehaviour
                     else
                         popupPanel.transform.GetChild(i).gameObject.SetActive(false);
                 }
-            }
-            if (Camera.main.GetComponent<BlurOptimized>() != null)
-            {
-                Camera.main.GetComponent<BlurOptimized>().enabled = false;
             }
         }
     }

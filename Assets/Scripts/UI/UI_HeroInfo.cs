@@ -146,13 +146,15 @@ public class UI_HeroInfo : MonoBehaviour
             {
                 if (equipmentItemsId[i] != 0)
                 {
+                    heroEquimentItemSlots.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemClassImage(equipmentItemsId[i], true);
                     heroEquimentItemSlots.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(equipmentItemsId[i],true);
-                    heroEquimentItemSlots.transform.GetChild(i).GetChild(0).GetComponent<Image>().color = ItemColor.GetItemColor(ItemSystem.GetUserEquipmentItem(equipmentItemsId[i]).itemClass);
+                    heroEquimentItemSlots.transform.GetChild(i).GetChild(1).GetComponent<Image>().color = ItemColor.GetItemColor(ItemSystem.GetUserEquipmentItem(equipmentItemsId[i]).itemClass);
                 }
                 else
                 {
+                    heroEquimentItemSlots.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemNoneImage();
                     heroEquimentItemSlots.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemNoneImage();
-                    heroEquimentItemSlots.transform.GetChild(i).GetChild(0).GetComponent<Image>().color = ItemColor.D;
+                    heroEquimentItemSlots.transform.GetChild(i).GetChild(1).GetComponent<Image>().color = ItemColor.D;
                 }
                 int buttonIndex = i;
                 heroEquimentItemSlots.transform.GetChild(buttonIndex).GetComponent<Button>().onClick.RemoveAllListeners();

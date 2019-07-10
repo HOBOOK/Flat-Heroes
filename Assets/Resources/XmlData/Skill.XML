@@ -8,8 +8,8 @@
       <Level>1</Level>
       <SkillType>0</SkillType>
       <TargetType>0</TargetType>
-      <Power>70</Power>
-      <AddPower>20</AddPower>
+      <Power>150</Power>
+      <AddPower>30</AddPower>
       <Energy>40</Energy>
     </Skill>
     <Skill id="2">
@@ -20,7 +20,7 @@
       <SkillType>0</SkillType>
       <TargetType>0</TargetType>
       <Power>50</Power>
-      <AddPower>8</AddPower>
+      <AddPower>5</AddPower>
       <Energy>55</Energy>
     </Skill>
     <Skill id="3">
@@ -31,7 +31,7 @@
       <SkillType>0</SkillType>
       <TargetType>0</TargetType>
       <Power>50</Power>
-      <AddPower>15</AddPower>
+      <AddPower>10</AddPower>
       <Energy>80</Energy>
     </Skill>
     <Skill id="4">
@@ -41,7 +41,7 @@
       <Level>1</Level>
       <SkillType>0</SkillType>
       <TargetType>0</TargetType>
-      <Power>50</Power>
+      <Power>80</Power>
       <AddPower>17</AddPower>
       <Energy>50</Energy>
     </Skill>
@@ -52,7 +52,7 @@
       <Level>1</Level>
       <SkillType>0</SkillType>
       <TargetType>0</TargetType>
-      <Power>50</Power>
+      <Power>90</Power>
       <AddPower>12</AddPower>
       <Energy>65</Energy>
     </Skill>

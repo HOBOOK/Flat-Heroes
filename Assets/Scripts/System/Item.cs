@@ -61,9 +61,6 @@ public class Item : ICloneable
     [XmlElement("Count")]
     public int count;
 
-    [XmlElement("DropRate")]
-    public int droprate;
-
     [XmlElement("Class")]
     public int itemClass;
 
@@ -88,7 +85,6 @@ public class Item : ICloneable
         newItem.image = this.image;
         newItem.enable = this.enable;
         newItem.count = this.count;
-        newItem.droprate = this.droprate;
         newItem.itemClass = this.itemClass;
         return newItem;
     }

@@ -131,7 +131,7 @@ public static class SkillSystem
     }
     public static string GetUserSkillDescription(Skill skillData, HeroData heroData)
     {
-        return string.Format("\r\n{0}\r\n\r\n<color='yellow'>{1} : {2}</color>  <color='cyan'>{3} : {4}</color><color='yellow'>(-{5})</color>", GetSkillDescription(GetSkill(skillData.id).id),LocalizationManager.GetText("SkillAttack"),GetUserSkillPower(skillData.id), LocalizationManager.GetText("SkillUseEnergy"), HeroSystem.GetHeroNeedEnergy(heroData.id,skillData),HeroSystem.GetHeroStatusSkillEnergy(ref heroData));
+        return string.Format("\r\n{0}\r\n\r\n<color='yellow'>{1} : {2}%</color>  <color='cyan'>{3} : {4}</color><color='yellow'>(-{5})</color>", GetSkillDescription(GetSkill(skillData.id).id),LocalizationManager.GetText("SkillAttack"),GetUserSkillPower(skillData.id), LocalizationManager.GetText("SkillUseEnergy"), HeroSystem.GetHeroNeedEnergy(heroData.id,skillData),HeroSystem.GetHeroStatusSkillEnergy(ref heroData));
     }
     public static List<Skill> GetPlayerSkillList()
     {

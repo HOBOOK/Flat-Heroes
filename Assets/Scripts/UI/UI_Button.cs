@@ -5,7 +5,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityStandardAssets.ImageEffects;
 
 public class UI_Button : MonoBehaviour
 {
@@ -313,7 +312,6 @@ public class UI_Button : MonoBehaviour
                 UI_Manager.instance.ShowGetAlert("Items/coin", string.Format("<color='yellow'>{0}</color> {1}{2}", Common.GetThousandCommaText(value),LocalizationManager.GetText("Coin"),LocalizationManager.GetText("alertGetMessage1")));
                 if (callBackScript != null)
                 {
-                    callBackScript.GetComponent<UI_Manager_InventoryTab>().OnValidate();
                     callBackScript.GetComponent<UI_Manager_InventoryTab>().RefreshUI(Common.OrderByType.NAME);
                 }
             }

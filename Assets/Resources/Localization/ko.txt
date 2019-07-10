@@ -282,7 +282,7 @@ AbilityName7=어둠의 힘
 AbilityDescription7=에너지 효율이 증가합니다.
 
 SkillName1=바람 가르기
-SkillDescription1=순간적으로 앞으로 나아가면서 다수의 적을 공격한다.
+SkillDescription1=순간적으로 한명의 적을 베어버린다.
 SkillName2=수류탄 투척
 SkillDescription2=3초후 폭발하는 수류탄을 적에게 투척한다.
 SkillName3=살라만더
@@ -439,36 +439,114 @@ ItemDescription8=견습기사들이 사용하는 무기이다.
 
 ItemName11=환도
 ItemDescription11=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
+ItemDescription12=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
+ItemDescription13=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
+ItemDescription14=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
+ItemDescription15=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
+ItemDescription16=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
+ItemDescription17=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
+ItemDescription18=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
 
 ItemName21=흑환도
 ItemDescription21=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
+ItemDescription22=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
+ItemDescription23=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
+ItemDescription24=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
+ItemDescription25=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
+ItemDescription26=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
+ItemDescription27=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
+ItemDescription28=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
 
 ItemName31=F-5
 ItemDescription31=용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.
+ItemDescription32=용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.
+ItemDescription33=용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.
+ItemDescription34=용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.
+ItemDescription35=용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.
+ItemDescription36=용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.
+ItemDescription37=용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.
+ItemDescription38=용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.
 
 ItemName41=플랫나이프
 ItemDescription41=짧고 휘두르기 편한 단검이다.
+ItemDescription42=짧고 휘두르기 편한 단검이다.
+ItemDescription43=짧고 휘두르기 편한 단검이다.
+ItemDescription44=짧고 휘두르기 편한 단검이다.
+ItemDescription45=짧고 휘두르기 편한 단검이다.
+ItemDescription46=짧고 휘두르기 편한 단검이다.
+ItemDescription47=짧고 휘두르기 편한 단검이다.
+ItemDescription48=짧고 휘두르기 편한 단검이다.
 
 ItemName51=천갑옷
 ItemDescription51=가볍고 활동하기 편한 갑옷이다.
+ItemDescription52=가볍고 활동하기 편한 갑옷이다.
+ItemDescription53=가볍고 활동하기 편한 갑옷이다.
+ItemDescription54=가볍고 활동하기 편한 갑옷이다.
+ItemDescription55=가볍고 활동하기 편한 갑옷이다.
+ItemDescription56=가볍고 활동하기 편한 갑옷이다.
+ItemDescription57=가볍고 활동하기 편한 갑옷이다.
+ItemDescription58=가볍고 활동하기 편한 갑옷이다.
 
 ItemName61=철갑옷
 ItemDescription61=살짝 무겁지만 튼튼한 갑옷이다.
+ItemDescription62=살짝 무겁지만 튼튼한 갑옷이다.
+ItemDescription63=살짝 무겁지만 튼튼한 갑옷이다.
+ItemDescription64=살짝 무겁지만 튼튼한 갑옷이다.
+ItemDescription65=살짝 무겁지만 튼튼한 갑옷이다.
+ItemDescription66=살짝 무겁지만 튼튼한 갑옷이다.
+ItemDescription67=살짝 무겁지만 튼튼한 갑옷이다.
+ItemDescription68=살짝 무겁지만 튼튼한 갑옷이다.
 
 ItemName71=사냥꾼의 갑옷
 ItemDescription71=균형이 잘 잡혀있는 갑옷이다.
+ItemDescription72=균형이 잘 잡혀있는 갑옷이다.
+ItemDescription73=균형이 잘 잡혀있는 갑옷이다.
+ItemDescription74=균형이 잘 잡혀있는 갑옷이다.
+ItemDescription75=균형이 잘 잡혀있는 갑옷이다.
+ItemDescription76=균형이 잘 잡혀있는 갑옷이다.
+ItemDescription77=균형이 잘 잡혀있는 갑옷이다.
+ItemDescription78=균형이 잘 잡혀있는 갑옷이다.
 
 ItemName81=동그란 방패
 ItemDescription81=동그란 모양의 나무방패이다.
+ItemDescription82=동그란 모양의 나무방패이다.
+ItemDescription83=동그란 모양의 나무방패이다.
+ItemDescription84=동그란 모양의 나무방패이다.
+ItemDescription85=동그란 모양의 나무방패이다.
+ItemDescription86=동그란 모양의 나무방패이다.
+ItemDescription87=동그란 모양의 나무방패이다.
+ItemDescription88=동그란 모양의 나무방패이다.
 
 ItemName91=수호방패
 ItemDescription91=날개가 달려 있는 백금의 방패이다.
+ItemDescription92=날개가 달려 있는 백금의 방패이다.
+ItemDescription93=날개가 달려 있는 백금의 방패이다.
+ItemDescription94=날개가 달려 있는 백금의 방패이다.
+ItemDescription95=날개가 달려 있는 백금의 방패이다.
+ItemDescription96=날개가 달려 있는 백금의 방패이다.
+ItemDescription97=날개가 달려 있는 백금의 방패이다.
+ItemDescription98=날개가 달려 있는 백금의 방패이다.
 
 ItemName101=영웅의 갑옷
 ItemDescription101=전설의 영웅이 착용했었던 갑옷이다.
+ItemDescription102=전설의 영웅이 착용했었던 갑옷이다.
+ItemDescription103=전설의 영웅이 착용했었던 갑옷이다.
+ItemDescription104=전설의 영웅이 착용했었던 갑옷이다.
+ItemDescription105=전설의 영웅이 착용했었던 갑옷이다.
+ItemDescription106=전설의 영웅이 착용했었던 갑옷이다.
+ItemDescription107=전설의 영웅이 착용했었던 갑옷이다.
+ItemDescription108=전설의 영웅이 착용했었던 갑옷이다.
+
 
 ItemName111=마법사의 신발
 ItemDescription111=음흉한 기운이 나오는 신발이다.
+ItemDescription112=음흉한 기운이 나오는 신발이다.
+ItemDescription113=음흉한 기운이 나오는 신발이다.
+ItemDescription114=음흉한 기운이 나오는 신발이다.
+ItemDescription115=음흉한 기운이 나오는 신발이다.
+ItemDescription116=음흉한 기운이 나오는 신발이다.
+ItemDescription117=음흉한 기운이 나오는 신발이다.
+ItemDescription118=음흉한 기운이 나오는 신발이다.
 
 ItemName121=순백의 날개
 ItemDescription121=고결한 순백의 날개이다.
