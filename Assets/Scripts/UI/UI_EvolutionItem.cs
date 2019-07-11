@@ -261,6 +261,7 @@ public class UI_EvolutionItem : MonoBehaviour
         resultItemSlotImage.GetComponent<AiryUIAnimatedElement>().ShowElement();
 
         Debugging.Log("합성성공!");
+        MissionSystem.AddClearPoint(MissionSystem.ClearType.EquipUpgrade);
         targetItem = null;
         matItems.Clear();
         evolutionButton.interactable = true;

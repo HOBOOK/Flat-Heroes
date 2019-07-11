@@ -99,6 +99,7 @@ public static class HeroSystem
             HeroDatabase.AddUser(id);
             userHeros.Add(obtainHero);
             SkillSystem.SetObtainSkill(obtainHero.skill);
+            MissionSystem.AddClearPoint(MissionSystem.ClearType.CollectHero);
             Debugging.Log(id + " 영웅 획득 성공!");
         }
         else

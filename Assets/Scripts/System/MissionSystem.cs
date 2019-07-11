@@ -7,14 +7,16 @@ using UnityEngine;
 /// <summary>
 /// 미션 타입 정의
 /// 0:일일임무 1:주요임무 2:업적
-/// 0. 일일임무 클리어타입 > 0,1,4,17,18,19
-/// 1. 주간임무 클리어타입 > 
-/// 2. 업적 클리어타입 > 
+/// 0. 일일임무 클리어타입 > 0,1,4,17,18,19,20
+/// 1. 주간임무 클리어타입 > 0,1,2,3,4,19,20,21,12,13
+/// 2. 업적 클리어타입 > 3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
 /// 
 /// 클리어 타입 정의 
 /// 0:몬스터 처치 1:스테이지 클리어 2:일일미션 모드 클리어 3:출석 4:가챠뽑기 5:케릭터모으기 6:아이템수집가
 ///  7: 유저레벨 8:영웅총합레벨 9:연구총합레벨 10:누적코인소모 11:누적수정소모 12:누적에너지소모 13:누적주문서소모 14:플레이어스킬총합레벨
-///  15: 영웅스킬총합레벨 16: 총스테이지진행수 17:아이템드랍횟수 18:코인드랍횟수 19:보스킬
+///  15: 영웅스킬총합레벨 16: 총스테이지진행수 17:아이템드랍횟수 18:코인드랍횟수 19:보스킬 20:장비조합하기 21:무료가챠뽑기
+///  
+/// >> 업적종합확인타입 6,7,8,9,14,15
 ///  
 /// 보상 타입 정의
 /// 0: 코인 1: 수정 2: 에너지 3: 주문서 4: 일반장비상자 5: 특별장비상자
@@ -57,14 +59,16 @@ public class MissionSystem
                 userMissions.Add(mission);
             }
         }
-
-        GetDayMissions();
-        if (missions!=null&&userMissions!=null)
+        if (missions != null && userMissions != null)
         {
             Debugging.LogSystem("MissionDatabase is loaded Succesfully.");
         }
-
+        SetArchivementClearPoint();
         CheckClearMissions();
+
+
+        GetDayMissions();
+        GetWeekMissions();
     }
 
     #region 임무성공확인
@@ -74,8 +78,16 @@ public class MissionSystem
         if (clearMission != null)
         {
             Debugging.Log(id + " 의 미션클리어 했습니다.");
-            clearMission.clear = true;
-            MissionDatabase.ClearMission(clearMission);
+            if(clearMission.missionType==2)
+            {
+                clearMission.enable = false;
+                // 업적 목표 재설정 clearMission.clearPoint += 00;
+            }
+            else
+            {
+                clearMission.clear = true;
+                MissionDatabase.ClearMission(clearMission);
+            }
         }
     }
     public static void CheckClearMissions()
@@ -89,9 +101,9 @@ public class MissionSystem
                 mission.enable = true;
             }
         }
-        if(clearMissions.Count>0)
+        PointSave();
+        if (clearMissions.Count>0)
         {
-            PointSave();
             UI_Manager.instance.ShowAlert("UI/ui_trophy", string.Format("<color='yellow'>'{0}'</color> {1} {2} {3} ", GetMissionName(clearMissions[0].id),LocalizationManager.GetText("missionClearAlertMessage2"), clearMissions.Count-1, LocalizationManager.GetText("missionClearAlertMessage")));
         }
     }
@@ -113,7 +125,55 @@ public class MissionSystem
                     currentMissions[i].point += 1;
             }
         }
+    }
 
+    public static void SetArchivementClearPoint()
+    {
+        int[] setCheckTypes = {7, 8, 9, 14, 15 };
+        int point = 0;
+        for(var j = 0; j < setCheckTypes.Length; j++)
+        {
+            List<Mission> currentMissions = userMissions.FindAll(x => !x.enable && !x.clear && x.clearType == setCheckTypes[j]);
+            for (var i = 0; i < currentMissions.Count; i++)
+            {
+                if (currentMissions[i].missionType == 2)
+                {
+                    switch(currentMissions[i].clearType)
+                    {
+                        case 7:
+                            point = User.level;
+                            break;
+                        case 8:
+                            point = 0;
+                            foreach(var hero in HeroSystem.GetUserHeros())
+                            {
+                                point += hero.level;
+                            }
+                            break;
+                        case 9:
+                            point = User.flatEnergyMaxLevel + User.flatEnergyChargingLevel + User.addMoneyLevel + User.addExpLevel + User.addAttackLevel + User.addDefenceLevel;
+                            break;
+                        case 14:
+                            point = 0;
+                            foreach(var skill in SkillSystem.GetPlayerSkillList())
+                            {
+                                point += SkillSystem.GetUserSkillLevel(skill.id);
+                            }
+                            break;
+                        case 15:
+                            point = 0;
+                            foreach(var skill in SkillSystem.GetUserHerosSkills())
+                            {
+                                point += SkillSystem.GetUserSkillLevel(skill.id);
+                            }
+                            break;
+                    }
+                    currentMissions[i].point = point;
+                }
+            }
+        }
+        PointSave();
+        Debugging.Log("업적 세팅타입 설정완료");
     }
     public static void PointSave()
     {
@@ -135,7 +195,7 @@ public class MissionSystem
     {
 
     }
-    public enum ClearType { EnemyKill, StageClear,DayMissionClear,Attendance,Gacha,CollectHero,CollectEquipment,PlayerLevel,TotalHeroLevel,TotalLabLevel,TotalUseCoin,TotalUseCrystal,TotalUseEnergy,TotalUseScroll,TotalPlayerSkillLevel,TotalHeroSkillLevel,TotalStageCount,TotalItemDropCount,TotalCoinDropCount,BossKill };
+    public enum ClearType { EnemyKill, StageClear,DayMissionClear,Attendance,Gacha,CollectHero,CollectEquipment,PlayerLevel,TotalHeroLevel,TotalLabLevel,TotalUseCoin,TotalUseCrystal,TotalUseEnergy,TotalUseScroll,TotalPlayerSkillLevel,TotalHeroSkillLevel,TotalStageCount,TotalItemDropCount,TotalCoinDropCount,BossKill,EquipUpgrade,FreeGacha };
     public enum RewardType { coin, crystal, energy, scroll, normalGacha, specialGacha };
     #endregion
 
@@ -259,7 +319,7 @@ public class MissionSystem
         Mission mission = missions.Find(x => x.id == id || x.id.Equals(id));
         if (mission != null)
         {
-            des = LocalizationManager.GetText("MissionDescription" + id);
+            des = LocalizationManager.GetText("MissionClearMessage" + mission.clearType);
         }
         return des;
     }

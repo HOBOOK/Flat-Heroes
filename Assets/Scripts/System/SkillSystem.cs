@@ -71,6 +71,10 @@ public static class SkillSystem
     {
         return userSkills.Find(x => x.id == id || x.id.Equals(id));
     }
+    public static List<Skill> GetUserHerosSkills()
+    {
+        return userSkills.FindAll(x => x.id < 100);
+    }
     public static int GetUserSkillLevel(int id)
     {
         Skill userSkill = userSkills.Find(s => s.id == id || s.id.Equals(id));

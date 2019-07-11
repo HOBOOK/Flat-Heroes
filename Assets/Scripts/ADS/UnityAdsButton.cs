@@ -86,13 +86,16 @@ public class UnityAdsButton : MonoBehaviour
         if(type==0)
         {
             PlayerPrefs.SetString("LastGachaOpen", lastGachaOpen.ToString());
+            MissionSystem.AddClearPoint(MissionSystem.ClearType.FreeGacha);
+            MissionSystem.AddClearPoint(MissionSystem.ClearType.Gacha);
         }
         else
         {
             PlayerPrefs.SetString("LastCrystalOpen", lastGachaOpen.ToString());
         }
         gachaButton.interactable = false;
-        buttonScript.enabled = false;
+        if(buttonScript!=null)
+            buttonScript.enabled = false;
 
     }
     private bool IsGachaReady()

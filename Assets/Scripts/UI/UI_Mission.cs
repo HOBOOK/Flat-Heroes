@@ -14,6 +14,8 @@ public class UI_Mission : MonoBehaviour
     Image missionImage;
     Text missionTitleText;
     Text missionDescriptionText;
+    Text missionSliderText;
+    Slider missionSlider;
     Image rewardItemImage;
     Text rewardItemCountText;
     Button rewardButton;
@@ -58,6 +60,8 @@ public class UI_Mission : MonoBehaviour
             missionImage = missionSlot.transform.GetChild(0).GetChild(0).GetComponent<Image>();
             missionTitleText = missionSlot.transform.GetChild(1).GetChild(1).GetComponentInChildren<Text>();
             missionDescriptionText = missionSlot.transform.GetChild(1).GetChild(0).GetComponent<Text>();
+            missionSlider = missionSlot.transform.GetChild(1).GetComponentInChildren<Slider>();
+            missionSliderText = missionSlider.GetComponentInChildren<Text>();
             rewardItemImage = missionSlot.transform.GetChild(2).GetChild(1).GetComponent<Image>();
             rewardItemCountText = rewardItemImage.GetComponentInChildren<Text>();
             rewardButton = missionSlot.transform.GetChild(2).GetComponentInChildren<Button>();
@@ -65,8 +69,10 @@ public class UI_Mission : MonoBehaviour
 
             missionImage.sprite = MissionSystem.GetMissionImage(mission);
             missionTitleText.text = MissionSystem.GetMissionName(mission.id);
-            missionDescriptionText.text = MissionSystem.GetMissionDescription(mission.id) + string.Format(" ({0}/{1})",mission.point,mission.clearPoint);
-            if(mission.rewardType==3)
+            missionDescriptionText.text = MissionSystem.GetMissionDescription(mission.id);
+            missionSliderText.text = string.Format(" ({0}/{1})", mission.point, mission.clearPoint);
+            missionSlider.value = ((float)mission.point / (float)mission.clearPoint);
+            if (mission.rewardType==3)
                 rewardItemImage.sprite = ItemSystem.GetItemImage(mission.rewardItemId);
             else
                 rewardItemImage.sprite = Resources.Load<Sprite>(Common.GetCoinCrystalEnergyImagePath(mission.rewardType));

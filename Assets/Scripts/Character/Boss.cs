@@ -34,6 +34,7 @@ public class Boss : MonoBehaviour
         if (bossPrefabData.isDead)
         {
             isEnd = true;
+            MissionSystem.AddClearPoint(MissionSystem.ClearType.BossKill);
             StartCoroutine("BossDead");
         }
     }

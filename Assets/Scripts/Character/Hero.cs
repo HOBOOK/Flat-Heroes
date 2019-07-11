@@ -1215,6 +1215,7 @@ public class Hero : MonoBehaviour
             coinPrefab.transform.position = transform.position;
             coinPrefab.SetActive(true);
             coinPrefab.GetComponent<Rigidbody2D>().AddForce(new Vector3(UnityEngine.Random.Range(-1, 1), 5, 10), ForceMode2D.Impulse);
+            MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalCoinDropCount);
             yield return new WaitForSeconds(0.1f);
         }
         // 아이템 획득 파트
@@ -1228,6 +1229,7 @@ public class Hero : MonoBehaviour
             dropItem.SetActive(true);
             dropItem.GetComponent<dropItemInfo>().DropItem();
             StageManagement.instance.AddGetStageItem(randomItem.id);
+            MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalItemDropCount);
             yield return new WaitForSeconds(0.1f);
         }
         else
