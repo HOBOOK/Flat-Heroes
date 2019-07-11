@@ -14,11 +14,14 @@ public class UI_Manager_InventoryTab : MonoBehaviour
     public GameObject PanelEvolutionPanel;
     public GameObject ScrollContentView;
     GameObject itemInfoParent;
+    
     Image itemInfoImage;
     Image itemInfoCoverImage;
     Image itemInfoContainerImage;
     Text itemInfoName;
     Text itemInfoDescription;
+    public Text inventoryCountText;
+    public Button inventoryAddButton;
     Button itemSellButton;
     GameObject isEquipPanel;
     Item selectedItem;
@@ -27,12 +30,17 @@ public class UI_Manager_InventoryTab : MonoBehaviour
     {
         ScrollContentView = transform.GetComponentInChildren<ContentSizeFitter>().gameObject;
       
-        if (itemParent != null)
-        {
-            itemSlots = itemParent.GetComponentsInChildren<ItemSlot>();
-        }
         if (PanelItemInfo != null)
         {
+            if (itemParent != null)
+            {
+                for (int i = 0; i < User.inventoryCount; i++)
+                {
+                    Instantiate(ItemSlotPrefab, itemParent.transform);
+                }
+                itemSlots = itemParent.GetComponentsInChildren<ItemSlot>();
+            }
+
             itemInfoParent = PanelItemInfo.transform.GetChild(0).gameObject;
             if (itemInfoImage == null)
                 itemInfoImage = itemInfoParent.transform.GetChild(0).GetChild(0).GetComponent<Image>();
@@ -60,7 +68,10 @@ public class UI_Manager_InventoryTab : MonoBehaviour
 
     public void RefreshUI(Common.OrderByType orderByType=Common.OrderByType.VALUE)
     {
+
         items = ItemSystem.GetUserItems(orderByType);
+        inventoryCountText.text = string.Format("{0} / {1}", items.Count, User.inventoryCount);
+
         if (items!=null)
         {
             for (int i = 0; i < itemSlots.Length; i++)

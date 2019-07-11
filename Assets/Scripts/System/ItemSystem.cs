@@ -529,7 +529,7 @@ public static class ItemSystem
             switch (orderByType)
             {
                 case Common.OrderByType.NAME:
-                    itemList.Sort((i1, i2) => i1.name.CompareTo(i2.name));
+                    itemList.Sort((i1, i2) => GetItemName(i1.id).CompareTo(GetItemName(i2.id)));
                     break;
                 case Common.OrderByType.VALUE:
                     itemList.Sort((i1, i2) => i2.itemClass.CompareTo(i1.itemClass));

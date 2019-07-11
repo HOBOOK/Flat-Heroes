@@ -58,7 +58,7 @@ public class UI_EquipmentItem : MonoBehaviour
             {
                 Item equipmentItemInfo = ItemSystem.GetUserEquipmentItem(equipmentItemId);
                 InformationPanel.transform.GetChild(0).GetComponent<Image>().enabled = true;
-                InformationPanel.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(equipmentItemId, true);
+                InformationPanel.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(equipmentItemId, true);
                 InformationPanel.transform.GetComponentInChildren<Text>().enabled = true;
                 InformationPanel.transform.GetComponentInChildren<Text>().text = string.Format("{0}({1})", ItemSystem.GetItemName(equipmentItemInfo.id), Enum.GetName(typeof(GachaSystem.GachaClass), (GachaSystem.GachaClass)equipmentItemInfo.itemClass - 1));
                 InformationPanel.transform.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(equipmentItemInfo.itemClass);

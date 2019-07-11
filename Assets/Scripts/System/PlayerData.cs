@@ -24,6 +24,7 @@ public class PlayerData
     public int addDefenceLevel;
     public int gachaSeed;
     public int[] playerSkill;
+    public int inventoryCount;
 
     public string id;
     public string name;
@@ -44,6 +45,7 @@ public class PlayerData
         lobbyHeros = User.lobbyHeros;
         gachaSeed = User.gachaSeed;
         playerSkill = User.playerSkill;
+        inventoryCount = User.inventoryCount;
         // End integer //
 
         // Start Lab//

@@ -119,12 +119,14 @@ public class UI_EvolutionItem : MonoBehaviour
         if (resultItem == null)
         {
             resultItemSlotImage.sprite = ItemSystem.GetItemNoneImage();
-            resultItemSlot.GetComponent<Image>().color = Color.white;
+            resultItemSlot.GetComponent<Image>().sprite = ItemSystem.GetItemClassImage(-1);
+            resultItemSlot.transform.GetChild(1).GetComponent<Image>().color = Color.white;
         }
         else
         {
             resultItemSlotImage.sprite = ItemSystem.GetItemImage(resultItem.id);
-            resultItemSlot.GetComponent<Image>().color = ItemColor.GetItemColor(resultItem.itemClass);
+            resultItemSlot.GetComponent<Image>().sprite = ItemSystem.GetItemClassImage(resultItem.id);
+            resultItemSlot.transform.GetChild(1).GetComponent<Image>().color = ItemColor.GetItemColor(resultItem.itemClass);
         }
 
         matItemSlotButton1.onClick.RemoveAllListeners();

@@ -128,6 +128,8 @@ public static class SaveSystem
             User.gachaSeed = data.gachaSeed;
             if (data.playerSkill == null) data.playerSkill = new int[2];
             User.playerSkill = data.playerSkill;
+            if (data.inventoryCount < 100) data.inventoryCount = 100;
+            User.inventoryCount = data.inventoryCount;
 
             User.name = data.name;
             if (data.language == null) data.language = "ko";
@@ -163,6 +165,7 @@ public static class SaveSystem
             User.addDefenceLevel = 0;
             User.gachaSeed = UnityEngine.Random.Range(0, 100);
             User.playerSkill = new int[2];
+            User.inventoryCount = 100;
             SavePlayer();
             Debugging.LogSystem("Init Player");
         }

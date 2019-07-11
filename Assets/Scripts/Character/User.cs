@@ -51,5 +51,7 @@ public class User
     public static int[] playerSkill;
     [SerializeField]
     public static string language;
+    [SerializeField]
+    public static int inventoryCount;
 
 }
