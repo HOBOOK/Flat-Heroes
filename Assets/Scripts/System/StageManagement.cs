@@ -247,6 +247,7 @@ public class StageManagement : MonoBehaviour
         HeroSystem.SaveHeros(Common.FindAlly());
         MapSystem.MapClear(stageInfo.mapNumber, stageInfo.stageClearPoint);
         MissionSystem.AddClearPoint(MissionSystem.ClearType.StageClear);
+        MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalStageCount);
         MissionSystem.PointSave();
         SaveSystem.AddUserCoin(stageInfo.stageCoin);
         SaveSystem.ExpUp(stageInfo.stageExp);

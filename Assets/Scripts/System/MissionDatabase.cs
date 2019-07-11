@@ -135,6 +135,22 @@ public class MissionDatabase
         Debugging.LogSystemWarning("MissionDatabase wasn't loaded. >> " + path + " is null. >>");
         return null;
     }
+    public static void GenerateMission(List<Mission> archivements)
+    {
+        string path = Application.persistentDataPath + "/Xml/Mission.Xml";
+        XmlDocument xmlDoc = new XmlDocument();
+        if (System.IO.File.Exists(path))
+            xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
+
+        //복호화////
+        XmlElement elmRoot = xmlDoc.DocumentElement;
+
+        var decrpytData = DataSecurityManager.DecryptData(elmRoot.InnerText);
+        elmRoot.InnerXml = decrpytData;
+        //////////
+        CreateNodes(archivements, xmlDoc, path);
+        Debugging.Log("업적 추가 완료");
+    }
     public static void RegenerateDayMission(List<Mission> dayMissions)
     {
         string path = Application.persistentDataPath + "/Xml/Mission.Xml";
@@ -238,8 +254,10 @@ public class MissionDatabase
             {
                 if (node.Attributes.GetNamedItem("id").Value.Equals(mission.id.ToString()))
                 {
+                    node.SelectSingleNode("ClearPoint").InnerText = mission.clearPoint.ToString();
                     node.SelectSingleNode("Point").InnerText = mission.point.ToString();
                     node.SelectSingleNode("Enable").InnerText = mission.enable.ToString().ToLower();
+                    node.SelectSingleNode("MissionLevel").InnerText = mission.missionLevel.ToString();
                     break;
                 }
             }

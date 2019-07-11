@@ -293,6 +293,9 @@ MissionName214=Achievement 14
 MissionName215=Achievement 15
 MissionName216=Achievement 16
 MissionName217=Achievement 17
+MissionName218=Achievement 18
+
+MissionLevel=Level
 
 AbilityName1=The power of fire
 AbilityDescription1=Increases the Atk of heroes.

@@ -147,7 +147,8 @@ public static class ItemSystem
                         userItems.Add(newCopyItem);
                         newItems[i] = newCopyItem;
                     }
-                    foreach(var item in userItems)
+                    MissionSystem.AddClearPoint(MissionSystem.ClearType.CollectEquipment, count);
+                    foreach (var item in userItems)
                     {
                         Debugging.Log(item.customId);
                     }

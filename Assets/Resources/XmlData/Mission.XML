@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <MissionCollection>
   <Missions>
+    <Mission id="0">
+      <MissionType>0</MissionType>
+      <MissionLevel>0</MissionLevel>
+      <Point>0</Point>
+      <ClearPoint>4</ClearPoint>
+      <ClearType>2</ClearType>
+      <Clear>false</Clear>
+      <Enable>false</Enable>
+      <RewardType>1</RewardType>
+      <RewardItemId>0</RewardItemId>
+      <RewardItemCount>20</RewardItemCount>
+    </Mission>
     <Mission id="1">
       <MissionType>0</MissionType>
       <MissionLevel>0</MissionLevel>
@@ -120,6 +132,18 @@
       <RewardType>1</RewardType>
       <RewardItemId>0</RewardItemId>
       <RewardItemCount>20</RewardItemCount>
+    </Mission>
+    <Mission id="100">
+      <MissionType>1</MissionType>
+      <MissionLevel>1</MissionLevel>
+      <Point>0</Point>
+      <ClearPoint>1</ClearPoint>
+      <ClearType>22</ClearType>
+      <Clear>false</Clear>
+      <Enable>false</Enable>
+      <RewardType>0</RewardType>
+      <RewardItemId>0</RewardItemId>
+      <RewardItemCount>1</RewardItemCount>
     </Mission>
     <Mission id="101">
       <MissionType>1</MissionType>
@@ -439,6 +463,18 @@
       <Point>0</Point>
       <ClearPoint>1</ClearPoint>
       <ClearType>14</ClearType>
+      <Clear>false</Clear>
+      <Enable>false</Enable>
+      <RewardType>0</RewardType>
+      <RewardItemId>0</RewardItemId>
+      <RewardItemCount>1</RewardItemCount>
+    </Mission>
+    <Mission id="218">
+      <MissionType>2</MissionType>
+      <MissionLevel>0</MissionLevel>
+      <Point>0</Point>
+      <ClearPoint>3</ClearPoint>
+      <ClearType>21</ClearType>
       <Clear>false</Clear>
       <Enable>false</Enable>
       <RewardType>0</RewardType>

@@ -253,7 +253,9 @@ MissionClearMessage18=코인 드랍횟수 채우기
 MissionClearMessage19=보스 소탕하기
 MissionClearMessage20=장비 업그레이드 하기
 MissionClearMessage21=무료 장비뽑기 하기
+MissionClearMessage22=주간임무 모두 완료하기
 
+MissionName0=오늘의 할일
 MissionName1=영웅의 자질 1
 MissionName2=영웅의 자질 2
 MissionName3=영웅의 자질 3
@@ -265,6 +267,7 @@ MissionName8=오늘의 행운 2
 MissionName9=영웅의 자질 5
 MissionName10=영웅의 준비 1
 
+MissionName100=완벽한 일주일
 MissionName101=주간1
 MissionName102=주간2
 MissionName103=주간3
@@ -293,6 +296,9 @@ MissionName214=업적14
 MissionName215=업적15
 MissionName216=업적16
 MissionName217=업적17
+MissionName218=업적18
+
+MissionLevel=단계
 
 AbilityName1=불의 힘
 AbilityDescription1=영웅들의 공격력이 증가합니다.

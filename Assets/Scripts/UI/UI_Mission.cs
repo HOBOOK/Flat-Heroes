@@ -34,6 +34,7 @@ public class UI_Mission : MonoBehaviour
     {
         if(slotMissionPrefab!=null&&ScrollContentViewDailyMission!=null& ScrollContentViewWeekMission != null&& ScrollContentViewArchivement != null)
         {
+            MissionSystem.CheckClearMissions(false);
             ClearView(ScrollContentViewDailyMission.transform);
             ClearView(ScrollContentViewWeekMission.transform);
             ClearView(ScrollContentViewArchivement.transform);
@@ -68,7 +69,10 @@ public class UI_Mission : MonoBehaviour
             clearPanel = missionSlot.transform.GetChild(3).gameObject;
 
             missionImage.sprite = MissionSystem.GetMissionImage(mission);
-            missionTitleText.text = MissionSystem.GetMissionName(mission.id);
+            if (mission.missionType == 2)
+                missionTitleText.text = MissionSystem.GetMissionName(mission.id) + string.Format(" {0} {1}", (mission.missionLevel+1), LocalizationManager.GetText("MissionLevel"));
+            else
+                missionTitleText.text = MissionSystem.GetMissionName(mission.id);
             missionDescriptionText.text = MissionSystem.GetMissionDescription(mission.id);
             missionSliderText.text = string.Format(" ({0}/{1})", mission.point, mission.clearPoint);
             missionSlider.value = ((float)mission.point / (float)mission.clearPoint);

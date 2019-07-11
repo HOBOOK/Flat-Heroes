@@ -259,6 +259,7 @@ public class UI_Manager_AbilityTab : MonoBehaviour
         if (ItemSystem.UseItem(ItemSystem.GetUserScroll().customId, useItemAmount))
         {
             AbilitySystem.SetObtainAbility(abilityList[selectedIndex].id);
+            MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalUseScroll, useItemAmount);
             RefreshUI();
             UI_Manager.instance.PopupGetAbility(abilityList[selectedIndex]);
         }

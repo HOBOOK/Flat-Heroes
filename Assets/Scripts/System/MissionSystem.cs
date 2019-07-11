@@ -8,15 +8,15 @@ using UnityEngine;
 /// 미션 타입 정의
 /// 0:일일임무 1:주요임무 2:업적
 /// 0. 일일임무 클리어타입 > 0,1,4,17,18,19,20
-/// 1. 주간임무 클리어타입 > 0,1,2,3,4,19,20,21,12,13
+/// 1. 주간임무 클리어타입 > 0,1,2,3,4,19,20,21,12,13,22
 /// 2. 업적 클리어타입 > 3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
 /// 
 /// 클리어 타입 정의 
-/// 0:몬스터 처치 1:스테이지 클리어 2:일일미션 모드 클리어 3:출석 4:가챠뽑기 5:케릭터모으기 6:아이템수집가
+/// 0:몬스터 처치 1:스테이지 클리어 2:일일미션 모두 클리어 3:출석 4:가챠뽑기 5:케릭터모으기 6:아이템수집가
 ///  7: 유저레벨 8:영웅총합레벨 9:연구총합레벨 10:누적코인소모 11:누적수정소모 12:누적에너지소모 13:누적주문서소모 14:플레이어스킬총합레벨
-///  15: 영웅스킬총합레벨 16: 총스테이지진행수 17:아이템드랍횟수 18:코인드랍횟수 19:보스킬 20:장비조합하기 21:무료가챠뽑기
+///  15: 영웅스킬총합레벨 16: 총스테이지진행수 17:아이템드랍횟수 18:코인드랍횟수 19:보스킬 20:장비조합하기 21:무료가챠뽑기 22:주간미션 모두 클리어
 ///  
-/// >> 업적종합확인타입 6,7,8,9,14,15
+/// >> 업적종합확인타입 7,8,9,14,15
 ///  
 /// 보상 타입 정의
 /// 0: 코인 1: 수정 2: 에너지 3: 주문서 4: 일반장비상자 5: 특별장비상자
@@ -63,12 +63,12 @@ public class MissionSystem
         {
             Debugging.LogSystem("MissionDatabase is loaded Succesfully.");
         }
-        SetArchivementClearPoint();
-        CheckClearMissions();
-
-
         GetDayMissions();
         GetWeekMissions();
+        GetArchivement();
+
+        SetArchivementClearPoint();
+        CheckClearMissions(true);
     }
 
     #region 임무성공확인
@@ -81,16 +81,23 @@ public class MissionSystem
             if(clearMission.missionType==2)
             {
                 clearMission.enable = false;
+                clearMission.missionLevel += 1;
+                clearMission.clearPoint = GetArchivementClearPoint(clearMission);
                 // 업적 목표 재설정 clearMission.clearPoint += 00;
             }
             else
             {
+                if(clearMission.missionType==0)
+                    AddClearPoint(ClearType.DayMissionClear);
+                else if(clearMission.missionType==1)
+                    AddClearPoint(ClearType.WeeklyClear);
+
                 clearMission.clear = true;
                 MissionDatabase.ClearMission(clearMission);
             }
         }
     }
-    public static void CheckClearMissions()
+    public static void CheckClearMissions(bool isUI = false)
     {
         List<Mission> clearMissions = new List<Mission>();
         foreach(var mission in userMissions)
@@ -102,7 +109,7 @@ public class MissionSystem
             }
         }
         PointSave();
-        if (clearMissions.Count>0)
+        if (clearMissions.Count>0&&isUI)
         {
             UI_Manager.instance.ShowAlert("UI/ui_trophy", string.Format("<color='yellow'>'{0}'</color> {1} {2} {3} ", GetMissionName(clearMissions[0].id),LocalizationManager.GetText("missionClearAlertMessage2"), clearMissions.Count-1, LocalizationManager.GetText("missionClearAlertMessage")));
         }
@@ -115,8 +122,7 @@ public class MissionSystem
             //업적
             if(currentMissions[i].missionType==2)
             {
-                if (currentMissions[i].point < currentMissions[i].clearPoint)
-                    currentMissions[i].point += 1;
+                currentMissions[i].point += 1;
             }
             //임무
             else
@@ -126,7 +132,25 @@ public class MissionSystem
             }
         }
     }
-
+    public static void AddClearPoint(ClearType clearType, int count)
+    {
+        List<Mission> currentMissions = userMissions.FindAll(x => !x.enable && !x.clear && x.clearType == (int)clearType);
+        for (var i = 0; i < currentMissions.Count; i++)
+        {
+            //업적
+            if (currentMissions[i].missionType == 2)
+            {
+                if (currentMissions[i].point < currentMissions[i].clearPoint)
+                    currentMissions[i].point += count;
+            }
+            //임무
+            else
+            {
+                if (currentMissions[i].point < currentMissions[i].clearPoint)
+                    currentMissions[i].point += count;
+            }
+        }
+    }
     public static void SetArchivementClearPoint()
     {
         int[] setCheckTypes = {7, 8, 9, 14, 15 };
@@ -169,10 +193,10 @@ public class MissionSystem
                             break;
                     }
                     currentMissions[i].point = point;
+                    Debugging.Log(MissionSystem.GetMissionName(currentMissions[i].id) + " 의 포인트 > " + point);
                 }
             }
         }
-        PointSave();
         Debugging.Log("업적 세팅타입 설정완료");
     }
     public static void PointSave()
@@ -195,8 +219,17 @@ public class MissionSystem
     {
 
     }
-    public enum ClearType { EnemyKill, StageClear,DayMissionClear,Attendance,Gacha,CollectHero,CollectEquipment,PlayerLevel,TotalHeroLevel,TotalLabLevel,TotalUseCoin,TotalUseCrystal,TotalUseEnergy,TotalUseScroll,TotalPlayerSkillLevel,TotalHeroSkillLevel,TotalStageCount,TotalItemDropCount,TotalCoinDropCount,BossKill,EquipUpgrade,FreeGacha };
+    public enum ClearType { EnemyKill, StageClear,DayMissionClear,Attendance,Gacha,CollectHero,CollectEquipment,PlayerLevel,TotalHeroLevel,TotalLabLevel,TotalUseCoin,TotalUseCrystal,TotalUseEnergy,TotalUseScroll,TotalPlayerSkillLevel,TotalHeroSkillLevel,TotalStageCount,TotalItemDropCount,TotalCoinDropCount,BossKill,EquipUpgrade,FreeGacha,WeeklyClear };
     public enum RewardType { coin, crystal, energy, scroll, normalGacha, specialGacha };
+    public static int GetArchivementClearPoint(Mission mission)
+    {
+        int point = 0;
+        if(mission.missionType==2)
+        {
+            point = mission.clearPoint + (int)(mission.clearPoint * mission.missionLevel);
+        }
+        return point;
+    }
     #endregion
 
     #region 임무데이터베이스
@@ -214,7 +247,25 @@ public class MissionSystem
     }
     public static List<Mission> GetArchivement()
     {
-        return missions.FindAll(item => item.missionType == 2 || item.missionType.Equals(2));
+        List<Mission> archivementList = missions.FindAll(x => x.missionType == 2 || x.missionType.Equals(2));
+        List<Mission> newArchivementList = new List<Mission>();
+        foreach(var achivement in archivementList)
+        {
+            Mission mission = userMissions.Find(x => x.id == achivement.id || x.id.Equals(achivement));
+            if(mission==null)
+            {
+                newArchivementList.Add(achivement);
+            }
+        }
+        if(newArchivementList.Count>0)
+        {
+            MissionDatabase.GenerateMission(newArchivementList);
+            foreach (var mission in newArchivementList)
+            {
+                userMissions.Add(mission);
+            }
+        }
+        return userMissions.FindAll(item => item.missionType == 2 || item.missionType.Equals(2));
     }
     public static List<Mission> GetDayMissions()
     {
@@ -228,11 +279,12 @@ public class MissionSystem
             PlayerPrefs.SetString("MissionDay", currentday);
             PlayerPrefs.Save();
             // 전체 일일미션을 가져온다.
-            List<Mission> dayMissionDatas = missions.FindAll(m => m.missionType == 0 || m.missionType.Equals(0));
+            List<Mission> dayMissionDatas = missions.FindAll(m => (m.missionType == 0 || m.missionType.Equals(0))&&m.id!=0);
             // 랜덤 일일미션 아이디를 5개 뽑는다.
-            int[] randomDayMissionID = Common.getRandomId(5, 0, dayMissionDatas.Count);
+            int[] randomDayMissionID = Common.getRandomId(4, 0, dayMissionDatas.Count);
             // 다시 초기화를 하고.
             List<Mission> resultDayMissionDatas = new List<Mission>();
+            resultDayMissionDatas.Add(GetMission(0));
             for (var i = 0; i < randomDayMissionID.Length; i++)
             {
                 // 랜덤으로 뽑은 미션을 추가한다.
@@ -267,11 +319,12 @@ public class MissionSystem
             PlayerPrefs.SetString("MissionWeek", currentWeek);
             PlayerPrefs.Save();
             // 전체 주간미션을 가져온다.
-            List<Mission> weekMissionDatas = missions.FindAll(m => m.missionType == 1 || m.missionType.Equals(1));
+            List<Mission> weekMissionDatas = missions.FindAll(m => (m.missionType == 1 || m.missionType.Equals(1))&&m.id!=100);
             // 랜덤 주간미션 아이디를 5개 뽑는다.
             int[] randomDayMissionID = Common.getRandomId(5, 0, weekMissionDatas.Count);
             // 다시 초기화를 하고.
             List<Mission> resultDayMissionDatas = new List<Mission>();
+            resultDayMissionDatas.Add(GetMission(100));
             for (var i = 0; i < randomDayMissionID.Length; i++)
             {
                 // 랜덤으로 뽑은 미션을 추가한다.

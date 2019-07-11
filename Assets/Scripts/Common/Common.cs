@@ -330,6 +330,18 @@ public class Common : MonoBehaviour
     {
         if(PaymentAbleCheck(ref target,payment))
         {
+            if (target == User.coin || target.Equals(User.coin))
+            {
+                MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalUseCoin, payment);
+            }
+            else if (target == User.blackCrystal || target.Equals(User.blackCrystal))
+            {
+                MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalUseCrystal, payment);
+            }
+            else if (target == User.portalEnergy || target.Equals(User.portalEnergy))
+            {
+                MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalUseEnergy, payment);
+            }
             target -= payment;
             GoogleSignManager.SaveData();
             return true;
