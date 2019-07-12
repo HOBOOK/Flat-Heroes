@@ -248,7 +248,7 @@ public class UI_Manager_InventoryTab : MonoBehaviour
                     }
                     else
                     {
-                        if (itemSlots[i].Item.id != selectedItem.id|| itemSlots[i].Item.equipCharacterId != 0)
+                        if (itemSlots[i].Item.itemClass != selectedItem.itemClass|| itemSlots[i].Item.equipCharacterId != 0)
                         {
                             itemSlots[i].transform.GetChild(3).gameObject.SetActive(true);
                             itemSlots[i].GetComponent<Button>().enabled = false;

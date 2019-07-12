@@ -15,6 +15,7 @@ public class UI_HeroSelect : MonoBehaviour
     public GameObject heroSlotPrefab;
     public GameObject pinPoint;
     public GameObject playerSkillPanel;
+    public Text useEnergyText;
     Text slotNameText;
     Image slotHeroImage;
     // 영웅선택창
@@ -81,6 +82,7 @@ public class UI_HeroSelect : MonoBehaviour
                 }
             }
         }
+        useEnergyText.text = CharactersManager.instance.GetStageHeroCount().ToString();
         SetImageAndTextSelectHeroPanel();
         RefreshPlayerSkillUI();
         selectHeroLockCover.SetActive(true);

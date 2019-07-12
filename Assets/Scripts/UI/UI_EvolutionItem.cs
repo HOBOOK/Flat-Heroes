@@ -45,7 +45,7 @@ public class UI_EvolutionItem : MonoBehaviour
         matItems.Clear();
         matItems = new Dictionary<int, Item>();
 
-        if (targetItem.itemClass < 5)
+        if (targetItem.itemClass < 6)
             paymentType = 0;
         else
             paymentType = 1;
@@ -98,10 +98,11 @@ public class UI_EvolutionItem : MonoBehaviour
             int itemClass = targetItem.itemClass;
             if (matItems.Count == 2 && itemClass < 8)
             {
+                evolutionButton.interactable = true;
                 evolutionButton.gameObject.SetActive(true);
-                if (itemClass < 5)
+                if (paymentType == 0)
                     paymentAmount = itemClass * itemClass * (300 + (itemClass * itemClass * 100));
-                else
+                else if(paymentType == 1)
                     paymentAmount = itemClass * itemClass * 2;
 
                 evolutionButton.GetComponentInChildren<Text>().text = Common.GetThousandCommaText(paymentAmount);

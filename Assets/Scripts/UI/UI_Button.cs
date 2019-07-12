@@ -61,19 +61,19 @@ public class UI_Button : MonoBehaviour
                 }
                 else
                 {
-                    if (User.portalEnergy < stageHeroCount)
-                        UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.energy, stageHeroCount);
-                    else
+                    if(Common.PaymentCheck(ref User.portalEnergy,stageHeroCount))
                     {
                         OnButtonEffectSound();
-                        User.portalEnergy -= stageHeroCount;
                         Debugging.Log(stageHeroCount + " 에너지 소모. 전투씬 로드 시작 > " + User.portalEnergy);
                         SaveSystem.SavePlayer();
                         LoadSceneManager.instance.LoadStageScene(stageType);
                         this.GetComponent<Button>().interactable = false;
                     }
+                    else
+                    {
+                        UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.energy, stageHeroCount);
+                    }
                 }
-
                 break;
             case ButtonType.SceneLoad:
                 OnButtonEffectSound();

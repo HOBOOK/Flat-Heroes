@@ -15489,6 +15489,7 @@ MonoBehaviour:
     type: 3}
   pinPoint: {fileID: 714754195863408287, guid: 7867cf498f88a524bbaf99c87be69656, type: 3}
   playerSkillPanel: {fileID: 347075844}
+  useEnergyText: {fileID: 1818496927}
 --- !u!1 &368416114
 GameObject:
   m_ObjectHideFlags: 0
