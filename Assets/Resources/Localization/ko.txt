@@ -181,15 +181,19 @@ alertNeedMessage3=개를
 alertNeedMessage4=에 판매하시겠습니까?
 alertNeedMessage5=사용하여 구매하시겠습니까?
 alertNeedMessage6=을(를)
+alertNeedMessage7=사용하여 인벤토리를 확장하시겠습니까?
 alertGetMessage1=을(를) 획득했습니다.
 alertGetMessage2=플레이어 스킬 잠금이 해제되었습니다!
 alertGetMessage3=아이템을 획득하였습니다.
 alertGetMessage4=개를 획득하였습니다.
 alertGetMessage5=영웅을 획득하였습니다.
 alertGetMessage6=모드가 해제되었습니다!
+alertGetMessage7=인벤토리 슬롯이 증가했습니다.
 alertSellText=판매
 alertUnableSellMessage=은(는) 현재 판매할 수 없습니다.
 alertUnableSellMessage2=장착중이거나 아이템의 개수에 오류가 있습니다.
+alertUnableInventoryAddMessage=인벤토리 슬롯을 더이상 확장할 수 없습니다.
+alertUnableGetItemMessage=남은 인벤토리 여분이 없어서 진행하실 수 없습니다.
 
 warningTitle=경고
 

@@ -16,7 +16,6 @@ public class GachaSystem
             if(item!=null)
             {
                 returnGachaItemList.Add(item);
-                ItemSystem.SetObtainItem(item.id);
             }
         }
         return returnGachaItemList;
@@ -64,6 +63,9 @@ public class GachaSystem
                 returnGachaItem = gachaItemList[Random.Range(0, gachaItemList.Count)];
                 break;
         }
+        if(returnGachaItem!=null)
+            ItemSystem.SetObtainItem(returnGachaItem.id);
+
         Debugging.Log(returnGachaItem.name + " 아이템이 랜덤으로 뽑힘");
         return returnGachaItem;
     }
@@ -77,7 +79,6 @@ public class GachaSystem
             if (item != null)
             {
                 returnGachaItemList.Add(item);
-                ItemSystem.SetObtainItem(item.id);
             }
         }
         return returnGachaItemList;
@@ -126,6 +127,8 @@ public class GachaSystem
                 returnGachaItem = gachaItemList[Random.Range(0, gachaItemList.Count)];
                 break;
         }
+        if (returnGachaItem != null)
+            ItemSystem.SetObtainItem(returnGachaItem.id);
         Debugging.Log(returnGachaItem.name + " 아이템이 랜덤으로 뽑힘");
         return returnGachaItem;
     }

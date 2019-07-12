@@ -285,4 +285,9 @@ public class UI_Manager_InventoryTab : MonoBehaviour
             }
         }
     }
+
+    public  void OnClickInventoryAdding()
+    {
+
+    }
 }

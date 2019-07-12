@@ -104,7 +104,8 @@ public class GameManagement : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.F3))
         {
-            ItemSystem.SetObtainItem(7, 3);
+            User.inventoryCount = 50;
+            GoogleSignManager.SaveData();
         }
     }
     void DebugInitXmlData()

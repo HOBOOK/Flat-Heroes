@@ -27190,6 +27190,7 @@ GameObject:
   - component: {fileID: 695996291}
   - component: {fileID: 695996290}
   - component: {fileID: 695996289}
+  - component: {fileID: 695996292}
   m_Layer: 16
   m_Name: Button
   m_TagString: Untagged
@@ -27258,7 +27259,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 695996290}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 695996292}
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &695996290
@@ -27298,6 +27310,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695996287}
   m_CullTransparentMesh: 0
+--- !u!114 &695996292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695996287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fb07155df5d604e81ff5c585558b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonType: 10
+  targetUI: {fileID: 0}
+  targetSceneNumber: 0
+  paymentType: 1
+  gachaType: 0
+  stageType: 0
+  paymentAmount: 30
+  buyItemId: 0
+  characterId: 0
+  sellItemId: 0
+  callBackScript: {fileID: 1781512722}
+  audioClip: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
 --- !u!1 &704479422
 GameObject:
   m_ObjectHideFlags: 0

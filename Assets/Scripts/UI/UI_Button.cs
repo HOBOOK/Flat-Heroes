@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class UI_Button : MonoBehaviour
 {
-    public enum ButtonType { ActiveControll,Trigger,SceneLoad, StageSceneLoad, SceneLoadAddtive, ItemBuy,CharacterBuy,ScenePause,ItemSell,Gacha};
+    public enum ButtonType { ActiveControll,Trigger,SceneLoad, StageSceneLoad, SceneLoadAddtive, ItemBuy,CharacterBuy,ScenePause,ItemSell,Gacha,InventoryAdd};
     public ButtonType buttonType;
     public GameObject targetUI;
     public int targetSceneNumber;
@@ -61,17 +61,24 @@ public class UI_Button : MonoBehaviour
                 }
                 else
                 {
-                    if(Common.PaymentCheck(ref User.portalEnergy,stageHeroCount))
+                    if(ItemSystem.IsGetAbleItem())
                     {
-                        OnButtonEffectSound();
-                        Debugging.Log(stageHeroCount + " 에너지 소모. 전투씬 로드 시작 > " + User.portalEnergy);
-                        SaveSystem.SavePlayer();
-                        LoadSceneManager.instance.LoadStageScene(stageType);
-                        this.GetComponent<Button>().interactable = false;
+                        if (Common.PaymentCheck(ref User.portalEnergy, stageHeroCount))
+                        {
+                            OnButtonEffectSound();
+                            Debugging.Log(stageHeroCount + " 에너지 소모. 전투씬 로드 시작 > " + User.portalEnergy);
+                            SaveSystem.SavePlayer();
+                            LoadSceneManager.instance.LoadStageScene(stageType);
+                            this.GetComponent<Button>().interactable = false;
+                        }
+                        else
+                        {
+                            UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.energy, stageHeroCount);
+                        }
                     }
                     else
                     {
-                        UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.energy, stageHeroCount);
+                        UI_Manager.instance.ShowAlert("", LocalizationManager.GetText("alertUnableGetItemMessage"));
                     }
                 }
                 break;
@@ -116,7 +123,25 @@ public class UI_Button : MonoBehaviour
             case ButtonType.Gacha:
                 GachaStart();
                 break;
+            case ButtonType.InventoryAdd:
+                InventoryAddStart();
+                break;
         }
+    }
+    void InventoryAddStart()
+    {
+        if(User.inventoryCount<=450)
+        {
+            if (!isCheckAlertOn)
+            {
+                StartCoroutine("CheckingInventoryAddAlert");
+            }
+        }
+        else
+        {
+            UI_Manager.instance.ShowAlert("", LocalizationManager.GetText("alertUnableInventoryAddMessage"));
+        }
+
     }
     void GachaStart()
     {
@@ -134,35 +159,52 @@ public class UI_Button : MonoBehaviour
     }
     void GachaProcessing()
     {
-        switch (paymentType)
+        int getAbleItemCount = 0;
+        if(gachaType==GachaSystem.GachaType.NormalFive||gachaType==GachaSystem.GachaType.SpecialFive)
         {
-            case PaymentType.Coin:
-                if (Common.PaymentCheck(ref User.coin, paymentAmount))
-                {
-                    OnButtonEffectSound();
-                    UI_Manager.instance.PopupGetGacha(gachaType);
-                }
-                else
-                {
-                    UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.coin, paymentAmount);
-                }
-                break;
-            case PaymentType.BlackCrystal:
-                if (Common.PaymentCheck(ref User.blackCrystal, paymentAmount))
-                {
-                    OnButtonEffectSound();
-                    UI_Manager.instance.PopupGetGacha(gachaType);
-                }
-                else
-                {
-                    UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.blackCrystal, paymentAmount);
-                }
-                break;
-            case PaymentType.Advertisement:
-                OnButtonEffectSound();
-                UnityAdsManager.instance.ShowRewardedAd(UnityAdsManager.RewardItems.SpeicalGachaOne);
-                break;
+            getAbleItemCount = 5;
         }
+        else if(gachaType==GachaSystem.GachaType.NormalOne||gachaType==GachaSystem.GachaType.SpecialOne||gachaType==GachaSystem.GachaType.FreeAd)
+        {
+            getAbleItemCount = 1;
+        }
+        if(ItemSystem.IsGetAbleItem(getAbleItemCount))
+        {
+            switch (paymentType)
+            {
+                case PaymentType.Coin:
+                    if (Common.PaymentCheck(ref User.coin, paymentAmount))
+                    {
+                        OnButtonEffectSound();
+                        UI_Manager.instance.PopupGetGacha(gachaType);
+                    }
+                    else
+                    {
+                        UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.coin, paymentAmount);
+                    }
+                    break;
+                case PaymentType.BlackCrystal:
+                    if (Common.PaymentCheck(ref User.blackCrystal, paymentAmount))
+                    {
+                        OnButtonEffectSound();
+                        UI_Manager.instance.PopupGetGacha(gachaType);
+                    }
+                    else
+                    {
+                        UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.blackCrystal, paymentAmount);
+                    }
+                    break;
+                case PaymentType.Advertisement:
+                    OnButtonEffectSound();
+                    UnityAdsManager.instance.ShowRewardedAd(UnityAdsManager.RewardItems.SpeicalGachaOne);
+                    break;
+            }
+        }
+        else
+        {
+            UI_Manager.instance.ShowAlert("", LocalizationManager.GetText("alertUnableGetItemMessage"));
+        }
+       
 
     }
 
@@ -204,6 +246,8 @@ public class UI_Button : MonoBehaviour
             callBackScript.GetComponent<UI_ShopCharacter>().RefreshUI();
         else if (callBackScript.GetComponent<UI_ShopETC>() != null)
             callBackScript.GetComponent<UI_ShopETC>().RefreshUI();
+        else if (callBackScript.GetComponent<UI_Manager_InventoryTab>() != null)
+            callBackScript.GetComponent<UI_Manager_InventoryTab>().RefreshUI();
     }
 
     void BuyItemProcessing()
@@ -252,6 +296,21 @@ public class UI_Button : MonoBehaviour
                 CallbackScriptRefresh();
                 Debugging.Log(buyItemId + " 현금거래 버튼 입니다. >> Cash : " + paymentAmount);
                 break;
+        }
+    }
+    void InventoryAddProcessing()
+    {
+        if (Common.PaymentCheck(ref User.blackCrystal, paymentAmount))
+        {
+            OnButtonEffectSound();
+            User.inventoryCount += 50;
+            CallbackScriptRefresh();
+            GoogleSignManager.SaveData();
+            UI_Manager.instance.ShowGetAlert("",string.Format("{0}\r\n{1} -> <color='yellow'>{2}</color>", LocalizationManager.GetText("alertGetMessage7"),(User.inventoryCount-50),User.inventoryCount));
+        }
+        else
+        {
+            UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.blackCrystal, paymentAmount);
         }
     }
 
@@ -338,6 +397,30 @@ public class UI_Button : MonoBehaviour
             StartCoroutine("CheckingSellAlert");
         }
     }
+    IEnumerator CheckingInventoryAddAlert()
+    {
+        isCheckAlertOn = true;
+        paymentAmount = 30;
+        var alertPanel = UI_Manager.instance.ShowNeedAlert("Items/" + Enum.GetName(typeof(PaymentType), paymentType), string.Format("<color='yellow'>'{0}' <size='24'>x </size>{1}</color>  {2}\r\n{3} -> <color='yellow'>{4}</color>", Common.GetCoinCrystalEnergyText(1), paymentAmount, LocalizationManager.GetText("alertNeedMessage7"),User.inventoryCount,(User.inventoryCount+50)));
+        while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        if (alertPanel.GetComponentInChildren<UI_CheckButton>().isResult)
+        {
+            UI_Manager.instance.ClosePopupAlertUI();
+            // 예를 클릭시
+            InventoryAddProcessing();
+        }
+        else
+        {
+            UI_Manager.instance.ClosePopupAlertUI();
+            // 아니오를 클릭시
+        }
+        isCheckAlertOn = false;
+        yield return null;
+    }
+
     IEnumerator CheckingAlert(int type)
     {
         isCheckAlertOn = true;
@@ -502,6 +585,12 @@ public class ButtonInspectorEditor : Editor
             case UI_Button.ButtonType.Gacha:
                 enumScript.gachaType = (GachaSystem.GachaType)EditorGUILayout.EnumFlagsField("GachaType", enumScript.gachaType);
                 enumScript.paymentType = (UI_Button.PaymentType)EditorGUILayout.EnumFlagsField("PaymentType", enumScript.paymentType);
+                enumScript.paymentAmount = EditorGUILayout.IntField("Amount", enumScript.paymentAmount);
+                enumScript.audioClip = (AudioClip)EditorGUILayout.ObjectField("ButtonAudioClip", enumScript.audioClip, typeof(AudioClip), true);
+                break;
+            case UI_Button.ButtonType.InventoryAdd:
+                enumScript.callBackScript = (GameObject)EditorGUILayout.ObjectField("InventroyScript", enumScript.callBackScript, typeof(GameObject), true);
+                enumScript.paymentType = UI_Button.PaymentType.BlackCrystal;
                 enumScript.paymentAmount = EditorGUILayout.IntField("Amount", enumScript.paymentAmount);
                 enumScript.audioClip = (AudioClip)EditorGUILayout.ObjectField("ButtonAudioClip", enumScript.audioClip, typeof(AudioClip), true);
                 break;

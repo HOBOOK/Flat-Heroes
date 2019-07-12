@@ -166,6 +166,13 @@ public static class ItemSystem
             }
         }
     }
+    public static bool IsGetAbleItem(int plus=1)
+    {
+        if (GetUserEquipmentItems().Count+plus <= User.inventoryCount)
+            return true;
+        else
+            return false;
+    }
     
     public static bool UseItem(int id, int count)
     {

@@ -181,15 +181,19 @@ alertNeedMessage3=
 alertNeedMessage4=Do you want to sell it to?
 alertNeedMessage5=Would you like to purchase it?
 alertNeedMessage6=
+alertNeedMessage7=are required. Are you sure you want to expand your inventory?
 alertGetMessage1=were obtained.
 alertGetMessage2=Player skill unlocked!
 alertGetMessage3=You have earned the item.
 alertGetMessage4=was acquired.
 alertGetMessage5=You can use the hero!
 alertGetMessage6=Mode is off!
+alertGetMessage7=Inventory slots increased.
 alertSellText=Sell
 alertUnableSellMessage=can not be sold.
 alertUnableSellMessage2=It is mounted or there is an error in the number.
+alertUnableInventoryAddMessage=Inventory slots can no longer be extended.
+alertUnableGetItemMessage=You can not proceed because there are no extra inventory left.
 
 warningTitle=Warning
 
