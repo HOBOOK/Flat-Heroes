@@ -13,7 +13,7 @@ public class Castle : MonoBehaviour
     public int defence;
     public bool isDead;
     int spawnCount;
-    float spawnTime =1.0f;
+    float spawnTime =0.1f;
     public float spawnDelay;
     float drainEnergyTime = 0.0f;
     float curSpawnTime = 0;
@@ -150,11 +150,10 @@ public class Castle : MonoBehaviour
             {
                 if (!spawnEnemys[i].isSpawnEnd&&spawnCount<15)
                 {
-                    StartCoroutine(Spawning(spawnEnemys[i]));
-                    yield return new WaitForSeconds(spawnDelay);
+                    yield return StartCoroutine(Spawning(spawnEnemys[i]));
                 }
             }
-            yield return null;
+            yield return new WaitForSeconds(spawnDelay);
         }
         yield return null;
     }
@@ -163,25 +162,22 @@ public class Castle : MonoBehaviour
 
         spawnEnemy.isSpawnEnd = true;
         SpawnEffect();
-        for (int i = 0; i < spawnEnemy.count; i++)
+        GameObject e = Instantiate(spawnEnemy.enemyPrefab, enemySpawnPoint);
+        e.SetActive(false);
+        e.GetComponent<Hero>().isPlayerHero = false;
+        e.transform.position = this.transform.position;
+        yield return new WaitForEndOfFrame();
+        e.SetActive(true);
+        StageManagement.instance.AddMonsterCount();
+        List<GameObject> allys = Common.FindAlly();
+        foreach (var ally in allys)
         {
-            GameObject e = Instantiate(spawnEnemy.enemyPrefab, enemySpawnPoint);
-            e.SetActive(false);
-            e.GetComponent<Hero>().isPlayerHero = false;
-            e.transform.position = this.transform.position;
-            yield return new WaitForEndOfFrame();
-            e.SetActive(true);
-            StageManagement.instance.AddMonsterCount();
-            List<GameObject> allys = Common.FindAlly();
-            foreach(var ally in allys)
+            if (ally.GetComponent<Hero>() != null)
             {
-                if (ally.GetComponent<Hero>() != null)
-                {
-                    ally.GetComponent<Hero>().ResearchingEnemys(e);
-                }
+                ally.GetComponent<Hero>().ResearchingEnemys(e);
             }
-            yield return new WaitForSeconds(spawnTime);
         }
+        yield return new WaitForSeconds(spawnTime);
         spawnEnemy.isSpawnEnd = false;
         spawnCount = Common.FindEnemysCount();
         yield return null;

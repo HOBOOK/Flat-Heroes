@@ -34,7 +34,10 @@ public class UI_Lab : MonoBehaviour
 
             int labTypeLevel = LabSystem.GetLapLevel(i);
             labLevelText.text = string.Format("LEVEL {0}", labTypeLevel);
-            labPowerText.text = string.Format("{0} > <color='yellow'>{1}</color>",LabSystem.GetLapPower(i, labTypeLevel), LabSystem.GetLapPower(i, labTypeLevel+1));
+            if(i==2||i==3)// 뒤에 %가 붙는경우
+                labPowerText.text = string.Format("{0}% > <color='yellow'>{1}%</color>", LabSystem.GetLapPower(i, labTypeLevel), LabSystem.GetLapPower(i, labTypeLevel + 1));
+            else
+                labPowerText.text = string.Format("{0} > <color='yellow'>{1}</color>",LabSystem.GetLapPower(i, labTypeLevel), LabSystem.GetLapPower(i, labTypeLevel+1));
 
             int levelupNeedCoin = LabSystem.GetNeedMoney(labTypeLevel);
             labNeedCoinText.text = Common.GetThousandCommaText(levelupNeedCoin);

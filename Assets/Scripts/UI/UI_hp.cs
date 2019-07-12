@@ -60,7 +60,7 @@ public class UI_hp : MonoBehaviour
         sliderContainerRectTransform.sizeDelta = new Vector2(Mathf.Clamp(GetMaxHp()*0.01f, 120, 200), 70);
         panelHpTime = 0.0f;
         levelUI.GetComponentInChildren<Text>().text = Target.GetComponent<Hero>().status.level.ToString();
-        levelUI.GetComponentInChildren<Slider>().value = (float)Target.GetComponent<Hero>().status.exp / (float)Common.EXP_TABLE[Target.GetComponent<Hero>().status.level - 1];
+        levelUI.GetComponentInChildren<Slider>().value = (float)Target.GetComponent<Hero>().status.exp / (float)Common.GetHeroNeedExp(Target.GetComponent<Hero>().status.level);
         currentValue = GetCurrentHp();
         transform.GetChild(0).GetComponent<Slider>().value = GetCurrentHp() / GetMaxHp();
         transform.GetChild(1).GetComponent<Text>().text = Target.name;

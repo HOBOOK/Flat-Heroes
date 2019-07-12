@@ -39,9 +39,9 @@ public class UI_StageResult : MonoBehaviour
         userinfo = StageManagement.instance.GetUserInfo();
         levelText.text = userinfo.level.ToString();
         int initexp = userinfo.exp;
-        if (initexp + StageManagement.instance.stageInfo.stageExp > Common.USER_EXP_TABLE[(userinfo.level - 1)])
+        if (initexp + StageManagement.instance.stageInfo.stageExp >= Common.GetUserNeedExp())
         {
-            userinfo.departExp = (initexp + StageManagement.instance.stageInfo.stageExp) - Common.USER_EXP_TABLE[(userinfo.level - 1)];
+            userinfo.departExp = (initexp + StageManagement.instance.stageInfo.stageExp) - Common.GetUserNeedExp();
         }
         StartCoroutine(ShowCountExp((initexp+StageManagement.instance.stageInfo.stageExp),initexp , expSlider));
     }
@@ -61,13 +61,13 @@ public class UI_StageResult : MonoBehaviour
                 StartCoroutine(LevelUpTextEffect(levelText));
                 userinfo.isLevelUp = false;
             }
-            slider.value = ((float)current) / (float)Common.USER_EXP_TABLE[userinfo.level-1];
-            slider.GetComponentInChildren<Text>().text = string.Format("{0}/{1}({2}%)", ((int)current), Common.USER_EXP_TABLE[userinfo.level-1], (slider.value*100).ToString("N0"));
+            slider.value = ((float)current) / (float)Common.GetUserNeedExp();
+            slider.GetComponentInChildren<Text>().text = string.Format("{0}/{1}({2}%)", ((int)current), Common.GetUserNeedExp(), (slider.value*100).ToString("N0"));
             yield return null;
         }
         SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.coinGet);
         current = target;
-        slider.GetComponentInChildren<Text>().text = string.Format("{0}/{1}({2}%)", ((int)current), Common.USER_EXP_TABLE[userinfo.level-1], (slider.value * 100).ToString("N0"));
+        slider.GetComponentInChildren<Text>().text = string.Format("{0}/{1}({2}%)", ((int)current), Common.GetUserNeedExp(), (slider.value * 100).ToString("N0"));
     }
     IEnumerator LevelUpTextEffect(Text txt)
     {

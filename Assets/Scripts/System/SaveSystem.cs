@@ -172,9 +172,9 @@ public static class SaveSystem
     }
     public static void ExpUp(int exp)
     {
-        if(User.exp + exp >Common.USER_EXP_TABLE[(User.level-1)])
+        if(User.exp + exp >=Common.GetUserNeedExp())
         {
-            int departExp = (User.exp + exp) - Common.USER_EXP_TABLE[(User.level - 1)];
+            int departExp = (User.exp + exp) - Common.GetUserNeedExp();
             LevelUp(departExp);
         }
         else

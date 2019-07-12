@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// * 맵타입 정의
+/// 0 : 소환석 파괴 1: 버티기 2: 보스잡기
+/// </summary>
+
 public static class MapSystem
 {
     public static List<Map> maps = new List<Map>();

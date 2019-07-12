@@ -484,7 +484,7 @@ public class Hero : MonoBehaviour
 
         if (heroData!=null)
         {
-            this.status.SetHeroStatus(ref heroData);
+            this.status.SetHeroStatus(ref heroData,false);
             this.HeroName = HeroSystem.GetHeroName(heroData.id);
             this.name = HeroName;
             initChats = HeroSystem.GetHeroChats(heroData.id);
@@ -744,19 +744,14 @@ public class Hero : MonoBehaviour
             {
                 StartCoroutine("DroppingItem");
                 MissionSystem.AddClearPoint(MissionSystem.ClearType.EnemyKill);
-                StageManagement.instance.AddExp(20);
                 StageManagement.instance.SetKPoint();
                 List<GameObject> allyHeros = Common.FindAlly();
                 if(allyHeros.Count>0)
                 {
-                    string debugStr = "";
                     foreach (var hero in allyHeros)
                     {
-                        int exp = (int)((status.level * 0.25f) * (status.attack + status.defence)) + LabSystem.GetAddExp(User.addExpLevel);
-                        debugStr += string.Format("<{0} + {1}>, ", hero.name, exp);
-                        hero.GetComponent<Hero>().ExpUp(exp);
+                        hero.GetComponent<Hero>().ExpUp(Common.GetHeroExp(status.level));
                     }
-                    Debugging.Log(debugStr);
                 }
             }
             else
@@ -1209,14 +1204,32 @@ public class Hero : MonoBehaviour
             }
             yield return new WaitForSeconds(0.1f);
             // 코인
-            int coin = UnityEngine.Random.Range(15, 30) + LabSystem.GetAddMoney(User.addMoneyLevel);
-            GameObject coinPrefab = ObjectPool.Instance.PopFromPool("Coin");
-            coinPrefab.GetComponent<Coin>().SetCoin(coin);
-            coinPrefab.transform.position = transform.position;
-            coinPrefab.SetActive(true);
-            coinPrefab.GetComponent<Rigidbody2D>().AddForce(new Vector3(UnityEngine.Random.Range(-1, 1), 5, 10), ForceMode2D.Impulse);
-            MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalCoinDropCount);
-            yield return new WaitForSeconds(0.1f);
+            if(id>1000)
+            {
+                int bossCoinCount = UnityEngine.Random.Range(3, 7);
+                for(var i = 0; i < bossCoinCount; i++)
+                {
+                    int coin = Common.GetMonsterCoin(status.level);
+                    GameObject coinPrefab = ObjectPool.Instance.PopFromPool("Coin");
+                    coinPrefab.GetComponent<Coin>().SetCoin(coin);
+                    coinPrefab.transform.position = transform.position;
+                    coinPrefab.SetActive(true);
+                    coinPrefab.GetComponent<Rigidbody2D>().AddForce(new Vector3(UnityEngine.Random.Range(-1, 1), 5, 10), ForceMode2D.Impulse);
+                    MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalCoinDropCount);
+                    yield return new WaitForSeconds(0.1f);
+                }
+            }
+            else
+            {
+                int coin = Common.GetMonsterCoin(status.level);
+                GameObject coinPrefab = ObjectPool.Instance.PopFromPool("Coin");
+                coinPrefab.GetComponent<Coin>().SetCoin(coin);
+                coinPrefab.transform.position = transform.position;
+                coinPrefab.SetActive(true);
+                coinPrefab.GetComponent<Rigidbody2D>().AddForce(new Vector3(UnityEngine.Random.Range(-1, 1), 5, 10), ForceMode2D.Impulse);
+                MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalCoinDropCount);
+                yield return new WaitForSeconds(0.1f);
+            }
         }
         // 아이템 획득 파트
         Item randomItem = ItemSystem.GetRandomItem();
@@ -2038,7 +2051,7 @@ public class Hero : MonoBehaviour
 
         public Status() { level = 1; exp = 0;}
 
-        public void SetHeroStatus(ref HeroData data)
+        public void SetHeroStatus(ref HeroData data, bool isLevelUp)
         {
             this.level = data.level;
             this.exp = data.exp;
@@ -2057,15 +2070,15 @@ public class Hero : MonoBehaviour
 
     public void LevelUp()
     {
-        if (status.exp >= Common.EXP_TABLE[status.level - 1] && status.level < Common.EXP_TABLE.Length&& !isDead)
+        if (status.exp >= Common.GetHeroNeedExp(status.level)&& status.level < 200&& !isDead)
         {
             LevelUpEffect();
             HeroSystem.LevelUpStatusSet(this.id,this);
             if (hpUI != null&&id<1000)
             {
                 hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Text>().text = status.level.ToString();
-                if (status.level < 10)
-                    hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Slider>().value = (float)status.exp / (float)Common.EXP_TABLE[status.level - 1];
+                if (status.level < 200)
+                    hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Slider>().value = (float)status.exp / (float)Common.GetHeroNeedExp(status.level);
                 else
                     hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Slider>().value = 0;
                 ShowHpBar();
@@ -2076,12 +2089,12 @@ public class Hero : MonoBehaviour
 
     public void ExpUp(int nExp)
     {
-        if (status!=null&&status.level<10 && !isDead)
+        if (status!=null&&status.level<200 && !isDead)
         {
             status.exp += nExp;
             HeroSystem.SetHero(this);
             if(hpUI!=null&&id<1000)
-                hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Slider>().value = (float)status.exp / (float)Common.EXP_TABLE[(status.level-1)];
+                hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Slider>().value = (float)status.exp / (float)Common.GetHeroNeedExp(status.level);
             LevelUp();
         }
     }

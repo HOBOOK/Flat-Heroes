@@ -91,7 +91,7 @@ public class UI_HeroInfo : MonoBehaviour
             if (heroExpText != null)
             {
                 int exp = targetHeroData.exp;
-                int needExp = Common.EXP_TABLE[targetHeroData.level - 1];
+                int needExp = Common.GetHeroNeedExp(targetHeroData.level);
                 float expPercent = ((float)exp / (float)needExp);
                 heroExpText.text = string.Format("{0}/{1}({2}%)", exp,needExp , (expPercent*100).ToString("N0"));
                 heroExpSlider.value = expPercent;

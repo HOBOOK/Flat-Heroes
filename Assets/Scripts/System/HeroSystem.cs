@@ -74,7 +74,7 @@ public static class HeroSystem
             userData.agility += (int)(userData.agility * 0.1f);
             userData.level += 1;
             userData.exp = 0;
-            heroPrefab.status.SetHeroStatus(ref userData);
+            heroPrefab.status.SetHeroStatus(ref userData,true);
         }
     }
     public static void SetHero(Hero heroPrefab)
@@ -448,7 +448,7 @@ public static class HeroSystem
     }
     public static List<HeroData> GetStageMonster(int stageNumber)
     {
-        List<HeroData> allMonsters = GetMonsters().FindAll(x=>x.level<stageNumber*10&&x.level>=(stageNumber-1)*10);
+        List<HeroData> allMonsters = GetMonsters().FindAll(x=>x.level<=stageNumber*10&&x.level>(stageNumber-1)*10);
         return allMonsters;
     }
     #endregion

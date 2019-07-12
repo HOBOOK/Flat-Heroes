@@ -250,6 +250,7 @@ public class StageManagement : MonoBehaviour
         MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalStageCount);
         MissionSystem.PointSave();
         SaveSystem.AddUserCoin(stageInfo.stageCoin);
+        stageInfo.stageExp = Common.GetUserExp(stageInfo.stageNumber);
         SaveSystem.ExpUp(stageInfo.stageExp);
         var getItems = GetStageItems();
         for (var i = 0; i < getItems.Count; i++)
@@ -258,7 +259,8 @@ public class StageManagement : MonoBehaviour
         }
         GoogleSignManager.SaveData();
         UI_Manager.instance.OpenEndGamePanel(true);
-        GoogleAdMobManager.instance.OnBtnViewAdClicked();
+        if(UnityEngine.Random.Range(0,10)<2)
+            GoogleAdMobManager.instance.OnBtnViewAdClicked();
         yield return null;
     }
     public UserInfo GetUserInfo()
@@ -299,10 +301,6 @@ public class StageManagement : MonoBehaviour
         {
             return true;
         }
-    }
-    public void AddExp(int amount)
-    {
-        stageInfo.stageExp += amount;
     }
 
     public void UseSkill(int skillenergy)
@@ -388,7 +386,7 @@ public class UserInfo
     }
     public void LevelUp()
     {
-        if(exp>Common.USER_EXP_TABLE[level-1])
+        if(exp>= Common.GetUserNeedExp())
         {
             level += 1;
             isLevelUp = true;

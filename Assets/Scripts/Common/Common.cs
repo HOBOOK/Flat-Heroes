@@ -12,8 +12,32 @@ using UnityEngine.UI;
 
 public class Common : MonoBehaviour
 {
-    public static int[] EXP_TABLE = { 100, 150, 250, 400, 600, 850, 1200, 1500, 1800, 2100, 2400, 2700, 3000, 3500, 4000, 4700, 5500, 6500, 7500, 9000 };
-    public static int[] USER_EXP_TABLE = { 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 12000 };
+    public static int GetHeroNeedExp(int level)
+    {
+        return 100 + (int)(100 * level * level * 0.1f);
+    }
+    public static int GetUserNeedExp()
+    {
+        return 1000 + (int)(1000 * User.level * User.level * 0.1f);
+    }
+    public static int GetHeroExp(int level)
+    {
+        int exp = 10 + (int)(10 * level * 0.5f);
+        int bonusExp = (int)(exp * LabSystem.GetAddExp(User.addExpLevel) * 0.01f);
+        return exp + bonusExp;
+    }
+    public static int GetUserExp(int stageNumber)
+    {
+        int exp = 300 + (int)(300 * User.level * 0.1f*stageNumber);
+        return exp;
+    }
+    public static int GetMonsterCoin(int level)
+    {
+        int coin = UnityEngine.Random.Range(30,50) + (int)(50 * level * 0.2f);
+        int bonusCoin = (int)(coin * LabSystem.GetAddMoney(User.addMoneyLevel) * 0.01f);
+        return coin + bonusCoin;
+    }
+
     public static string GoogleUserId;
     public static Common instance = null;
     private void Awake()
