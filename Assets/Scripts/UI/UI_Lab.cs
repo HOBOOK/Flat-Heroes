@@ -40,14 +40,17 @@ public class UI_Lab : MonoBehaviour
                 labPowerText.text = string.Format("{0} > <color='yellow'>{1}</color>",LabSystem.GetLapPower(i, labTypeLevel), LabSystem.GetLapPower(i, labTypeLevel+1));
 
             int levelupNeedCoin = LabSystem.GetNeedMoney(labTypeLevel);
-            labNeedCoinText.text = Common.GetThousandCommaText(levelupNeedCoin);
+            if (labTypeLevel >= 40)
+                labNeedCoinText.text = "MAX";
+            else
+                labNeedCoinText.text = Common.GetThousandCommaText(levelupNeedCoin);
             int slotIndex = i;
             labLevelButton.onClick.RemoveAllListeners();
             labLevelButton.onClick.AddListener(delegate
             {
                 OnClickLabLevelUp(slotIndex, levelupNeedCoin);
             });
-            if(Common.PaymentAbleCheck(ref User.coin, levelupNeedCoin))
+            if(Common.PaymentAbleCheck(ref User.coin, levelupNeedCoin)&&labTypeLevel<40)
             {
                 labLevelButton.interactable = true;
             }
@@ -55,6 +58,7 @@ public class UI_Lab : MonoBehaviour
             {
                 labLevelButton.interactable = false;
             }
+
         }
     }
 

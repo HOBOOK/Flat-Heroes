@@ -131,7 +131,7 @@ public static class SkillSystem
     public static int GetUserSkillLevelUpNeedCoin(int id)
     {
         int x = GetUserSkillLevel(id);
-        return x * x * 1000;
+        return 1000+(int)(x * x * 1000*0.1f);
     }
     public static string GetUserSkillDescription(Skill skillData, HeroData heroData)
     {
