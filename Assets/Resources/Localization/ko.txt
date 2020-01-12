@@ -1,23 +1,170 @@
 ﻿Coin=코인
 Crystal=수정
 Energy=에너지
-Scroll=주문서
+MagicStone=마석
+Cash=현금결제
+Scroll=플랫 스크롤
 Ad=광고
+AdRemove=광고제거
 Level=레벨
+Phase=단계
 SkillLevel=기술레벨
 HeroLevel=영웅레벨
 UserLevel=유저레벨
 UnlockLevel=해제레벨
 SkillAttack=스킬 공격력
+SkillAttackBuff=공격력 증가량
+BuffTime=지속시간
+SkillHeal=체력 회복량
 SkillDelay=재사용 대기시간
 SkillUseEnergy=소모에너지
 Sec=초
+Minute=분
+Hour=시간
+Day=일
 Stun=기절
 Defence=막음
+GachaNotice=확률정보
+GachaNoticeInformation=* 고급 장비 뽑기 확률\n\nSSS 등급 : 1%\nSS 등급 : 3%\nS 등급 : 10%\nA 등급 : 30%\nB 등급 : 56%\n\n- 각 등급 내 개별 장비 획득 확률은 모두 (1/n)으로 동일합니다.\n\n* 일반 장비 뽑기 확률\n\nS 등급 : 5%\nA 등급 : 10%\nB 등급 : 20%\nC 등급 : 40%\nD 등급 : 25%\n\n- 각 등급 내 개별 장비 획득 확률은 모두 (1/n)으로 동일합니다.
+ButtonYes=확인
+ButtonNo=취소
+ButtonReceive=받기
+ButtonAdReceive=x2 받기
+Stop=그만하기
+Review=평점주기
+Cafe=공식카페
+CurrentVersion=현재 버전
+LatestVersion=최신 버전
+VersionAlert=게임 버전이 최신이 아닙니다.\n마켓에서 최신버전으로 업데이트 해주세요.
+Win=승
+Lose=패
+Rank=랭크
+Champion=챔피언
+PvpRankTitle=플랫 히어로들의 랭킹
+Transcendence=초월
+TranscendenceStone=초월의 돌
+W=승
+L=패
+HeroType1=복합형
+HeroType2=공격형
+HeroType3=방어형
+HeroType4=지원형
+HeroTypeDescription1=공격과 방어가 균형잡혀있는 영웅입니다.
+HeroTypeDescription2=공격에 특화되어있는 영웅입니다.
+HeroTypeDescription3=방어에 특화되어있는 영웅입니다.
+HeroTypeDescription4=공격은 불가능하나, 보조역할을 하는 영웅입니다.
+StageMission=목표
+AttackBuffUp=공격력 ↑
+AttackBuffDown=공격력 ↓
+DefenceBuffUp=방어력 ↑
+DefenceBuffDown=방어력 ↓
+SpeedBuffUp=스피드 Up
+SpeedBuffDown=스피드 Down
+Auto=<자동
+ReinforcementRemainCount=강화 가능한 횟수
+ReinforcementSuccessRate=강화 성공률
+ReinforcementTabMessage=화면을 터치하면 창이 닫힙니다.
+ReinforcementCompletedMessage=모든 강화가 완료되었습니다.
+ReinforcementSuccessMessage=강화에 성공하였습니다!
+ReinforcementFailMessage=강화에 실패하였습니다...
+UserStatPoint=능력포인트
+UserStatPointReset=재분배
+UserStatPointOnce=한번에 분배
+Easy=쉬움
+Normal=보통
+Hard=어려움
+PremiumPass=프리미엄 이용권
+PremiumPassExpired=만료됨
+PremiumPassInUse=프리미엄 이용중
+Upgrade=업그레이드
+
+IntroContext=평화로운 어느 날\n\n플랫행성의 하늘이 빨갛게 변했다.\n\n하늘에서는 정체불명의 빨간 마법석들이 땅으로 떨어지고\n\n거대한 마법진이 세상을 밝혔다.\n\n\n\n\n\n빨간 마법석은 평평한 세상의 곳곳에 스며들었고\n\n주변 생물들을 몬스터로 변화시켜 소환하였다.\n\n몬스터들은 사람들과 자연환경을 무참히 파괴했다.\n\n\n\n\n\n그러던 찰나.\n\n멸망의 위기에 빠진 평평한 세상을 구하기 위해\n\n플랫행성 각지의 영웅들이 모이기 시작하는데...
+
+NameValidText=이미 사용중인 이름이거나 이름 규칙에 어긋난 문자가 포함되어 있습니다.\n (2자 ~ 6자 사이의 한글,영어,숫자)
+NameValidInformation=(!) 2자 ~ 6자 사이의 한글,영어,숫자
+
+RouletteTitle=매일매일 룰렛 이벤트~!
+RouletteInformation=매일 매일 행운의 룰렛으로 보상을 획득하고 하루를 시작해요! (매일 AM 00:00 초기화)
+RouletteButton=룰렛돌리기!
+RouletteUnableButton=오늘은 끝~
+RouletteUI=이벤트
+
+ObeliskTitle=오벨리스크
+ObeliskCloseButton=닫기
+ObeliskUnceal=봉인해제
+
+DailyCheckTitle=출석
+DailyCheckItem1=에너지 x 50
+DailyCheckItem2=수정 x 15
+DailyCheckItem3=코인 x 50,000
+DailyCheckItem4=마석 x 50
+DailyCheckItem5=수정 x 50
+DailyCheckItem6=고급 장비 뽑기 5회
+DailyCheckItem7=SS 플랫소드
+DailyCheckChat=시간이다.
+DailyCheckInformation=(!) 연속으로 출석하지 않으면 1일차 부터 다시 시작 합니다.
+DailyCheckInformation2=7일 연속 출석하기!
+DailyCheckMessage=출석체크 보상으로 획득했습니다.
+
+PostTitle=우편함
+PostTab1=메시지
+PostAllReceive=모두 받기
+PostReceive=받기
+PostInformation=(!) 물품은 30일간 보관됩니다.
+
+Tutorial=튜토리얼
+TutorialStart=전투 튜토리얼 시작
+TutorialCompletedTitle=튜토리얼 완료
+TutorialCompletedMessage=전투 튜토리얼을 완료했습니다 !
+TutorialCompletedTabMessage=화면을 탭하면 대기실로 갑니다.
+TutorialHeroChat1=(저 이상한 물체에서 몬스터가 나오는거 같아..)
+TutorialHeroChat2=(우선 몬스터들을 해치우고 저 물체를 파괴하자)
+TutorialHeroChat3=휴.. 끝났나?
+TutorialHeroChat4=동해. 당신의 힘이 필요합니다. 시간이 없습니다. 같이 갑시다.
+TutorialHeroChat5=내 이름을 어떻게..?.
+TutorialBattleInformation1=(!) 현재 충전되고 있는 플랫에너지 입니다.\n에너지는 자동으로 충전되며, 기술 사용 시 소모됩니다.
+TutorialBattleInformation2=(!) 기술을 사용하기에 충분한 플랫에너지가 모였습니다! \n 버튼을 눌러 기술을 사용하세요!
+TutorialBattleInformation3=(!) 플레이어 스킬을 사용하여 적 몬스터들을 한번에 처리하세요!
+TutorialExplanation0=플랫월드에 오신것을 환영합니다.\n플레이어님은 플랫히어로들과 함께\n플랫월드를 구하기 위해 여정을 떠날 것입니다.
+TutorialExplanation1=우선 플랫 히어로들을\n 관리하기 위한 방법을 배워보도록 하겠습니다.
+TutorialExplanation2=팀관리창 버튼을 터치해주세요.
+TutorialExplanation3=잘하셨습니다.\n영웅의 상세정보를 확인해보겠습니다.
+TutorialExplanation4=영웅에게 장비를 장착시켜주세요.
+TutorialExplanation5=장비를 선택해주세요.
+TutorialExplanation6=장착하기!
+TutorialExplanation7=장비선택창을 닫아주세요.
+TutorialExplanation8=완벽합니다.\n이제 보유아이템창으로 가보겠습니다.
+TutorialExplanation9=장비를 누르면 장비정보를 확인할 수 있어요.
+TutorialExplanation10=업그레이드도 한번 해볼까요?
+TutorialExplanation11=첫번째 재료를 선택하세요.
+TutorialExplanation12=두번째 재료도 선택해주세요.
+TutorialExplanation13=업그레이드!
+TutorialExplanation14=완벽합니다.\n다음은 플레이어 능력창입니다.
+TutorialExplanation15=능력포인트는 플레이어 레벨업시 3포인트씩 획득가능합니다.\n한번 능력을 얻어볼까요?
+TutorialExplanation16=아주 잘하셨습니다. \n플레이어 능력은 모든 영웅들의 \n능력치에 반영됩니다.
+TutorialExplanation17=마지막으로 플레이어 스킬창을 보겠습니다.
+TutorialExplanation18=플레이어 스킬은 전투시에 \n부가적으로 사용할 수 있는 기술입니다.
+TutorialExplanation19=기준레벨이 되면 획득가능하며,\n 레벨업을 통해 능력치를 키울 수 있습니다.
+TutorialExplanation20=창을 닫아주세요.
+TutorialExplanation21=수고많으셨습니다!\n이상으로 기본적인 튜토리얼이 끝났습니다. \n 전투 버튼을 눌러서 플랫월드를 지켜주세요!
+
+ConsentAlert=게임 약관 및 개인정보 이용 동의
+ConsentButton=동의합니다
+
+BundleAlert=다운로드
+BundleInformation=게임을 진행하기 위해 추가 데이터를 다운로드를 하시겠습니까?
+BundleInformation2=추가 데이터를 받지 않으면 진행할 수 없습니다.\n다운로드 진행은 Wi-fi 환경에서 하는것을 권장합니다.
 
 TipText1=게스트 로그인시 게임을 삭제할 경우 데이터가 사라집니다.
 TipText2=강한 적을 처치할수록 좋은 장비가 나올 확률이 높습니다.
 TipText3=플레이어 능력은 모든 영웅들에게 적용됩니다.
+TipText4=플랫 스크롤은 보스모드에서 획득할 수 있습니다.
+TipText5=같은 등급의 아이템이 3개가 있으면 원하는 장비의 등급을 업그레이드 할 수 있습니다.
+TipText6=(TMI) 플랫히어로즈는 1인개발로 만들어졌습니다.
+TipText7=끝없는 전투모드는 플레이어 레벨 8부터 가능합니다.
+TipText8=연구를 통해 마석을 획득할 수 있습니다.
+TipText9=리뷰와 피드백은 게임을 더욱 재미있게 만들어줍니다.
+TipText10=영웅이 적들을 물리치는게 힘들다면 영웅 스킬을 강화해주세요!
 
 AssetBundleDownText=플랫월드에 필요한 플랫데이터 서버로부터 다운로드중...
 AssetBundleLoadText=플랫데이터를 플랫월드에 구성중...
@@ -27,40 +174,63 @@ startTabWarningMessage=(!) 게스트 로그인은 앱 삭제시 데이터가 모
 startTabGuestButton=게스트 로그인
 startTabGoogleButton=구글 로그인
 
-lobbyTitle=로비
+lobbyTitle=대기실
 stageTitleMainType1=소환석을 파괴.
 stageTitleMainType2=모든 적을 섬멸.
 stageTitleMainType3=보스 격퇴.
-stageTitleInfinity=가능할 때까지 모든적을 섬멸.
+stageTitleInfinity=가능할 때 까지 모든적을 섬멸.
+stageTitleBoss=보스 처치.
+stageTitleBattle=대전 시작!
+stageTitleAttack=30초간 데미지 측정을 시작합니다!
+stageInfinityPowerupMessage=몬스터 강화수치
 
 mainManagerText=팀관리
 mainShopText=상점
 mainGachaText=뽑기
 mainMissionText=임무
-mainLabText=연구소
+mainLabText=연구
 mainBattleText=전투
+
+mainPvpText=대전
+mainPvpRecord=전적
+mainPvpWinrate=승률
+mainPvpRank=랭크
+mainPvpTeamSet=대전팀 편집 >
+mainPvpTeamStart=대전 시작
+mainPvpTeamFail=(!) 영웅 수 부족
+mainPvpInformation=(!) 테스트 기간동안의 전적은 초기화 될 예정입니다.
+mainPvpGongButton=훈장 교환
+mainPvpPopMedalTitle=훈장 교환
 
 manageTitle=관 리
 manageTab1=보유 영웅
-manageTab2=보유 아이템
+manageTab2=보유 장비
+manageTab2OnEquipButton=착용중 장비
+manageTab2OrderButton0=등급순
 manageTab2OrderButton1=이름순
-manageTab2OrderButton2=등급순
 manageTab2SellButton=장비팔기
 manageTab2Equipped=장착중
-manageTab2EvolutionButton=등급상승
+manageTab2EvolutionButton=승급
 manageTab2EvolutionInformation=동일한 등급의 장비를 넣어서 등급을 올릴 수 있습니다.
 manageTab2EvolutionPaymentWarning1=강화에 필요한 코인이 부족합니다.
 manageTab2EvolutionPaymentWarning2=강화에 필요한 수정이 부족합니다.
+manageTab2EvolutionFailWarning=장비합성중 오류가 발생하였습니다. 다시 시도해주세요.
+manageTab2EvolutionSuccess=승급 성공!
+manageTab2ReinforceButton=강화
 manageTab3=플레이어 능력
 manageTab3Information=능력을 개방하여 영웅들의 능력치를 상승시킬 수 있습니다.
 manageTab3AbilityTitle=전체능력치
-manageTab3AbilityStartButton=능력개방
+manageTab3AbilityStartButton=능력포인트:
+manageTab3AbilityInitationButton=능력초기화
 manageTab4=플레이어 스킬
+manageTab5=제작소
 
 shopTitle=상 점
-shopTab1=재화
-shopTab2=영웅
-shopTab3=기타
+shopTab1=수정
+shopTab2=코인
+shopTab3=에너지
+shopTab4=영웅
+shopTab5=패키지
 
 gachaTitle=뽑 기
 gachaType1=고급 장비 뽑기 5회
@@ -73,6 +243,12 @@ gachaNormalClass=D 등급 ~ S 등급
 gachaInformation=수정을 이용하여 장비를 얻을 수 있습니다.
 
 LabTitle=연구소
+LabPhaseUpQuestion=연구소를 업그레이드 하시겠습니까?
+LabPhaseTimeInformation=연구 소요 시간
+LabPhaseGetInformation=생산량
+LabInformation=(!) 마석 생산까지 남은 시간
+LabGetButtonText=얻기
+LabProgressInformation=(!) 연구 시간 1분 단축
 LabType1=최대 플랫에너지
 LabType1Description=최대 플랫에너지량이 증가합니다.
 LabType2=플랫에너지 회복
@@ -85,22 +261,34 @@ LabType5=추가 영웅공격력
 LabType5Description=영웅들의 공격력이 증가합니다.
 LabType6=추가 영웅방어력
 LabType6Description=영웅들의 방어력이 증가합니다.
+LabType7=최고 데미지
+LabType7Description=영웅들의 최고데미지가 증가합니다.
 
 modeSelectTitle=전투선택
 modeMain=메인 전투
 modeInfinity=끝없는 전투
 modeBoss=보스 전투
-modeWarningMessage1=(!) 유저레벨 10
+modeAttack=30초 측정
+modeWarningMessage1=(!) 유저레벨 8
 modeWarningMessage2=(!) 스테이지 1 완료
+modeInformation1="끊임 없이 소환되는 몬스터들로 부터 푸른 수정체 파괴를 막으세요."
+modeInformation2="플랫 월드 곳곳에 몬스터들을 소환하는 붉은 수정체를 파괴하고 최종 보스를 무찌르세요."
+modeInformation3="최강의 적들이 기다리고 있습니다."
+modeInformation4="나의 플랫 히어로들의 성장을 확인하세요."
 
 mapSelectTitle=맵선택
 mapSelectButton=전투준비
+
+bossSelectTitle=보스선택
+bossSelectButton=전투준비
+bossSelectLockStageAlert=스테이지 완료
 
 heroSelectTitle=영웅선택
 heroSelectButton=전투시작
 heroSelectInformation=영웅을 선택해주세요.
 heroSelectSlotInformation=(!) 슬롯을 선택하세요.
 heroSelectPlayerSkillButton=플레이어\n스킬선택
+heroSelectAutoButton=자동진행
 
 skillSelectTitle=스킬선택
 skillSelectInformation=플레이어 스킬은 2개까지 선택가능합니다.
@@ -121,12 +309,16 @@ heroInfoAttackSpeed=공격속도
 heroInfoMoveSpeed=이동속도
 heroInfoKnockbackResist=넉백저항
 heroInfoSkillEnergy=기술력
+heroInfoPenetration=방어관통
+heroInfoTranscendence=초월
+heroInfoAbility=잠재능력
 
 equipmentItemTitle=장비장착
 equipmentItemEquipButton=장착하기
 equipmentItemUnEquipButton=장착해제
 equipmentItemEmpty=비어있음
 equipmentItemEmptyInformation=장착한 장비가 없습니다.
+equipmentItemEquipped=장착중
 
 sellItemTitle=판매
 sellItemInformation=* 판매시 획득 코인
@@ -151,8 +343,16 @@ getAbilityTabText=화면을 탭하세요.
 getEquipmentTitle=장비획득
 getEquipmentTabText=화면을 탭하세요.
 
-messageBoxTitle=우편함
-messageBoxInformation=(!) 물품은 30일간 보관됩니다.
+rankTitle=랭킹
+rankTitle2=명예의 전당
+rankTab1=끝없는 전투
+rankTab2=영웅 레벨
+rankTab3=대전
+rankTab31=클래스
+rankTab32=전체
+rankTab4=30초 측정
+
+chatRoomTitle=채팅방
 
 configTitle=설정
 configSoundTitle=사운드
@@ -160,20 +360,21 @@ configSoundBgmTitle=배경음
 configSoundEffectTitle=효과음
 configLangTitle=언어
 configCloudTitle=데이터 저장
-configNoSyncWarningMessage=(!) 현재 구글 연동이 되어있지 않습니다. 앱 삭제 시 데이터가 날아갑니다.
+configNoSyncWarningMessage=(!) 현재 구글 연동이 되어있지 않습니다. \n앱 삭제 시 데이터가 날아갑니다.
 configPassiveSaveButton=데이터 수동저장
 configSyncButton=Google 연동
-configPlayerIdText=플레이어 ID
-configGameVersionText=게임버전
+configPlayerIdText=유저 ID
+configGameVersionText=Ver.
 configLastSaveTimeText=* 마지막 저장 시간 :
 
 alertTitle=알림
 alertYes=예
 alertNo=아니오
 alertEnergy=전장으로 이동할 포탈에너지가 부족합니다.
-alertScroll=주문서가 부족합니다.
+alertScroll=플랫 스크롤이 부족합니다.
 alertCoin=코인이 부족합니다. 
 alertCrystal=수정이 부족합니다.
+alertExitMessage=정말로 게임을 종료하시겠습니까?
 alertNeedText=필요
 alertNeedMessage1=사용하여 능력을 개방하시겠습니까?
 alertNeedMessage2=선택된 아이템
@@ -182,6 +383,7 @@ alertNeedMessage4=에 판매하시겠습니까?
 alertNeedMessage5=사용하여 구매하시겠습니까?
 alertNeedMessage6=을(를)
 alertNeedMessage7=사용하여 인벤토리를 확장하시겠습니까?
+alertNeedMessage8=사용하여 능력을 초기화하시겠습니까?
 alertGetMessage1=을(를) 획득했습니다.
 alertGetMessage2=플레이어 스킬 잠금이 해제되었습니다!
 alertGetMessage3=아이템을 획득하였습니다.
@@ -189,11 +391,44 @@ alertGetMessage4=개를 획득하였습니다.
 alertGetMessage5=영웅을 획득하였습니다.
 alertGetMessage6=모드가 해제되었습니다!
 alertGetMessage7=인벤토리 슬롯이 증가했습니다.
+alertGetMessage8=튜토리얼 보상으로
+alertGetMessage9=추가로 신규 유저 선물을 우편함에서 확인해주세요~!
 alertSellText=판매
 alertUnableSellMessage=은(는) 현재 판매할 수 없습니다.
 alertUnableSellMessage2=장착중이거나 아이템의 개수에 오류가 있습니다.
 alertUnableInventoryAddMessage=인벤토리 슬롯을 더이상 확장할 수 없습니다.
 alertUnableGetItemMessage=남은 인벤토리 여분이 없어서 진행하실 수 없습니다.
+alertUnablePlayerSkillMessage=아직 스킬을 사용할 수 없습니다.
+alertUnablePlayerSkillMessage2=PvP모드는 자동스킬입니다.
+alertLoginMessage=플랫월드에 부재중인 동안 코인이 쌓였습니다.
+alertEquipMessage=S등급 이상의 장비는 해제시 수정이 소모됩니다. 장착하시겠습니까?
+alertDismountMessage=사용하여 장착해제 하시겠습니까?
+alertUnlockBossMode='보스모드'가 해제되었습니다!\n보스모드를 통해 재화와 플랫 스크롤을 얻을 수 있습니다.
+alertUnlockInfinityMode='끝없는 전투모드'가 해제되었습니다!\n끝없는 전투모드의 포인트는 서버에 저장되어 랭킹에 반영됩니다.
+alertDBErrorMessage=서버에서 데이터를 가져오는데 오류가 발생하였습니다.
+alertNetworkErrorMessage=네트워크 오류로 인해 다운로드에 실패하였습니다. \n네트워크가 정상적인 환경에서 다시 시도해주세요.
+alertTutorialSkipMessage=튜토리얼을 넘어가시겠습니까?
+alertTranscendenceMessage=를 사용하여 영웅을 초월하시겠습니까?
+alertTranscendenceUnableMessage=초월하기에는 아직 영웅이 준비가 되지않았습니다.
+alertTranscendenceSuccessMessage=성공하였습니다. !!
+alertTranscendenceTitle=초월 성공
+alertTranscendenceUnableMessage2=초월에 필요한 초월의 돌이 부족합니다.
+alertBossModeSkipMessage=를 사용하여 남은 시간을 초기화하시겠습니까?
+alertHeroAbilityMessage1=를 사용하여 영웅의 잠재능력을 개방하시겠습니까?
+alertHeroAbilityMessage2=를 사용하여 영웅의 잠재능력을 다시 개방하시겠습니까?
+alertReinforceFailMessage=강화에 필요한 재료가 부족합니다.
+alertReinforceFailMessage2=수정이 부족하여 초기화에 실패하였습니다.
+alertReinforceReinitMessage=강화수치와 횟수를 초기화 하시겠습니까?
+alertReinforceReinforceMessage=장비를 강화하시겠습니까?
+alertAbilityFailMessage=능력포인트가 부족합니다.
+alertAbilityTryMessage=능력포인트로 능력을 개방하시겠습니까?
+alertAbilityTryAllMessage=모든 능력포인트를 사용하여 한번에 개방하시겠습니까?
+alertAutoUnableEnergyMessage=포탈 에너지가 부족하여 자동 플레이가 취소되었습니다.
+alertAutoUnableItemSlotMessage=인벤토리 여분이 부족하여 자동 플레이가 취소되었습니다.
+alertAutoUnableTicketMessage=프리미엄 이용권이 필요합니다!
+alertAutoPlaying=자동 진행중입니다...
+alertUnableUncealBoxMessage=봉인을 해제할 플랫 박스가 없습니다!
+
 
 warningTitle=경고
 
@@ -208,15 +443,19 @@ stageDefeatExitButton=나가기
 stageDefeatRetryButton=다시하기
 
 stageVictoryTitle=결 과
-stageVictoryInformation=이겼습니다 !
+stageVictoryClear1=승리 !
+stageVictoryClear2=멋진 승리 !!
+stageVictoryClear3=완벽한 승리 !!!
 stageVictoryTabText=화면을 탭하세요.
+stageVictoryBossMode=보스 처치에 성공하였습니다!
 
 stageResultTitle=결 과
 stageResultCoin=획득 코인
 stageResultItem=획득 아이템
-stageResultLobbyButton=로비로 이동
+stageResultLobbyButton=대기실로 이동
 stageResultRetryButton=다시 하기
 stageResultNextButton=다음 전투
+stageResultRetryPvpButton=상대 찾기
 
 StageName1=격전의 숲
 StageDescription1=이곳에 미확인 물체가 하늘에서 떨어졌다. 어서 확인 해보자.
@@ -232,6 +471,8 @@ StageName6=침묵의 빙산
 StageDescription6=불안정한 에너지로 인해 기온이 급격하게 내려갔다.
 StageName7=멸망의 땅
 StageDescription7=우리의 모든것이 무너졌다. 하지만 우리에게 마지막 희망은 있어.
+StageName8=공허의 끝
+StageDescription8=데비를 쓰러뜨렸지만 플랫월드는 무너져가고, 모든걸 되돌릴 수 있는 희망을 찾아떠나는데..
 
 MapWarningMessage=아직 도달할 수 없는 곳입니다.
 
@@ -248,7 +489,7 @@ MissionClearMessage9=연구 총합 레벨 도달하기
 MissionClearMessage10=누적 코인 사용하기
 MissionClearMessage11=누적 수정 사용하기
 MissionClearMessage12=누적 에너지 사용하기
-MissionClearMessage13=누적 주문서 사용하기
+MissionClearMessage13=누적 플랫 스크롤 사용하기
 MissionClearMessage14=전체 플레이어 스킬레벨 도달하기
 MissionClearMessage15=영웅 전체 스킬레벨 도달하기
 MissionClearMessage16=누적 스테이지 진행하기
@@ -259,7 +500,7 @@ MissionClearMessage20=장비 업그레이드 하기
 MissionClearMessage21=무료 장비뽑기 하기
 MissionClearMessage22=주간임무 모두 완료하기
 
-MissionName0=오늘의 할일
+MissionName0=부지런한 영웅
 MissionName1=영웅의 자질 1
 MissionName2=영웅의 자질 2
 MissionName3=영웅의 자질 3
@@ -319,30 +560,59 @@ AbilityDescription6=영웅들의 이동속도가 증가합니다.
 AbilityName7=어둠의 힘
 AbilityDescription7=에너지 효율이 증가합니다.
 
+HeroAbilityName1=포식자
+HeroAbilityDescription1=기본공격시 공격력에 비례한 체력을 흡수
+HeroAbilityName2=하이브리드
+HeroAbilityDescription2=기본공격시 에너지 흡수
+HeroAbilityName3=조커
+HeroAbilityDescription3=치명타 데미지 증가
+HeroAbilityName4=3대500
+HeroAbilityDescription4=추가 공격력
+HeroAbilityName5=무적튼튼
+HeroAbilityDescription5=추가 방어력
+HeroAbilityName6=스턴건
+HeroAbilityDescription6=기본공격시 낮은확률로 스턴
+HeroAbilityName7=드라카리스
+HeroAbilityDescription7=공격시 적을 불태움(5초간 초당 고정 데미지)
+HeroAbilityName8=최전방
+HeroAbilityDescription8=방어 확률 증가
+HeroAbilityName9=괴물
+HeroAbilityDescription9=최대 체력 증가
+
+CastleStats1=수정체 Max Hp 상승
+CastleStats2=수정체 초당 Hp 회복
+CastleStats3=수정체 방어력 상승
+CastleStats4=수정체 공격력 상승
+CastleStats5=수정체 공격스피드 상
+CastleStats6=모든 적 처치
+CastleStats7=15초간 수정체 무적
+CastleStats8=수정체 발사체 +1
+CastleStats9=아군 영웅 전체 부활
+
 SkillName1=바람 가르기
-SkillDescription1=순간적으로 한명의 적을 베어버린다.
+SkillDescription1=전방에 있는 모든적을 베어버린다. 
 SkillName2=수류탄 투척
-SkillDescription2=3초후 폭발하는 수류탄을 적에게 투척한다.
+SkillDescription2=3초후 폭발하는 수류탄을 적에게 투척한다.(5레벨당 타겟수 증가, 최대10)
 SkillName3=살라만더
-SkillDescription3=불꽃들을 소환하여 전방에 무차별 폭격을 가한다.
+SkillDescription3=불꽃들을 소환하여 전방에 무차별 폭격을 가한다.(5레벨당 발사수 증가, 최대 8)
 SkillName4=퀵스나이핑
-SkillDescription4=엄청난 속도로 연속으로 화살을 발사한다.
+SkillDescription4=엄청난 속도로 연속으로 화살을 발사한다.(5레벨당 발사수 증가, 최대 8)
 SkillName5=스모크 나이프
-SkillDescription5=나이프를 던진곳으로 날아가 적을 공격한다.
-SkillName6=6번째 스킬
-SkillDescription6=
-SkillName7=7번째 스킬
-SkillDescription7=
-SkillName8=8번째 스킬
-SkillDescription8=
-SkillName9=9번째 스킬
-SkillDescription9=
-SkillName10=10번째 스킬
-SkillDescription10=
-SkillName11=11번째 스킬
-SkillDescription11=
-SkillName12=12번째 스킬
-SkillDescription12=
+SkillDescription5=나이프를 던진곳으로 날아가 적을 공격한다.(5레벨당 타격횟수 증가, 최대 10)
+SkillName6=전사의 힘
+SkillDescription6=기압을 바꿀정도로 강력한 주먹으로 사거리 이내의 모든적을 공격한다.
+SkillName7=노동요
+SkillDescription7=아군전체의 공격력을 2초간 증가시킨다.
+SkillName8=에너지 볼트
+SkillDescription8=타겟 하나에게 강력한 유도 에너지탄을 발사한다.
+SkillName9=앰뷸런스
+SkillDescription9=아군전체를 치료하는 앰뷸런스를 부른다.
+SkillName10=무차별 베기
+SkillDescription10=전방에 무차별적으로 쌍수를 휘두른다.
+SkillName11=헬파이어
+SkillDescription11=전방 사거리안의 모든적에게 화염을 떨어트린다(기절 0.5초)
+SkillName12=그림자 수리검
+SkillDescription12=연속으로 수리검을 마구 던진다.(5레벨당 발사수 증가, 최대 7)(크리티컬 데미지+10%)
 SkillName13=13번째 스킬
 SkillDescription13=
 SkillName14=14번째 스킬
@@ -357,10 +627,16 @@ SkillDescription102=아군 전체의 체력을 회복한다.
 SkillName103=후회
 SkillDescription103=아군 한명을 랜덤으로 부활시킨다.
 SkillName104=자만
-SkillDescription104=적 전체를 2초간 스턴상태로 만든다.
+SkillDescription104=적 전체를 스턴상태로 만든다.
 SkillName105=희생
-SkillDescription105=아군 한명을 희생시켜 가장강한 적의 체력을 희생한 아군의 체력만큼 감소시킨다.
+SkillDescription105=10초간 아군 전체의 현재 체력을 30%를 소모하여 공격속도, 이동속도를 30% 증가시킨다.
 
+SkillName1006=잠에서 깨거라! 나의 전사들이여.
+SkillDescription1006=
+SkillName1007=어둠의 일격
+SkillDescription1007=
+SkillName1008=죽음을 보여주지.
+SkillDescription1008=
 
 HerosName101=동해
 HerosDescription101=동쪽 나라에서 온 실력이 출중한 무사
@@ -375,7 +651,7 @@ HerosDescription103=위기가 다치자 등장한 정체불명의 마법사
 HerosChat103=거기까지다!,균형을 위하여!
 
 HerosName104=아르테미스
-HerosDescription104=여명단을 이끌고 있는 수장.
+HerosDescription104=세계최고 궁수특전부대의 대장이다.
 HerosChat104=이 화살로 지켜내겠어..,도망치는게 좋을꺼야.
 
 HerosName105=켄
@@ -387,7 +663,7 @@ HerosDescription106=대평야지대에 위치하고있는 강력한 전투민족
 HerosChat106=크하하하하,모두 한꺼번에 덤비는게 좋을꺼야!
 
 HerosName107=화윤
-HerosDescription107=기억을 잃은 정체불명의 소녀
+HerosDescription107=기억을 잃은 정체불명의 소녀. (공격불가, 적의 방어력을 기술력%만큼 감소)
 HerosChat107=...
 
 HerosName108=셉템버
@@ -395,38 +671,26 @@ HerosDescription108=서쪽나라에서 비밀프로젝트로 개발한 인간형
 HerosChat108=타겟 발견함.
 
 HerosName109=닥터박
-HerosDescription109=외상환자에 대한 새로운 치료법을 개발해 플랫의학상을 수상한 유명한 외과의사.
+HerosDescription109=전장에서 활약중인 전설의 외과의사. (공격불가, 아군 1명을 공격력만큼 체력을 회복)
 HerosChat109=더이상 희생자가 나와서는 안돼..,플랫월드를 위하여!
 
-HerosName110=10번영웅
-HerosDescription110=null
-HerosChat110=null
+HerosName110=엘
+HerosDescription110=플랫월드를 구하기위해 다른세계에서 소환된 쌍수전사.
+HerosChat110=전장으로!
 
-HerosName111=11번영웅
-HerosDescription11=null
-HerosChat111=null
+HerosName111=벨라
+HerosDescription111=과거에 흑마법 연구에 실험당해 강력한 힘을 얻게되었다.
+HerosChat111=시작하겠어요!
 
-HerosName112=12번영웅
-HerosDescription112=null
-HerosChat112=null
-
-HerosName113=13번영웅
-HerosDescription113=null
-HerosChat113=null
-
-HerosName114=14번영웅
-HerosDescription114=null
-HerosChat114=null
-
-HerosName115=15번영웅
-HerosDescription115=null
-HerosChat115=null
+HerosName112=호크
+HerosDescription112=동쪽나라에서 암살을 전문으로 하는 집단의 대장으로 켄을 잘 아는것 같다.
+HerosChat112=표적확인..!
 
 HerosName501=좀비
 HerosDescription501=null
 HerosChat501=크아악!
 
-HerosName502=좀비
+HerosName502=빡빡이좀비
 HerosDescription502=null
 HerosChat502=캬악..!
 
@@ -446,13 +710,109 @@ HerosName506=빨간 슬라임
 HerosDescription506=null
 HerosChat506=뽀옹뽀옹~!
 
+HerosName507=나무괴물
+HerosDescription507=null
+HerosChat507=프스스스스
+
+HerosName508=곰
+HerosDescription508=null
+HerosChat508=우워엉
+
+HerosName509=파이
+HerosDescription509=null
+HerosChat509=다 태워버린다~!
+
+HerosName510=골렘
+HerosDescription510=null
+HerosChat510=웜머!!
+
+HerosName511=검은마법사
+HerosDescription511=null
+HerosChat511=너희들은 틀렸다.
+
+HerosName512=푸이
+HerosDescription512=null
+HerosChat512=날 화나게 하지마.
+
+HerosName513=샌드맨
+HerosDescription513=null
+HerosChat513=모래로 만들어주지!
+
+HerosName514=검은궁수
+HerosDescription514=null
+HerosChat514=모조리 없애주겠다!
+
+HerosName515=선인장
+HerosDescription515=null
+HerosChat515=가시에 찔려도 몰라
+
+HerosName516=미이라
+HerosDescription516=null
+HerosChat516=...움
+
+HerosName517=스노우맨
+HerosDescription517=null
+HerosChat517=유노 낫띵 맨스노우
+
+HerosName518=예티
+HerosDescription518=null
+HerosChat518=크르릉!!!
+
+HerosName519=파이어맨
+HerosDescription519=null
+HerosChat519=퐈이어!!
+
+HerosName520=얼음좀비
+HerosDescription520=null
+HerosChat520=윈터이즈커밍..
+
+HerosName521=흑령
+HerosDescription521=null
+HerosChat521=히히힛
+
+HerosName522=망령
+HerosDescription522=null
+HerosChat522=null
+
+HerosName523=심판자
+HerosDescription523=null
+HerosChat523=null
+
+HerosName524=심판자
+HerosDescription524=null
+HerosChat524=null
+
 HerosName1001=자이언트 휴몽
 HerosDescription1001=null
 HerosChat1001=끼이익!..우끽!
 
-HerosName1002=나이트 크로우
+HerosName1002=불까마귀
 HerosDescription1002=null
 HerosChat1002=가소로운것들이군. 까악!!
+
+HerosName1003=킹 골든슬라임
+HerosDescription1003=null
+HerosChat1003=쿠잉~! 쿠잉~!
+
+HerosName1004=빙룡
+HerosDescription1004=null
+HerosChat1004=어리석은 것들!,더 이상의 너희들 역할은 없다.
+
+HerosName1005=포레스트
+HerosDescription1005=null
+HerosChat1005=나의 땅에서 썩 나가거라!
+
+HerosName1006=투탕
+HerosDescription1006=null
+HerosChat1006=나를 부활시키다니.. 각오해라
+
+HerosName1007=데비
+HerosDescription1007=null
+HerosChat1007=균열을 피할 수 없다.,순순히 운명을 따르라!,날 막는다고 멸망을 피할 수 없다.
+
+HerosName1008=타나토스
+HerosDescription1008=null
+HerosChat1008=null
 
 ItemClassName1=낡은
 ItemClassName2=평범한
@@ -476,14 +836,14 @@ ItemDescription7=견습기사들이 사용하는 무기이다.
 ItemDescription8=견습기사들이 사용하는 무기이다.
 
 ItemName11=환도
-ItemDescription11=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
-ItemDescription12=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
-ItemDescription13=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
-ItemDescription14=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
-ItemDescription15=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
-ItemDescription16=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
-ItemDescription17=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
-ItemDescription18=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
+ItemDescription11=동쪽나라의 전통무기이다.
+ItemDescription12=동쪽나라의 전통무기이다.
+ItemDescription13=동쪽나라의 전통무기이다.
+ItemDescription14=동쪽나라의 전통무기이다.
+ItemDescription15=동쪽나라의 전통무기이다.
+ItemDescription16=동쪽나라의 전통무기이다.
+ItemDescription17=동쪽나라의 전통무기이다.
+ItemDescription18=동쪽나라의 전통무기이다.
 
 ItemName21=흑환도
 ItemDescription21=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
@@ -496,14 +856,14 @@ ItemDescription27=정체불명의 검은 물질로 제련된 환도이다. 환�
 ItemDescription28=정체불명의 검은 물질로 제련된 환도이다. 환도보다 더욱 날카롭다.
 
 ItemName31=F-5
-ItemDescription31=용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.
-ItemDescription32=용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.
-ItemDescription33=용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.
-ItemDescription34=용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.
-ItemDescription35=용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.
-ItemDescription36=용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.
-ItemDescription37=용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.
-ItemDescription38=용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.
+ItemDescription31=용병들이 주로사용하는 권총으로 특수탄환을 발사할 수 있다고 한다.
+ItemDescription32=용병들이 주로사용하는 권총으로 특수탄환을 발사할 수 있다고 한다.
+ItemDescription33=용병들이 주로사용하는 권총으로 특수탄환을 발사할 수 있다고 한다.
+ItemDescription34=용병들이 주로사용하는 권총으로 특수탄환을 발사할 수 있다고 한다.
+ItemDescription35=용병들이 주로사용하는 권총으로 특수탄환을 발사할 수 있다고 한다.
+ItemDescription36=용병들이 주로사용하는 권총으로 특수탄환을 발사할 수 있다고 한다.
+ItemDescription37=용병들이 주로사용하는 권총으로 특수탄환을 발사할 수 있다고 한다.
+ItemDescription38=용병들이 주로사용하는 권총으로 특수탄환을 발사할 수 있다고 한다.
 
 ItemName41=플랫나이프
 ItemDescription41=짧고 휘두르기 편한 단검이다.
@@ -565,16 +925,15 @@ ItemDescription96=날개가 달려 있는 백금의 방패이다.
 ItemDescription97=날개가 달려 있는 백금의 방패이다.
 ItemDescription98=날개가 달려 있는 백금의 방패이다.
 
-ItemName101=영웅의 갑옷
-ItemDescription101=전설의 영웅이 착용했었던 갑옷이다.
-ItemDescription102=전설의 영웅이 착용했었던 갑옷이다.
-ItemDescription103=전설의 영웅이 착용했었던 갑옷이다.
-ItemDescription104=전설의 영웅이 착용했었던 갑옷이다.
-ItemDescription105=전설의 영웅이 착용했었던 갑옷이다.
-ItemDescription106=전설의 영웅이 착용했었던 갑옷이다.
-ItemDescription107=전설의 영웅이 착용했었던 갑옷이다.
-ItemDescription108=전설의 영웅이 착용했었던 갑옷이다.
-
+ItemName101=뿔 갑옷
+ItemDescription101=어깨에 뿔이 달려있는 갑옷이다.
+ItemDescription102=어깨에 뿔이 달려있는 갑옷이다. 
+ItemDescription103=어깨에 뿔이 달려있는 갑옷이다.
+ItemDescription104=어깨에 뿔이 달려있는 갑옷이다.
+ItemDescription105=어깨에 뿔이 달려있는 갑옷이다.
+ItemDescription106=어깨에 뿔이 달려있는 갑옷이다.
+ItemDescription107=어깨에 뿔이 달려있는 갑옷이다.
+ItemDescription108=어깨에 뿔이 달려있는 갑옷이다.
 
 ItemName111=마법사의 신발
 ItemDescription111=음흉한 기운이 나오는 신발이다.
@@ -586,36 +945,87 @@ ItemDescription116=음흉한 기운이 나오는 신발이다.
 ItemDescription117=음흉한 기운이 나오는 신발이다.
 ItemDescription118=음흉한 기운이 나오는 신발이다.
 
-ItemName121=순백의 날개
-ItemDescription121=고결한 순백의 날개이다.
+ItemName121=플랫 윙
+ItemDescription128=단 하나밖에 없는 고결한 날개
 
-ItemName8001=능력개방주문서
-ItemDescription8001=능력을 개방할 수 있는 주문서이다.
+ItemName131=마법사의 반지
+ItemDescription131=음흉한 기운이 나오는 반지다.
+ItemDescription132=음흉한 기운이 나오는 반지다.
+ItemDescription133=음흉한 기운이 나오는 반지다.
+ItemDescription134=음흉한 기운이 나오는 반지다.
+ItemDescription135=음흉한 기운이 나오는 반지다.
+ItemDescription136=음흉한 기운이 나오는 반지다.
+ItemDescription137=음흉한 기운이 나오는 반지다.
+ItemDescription138=음흉한 기운이 나오는 반지다.
 
-ItemName9000=수정 15개
-ItemDescription9000=수정이 15개가 들어있다.
-ItemName9001=수정 1000개
-ItemDescription9001=수정이 1000개가 들어있다.
-ItemName9002=수정 30개
-ItemDescription9002=수정이 30개가 들어있다.
-ItemName9003=수정 80개
-ItemDescription9003=수정이 80개가 들어있다.
-ItemName9004=수정 150개
-ItemDescription9004=수정이 150개가 들어있다.
-ItemName9005=수정 300개
-ItemDescription9005=수정이 300개가 들어있다.
-ItemName9006=수정 500개
-ItemDescription9006=수정이 500개가 들어있다.
+ItemName8001=플랫 스크롤
+ItemDescription8001=장비강화, 아이템 제련에 사용되는 주문서다.
 
-ItemName9011=포탈에너지 100개
-ItemDescription9011=포탈에너지가 100개 담겨져있다.
-ItemName9012=포탈에너지 300개
-ItemDescription9012=포탈에너지가 300개 담겨져있다.
+ItemName8002=전투 훈장
+ItemDescription8002=대전을통해 획득할 수 있는 훈장이다.
 
-ItemName9021=능력개방주문서 30개
-ItemDescription9021=능력을 개방할 수 있는 주문서이다.
-ItemName9022=능력개방주문서 70개
-ItemDescription9022=능력을 개방할 수 있는 주문서이다.
+ItemName8003=평범한 플랫 박스
+ItemDescription8003=다양한 보상이 들어있는 상자이다.
+ItemName8004=특별한 플랫 박스
+ItemDescription8004=특별한 보상이 들어있는 상자이다.
+ItemName8005=전설의 플랫 박스
+ItemDescription8005=전설적인 보상이 들어있는 상자이다.
 
+ItemName9001=수정 2,000개
+ItemDescription9001=수정이 2,000개가 들어있다.
+ItemName9002=수정 60개
+ItemDescription9002=수정이 60개가 들어있다.
+ItemName9003=수정 160개
+ItemDescription9003=수정이 160개가 들어있다.
+ItemName9004=수정 300개
+ItemDescription9004=수정이 300개가 들어있다.
+ItemName9005=수정 600개
+ItemDescription9005=수정이 600개가 들어있다.
+ItemName9006=수정 1,000개
+ItemDescription9006=수정이 1,000개가 들어있다.
 
+ItemName9011=포탈에너지 150개
+ItemDescription9011=포탈에너지가 150개 담겨져있다.
+ItemName9012=포탈에너지 400개
+ItemDescription9012=포탈에너지가 400개 담겨져있다.
+
+ItemName9021=플랫 스크롤 30개
+ItemDescription9021=장비강화, 아이템 제련에 사용되는 주문서다.
+ItemName9022=플랫 스크롤 70개
+ItemDescription9022=장비강화, 아이템 제련에 사용되는 주문서다.
+
+ItemName9031=코인 50,000개
+ItemDescription9031=코인이 50,000개 들어있다.
+ItemName9032=코인 100,000개
+ItemDescription9032=코인이 100,000개 들어있다.
+ItemName9033=코인 150,000개
+ItemDescription9033=코인이 150,000개 들어있다.
+ItemName9034=코인 250,000개
+ItemDescription9034=코인이 250,000개 들어있다.
+ItemName9035=코인 700,000개
+ItemDescription9035=코인이 700,000개 들어있다.
+
+ItemName9041=광고 패키지
+ItemDescription9041=(!)한번만 구매가능\n전면 광고 제거 + 보상형 광고 스킵 + 수정 50개
+ItemName9042=프리미엄 30일 이용권
+ItemDescription9042=(!)기간제 이용권\n(스테이지 자동진행가능 + 코인보상 20% 증가 + 보스모드 대기시간 20% 감소) 혜택을 받을 수 있습니다.
+ItemName9048=완벽한 준비 패키지
+ItemDescription9048=(!)한번만 구매가능\n광고패키지 + 수정 400개 + 에너지 100개 + 코인 100,000개 (광고 제거가 이미 있는 경우 수정 50개 추가 지급)
+ItemName9049=영웅의 준비 패키지
+ItemDescription9049=(!)한번만 구매가능\n광고패키지 + 수정 1,000개 + 에너지 200개 + 코인 200,000개 (광고 제거가 이미 있는 경우 수정 50개 추가 지급)
+ItemName9050=전설의 준비 패키지
+ItemDescription9050=(!)한번만 구매가능\n광고패키지 + 수정 2,400개 + 에너지 500개 + 코인 400,000개 (광고 제거가 이미 있는 경우 수정 50개 추가 지급) + 플랫 윙(Legendary)
+
+ItemName10001=코인
+ItemDescription10001=코인
+ItemName10002=수정
+ItemDescription10002=수정
+ItemName10003=포탈에너지
+ItemDescription10003=포탈에너지
+ItemName10004=마석
+ItemDescription10004=마석
+
+AdRewardCoin=코인 30,000개
+AdRewardCrystal=수정 15개
+AdRewardEnergy=포탈에너지 30개
 

@@ -170,10 +170,6 @@ public class HeroDatabase
                 {
                     node.SelectSingleNode("Level").InnerText = hd.level.ToString();
                     node.SelectSingleNode("Exp").InnerText = hd.exp.ToString();
-                    node.SelectSingleNode("Strength").InnerText = hd.strength.ToString();
-                    node.SelectSingleNode("Intelligent").InnerText = hd.intelligent.ToString();
-                    node.SelectSingleNode("Physical").InnerText = hd.physical.ToString();
-                    node.SelectSingleNode("Agility").InnerText = hd.agility.ToString();
                     node.SelectSingleNode("EquipmentItem").InnerText = hd.equipmentItem.ToString();
                 }
                 break;
@@ -207,10 +203,7 @@ public class HeroDatabase
                 {
                     node.SelectSingleNode("Level").InnerText = herodatas[i].level.ToString();
                     node.SelectSingleNode("Exp").InnerText = herodatas[i].exp.ToString();
-                    node.SelectSingleNode("Strength").InnerText = herodatas[i].strength.ToString();
-                    node.SelectSingleNode("Intelligent").InnerText = herodatas[i].intelligent.ToString();
-                    node.SelectSingleNode("Physical").InnerText = herodatas[i].physical.ToString();
-                    node.SelectSingleNode("Agility").InnerText = herodatas[i].agility.ToString();
+                    node.SelectSingleNode("EquipmentItem").InnerText = herodatas[i].equipmentItem.ToString();
                     break;
                 }
             }
@@ -246,52 +239,36 @@ public class HeroDatabase
         child.Attributes.Append(id);
 
         // 자식 노드에 들어갈 속성 생성
-        XmlElement name = xmlDoc.CreateElement("Name");
-        name.InnerText = data.name;
-        child.AppendChild(name);
-
-        XmlElement image = xmlDoc.CreateElement("Image");
-        image.InnerText = data.image;
-        child.AppendChild(image);
         XmlElement enable = xmlDoc.CreateElement("Enable");
         enable.InnerText = data.enable.ToString().ToLower();
         child.AppendChild(enable);
         XmlElement type = xmlDoc.CreateElement("Type");
         type.InnerText = data.type.ToString();
         child.AppendChild(type);
-        XmlElement description = xmlDoc.CreateElement("Description");
-        description.InnerText = data.description;
-        child.AppendChild(description);
         XmlElement level = xmlDoc.CreateElement("Level");
         level.InnerText = data.level.ToString();
         child.AppendChild(level);
         XmlElement exp = xmlDoc.CreateElement("Exp");
         exp.InnerText = data.exp.ToString();
         child.AppendChild(exp);
-        XmlElement value = xmlDoc.CreateElement("Value");
-        value.InnerText = data.value.ToString();
-        child.AppendChild(value);
-        XmlElement str = xmlDoc.CreateElement("Strength");
-        str.InnerText = data.strength.ToString();
-        child.AppendChild(str);
-        XmlElement intel = xmlDoc.CreateElement("Intelligent");
-        intel.InnerText = data.intelligent.ToString();
-        child.AppendChild(intel);
-        XmlElement phy = xmlDoc.CreateElement("Physical");
-        phy.InnerText = data.physical.ToString();
-        child.AppendChild(phy);
-        XmlElement agl = xmlDoc.CreateElement("Agility");
-        agl.InnerText = data.agility.ToString();
-        child.AppendChild(agl);
         XmlElement equipmentItem = xmlDoc.CreateElement("EquipmentItem");
         equipmentItem.InnerText = data.equipmentItem.ToString();
         child.AppendChild(equipmentItem);
         XmlElement skill = xmlDoc.CreateElement("Skill");
         skill.InnerText = data.skill.ToString();
         child.AppendChild(skill);
-        XmlElement attackType = xmlDoc.CreateElement("AttackType");
-        attackType.InnerText = data.attackType.ToString();
-        child.AppendChild(attackType);
+        XmlElement skin = xmlDoc.CreateElement("Skin");
+        skin.InnerText = data.skin.ToString();
+        child.AppendChild(skin);
+        XmlElement over = xmlDoc.CreateElement("Over");
+        over.InnerText = data.over.ToString();
+        child.AppendChild(over);
+        XmlElement ability = xmlDoc.CreateElement("Ability");
+        ability.InnerText = data.ability.ToString();
+        child.AppendChild(ability);
+        XmlElement abilityLevel = xmlDoc.CreateElement("AbilityLevel");
+        abilityLevel.InnerText = data.abilityLevel.ToString();
+        child.AppendChild(abilityLevel);
 
         // 암호화/////
         XmlElement elmRoot = xmlDoc.DocumentElement;
@@ -311,52 +288,36 @@ public class HeroDatabase
         child.Attributes.Append(id);
 
         // 자식 노드에 들어갈 속성 생성
-        XmlElement name = xmlDoc.CreateElement("Name");
-        name.InnerText = data.name;
-        child.AppendChild(name);
-
-        XmlElement image = xmlDoc.CreateElement("Image");
-        image.InnerText = data.image;
-        child.AppendChild(image);
         XmlElement enable = xmlDoc.CreateElement("Enable");
         enable.InnerText = data.enable.ToString().ToLower();
         child.AppendChild(enable);
         XmlElement type = xmlDoc.CreateElement("Type");
         type.InnerText = data.type.ToString();
         child.AppendChild(type);
-        XmlElement description = xmlDoc.CreateElement("Description");
-        description.InnerText = data.description;
-        child.AppendChild(description);
         XmlElement level = xmlDoc.CreateElement("Level");
         level.InnerText = data.level.ToString();
         child.AppendChild(level);
         XmlElement exp = xmlDoc.CreateElement("Exp");
         exp.InnerText = data.exp.ToString();
         child.AppendChild(exp);
-        XmlElement value = xmlDoc.CreateElement("Value");
-        value.InnerText = data.value.ToString();
-        child.AppendChild(value);
-        XmlElement str = xmlDoc.CreateElement("Strength");
-        str.InnerText = data.strength.ToString();
-        child.AppendChild(str);
-        XmlElement intel = xmlDoc.CreateElement("Intelligent");
-        intel.InnerText = data.intelligent.ToString();
-        child.AppendChild(intel);
-        XmlElement phy = xmlDoc.CreateElement("Physical");
-        phy.InnerText = data.physical.ToString();
-        child.AppendChild(phy);
-        XmlElement agl = xmlDoc.CreateElement("Agility");
-        agl.InnerText = data.agility.ToString();
-        child.AppendChild(agl);
         XmlElement equipmentItem = xmlDoc.CreateElement("EquipmentItem");
         equipmentItem.InnerText = data.equipmentItem.ToString();
         child.AppendChild(equipmentItem);
         XmlElement skill = xmlDoc.CreateElement("Skill");
         skill.InnerText = data.skill.ToString();
         child.AppendChild(skill);
-        XmlElement attackType = xmlDoc.CreateElement("AttackType");
-        attackType.InnerText = data.attackType.ToString();
-        child.AppendChild(attackType);
+        XmlElement skin = xmlDoc.CreateElement("Skin");
+        skin.InnerText = data.skin.ToString();
+        child.AppendChild(skin);
+        XmlElement over = xmlDoc.CreateElement("Over");
+        over.InnerText = data.over.ToString();
+        child.AppendChild(over);
+        XmlElement ability = xmlDoc.CreateElement("Ability");
+        ability.InnerText = data.ability.ToString();
+        child.AppendChild(ability);
+        XmlElement abilityLevel = xmlDoc.CreateElement("AbilityLevel");
+        abilityLevel.InnerText = data.abilityLevel.ToString();
+        child.AppendChild(abilityLevel);
 
         // 암호화/////
         XmlElement elmRoot = xmlDoc.DocumentElement;
@@ -364,5 +325,172 @@ public class HeroDatabase
         elmRoot.InnerText = encrpytData;
         ////////////
         xmlDoc.Save(path);
+    }
+
+    public static void SaveOver(int id)
+    {
+        string path = Application.persistentDataPath + "/Xml/Heros.Xml";
+        XmlDocument xmlDoc = new XmlDocument();
+        if (System.IO.File.Exists(path))
+            xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
+
+        //복호화////
+        XmlElement elmRoot = xmlDoc.DocumentElement;
+        var decrpytData = DataSecurityManager.DecryptData(elmRoot.InnerText);
+        elmRoot.InnerXml = decrpytData;
+        //////////
+
+        XmlNodeList nodes = xmlDoc.SelectNodes("HeroCollection/Heros/Hero");
+        foreach (XmlNode node in nodes)
+        {
+            if (node.Attributes.GetNamedItem("id").Value == id.ToString() || node.Attributes.GetNamedItem("id").Value.Equals(id.ToString()))
+            {
+                HeroData hd = HeroSystem.GetUserHero(id);
+                if (hd != null)
+                {
+                    if (node.SelectSingleNode("Over") != null)
+                        node.SelectSingleNode("Over").InnerText = hd.over.ToString();
+                    else
+                        AddNode(hd,xmlDoc);
+                }
+                break;
+            }
+        }
+        // 암호화/////
+        var encrpytData = DataSecurityManager.EncryptData(elmRoot.InnerXml);
+        elmRoot.InnerText = encrpytData;
+        ////////////
+        xmlDoc.Save(path);
+        Debugging.Log(id + " 영웅의 단일 xml 저장 완료");
+    }
+    public static void SaveHeroSkin(int id)
+    {
+        string path = Application.persistentDataPath + "/Xml/Heros.Xml";
+        XmlDocument xmlDoc = new XmlDocument();
+        if (System.IO.File.Exists(path))
+            xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
+
+        //복호화////
+        XmlElement elmRoot = xmlDoc.DocumentElement;
+        var decrpytData = DataSecurityManager.DecryptData(elmRoot.InnerText);
+        elmRoot.InnerXml = decrpytData;
+        //////////
+
+        XmlNodeList nodes = xmlDoc.SelectNodes("HeroCollection/Heros/Hero");
+        foreach (XmlNode node in nodes)
+        {
+            if (node.Attributes.GetNamedItem("id").Value == id.ToString() || node.Attributes.GetNamedItem("id").Value.Equals(id.ToString()))
+            {
+                HeroData hd = HeroSystem.GetUserHero(id);
+                if (hd != null)
+                {
+                    if (node.SelectSingleNode("Skin") != null)
+                        node.SelectSingleNode("Skin").InnerText = hd.skin.ToString();
+                    else
+                        AddSkinNode(hd, xmlDoc);
+                }
+                break;
+            }
+        }
+        // 암호화/////
+        var encrpytData = DataSecurityManager.EncryptData(elmRoot.InnerXml);
+        elmRoot.InnerText = encrpytData;
+        ////////////
+        xmlDoc.Save(path);
+        Debugging.Log(id + " 영웅의 단일 xml 저장 완료");
+    }
+
+    public static void SaveHeroAbility(int id)
+    {
+        string path = Application.persistentDataPath + "/Xml/Heros.Xml";
+        XmlDocument xmlDoc = new XmlDocument();
+        if (System.IO.File.Exists(path))
+            xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
+
+        //복호화////
+        XmlElement elmRoot = xmlDoc.DocumentElement;
+        var decrpytData = DataSecurityManager.DecryptData(elmRoot.InnerText);
+        elmRoot.InnerXml = decrpytData;
+        //////////
+
+        XmlNodeList nodes = xmlDoc.SelectNodes("HeroCollection/Heros/Hero");
+        foreach (XmlNode node in nodes)
+        {
+            if (node.Attributes.GetNamedItem("id").Value == id.ToString() || node.Attributes.GetNamedItem("id").Value.Equals(id.ToString()))
+            {
+                HeroData hd = HeroSystem.GetUserHero(id);
+                if (hd != null)
+                {
+                    if (node.SelectSingleNode("Ability") != null)
+                        node.SelectSingleNode("Ability").InnerText = hd.ability.ToString();
+                    else
+                        AddAbilityNode(hd, xmlDoc,0,hd.ability);
+                    if(node.SelectSingleNode("AbilityLevel")!=null)
+                        node.SelectSingleNode("AbilityLevel").InnerText = hd.abilityLevel.ToString();
+                    else
+                        AddAbilityNode(hd, xmlDoc,1,hd.abilityLevel);
+                }
+                break;
+            }
+        }
+        // 암호화/////
+        var encrpytData = DataSecurityManager.EncryptData(elmRoot.InnerXml);
+        elmRoot.InnerText = encrpytData;
+        ////////////
+        xmlDoc.Save(path);
+        Debugging.Log(id + " 영웅의 단일 xml 저장 완료");
+    }
+
+    public static void AddNode(HeroData data,XmlDocument xmlDoc)
+    {
+        XmlNodeList nodes = xmlDoc.SelectNodes("HeroCollection/Heros/Hero");
+        foreach (XmlNode node in nodes)
+        {
+            if (node.Attributes.GetNamedItem("id").Value == data.id.ToString() || node.Attributes.GetNamedItem("id").Value.Equals(data.id.ToString()))
+            {
+                XmlElement over = xmlDoc.CreateElement("Over");
+                over.InnerText = data.over.ToString();
+                node.AppendChild(over);
+                break;
+            }
+        }
+    }
+    public static void AddSkinNode(HeroData data, XmlDocument xmlDoc)
+    {
+        XmlNodeList nodes = xmlDoc.SelectNodes("HeroCollection/Heros/Hero");
+        foreach (XmlNode node in nodes)
+        {
+            if (node.Attributes.GetNamedItem("id").Value == data.id.ToString() || node.Attributes.GetNamedItem("id").Value.Equals(data.id.ToString()))
+            {
+                XmlElement skin = xmlDoc.CreateElement("Skin");
+                skin.InnerText = data.skin.ToString();
+                node.AppendChild(skin);
+                break;
+            }
+        }
+    }
+
+    public static void AddAbilityNode(HeroData data, XmlDocument xmlDoc, int type, int val)
+    {
+        XmlNodeList nodes = xmlDoc.SelectNodes("HeroCollection/Heros/Hero");
+        foreach (XmlNode node in nodes)
+        {
+            if (node.Attributes.GetNamedItem("id").Value == data.id.ToString() || node.Attributes.GetNamedItem("id").Value.Equals(data.id.ToString()))
+            {
+                if(type==0)
+                {
+                    XmlElement ability = xmlDoc.CreateElement("Ability");
+                    ability.InnerText = val.ToString();
+                    node.AppendChild(ability);
+                }
+                else
+                {
+                    XmlElement abilityLevel = xmlDoc.CreateElement("AbilityLevel");
+                    abilityLevel.InnerText = val.ToString();
+                    node.AppendChild(abilityLevel);
+                }
+                break;
+            }
+        }
     }
 }

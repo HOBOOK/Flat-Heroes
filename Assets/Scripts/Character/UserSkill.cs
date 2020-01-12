@@ -39,7 +39,7 @@ public class UserSkill : ScriptableObject
         skillDescription = data.description;
         skillLevel = SkillSystem.GetUserSkillLevel(skillId);
         skillAbillity = SkillSystem.GetUserSkillPower(skillId);
-        skillDelayTime = data.energy;
+        skillDelayTime = SkillSystem.GetUserSkillDelay(skillId);
         skillImage = SkillSystem.GetSkillImage(skillId);
         Debugging.Log(skillId + " 스킬 세팅완료");
     }

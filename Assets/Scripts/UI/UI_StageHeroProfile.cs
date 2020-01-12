@@ -6,6 +6,11 @@ using UnityEngine.UI;
 public class UI_StageHeroProfile : MonoBehaviour
 {
     public Hero hero;
+    Slider hpBar;
+    private void Awake()
+    {
+        hpBar = this.transform.GetComponentInChildren<Slider>();
+    }
     float reTime = 0;
     public void SetHero(Hero h)
     {
@@ -14,19 +19,42 @@ public class UI_StageHeroProfile : MonoBehaviour
     }
     public void ReSetHero()
     {
-        this.hero = StageManagement.instance.GetStageHero(hero.id);
-        this.hero.stageHeroProfileUI = this.gameObject;
-        DisableResurrectionUI();
+        try
+        {
+            this.hero = StageManagement.instance.GetStageHero(hero.id);
+            this.hero.stageHeroProfileUI = this.gameObject;
+        }
+        catch
+        {
+
+        }
+        finally
+        {
+            DisableResurrectionUI();
+        }
+
     }
     void ShowResurrectionUI(float time)
     {
-        this.transform.GetChild(1).gameObject.SetActive(true);
-        this.transform.GetChild(1).GetComponentInChildren<Text>().text = time.ToString("N0");
+        this.transform.GetChild(2).gameObject.SetActive(true);
+        this.transform.GetChild(2).GetComponentInChildren<Text>().text = time.ToString("N0");
     }
     void DisableResurrectionUI()
     {
-        this.transform.GetChild(1).gameObject.SetActive(false);
-        this.transform.GetChild(1).GetComponentInChildren<Text>().text = "";
+        this.transform.GetChild(2).gameObject.SetActive(false);
+        this.transform.GetChild(2).GetComponentInChildren<Text>().text = "";
+    }
+    private void Update()
+    {
+        if(hero!=null)
+        {
+            SetHpSlider();
+        }
+    }
+    void SetHpSlider()
+    {
+        if(hpBar!=null)
+            hpBar.value = (float)hero.status.hp / (float)hero.status.maxHp;
     }
 
     public void ShowResurrectionTime()

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cda4ae0bc5157b489e38ea51e80947d, type: 3}
   m_Name: 105
   m_EditorClassIdentifier: 
-  skillId: 102
+  skillId: 105
   skillType: 1
   applyType: 1
   skillName: "\uD68C\uBCF5"
@@ -21,6 +21,6 @@ MonoBehaviour:
   skillAbillity: 30
   skillDelayTime: 45
   skillImage: {fileID: 21300000, guid: 03aa629a72b7bc14b932213a17ecd2f6, type: 3}
-  skillEffect: {fileID: 1476639049503398517, guid: 8c1f8a2191f832741beeff86586414a8,
+  skillEffect: {fileID: 107965864212933652, guid: 8edef4a924ac8814caedc5b8f7aa1bc9,
     type: 3}
-  skillSound: {fileID: 8300000, guid: ce415b7198c9d7a498d2228effb42ce0, type: 3}
+  skillSound: {fileID: 8300000, guid: 88e117ed0ce5729499497283dc2e1e27, type: 3}

@@ -9,31 +9,33 @@ public class UnityAdsButton : MonoBehaviour
     public double msToWait;
     public Text gachaTimeText;
     public Button gachaButton;
-    public UI_Button buttonScript;
+    public GameObject lockPanel;
+
     private ulong lastGachaOpen;
     public int type;
-
-    private void Start()
+    private void Awake()
     {
-        if(gachaButton==null)
+        if (gachaButton == null)
             gachaButton = GetComponent<Button>();
-        if(gachaTimeText==null)
-            gachaTimeText = GetComponentInChildren<Text>();
-        if(buttonScript==null&&GetComponent<UI_Button>()!=null)
-            buttonScript = GetComponent<UI_Button>();
-        if(type==0)
+        if (gachaTimeText == null)
+            gachaTimeText = lockPanel.GetComponentInChildren<Text>();
+    }
+
+    private void OnEnable()
+    {
+        if (type == 1)
         {
-            if (PlayerPrefs.HasKey("LastGachaOpen"))
+            if (PlayerPrefs.HasKey("LastGoldOpen"))
             {
-                lastGachaOpen = ulong.Parse(PlayerPrefs.GetString("LastGachaOpen"));
+                lastGachaOpen = ulong.Parse(PlayerPrefs.GetString("LastGoldOpen"));
             }
             else
             {
-                lastGachaOpen = (ulong)DateTime.Now.Ticks;
-                PlayerPrefs.SetString("LastGachaOpen", lastGachaOpen.ToString());
+                lastGachaOpen = (ulong)0;
+                PlayerPrefs.SetString("LastGoldOpen", "0");
             }
         }
-        else if(type==1)
+        else if (type == 2)
         {
             if (PlayerPrefs.HasKey("LastCrystalOpen"))
             {
@@ -41,30 +43,53 @@ public class UnityAdsButton : MonoBehaviour
             }
             else
             {
-                lastGachaOpen = (ulong)DateTime.Now.Ticks;
-                PlayerPrefs.SetString("LastCrystalOpen", lastGachaOpen.ToString());
+                lastGachaOpen = (ulong)0;
+                PlayerPrefs.SetString("LastCrystalOpen", "0");
+            }
+        }
+        else if (type == 3)
+        {
+            if (PlayerPrefs.HasKey("LastEnergyOpen"))
+            {
+                lastGachaOpen = ulong.Parse(PlayerPrefs.GetString("LastEnergyOpen"));
+            }
+            else
+            {
+                lastGachaOpen = (ulong)0;
+                PlayerPrefs.SetString("LastEnergyOpen", "0");
+            }
+        }
+        else if (type == 4)
+        {
+            if (PlayerPrefs.HasKey("LastGachaOpen"))
+            {
+                lastGachaOpen = ulong.Parse(PlayerPrefs.GetString("LastGachaOpen"));
+            }
+            else
+            {
+                Debugging.Log("가챠타임 없음");
+                lastGachaOpen = (ulong)0;
+                PlayerPrefs.SetString("LastGachaOpen", "0");
             }
         }
 
-
-
-        if(!IsGachaReady())
+        if (!IsGachaReady())
         {
             gachaButton.interactable = false;
-            if(buttonScript!=null)
-                buttonScript.enabled = false;
+            if(lockPanel!=null)
+                lockPanel.SetActive(true);
         }
     }
 
     private void Update()
     {
-        if(!gachaButton.IsInteractable())
+        if (!gachaButton.IsInteractable())
         {
-            if(IsGachaReady())
+            if (IsGachaReady())
             {
                 gachaButton.interactable = true;
-                if(buttonScript!=null)
-                    buttonScript.enabled = true;
+                if (lockPanel != null)
+                    lockPanel.SetActive(false);
                 return;
             }
 
@@ -80,22 +105,31 @@ public class UnityAdsButton : MonoBehaviour
             gachaTimeText.text = r;
         }
     }
-    public void  GachaClick()
+    public void GachaClick()
     {
         lastGachaOpen = (ulong)DateTime.Now.Ticks;
-        if(type==0)
+
+        if (type == 1)
         {
-            PlayerPrefs.SetString("LastGachaOpen", lastGachaOpen.ToString());
-            MissionSystem.AddClearPoint(MissionSystem.ClearType.FreeGacha);
-            MissionSystem.AddClearPoint(MissionSystem.ClearType.Gacha);
+            PlayerPrefs.SetString("LastGoldOpen", lastGachaOpen.ToString());
         }
-        else
+        else if (type == 2)
         {
             PlayerPrefs.SetString("LastCrystalOpen", lastGachaOpen.ToString());
         }
+        else if (type == 3)
+        {
+            PlayerPrefs.SetString("LastEnergyOpen", lastGachaOpen.ToString());
+        }
+        else if (type == 4)
+        {
+            PlayerPrefs.SetString("LastGachaOpen", lastGachaOpen.ToString());
+            MissionSystem.AddClearPoint(MissionSystem.ClearType.FreeGacha);
+        }
+        UnityAdsManager.instance.ShowDefaultRewardedAd(type);
         gachaButton.interactable = false;
-        if(buttonScript!=null)
-            buttonScript.enabled = false;
+        if (lockPanel != null)
+            lockPanel.SetActive(true);
 
     }
     private bool IsGachaReady()
@@ -106,7 +140,8 @@ public class UnityAdsButton : MonoBehaviour
 
         if (secondsLeft < 0)
         {
-            gachaTimeText.text = "Free Ad";
+            if (lockPanel != null)
+                lockPanel.SetActive(false);
             return true;
         }
         return false;

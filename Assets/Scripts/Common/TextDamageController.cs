@@ -11,6 +11,7 @@ public class TextDamageController : MonoBehaviour {
     public bool isLeft = false;
     public bool isCritical = false;
     public bool isCC = false;
+    public bool isFixed = false;
     Transform parent = null;
     Color initColor;
     private void Awake()
@@ -34,7 +35,7 @@ public class TextDamageController : MonoBehaviour {
         {
             this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             textMesh.SetActive(true);
-            Vector2 popVelocity = isLeft ? new Vector2(Random.Range(-4, -6), Random.Range(5,8)) : new Vector2(Random.Range(4, 6), Random.Range(5, 8));
+            Vector2 popVelocity = isLeft ? new Vector2(-3, 4) : new Vector2(3, 4);
             GetComponent<Rigidbody2D>().AddForce(popVelocity, ForceMode2D.Impulse);
             this.GetComponent<Animator>().SetTrigger("criticalDamage");
         }
@@ -44,11 +45,19 @@ public class TextDamageController : MonoBehaviour {
             textMesh.SetActive(true);
             this.GetComponent<Animator>().SetTrigger("cc");
         }
+        else if(isFixed)
+        {
+            this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+            textMesh.SetActive(true);
+            Vector2 popVelocity = new Vector2(0, 2);
+            GetComponent<Rigidbody2D>().AddForce(popVelocity, ForceMode2D.Impulse);
+            this.GetComponent<Animator>().SetTrigger("fixedDamage");
+        }
         else
         {
             this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             textMesh.SetActive(true);
-            Vector2 popVelocity = isLeft ? new Vector2(Random.Range(-2, -4), Random.Range(2, 4)) : new Vector2(Random.Range(2, 4), Random.Range(2, 4));
+            Vector2 popVelocity = isLeft ? new Vector2(-2, 3) : new Vector2(2, 3);
             GetComponent<Rigidbody2D>().AddForce(popVelocity, ForceMode2D.Impulse);
             this.GetComponent<Animator>().SetTrigger("damage");
         }

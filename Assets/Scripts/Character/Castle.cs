@@ -6,60 +6,276 @@ using UnityEngine.UI;
 
 public class Castle : MonoBehaviour
 {
+    #region 변수
     public int id;
     public int hp;
-    [HideInInspector]
     public int maxHp;
     public int defence;
+    public int attack;
+    public float attackSpeed;
     public bool isDead;
+    public bool isPunchingBag = false;
     int spawnCount;
-    float spawnTime =0.1f;
-    public float spawnDelay;
+    int spawnLimitCount;
+    float spawnTime;
     float drainEnergyTime = 0.0f;
-    float curSpawnTime = 0;
     public List<SpawnEnemy> spawnEnemys = new List<SpawnEnemy>();
     Transform enemySpawnPoint;
     bool isUnBeat;
     bool isShake;
     public bool isGod;
     public bool isPlayerCastle;
+    public bool isInfinityCastle;
+    bool isAttack;
+    int stageNumber;
+    int mapNumber;
+    float attackDelay;
+    
     Vector3 firstPos;
 
     GameObject shieldEffect;
     GameObject auraEffect;
     GameObject hpUI;
+
+
+    #endregion
     private void Awake()
     {
-        maxHp = hp;
         enemySpawnPoint = GameObject.Find("EnemysHero").transform;
         isGod = false;
     }
     void Start()
     {
         firstPos = this.transform.position;
-        if (isPlayerCastle)
+        if(!isPunchingBag)
         {
-            Common.allyTargetObject = this.gameObject;
-            SetEffect();
+            SetCastle();
+            if (isPlayerCastle)
+            {
+                Common.allyTargetObject = this.gameObject;
+                //SetEffect();
+            }
+            else
+            {
+                Common.hitTargetObject = this.gameObject;
+                SetSpawnMonster();
+                //FirstSpawn();
+                //SetEffect();
+                StartCoroutine("Spawn");
+            }
+            OpenHpBar(isPlayerCastle);
         }
         else
         {
             Common.hitTargetObject = this.gameObject;
-            SetSpawnMonster();
-            FirstSpawn();
-            SetEffect();
-            StartCoroutine("Spawn");
+            isGod = true;
         }
-        //GUI_Manager.instance.OpenHpUI(this.gameObject);
-        OpenHpBar(isPlayerCastle);
+
     }
     private void Update()
     {
-        if(!isDead)
+        if (!isDead)
         {
             StateUpdate();
         }
     }
+    void SetCastle()
+    {
+        if(isInfinityCastle)
+        {
+            InitInfinityCastle();
+            SetCastleSprite(true);
+        }
+        else
+        {
+            if (!isPlayerCastle)
+            {
+                mapNumber = StageManagement.instance.stageInfo.mapNumber;
+                stageNumber = StageManagement.instance.stageInfo.stageNumber;
+                spawnLimitCount = 2 + (int)((mapNumber - (stageNumber - 1) * 10) * 0.5f) + stageNumber;
+                spawnTime = 2;
+                maxHp = 500 + (int)(1000 * stageNumber * stageNumber * 0.5f);
+                hp = maxHp;
+                defence = 100 + (int)(100 * stageNumber * stageNumber * 0.2f);
+            }
+            else
+            {
+                maxHp = 1000 + 50 * User.level;
+                defence = 300 + 15 * User.level;
+                hp = maxHp;
+            }
+            SetCastleSprite(isPlayerCastle);
+        }
+    }
+    #region 인피티니 모드
+    public enum CastleStatsType { MaxHpUp, AutoHpUp, DefUp, AtkUp, AspeedUp, AllKill, God, ShotUp, Revive };
+    int maxHpUp;
+    public int autoHpUp;
+    int defUp;
+    int atkUp;
+    int aSpeedUp;
+    public int shotUp;
+
+    float hpUpTime;
+
+    void InitInfinityCastle()
+    {
+        maxHp = 5000;
+        defence = 800;
+        attack = 500;
+        attackSpeed = 2.5f;
+        hp = maxHp;
+        maxHpUp = 0;
+        autoHpUp = 0;
+        defUp = 0;
+        atkUp = 0;
+        aSpeedUp = 0;
+        shotUp = 0;
+    }
+    void UpdateInfinityCastle()
+    {
+        if(StageManagement.instance.isStageStart())
+        {
+            InfinityCastleHpUp();
+            Attack();
+        }
+    }
+    void InfinityCastleHpUp()
+    {
+        hpUpTime += Time.deltaTime;
+        if(hpUpTime>1.0f)
+        {
+            this.hp = Mathf.Clamp(hp + ((autoHpUp * 100)+50), 0, this.maxHp);
+            hpUpTime = 0.0f;
+        }
+    }
+    public void CastleLevelUp(CastleStatsType type)
+    {
+        switch(type)
+        {
+            case CastleStatsType.MaxHpUp:
+                maxHpUp += 1;
+                maxHp = 5000 + maxHpUp*maxHpUp*2000;
+                hp = maxHp;
+                break;
+            case CastleStatsType.AutoHpUp:
+                autoHpUp += 1;
+                break;
+            case CastleStatsType.DefUp:
+                defUp += 1;
+                defence = 800 + 500 * defUp*defUp;
+                break;
+            case CastleStatsType.AtkUp:
+                atkUp += 1;
+                attack = 500 + (atkUp * atkUp * (atkUp*300));
+                break;
+            case CastleStatsType.AspeedUp:
+                aSpeedUp += 1;
+                attackSpeed = 2.5f - (aSpeedUp * 0.3f);
+                break;
+            case CastleStatsType.AllKill:
+                List<GameObject> enemyList = Common.FindEnemy(true);
+                foreach(var h in enemyList)
+                {
+                    if(h.GetComponent<Hero>()!=null&&!h.GetComponent<Hero>().isDead)
+                    {
+                        h.GetComponent<Hero>().status.hp = 0;
+                    }
+                }
+                break;
+            case CastleStatsType.God:
+                StartCoroutine("GodMode");
+                break;
+            case CastleStatsType.ShotUp:
+                shotUp += 1;
+                break;
+            case CastleStatsType.Revive:
+                var deadAllyList = Common.FindDeadAlly();
+                foreach(var h in deadAllyList)
+                {
+                    CharactersManager.instance.ResurrectionHero(h.GetComponent<Hero>().id);
+                }
+                break;
+        }
+    }
+    IEnumerator GodMode()
+    {
+        isGod = true;
+        SetEffect();
+        yield return new WaitForSeconds(15.0f);
+        isGod = false;
+        OffEffect();
+    }
+
+    public void Attack()
+    {
+        attackDelay += Time.deltaTime;
+        if (attackDelay > attackSpeed && !isAttack)
+        {
+            StartCoroutine("Attacking");
+        }
+    }
+    IEnumerator Attacking()
+    {
+        isAttack = true;
+        for(var i = 0; i < shotUp+1; i++)
+        {
+            var targets = Common.FindEnemy(true);
+            if (targets != null && targets.Count > 0)
+            {
+                GameObject target = targets[UnityEngine.Random.Range(0, targets.Count)];
+                if (target != null && target.GetComponent<Hero>() != null)
+                {
+                    StartCoroutine(AttackingMissile(target));
+                    yield return null;
+                }
+            }
+            yield return new WaitForSeconds(0.2f);
+        }
+        attackDelay = 0.0f;
+        isAttack = false;
+    }
+    #endregion
+    IEnumerator AttackingMissile(GameObject target)
+    {
+        Hero targetData = target.GetComponent<Hero>();
+        GameObject missile = EffectPool.Instance.PopFromPool("NovaMissileBlue");
+        missile.transform.position = this.transform.position;
+        missile.gameObject.SetActive(true);
+        Vector3 missilePos = missile.transform.position;
+        Vector3 targetPos = target.transform.position;
+
+        while (missile.transform.position.y < this.transform.position.y + 1.5f && target != null)
+        {
+            missilePos = Vector2.Lerp(missile.transform.position, this.transform.position + new Vector3(0, 2, 0), 0.08f);
+            missilePos.z = 100;
+            missile.transform.position = missilePos;
+            yield return new WaitForEndOfFrame();
+        }
+        float distance = Vector2.Distance(missile.transform.position, targetPos);
+        while (distance > 0.2f)
+        {
+            if (target != null && targetData != null && !targetData.isDead)
+                targetPos = target.transform.position;
+            distance = Vector2.Distance(missile.transform.position, targetPos);
+            missilePos = Vector2.MoveTowards(missile.transform.position, targetPos, 0.5f);
+            missilePos.z = 100;
+            missile.transform.position = missilePos;
+            yield return new WaitForEndOfFrame();
+        }
+        if (targetData != null)
+        {
+            targetData.HittedByObject((int)attack, false, new Vector2(30, 10), 0.8f);
+        }
+        if (missile != null&&missile.GetComponent<BackObjectPool>()!=null)
+            missile.GetComponent<BackObjectPool>().PushToPool();
+    }
+
+    void SetCastleSprite(bool isAlly)
+    {
+        this.GetComponent<SpriteRenderer>().sprite = isAlly ?  Resources.Load<Sprite>("Castle/CastleAlly") : Resources.Load<Sprite>("Castle/CastleEnemy");
+    }
+
     private void OnDisable()
     {
         OffEffect();
@@ -73,16 +289,11 @@ public class Castle : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine("CastleExplosionEffect");
         }
-        if (!isPlayerCastle)
+        else
         {
-            if(hp>0)
+            if(isInfinityCastle)
             {
-                drainEnergyTime += Time.deltaTime;
-                if (drainEnergyTime > 5.0f)
-                {
-                    StageManagement.instance.DrainStageEnergy();
-                    drainEnergyTime = 0;
-                }
+                UpdateInfinityCastle();
             }
         }
     }
@@ -108,8 +319,9 @@ public class Castle : MonoBehaviour
     }
     void SetSpawnMonster()
     {
-
-        foreach (var mon in HeroSystem.GetStageMonster(StageManagement.instance.stageInfo.stageNumber))
+        int mapID = StageManagement.instance.stageInfo.mapNumber;
+        int stageNumber = StageManagement.instance.stageInfo.stageNumber;
+        foreach (var mon in HeroSystem.GetStageMonster(mapID, stageNumber))
         {
             SpawnEnemy spawnEnemy = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(mon.id), 1);
             spawnEnemys.Add(spawnEnemy);
@@ -142,18 +354,23 @@ public class Castle : MonoBehaviour
     }
     IEnumerator Spawn()
     {
-        yield return spawnDelay;
-        while(spawnEnemys != null && spawnEnemys.Count > 0)
+        while(!StageManagement.instance.isStageStart())
+        {
+            yield return null;
+        }
+        int r = 0;
+        while(spawnEnemys != null && spawnLimitCount > 0)
         {
             Debugging.Log(this.name + " 소환");
-            for (int i = 0; i < spawnEnemys.Count; i++)
+            for (int i = 0; i < spawnLimitCount; i++)
             {
-                if (!spawnEnemys[i].isSpawnEnd&&spawnCount<15)
+                r = UnityEngine.Random.Range(0, spawnEnemys.Count);
+                if (!spawnEnemys[r].isSpawnEnd&&spawnCount<15)
                 {
-                    yield return StartCoroutine(Spawning(spawnEnemys[i]));
+                    yield return StartCoroutine(Spawning(spawnEnemys[r]));
                 }
             }
-            yield return new WaitForSeconds(spawnDelay);
+            yield return new WaitForSeconds(15);
         }
         yield return null;
     }
@@ -169,7 +386,7 @@ public class Castle : MonoBehaviour
         yield return new WaitForEndOfFrame();
         e.SetActive(true);
         StageManagement.instance.AddMonsterCount();
-        List<GameObject> allys = Common.FindAlly();
+        List<GameObject> allys = Common.FindAlly(true);
         foreach (var ally in allys)
         {
             if (ally.GetComponent<Hero>() != null)
@@ -206,41 +423,39 @@ public class Castle : MonoBehaviour
     public void Hitted(Collider2D collision, int dam, float kx, float ky)
     {
         CastleHitEffect();
-        if(!isGod)
+        dam = Common.GetDamage(dam, defence);
+        Shake();
+        isUnBeat = true;
+        if (collision.GetComponentInParent<Hero>() != null)
         {
-            dam = Common.GetDamage(dam, defence);
-            Shake();
-            isUnBeat = true;
-            if (collision.GetComponentInParent<Hero>() != null)
-            {
-                DamageUIShow(dam.ToString(), collision.GetComponentInParent<Hero>().isCriticalAttack);
-            }
-            else if (collision.GetComponent<arrowController>() != null)
-            {
-                DamageUIShow(dam.ToString(), collision.GetComponent<arrowController>().isCritical);
-            }
-            else if (collision.GetComponent<bulletController>() != null)
-            {
-                DamageUIShow(dam.ToString(), collision.GetComponent<bulletController>().isCritical);
-            }
-            hp = Common.looMinus(hp, dam);
-            StartCoroutine(UnBeatTime(dam));
+            DamageUIShow(dam.ToString(), collision.GetComponentInParent<Hero>().isCriticalAttack);
         }
+        else if (collision.GetComponent<arrowController>() != null)
+        {
+            DamageUIShow(dam.ToString(), collision.GetComponent<arrowController>().isCritical);
+        }
+        else if (collision.GetComponent<bulletController>() != null)
+        {
+            DamageUIShow(dam.ToString(), collision.GetComponent<bulletController>().isCritical);
+        }
+        if(!isGod)
+            hp = Common.looMinus(hp, dam);
+        if (isPunchingBag)
+            StageManagement.instance.AddAttackPoint(dam);
+        StartCoroutine(UnBeatTime(dam));
     }
     public void HittedByObject(int dam, bool isCritical, Vector2 addforce)
     {
         CastleHitEffect();
-        if (!isGod)
-        {
-            dam = Common.GetDamage(dam, defence);
-            Shake();
-            isUnBeat = true;
-            DamageUIShow(dam.ToString(), isCritical);
+        dam = Common.GetDamage(dam, defence);
+        Shake();
+        isUnBeat = true;
+        DamageUIShow(dam.ToString(), isCritical);
+        if(!isGod)
             hp = Common.looMinus(hp, dam);
-            StartCoroutine(UnBeatTime(dam));
-        }
-
-
+        if (isPunchingBag)
+            StageManagement.instance.AddAttackPoint(dam);
+        StartCoroutine(UnBeatTime(dam));
     }
     public void CastleHitEffect()
     {
@@ -250,22 +465,29 @@ public class Castle : MonoBehaviour
     }
     public void SpawnEffect()
     {
-        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.teleport);
         if (EffectPool.Instance != null)
         {
-            GameObject effect = EffectPool.Instance.PopFromPool("SimplePortalRed");
+            GameObject effect = EffectPool.Instance.PopFromPool("SoftPortalRed");
             effect.transform.position = transform.position;
             effect.SetActive(true);
         }
     }
+    public void BoomEffect()
+    {
+        GameObject effect = EffectPool.Instance.PopFromPool("ExplosionRoundFire");
+        effect.transform.position = transform.position;
+        effect.SetActive(true);
+    }
     public IEnumerator CastleExplosionEffect()
     {
+        SoundManager.instance.BgmSourceChange(null);
+
         if (isPlayerCastle)
             Common.allyTargetObject = null;
         else
             Common.hitTargetObject = null;
         Camera.main.GetComponent<FollowCamera>().ChangeTarget(this.gameObject);
-        Camera.main.GetComponent<CameraEffectHandler>().SetCameraSize(3.5f);
+        //Camera.main.GetComponent<CameraEffectHandler>().SetCameraSize(3.5f);
         yield return new WaitForSeconds(2.0f);
         for(int i = 0; i < 5; i++)
         {
@@ -301,6 +523,7 @@ public class Castle : MonoBehaviour
         damageUIprefab.GetComponent<TextDamageController>().isLeft = false;
         damageUIprefab.GetComponent<TextDamageController>().isCritical = isCritical;
         damageUIprefab.GetComponent<TextDamageController>().isCC = false;
+        damageUIprefab.GetComponent<TextDamageController>().isFixed = false;
         damageUIprefab.transform.position = transform.position + new Vector3(0, 1);
         damageUIprefab.SetActive(true);
     }
@@ -331,6 +554,8 @@ public class Castle : MonoBehaviour
 
         }
     }
+
+
 
     #region UI
     private void OpenHpBar(bool isBlue = false)

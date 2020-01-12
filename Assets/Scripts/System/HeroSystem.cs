@@ -47,6 +47,7 @@ public static class HeroSystem
         }
         if(heros!=null&userHeros !=null)
         {
+            Common.ChangePlayerProfileImage();
             Debugging.LogSystem("HeroDatabase is loaded Succesfully.");
         }
     }
@@ -55,7 +56,7 @@ public static class HeroSystem
     public static List<HeroData> GetUserHeros()
     {
         List<HeroData> heroDatas = userHeros;
-        heroDatas.Sort((i1, i2) => i1.name.CompareTo(i2.name));
+        heroDatas.Sort((i1, i2) => i2.level.CompareTo(i1.level));
         return heroDatas;
     }
     public static HeroData GetUserHero(int id)
@@ -65,16 +66,11 @@ public static class HeroSystem
     public static void LevelUpStatusSet(int id, Hero heroPrefab)
     {
         HeroData userData = userHeros.Find(x => x.id == id || x.id.Equals(id));
-
         if(userData!=null)
         {
-            userData.strength += (int)(userData.strength * 0.1f);
-            userData.intelligent += (int)(userData.intelligent * 0.1f);
-            userData.physical += (int)(userData.physical * 0.1f);
-            userData.agility += (int)(userData.agility * 0.1f);
             userData.level += 1;
             userData.exp = 0;
-            heroPrefab.status.SetHeroStatus(ref userData,true);
+            heroPrefab.status.SetHeroStatus(ref userData,true,heroPrefab);
         }
     }
     public static void SetHero(Hero heroPrefab)
@@ -82,7 +78,6 @@ public static class HeroSystem
         HeroData heroData = userHeros.Find(hero => hero.id == heroPrefab.id || hero.id.Equals(heroPrefab.id));
         if (heroData != null)
         {
-            heroData.level = heroPrefab.status.level;
             heroData.exp = heroPrefab.status.exp;
         }
         else
@@ -112,7 +107,8 @@ public static class HeroSystem
         HeroData heroData = userHeros.Find(hero => hero.id == heroPrefab.id || hero.id.Equals(heroPrefab.id));
         if (heroData != null)
         {
-            heroData.level = heroPrefab.status.level;
+            if(heroPrefab.status.level>=heroData.level)
+                heroData.level = heroPrefab.status.level;
             heroData.exp = heroPrefab.status.exp;
             HeroDatabase.SaveUser(heroPrefab.id);
         }
@@ -132,87 +128,162 @@ public static class HeroSystem
             Debugging.LogError("저장할 영웅들을 찾지못함");
         }
     }
+    public static void SaveOverHero(HeroData data)
+    {
+        if (data != null)
+        {
+            HeroDatabase.SaveOver(data.id);
+        }
+        else
+        {
+            Debugging.LogError("세팅할 영웅을 찾지못함 >> " + data.id);
+        }
+    }
+    public static void SaveSkinHero(HeroData data)
+    {
+        if(data!=null)
+        {
+            HeroDatabase.SaveHeroSkin(data.id);
+        }
+    }
+    public static void SaveAbilityHero(HeroData data, int type, int level)
+    {
+        HeroData heroData = userHeros.Find(hero => hero.id == data.id || hero.id.Equals(data.id));
+        if (heroData != null)
+        {
+            heroData.ability = type;
+            heroData.abilityLevel = level;
+            HeroDatabase.SaveHeroAbility(heroData.id);
+        }
+    }
+    public static int GetHeroStr(HeroData data)
+    {
+        HeroData hero = heros.Find(x => x.id == data.id || x.id.Equals(data.id));
+        if(hero!=null)
+        {
+            return (int)(hero.strength + (hero.strength * data.level * 0.1f));
+        }
+        return 0;
+    }
+    public static int GetHeroInt(HeroData data)
+    {
+        HeroData hero = heros.Find(x => x.id == data.id || x.id.Equals(data.id));
+        if (hero != null)
+        {
+            return (int)(hero.intelligent + (hero.intelligent * data.level * 0.1f));
+        }
+        return 0;
+    }
+    public static int GetHeroPhy(HeroData data)
+    {
+        HeroData hero = heros.Find(x => x.id == data.id || x.id.Equals(data.id));
+        if (hero != null)
+        {
+            return (int)(hero.physical + (hero.physical * data.level * 0.1f));
+        }
+        return 0;
+    }
+    public static int GetHeroAgl(HeroData data)
+    {
+        HeroData hero = heros.Find(x => x.id == data.id || x.id.Equals(data.id));
+        if (hero != null)
+        {
+            return (int)(hero.agility + (hero.agility * data.level * 0.1f));
+        }
+        return 0;
+    }
     public static int GetHeroNeedEnergy(int id, Skill skill)
     {
         HeroData data = userHeros.Find(x => x.id == id || x.id.Equals(id));
         if(data!=null&&skill!=null)
         {
-            return (SkillSystem.GetNeedSkillEnergy(skill) - GetHeroStatusSkillEnergy(ref data));
+            return Mathf.Clamp(SkillSystem.GetNeedSkillEnergy(skill) - GetHeroStatusSkillEnergy(ref data),10,1000);
         }
         return 1000;
     }
     public static int GetHeroStatusAttack(ref HeroData data)
     {
-        if (data.type == 0)
-            return (10) + (data.strength * 5) + (data.intelligent * 4) + (data.agility * 2) + AbilitySystem.GetAbilityStats(0) + ItemSystem.GetHeroEquipmentItemAttack(ref data) + LabSystem.GetAddAttack(User.addAttackLevel);
+        if (data.id < 500)
+            return (10) + (GetHeroStr(data) * 5) + (GetHeroInt(data) * 4) + (GetHeroAgl(data) * 2) + AbilitySystem.GetAbilityStats(0) + ItemSystem.GetHeroEquipmentItemAttack(ref data) + LabSystem.GetAddAttack(User.addAttackLevel);
         else
-            return (10) + (data.strength * 5) + (data.intelligent * 4) +(data.agility * 2);
+            return (10) + (GetHeroStr(data) * 5) + (GetHeroInt(data) * 4) +(GetHeroAgl(data) * 2);
     }
     public static int GetHeroStatusDefence(ref HeroData data)
     {
-        if (data.type == 0)
-            return (data.physical * 5) + (data.agility) + AbilitySystem.GetAbilityStats(1) + ItemSystem.GetHeroEquipmentItemDefence(ref data) + LabSystem.GetAddDefence(User.addDefenceLevel);
+        if (data.id < 500)
+            return (GetHeroPhy(data) * 5) + (GetHeroAgl(data)) + AbilitySystem.GetAbilityStats(1) + ItemSystem.GetHeroEquipmentItemDefence(ref data) + LabSystem.GetAddDefence(User.addDefenceLevel);
         else
-            return (data.physical * 5) + (data.agility);
+            return (GetHeroPhy(data) * 5) + (GetHeroAgl(data));
     }
     public static int GetHeroStatusMaxHp(ref HeroData data)
     {
-        if(data.type==0)
-            return (200)+(data.strength * 2) + (data.intelligent) + (data.physical * 15) + (data.agility * 3)+AbilitySystem.GetAbilityStats(2)+ItemSystem.GetHeroEquipmentItemHp(ref data);
+        if(data.id < 500)
+            return (200)+(data.strength * 2) + (GetHeroInt(data)) + (GetHeroPhy(data) * 15) + (GetHeroAgl(data) * 3)+AbilitySystem.GetAbilityStats(2)+ItemSystem.GetHeroEquipmentItemHp(ref data);
         else
-            return (200) + (data.strength * 2) + (data.intelligent) + (data.physical * 15) + (data.agility * 3);
+            return (200) + (data.strength * 2) + (GetHeroInt(data)) + (GetHeroPhy(data) * 15) + (GetHeroAgl(data) * 3);
     }
     public static int GetHeroStatusCriticalPercent(ref HeroData data)
     {
-        if(data.type==0)
+        if(data.id < 500)
         {
-            return (int)((data.intelligent * 0.05f) + (data.agility * 0.2f)) + AbilitySystem.GetAbilityStats(3) + ItemSystem.GetHeroEquipmentItemCritical(ref data);
+            return (int)((GetHeroAgl(data) * 0.15f)) + AbilitySystem.GetAbilityStats(3) + ItemSystem.GetHeroEquipmentItemCritical(ref data);
         }
         else
         {
-            return (int)((data.intelligent * 0.05f) + (data.agility * 0.2f));
+            return (int)((GetHeroAgl(data) * 0.15f));
         }
     }
     public static int GetHeroStatusAttackSpeed(ref HeroData data)
     {
-        if(data.type==0)
+        if(data.id < 500)
         {
-            return data.strength+ (data.agility * 5) + AbilitySystem.GetAbilityStats(4) + ItemSystem.GetHeroEquipmentItemAttackSpeed(ref data);
+            return data.strength+ (GetHeroAgl(data) * 5) + AbilitySystem.GetAbilityStats(4) + ItemSystem.GetHeroEquipmentItemAttackSpeed(ref data);
         }
         else
         {
-            return data.strength + (data.agility * 5);
+            return data.strength + (GetHeroAgl(data) * 5);
         }
     }
     public static int GetHeroStatusMoveSpeed(ref HeroData data)
     {
-        if(data.type==0)
+        if(data.id < 500)
         {
-            return data.agility + 50 +AbilitySystem.GetAbilityStats(5) + ItemSystem.GetHeroEquipmentItemMoveSpeed(ref data);
+            return GetHeroAgl(data) + 100 +AbilitySystem.GetAbilityStats(5) + ItemSystem.GetHeroEquipmentItemMoveSpeed(ref data);
         }
         else
         {
-            return data.agility + 50;
+            return GetHeroAgl(data) + 120;
         }
     }
     public static float GetHeroStatusKnockbackResist(ref HeroData data)
     {
-        return (data.physical * 0.2f) + (data.agility * 0.05f);
+        return (GetHeroPhy(data) * 0.2f) + (GetHeroAgl(data) * 0.05f);
     }
     public static int GetHeroStatusSkillEnergy(ref HeroData data)
     {
-        if(data.type==0)
+        if(data.id < 500)
         {
-            return data.intelligent + AbilitySystem.GetAbilityStats(6) + ItemSystem.GetHeroEquipmentItemSkillEnergy(ref data);
+            return GetHeroInt(data) + AbilitySystem.GetAbilityStats(6) + ItemSystem.GetHeroEquipmentItemSkillEnergy(ref data);
         }
         else
         {
-            return data.intelligent;
+            return GetHeroInt(data);
+        }
+    }
+    public static int GetHeroStatusPenetration(ref HeroData data)
+    {
+        if (data.id < 500)
+        {
+            return ItemSystem.GetHeroEquipmentItemPenetration(ref data);
+        }
+        else
+        {
+            return 0;
         }
     }
     public static int GetRecoveryHp(ref HeroData data)
     {
-        return Mathf.Clamp((data.physical + 100) / 100, 1, 100);
+        return Mathf.Clamp((GetHeroPhy(data) + 100) / 100, 1, 100);
     }
     public static string GetHeroStatusSpeedText(float data)
     {
@@ -239,7 +310,8 @@ public static class HeroSystem
 
             for (int i = 0; i < str.Length; i++)
             {
-                chatList.Add(str[i]);
+                if(!string.IsNullOrEmpty(str[i])&&!str[i].Equals("null"))
+                    chatList.Add(str[i]);
             }
         }
         return chatList;
@@ -350,7 +422,7 @@ public static class HeroSystem
     }
     public static string GetHeroName(int id)
     {
-        string name = null;
+        string name = "";
         HeroData hero = heros.Find(x => x.id == id || x.id.Equals(id));
         if(hero!=null)
         {
@@ -384,7 +456,7 @@ public static class HeroSystem
         HeroData hero = userHeros.Find(x => x.id == id || x.id.Equals(id));
         if(hero!=null)
         {
-            time = 10 + (hero.level * 2) + addTime;
+            time = 15 + addTime;
         }
         return time;
     }
@@ -401,6 +473,33 @@ public static class HeroSystem
         }
         return index;
     }
+    public static Sprite GetHeroClassImage(HeroData data)
+    {
+        Sprite sprite = null;
+        if (data.over > 2)
+            sprite = Resources.Load<Sprite>("Class/3");
+        else if (data.over > 1)
+            sprite = Resources.Load<Sprite>("Class/2");
+        else if (data.over > 0)
+            sprite = Resources.Load<Sprite>("Class/1");
+        else
+            sprite = Resources.Load<Sprite>("Class/0");
+        return sprite;
+    }
+    public static bool IsSupportHero(int id)
+    {
+        HeroData hd = heros.Find(x => x.id == id || x.id.Equals(id));
+        if (hd!=null&&hd.type==3)
+            return true;
+        return false;
+    }
+    public static int GetHeroType(int id)
+    {
+        HeroData refData = heros.Find(x => x.id == id || x.id.Equals(id));
+        if (refData != null)
+            return refData.type;
+        return 0;
+    }
     #endregion
 
     #region 전체히어로정보
@@ -414,7 +513,7 @@ public static class HeroSystem
     }
     public static List<HeroData> GetUnableHeros()
     {
-        List<HeroData> heroDatas = heros.FindAll(x => x.type!=1);
+        List<HeroData> heroDatas = heros.FindAll(x => x.id<500);
         heroDatas = heroDatas.Where(f => !userHeros.Any(t => t.id == f.id)).ToList();
         heroDatas.Sort((i1, i2) => i1.name.CompareTo(i2.name));
         return heroDatas;
@@ -440,15 +539,39 @@ public static class HeroSystem
         if (data != null)
             return Resources.Load<Sprite>(data.image);
         else
-            return null;
+            return Resources.Load<Sprite>("UI/ui_none2");
     }
     public static List<HeroData> GetMonsters()
     {
         return heros.FindAll(x => x.id > 500 && x.id < 1000);
     }
-    public static List<HeroData> GetStageMonster(int stageNumber)
+    public static List<HeroData> GetBosses()
     {
-        List<HeroData> allMonsters = GetMonsters().FindAll(x=>x.level<=stageNumber*10&&x.level>(stageNumber-1)*10);
+        return heros.FindAll(x => x.id > 1000);
+    }
+    public static List<HeroData> GetStageMonster(int mapId,int stageNumber)
+    {
+        List<HeroData> allMonsters = GetMonsters().FindAll(x=>(x.level<=mapId)&&x.level>(stageNumber-1)*10);
+        return allMonsters;
+    }
+    public static List<HeroData> GetInfinityMonsters(int wave)
+    {
+        if (wave > 20)
+            wave = 20;
+        List<HeroData> allMonsters = GetMonsters().FindAll(x => (x.level <= wave*5) && x.level > (wave - 3) * 3);
+        if(wave%5==0)
+        {
+            var bosses = GetBosses().FindAll(x=>x.level<=wave*6&&x.level>=wave*2);
+            if(bosses!=null&&bosses.Count>0)
+                allMonsters.Add(bosses[UnityEngine.Random.Range(0,bosses.Count)]);
+        }
+        //if(allMonsters.Count>15)
+        //{
+        //    for(var i = allMonsters.Count; i < allMonsters.Count-15; i++)
+        //    {
+        //        allMonsters.Remove(allMonsters[UnityEngine.Random.Range(0, allMonsters.Count)]);
+        //    }
+        //}
         return allMonsters;
     }
     #endregion

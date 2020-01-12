@@ -33,4 +33,8 @@ public class Debugging
     {
         UnityEngine.Debug.LogError("<color=red>" + msg + "</color>");
     }
+    public static void LogForce(object msg)
+    {
+        UnityEngine.Debug.Log(msg);
+    }
 }

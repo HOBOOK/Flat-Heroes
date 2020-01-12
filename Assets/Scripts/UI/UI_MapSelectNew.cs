@@ -191,6 +191,7 @@ public class UI_MapSelectNew : MonoBehaviour
     }
     public void OnMapSelectCompletedClick()
     {
+        Common.stageModeType = Common.StageModeType.Main;
         GameManagement.instance.SetStageInfo(currentMapId);
         Debugging.Log(currentMapId + " 의 맵 선택완료.");
     }

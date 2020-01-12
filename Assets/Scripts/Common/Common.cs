@@ -6,12 +6,23 @@ using System.IO.Compression;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Common : MonoBehaviour
 {
+    public static int RankOfInfinityMode;
+    public static int RankOfHeroLevel;
+    public static int RankOfPvp;
+    public static int RankOfAttackMode;
+    public static string postItemDatas;
+    public static bool isLoadCompleted;
+    public static PvpData pvpEnemyData;
+    public static string pvpEnemyLocalId;
+    public static int bossModeDifficulty;
+    public static bool IsAutoStagePlay;
     public static int GetHeroNeedExp(int level)
     {
         return 100 + (int)(100 * level * level * 0.1f);
@@ -19,6 +30,53 @@ public class Common : MonoBehaviour
     public static int GetUserNeedExp()
     {
         return 1000 + (int)(1000 * User.level * User.level * 0.1f);
+    }
+    public static string GetRankText(int rankPoint)
+    {
+        if (rankPoint >= 0 && rankPoint <= 800)
+            return "D";
+        else if (rankPoint > 800 && rankPoint <= 1100)
+            return "C";
+        else if (rankPoint > 1100 && rankPoint <= 1500)
+            return "B";
+        else if (rankPoint > 1500 && rankPoint <= 1900)
+            return "A";
+        else if (rankPoint > 1900 && rankPoint <= 2300)
+            return "S";
+        else if (rankPoint > 2300 && rankPoint <= 2700)
+            return "SS";
+        else if (rankPoint > 2700 && rankPoint <= 3000)
+            return "SSS";
+        else
+            return "Lenged";
+    }
+    public static string getRomeNumber(int n)
+    {
+        if (n < 10 && n > 0)
+        {
+            string[] romeNumbers = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
+            return romeNumbers[n - 1];
+        }
+        return "";
+    }
+    public static int GetRank(int rankPoint)
+    {
+        if (rankPoint >= 0 && rankPoint <= 800)
+            return 1;
+        else if (rankPoint > 800 && rankPoint <= 1100)
+            return 2;
+        else if (rankPoint > 1100 && rankPoint <= 1500)
+            return 3;
+        else if (rankPoint > 1500 && rankPoint <= 1900)
+            return 4;
+        else if (rankPoint > 1900 && rankPoint <= 2300)
+            return 5;
+        else if (rankPoint > 2300 && rankPoint <= 2700)
+            return 6;
+        else if (rankPoint > 2700 && rankPoint <= 3000)
+            return 7;
+        else
+            return 8;
     }
     public static int GetHeroExp(int level)
     {
@@ -33,9 +91,38 @@ public class Common : MonoBehaviour
     }
     public static int GetMonsterCoin(int level)
     {
-        int coin = UnityEngine.Random.Range(30,50) + (int)(50 * level * 0.2f);
+        int coin = UnityEngine.Random.Range(30,50) + (int)(30 * level * 0.1f);
         int bonusCoin = (int)(coin * LabSystem.GetAddMoney(User.addMoneyLevel) * 0.01f);
         return coin + bonusCoin;
+    }
+    public static ulong lastLoginTime;
+    public static void LastLoginTimeSave()
+    {
+        lastLoginTime = (ulong)DateTime.Now.Ticks;
+        PlayerPrefs.SetString("LastLogInTime", Common.lastLoginTime.ToString());
+    }
+
+    public static bool ValidateName(string name)
+    {
+        Regex engRegex = new Regex(@"[a-zA-Z]");
+        bool ismatch = engRegex.IsMatch(name);
+        Regex numRegex = new Regex(@"[0-9]");
+        bool ismatchNum = numRegex.IsMatch(name);
+        Regex korRegex = new Regex(@"[가-힣]");
+        bool ismatchKor = korRegex.IsMatch(name);
+
+        if (!ismatch&&!ismatchNum&&!ismatchKor)
+        {
+            Debugging.Log("올바르지 않은 이름 포맷");
+            return false;
+        }
+        int nameByteCount = Encoding.Default.GetByteCount(name);
+        if(nameByteCount<4||nameByteCount>18)
+        {
+            Debugging.Log(string.Format("{0} > {1}", name.Length, nameByteCount));
+            return false;
+        }
+        return true;
     }
 
     public static string GoogleUserId;
@@ -50,23 +137,6 @@ public class Common : MonoBehaviour
     public static List<GameObject> EnemysList;
     public static List<GameObject> AllysList;
 
-    //로컬 파일체크
-    public static bool CheckingLocalFileExist()
-    {
-        string path1 = Application.persistentDataPath + "/player.fun";
-        if (File.Exists(path1))
-        {
-            Debugging.Log("Path1 통과");
-            string path2 = Application.persistentDataPath + "/Xml";
-            DirectoryInfo di = new DirectoryInfo(path2);
-            if (di.Exists == true)
-            {
-                Debugging.Log("최종 Path통과");
-                return true;
-            }
-        }
-        return false;
-    }
     public static string GetCoinCrystalEnergyText(int type)
     {
         string txt = "";
@@ -83,6 +153,15 @@ public class Common : MonoBehaviour
                 break;
             case 3:
                 txt = LocalizationManager.GetText("Ad");
+                break;
+            case 4:
+                txt = LocalizationManager.GetText("Cash");
+                break;
+            case 5:
+                txt = LocalizationManager.GetText("MagicStone");
+                break;
+            case 6:
+                txt = LocalizationManager.GetText("TranscendenceStone");
                 break;
         }
         return txt;
@@ -104,8 +183,27 @@ public class Common : MonoBehaviour
             case 3:
                 path = "UI/ui_ad";
                 break;
+            case 4:
+                path = "UI/won";
+                break;
+            case 5:
+                path = "UI/magicStone";
+                break;
+            case 6:
+                path = "UI/transcendenceStone";
+                break;
+            case 7:
+                path = "Items/abilityScroll";
+                break;
+            case 8:
+                path = "Items/autoPlayTicket";
+                break;
         }
         return path;
+    }
+    public static void ChangePlayerProfileImage()
+    {
+        FindObjectOfType<UI_UserProfile>().ChangeProfile();
     }
     public static int FindEnemysCount()
     {
@@ -121,11 +219,98 @@ public class Common : MonoBehaviour
         }
         return count;
     }
-
-    public static List<GameObject> FindEnemy()
+    public static List<GameObject> FindEnemysByDistance(bool isAlly, bool isLeftOrRight,Transform me ,float distance)
+    {
+        List<GameObject> enemys = new List<GameObject>();
+        if(isLeftOrRight)
+        {
+            GameObject enemyObjects = null;
+            if (isAlly)
+                enemyObjects = GameObject.Find("EnemysHero").gameObject;
+            else
+                enemyObjects = GameObject.Find("PlayersHero").gameObject;
+            if (enemyObjects.transform.childCount > 0)
+            {
+                for (var i = 0; i < enemyObjects.transform.childCount; i++)
+                {
+                    if (enemyObjects.transform.GetChild(i).gameObject.activeSelf && enemyObjects.transform.GetChild(i).GetComponent<Hero>() != null && !enemyObjects.transform.GetChild(i).GetComponent<Hero>().isDead)
+                    {
+                        if(enemyObjects.transform.GetChild(i).position.x< me.position.x&&GetDistanceBetweenAnother(me, enemyObjects.transform.GetChild(i).transform)<distance)
+                        {
+                            enemys.Add(enemyObjects.transform.GetChild(i).gameObject);
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            GameObject enemyObjects = null;
+            if (isAlly)
+                enemyObjects = GameObject.Find("EnemysHero").gameObject;
+            else
+                enemyObjects = GameObject.Find("PlayersHero").gameObject;
+            if (enemyObjects.transform.childCount > 0)
+            {
+                for (var i = 0; i < enemyObjects.transform.childCount; i++)
+                {
+                    if (enemyObjects.transform.GetChild(i).gameObject.activeSelf && enemyObjects.transform.GetChild(i).GetComponent<Hero>() != null && !enemyObjects.transform.GetChild(i).GetComponent<Hero>().isDead)
+                    {
+                        if (enemyObjects.transform.GetChild(i).position.x > me.position.x && GetDistanceBetweenAnother(me, enemyObjects.transform.GetChild(i).transform) < distance)
+                        {
+                            enemys.Add(enemyObjects.transform.GetChild(i).gameObject);
+                        }
+                    }
+                }
+            }
+        }
+        return enemys;
+    }
+    public static List<GameObject> FindEnemysByDistance(bool isAlly, Transform me, float distance)
+    {
+        List<GameObject> enemys = new List<GameObject>();
+        GameObject enemyObjects = null;
+        if (isAlly)
+            enemyObjects = GameObject.Find("EnemysHero").gameObject;
+        else
+            enemyObjects = GameObject.Find("PlayersHero").gameObject;
+        if (enemyObjects!=null)
+        {
+            foreach(var h in enemyObjects.GetComponentsInChildren<Hero>())
+            {
+                if(!h.isDead)
+                {
+                    enemys.Add(h.gameObject);
+                }
+            }
+        }
+        return enemys;
+    }
+    public static List<GameObject> FindTutorialEnemy()
     {
         List<GameObject> enemys = new List<GameObject>();
         GameObject enemyObjects = GameObject.Find("EnemysHero").gameObject;
+        if (enemyObjects.transform.childCount > 0)
+        {
+            for (var i = 0; i < enemyObjects.transform.childCount; i++)
+            {
+                if (enemyObjects.transform.GetChild(i).gameObject.activeSelf && enemyObjects.transform.GetChild(i).GetComponent<TutorialHero>() != null && !enemyObjects.transform.GetChild(i).GetComponent<TutorialHero>().isDead)
+                {
+                    enemys.Add(enemyObjects.transform.GetChild(i).gameObject);
+                }
+            }
+        }
+        //Debugging.Log(enemys.Count + " 개의 적 발견");
+        return enemys;
+    }
+    public static List<GameObject> FindEnemy(bool isAlly)
+    {
+        List<GameObject> enemys = new List<GameObject>();
+        GameObject enemyObjects = null;
+        if (isAlly)
+            enemyObjects = GameObject.Find("EnemysHero").gameObject;
+        else
+            enemyObjects = GameObject.Find("PlayersHero").gameObject;
         if (enemyObjects.transform.childCount > 0)
         {
             for (var i = 0; i < enemyObjects.transform.childCount; i++)
@@ -172,10 +357,32 @@ public class Common : MonoBehaviour
         }
         return allys;
     }
-    public static List<GameObject> FindAlly()
+    public static List<GameObject> FindPlayerHero()
     {
         List<GameObject> allys = new List<GameObject>();
         GameObject userObjects = GameObject.Find("PlayersHero").gameObject;
+        if (userObjects.transform.childCount > 0)
+        {
+            for (var i = 0; i < userObjects.transform.childCount; i++)
+            {
+                if (userObjects.transform.GetChild(i).GetComponent<Hero>() != null)
+                {
+                    allys.Add(userObjects.transform.GetChild(i).gameObject);
+                }
+            }
+        }
+        //Debugging.Log(allys.Count + " 개의 아군 발견");
+        return allys;
+    }
+
+    public static List<GameObject> FindAlly(bool isAlly)
+    {
+        List<GameObject> allys = new List<GameObject>();
+        GameObject userObjects = null;
+        if(isAlly)
+            userObjects = GameObject.Find("PlayersHero").gameObject;
+        else
+            userObjects = GameObject.Find("EnemysHero").gameObject;
         if (userObjects.transform.childCount > 0)
         {
             for (var i = 0; i < userObjects.transform.childCount; i++)
@@ -209,7 +416,7 @@ public class Common : MonoBehaviour
     //정렬타입
     public enum OrderByType{    NONE,NAME,VALUE }
     public enum EventType{  CameraShake,CameraSlow,CameraBlack,CameraSizing,None    }
-    public enum StageModeType { Main, Infinite}
+    public enum StageModeType { Main, Infinite, Boss,Battle,Attack,Raid}
 
     public static StageModeType stageModeType;
 
@@ -246,33 +453,6 @@ public class Common : MonoBehaviour
         else
             return hp + amount;
     }
-    public static void RELOAD_GAME()
-    {
-        Common.isStart = false;
-        Common.isAwake = false;
-    }
-
-    public static void START_GAME()
-    {
-        if (!Common.isStart)
-        {
-            Common.isStart = true;
-            Common.isAwake = false;
-        }
-
-    }
-
-    public static void AWAKE_GAME()
-    {
-        if (!Common.isAwake)
-        {
-            Common.triggerObjectInitialize = true;
-            Common.isAwake = true;
-        }
-
-    }
-
-    public static bool triggerObjectInitialize;
 
     public static void SetLayerRecursively(GameObject obj, int newLayer, int defaultLayer)
     {
@@ -309,7 +489,7 @@ public class Common : MonoBehaviour
         }
     }
 
-    public static void Chat(string chat, Transform tran = null, int posY = 0)
+    public static void Chat(string chat, Transform tran = null, int posY = 0, int leftOrRight = 0)
     {
         if (tran == null)
             return;
@@ -319,25 +499,99 @@ public class Common : MonoBehaviour
             tran.GetComponentInChildren<faceOff>().Face_Mouse();
         }
         GameObject chatObj = ObjectPool.Instance.PopFromPool("chatBox");
-        chatObj.transform.localScale = new Vector3(0.03f, 0.03f, 0.03f);
+        chatObj.GetComponent<Image>().color = Color.white;
+        chatObj.GetComponentInChildren<Text>().color = new Color(0.1f, 0.1f, 0.1f, 1f);
         posY = posY == 0 ? 1 : posY;
-        if (tran.rotation.y == 0)
+        if(leftOrRight == 0)
         {
-            chatObj.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
-            chatObj.GetComponentInChildren<Text>().transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            if (tran.rotation.y == 0)
+            {
+                chatObj.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                chatObj.GetComponentInChildren<Text>().transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
 
+            }
+            else
+            {
+                chatObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                chatObj.GetComponentInChildren<Text>().transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+
+            }
         }
         else
         {
-            chatObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-            chatObj.GetComponentInChildren<Text>().transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
-
+            if(leftOrRight == 1)
+            {
+                chatObj.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                chatObj.GetComponentInChildren<Text>().transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            }
+            else if(leftOrRight==2)
+            {
+                chatObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                chatObj.GetComponentInChildren<Text>().transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            }
         }
+
         chatObj.GetComponent<UI_chatBox>().correctionY = posY;
         chatObj.GetComponent<UI_chatBox>().Target = tran;
         chatObj.GetComponent<UI_chatBox>().chatText = chat;
         chatObj.SetActive(true);
     }
+
+    public static void SkillChat(string chat, Transform tran = null, int posY = 0, int leftOrRight = 0)
+    {
+        if (tran == null)
+            return;
+
+        if (tran.GetComponentInChildren<faceOff>() != null)
+        {
+            tran.GetComponentInChildren<faceOff>().Face_Mouse();
+        }
+        GameObject chatObj = ObjectPool.Instance.PopFromPool("chatBox");
+        chatObj.GetComponent<Image>().color = new Color(0.1f, 0.1f, 0.1f, 1f);
+        chatObj.GetComponentInChildren<Text>().color = Color.white;
+        posY = posY == 0 ? 1 : posY;
+        if (leftOrRight == 0)
+        {
+            if (tran.rotation.y == 0)
+            {
+                chatObj.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                chatObj.GetComponentInChildren<Text>().transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+
+            }
+            else
+            {
+                chatObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                chatObj.GetComponentInChildren<Text>().transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+
+            }
+        }
+        else
+        {
+            if (leftOrRight == 1)
+            {
+                chatObj.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                chatObj.GetComponentInChildren<Text>().transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            }
+            else if (leftOrRight == 2)
+            {
+                chatObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                chatObj.GetComponentInChildren<Text>().transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            }
+        }
+
+        chatObj.GetComponent<UI_chatBox>().correctionY = posY;
+        chatObj.GetComponent<UI_chatBox>().Target = tran;
+        chatObj.GetComponent<UI_chatBox>().chatText = chat;
+        chatObj.SetActive(true);
+    }
+
+    public static void Message(string msg, Transform tran = null)
+    {
+        GameObject msgObj = ObjectPool.Instance.PopFromPool("messageBox");
+        msgObj.SetActive(true);
+        msgObj.GetComponent<UI_messageBox>().StartMessage(msg, tran);
+    }
+
     //페이먼트 체크
     public static bool PaymentAbleCheck(ref int target, int payment)
     {
@@ -350,23 +604,33 @@ public class Common : MonoBehaviour
             return false;
         }
     }
+    public static void PaymentStart(ref int target, int payment)
+    {
+        if (target == User.coin || target.Equals(User.coin))
+        {
+            MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalUseCoin, payment);
+        }
+        else if (target == User.blackCrystal || target.Equals(User.blackCrystal))
+        {
+            MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalUseCrystal, payment);
+        }
+        else if (target == User.portalEnergy || target.Equals(User.portalEnergy))
+        {
+            MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalUseEnergy, payment);
+        }
+        else if (target == User.transcendenceStone || target.Equals(User.transcendenceStone))
+        {
+
+        }
+        target -= payment;
+        GoogleSignManager.SaveData();
+    }
+
     public static bool PaymentCheck(ref int target, int payment)
     {
         if(PaymentAbleCheck(ref target,payment))
         {
-            if (target == User.coin || target.Equals(User.coin))
-            {
-                MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalUseCoin, payment);
-            }
-            else if (target == User.blackCrystal || target.Equals(User.blackCrystal))
-            {
-                MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalUseCrystal, payment);
-            }
-            else if (target == User.portalEnergy || target.Equals(User.portalEnergy))
-            {
-                MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalUseEnergy, payment);
-            }
-            target -= payment;
+            PaymentStart(ref target, payment);
             GoogleSignManager.SaveData();
             return true;
         }
@@ -389,7 +653,34 @@ public class Common : MonoBehaviour
         }
         return tmp.ToArray();
     }
-
+    //오브젝트들의 가운데 위치
+    public static float GetCenterPositionXwithHeros()
+    {
+        var heros = FindAlly(true);
+        if(heros!=null&&heros.Count>0)
+        {
+            float minX = heros[0].transform.position.x;
+            float maxX = heros[0].transform.position.x;
+            for(int i = 0; i< heros.Count; i++)
+            {
+                if(minX > heros[i].transform.position.x)
+                {
+                    minX = heros[i].transform.position.x;
+                }
+            }
+            for(int i =0; i<heros.Count; i++)
+            {
+                if(maxX < heros[i].transform.position.x)
+                {
+                    maxX = heros[i].transform.position.x;
+                }
+            }
+            if (minX < maxX - 7)
+                minX = maxX - 7;
+            return (minX + maxX) / 2;
+        }
+        return 0;
+    }
     //오브젝트 바닥위치
     public static Vector3 GetBottomPosition(Transform transform)
     {
@@ -442,15 +733,24 @@ public class Common : MonoBehaviour
 
     public static int GetDamage(int dam, int defence)
     {
-        float finalDam = Mathf.Clamp(dam * 100/(100+defence), 1, 9999);
+        float finalDam = Mathf.Clamp(dam * 100/(100+defence), 1, 9999+LabSystem.GetAddMaxDamage(User.addMaxDamageLevel));
+        return (int)finalDam;
+    }
+    public static int GetPvpDamage(int dam, int defence, int maxDamLevel)
+    {
+        float finalDam = Mathf.Clamp(dam * 100 / (100 + defence), 1, 9999+LabSystem.GetAddMaxDamage(maxDamLevel));
         return (int)finalDam;
     }
 
-    public enum SCENE { START,MAIN,STAGE,INFINITE,TRAINING};
+    public enum SCENE { START,MAIN,STAGE,INFINITE,BOSS,TUTORIAL,INTRO,BATTLE,ATTACK};
     public static SCENE Scene;
     public static bool GetSceneCompareTo(SCENE sCene)
     {
         return (int)sCene == SceneManager.GetActiveScene().buildIndex;
+    }
+    public static int GetSceneNumber()
+    {
+        return SceneManager.GetActiveScene().buildIndex;
     }
     public static string GetRandomID(int cnt)
     {
@@ -508,55 +808,6 @@ public class Common : MonoBehaviour
         }
         maxId += 1;
         return maxId;
-    }
-
-    public static string Hasing(string key, string msg)
-    {
-        byte[] result;
-
-        byte[] msg_buffer = new ASCIIEncoding().GetBytes(msg);
-        byte[] key_buffer = new ASCIIEncoding().GetBytes(key);
-
-        HMACSHA1 h = new HMACSHA1(key_buffer);
-
-        result = h.ComputeHash(msg_buffer);
-
-        return Convert.ToBase64String(result);
-
-    }
-    public static string Compression(string str)
-    {
-        var rowData = Encoding.UTF8.GetBytes(str);
-        byte[] compressed = null;
-        using (var outStream = new MemoryStream())
-        {
-            using (var hgs = new GZipStream(outStream, CompressionMode.Compress))
-            {
-                //outStream에 압축을 시킨다.
-                hgs.Write(rowData, 0, rowData.Length);
-            }
-            compressed = outStream.ToArray();
-        }
-
-        return Convert.ToBase64String(compressed);
-    }
-    public static string DeCompression(string compressedStr)
-    {
-        string output = null;
-        byte[] cmpData = Convert.FromBase64String(compressedStr);
-        using (var decomStream = new MemoryStream(cmpData))
-        {
-            using (var hgs = new GZipStream(decomStream, CompressionMode.Decompress))
-            {
-                //decomStream에 압축 헤제된 데이타를 저장한다.
-                using (var reader = new StreamReader(hgs))
-                {
-                    output = reader.ReadToEnd();
-                }
-            }
-        }
-
-        return output;
     }
 
     public static void DestroyAllDontDestroyOnLoadObjects()

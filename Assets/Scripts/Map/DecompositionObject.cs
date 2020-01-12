@@ -10,6 +10,7 @@ public class DecompositionObject : MonoBehaviour
     public bool isRolling = false;
     public string TargetTag = "";
     public int Damage;
+    public float pent;
     public bool isCritical;
     Vector3 scale;
     float mass;
@@ -40,12 +41,12 @@ public class DecompositionObject : MonoBehaviour
             else
                 isLeft = true;
 
-            Collider2D[] rh2d = Physics2D.OverlapCircleAll(this.transform.position, this.GetComponent<SpriteRenderer>().bounds.size.x * 0.5f);
+            Collider2D[] rh2d = Physics2D.OverlapCircleAll(this.transform.position, this.GetComponent<SpriteRenderer>().bounds.size.y * 0.7f);
             foreach(var hero in rh2d)
             {
                 if (hero.transform.GetComponentInParent<Hero>() != null&& hero.transform.GetComponentInParent<Hero>().gameObject.CompareTag(TargetTag) && !hero.transform.GetComponentInParent<Hero>().isUnBeat)
                 {
-                    hero.transform.GetComponentInParent<Hero>().HittedByObject(Damage, isCritical,Vector2.zero);
+                    hero.transform.GetComponentInParent<Hero>().HittedByObject(Damage, isCritical,Vector2.zero,pent);
                     hero.transform.GetComponentInParent<Hero>().Stunned();
                 }
                 else if(hero.gameObject.layer==12&&hero.transform.GetComponent<Castle>()!=null)
@@ -65,12 +66,12 @@ public class DecompositionObject : MonoBehaviour
             else
                 isLeft = true;
 
-            Collider2D[] rh2d = Physics2D.OverlapCircleAll(this.transform.position, this.GetComponent<SpriteRenderer>().bounds.size.x * 0.5f);
+            Collider2D[] rh2d = Physics2D.OverlapCircleAll(this.transform.position, this.GetComponent<SpriteRenderer>().bounds.size.y * 0.7f);
             foreach (var hero in rh2d)
             {
                 if (hero.transform.GetComponentInParent<Hero>() != null && hero.transform.GetComponentInParent<Hero>().gameObject.CompareTag(TargetTag) && !hero.transform.GetComponentInParent<Hero>().isUnBeat)
                 {
-                    hero.transform.GetComponentInParent<Hero>().HittedByObject(Damage, isCritical, Vector2.zero);
+                    hero.transform.GetComponentInParent<Hero>().HittedByObject(Damage, isCritical, Vector2.zero, pent);
                     hero.transform.GetComponentInParent<Hero>().Stunned();
                 }
                 else if (hero.gameObject.layer == 12 && hero.transform.GetComponent<Castle>() != null)

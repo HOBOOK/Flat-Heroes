@@ -16,7 +16,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
 	{
         if (storeController == null)
 		{
-			sProductIds = new string[] { "9001", "9002","9003","9004","9005","9006","9011" };
+			sProductIds = new string[] { "9001", "9002","9003","9004","9005","9006","9041", "9042","9048", "9049", "9050" };
 			InitStore();
 		}
         if (instance == null)
@@ -29,8 +29,10 @@ public class IAPManager : MonoBehaviour, IStoreListener
 	void InitStore()
 	{
 		ConfigurationBuilder builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
-		builder.AddProduct(sProductIds[0], ProductType.Consumable, new IDs { { sProductIds[0], GooglePlay.Name } });
-		builder.AddProduct(sProductIds[1], ProductType.Consumable, new IDs { { sProductIds[1], GooglePlay.Name } });
+        for(int i = 0; i<sProductIds.Length;i++)
+        {
+            builder.AddProduct(sProductIds[i], ProductType.Consumable, new IDs { { sProductIds[i], GooglePlay.Name } });
+        }
 
 		UnityPurchasing.Initialize(this, builder);
 	}
@@ -48,34 +50,45 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
 	public void OnBtnPurchaseClicked(int itemId)
 	{
-		if (storeController == null)
-		{
-			Debug.Log("구매 실패 : 결제 기능 초기화 실패");
-        }
-		else
+        try
         {
-            buyItemId = itemId;
-            int index = -1;
-            for(var i = 0; i < sProductIds.Length; i++)
+            if (storeController == null)
             {
-                if(sProductIds[i].Equals(buyItemId)||sProductIds[i]==buyItemId.ToString())
-                {
-                    index = i;
-                    break;
-                }
+                Debug.Log("구매 실패 : 결제 기능 초기화 실패");
             }
-            if (index != -1)
-                storeController.InitiatePurchase(sProductIds[index]);
             else
-                Debug.Log("구매 실패 : 결제 상품 존재하지 않음");
+            {
+                buyItemId = itemId;
+                int index = -1;
+                for (var i = 0; i < sProductIds.Length; i++)
+                {
+                    if (sProductIds[i].Equals(buyItemId) || sProductIds[i] == buyItemId.ToString())
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+                if (index != -1)
+                    storeController.InitiatePurchase(sProductIds[index]);
+                else
+                    Debug.Log("구매 실패 : 결제 상품 존재하지 않음");
+            }
+        }
+        catch(NullProductIdException e)
+        {
+            Debug.Log("NullProductId > " + e.StackTrace);
+        }
+        catch (NullReceiptException e)
+        {
+            Debug.Log("NullReceipt > " + e.StackTrace);
         }
 	}
 
 	PurchaseProcessingResult IStoreListener.ProcessPurchase(PurchaseEventArgs e)
 	{
 		bool isSuccess = true;
-#if UNITY_ANDROID && !UNITY_EDITOR
-		CrossPlatformValidator validator = new CrossPlatformValidator(GooglePlayTangle.Data(), AppleTangle.Data(), Application.identifier);
+#if UNITY_ANDROID || UNITY_IOS || UNITY_STANDALONE_OSX
+        CrossPlatformValidator validator = new CrossPlatformValidator(GooglePlayTangle.Data(), AppleTangle.Data(), Application.identifier);
 		try
 		{
 			IPurchaseReceipt[] result = validator.Validate(e.purchasedProduct.receipt);
@@ -87,6 +100,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
 			isSuccess = false;
 		}
 #endif
+        Debugging.Log(e.purchasedProduct.receipt);
 		if (isSuccess)
 		{
 			Debug.Log("구매 완료");
@@ -104,8 +118,16 @@ public class IAPManager : MonoBehaviour, IStoreListener
                 SuccessPurchase(buyItemId);
             else if (e.purchasedProduct.definition.id.Equals(sProductIds[6]))
                 SuccessPurchase(buyItemId);
+            else if (e.purchasedProduct.definition.id.Equals(sProductIds[7]))
+                SuccessPurchase(buyItemId);
+            else if (e.purchasedProduct.definition.id.Equals(sProductIds[8]))
+                SuccessPurchase(buyItemId);
+            else if (e.purchasedProduct.definition.id.Equals(sProductIds[9]))
+                SuccessPurchase(buyItemId);
+            else if (e.purchasedProduct.definition.id.Equals(sProductIds[10]))
+                SuccessPurchase(buyItemId);
         }
-		else
+        else
 		{
             Debug.Log("구매 실패 : 비정상 결제");
 		}
@@ -123,8 +145,14 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
     void SuccessPurchase(int buyItemId)
     {
-        if (buyItemId > 9000)
+        User.paymentItem += buyItemId + ",";
+        if (buyItemId > 9000&&buyItemId<=9040)
             ItemSystem.SetObtainMoney(buyItemId);
+        else if (buyItemId > 9040 && buyItemId <= 9050)
+        {
+            ItemSystem.SetObtainPackageItem(buyItemId);
+            FindObjectOfType<UI_ShopPackage>().RefreshUI();
+        }
         else
             ItemSystem.SetObtainItem(buyItemId);
         Item id = ItemSystem.GetItem(buyItemId);

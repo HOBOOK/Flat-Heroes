@@ -17,10 +17,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StageInfinite.unity
     guid: 90c025065947df24c878e7ae336cb829
-  - enabled: 0
-    path: Assets/Scenes/Training.unity
-    guid: edf4f4bbaac7ab146a9bf731a7dd4e06
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/StageBoss.unity
+    guid: d042f4665e4e6924e8252d23664c5015
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 2e4fbf9aff175aa4f9f136e2ee93dd4f
+  - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: 096cf37a57db4e443adb89e4983a3ca0
+  - enabled: 1
+    path: Assets/Scenes/StageBattle.unity
+    guid: d814f4d4f3b27c94881f869505f82a65
+  - enabled: 1
+    path: Assets/Scenes/StageAttack.unity
+    guid: 3d183d8c980f37444ba55e58ffc7f7fe
   m_configObjects: {}

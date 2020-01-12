@@ -34,13 +34,21 @@ public class CloudDataInfo
         localId = socialUserId;
         name = socialName;
         lastSavedTime = saveTime;
-        UserData = SaveSystem.GetUserDataToCloud();
-        ItemData = ItemDatabase.GetItemDataToCloud();
-        HeroData = HeroDatabase.GetHeroDataToCloud();
-        AbilityData = AbilityDatabase.GetAbilityDataToCloud();
-        SkillData = SkillDatabase.GetSkillDataToCloud();
-        MissionData = MissionDatabase.GetMissionDataToCloud();
-        MapData = MapDatabase.GetMapDataToCloud();
+        try
+        {
+            UserData = SaveSystem.GetUserDataToCloud();
+            ItemData = ItemDatabase.GetItemDataToCloud();
+            HeroData = HeroDatabase.GetHeroDataToCloud();
+            AbilityData = AbilityDatabase.GetAbilityDataToCloud();
+            SkillData = SkillDatabase.GetSkillDataToCloud();
+            MissionData = MissionDatabase.GetMissionDataToCloud();
+            MapData = MapDatabase.GetMapDataToCloud();
+        }
+        catch(Exception e)
+        {
+            Debugging.Log(e.StackTrace);
+        }
+
     }
     public bool IsNullData()
     {

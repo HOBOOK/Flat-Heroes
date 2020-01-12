@@ -6,6 +6,7 @@ public class Boom : MonoBehaviour
 {
     public bool isAlly;
     public int damage;
+    public float pent;
     public bool isCritical;
     bool isBoom = false;
     bool isGround = false;
@@ -90,14 +91,15 @@ public class Boom : MonoBehaviour
         {
             foreach (var enemy in enemys)
             {
-                Debugging.Log(enemy.gameObject.name);
                 if (enemy.gameObject.layer == 10 && enemy.GetComponentInParent<Hero>() != null && enemy.GetComponentInParent<Hero>().isPlayerHero != isAlly && !enemy.GetComponentInParent<Hero>().isDead)
                 {
-                    if(targetCount<maxTargetCount)
+                    if (targetCount < maxTargetCount)
                     {
-                        enemy.GetComponentInParent<Hero>().HittedByObject(damage, isCritical, new Vector3(15, 15));
+                        enemy.GetComponentInParent<Hero>().HittedByObject(damage, isCritical, new Vector3(15, 15), pent);
                         targetCount += 1;
                     }
+                    else
+                        break;
                 }
             }
         }

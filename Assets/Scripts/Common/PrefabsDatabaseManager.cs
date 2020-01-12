@@ -36,7 +36,8 @@ public class PrefabsDatabaseManager : MonoBehaviour
             heroPrefabList.Add(prefab);
         else
         {
-            UI_StartManager.instance.ShowErrorUI("영웅 데이터가 정상적으로 추가되지 않았습니다.");
+            Caching.ClearCache();
+            UI_StartManager.instance.ShowErrorUI(LocalizationManager.GetText("alertDBErrorMessage"));
         }
 
     }
@@ -146,23 +147,4 @@ public class PrefabsDatabaseManager : MonoBehaviour
             return null;
         }
     }
-
-    public void GetPrefabList()
-    {
-        string str = "";
-        foreach (var i in heroPrefabList)
-        {
-            str += i.name + "\r\n";
-        }
-        foreach (var i in monsterPrefabList)
-        {
-            str += i.name + "\r\n";
-        }
-        foreach (var i in castlePrefabList)
-        {
-            str += i.name + "\r\n";
-        }
-        Debugging.Log(str);
-    }
-
 }

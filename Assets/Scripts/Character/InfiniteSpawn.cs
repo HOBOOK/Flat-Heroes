@@ -6,115 +6,130 @@ using UnityEngine.UI;
 
 public class InfiniteSpawn : MonoBehaviour
 {
-    int waveNumber;
-    int spawnCount;
-    float spawnTime =1.0f;
+    public GameObject SpawnNoticeUI;
     public float spawnDelay;
-    float drainEnergyTime = 0.0f;
-    float curSpawnTime = 0;
     public List<SpawnEnemy> spawnEnemys = new List<SpawnEnemy>();
-    Transform enemySpawnPoint;
+    public Transform enemySpawnPointRight;
+    public Transform enemySpawnPointLeft;
     public bool isGod;
     Vector3 firstPos;
+    bool isBossSpawn = false;
+    List<GameObject> tempEnemys = new List<GameObject>();
     private void Awake()
     {
-        enemySpawnPoint = GameObject.Find("EnemysHero").transform;
         firstPos = this.transform.position;
     }
-    void Start()
+    public void Spawn(List<HeroData> monsterDataList)
     {
-        FirstSpawn();
-    }
-    private void Update()
-    {
-        StateUpdate();
-        SpawnUpdate();
-    }
-    void StateUpdate()
-    {
+        spawnEnemys.Clear();
 
-    }
-    void SpawnUpdate()
-    {
-        curSpawnTime += Time.deltaTime;
-        if (curSpawnTime > spawnDelay)
+        foreach (var mon in monsterDataList)
         {
-            Spawn();
-            curSpawnTime = 0.0f;
+            SpawnEnemy spawnEnemy = new SpawnEnemy(PrefabsDatabaseManager.instance.GetMonsterPrefab(mon.id), Mathf.Clamp(1,1,5));
+            spawnEnemys.Add(spawnEnemy);
         }
-    }
-    void FirstSpawn()
-    {
-        if (spawnEnemys != null && spawnEnemys.Count > 0 && spawnCount < 15)
+        if (spawnEnemys != null && spawnEnemys.Count > 0)
         {
-            Debugging.Log(this.name + " 소환 시작");
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.teleport);
+            SpawnEffect(enemySpawnPointRight.position);
+            SpawnEffect(enemySpawnPointLeft.position);
             for (int i = 0; i < spawnEnemys.Count; i++)
             {
-                if (!spawnEnemys[i].isSpawnEnd && spawnCount < 15)
+                if(StageManagement.instance.GetDPoint()<20)
                 {
-                    spawnEnemys[i].isSpawnEnd = true;
-                    for (int j = 0; j < spawnEnemys[i].count; j++)
+                    if (!spawnEnemys[i].isSpawnEnd)
                     {
-                        GameObject e = Instantiate(spawnEnemys[i].enemyPrefab, enemySpawnPoint);
-                        e.SetActive(false);
-                        e.GetComponent<Hero>().isPlayerHero = false;
-                        e.transform.position = new Vector3(UnityEngine.Random.Range(15,18), 0);
-                        e.SetActive(true);
-                        StageManagement.instance.AddMonsterCount();
+                        Transform spawnTransform = i % 2 == 0 ? enemySpawnPointLeft : enemySpawnPointRight;
+                        StartCoroutine(Spawning(spawnEnemys[i], spawnTransform));
                     }
-                    spawnEnemys[i].isSpawnEnd = false;
                 }
-            }
-        }
-        spawnCount = Common.FindEnemysCount();
-    }
-    void Spawn()
-    {
-        if (spawnEnemys != null && spawnEnemys.Count > 0&&spawnCount<15)
-        {
-            Debugging.Log(this.name + " 소환");
-            for (int i = 0; i < spawnEnemys.Count; i++)
-            {
-                if (!spawnEnemys[i].isSpawnEnd&&spawnCount<15)
+                else
                 {
-                    StartCoroutine(Spawning(spawnEnemys[i]));
+                    break;
                 }
             }
+
         }
     }
-    IEnumerator Spawning(SpawnEnemy spawnEnemy)
+    IEnumerator Spawning(SpawnEnemy spawnEnemy, Transform spawnPoint)
     {
         spawnEnemy.isSpawnEnd = true;
-
+        isBossSpawn = false;
+        tempEnemys.Clear();
         for (int i = 0; i < spawnEnemy.count; i++)
         {
-            GameObject e = Instantiate(spawnEnemy.enemyPrefab, enemySpawnPoint);
-            e.SetActive(false);
-            e.GetComponent<Hero>().isPlayerHero = false;
-            e.transform.position = new Vector3(18, 0);
-            yield return new WaitForEndOfFrame();
-            e.SetActive(true);
-            StageManagement.instance.AddMonsterCount();
-            List<GameObject> allys = Common.FindAlly();
-            foreach(var ally in allys)
+            if(StageManagement.instance.GetDPoint()<20)
+            {
+                GameObject e = Instantiate(spawnEnemy.enemyPrefab, spawnPoint);
+                e.SetActive(false);
+                e.GetComponent<Hero>().isPlayerHero = false;
+                e.GetComponent<Hero>().SpriteAlphaSetting(0);
+                e.transform.localPosition = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0);
+                yield return new WaitForSeconds(1.0f);
+                e.SetActive(true);
+                StageManagement.instance.SetDPoint(1);
+                e.GetComponent<Hero>().SpriteAlphaSetting(1);
+                yield return new WaitForSeconds(0.2f);
+                e.GetComponent<Hero>().WaveBuff(StageManagement.instance.stageInfo.stageWave);
+                if (e.GetComponent<Hero>().id > 1000)
+                    isBossSpawn = true;
+                if (isBossSpawn)
+                    SpawnNotice();
+                tempEnemys.Add(e);
+                StageManagement.instance.AddMonsterCount();
+                yield return new WaitForEndOfFrame();
+            }
+            else
+            {
+                break;
+            }
+        }
+        if (tempEnemys != null && tempEnemys.Count > 0)
+        {
+            List<GameObject> allys = Common.FindAlly(true);
+            foreach (var ally in allys)
             {
                 if (ally.GetComponent<Hero>() != null)
                 {
-                    ally.GetComponent<Hero>().ResearchingEnemys(e);
+                    ally.GetComponent<Hero>().ResearchingEnemysAll(tempEnemys);
                 }
             }
-            yield return new WaitForSeconds(spawnTime);
         }
         spawnEnemy.isSpawnEnd = false;
-        spawnCount = Common.FindEnemysCount();
         yield return null;
     }
+    public void SpawnEffect(Vector3 pos)
+    {
+        if (EffectPool.Instance != null)
+        {
+            GameObject effect = EffectPool.Instance.PopFromPool("SoftPortalRed");
+            effect.transform.position = pos;
+            effect.SetActive(true);
+        }
+    }
+
+    void SpawnNotice()
+    {
+        if(SpawnNoticeUI!=null)
+        {
+            SpawnNoticeUI.SetActive(true);
+            SpawnNoticeUI.GetComponent<Animation>().Play();
+        }
+    }
+
     [Serializable]
     public class SpawnEnemy
     {
         public GameObject enemyPrefab;
         public int count;
         public bool isSpawnEnd = false;
-    }
 
+        SpawnEnemy() { }
+        public SpawnEnemy(GameObject prefab, int cnt)
+        {
+            enemyPrefab = prefab;
+            count = cnt;
+            isSpawnEnd = false;
+        }
+    }
 }

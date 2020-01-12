@@ -5,11 +5,12 @@ using UnityEngine;
 public class arrowController : MonoBehaviour
 {
 
-    public string poolItemName = "Arrow";
+    public string poolItemName;
     public bool isAlly = false;
     public bool isStand = false;
     public bool isCritical;
     public int damage = 10;
+    public float pent;
     float arrowTimer;
     public Transform target;
     Vector3 prevPos;
@@ -50,6 +51,13 @@ public class arrowController : MonoBehaviour
                     targetPos.x = Random.Range(targetPos.x+0.5f, targetPos.x+1.5f);
                 else
                     targetPos.x = Random.Range(targetPos.x - 0.5f, targetPos.x - 1.5f);
+                if (Mathf.Sqrt((Mathf.Pow(targetPos.x, 2)-Mathf.Pow(startPos.x,2)))<10)
+                {
+                    if(targetPos.x>startPos.x)
+                        targetPos.x = startPos.x + 10;
+                    else
+                        targetPos.x = startPos.x - 10;
+                }
                 targetPos.y = Random.Range(targetPos.y - 1f, targetPos.y +1.5f);
                 vx = (targetPos.x - startPos.x) / 2f;
                 vy = (targetPos.y - startPos.y + 9.8f) / 2f;
@@ -96,11 +104,11 @@ public class arrowController : MonoBehaviour
             this.transform.parent = parent.transform;
             if(parent.GetComponentInParent<Hero>()!=null)
             {
-                parent.GetComponentInParent<Hero>().HittedByObject(damage, isCritical, new Vector2(2, 3));
+                parent.GetComponentInParent<Hero>().HittedByObject(damage, isCritical, new Vector2(2, 1),pent);
             }
             else if (parent.GetComponent<Castle>() != null)
             {
-                parent.GetComponent<Castle>().HittedByObject(damage, isCritical, new Vector2(2, 3));
+                parent.GetComponent<Castle>().HittedByObject(damage, isCritical, new Vector2(2, 1));
             }
 
             isStand = true;

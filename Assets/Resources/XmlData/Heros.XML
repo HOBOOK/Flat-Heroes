@@ -9,15 +9,17 @@
       <Description>동쪽 나라에서 온 실력이 출중한 무사</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>150</Value>
-      <Strength>12</Strength>
-      <Intelligent>4</Intelligent>
-      <Physical>7</Physical>
-      <Agility>5</Agility>
+      <Value>80</Value>
+      <Strength>8</Strength>
+      <Intelligent>3</Intelligent>
+      <Physical>10</Physical>
+      <Agility>3</Agility>
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>1</Skill>
       <AttackType>0</AttackType>
+      <Skin>0</Skin>
+      <Over>0</Over>
     </Hero>
     <Hero id="102">
       <Name>화이트</Name>
@@ -27,105 +29,117 @@
       <Description>유명 용병단의 전설의 사령관</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>150</Value>
+      <Value>50000</Value>
       <Strength>9</Strength>
-      <Intelligent>6</Intelligent>
-      <Physical>5</Physical>
-      <Agility>10</Agility>
+      <Intelligent>4</Intelligent>
+      <Physical>7</Physical>
+      <Agility>4</Agility>
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>2</Skill>
       <AttackType>0</AttackType>
+      <Skin>0</Skin>
+      <Over>0</Over>
     </Hero>
     <Hero id="103">
       <Name>알버스</Name>
       <Image>HeroThumbnail/thumbnail_003</Image>
       <Enable>false</Enable>
-      <Type>0</Type>
+      <Type>1</Type>
       <Description>위기가 다치자 등장한 정체불명의 마법사</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>150</Value>
-      <Strength>3</Strength>
-      <Intelligent>18</Intelligent>
-      <Physical>2</Physical>
-      <Agility>5</Agility>
+      <Value>50000</Value>
+      <Strength>5</Strength>
+      <Intelligent>10</Intelligent>
+      <Physical>5</Physical>
+      <Agility>3</Agility>
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>3</Skill>
       <AttackType>0</AttackType>
+      <Skin>0</Skin>
+      <Over>0</Over>
     </Hero>
     <Hero id="104">
       <Name>아르테미스</Name>
       <Image>HeroThumbnail/thumbnail_004</Image>
       <Enable>false</Enable>
-      <Type>0</Type>
+      <Type>1</Type>
       <Description>여명단을 이끌고 있는 수장.</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>150</Value>
+      <Value>75000</Value>
       <Strength>7</Strength>
-      <Intelligent>7</Intelligent>
-      <Physical>4</Physical>
-      <Agility>11</Agility>
+      <Intelligent>5</Intelligent>
+      <Physical>6</Physical>
+      <Agility>4</Agility>
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>4</Skill>
       <AttackType>0</AttackType>
+      <Skin>0</Skin>
+      <Over>0</Over>
     </Hero>
     <Hero id="105">
       <Name>켄</Name>
       <Image>HeroThumbnail/thumbnail_005</Image>
       <Enable>false</Enable>
-      <Type>0</Type>
+      <Type>1</Type>
       <Description>동쪽 나라에서 악명높은 어쌔신</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>150</Value>
+      <Value>100000</Value>
       <Strength>8</Strength>
-      <Intelligent>3</Intelligent>
-      <Physical>10</Physical>
-      <Agility>15</Agility>
+      <Intelligent>4</Intelligent>
+      <Physical>9</Physical>
+      <Agility>5</Agility>
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>5</Skill>
       <AttackType>0</AttackType>
+      <Skin>0</Skin>
+      <Over>0</Over>
     </Hero>
     <Hero id="106">
       <Name>하칸</Name>
       <Image>HeroThumbnail/thumbnail_006</Image>
       <Enable>false</Enable>
-      <Type>0</Type>
+      <Type>2</Type>
       <Description>영웅 설명 없음.</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>150</Value>
-      <Strength>10</Strength>
+      <Value>100000</Value>
+      <Strength>6</Strength>
       <Intelligent>2</Intelligent>
-      <Physical>15</Physical>
-      <Agility>1</Agility>
+      <Physical>13</Physical>
+      <Agility>2</Agility>
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>6</Skill>
       <AttackType>0</AttackType>
+      <Skin>0</Skin>
+      <Over>0</Over>
     </Hero>
     <Hero id="107">
-      <Name>7번 영웅</Name>
+      <Name>화윤</Name>
       <Image>HeroThumbnail/thumbnail_007</Image>
       <Enable>false</Enable>
-      <Type>0</Type>
+      <Type>3</Type>
       <Description>영웅 설명 없음</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>150</Value>
-      <Strength>20</Strength>
-      <Intelligent>3</Intelligent>
-      <Physical>10</Physical>
-      <Agility>10</Agility>
+      <Value>50000</Value>
+      <Strength>2</Strength>
+      <Intelligent>10</Intelligent>
+      <Physical>4</Physical>
+      <Agility>2</Agility>
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>7</Skill>
       <AttackType>0</AttackType>
+      <Skin>0</Skin>
+      <Over>0</Over>
     </Hero>
     <Hero id="108">
       <Name>8번 영웅</Name>
@@ -135,83 +149,111 @@
       <Description>영웅 설명 없음</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>150</Value>
-      <Strength>20</Strength>
-      <Intelligent>3</Intelligent>
-      <Physical>10</Physical>
-      <Agility>10</Agility>
+      <Value>75000</Value>
+      <Strength>8</Strength>
+      <Intelligent>5</Intelligent>
+      <Physical>9</Physical>
+      <Agility>4</Agility>
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>8</Skill>
       <AttackType>0</AttackType>
+      <Skin>0</Skin>
+      <Over>0</Over>
     </Hero>
     <Hero id="109">
       <Name>종국</Name>
       <Image>HeroThumbnail/thumbnail_009</Image>
       <Enable>false</Enable>
-      <Type>0</Type>
+      <Type>3</Type>
       <Description>전설의 외과의사</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>150</Value>
-      <Strength>20</Strength>
-      <Intelligent>3</Intelligent>
-      <Physical>10</Physical>
-      <Agility>10</Agility>
+      <Value>50000</Value>
+      <Strength>2</Strength>
+      <Intelligent>10</Intelligent>
+      <Physical>6</Physical>
+      <Agility>2</Agility>
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>9</Skill>
-      <AttackType>0</AttackType>    
+      <AttackType>0</AttackType>
+      <Skin>0</Skin>
+      <Over>0</Over>
     </Hero>
     <Hero id="110">
-      <Name>10번 영웅</Name>
+      <Name>엘</Name>
       <Image>HeroThumbnail/thumbnail_010</Image>
       <Enable>false</Enable>
-      <Type>0</Type>
+      <Type>1</Type>
       <Description>영웅 설명 없음</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>150</Value>
-      <Strength>20</Strength>
-      <Intelligent>3</Intelligent>
-      <Physical>10</Physical>
-      <Agility>10</Agility>
+      <Value>100000</Value>
+      <Strength>9</Strength>
+      <Intelligent>2</Intelligent>
+      <Physical>8</Physical>
+      <Agility>3</Agility>
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>10</Skill>
       <AttackType>0</AttackType>
+      <Skin>0</Skin>
+      <Over>0</Over>
     </Hero>
     <Hero id="111">
-      <Name>11번 영웅</Name>
+      <Name>벨라</Name>
       <Image>HeroThumbnail/thumbnail_011</Image>
       <Enable>false</Enable>
       <Type>0</Type>
       <Description>영웅 설명 없음</Description>
       <Level>1</Level>
       <Exp>0</Exp>
-      <Value>150</Value>
-      <Strength>20</Strength>
-      <Intelligent>3</Intelligent>
-      <Physical>10</Physical>
-      <Agility>10</Agility>
+      <Value>120000</Value>
+      <Strength>6</Strength>
+      <Intelligent>9</Intelligent>
+      <Physical>6</Physical>
+      <Agility>3</Agility>
       <Chat>평평하게 만들어주지!,시작이군.</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>11</Skill>
       <AttackType>0</AttackType>
+      <Skin>0</Skin>
+      <Over>0</Over>
+    </Hero>
+    <Hero id="112">
+      <Name>호크</Name>
+      <Image>HeroThumbnail/thumbnail_012</Image>
+      <Enable>false</Enable>
+      <Type>1</Type>
+      <Description>동쪽 나라에서 악명높은 어쌔신</Description>
+      <Level>1</Level>
+      <Exp>0</Exp>
+      <Value>120000</Value>
+      <Strength>7</Strength>
+      <Intelligent>5</Intelligent>
+      <Physical>7</Physical>
+      <Agility>6</Agility>
+      <Chat>평평하게 만들어주지!,시작이군.</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>12</Skill>
+      <AttackType>0</AttackType>
+      <Skin>0</Skin>
+      <Over>0</Over>
     </Hero>
     <Hero id="501">
       <Name>좀비</Name>
       <Image>HeroThumbnail/thumbnail_501</Image>
       <Enable>false</Enable>
-      <Type>1</Type>
+      <Type>0</Type>
       <Description>???</Description>
-      <Level>13</Level>
+      <Level>21</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>23</Strength>
+      <Strength>10</Strength>
       <Intelligent>5</Intelligent>
-      <Physical>28</Physical>
-      <Agility>15</Agility>
+      <Physical>15</Physical>
+      <Agility>7</Agility>
       <Chat>크르륵..,...크르릉</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>0</Skill>
@@ -221,15 +263,15 @@
       <Name>좀비2</Name>
       <Image>HeroThumbnail/thumbnail_502</Image>
       <Enable>false</Enable>
-      <Type>1</Type>
+      <Type>0</Type>
       <Description>???</Description>
-      <Level>12</Level>
+      <Level>23</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>25</Strength>
+      <Strength>12</Strength>
       <Intelligent>7</Intelligent>
-      <Physical>30</Physical>
-      <Agility>15</Agility>
+      <Physical>17</Physical>
+      <Agility>8</Agility>
       <Chat>크르륵..,...크르릉</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>0</Skill>
@@ -239,14 +281,14 @@
       <Name>좀비3</Name>
       <Image>HeroThumbnail/thumbnail_503</Image>
       <Enable>false</Enable>
-      <Type>1</Type>
+      <Type>0</Type>
       <Description>???</Description>
-      <Level>11</Level>
+      <Level>26</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>30</Strength>
-      <Intelligent>5</Intelligent>
-      <Physical>35</Physical>
+      <Strength>13</Strength>
+      <Intelligent>8</Intelligent>
+      <Physical>18</Physical>
       <Agility>10</Agility>
       <Chat>크르륵..,...크르릉</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
@@ -257,9 +299,9 @@
       <Name>파리1</Name>
       <Image>HeroThumbnail/thumbnail_504</Image>
       <Enable>false</Enable>
-      <Type>1</Type>
+      <Type>0</Type>
       <Description>???</Description>
-      <Level>2</Level>
+      <Level>1</Level>
       <Exp>0</Exp>
       <Value>0</Value>
       <Strength>1</Strength>
@@ -275,14 +317,14 @@
       <Name>슬라임1</Name>
       <Image>HeroThumbnail/thumbnail_505</Image>
       <Enable>false</Enable>
-      <Type>1</Type>
+      <Type>0</Type>
       <Description>???</Description>
       <Level>2</Level>
       <Exp>0</Exp>
       <Value>0</Value>
       <Strength>3</Strength>
       <Intelligent>0</Intelligent>
-      <Physical>5</Physical>
+      <Physical>4</Physical>
       <Agility>0</Agility>
       <Chat>포옹포옹~</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
@@ -293,16 +335,340 @@
       <Name>슬라임2</Name>
       <Image>HeroThumbnail/thumbnail_506</Image>
       <Enable>false</Enable>
-      <Type>1</Type>
+      <Type>0</Type>
       <Description>???</Description>
-      <Level>3</Level>
+      <Level>5</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>3</Strength>
+      <Strength>5</Strength>
       <Intelligent>0</Intelligent>
-      <Physical>7</Physical>
+      <Physical>5</Physical>
       <Agility>1</Agility>
       <Chat>포옹포옹~</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="507">
+      <Name>나무괴물</Name>
+      <Image>HeroThumbnail/thumbnail_507</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>11</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>7</Strength>
+      <Intelligent>8</Intelligent>
+      <Physical>13</Physical>
+      <Agility>2</Agility>
+      <Chat>포옹포옹~</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="508">
+      <Name>곰</Name>
+      <Image>HeroThumbnail/thumbnail_508</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>13</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>9</Strength>
+      <Intelligent>0</Intelligent>
+      <Physical>18</Physical>
+      <Agility>5</Agility>
+      <Chat>포옹포옹~</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="509">
+      <Name>파이</Name>
+      <Image>HeroThumbnail/thumbnail_509</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>31</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>20</Strength>
+      <Intelligent>9</Intelligent>
+      <Physical>26</Physical>
+      <Agility>6</Agility>
+      <Chat>포옹포옹~</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="510">
+      <Name>골렘</Name>
+      <Image>HeroThumbnail/thumbnail_510</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>16</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>13</Strength>
+      <Intelligent>5</Intelligent>
+      <Physical>26</Physical>
+      <Agility>2</Agility>
+      <Chat>포옹포옹~</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>1</AttackType>
+    </Hero>
+    <Hero id="511">
+      <Name>검은마법사</Name>
+      <Image>HeroThumbnail/thumbnail_511</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>66</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>40</Strength>
+      <Intelligent>27</Intelligent>
+      <Physical>40</Physical>
+      <Agility>8</Agility>
+      <Chat></Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="512">
+      <Name>푸이</Name>
+      <Image>HeroThumbnail/thumbnail_512</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>34</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>27</Strength>
+      <Intelligent>5</Intelligent>
+      <Physical>28</Physical>
+      <Agility>7</Agility>
+      <Chat>포옹포옹~</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="513">
+      <Name>샌드맨</Name>
+      <Image>HeroThumbnail/thumbnail_513</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>43</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>31</Strength>
+      <Intelligent>3</Intelligent>
+      <Physical>35</Physical>
+      <Agility>3</Agility>
+      <Chat></Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>1</AttackType>
+    </Hero>
+    <Hero id="514">
+      <Name>검은궁수</Name>
+      <Image>HeroThumbnail/thumbnail_514</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>62</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>38</Strength>
+      <Intelligent>15</Intelligent>
+      <Physical>35</Physical>
+      <Agility>15</Agility>
+      <Chat></Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="515">
+      <Name>선인장</Name>
+      <Image>HeroThumbnail/thumbnail_515</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>41</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>30</Strength>
+      <Intelligent>8</Intelligent>
+      <Physical>25</Physical>
+      <Agility>3</Agility>
+      <Chat></Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="516">
+      <Name>미이라</Name>
+      <Image>HeroThumbnail/thumbnail_516</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>46</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>35</Strength>
+      <Intelligent>18</Intelligent>
+      <Physical>30</Physical>
+      <Agility>8</Agility>
+      <Chat></Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="517">
+      <Name>눈사람</Name>
+      <Image>HeroThumbnail/thumbnail_517</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>51</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>32</Strength>
+      <Intelligent>5</Intelligent>
+      <Physical>29</Physical>
+      <Agility>2</Agility>
+      <Chat></Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="518">
+      <Name>예티</Name>
+      <Image>HeroThumbnail/thumbnail_518</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>56</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>37</Strength>
+      <Intelligent>5</Intelligent>
+      <Physical>40</Physical>
+      <Agility>4</Agility>
+      <Chat></Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>1</AttackType>
+    </Hero>
+    <Hero id="519">
+      <Name>파이어맨</Name>
+      <Image>HeroThumbnail/thumbnail_519</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>36</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>25</Strength>
+      <Intelligent>5</Intelligent>
+      <Physical>26</Physical>
+      <Agility>5</Agility>
+      <Chat></Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="520">
+      <Name>얼음좀비</Name>
+      <Image>HeroThumbnail/thumbnail_520</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>53</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>35</Strength>
+      <Intelligent>7</Intelligent>
+      <Physical>35</Physical>
+      <Agility>7</Agility>
+      <Chat></Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="521">
+      <Name>흑령</Name>
+      <Image>HeroThumbnail/thumbnail_521</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>61</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>37</Strength>
+      <Intelligent>15</Intelligent>
+      <Physical>36</Physical>
+      <Agility>5</Agility>
+      <Chat></Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="522">
+      <Name>망자</Name>
+      <Image>HeroThumbnail/thumbnail_522</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>71</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>58</Strength>
+      <Intelligent>30</Intelligent>
+      <Physical>53</Physical>
+      <Agility>6</Agility>
+      <Chat></Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="523">
+      <Name>심판자</Name>
+      <Image>HeroThumbnail/thumbnail_523</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>72</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>62</Strength>
+      <Intelligent>30</Intelligent>
+      <Physical>58</Physical>
+      <Agility>8</Agility>
+      <Chat></Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="524">
+      <Name>심판자</Name>
+      <Image>HeroThumbnail/thumbnail_524</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>75</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>70</Strength>
+      <Intelligent>30</Intelligent>
+      <Physical>65</Physical>
+      <Agility>10</Agility>
+      <Chat></Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>0</Skill>
       <AttackType>0</AttackType>
@@ -311,37 +677,145 @@
       <Name>자이언트 원숭이인간</Name>
       <Image>HeroThumbnail/thumbnail_1001</Image>
       <Enable>false</Enable>
-      <Type>1</Type>
+      <Type>0</Type>
       <Description>???</Description>
-      <Level>20</Level>
+      <Level>60</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>150</Strength>
-      <Intelligent>30</Intelligent>
-      <Physical>1500</Physical>
-      <Agility>70</Agility>
+      <Strength>32</Strength>
+      <Intelligent>20</Intelligent>
+      <Physical>80</Physical>
+      <Agility>12</Agility>
       <Chat>너희들.. 끽..은 여기서..끽.. 끝이다. 끽</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>0</Skill>
-      <AttackType>0</AttackType>
+      <AttackType>1</AttackType>
     </Hero>
     <Hero id="1002">
       <Name>나이트 크로우</Name>
       <Image>HeroThumbnail/thumbnail_1002</Image>
       <Enable>false</Enable>
-      <Type>1</Type>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>80</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>40</Strength>
+      <Intelligent>30</Intelligent>
+      <Physical>85</Physical>
+      <Agility>20</Agility>
+      <Chat>까악 까악..</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>2</AttackType>
+    </Hero>
+    <Hero id="1003">
+      <Name>킹 골든슬라임</Name>
+      <Image>HeroThumbnail/thumbnail_1003</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
       <Description>???</Description>
       <Level>20</Level>
       <Exp>0</Exp>
       <Value>0</Value>
-      <Strength>200</Strength>
-      <Intelligent>50</Intelligent>
-      <Physical>200</Physical>
-      <Agility>500</Agility>
-      <Chat>까악 까악..</Chat>
+      <Strength>9</Strength>
+      <Intelligent>10</Intelligent>
+      <Physical>50</Physical>
+      <Agility>5</Agility>
+      <Chat>쿠잉쿠잉</Chat>
       <EquipmentItem>0,0,0,0,0</EquipmentItem>
       <Skill>0</Skill>
+      <AttackType>3</AttackType>
+    </Hero>
+    <Hero id="1004">
+      <Name>빙룡</Name>
+      <Image>HeroThumbnail/thumbnail_1004</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>120</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>47</Strength>
+      <Intelligent>35</Intelligent>
+      <Physical>120</Physical>
+      <Agility>15</Agility>
+      <Chat>하찮은 존재들!</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>4</AttackType>
+    </Hero>
+    <Hero id="1005">
+      <Name>나무골렘</Name>
+      <Image>HeroThumbnail/thumbnail_1005</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>40</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>25</Strength>
+      <Intelligent>20</Intelligent>
+      <Physical>75</Physical>
+      <Agility>5</Agility>
+      <Chat>하찮은 존재들!</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>0</Skill>
+      <AttackType>5</AttackType>
+    </Hero>
+    <Hero id="1006">
+      <Name>투탕</Name>
+      <Image>HeroThumbnail/thumbnail_1006</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>100</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>45</Strength>
+      <Intelligent>30</Intelligent>
+      <Physical>110</Physical>
+      <Agility>8</Agility>
+      <Chat>하찮은 존재들!</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>1006</Skill>
       <AttackType>0</AttackType>
+    </Hero>
+    <Hero id="1007">
+      <Name>데비</Name>
+      <Image>HeroThumbnail/thumbnail_1007</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>140</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>55</Strength>
+      <Intelligent>40</Intelligent>
+      <Physical>140</Physical>
+      <Agility>12</Agility>
+      <Chat>하찮은 존재들!</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>1007</Skill>
+      <AttackType>4</AttackType>
+    </Hero>
+    <Hero id="1008">
+      <Name>8번보스</Name>
+      <Image>HeroThumbnail/thumbnail_1008</Image>
+      <Enable>false</Enable>
+      <Type>0</Type>
+      <Description>???</Description>
+      <Level>160</Level>
+      <Exp>0</Exp>
+      <Value>0</Value>
+      <Strength>90</Strength>
+      <Intelligent>70</Intelligent>
+      <Physical>200</Physical>
+      <Agility>20</Agility>
+      <Chat>하찮은 존재들!</Chat>
+      <EquipmentItem>0,0,0,0,0</EquipmentItem>
+      <Skill>1008</Skill>
+      <AttackType>4</AttackType>
     </Hero>
   </Heros>
 </HeroCollection>

@@ -29,6 +29,7 @@ public class dropItemInfo : MonoBehaviour
             dropItemUI.SetActive(true);
             dropItem.GetComponent<SpriteRenderer>().sprite = ItemSystem.GetItemImage(dropItemID);
             dropItemUI.GetComponentInChildren<Text>().text = ItemSystem.GetItemName(dropItemID);
+            dropItemUI.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(ItemSystem.GetItem(dropItemID).itemClass);
             Invoke("ShowDropEffect", 2);
         }
     }

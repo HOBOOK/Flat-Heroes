@@ -49,6 +49,9 @@ public class Item : ICloneable
     [XmlElement("SkillEnergy")]
     public int skillEnergy;
 
+    [XmlElement("Penetration")]
+    public int penetration;
+
     [XmlElement("Value")]
     public int value;
 
@@ -63,6 +66,15 @@ public class Item : ICloneable
 
     [XmlElement("Class")]
     public int itemClass;
+
+    [XmlElement("EnhancementCount")]
+    public int enhancementCount;
+
+    [XmlElement("Enhancement")]
+    public int enhancement;
+
+    [XmlElement("EnhancementType")]
+    public int enhancementType;
 
     public object Clone()
     {
@@ -86,6 +98,9 @@ public class Item : ICloneable
         newItem.enable = this.enable;
         newItem.count = this.count;
         newItem.itemClass = this.itemClass;
+        newItem.enhancementCount = this.enhancementCount;
+        newItem.enhancement = this.enhancement;
+        newItem.enhancementType = this.enhancementType;
         return newItem;
     }
 }

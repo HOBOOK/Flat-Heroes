@@ -1,0 +1,978 @@
+Coin=Coin
+Crystal=Crystal
+Energy=Energy
+MagicStone=Mana Stone
+Cash=Cash
+Scroll=Flat Scroll
+Ad=Ad
+AdRemove=Ad OFF
+Level=Lv
+Phase=Phase
+SkillLevel=Skill Lv
+HeroLevel=Hero Lv
+UserLevel=Player Lv
+UnlockLevel=Unlock Lv
+SkillAttack=Skill Attack
+SkillAttackBuff=Increased ATK
+BuffTime=duration
+SkillHeal=Hp recovery
+SkillDelay=Delay
+SkillUseEnergy=Energy
+Sec=Sec
+Minute=Minute
+Stun=Stunned
+Defence=Defence
+GachaNotice=Probability notice
+GachaNoticeInformation=* Probability of drawing advanced equipment\n\nSSS Rating: 1%\nSS Rating: 3%\nS Rating: 10%\nA Rating: 30%\nB rating: 56%\n\n- The probability of acquiring individual equipment within each class is the same (1 / n).\n\n* General equipment drawing probability\n\nS Rating: 5%\nA Rating: 10%\nB rating: 20%\nC rating: 40%\nD Rating: 25%\n\n- The probability of acquiring individual equipment within each class is the same (1 / n).
+ButtonYes=Yes
+ButtonNo=No
+ButtonReceive=Receive
+ButtonAdReceive=x2 Receive
+Stop=Stop
+Review=Feedback
+Cafe=Naver Cafe
+CurrentVersion=Current Ver
+LatestVersion=Newest Ver
+VersionAlert=The game version is not up to date. \n Please update to the latest version from the market.
+Win=W
+Lose=L
+Rank=Rank
+Champion=Champion
+PvpRankTitle=Rank of Flat Hero
+Transcendence=Transcendence
+TranscendenceStone=Transcendence Stone
+W=W
+L=L
+HeroType1=Hybrid Type
+HeroType2=Attack Type
+HeroType3=Defense Type
+HeroType4=Supported Types
+HeroTypeDescription1=This hero has a balanced attack and defense.
+HeroTypeDescription2=This hero is specialized for attack.
+HeroTypeDescription3=This hero is specialized in defense.
+HeroTypeDescription4=This hero can't attack, but it does support.
+StageMission=Mission
+AttackBuffUp=ATK ก่
+AttackBuffDown=ATK ก้
+DefenceBuffUp=DEF ก่
+DefenceBuffDown=DEF ก้
+Auto=<Auto
+ReinforcementRemainCount=Remaining reinforceable count
+ReinforcementSuccessRate=Success Rate
+ReinforcementTabMessage=Touch the screen to close the window.
+ReinforcementCompletedMessage=All reinforcements are complete.
+ReinforcementSuccessMessage=You have successfully reinforcing item!
+ReinforcementFailMessage=Reinforcements failed...
+UserStatPoint=AP
+UserStatPointReset=Reset
+
+IntroContext=One peaceful day\n\nThe skies of flat planets turned red.\n\nIn the sky, unidentified red magic stones fall to the ground\n\nA huge circle of magazines revealed the world.\n\n\n\n\nThe red magic stone has penetrated everywhere in the flat world\n\nThe surrounding creatures were converted to monsters and summoned.\n\nThe monsters destroyed people and the natural environment.\n\n\n\n\nAnd then.\n\nTo save a flat world in crisis of destruction\n\nFlat planets Heroes from all over begin to gather ...
+
+NameValidText=The name is already in use or contains characters that are out of order.\n (2 to 6 characters in Korean, English and numbers)
+NameValidInformation=(!) 2 to 6 characters in Korean, English and numbers
+
+RouletteTitle=Everyday Roulette Event~!
+RouletteInformation=Earn rewards and start your day with Lucky Roulette every day! (Initialize AM 00:00 daily)
+RouletteButton=Start!
+RouletteUnableButton=Not Today~
+RouletteUI=Event
+
+DailyCheckTitle=Attendance
+DailyCheckItem1=Energy x 50
+DailyCheckItem2=Crystals x 15
+DailyCheckItem3=Coins x 50,000
+DailyCheckItem4=ManaStone x 50
+DailyCheckItem5=Crystals x 50
+DailyCheckItem6=Special Gacha x 5
+DailyCheckItem7=SS Flat Sword
+DailyCheckChat=Time.
+DailyCheckInformation=(!) If you do not attend in a row, you will start again from Day 1.
+DailyCheckInformation2=7 days in a row!
+DailyCheckMessage=Obtained by attendance check reward.
+
+PostTitle=Post
+PostTab1=Message
+PostAllReceive=Receive All
+PostReceive=Receive
+PostInformation=(!) Items will be kept for 30 days.
+
+Tutorial=Tutorial
+TutorialStart=Combat Tutorial Start
+TutorialCompletedTitle=Complete tutorial
+TutorialCompletedMessage=You have completed the combat tutorial!
+TutorialCompletedTabMessage=Tap the screen to go to the waiting room.
+TutorialHeroChat1=(It looks like a monster is coming from a strange object ..)
+TutorialHeroChat2=(First, remove the monsters and destroy them.)
+TutorialHeroChat3=Hugh ... is it over?
+TutorialHeroChat4=Dong hae. I need your strength. There is no time. Let's go together.
+TutorialHeroChat5=How did you know my name? ..?
+TutorialBattleInformation1=(!) The flat energy currently being charged. \n The energy of the heroes is consumed by consuming energy.
+TutorialBattleInformation2=(!) Invokes hero skill by consuming the flat energy of this skill.
+TutorialBattleInformation3=(!) This button uses player skill. \n There is no extra energy, and there is a waiting time.
+TutorialExplanation0=Welcome to Flat World. \n The player will go on a journey to save \n the Flat World with the Flat Heroes.
+TutorialExplanation1=First, let's learn how to manage \n the flat heroes.
+TutorialExplanation2=Touch the team management window button.
+TutorialExplanation3=You've done well. \n Let's check her details.
+TutorialExplanation4=Please equip your hero.
+TutorialExplanation5=Please select equipment.
+TutorialExplanation6=Install!
+TutorialExplanation7=Close the equipment selection window.
+TutorialExplanation8=It's perfect. \n We're going to the Retained Items window now.
+TutorialExplanation9=Press equipment to view equipment information.
+TutorialExplanation10=Would you like to upgrade?
+TutorialExplanation11=Please select the first material
+TutorialExplanation12=Please select the second ingredient.
+TutorialExplanation13=Upgrade!
+TutorialExplanation14=Perfect. \n The following is the player's ability window.
+TutorialExplanation15=Do you want to get the ability once?
+TutorialExplanation16=You did a great job. \n The player's abilities are reflected in all heroes' abilities.
+TutorialExplanation17=Finally, I will look at the player's skill window.
+TutorialExplanation18=Player Skill is an additional skill to use in combat.
+TutorialExplanation19=Attainable at the base level, \n you can increase your stats by leveling up.
+TutorialExplanation20=Please close the window.
+TutorialExplanation21=Good job! \n The basic tutorial is over. \n Press the battle button to save the flat world!
+
+ConsentAlert=Game Terms and Privacy Agreement
+ConsentButton=Agree
+
+BundleAlert=Download
+BundleInformation=Do you want to download additional data to proceed with the game?
+BundleInformation2=You will not be able to proceed without receiving the added data.\n Recommended in a Wi-Fi environment.
+
+TipText1=If you delete the game at guest login, the data will disappear.
+TipText2=The stronger the enemy is, the more likely it is to get good equipment.
+TipText3=The player ability applies to all heroes.
+TipText4=Scrolls can be obtained by boss mode.
+TipText5=If you have 3 items of the same rating, you can upgrade the rating of the desired equipment.
+TipText6=(TMI) Flat Heroes was created by a single developer.
+TipText7=Endless battle mode is available from player level 8.
+TipText8=You can earn Manastone through research.
+TipText9=Reviews and feedback make the game more fun.
+TipText10=If your hero is having difficulty defeating your enemies, please strengthen your hero skills!
+
+AssetBundleDownText=Flat data required for 'Flat World' is being downloaded from server...
+AssetBundleLoadText=Configuring flat data in 'Flat World'...
+
+startTabText=Tab to Start.
+startTabWarningMessage=(!) Guest logins will delete all data when you delete the app.
+startTabGuestButton=Sign in Guest
+startTabGoogleButton=Sign in Google
+
+lobbyTitle=Lobby
+stageTitleMainType1=Destory summoner.
+stageTitleMainType2=Destroy all enemies.
+stageTitleMainType3=Boss repulsion.
+stageTitleInfinity=Destroy all enemies until it is possible.
+stageTitleBoss=Boss repulsion.
+stageTitleBattle=Start!
+stageTitleAttack=Start measuring damage for 30 seconds!
+stageInfinityPowerupMessage=Monster power-up
+
+mainManagerText=Manage
+mainShopText=Shop
+mainGachaText=Gacha
+mainMissionText=Mission
+mainLabText=Lab
+mainBattleText=Battle
+
+mainPvpText=PvP
+mainPvpRecord=Record
+mainPvpWinrate=Win Rate
+mainPvpRank=Rank
+mainPvpTeamSet=Edit Team>
+mainPvpTeamStart=Start
+mainPvpTeamFail=(!) Hero not enough
+mainPvpInformation=(!) All records during the test period will be reset.
+mainPvpGongButton=Medal
+mainPvpPopMedalTitle=Medal
+
+manageTitle=Manage
+manageTab1=My Heros
+manageTab2=Inventory
+manageTab2OrderButton1=Name
+manageTab2OrderButton2=Class
+manageTab2SellButton=Sell
+manageTab2Equipped=Equipped
+manageTab2EvolutionButton=Evolution
+manageTab2EvolutionInformation=Upgradeable to the same grade of equipment material.
+manageTab2EvolutionPaymentWarning1=There is not enough coins for equipment enhancement.
+manageTab2EvolutionPaymentWarning2=There is not enough crystals for equipment enhancement.
+manageTab2EvolutionFailWarning=An error occurred during the equipment upgrade. please try again.
+manageTab2EvolutionSuccess=Evolution Completed!
+manageTab2ReinforceButton=Reinforce
+manageTab3=Player Ability
+manageTab3Information=Player abilities can increase the hero's abilities
+manageTab3AbilityTitle=Overall ability
+manageTab3AbilityStartButton=AP:
+manageTab3AbilityInitationButton=Reset
+manageTab4=Player Skill
+manageTab5=Refinery
+
+shopTitle=Shop
+shopTab1=Crystal
+shopTab2=Coin
+shopTab3=Energy
+shopTab4=Hero
+shopTab5=Package
+
+gachaTitle=Gacha
+gachaType1=Special Five
+gachaType2=Special One
+gachaType3=Normal Five
+gachaType4=Normal One
+gachaType5=Free Speical  One
+gachaSpecialClass=B class ~ SSS class
+gachaNormalClass=D class ~ S class
+gachaInformation=You can get equipment using crystal.
+
+LabTitle=Lab
+LabPhaseUpQuestion=Do you want to upgrade the lab?
+LabPhaseTimeInformation=Study time
+LabPhaseGetInformation=output
+LabInformation=(!) Time remaining until manastone production
+LabGetButtonText=Get
+LabProgressInformation=(!) 1 minute shorter study time
+LabType1=Max Flat Power
+LabType1Description=Maximum flat energy amount increases.
+LabType2=Flat Power Charge
+LabType2Description=The flat energy charge per second increases.
+LabType3=Additional Coin
+LabType3Description=Acquired coins increase in enemy treatment.
+LabType4=Additional EXP
+LabType4Description=Acquired EXP increase in enemy treatment.
+LabType5=Heroes' ATK
+LabType5Description=Increases the damage of heroes.
+LabType6=Heroes' DEF
+LabType6Description=Increases the defence of heroes.
+LabType7=Max damage
+LabType7Description=The maximum damage of heroes is increased.
+
+modeSelectTitle=Mode
+modeMain=Main Battle
+modeInfinity=Infinity Battle
+modeBoss=Boss Battle
+modeAttack=30sec Attack
+modeWarningMessage1=(!) Player Level 8
+modeWarningMessage2=(!) Stage 1 Clear
+
+mapSelectTitle=Map
+mapSelectButton=Select
+
+bossSelectTitle=Boss
+bossSelectButton=Select
+bossSelectLockStageAlert=Stage Completed.
+
+heroSelectTitle=Hero
+heroSelectButton=Start
+heroSelectInformation=Please choose a hero.
+heroSelectSlotInformation=(!) Please select a slot.
+heroSelectPlayerSkillButton=Player\nSkill
+
+skillSelectTitle=Player Skill
+skillSelectInformation=You can choose up to 2 player skills.
+skillSelectButton=Select
+
+heroInfoTitle=Information
+heroInfoToLobbyButton=Lobby >
+heroInfoExceptLobbyButton=Except >
+heroInfoEquipment=Equipment
+heroInfoEquipmentInformation=* Press the equipment slot to equip the item.
+heroInfoHeroSkill=Skill
+heroInfoHeroSkillUpgradeButton=Upgrade
+heroInfoAttack=Atk
+heroInfoDefence=Def
+heroInfoHp=Hp
+heroInfoCritical=Critical
+heroInfoAttackSpeed=A.Speed
+heroInfoMoveSpeed=Move
+heroInfoKnockbackResist=Knockback
+heroInfoSkillEnergy=Energy
+heroInfoPenetration=Penetration
+heroInfoTranscendence=Trans
+heroInfoAbility=Potential
+
+equipmentItemTitle=Equipment
+equipmentItemEquipButton=Equip
+equipmentItemUnEquipButton=Unequip
+equipmentItemEmpty=Empry
+equipmentItemEmptyInformation=No equipment installed.
+equipmentItemEquipped=Equipped
+
+sellItemTitle=Sell
+sellItemInformation=* Coin earned
+sellItemAllToInventory=All >
+sellItemBToSell=B class <
+sellItemButton=Sell
+
+missionTitle=Mission
+missionDay=Daily
+missionWeek=Week
+missionArchivement=Archivement
+missionInformation=You can receive rewards by performing combat missions.
+missionClearAlertMessage=Three missions have been completed. Please check the compensation.
+missionClearAlertMessage2=
+missionProgress=In progress
+missionReward=Get
+missionClear=Clear
+
+getAbilityTitle=Get
+getAbilityTabText=Tab to screen.
+
+getEquipmentTitle=Get
+getEquipmentTabText=Tab to screen.
+
+rankTitle=Rank
+rankTitle2=Hall of Fame
+rankTab1=Infinity Battle
+rankTab2=Heroes Level
+rankTab3=PVP
+rankTab31=Class
+rankTab32=Total
+rankTab4=30s Attack
+
+chatRoomTitle=Chat Room
+
+configTitle=Setting
+configSoundTitle=Sound
+configSoundBgmTitle=Bgm
+configSoundEffectTitle=Effect
+configLangTitle=Language
+configCloudTitle=Data Save
+configNoSyncWarningMessage=(!) Google sync is not enabled. \nThe data will be flushed when the app is deleted.
+configPassiveSaveButton=Passive Save
+configSyncButton=Google Sync
+configPlayerIdText=User ID
+configGameVersionText=Ver.
+configLastSaveTimeText=* Last Saved Time :
+
+alertTitle=Alert
+alertYes=Yes
+alertNo=No
+alertEnergy=There is not enough portal energy to move to battlefield.
+alertScroll=The number of required orders is insufficient.
+alertCoin=Insufficient number of coins required.
+alertCrystal=Lack of necessary number of crystal.
+alertExitMessage=Are you sure you want to quit the game?
+alertNeedText=Requirement
+alertNeedMessage1=Do you want to open your ability?
+alertNeedMessage2=Selected item
+alertNeedMessage3=
+alertNeedMessage4=Do you want to sell it to?
+alertNeedMessage5=Would you like to purchase it?
+alertNeedMessage6=
+alertNeedMessage7=are required. Are you sure you want to expand your inventory?
+alertNeedMessage8=Do you want to reset your ability?
+alertGetMessage1=were obtained.
+alertGetMessage2=Player skill unlocked!
+alertGetMessage3=You have earned the item.
+alertGetMessage4=was acquired.
+alertGetMessage5=You can use the hero!
+alertGetMessage6=Mode is off!
+alertGetMessage7=Inventory slots increased.
+alertGetMessage8=As a tutorial reward
+alertSellText=Sell
+alertUnableSellMessage=can not be sold.
+alertUnableSellMessage2=It is mounted or there is an error in the number.
+alertUnableInventoryAddMessage=Inventory slots can no longer be extended.
+alertUnableGetItemMessage=You can not proceed because there are no extra inventory left.
+alertUnablePlayerSkillMessage=You can not use the skill yet.
+alertUnablePlayerSkillMessage2=PvP mode is automatic skill.
+alertLoginMessage=Coins accumulated during your absence in Flat World.
+alertEquipMessage=Equipment of grade S or higher consumes crystals for wear off. Would you like to wear it?
+alertDismountMessage=Is used. Do you want to unmount it?
+alertUnlockBossMode='Boss Mode' has been unlocked! \n You can get goods and scrolls through Boss Mode.
+alertUnlockInfinityMode='Endless Battle Mode' is off! \n Points in Endless Battle Mode are stored on the server and reflected in the ranking.
+alertDBErrorMessage=Error getting data from server.
+alertNetworkErrorMessage=The download failed due to a network error. \n Please try again in a normal network environment.
+alertTutorialSkipMessage=Do you want to skip the tutorial?
+alertTranscendenceMessage=Do you want to transcend the hero?
+alertTranscendenceUnableMessage=The hero is not yet ready to transcend.
+alertTranscendenceSuccessMessage=Succeeded. !!
+alertTranscendenceTitle=Transcendence
+alertTranscendenceUnableMessage2=Lack of transcendence stones needed for transcendence.
+alertBossModeSkipMessage=is used. Are you sure you want to reset the remaining time?
+alertHeroAbilityMessage1=Do you want to unlock your hero's potential?
+alertHeroAbilityMessage2=Would you reopen your hero's potential?
+alertReinforceFailMessage=Insufficient material for reinforcement.
+alertReinforceFailMessage2=Initialization failed due to lack of crystals.
+alertReinforceReinitMessage=Are you sure you want to reset the reinforcements and counts?
+alertReinforceReinforceMessage=Do you want to reinforcing the equipment?
+alertAbilityFailMessage=Not enough ability points.
+alertAbilityTryMessage=Do you want to open up your abilities with ability points?
+
+warningTitle=Warning
+
+stagePauseTitle=Pause
+stagePauseInformation=The game is paused. To continue, click Continue.
+stagePauseExitButton=Exit
+stagePauseContinueButton=Continue
+
+stageDefeatTitle=Result
+stageDefeatInformation=...Defeat!
+stageDefeatExitButton=Exit
+stageDefeatRetryButton=Retry
+
+stageVictoryTitle=Result
+stageVictoryClear1=Victory !
+stageVictoryClear2=Cool Victory !!
+stageVictoryClear3=Perfect victory !!!
+stageVictoryTabText=Tab to screen.
+stageVictoryBossMode=Boss hunting succeeded!
+
+stageResultTitle=Result
+stageResultCoin=Get Coin
+stageResultItem=Get Items
+stageResultLobbyButton=Go to lobby
+stageResultRetryButton=Retry
+stageResultNextButton=Next Stage
+
+StageName1=Forest of Fate
+StageDescription1=An unidentified object fell from the sky here. Let's check it out.
+StageName2=Destroyed Forest
+StageDescription2=The forests were almost destroyed by the monsters coming out constantly. We can not stand back anymore ..
+StageName3=Cities that collapsed
+StageDescription3=Now the city was invaded indiscriminately. Is there hope?
+StageName4=Burning Land
+StageDescription4=The day the monster was summoned, all the land burned down.
+StageName5=Dry desert
+StageDescription5=The hidden land in the legend existed in reality.
+StageName6=Iceberg of Silence
+StageDescription6=Temperatures fell sharply due to unstable energy.
+StageName7=Land of Destruction
+StageDescription7=All of us have fallen. But we have last hope.
+StageName8=End of Void
+StageDescription8=The Devi has been knocked down but the Flat World is falling apart and in search of hope to get everything back ..
+
+MapWarningMessage=It's not accessible yet.
+
+MissionClearMessage0=Sweeping the enemies
+MissionClearMessage1=Clear the stage
+MissionClearMessage2=Complete all day missions
+MissionClearMessage3=Attendance
+MissionClearMessage4=Open equipment gacha
+MissionClearMessage5=Collecting Heroes
+MissionClearMessage6=Collecting equipments
+MissionClearMessage7=Reaching the user level
+MissionClearMessage8=Reaching the level of the entire hero
+MissionClearMessage9=Reaching the entire lab level
+MissionClearMessage10=Using Total Coins
+MissionClearMessage11=Using Total Crystals
+MissionClearMessage12=Using Total Portal Energys
+MissionClearMessage13=Using Total Scrolls
+MissionClearMessage14=Reach all player skill levels
+MissionClearMessage15=Reach heroic skill level
+MissionClearMessage16=Reaching the total number of stages
+MissionClearMessage17=Fill item drop count
+MissionClearMessage18=Fill Coin Drop Count
+MissionClearMessage19=Boss ClearingFree equipment gacha
+MissionClearMessage20=Upgrade your equipment
+MissionClearMessage21=Free equipment gacha drawing
+MissionClearMessage22=Complete all weekly tasks
+
+MissionName0=Diligent hero
+MissionName1=Hero's qualities 1
+MissionName2=Hero's qualities 2
+MissionName3=Hero's qualities 3
+MissionName4=Hero's qualities 4
+MissionName5=What's to come?
+MissionName6=Short break
+MissionName7=Good luck of the day 1
+MissionName8=Fortune of the Day 2
+MissionName9=Hero's qualities 5
+MissionName10=Hero's Preparation 1
+
+MissionName100=Perfect Week
+MissionName101=Weekly 1
+MissionName102=Weekly 2
+MissionName103=Weekly 3
+MissionName104=Weekly 4
+MissionName105=Weekly 5
+MissionName106=Weekly 6
+MissionName107=Weekly 7
+MissionName108=Weekly 8
+MissionName109=Weekly 9
+MissionName110=Weekly 10
+
+MissionName201=Achievement 1
+MissionName202=Achievement 2
+MissionName203=Achievement 3
+MissionName204=Achievement 4
+MissionName205=Achievement 5
+MissionName206=Achievement 6
+MissionName207=Achievement 7
+MissionName208=Achievement 8
+MissionName209=Achievement 9
+MissionName210=Achievement 10
+MissionName211=Achievement 11
+MissionName212=Achievement 12
+MissionName213=Achievement 13
+MissionName214=Achievement 14
+MissionName215=Achievement 15
+MissionName216=Achievement 16
+MissionName217=Achievement 17
+MissionName218=Achievement 18
+
+MissionLevel=Level
+
+AbilityName1=The power of fire
+AbilityDescription1=Increases the Atk of heroes.
+AbilityName2=The power of the earth
+AbilityDescription2=Increases the Def of heroes.
+AbilityName3=The power of water
+AbilityDescription3=Increases the Hp of heroes.
+AbilityName4=The power of electricity
+AbilityDescription4=Increases the Critical of heroes.
+AbilityName5=The power of light
+AbilityDescription5=Increases the A.Speed of heroes.
+AbilityName6=The power of the wind
+AbilityDescription6=Increases the Move of heroes.
+AbilityName7=The power of darkness
+AbilityDescription7=Increases the Energy of heroes.
+
+HeroAbilityName1=Predator
+HeroAbilityDescription1=Health absorption on attack
+HeroAbilityName2=Hybrid
+HeroAbilityDescription2=Energy absorption on attack
+HeroAbilityName3=Joker
+HeroAbilityDescription3=Critical Damage Increase
+HeroAbilityName4=Muscular
+HeroAbilityDescription4=Additional damage
+HeroAbilityName5=Shield man
+HeroAbilityDescription5=Additional defense
+HeroAbilityName6=Stun Gun
+HeroAbilityDescription6=Stun with low probability of attack
+HeroAbilityName7=Dracaris
+HeroAbilityDescription7=Burn the enemy on attack (Fixed damage per second for 5 seconds)
+HeroAbilityName8=GOP
+HeroAbilityDescription8=Increased Defense Chance
+HeroAbilityName9=Monster
+HeroAbilityDescription9=Max HP Increase
+
+SkillName1=Wind chime
+SkillDescription1=Defeat all enemies in front.
+SkillName2=Throwing grenades
+SkillDescription2=Throw an exploding grenade to enemy in 3 seconds (increase target count per 5 levels, Max 10).
+SkillName3=Salamander
+SkillDescription3=Summons firecracks to make an unscrupulous bombardment in front (increased number of fires per 5 levels, Max 8).
+SkillName4=Quick sniffing
+SkillDescription4=Fires arrows in a row at great speed (increases the number of fires per 5 levels, Max 8).
+SkillName5=Smoke Knife
+SkillDescription5=Fly to the knife throwing area and attack the enemy (increase the number of hits per 5 levels, Max 10)
+SkillName6=Force of Warrior
+SkillDescription6=Attacks all enemies within range with a powerful enough fist to change pressure.
+SkillName7=Rage Music
+SkillDescription7=Increases the damage of all friendly units for 2 seconds.
+SkillName8=Energy Bolt
+SkillDescription8=Fires a powerful induction energy shot at one target.
+SkillName9=Ambulance
+SkillDescription9 = Call an ambulance that heals the entire friendly.
+SkillName10=Cutting indiscriminate
+SkillDescription10=Brings twins to the front indiscriminately.
+SkillName11=Hell Fire
+SkillDescription11=Drops a flame on all enemies in front of you (0.5 stuns)
+SkillName12=Shadow Shuriken
+SkillDescription12=Throws a shuriken in a row. (Up to 5 shots per level, up to 7) (Critical Damage + 10%)
+SkillName13=13
+SkillDescription13=
+SkillName14=14
+SkillDescription14=
+SkillName15=15
+SkillDescription15=
+
+SkillName101=Despair
+SkillDescription101=Makes a powerful explosive attack on the enemy.
+SkillName102=Hope
+SkillDescription102=Recovers all ally's stamina.
+SkillName103=Regret
+SkillDescription103=Resurrects one of your friends at random.
+SkillName104=Conceit
+SkillDescription104=Make all enemies stun.
+SkillName105=Sacrifice
+SkillDescription105=Sacrifice a friendly ally to reduce the strength of the ally's most powerful enemy's sacrifice.
+
+SkillName1006=Wake up! My warriors
+SkillDescription1006=
+SkillName1007=Dark Strike
+SkillDescription1007=
+SkillName1008=Show death.
+SkillDescription1008=
+
+HerosName101=Dong Hae
+HerosDescription101=Instantly cuts off one enemy.
+HerosChat101=Prepare your mind!,I'll defeat you all...
+
+HerosName102=White
+HerosDescription102=Legendary leader of the flat mercenary unit
+HerosChat102=Let's move on.!,Is it a start now..
+
+HerosName103=Albus
+HerosDescription103=An unidentified wizard who appeared in crisis.
+HerosChat103=There!,To Balance!
+
+HerosName104=Artemis
+HerosDescription104=Leader of the Dawn Organization
+HerosChat104=I'll protect you with this arrow...,You better run.!
+
+HerosName105=Ken
+HerosDescription105=Notorious assassin from eastern country
+HerosChat105=Watch your back..,Want to enjoy?
+
+HerosName106=Hakan
+HerosDescription106=The head of a powerful battle racial group located in the Great Plain Zone is said to have no match as a single fight.
+HerosChat106=K..hahahaha!,You'd better have it all at once.!
+
+HerosName107=Hwa yun
+HerosDescription107=An unidentified girl who lost her memory(Can't attack, reduces enemy's DEF by% of energy)
+HerosChat107=...
+
+HerosName108=September
+HerosDescription108=It is a humanoid artificial intelligence robot developed as a secret project in the west country.
+HerosChat108=Discover target.
+
+HerosName109=Dr.Park
+HerosDescription109=Legendary surgeon on the battlefield. (Can't attack, heals one alliance for his ATK value)
+HerosChat109=No more victims...,For Flat World!
+
+HerosName110=L
+HerosDescription110=Two-sided warriors summoned from other worlds to save the flat world.
+HerosChat110=As a battlefield!
+
+HerosName111=Bella
+HerosDescription111=In the past, experimenting with black magic has gained a lot of power.
+HerosChat111=let's begin!
+
+HerosName112=Hawk
+HerosDescription112=As a leader of a group specializing in assassination in the east, Ken seems to know him well.
+HerosChat112=Target identification..!
+
+HerosName501=Zombie
+HerosDescription501=null
+HerosChat501=Grrrrr!
+
+HerosName502=Bald Zombie
+HerosDescription502=null
+HerosChat502=Krrrrr..!
+
+HerosName503=Monkey Zombie
+HerosDescription503=null
+HerosChat503=Gibberrrr..
+
+HerosName504=Fly
+HerosDescription504=null
+HerosChat504=Whine ~
+
+HerosName505=Blue Slime
+HerosDescription505=null
+HerosChat505=Poing Poing!~
+
+HerosName506=Red Slime
+HerosDescription506=null
+HerosChat506=Boing Boing~!
+
+HerosName507=Tree Mon
+HerosDescription507=null
+HerosChat507=psssss...
+
+HerosName508=bear
+HerosDescription508=null
+HerosChat508=wuff! wuff
+
+HerosName509=Fie
+HerosDescription509=null
+HerosChat509=I burn everything ~!
+
+HerosName510=Golem
+HerosDescription510=null
+HerosChat510=wommm.
+
+HerosName511=Black Magician
+HerosDescription511=null
+HerosChat511=You are wrong.
+
+HerosName512=Fui
+HerosDescription512=null
+HerosChat512=Don't make me angry!
+
+HerosName513=Sand man
+HerosDescription513=null
+HerosChat513=I'll make you sand!
+
+HerosName514=Black Archor
+HerosDescription514=null
+HerosChat514=I'll get rid of it!
+
+HerosName515=Cactus
+HerosDescription515=null
+HerosChat515=I do not know if it's stabbed.
+
+HerosName516=Mummy
+HerosDescription516=null
+HerosChat516=...woom
+
+HerosName517=Snow man
+HerosDescription517=null
+HerosChat517=You know nothing. man Snow~
+
+HerosName518=Yeti
+HerosDescription518=null
+HerosChat518=Krrrrrrng!
+
+HerosName519=Fire man
+HerosDescription519=null
+HerosChat519=Firerrrr~!
+
+HerosName520=Ice Zombie
+HerosDescription520=null
+HerosChat520=Winter is coming..
+
+HerosName521=Black Ghost
+HerosDescription521=null
+HerosChat521=heheheh~
+
+HerosName522=Wraith
+HerosDescription522=null
+HerosChat522=null
+
+HerosName523=Judge
+HerosDescription523=null
+HerosChat523=null
+
+HerosName524=Judge
+HerosDescription524=null
+HerosChat524=null
+
+HerosName1001=Giant Humon
+HerosDescription1001=null
+HerosChat1001=Gibber! Gibber!
+
+HerosName1002=Fire Crow
+HerosDescription1002=null
+HerosChat1002=Caw! Caw..!
+
+HerosName1003=King GoldenSlime
+HerosDescription1003=null
+HerosChat1003=Kuing~! Kuing~!
+
+HerosName1004=Ice Dragon
+HerosDescription1004=null
+HerosChat1004=Krrrrrrr,Your role is over!!
+
+HerosName1005=Forest
+HerosDescription1005=null
+HerosChat1005=Get out of my land.
+
+HerosName1006=Tutang
+HerosDescription1006=null
+HerosChat1006=I will not forgive you for making me resurrected.
+
+HerosName1007=Devi
+HerosDescription1007=null
+HerosChat1007=Crack can not be avoided, purely follow your destiny !, You can not avoid destruction because you block me.
+
+HerosName1008=Tanatos
+HerosDescription1008=null
+HerosChat1008=null
+
+ItemClassName1=Old
+ItemClassName2=Normal
+ItemClassName3=Solid
+ItemClassName4=Rare
+ItemClassName5=Superior
+ItemClassName6=Perfect
+ItemClassName7=Hero's
+ItemClassName8=Legendary
+
+ItemNameNull=null
+
+ItemName1=Old Flat Sword
+ItemDescription1=It is a weapon used by apprentices.
+ItemDescription2=It is a weapon used by apprentices.
+ItemDescription3=It is a weapon used by apprentices.
+ItemDescription4=It is a weapon used by apprentices.
+ItemDescription5=It is a weapon used by apprentices.
+ItemDescription6=It is a weapon used by apprentices.
+ItemDescription7=It is a weapon used by apprentices.
+ItemDescription8=It is a weapon used by apprentices.
+
+ItemName11=Hwan do
+ItemDescription11=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
+ItemDescription12=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
+ItemDescription13=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
+ItemDescription14=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
+ItemDescription15=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
+ItemDescription16=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
+ItemDescription17=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
+ItemDescription18=It is a traditional weapon of the eastern country called Hwan do. The ends are sharpened.
+
+ItemName21=Black Hwan do
+ItemDescription21=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
+ItemDescription22=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
+ItemDescription23=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
+ItemDescription24=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
+ItemDescription25=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
+ItemDescription26=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
+ItemDescription27=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
+ItemDescription28=It is a flame refined with an unknown black substance. It is even sharper than the circulation.
+
+ItemName31=F-5
+ItemDescription31=A special bullet can be fired with a pistol that is mainly used by the mercenaries.
+ItemDescription32=A special bullet can be fired with a pistol that is mainly used by the mercenaries.
+ItemDescription33=A special bullet can be fired with a pistol that is mainly used by the mercenaries.
+ItemDescription34=A special bullet can be fired with a pistol that is mainly used by the mercenaries.
+ItemDescription35=A special bullet can be fired with a pistol that is mainly used by the mercenaries.
+ItemDescription36=A special bullet can be fired with a pistol that is mainly used by the mercenaries.
+ItemDescription37=A special bullet can be fired with a pistol that is mainly used by the mercenaries.
+ItemDescription38=A special bullet can be fired with a pistol that is mainly used by the mercenaries.
+
+ItemName41=Flat Knife
+ItemDescription41=It is short and wielding dagger.
+ItemDescription42=It is short and wielding dagger.
+ItemDescription43=It is short and wielding dagger.
+ItemDescription44=It is short and wielding dagger.
+ItemDescription45=It is short and wielding dagger.
+ItemDescription46=It is short and wielding dagger.
+ItemDescription47=It is short and wielding dagger.
+ItemDescription48=It is short and wielding dagger.
+
+ItemName51=Cloth armor
+ItemDescription51=Lightweight and easy to wear armor.
+ItemDescription52=Lightweight and easy to wear armor.
+ItemDescription53=Lightweight and easy to wear armor.
+ItemDescription54=Lightweight and easy to wear armor.
+ItemDescription55=Lightweight and easy to wear armor.
+ItemDescription56=Lightweight and easy to wear armor.
+ItemDescription57=Lightweight and easy to wear armor.
+ItemDescription58=Lightweight and easy to wear armor.
+
+ItemName61=Iron armor
+ItemDescription61=It is a lightweight but sturdy armor.
+ItemDescription62=It is a lightweight but sturdy armor.
+ItemDescription63=It is a lightweight but sturdy armor.
+ItemDescription64=It is a lightweight but sturdy armor.
+ItemDescription65=It is a lightweight but sturdy armor.
+ItemDescription66=It is a lightweight but sturdy armor.
+ItemDescription67=It is a lightweight but sturdy armor.
+ItemDescription68=It is a lightweight but sturdy armor.
+
+ItemName71=Hunter's Armor
+ItemDescription71=It is well-balanced armor.
+ItemDescription72=It is well-balanced armor.
+ItemDescription73=It is well-balanced armor.
+ItemDescription74=It is well-balanced armor.
+ItemDescription75=It is well-balanced armor.
+ItemDescription76=It is well-balanced armor.
+ItemDescription77=It is well-balanced armor.
+ItemDescription78=It is well-balanced armor.
+
+ItemName81=Round shield
+ItemDescription81=It is a round wooden shield.
+ItemDescription82=It is a round wooden shield.
+ItemDescription83=It is a round wooden shield.
+ItemDescription84=It is a round wooden shield.
+ItemDescription85=It is a round wooden shield.
+ItemDescription86=It is a round wooden shield.
+ItemDescription87=It is a round wooden shield.
+ItemDescription88=It is a round wooden shield.
+
+ItemName91=Guardian Shield
+ItemDescription91=Platinum shield with wings.
+ItemDescription92=Platinum shield with wings.
+ItemDescription93=Platinum shield with wings.
+ItemDescription94=Platinum shield with wings.
+ItemDescription95=Platinum shield with wings.
+ItemDescription96=Platinum shield with wings.
+ItemDescription97=Platinum shield with wings.
+ItemDescription98=Platinum shield with wings.
+
+ItemName101=Horned Armor
+ItemDescription101=It is an armor with horns on its shoulders.
+ItemDescription102=It is an armor with horns on its shoulders.
+ItemDescription103=It is an armor with horns on its shoulders.
+ItemDescription104=It is an armor with horns on its shoulders.
+ItemDescription105=It is an armor with horns on its shoulders.
+ItemDescription106=It is an armor with horns on its shoulders.
+ItemDescription107=It is an armor with horns on its shoulders.
+ItemDescription108=It is an armor with horns on its shoulders.
+
+ItemName111=Wizard's Shoes
+ItemDescription111=It is a shoe with a sense of insignificance.
+ItemDescription112=It is a shoe with a sense of insignificance.
+ItemDescription113=It is a shoe with a sense of insignificance.
+ItemDescription114=It is a shoe with a sense of insignificance.
+ItemDescription115=It is a shoe with a sense of insignificance.
+ItemDescription116=It is a shoe with a sense of insignificance.
+ItemDescription117=It is a shoe with a sense of insignificance.
+ItemDescription118=It is a shoe with a sense of insignificance.
+
+ItemName121=Wings of flat
+ItemDescription128=Only one pure wing.
+
+ItemName131=Wizard's Ring
+ItemDescription131=A ring that has a vile energy.
+ItemDescription132=A ring that has a vile energy.
+ItemDescription133=A ring that has a vile energy.
+ItemDescription134=A ring that has a vile energy.
+ItemDescription135=A ring that has a vile energy.
+ItemDescription136=A ring that has a vile energy.
+ItemDescription137=A ring that has a vile energy.
+ItemDescription138=A ring that has a vile energy.
+
+ItemName8001=Flat Scroll
+ItemDescription8001=This scroll is used to strengthen equipment and refine items.
+
+ItemName8002=Medal of Battle
+ItemDescription8002=A medal that can be obtained through PvP.
+
+ItemName9001=2,000 Crystal
+ItemDescription9001=There are 2,000 pieces of crystal.
+ItemName9002=60 Crystal
+ItemDescription9002=There are 60 pieces of crystal.
+ItemName9003=160 Crystal
+ItemDescription9003=There are 160 pieces of crystal.
+ItemName9004=300 Crystal
+ItemDescription9004=There are 300 pieces of crystal.
+ItemName9005=600 Crystal
+ItemDescription9005=There are 600 pieces of crystal.
+ItemName9006=1,000 Crystal
+ItemDescription9006=There are 1,000 pieces of crystal.
+
+ItemName9011=150 Portal Energy
+ItemDescription9011=There are 150 portal energies.
+ItemName9012=400 Portal Energy
+ItemDescription9012=There are 400 portal energies.
+
+ItemName9021=30 Flat Scroll
+ItemDescription9021=This scroll is used to strengthen equipment and refine items.
+ItemName9022=70 Flat Scroll
+ItemDescription9022=This scroll is used to strengthen equipment and refine items.
+
+ItemName9031=50,000 Coins
+ItemDescription9031=It contains 50,000 coins.
+ItemName9032=100,000 Coins
+ItemDescription9032=It contains 100,000 coins.
+ItemName9033=150,000 Coins
+ItemDescription9033=It contains 150,000 coins.
+ItemName9034=250,000 Coins
+ItemDescription9034=It contains 250,000 coins.
+ItemName9035=700,000 Coins
+ItemDescription9035=It contains 700,000 coins.
+
+ItemName9041=Ad package
+ItemDescription9041=(!) Only one purchase\n Remove full ad + skip compensated ad + 50 crystals
+ItemName9048=Complete preparation package
+ItemDescription9048=(!) Only one purchase\nAd package + 400 crystals + 100 energys + 100,000 coins (+50 crystals if you already have an advertising package)
+ItemName9049=Hero's preparation package
+ItemDescription9049=(!) Only one purchase\nAd package + 1,000 crystals + 200 energys + 200,000 coins (+50 crystals if you already have an advertising package)
+ItemName9050=Legendary Prep Package
+ItemDescription9050=(!) Only one purchase\nAd package + 2,400 crystals + 500 energys + 400,000 coins (+50 crystals if you already have an advertising package) + Wings of flat(Legendary)
+
+ItemName10001=Coin
+ItemDescription10001=Coin
+ItemName10002=Crystal
+ItemDescription10002=Crystal
+ItemName10003=Energy
+ItemDescription10003=Energy
+
+AdRewardCoin=30,000 Coins
+AdRewardCrystal=15 Crystals
+AdRewardEnergy=30 Portal Energy

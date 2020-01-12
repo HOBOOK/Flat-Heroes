@@ -52,7 +52,7 @@ public static class MapSystem
     public static bool IsAbleBossMode()
     {
         Map bossModeMap = userMaps.Find(x => x.id > 10);
-        if(bossModeMap!=null)
+        if(bossModeMap!=null&&PlayerPrefs.GetInt("BossMode")==1)
         {
             return true;
         }
@@ -60,7 +60,7 @@ public static class MapSystem
     }
     public static bool IsAbleInfinityMode()
     {
-        if (User.level >= 10)
+        if (User.level >= 8&&PlayerPrefs.GetInt("InfinityMode")==1)
             return true;
         return false;
     }
@@ -74,18 +74,23 @@ public static class MapSystem
     {
         Map clearMap = userMaps.Find(map => map.id == (mapId) || map.id.Equals(mapId));
         Map openMap = maps.Find(map => map.id == (mapId+1) || map.id.Equals(mapId+1));
+        bool isAlreadyMap = userMaps.Find(map => map.id == (mapId + 1) || map.id.Equals(mapId + 1)) != null;
         if(clearMap!=null)
         {
             clearMap.clearPoint = clearPoint;
-            if (openMap != null)
+            if (openMap != null&&!isAlreadyMap)
             {
                 userMaps.Add(openMap);
+                MapDatabase.AddMapClear(clearMap, openMap);
             }
-            MapDatabase.AddMapClear(clearMap.id,openMap.id);
+            else
+            {
+                MapDatabase.AddMapClear(clearMap, null);
+            }
         }
         else
         {
-            Debugging.LogWarning("클리어 할 맵을 찾지못함 >> " + mapId);
+            Debugging.Log("클리어 할 맵을 찾지못함 >> " + mapId);
         }
     }
     public static int GetCurrentMapId(int stageNumber = 0)
@@ -136,7 +141,6 @@ public static class MapSystem
     }
     public static bool isAbleMap(int id)
     {
-
         Map userMap = userMaps.Find(x => x.id == id || x.id.Equals(id));
 
         if (userMap != null)
@@ -208,7 +212,8 @@ public static class MapSystem
     }
     public static void SetMapSprite(int stageNumber, ref Transform MapTransform)
     {
-        Sprite[] mapSprite = Resources.LoadAll<Sprite>("Maps/Stage" + stageNumber);
+        stageNumber = Mathf.Clamp(stageNumber, 1, 8);
+        Sprite[] mapSprite = Resources.LoadAll<Sprite>("Maps/Stage" + stageNumber.ToString());
         foreach (var mapsp in mapSprite)
         {
             if (mapsp.name.Contains("layer1"))
@@ -231,7 +236,55 @@ public static class MapSystem
         }
         Debugging.Log(stageNumber + " 스테이지 맵이미지 로드 완료");
     }
-    
+    public static void SetLobbySprite(bool isMorning, ref Transform MapTransform)
+    {
+        Sprite[] mapSprite = null;
+        if(isMorning)
+        {
+            mapSprite = Resources.LoadAll<Sprite>("Maps/LobbyMorning");
+            MapTransform.transform.GetChild(0).GetChild(1).GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+        }
+        else
+        {
+            mapSprite = Resources.LoadAll<Sprite>("Maps/Lobby");
+            MapTransform.transform.GetChild(0).GetChild(1).GetComponent<SpriteRenderer>().color = new Color32(41, 41, 41, 255);
+        }
+        foreach (var mapsp in mapSprite)
+        {
+            if (mapsp.name.Contains("layer1"))
+            {
+                var foreground = MapTransform.transform.GetChild(0).GetChild(2).gameObject;
+                foreground.GetComponent<SpriteRenderer>().sprite = mapsp;
+                foreach(SpriteRenderer grass in foreground.GetComponentsInChildren<SpriteRenderer>())
+                {
+                    if(grass.gameObject!=foreground)
+                    {
+                        if(isMorning)
+                        {
+                            grass.color = new Color32(150, 150, 150, 255);
+                        }
+                        else
+                        {
+                            grass.color = Color.black;
+                        }
+                    }
+                }
+            }
+            else if (mapsp.name.Contains("field"))
+            {
+                var field = MapTransform.transform.GetChild(1).GetChild(0).gameObject;
+                field.GetComponent<SpriteRenderer>().sprite = mapsp;
+            }
+            else if (!mapsp.name.Contains("tile"))
+            {
+                var background = MapTransform.transform.GetChild(0).GetChild(0).gameObject;
+                background.GetComponentInChildren<SpriteRenderer>().sprite = mapsp;
+            }
+        }
+
+        Debugging.Log("로비 맵이미지 로드 완료");
+    }
+
     #endregion
 
 

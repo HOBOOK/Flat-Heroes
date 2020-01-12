@@ -491,5 +491,75 @@
       <Image>Maps/map_030</Image>
       <ClearPoint>0</ClearPoint>
     </Map>
+    <Map id="71">
+      <Name>8-1</Name>
+      <StageType>0</StageType>
+      <StageNumber>8</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="72">
+      <Name>8-2</Name>
+      <StageType>0</StageType>
+      <StageNumber>8</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="73">
+      <Name>8-3</Name>
+      <StageType>0</StageType>
+      <StageNumber>8</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="74">
+      <Name>8-4</Name>
+      <StageType>0</StageType>
+      <StageNumber>8</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="75">
+      <Name>8-5</Name>
+      <StageType>0</StageType>
+      <StageNumber>8</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="76">
+      <Name>8-6</Name>
+      <StageType>0</StageType>
+      <StageNumber>8</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="77">
+      <Name>8-7</Name>
+      <StageType>0</StageType>
+      <StageNumber>8</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="78">
+      <Name>8-8</Name>
+      <StageType>0</StageType>
+      <StageNumber>8</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="79">
+      <Name>8-9</Name>
+      <StageType>0</StageType>
+      <StageNumber>8</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
+    <Map id="80">
+      <Name>8-10</Name>
+      <StageType>2</StageType>
+      <StageNumber>8</StageNumber>
+      <Image>Maps/map_030</Image>
+      <ClearPoint>0</ClearPoint>
+    </Map>
   </Maps>
 </MapCollection>

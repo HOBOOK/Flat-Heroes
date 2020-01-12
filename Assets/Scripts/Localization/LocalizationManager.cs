@@ -31,7 +31,7 @@ public class LocalizationManager
             }
             catch (KeyNotFoundException e)
             {
-                Debugging.LogWarning(key + " 의 로컬라이징 텍스트를 발견하지못함");
+                Debugging.LogWarning(key + " 의 로컬라이징 텍스트를 발견하지못함" + e);
             }
         }
         return txt;

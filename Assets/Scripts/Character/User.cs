@@ -8,8 +8,6 @@ public class User
     [SerializeField]
     public static string id;
     [SerializeField]
-    public static bool isDead;
-    [SerializeField]
     public static bool isPlaying;
     [SerializeField]
     public static int level;
@@ -53,5 +51,56 @@ public class User
     public static string language;
     [SerializeField]
     public static int inventoryCount;
-
+    [SerializeField]
+    public static int profileHero;
+    [SerializeField]
+    public static bool isAdsRemove;
+    [SerializeField]
+    public static bool isAdsSkip;
+    [SerializeField]
+    public static string paymentItem;
+    [SerializeField]
+    public static int InfinityRankPoint;
+    [SerializeField]
+    public static string eventSaveDate;
+    [SerializeField]
+    public static int magicStone;
+    [SerializeField]
+    public static int magicStoneStack;
+    [SerializeField]
+    public static int labLevel;
+    [SerializeField]
+    public static string labProgressDate;
+    [SerializeField]
+    public static bool isAutoCam;
+    [SerializeField]
+    public static bool isSpeedGame;
+    [SerializeField]
+    public static int tutorialSequence;
+    [SerializeField]
+    public static int HeroRankPoint;
+    [SerializeField]
+    public static string dailySaveDate;
+    [SerializeField]
+    public static int battleRankPoint;
+    [SerializeField]
+    public static int battleWin;
+    [SerializeField]
+    public static int battleLose;
+    [SerializeField]
+    public static int[] battleHeros;
+    [SerializeField]
+    public static string postItems;
+    [SerializeField]
+    public static int transcendenceStone;
+    [SerializeField]
+    public static int attackRankPoint;
+    [SerializeField]
+    public static int addMaxDamageLevel;
+    [SerializeField]
+    public static int statsPoint;
+    [SerializeField]
+    public static string bossClearTime;
+    [SerializeField]
+    public static string premiumPassDate;
 }

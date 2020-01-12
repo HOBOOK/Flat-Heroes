@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class UI_Manager : MonoBehaviour
 {
     public static UI_Manager instance = null;
+    public GameObject canvasOverlay;
+    public GameObject canvasPopup;
     public GameObject Title;
     public GameObject CoverUI;
     public GameObject PopHeroInfoSummaryUI;
@@ -14,6 +16,12 @@ public class UI_Manager : MonoBehaviour
     public GameObject PopupInterActiveCover;
     public GameObject PopupAlertUI;
     public GameObject PopupGetGachaUI;
+    public GameObject MissionButton;
+    public GameObject ShopUI;
+    public GameObject LoginRewardUI;
+    public GameObject BossEndingPanel;
+    public GameObject DailyCheckUI;
+    public GameObject PopObeliskUI;
 
     public enum PopupAlertTYPE { energy,scroll,coin,blackCrystal}
 
@@ -37,7 +45,7 @@ public class UI_Manager : MonoBehaviour
     }
     public void ShowTitle()
     {
-        if (Title != null)
+        if (Title != null && PlayerPrefs.GetInt("isTutorialEnd")==2)
         {
             Title.gameObject.SetActive(true);
 
@@ -45,7 +53,130 @@ public class UI_Manager : MonoBehaviour
                 Title.GetComponent<AiryUIAnimatedElement>().ShowElement();
         }
     }
+    public void ShowDailyCheckUI(int day)
+    {
+        if(DailyCheckUI!=null)
+        {
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
+            DailyCheckUI.gameObject.SetActive(true);
+            DailyCheckUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
+            DailyCheckUI.GetComponent<UI_DailyCheck>().StartDailyUI(day);
+        }
+    }
+    public void ShowObeliskUI()
+    {
+        if (PopObeliskUI != null)
+        {
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.magic);
+            PopObeliskUI.gameObject.SetActive(true);
+            foreach(var child in PopObeliskUI.GetComponentsInChildren<AiryUIAnimatedElement>())
+            {
+                child.ShowElement();
+            }
+        }
+    }
+    public void ShowBossEndingUI(int rewardCoin, int rewardCrystal, int rewardScroll,int rewardTranscendenceStone,int rewardBoxType, int rewardBoxCount)
+    {
+        if(BossEndingPanel!=null)
+        {
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
+            Transform rewardParent = BossEndingPanel.GetComponentInChildren<VerticalLayoutGroup>().transform;
+            rewardParent.transform.GetChild(0).GetComponentInChildren<Text>().text = string.Format("+ {0}", Common.GetThousandCommaText(rewardCoin));
+            rewardParent.transform.GetChild(1).GetComponentInChildren<Text>().text = string.Format("+ {0}", Common.GetThousandCommaText(rewardCrystal));
+            rewardParent.transform.GetChild(2).GetComponentInChildren<Text>().text = string.Format("+ {0}", Common.GetThousandCommaText(rewardScroll));
+            if(rewardTranscendenceStone>0)
+            {
+                rewardParent.transform.GetChild(3).gameObject.SetActive(true);
+                rewardParent.transform.GetChild(3).GetComponentInChildren<Text>().text = string.Format("+ {0}", Common.GetThousandCommaText(rewardTranscendenceStone));
+            }
+            else
+            {
+                rewardParent.transform.GetChild(3).gameObject.SetActive(false);
+            }
+            if (rewardBoxCount > 0)
+            {
+                rewardParent.transform.GetChild(4).gameObject.SetActive(true);
+                rewardParent.transform.GetChild(4).GetComponent<Image>().sprite = ItemSystem.GetItemImage((8003 + rewardBoxType));
+                rewardParent.transform.GetChild(4).GetComponentInChildren<Text>().text = string.Format("+ {0}", Common.GetThousandCommaText(rewardBoxCount));
+            }
+            else
+            {
+                rewardParent.transform.GetChild(4).gameObject.SetActive(false);
+            }
+            BossEndingPanel.gameObject.SetActive(true);
+            foreach(AiryUIAnimatedElement child in BossEndingPanel.GetComponentsInChildren<AiryUIAnimatedElement>())
+            {
+                child.ShowElement();
+            }
+        }
+    }
+    public void MissionUIAlertOn(bool onoff)
+    {
+        if(MissionButton!=null)
+        {
+            if(onoff)
+                MissionButton.transform.GetChild(2).gameObject.SetActive(true);
+            else
+                MissionButton.transform.GetChild(2).gameObject.SetActive(false);
+        }
+    }
+    public void ShowLoginRewardUI(int rewardCoin)
+    {
+        if (LoginRewardUI != null)
+        {
+            LoginRewardUI.transform.GetChild(0).GetChild(0).GetChild(0).GetComponentInChildren<Text>().text = string.Format("{0} {1}", Common.GetThousandCommaText(rewardCoin), LocalizationManager.GetText("Coin"));
+            Transform buttonParent = LoginRewardUI.GetComponentInChildren<HorizontalLayoutGroup>().transform;
+            buttonParent.transform.GetChild(0).GetComponent<Button>().onClick.RemoveAllListeners();
+            buttonParent.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(delegate {
+                OnLoginRewardClick(false, rewardCoin);
+            });
+            buttonParent.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
+            buttonParent.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate {
+                OnLoginRewardClick(true, rewardCoin);
+            });
+            LoginRewardUI.SetActive(true);
+            LoginRewardUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
+        }
+    }
+    public void OnLoginRewardClick(bool isAdvertisement, int rewardCoin)
+    {
+        if (isAdvertisement)
+            UnityAdsManager.instance.ShowRewardedAd(UnityAdsManager.RewardItems.Coin, rewardCoin*2);
+        else
+        {
+            SaveSystem.AddUserCoin(rewardCoin);
+            UI_Manager.instance.ShowGetAlert("Items/coin", string.Format("<color='yellow'>{0}</color> {1} {2}", Common.GetThousandCommaText(rewardCoin), LocalizationManager.GetText("Coin"), LocalizationManager.GetText("alertGetMessage1")));
+        }
+        //TODO 시간저장
+        LoginRewardUI.SetActive(false);
 
+    }
+
+    public void ShowShopUI(int type)
+    {
+        if(ShopUI!=null)
+        {
+            CloseAllPopupPanel();
+            ShopUI.SetActive(true);
+            SoundManager.instance.EffectOnOff(AudioClipManager.instance.ui_shop);
+            UI_TabManager shopTabManager = ShopUI.GetComponentInChildren<UI_TabManager>();
+            switch (type)
+            {
+                case 0://coin
+                    shopTabManager.OnTabButtonClick(2);
+                    break;
+                case 1://crystal
+                    shopTabManager.OnTabButtonClick(1);
+                    break;
+                case 2://energy
+                    shopTabManager.OnTabButtonClick(3);
+                    break;
+                case 4://패키지
+                    shopTabManager.OnTabButtonClick(0);
+                    break;
+            }
+        }
+    }
     public GameObject GetPopupPanel(string popupName)
     {
         GameObject popupPanel = GameObject.FindWithTag("PopupPanel") as GameObject;
@@ -64,7 +195,7 @@ public class UI_Manager : MonoBehaviour
         return null;
     }
 
-    public void OpenPopupPanel(string popupName)
+    public GameObject OpenPopupPanel(string popupName)
     {
         if(popupPanel==null)
             popupPanel = GameObject.FindWithTag("PopupPanel") as GameObject;
@@ -80,17 +211,19 @@ public class UI_Manager : MonoBehaviour
                 }
             }
         }
-        if(popupObject!=null&&popupObject.GetComponentInChildren<AiryUIAnimatedElement>()!=null)
+        if(popupObject!=null)
         {
             popupObject.gameObject.SetActive(true);
             showUIanimation(popupObject);
         }
+        return popupObject;
     }
-    public void OpenEndGamePanel(bool isWin)
+    public GameObject OpenEndGamePanel(bool isWin, int clearPoint = 1)
     {
         if (popupPanel == null)
             popupPanel = GameObject.FindWithTag("PopupPanel") as GameObject;
         GameObject popupObject = null;
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
         if (popupPanel != null && popupPanel.transform.childCount > 0)
         {
             for (var i = 0; i < popupPanel.transform.childCount; i++)
@@ -115,8 +248,167 @@ public class UI_Manager : MonoBehaviour
         }
         if (popupObject != null && popupObject.GetComponentInChildren<AiryUIAnimatedElement>() != null)
         {
+            Text resultText = popupObject.transform.GetChild(1).GetComponentInChildren<Text>();
+            if (clearPoint == 2)
+                resultText.text = string.Format("{0}", LocalizationManager.GetText("stageVictoryClear2"));
+            else if (clearPoint==3)
+                resultText.text = string.Format("{0}", LocalizationManager.GetText("stageVictoryClear3"));
+            else
+                resultText.text = string.Format("{0}",LocalizationManager.GetText("stageVictoryClear1"));
             popupObject.gameObject.SetActive(true);
             showUIanimation(popupObject);
+            this.gameObject.SetActive(false);
+        }
+        return popupObject;
+    }
+    public GameObject OpenAutoEndGamePanel(bool isWin, int clearPoint = 1)
+    {
+        if (popupPanel == null)
+            popupPanel = GameObject.FindWithTag("PopupPanel") as GameObject;
+        GameObject popupObject = null;
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
+        if (popupPanel != null && popupPanel.transform.childCount > 0)
+        {
+            for (var i = 0; i < popupPanel.transform.childCount; i++)
+            {
+                if (isWin)
+                {
+                    if (popupPanel.transform.GetChild(i).name.Equals("PanelPopEndGame"))
+                    {
+                        popupObject = popupPanel.transform.GetChild(i).gameObject;
+                        break;
+                    }
+                }
+                else
+                {
+                    if (popupPanel.transform.GetChild(i).name.Equals("PanelPopDefeat"))
+                    {
+                        popupObject = popupPanel.transform.GetChild(i).gameObject;
+                        break;
+                    }
+                }
+            }
+        }
+        if (popupObject != null && popupObject.GetComponentInChildren<AiryUIAnimatedElement>() != null)
+        {
+            Text resultText = popupObject.transform.GetChild(1).GetComponentInChildren<Text>();
+            if (clearPoint == 2)
+                resultText.text = string.Format("{0}", LocalizationManager.GetText("stageVictoryClear2"));
+            else if (clearPoint == 3)
+                resultText.text = string.Format("{0}", LocalizationManager.GetText("stageVictoryClear3"));
+            else
+                resultText.text = string.Format("{0}", LocalizationManager.GetText("stageVictoryClear1"));
+            popupObject.gameObject.SetActive(true);
+            showUIanimation(popupObject);
+            this.gameObject.SetActive(false);
+        }
+        return popupObject;
+    }
+    public GameObject OpenResultPanel()
+    {
+        if (popupPanel == null)
+            popupPanel = GameObject.FindWithTag("PopupPanel") as GameObject;
+        GameObject popupObject = null;
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
+        if (popupPanel != null && popupPanel.transform.childCount > 0)
+        {
+            for (var i = 0; i < popupPanel.transform.childCount; i++)
+            {
+                if (popupPanel.transform.GetChild(i).name.Equals("PanelPopResult"))
+                {
+                    popupObject = popupPanel.transform.GetChild(i).gameObject;
+                    break;
+                }
+            }
+        }
+        if (popupObject != null && popupObject.GetComponentInChildren<AiryUIAnimatedElement>() != null)
+        {
+            popupObject.gameObject.SetActive(true);
+            showUIanimation(popupObject);
+            this.gameObject.SetActive(false);
+        }
+        return popupObject;
+    }
+    public void OpenAttackEndGamePanel(int dam)
+    {
+        if (popupPanel == null)
+            popupPanel = GameObject.FindWithTag("PopupPanel") as GameObject;
+        GameObject popupObject = null;
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
+        if (popupPanel != null && popupPanel.transform.childCount > 0)
+        {
+            for (var i = 0; i < popupPanel.transform.childCount; i++)
+            {
+                if (popupPanel.transform.GetChild(i).name.Equals("PanelPopEndGame"))
+                {
+                    popupObject = popupPanel.transform.GetChild(i).gameObject;
+                    break;
+                }
+            }
+        }
+        if (popupObject != null && popupObject.GetComponentInChildren<AiryUIAnimatedElement>() != null)
+        {
+            Text resultText = popupObject.transform.GetChild(0).GetChild(1).GetComponentInChildren<Text>();
+            resultText.text = string.Format("최고 데미지 >      <size='50'>{0}</size>\r\n\r\n현재 데미지 >      <size='50'>{1}</size>", User.attackRankPoint.ToString("N0"),dam.ToString("N0"));
+            popupObject.gameObject.SetActive(true);
+            showUIanimation(popupObject);
+            this.gameObject.SetActive(false);
+        }
+    }
+    public GameObject OpenBattleEndGamePanel(bool isWin)
+    {
+        if (popupPanel == null)
+            popupPanel = GameObject.FindWithTag("PopupPanel") as GameObject;
+        GameObject popupObject = null;
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
+        if (popupPanel != null && popupPanel.transform.childCount > 0)
+        {
+            for (var i = 0; i < popupPanel.transform.childCount; i++)
+            {
+                if (popupPanel.transform.GetChild(i).name.Equals("PanelPopEndGame"))
+                {
+                    popupObject = popupPanel.transform.GetChild(i).gameObject;
+                    break;
+                }
+            }
+        }
+        if (popupObject != null && popupObject.GetComponentInChildren<AiryUIAnimatedElement>() != null)
+        {
+            Text resultText = popupObject.transform.GetChild(1).GetChild(1).GetComponentInChildren<Text>();
+            if (isWin)
+                resultText.text = string.Format("{0}", "Victory!!");
+            else
+                resultText.text = string.Format("{0}", "Lose...");
+            popupObject.gameObject.SetActive(true);
+            showUIanimation(popupObject);
+            this.gameObject.SetActive(false);
+        }
+        return popupObject;
+    }
+    public void OpenBattleEndGameErrorPanel()
+    {
+        if (popupPanel == null)
+            popupPanel = GameObject.FindWithTag("PopupPanel") as GameObject;
+        GameObject popupObject = null;
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
+        if (popupPanel != null && popupPanel.transform.childCount > 0)
+        {
+            for (var i = 0; i < popupPanel.transform.childCount; i++)
+            {
+                if (popupPanel.transform.GetChild(i).name.Equals("PanelPopEndGame"))
+                {
+                    popupObject = popupPanel.transform.GetChild(i).gameObject;
+                    break;
+                }
+            }
+        }
+        if (popupObject != null && popupObject.GetComponentInChildren<AiryUIAnimatedElement>() != null)
+        {
+            Text resultText = popupObject.transform.GetChild(1).GetChild(1).GetComponentInChildren<Text>();
+            resultText.text = string.Format("{0}", "Error");
+            popupObject.gameObject.SetActive(true);
+            showUIanimation(popupObject);
+            this.gameObject.SetActive(false);
         }
     }
     public void CloseAllPopupPanel()
@@ -137,6 +429,22 @@ public class UI_Manager : MonoBehaviour
             }
         }
     }
+    public bool IsOnPopupPanel()
+    {
+        GameObject popupPanel = GameObject.FindWithTag("PopupPanel") as GameObject;
+
+        if (popupPanel != null && popupPanel.transform.childCount > 0)
+        {
+            for (var i = 0; i < popupPanel.transform.childCount; i++)
+            {
+                if (popupPanel.transform.GetChild(i).gameObject.activeSelf)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public void CoverFadeIn()
     {
@@ -153,7 +461,7 @@ public class UI_Manager : MonoBehaviour
         {
             image.color = new Color(color.r, color.g, color.b, cnt);
             yield return new WaitForEndOfFrame();
-            cnt += 0.01f;
+            cnt += 0.03f;
         }
         yield return null;
     }
@@ -172,7 +480,7 @@ public class UI_Manager : MonoBehaviour
     }
     public void PopupGetGacha(GachaSystem.GachaType gachaType)
     {
-        if (PopupGetGachaUI != null)
+        if (PopupGetGachaUI != null&&!PopupGetGachaUI.activeSelf)
         {
             showUIanimation(PopupGetGachaUI);
             PopupGetGachaUI.GetComponent<UI_GetGacha>().GachaStart(gachaType);
@@ -181,13 +489,39 @@ public class UI_Manager : MonoBehaviour
             Debugging.Log("가챠 팝업창이 없습니다.");
     }
 
-    public void PopupGetAbility(Ability ability)
+    public void PopupGetAbility(Ability ability )
     {
         if (PopGetAbilityUI != null)
         {
-            PopGetAbilityUI.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ability.image);
-            PopGetAbilityUI.transform.GetChild(1).GetComponent<Text>().text = AbilitySystem.GetAbilityName(ability.id);
-            showUIanimation(PopGetAbilityUI);
+            PopGetAbilityUI.SetActive(true);
+            PopGetAbilityUI.transform.GetChild(0).gameObject.SetActive(true);
+            PopGetAbilityUI.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ability.image);
+            PopGetAbilityUI.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = AbilitySystem.GetAbilityName(ability.id);
+            PopGetAbilityUI.transform.GetChild(1).gameObject.SetActive(false);
+            showUIanimation(PopGetAbilityUI.transform.GetChild(0).gameObject);
+        }
+        else
+            Debugging.Log("어빌리티 팝업창이 없습니다.");
+    }
+    public void PopupGetAllAbility(Dictionary<Ability,int> abilities)
+    {
+        if (PopGetAbilityUI != null)
+        {
+            PopGetAbilityUI.SetActive(true);
+            PopGetAbilityUI.transform.GetChild(1).gameObject.SetActive(true);
+            foreach(Transform child in PopGetAbilityUI.transform.GetChild(1).GetChild(0).transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+            foreach(var ab in abilities)
+            {
+                PopGetAbilityUI.transform.GetChild(1).GetChild(0).GetChild((ab.Key.id-1)).gameObject.SetActive(true);
+                PopGetAbilityUI.transform.GetChild(1).GetChild(0).GetChild((ab.Key.id - 1)).GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(ab.Key.image);
+                PopGetAbilityUI.transform.GetChild(1).GetChild(0).GetChild((ab.Key.id - 1)).GetChild(0).GetComponent<Text>().text = AbilitySystem.GetAbilityName(ab.Key.id);
+                PopGetAbilityUI.transform.GetChild(1).GetChild(0).GetChild((ab.Key.id - 1)).GetChild(2).GetComponent<Text>().text = string.Format("x {0}",ab.Value.ToString());
+            }
+            PopGetAbilityUI.transform.GetChild(0).gameObject.SetActive(false);
+            showUIanimation(PopGetAbilityUI.transform.GetChild(1).gameObject);
         }
         else
             Debugging.Log("어빌리티 팝업창이 없습니다.");
@@ -213,12 +547,21 @@ public class UI_Manager : MonoBehaviour
     {
         if (PopupAlertUI != null)
         {
+            GameObject popup;
+            if (canvasOverlay != null)
+            {
+                popup = Instantiate(PopupAlertUI, canvasOverlay.transform);
+            }
+            else
+            {
+                popup = Instantiate(PopupAlertUI, this.transform);
+            }
             SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
-            foreach (Transform otherUI in PopupAlertUI.transform.GetChild(0).transform)
+            foreach (Transform otherUI in popup.transform.GetChild(0).transform)
             {
                 otherUI.gameObject.SetActive(false);
             }
-            GameObject getAlertPanel = PopupAlertUI.transform.GetChild(0).GetChild(1).gameObject;
+            GameObject getAlertPanel = popup.transform.GetChild(0).GetChild(1).gameObject;
             getAlertPanel.gameObject.SetActive(true);
             Image getImage = getAlertPanel.transform.GetChild(0).GetComponent<Image>();
             Text getText = getAlertPanel.transform.GetChild(1).GetComponent<Text>();
@@ -228,24 +571,67 @@ public class UI_Manager : MonoBehaviour
             else
                 getImage.enabled = true;
             getText.text = txt;
-            PopupAlertUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
+            popup.GetComponent<AiryUIAnimatedElement>().ShowElement();
+        }
+    }
+    public void ShowGetAlert(Sprite sprite, string txt)
+    {
+        if (PopupAlertUI != null)
+        {
+            GameObject popup;
+            if (canvasOverlay != null)
+            {
+                popup = Instantiate(PopupAlertUI, canvasOverlay.transform);
+            }
+            else
+            {
+                popup = Instantiate(PopupAlertUI, this.transform);
+            }
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
+            foreach (Transform otherUI in popup.transform.GetChild(0).transform)
+            {
+                otherUI.gameObject.SetActive(false);
+            }
+            GameObject getAlertPanel = popup.transform.GetChild(0).GetChild(1).gameObject;
+            getAlertPanel.gameObject.SetActive(true);
+            Image getImage = getAlertPanel.transform.GetChild(0).GetComponent<Image>();
+            Text getText = getAlertPanel.transform.GetChild(1).GetComponent<Text>();
+            getImage.sprite = sprite;
+            if (getImage.sprite == null)
+                getImage.enabled = false;
+            else
+                getImage.enabled = true;
+            getText.text = txt;
+            popup.GetComponent<AiryUIAnimatedElement>().ShowElement();
         }
     }
     public void ClosePopupAlertUI()
     {
-        PopupAlertUI.gameObject.SetActive(false);
+        foreach(var p in GameObject.FindGameObjectsWithTag("AlertUI"))
+        {
+            p.gameObject.SetActive(false);
+        }
     }
 
     public GameObject ShowNeedAlert(string spritePath, string alertText)
     {
         if (PopupAlertUI != null)
         {
+            GameObject popup;
+            if (canvasOverlay != null)
+            {
+                popup = Instantiate(PopupAlertUI, canvasOverlay.transform);
+            }
+            else
+            {
+                popup = Instantiate(PopupAlertUI, this.transform);
+            }
             SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
-            foreach (Transform otherUI in PopupAlertUI.transform.GetChild(0).transform)
+            foreach (Transform otherUI in popup.transform.GetChild(0).transform)
             {
                 otherUI.gameObject.SetActive(false);
             }
-            GameObject getAlertPanel = PopupAlertUI.transform.GetChild(0).GetChild(2).gameObject;
+            GameObject getAlertPanel = popup.transform.GetChild(0).GetChild(2).gameObject;
             getAlertPanel.gameObject.SetActive(true);
             Image getImage = getAlertPanel.transform.GetChild(0).GetComponent<Image>();
             Text getText = getAlertPanel.transform.GetChild(1).GetComponent<Text>();
@@ -256,7 +642,42 @@ public class UI_Manager : MonoBehaviour
                 getImage.enabled = true;
             getText.text = alertText;
             getAlertPanel.GetComponentInChildren<UI_CheckButton>().isChecking = false;
-            PopupAlertUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
+            popup.GetComponent<AiryUIAnimatedElement>().ShowElement();
+            return getAlertPanel;
+        }
+        return null;
+    }
+
+    public GameObject ShowNeedAlert(Sprite sprite, string alertText)
+    {
+        if (PopupAlertUI != null)
+        {
+            GameObject popup;
+            if (canvasOverlay != null)
+            {
+                popup = Instantiate(PopupAlertUI, canvasOverlay.transform);
+            }
+            else
+            {
+                popup = Instantiate(PopupAlertUI, this.transform);
+            }
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
+            foreach (Transform otherUI in popup.transform.GetChild(0).transform)
+            {
+                otherUI.gameObject.SetActive(false);
+            }
+            GameObject getAlertPanel = popup.transform.GetChild(0).GetChild(2).gameObject;
+            getAlertPanel.gameObject.SetActive(true);
+            Image getImage = getAlertPanel.transform.GetChild(0).GetComponent<Image>();
+            Text getText = getAlertPanel.transform.GetChild(1).GetComponent<Text>();
+            getImage.sprite = sprite;
+            if (getImage.sprite == null)
+                getImage.enabled = false;
+            else
+                getImage.enabled = true;
+            getText.text = alertText;
+            getAlertPanel.GetComponentInChildren<UI_CheckButton>().isChecking = false;
+            popup.GetComponent<AiryUIAnimatedElement>().ShowElement();
             return getAlertPanel;
         }
         return null;
@@ -266,12 +687,21 @@ public class UI_Manager : MonoBehaviour
     {
         if(PopupAlertUI!=null)
         {
+            GameObject popup;
+            if (canvasOverlay != null)
+            {
+                popup = Instantiate(PopupAlertUI, canvasOverlay.transform);
+            }
+            else
+            {
+                popup = Instantiate(PopupAlertUI, this.transform);
+            }
             SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
-            foreach (Transform otherUI in PopupAlertUI.transform.GetChild(0).transform)
+            foreach (Transform otherUI in popup.transform.GetChild(0).transform)
             {
                 otherUI.gameObject.SetActive(false);
             }
-            GameObject ShowtageAlertPanel = PopupAlertUI.transform.GetChild(0).GetChild(0).gameObject;
+            GameObject ShowtageAlertPanel = popup.transform.GetChild(0).GetChild(0).gameObject;
             ShowtageAlertPanel.gameObject.SetActive(true);
             Image shortageImage = ShowtageAlertPanel.transform.GetChild(0).GetComponent<Image>();
             Text shortageText = ShowtageAlertPanel.transform.GetChild(1).GetComponent<Text>();
@@ -294,7 +724,7 @@ public class UI_Manager : MonoBehaviour
                     shortageText.text = string.Format("{0} \r\n <color='red;>{1} : {2}</color>", LocalizationManager.GetText("alertCrystal"), LocalizationManager.GetText("alertNeedText"), Common.GetThousandCommaText(needAmount));
                     break;
             }
-            PopupAlertUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
+            popup.GetComponent<AiryUIAnimatedElement>().ShowElement();
         }
     }
 
@@ -302,12 +732,21 @@ public class UI_Manager : MonoBehaviour
     {
         if (PopupAlertUI != null)
         {
+            GameObject popup;
+            if(canvasOverlay != null)
+            {
+                popup = Instantiate(PopupAlertUI, canvasOverlay.transform);
+            }
+            else
+            {
+                popup = Instantiate(PopupAlertUI, this.transform);
+            }
             SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
-            foreach (Transform otherUI in PopupAlertUI.transform.GetChild(0).transform)
+            foreach (Transform otherUI in popup.transform.GetChild(0).transform)
             {
                 otherUI.gameObject.SetActive(false);
             }
-            GameObject ShowtageAlertPanel = PopupAlertUI.transform.GetChild(0).GetChild(0).gameObject;
+            GameObject ShowtageAlertPanel = popup.transform.GetChild(0).GetChild(0).gameObject;
             ShowtageAlertPanel.gameObject.SetActive(true);
             Image shortageImage = ShowtageAlertPanel.transform.GetChild(0).GetComponent<Image>();
             Text shortageText = ShowtageAlertPanel.transform.GetChild(1).GetComponent<Text>();
@@ -317,7 +756,38 @@ public class UI_Manager : MonoBehaviour
             else
                 shortageImage.enabled = true;
             shortageText.text = alertText;
-            PopupAlertUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
+            popup.GetComponent<AiryUIAnimatedElement>().ShowElement();
+        }
+    }
+    public void ShowAlert(Sprite sprite, string alertText)
+    {
+        if (PopupAlertUI != null)
+        {
+            GameObject popup;
+            if (canvasOverlay != null)
+            {
+                popup = Instantiate(PopupAlertUI, canvasOverlay.transform);
+            }
+            else
+            {
+                popup = Instantiate(PopupAlertUI, this.transform);
+            }
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
+            foreach (Transform otherUI in popup.transform.GetChild(0).transform)
+            {
+                otherUI.gameObject.SetActive(false);
+            }
+            GameObject ShowtageAlertPanel = popup.transform.GetChild(0).GetChild(0).gameObject;
+            ShowtageAlertPanel.gameObject.SetActive(true);
+            Image shortageImage = ShowtageAlertPanel.transform.GetChild(0).GetComponent<Image>();
+            Text shortageText = ShowtageAlertPanel.transform.GetChild(1).GetComponent<Text>();
+            shortageImage.sprite = sprite;
+            if (shortageImage.sprite == null)
+                shortageImage.enabled = false;
+            else
+                shortageImage.enabled = true;
+            shortageText.text = alertText;
+            popup.GetComponent<AiryUIAnimatedElement>().ShowElement();
         }
     }
 

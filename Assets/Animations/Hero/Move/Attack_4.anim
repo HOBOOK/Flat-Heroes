@@ -1604,7 +1604,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: bone
+    path: bone/bodyDown
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1614,7 +1614,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: bone
+    path: bone/bodyDown
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1624,7 +1624,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: bone
+    path: bone/bodyDown
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1634,7 +1634,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: bone/bodyDown
+    path: bone
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1644,7 +1644,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: bone/bodyDown
+    path: bone
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1654,7 +1654,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: bone/bodyDown
+    path: bone
     classID: 4
     script: {fileID: 0}
   - curve:

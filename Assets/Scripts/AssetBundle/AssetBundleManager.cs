@@ -85,11 +85,12 @@ public class AssetBundleManager : MonoBehaviour
                 }
                 if (uwr.isNetworkError || uwr.isHttpError)
                 {
-                    UI_StartManager.instance.ShowErrorUI("네트워크 오류로 인해 다운로드에 실패하였습니다.");
+                    UI_StartManager.instance.ShowErrorUI(LocalizationManager.GetText("alertNetworkErrorMessage"));
                 }
                 else
                 {
                     AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(uwr);
+                    
                     //var materials = bundle.LoadAllAssets<Material>();
                     //foreach (Material m in materials)
                     //{

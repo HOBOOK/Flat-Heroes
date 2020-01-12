@@ -25,10 +25,38 @@ public class PlayerData
     public int gachaSeed;
     public int[] playerSkill;
     public int inventoryCount;
+    public int profileHero;
+    public int InfinityRankPoint;
+    public int magicStone;
+    public int magicStoneStack;
+    public int labLevel;
+    public int tutorialSequence;
+    public int HeroRankPoint;
+    public int battleRankPoint;
+    public int battleWin;
+    public int battleLose;
+    public int[] battleHeros;
+    public int transcendenceStone;
+    public int attackRankPoint;
+    public int addMaxDamageLevel;
+    public int statsPoint;
 
     public string id;
     public string name;
     public string language;
+    public string eventSaveDate;
+    public string dailySaveDate;
+    public string premiumPassDate;
+
+    public bool isAdsRemove;
+    public bool isAdsSkip;
+    public string paymentItem;
+    public string labProgressDate;
+    public string postItems;
+    public string bossClearTime;
+
+    public bool isAutoCam;
+    public bool isSpeedGame;
 
     public PlayerData()
     {
@@ -46,6 +74,20 @@ public class PlayerData
         gachaSeed = User.gachaSeed;
         playerSkill = User.playerSkill;
         inventoryCount = User.inventoryCount;
+        profileHero = User.profileHero;
+        InfinityRankPoint = User.InfinityRankPoint;
+        magicStone = User.magicStone;
+        magicStoneStack = User.magicStoneStack;
+        labLevel = User.labLevel;
+        tutorialSequence = User.tutorialSequence;
+        HeroRankPoint = User.HeroRankPoint;
+        battleRankPoint = User.battleRankPoint;
+        battleWin = User.battleWin;
+        battleLose = User.battleLose;
+        battleHeros = User.battleHeros;
+        transcendenceStone = User.transcendenceStone;
+        attackRankPoint = User.attackRankPoint;
+        statsPoint = User.statsPoint;
         // End integer //
 
         // Start Lab//
@@ -55,11 +97,28 @@ public class PlayerData
         addExpLevel = User.addExpLevel;
         addAttackLevel = User.addAttackLevel;
         addDefenceLevel = User.addDefenceLevel;
+        addMaxDamageLevel = User.addMaxDamageLevel;
         // End Lab//
 
         id = User.id;
         name = User.name;
         language = User.language;
+        eventSaveDate = User.eventSaveDate;
+        labProgressDate = User.labProgressDate;
+        dailySaveDate = User.dailySaveDate;
+        postItems = User.postItems;
+        bossClearTime = User.bossClearTime;
+        premiumPassDate = User.premiumPassDate;
+
+        // IAP
+        isAdsRemove = User.isAdsRemove;
+        isAdsSkip = User.isAdsSkip;
+        paymentItem = User.paymentItem;
+        //
+
+        // Boolean//
+        isAutoCam = User.isAutoCam;
+        isSpeedGame = User.isSpeedGame;
     }
     public override string ToString()
     {

@@ -50,11 +50,14 @@ public class UI_castleHp : MonoBehaviour
     {
         if (isOnPanelHP && target != null)
         {
-            transform.position = target.transform.position + new Vector3(0, 2);
+            if (target.GetComponent<Castle>() != null||target.GetComponent<TutorialCastle>()!=null)
+                transform.position = target.transform.position + new Vector3(0, 2);
+            else
+                transform.position = target.transform.GetChild(0).position + new Vector3(0, 2);
             SetDamage();
-            currentValue = DecrementSliderValue(transform.GetChild(0).GetComponent<Slider>().value, GetCurrentHp() / GetMaxHp());
-            transform.GetChild(0).GetComponent<Slider>().value = currentValue;
-            transform.GetChild(1).GetComponentInChildren<Text>().text = currentHp.ToString();
+            currentValue = DecrementSliderValue(transform.GetChild(1).GetComponent<Slider>().value, GetCurrentHp() / GetMaxHp());
+            hpImage.material.SetFloat("_Percent", currentHp / currentMaxHp);
+            transform.GetChild(0).GetComponentInChildren<Text>().text = currentHp.ToString();
             DisablePanelHP();
         }
     }
@@ -62,33 +65,57 @@ public class UI_castleHp : MonoBehaviour
     {
         target = targetObj;
         transform.position = target.transform.position + new Vector3(0, 2);
-        sliderContainerRectTransform.sizeDelta = new Vector2(Mathf.Clamp(GetMaxHp() * 0.01f, 250, 300), 80);
+        sliderContainerRectTransform.sizeDelta = new Vector2(180, 50);
         panelHpTime = 0.0f;
         currentValue = GetCurrentHp();
-        transform.GetChild(0).GetComponent<Slider>().value = GetCurrentHp() / GetMaxHp();
-        transform.GetChild(1).GetComponentInChildren<Text>().text = currentHp.ToString();
+        transform.GetChild(1).GetComponent<Slider>().value = GetCurrentHp() / GetMaxHp();
+        transform.GetChild(0).GetComponentInChildren<Text>().text = currentHp.ToString();
         if (isBlue)
-            hpImage.material.SetColor("_Color", new Color(0, 0.4f, 1));
+            hpImage.material.SetColor("_Color", new Color(0.1f, 0.5f, 1));
         else
-            hpImage.material.SetColor("_Color", new Color(1, 0.4f, 0));
+            hpImage.material.SetColor("_Color", new Color(1, 0.5f, 0.1f));
 
         hpImage.material.SetVector("_ImageSize", new Vector4(imageRectTransform.rect.size.x - 10, imageRectTransform.rect.size.y, 0, 0));
-        hpBarSetpsLength = (currentMaxHp * 0.01f) > 10 ? 10 : (currentMaxHp * 0.01f);
+        hpBarSetpsLength = 7;
         hpImage.material.SetFloat("_Steps", hpBarSetpsLength);
         isOnPanelHP = true;
     }
     void DisablePanelHP()
     {
-        if (target != null && target.GetComponent<Castle>() != null)
+        if (target != null)
         {
-            if (target.GetComponent<Castle>().isDead || GetCurrentHp() <= 0)
+            if(target.GetComponent<Castle>() != null)
             {
-                target = null;
-                panelHpTime = 0.0f;
-                isOnPanelHP = false;
-                ObjectPool.Instance.PushToPool("hpCastleUI", this.gameObject, canvasUI.transform);
+                if (target.GetComponent<Castle>().isDead || GetCurrentHp() <= 0)
+                {
+                    target = null;
+                    panelHpTime = 0.0f;
+                    isOnPanelHP = false;
+                    ObjectPool.Instance.PushToPool("hpCastleUI", this.gameObject, canvasUI.transform);
+                }
+            }
+            else if (target.GetComponent<Hero>() != null)
+            {
+                if (target.GetComponent<Hero>().isDead || GetCurrentHp() <= 0)
+                {
+                    target = null;
+                    panelHpTime = 0.0f;
+                    isOnPanelHP = false;
+                    ObjectPool.Instance.PushToPool("hpCastleUI", this.gameObject, canvasUI.transform);
+                }
+            }
+            else if (target.GetComponent<TutorialCastle>() != null)
+            {
+                if (target.GetComponent<TutorialCastle>().isDead || GetCurrentHp() <= 0)
+                {
+                    target = null;
+                    panelHpTime = 0.0f;
+                    isOnPanelHP = false;
+                    ObjectPool.Instance.PushToPool("hpCastleUI", this.gameObject, canvasUI.transform);
+                }
             }
         }
+
     }
     float GetCurrentHp()
     {
@@ -97,13 +124,16 @@ public class UI_castleHp : MonoBehaviour
             if (target.GetComponent<Castle>() != null)
             {
                 currentHp = (float)target.GetComponent<Castle>().hp;
-                hpImage.material.SetFloat("_Percent", currentHp / currentMaxHp);
                 return currentHp;
             }
-            else if (target.GetComponent<Boss>() != null)
+            else if (target.GetComponent<Hero>() != null)
             {
-                currentHp = (float)target.GetComponent<Boss>().hp;
-                hpImage.material.SetFloat("_Percent", currentHp / currentMaxHp);
+                currentHp = (float)target.GetComponent<Hero>().status.hp;
+                return currentHp;
+            }
+            else if (target.GetComponent<TutorialCastle>() != null)
+            {
+                currentHp = (float)target.GetComponent<TutorialCastle>().hp;
                 return currentHp;
             }
             else
@@ -121,9 +151,14 @@ public class UI_castleHp : MonoBehaviour
                 currentMaxHp = (float)target.GetComponent<Castle>().maxHp;
                 return currentMaxHp;
             }
-            else if (target.GetComponent<Boss>() != null)
+            else if (target.GetComponent<Hero>() != null)
             {
-                currentMaxHp = (float)target.GetComponent<Boss>().maxHp;
+                currentMaxHp = (float)target.GetComponent<Hero>().status.maxHp;
+                return currentMaxHp;
+            }
+            else if (target.GetComponent<TutorialCastle>() != null)
+            {
+                currentMaxHp = (float)target.GetComponent<TutorialCastle>().maxHp;
                 return currentMaxHp;
             }
             else

@@ -13,6 +13,14 @@ public class UI_HeroInfo : MonoBehaviour
     public GameObject heroEquipmentItemPanel;
     public GameObject heroEquimentItemSlots;
     public GameObject heroSkillSlot;
+    public Button leaderButton;
+    public Button TranscendenceButton;
+    public GameObject getTranscendencePanel;
+    public GameObject heroAbilityPanel;
+    public Transform heroAbilityInfoTransform;
+    public Transform heroTypeTransform;
+    public UI_HeroAbilityPanel heroGetAbilityPanel;
+    public GameObject informationPanel;
 
     GameObject showHeroObj;
     GameObject PanelHeroInfo;
@@ -24,6 +32,7 @@ public class UI_HeroInfo : MonoBehaviour
     HeroData targetHeroData;
     Button skillLevelUpButton;
     Image skillImage;
+    bool isCheckAlert = false;
 
     private void Awake()
     {
@@ -66,6 +75,15 @@ public class UI_HeroInfo : MonoBehaviour
     {
         if(hero!=null)
         {
+            if(leaderButton!=null)
+            {
+                if (heroData.id == User.profileHero)
+                {
+                    leaderButton.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                }
+                else
+                    leaderButton.GetComponent<Image>().color = new Color(1, 1, 1, 0.2f);
+            }
             targetHeroData = heroData;
             showHeroObj = Instantiate(hero, HeroShowPoint.transform);
             showHeroObj.transform.localScale = new Vector3(200, 200, 200);
@@ -96,6 +114,15 @@ public class UI_HeroInfo : MonoBehaviour
                 heroExpText.text = string.Format("{0}/{1}({2}%)", exp,needExp , (expPercent*100).ToString("N0"));
                 heroExpSlider.value = expPercent;
             }
+            if(heroTypeTransform!=null)
+            {
+                heroTypeTransform.GetComponent<Button>().onClick.RemoveAllListeners();
+                heroTypeTransform.GetComponent<Button>().onClick.AddListener(delegate
+                {
+                    OnClickInfo(heroTypeTransform, LocalizationManager.GetText("HeroTypeDescription" + (HeroSystem.GetHeroType(targetHeroData.id) + 1)));
+                });
+                heroTypeTransform.GetComponentInChildren<Text>().text = LocalizationManager.GetText("HeroType" + (HeroSystem.GetHeroType(targetHeroData.id) + 1));
+            }
 
             if (CharactersManager.instance.GetLobbyHeros(targetHeroData.id))
             {
@@ -105,37 +132,71 @@ public class UI_HeroInfo : MonoBehaviour
             {
                 heroSetLobbyButton.GetComponentInChildren<Text>().text = LocalizationManager.GetText("heroInfoToLobbyButton");
             }
-
             RefreshHeroStatusEquipmentPanel();
         }
     }
-
+    string plusMinusText(int amount)
+    {
+        if (amount < 0)
+            return Common.GetThousandCommaText(amount);
+        else
+            return "+"+Common.GetThousandCommaText(amount);
+    }
+    void RefreshHeroAbilityPanel()
+    {
+        if(heroAbilityInfoTransform!=null)
+        {
+            if(targetHeroData.ability>0)
+            {
+                heroAbilityInfoTransform.transform.GetChild(2).gameObject.SetActive(true);
+                heroAbilityInfoTransform.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = HeroAbilitySystem.GetHeroAbilityName(targetHeroData.ability);
+                heroAbilityInfoTransform.transform.GetChild(2).GetChild(1).GetComponentInChildren<Text>().text = targetHeroData.abilityLevel.ToString();
+                heroAbilityInfoTransform.transform.GetChild(3).gameObject.SetActive(false);
+                heroAbilityInfoTransform.transform.GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
+                heroAbilityInfoTransform.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate
+                {
+                    OnClickInfo(heroAbilityInfoTransform.transform.GetChild(2), HeroAbilitySystem.GetHeroAbilityDetailDescription(targetHeroData.ability, targetHeroData.abilityLevel));
+                });
+            }
+            else
+            {
+                heroAbilityInfoTransform.transform.GetChild(2).gameObject.SetActive(false);
+                heroAbilityInfoTransform.transform.GetChild(3).gameObject.SetActive(true);
+            }
+        }
+    }
     public void RefreshHeroStatusEquipmentPanel()
     {
+        RefreshHeroAbilityPanel();
         //Status 정보
         if (heroStatusInfoPanel != null)
         {
-            heroStatusInfoPanel.transform.GetChild(0).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusAttack(ref targetHeroData).ToString() + string.Format("<color='yellow'><size='18'>(+{0})</size></color>", AbilitySystem.GetAbilityStats(0) + ItemSystem.GetHeroEquipmentItemAttack(ref targetHeroData)+ LabSystem.GetAddAttack(User.addAttackLevel));
-            heroStatusInfoPanel.transform.GetChild(1).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusDefence(ref targetHeroData).ToString() + string.Format("<color='yellow'><size='18'>(+{0})</size></color>", AbilitySystem.GetAbilityStats(1) + ItemSystem.GetHeroEquipmentItemDefence(ref targetHeroData) + LabSystem.GetAddDefence(User.addDefenceLevel));
-            heroStatusInfoPanel.transform.GetChild(2).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusMaxHp(ref targetHeroData).ToString() + string.Format("<color='yellow'><size='18'>(+{0})</size></color>", AbilitySystem.GetAbilityStats(2) + ItemSystem.GetHeroEquipmentItemHp(ref targetHeroData));
-            heroStatusInfoPanel.transform.GetChild(3).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusCriticalPercent(ref targetHeroData).ToString() + string.Format("<color='yellow'><size='18'>(+{0})</size></color>%", AbilitySystem.GetAbilityStats(3) + ItemSystem.GetHeroEquipmentItemCritical(ref targetHeroData));
-            heroStatusInfoPanel.transform.GetChild(4).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusAttackSpeed(ref targetHeroData).ToString() + string.Format("<color='yellow'><size='18'>(+{0})</size></color>", AbilitySystem.GetAbilityStats(4) + ItemSystem.GetHeroEquipmentItemAttackSpeed(ref targetHeroData));
-            heroStatusInfoPanel.transform.GetChild(5).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusMoveSpeed(ref targetHeroData).ToString() + string.Format("<color='yellow'><size='18'>(+{0})</size></color>", AbilitySystem.GetAbilityStats(5) + ItemSystem.GetHeroEquipmentItemMoveSpeed(ref targetHeroData));
+            heroStatusInfoPanel.transform.GetChild(0).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusAttack(ref targetHeroData).ToString() + string.Format("<color='yellow'><size='20'>({0})</size></color>", plusMinusText(AbilitySystem.GetAbilityStats(0) + ItemSystem.GetHeroEquipmentItemAttack(ref targetHeroData)+ LabSystem.GetAddAttack(User.addAttackLevel)));
+            heroStatusInfoPanel.transform.GetChild(1).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusDefence(ref targetHeroData).ToString() + string.Format("<color='yellow'><size='20'>({0})</size></color>", plusMinusText(AbilitySystem.GetAbilityStats(1) + ItemSystem.GetHeroEquipmentItemDefence(ref targetHeroData) + LabSystem.GetAddDefence(User.addDefenceLevel)));
+            heroStatusInfoPanel.transform.GetChild(2).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusMaxHp(ref targetHeroData).ToString() + string.Format("<color='yellow'><size='20'>({0})</size></color>", plusMinusText(AbilitySystem.GetAbilityStats(2) + ItemSystem.GetHeroEquipmentItemHp(ref targetHeroData)));
+            heroStatusInfoPanel.transform.GetChild(3).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusCriticalPercent(ref targetHeroData).ToString() + string.Format("<color='yellow'><size='20'>({0})</size></color>%", plusMinusText(AbilitySystem.GetAbilityStats(3) + ItemSystem.GetHeroEquipmentItemCritical(ref targetHeroData)));
+            heroStatusInfoPanel.transform.GetChild(4).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusAttackSpeed(ref targetHeroData).ToString() + string.Format("<color='yellow'><size='20'>({0})</size></color>", plusMinusText(AbilitySystem.GetAbilityStats(4) + ItemSystem.GetHeroEquipmentItemAttackSpeed(ref targetHeroData)));
+            heroStatusInfoPanel.transform.GetChild(5).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusMoveSpeed(ref targetHeroData).ToString() + string.Format("<color='yellow'><size='20'>({0})</size></color>", plusMinusText(AbilitySystem.GetAbilityStats(5) + ItemSystem.GetHeroEquipmentItemMoveSpeed(ref targetHeroData)));
             heroStatusInfoPanel.transform.GetChild(6).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusKnockbackResist(ref targetHeroData).ToString("N1");
-            heroStatusInfoPanel.transform.GetChild(7).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusSkillEnergy(ref targetHeroData).ToString() + string.Format("<color='yellow'><size='18'>(+{0})</size></color>", AbilitySystem.GetAbilityStats(6) + ItemSystem.GetHeroEquipmentItemSkillEnergy(ref targetHeroData));
+            heroStatusInfoPanel.transform.GetChild(7).GetComponentInChildren<Text>().text = HeroSystem.GetHeroStatusSkillEnergy(ref targetHeroData).ToString() + string.Format("<color='yellow'><size='20'>({0})</size></color>", plusMinusText(AbilitySystem.GetAbilityStats(6) + ItemSystem.GetHeroEquipmentItemSkillEnergy(ref targetHeroData)));
         }
 
-        if (heroStatPanel != null)
+        if(TranscendenceButton!=null)
         {
-            for (int i = 0; i < heroStatPanel.transform.childCount; i++)
+            if (targetHeroData.over<3)
             {
-                if (heroStatPanel.transform.GetComponentInChildren<Button>() != null)
-                    heroStatPanel.transform.GetComponentInChildren<Button>().gameObject.SetActive(false);
+                TranscendenceButton.GetComponentInChildren<Text>().text = string.Format("{0} {1}", LocalizationManager.GetText("heroInfoTranscendence"), targetHeroData.over);
+                TranscendenceButton.onClick.RemoveAllListeners();
+                TranscendenceButton.onClick.AddListener(delegate
+                {
+                    OnClickTranscendenceHero();
+                });
             }
-            heroStatPanel.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = targetHeroData.strength.ToString();
-            heroStatPanel.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = targetHeroData.intelligent.ToString();
-            heroStatPanel.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = targetHeroData.physical.ToString();
-            heroStatPanel.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = targetHeroData.agility.ToString();
+            else
+            {
+                TranscendenceButton.GetComponentInChildren<Text>().text = string.Format("{0} <color='red'>{1}</color>", LocalizationManager.GetText("heroInfoTranscendence"), targetHeroData.over);
+                TranscendenceButton.onClick.RemoveAllListeners();
+            }
         }
 
         // Equipment 장비 정보
@@ -149,12 +210,22 @@ public class UI_HeroInfo : MonoBehaviour
                     heroEquimentItemSlots.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemClassImage(equipmentItemsId[i], true);
                     heroEquimentItemSlots.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemImage(equipmentItemsId[i],true);
                     heroEquimentItemSlots.transform.GetChild(i).GetChild(1).GetComponent<Image>().color = ItemColor.GetItemColor(ItemSystem.GetUserEquipmentItem(equipmentItemsId[i]).itemClass);
+                    if(ItemSystem.GetUserItemByCustomId(equipmentItemsId[i]).enhancement>0)
+                    {
+                        heroEquimentItemSlots.transform.GetChild(i).GetChild(2).gameObject.SetActive(true);
+                        heroEquimentItemSlots.transform.GetChild(i).GetChild(2).GetComponentInChildren<Text>().text = string.Format("<size='15'>+</size>{0}",ItemSystem.GetUserItemByCustomId(equipmentItemsId[i]).enhancement.ToString());
+                    }
+                    else
+                    {
+                        heroEquimentItemSlots.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
+                    }
                 }
                 else
                 {
                     heroEquimentItemSlots.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemNoneImage();
-                    heroEquimentItemSlots.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemNoneImage();
-                    heroEquimentItemSlots.transform.GetChild(i).GetChild(1).GetComponent<Image>().color = ItemColor.D;
+                    heroEquimentItemSlots.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/ui_plus2");
+                    heroEquimentItemSlots.transform.GetChild(i).GetChild(1).GetComponent<Image>().color = Color.white;
+                    heroEquimentItemSlots.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
                 }
                 int buttonIndex = i;
                 heroEquimentItemSlots.transform.GetChild(buttonIndex).GetComponent<Button>().onClick.RemoveAllListeners();
@@ -171,11 +242,11 @@ public class UI_HeroInfo : MonoBehaviour
         {
             skillImage = heroSkillSlot.transform.GetChild(0).GetChild(0).GetComponent<Image>();
             skillImage.sprite = SkillSystem.GetSkillImage(heroSkill.id);
-            heroSkillSlot.transform.GetComponentInChildren<Text>().text = string.Format("<size='27'>{0} : {1}</size>\r\n<color='grey'>{2}</color>", LocalizationManager.GetText("SkillLevel"),SkillSystem.GetUserSkillLevel(heroSkill.id), SkillSystem.GetUserSkillDescription(heroSkill,targetHeroData));
+            heroSkillSlot.transform.GetComponentInChildren<Text>().text = string.Format("<size='27'>{0}  Lv {1}</size>\r\n{2}", SkillSystem.GetSkillName(heroSkill.id),SkillSystem.GetUserSkillLevel(heroSkill.id), SkillSystem.GetUserSkillDescription(heroSkill,targetHeroData));
             // 스킬강화버튼
             skillLevelUpButton = heroSkillSlot.GetComponentInChildren<Button>();
             int needMoney = SkillSystem.GetUserSkillLevelUpNeedCoin(heroSkill.id);
-            skillLevelUpButton.transform.GetChild(0).GetComponentInChildren<Text>().text = Common.GetThousandCommaText(needMoney);
+            skillLevelUpButton.transform.GetChild(2).GetComponent<Text>().text = Common.GetThousandCommaText(needMoney);
 
             if (Common.PaymentAbleCheck(ref User.coin, needMoney))
             {
@@ -194,13 +265,13 @@ public class UI_HeroInfo : MonoBehaviour
             if (SkillSystem.isHeroSkillUpgradeAble(heroSkill.id,targetHeroData))
             {
                 skillLevelUpButton.interactable = true;
-                skillLevelUpButton.transform.GetChild(2).gameObject.SetActive(false);
+                skillLevelUpButton.transform.GetChild(3).gameObject.SetActive(false);
             }
             else
             {
                 skillLevelUpButton.interactable = false;
-                skillLevelUpButton.transform.GetChild(2).GetComponentInChildren<Text>().text = string.Format("! {0} : {1}",LocalizationManager.GetText("HeroLevel"), SkillSystem.GetUserSkillLevel(heroSkill.id)+1);
-                skillLevelUpButton.transform.GetChild(2).gameObject.SetActive(true);
+                skillLevelUpButton.transform.GetChild(3).GetComponentInChildren<Text>().text = string.Format("! {0} : {1}",LocalizationManager.GetText("HeroLevel"), SkillSystem.GetUserSkillLevel(heroSkill.id)+1);
+                skillLevelUpButton.transform.GetChild(3).gameObject.SetActive(true);
             }
         }
     }
@@ -209,7 +280,6 @@ public class UI_HeroInfo : MonoBehaviour
     {
         if(Common.PaymentCheck(ref User.coin,needMoney))
          {
-            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
             EffectManager.SkillUpgradeEffect(skillImage.transform);
             SkillSystem.SetObtainSkill(skill);
             RefreshHeroStatusEquipmentPanel();
@@ -252,6 +322,97 @@ public class UI_HeroInfo : MonoBehaviour
         if (showHeroObj != null)
         {
             showHeroObj.gameObject.SetActive(true);
+        }
+    }
+
+    public void ChangeLeader()
+    {
+        if(targetHeroData!=null)
+        {
+            User.profileHero = targetHeroData.id;
+            GoogleSignManager.SaveData();
+            Common.ChangePlayerProfileImage();
+            leaderButton.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        }
+    }
+
+    public void OnClickInfo(Transform target, string txt)
+    {
+        if (informationPanel != null)
+        {
+            informationPanel.SetActive(true);
+            informationPanel.GetComponent<UI_InformationPanel>().ShowInformation(target, txt);
+        }
+    }
+
+
+    public void OnClickTranscendenceHero()
+    {
+        if (!isCheckAlert)
+        {
+            isCheckAlert = true;
+            StartCoroutine(CheckingAlert(targetHeroData.level, targetHeroData.over));
+        }
+    }
+
+    int NeedTranscendenceCrystal(int over)
+    {
+        return over * over * 20 + 200;
+    }
+
+    IEnumerator CheckingAlert(int level,int over)
+    {
+        GameObject alertPanel;
+        alertPanel = UI_Manager.instance.ShowNeedAlert(Common.GetCoinCrystalEnergyImagePath(6), string.Format("<color='yellow'>'{0}' <size='24'>x </size>{1}</color>  {2}\r\nMax Lv : {3} -> {4}", Common.GetCoinCrystalEnergyText(6), NeedTranscendenceCrystal(over+1), LocalizationManager.GetText("alertTranscendenceMessage"),over*10+100,(over+1)*10+100));
+
+        while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        if (alertPanel.GetComponentInChildren<UI_CheckButton>().isResult)
+        {
+            UI_Manager.instance.ClosePopupAlertUI();
+            if(level<over*10+100||over>=3)
+            {
+                UI_Manager.instance.ShowAlert("",LocalizationManager.GetText("alertTranscendenceUnableMessage"));
+            }
+            else
+            {
+                if (Common.PaymentCheck(ref User.transcendenceStone, NeedTranscendenceCrystal(over + 1)))
+                {
+                    targetHeroData.over += 1;
+                    HeroSystem.SaveOverHero(targetHeroData);
+                    RefreshHeroStatusEquipmentPanel();
+                    GoogleSignManager.SaveData();
+
+                    getTranscendencePanel.SetActive(true);
+                    getTranscendencePanel.GetComponent<UI_GetTranscendence>().ShowHero(showHeroObj, targetHeroData);
+                }
+                else
+                {
+                    UI_Manager.instance.ShowAlert(Common.GetCoinCrystalEnergyImagePath(6), LocalizationManager.GetText("alertTranscendenceUnableMessage2"));
+                }
+            }
+        }
+        else
+        {
+            UI_Manager.instance.ClosePopupAlertUI();
+            // 아니오를 클릭시
+        }
+
+        isCheckAlert = false;
+        yield return null;
+    }
+    public void OnGetAbilityUIShow()
+    {
+        if(heroGetAbilityPanel!=null)
+        {
+            heroGetAbilityPanel.gameObject.SetActive(true);
+            foreach(AiryUIAnimatedElement child in heroGetAbilityPanel.GetComponentsInChildren<AiryUIAnimatedElement>())
+            {
+                child.ShowElement();
+            }
+            heroGetAbilityPanel.OpenUI(targetHeroData);
         }
     }
 }

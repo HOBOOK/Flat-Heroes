@@ -88,6 +88,16 @@ public class UI_SellItem : MonoBehaviour
                 itemSlot.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(userItemList[i].itemClass);
                 itemSlot.GetComponentInChildren<Text>().text = ItemSystem.GetItemName(userItemList[i].id);
                 itemSlot.transform.GetChild(2).GetComponent<Image>().color = ItemColor.GetItemColor(userItemList[i].itemClass);
+                if (userItemList[i].enhancement > 0)
+                {
+                    itemSlot.transform.GetChild(3).gameObject.SetActive(true);
+                    itemSlot.transform.GetChild(3).GetComponentInChildren<Text>().text = userItemList[i].enhancement.ToString();
+
+                }
+                else
+                {
+                    itemSlot.transform.GetChild(3).gameObject.SetActive(false);
+                }
                 int index = i;
                 itemSlot.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
                 itemSlot.GetComponentInChildren<Button>().onClick.AddListener(delegate
@@ -121,6 +131,15 @@ public class UI_SellItem : MonoBehaviour
                 itemSlot.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(userItemList[i].itemClass);
                 itemSlot.GetComponentInChildren<Text>().text = ItemSystem.GetItemName(userItemList[i].id);
                 itemSlot.transform.GetChild(2).GetComponent<Image>().color = ItemColor.GetItemColor(userItemList[i].itemClass);
+                if (userItemList[i].enhancement > 0)
+                {
+                    itemSlot.transform.GetChild(3).gameObject.SetActive(true);
+                    itemSlot.transform.GetChild(3).GetComponentInChildren<Text>().text = userItemList[i].enhancement.ToString();
+                }
+                else
+                {
+                    itemSlot.transform.GetChild(3).gameObject.SetActive(false);
+                }
                 int index = i;
                 itemSlot.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
                 itemSlot.GetComponentInChildren<Button>().onClick.AddListener(delegate
@@ -138,6 +157,15 @@ public class UI_SellItem : MonoBehaviour
                 itemSlot.GetComponentInChildren<Text>().color = ItemColor.GetItemColor(sellItemList[i].itemClass);
                 itemSlot.GetComponentInChildren<Text>().text = ItemSystem.GetItemName(sellItemList[i].id);
                 itemSlot.transform.GetChild(2).GetComponent<Image>().color = ItemColor.GetItemColor(sellItemList[i].itemClass);
+                if (sellItemList[i].enhancement > 0)
+                {
+                    itemSlot.transform.GetChild(3).gameObject.SetActive(true);
+                    itemSlot.transform.GetChild(3).GetComponentInChildren<Text>().text = sellItemList[i].enhancement.ToString();
+                }
+                else
+                {
+                    itemSlot.transform.GetChild(3).gameObject.SetActive(false);
+                }
                 int index = i;
                 itemSlot.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
                 itemSlot.GetComponentInChildren<Button>().onClick.AddListener(delegate
@@ -275,7 +303,7 @@ public class UI_SellItem : MonoBehaviour
                 ItemSystem.UseItem(sellItemList[i].customId, 1);
             }
             SaveSystem.AddUserCoin(totalValue);
-            UI_Manager.instance.ShowGetAlert("Items/coin", string.Format("<color='yellow'>{0}</color> {1} {2}", totalValue,LocalizationManager.GetText("Coin"),LocalizationManager.GetText("alertGetMessage1")));
+            UI_Manager.instance.ShowGetAlert("Items/coin", string.Format("<color='yellow'>{0}</color> {1} {2}", Common.GetThousandCommaText(totalValue),LocalizationManager.GetText("Coin"),LocalizationManager.GetText("alertGetMessage1")));
             EnableUI();
         }
         else

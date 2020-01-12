@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class LocalizationText : MonoBehaviour
 {
     public string KEY_NAME = "";
+    public bool IsFontFix = false;
     Text text;
     int initFontSize;
     private void Awake()
@@ -19,10 +20,13 @@ public class LocalizationText : MonoBehaviour
         var text = GetComponent<Text>();
         if (text != null)
         {
-            if (User.language == "en")
-                text.GetComponent<Text>().font = Resources.Load<Font>("Font/en");
-            else
-                text.GetComponent<Text>().font = Resources.Load<Font>("Font/ko");
+            if(!IsFontFix)
+            {
+                if (User.language == "en")
+                    text.GetComponent<Text>().font = Resources.Load<Font>("Font/en");
+                else
+                    text.GetComponent<Text>().font = Resources.Load<Font>("Font/ko");
+            }
 
             if (KEY_NAME == "ISOCode")
                 text.text = LocalizationManager.GetLanguage();
@@ -34,7 +38,7 @@ public class LocalizationText : MonoBehaviour
                 }
                 catch(KeyNotFoundException e)
                 {
-                    Debugging.LogWarning(KEY_NAME + " 의 로컬라이징 텍스트를 발견하지못함");
+                    Debugging.LogWarning(KEY_NAME + " 의 로컬라이징 텍스트를 발견하지못함"+ e);
                 }
             }
         }
@@ -58,7 +62,7 @@ public class LocalizationText : MonoBehaviour
                 }
                 catch (KeyNotFoundException e)
                 {
-                    Debugging.LogWarning(KEY_NAME + " 의 로컬라이징 텍스트를 발견하지못함");
+                    Debugging.LogWarning(KEY_NAME + " 의 로컬라이징 텍스트를 발견하지못함" + e);
                 }
             }
         }

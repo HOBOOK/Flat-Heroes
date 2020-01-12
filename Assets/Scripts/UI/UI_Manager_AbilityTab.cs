@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +19,7 @@ public class UI_Manager_AbilityTab : MonoBehaviour
     Text abilityInfoDescriptionText;
     Text abilityTotalStatText;
     Text scrollCountText;
+    Text initNeetCrystalText;
 
     bool isSelectStart = false;
     private void Awake()
@@ -35,7 +37,9 @@ public class UI_Manager_AbilityTab : MonoBehaviour
         if (PanelAbilitySelection == null)
             PanelAbilitySelection = this.transform.GetChild(2).gameObject;
         if (scrollCountText == null)
-            scrollCountText = PanelAbilitySelection.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Text>();
+            scrollCountText = PanelAbilitySelection.transform.GetChild(0).GetChild(1).GetComponent<Text>();
+        if(initNeetCrystalText==null)
+            initNeetCrystalText = PanelAbilitySelection.transform.GetChild(1).GetChild(0).GetChild(0).GetComponentInChildren<Text>();
         if (abilityInfoImage == null)
             abilityInfoImage = PanelAbilityInfo.transform.GetChild(0).GetChild(0).GetComponent<Image>();
         
@@ -104,7 +108,7 @@ public class UI_Manager_AbilityTab : MonoBehaviour
 
             if (scrollCountText != null)
             {
-                scrollCountText.text = Common.GetThousandCommaText(ItemSystem.GetUserScrollCount());
+                scrollCountText.text = User.statsPoint.ToString();
             }
         }
     }
@@ -132,8 +136,14 @@ public class UI_Manager_AbilityTab : MonoBehaviour
                     abilitySlotList[i].GetComponent<Button>().onClick.RemoveAllListeners();
                     abilitySlotList[i].GetComponent<Button>().onClick.AddListener(delegate
                     {
-                        OnAbilityClick(abilityList[abIndex]);
+                        OnAbilityClick(userAb);
                     });
+                }
+                else
+                {
+                    abilitySlotList[i].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/ui_ability_lock");
+                    abilitySlotList[i].transform.GetComponentInChildren<Text>().enabled = false;
+                    abilityList.Add(abilityList[i]);
                 }
             }
         }
@@ -146,7 +156,11 @@ public class UI_Manager_AbilityTab : MonoBehaviour
         
         if(scrollCountText!=null)
         {
-            scrollCountText.text = Common.GetThousandCommaText(ItemSystem.GetUserScrollCount());
+            scrollCountText.text = User.statsPoint.ToString();
+        }
+        if(initNeetCrystalText!=null)
+        {
+            initNeetCrystalText.text = Mathf.Clamp(100 + User.level * 10, 0, 500).ToString("N0");
         }
     }
 
@@ -178,10 +192,7 @@ public class UI_Manager_AbilityTab : MonoBehaviour
     IEnumerator CheckingAlert()
     {
         isCheckAlertOn = true;
-        int amount = User.abilityCount;
-        Item userAbilityScroll = ItemSystem.GetItem(8001);
-        Debugging.Log(amount);
-        var alertPanel = UI_Manager.instance.ShowNeedAlert(userAbilityScroll.image, string.Format("<color='yellow'>'{0}' <size='24'>x </size>{1}</color>  {2}", ItemSystem.GetItemName(userAbilityScroll.id), amount,LocalizationManager.GetText("alertNeedMessage1")));
+        var alertPanel = UI_Manager.instance.ShowNeedAlert("", LocalizationManager.GetText("alertAbilityTryMessage"));
         while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
         {
             yield return new WaitForFixedUpdate();
@@ -189,14 +200,77 @@ public class UI_Manager_AbilityTab : MonoBehaviour
         if (alertPanel.GetComponentInChildren<UI_CheckButton>().isResult)
         {
             UI_Manager.instance.ClosePopupAlertUI();
-            if (ItemSystem.GetUserScrollCount() >= amount)
+            if (User.statsPoint>0)
             {
                 if (!isSelectStart)
-                    StartCoroutine(RandomSelectAbility(amount));
+                    StartCoroutine("RandomSelectAbility");
             }
             else
             {
-                UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.scroll, amount);
+                UI_Manager.instance.ShowAlert("",LocalizationManager.GetText("alertAbilityFailMessage"));
+            }
+        }
+        else
+        {
+            UI_Manager.instance.ClosePopupAlertUI();
+        }
+        isCheckAlertOn = false;
+        yield return null;
+    }
+
+    IEnumerator CheckingAllAlert()
+    {
+        isCheckAlertOn = true;
+        var alertPanel = UI_Manager.instance.ShowNeedAlert("", LocalizationManager.GetText("alertAbilityTryAllMessage"));
+        while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        if (alertPanel.GetComponentInChildren<UI_CheckButton>().isResult)
+        {
+            UI_Manager.instance.ClosePopupAlertUI();
+            if (User.statsPoint > 0)
+            {
+                if (!isSelectStart)
+                    StartCoroutine("RandomSelectAllAbility");
+            }
+            else
+            {
+                UI_Manager.instance.ShowAlert("", LocalizationManager.GetText("alertAbilityFailMessage"));
+            }
+        }
+        else
+        {
+            UI_Manager.instance.ClosePopupAlertUI();
+        }
+        isCheckAlertOn = false;
+        yield return null;
+    }
+
+    IEnumerator CheckingInitationAlert()
+    {
+        isCheckAlertOn = true;
+        int amount = Mathf.Clamp(100 + User.level * 10, 0, 500);
+        int returnPoint = ((User.level - 1) * 3)+1;
+        GameObject alertPanel = UI_Manager.instance.ShowNeedAlert(Common.GetCoinCrystalEnergyImagePath(1), string.Format("<color='yellow'>'{0}' <size='24'>x </size>{1}</color> {2}", Common.GetCoinCrystalEnergyText(1), amount, LocalizationManager.GetText("alertNeedMessage8")));
+
+        while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        if (alertPanel.GetComponentInChildren<UI_CheckButton>().isResult)
+        {
+            UI_Manager.instance.ClosePopupAlertUI();
+            if (Common.PaymentCheck(ref User.blackCrystal, amount))
+            {
+                SaveSystem.ResetUserStatPoint();
+                AbilitySystem.ResetAbility();
+                GoogleSignManager.SaveData();
+                RefreshUI();
+            }
+            else
+            {
+                UI_Manager.instance.ShowAlert(UI_Manager.PopupAlertTYPE.blackCrystal, amount);
             }
         }
         else
@@ -214,40 +288,27 @@ public class UI_Manager_AbilityTab : MonoBehaviour
             StartCoroutine("CheckingAlert");
     }
 
-    IEnumerator RandomSelectAbility(int useItemAmount)
+    public void StartSelectAllAbility()
+    {
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_button_default);
+        if (!isCheckAlertOn)
+            StartCoroutine("CheckingAllAlert");
+    }
+
+    // 능력초기화
+    public void StartInitationAbility()
+    {
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_button_default);
+        if (!isCheckAlertOn)
+            StartCoroutine("CheckingInitationAlert");
+    }
+
+    IEnumerator RandomSelectAbility()
     {
         isSelectStart = true;
-        int index = 0;
-        int tempIndex = 0;
-        float time = 0;
         UI_Manager.instance.PopupInterActiveCover.SetActive(true);
-        Random.InitState(User.gachaSeed);
-        int selectedIndex = Random.Range(0, abilitySlotList.Count);
-        User.gachaSeed = Random.Range(0, 1000);
+        int selectedIndex = UnityEngine.Random.Range(0, abilitySlotList.Count);
         SelectImage.GetComponent<Image>().enabled = true;
-        while (time<1)
-        {
-            tempIndex = Random.Range(0, abilitySlotList.Count);
-            if (tempIndex == index)
-                index = Mathf.Clamp(tempIndex + 1, 0, abilitySlotList.Count - 1);
-            else
-                index = tempIndex;
-            SelectImage.transform.SetParent(abilitySlotList[index].transform);
-            SelectImage.transform.localPosition = Vector3.zero;
-            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_button_default);
-            yield return new WaitForSeconds(Mathf.Clamp(1.0f-(time*2),0.1f,1));
-            time += 0.05f;
-        }
-        while(index==selectedIndex)
-        {
-            index += 1;
-            if (index > abilitySlotList.Count - 1)
-                index = 0;
-            SelectImage.transform.SetParent(abilitySlotList[index].transform);
-            SelectImage.transform.localPosition = Vector3.zero;
-            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_button_default);
-            yield return new WaitForSeconds(0.1f);
-        }
         SelectImage.transform.SetParent(abilitySlotList[selectedIndex].transform);
         SelectImage.transform.localPosition = Vector3.zero;
         yield return new WaitForSeconds(0.3f);
@@ -255,19 +316,50 @@ public class UI_Manager_AbilityTab : MonoBehaviour
         UI_Manager.instance.PopupInterActiveCover.SetActive(false);
         SelectImage.GetComponent<Image>().enabled = false;
         isSelectStart = false;
-
-        if (ItemSystem.UseItem(ItemSystem.GetUserScroll().customId, useItemAmount))
-        {
-            AbilitySystem.SetObtainAbility(abilityList[selectedIndex].id);
-            MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalUseScroll, useItemAmount);
-            RefreshUI();
-            UI_Manager.instance.PopupGetAbility(abilityList[selectedIndex]);
-        }
-        else
-        {
-            RefreshUI();
-        }
+        AbilitySystem.SetObtainAbility(abilityList[selectedIndex].id);
+        RefreshUI();
+        UI_Manager.instance.PopupGetAbility(abilityList[selectedIndex]);
         yield return null;
+    }
+
+    IEnumerator RandomSelectAllAbility()
+    {
+        isSelectStart = true;
+        UI_Manager.instance.PopupInterActiveCover.SetActive(true);
+        Dictionary<Ability, int> getAbilities = new Dictionary<Ability, int>();
+        for(var i = 0; i < User.statsPoint; i++)
+        {
+            Ability selectedAbility = abilityList[UnityEngine.Random.Range(0, abilitySlotList.Count)];
+            if(getAbilities.ContainsKey(selectedAbility))
+            {
+                getAbilities[selectedAbility] = getAbilities[selectedAbility] + 1;
+            }
+            else
+            {
+                getAbilities.Add(selectedAbility, 1);
+            }
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForSeconds(0.3f);
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
+        UI_Manager.instance.PopupInterActiveCover.SetActive(false);
+        isSelectStart = false;
+        foreach(var ability in getAbilities)
+        {
+            AbilitySystem.SetObtainAllAbility(ability.Key, ability.Value);
+        }
+        RefreshUI();
+        UI_Manager.instance.PopupGetAllAbility(getAbilities);
+        yield return null;
+    }
+
+    int GetInitationScrollCount(int abilityCount)
+    {
+        if (abilityCount == 0)
+            return 0;
+        else
+            return abilityCount + GetInitationScrollCount(abilityCount - 1);
     }
 
 }

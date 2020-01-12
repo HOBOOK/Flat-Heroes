@@ -8,7 +8,7 @@ using UnityEngine;
 /// 미션 타입 정의
 /// 0:일일임무 1:주요임무 2:업적
 /// 0. 일일임무 클리어타입 > 0,1,4,17,18,19,20,15
-/// 1. 주간임무 클리어타입 > 0,1,2,3,4,19,20,21,12,13,22
+/// 1. 주간임무 클리어타입 > 0,1,2,3,10,19,20,21,12,13,22
 /// 2. 업적 클리어타입 > 3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
 /// 
 /// 클리어 타입 정의 
@@ -66,9 +66,7 @@ public class MissionSystem
         GetDayMissions();
         GetWeekMissions();
         GetArchivement();
-
-        SetArchivementClearPoint();
-        CheckClearMissions(true);
+        CheckClearMissions();
     }
 
     #region 임무성공확인
@@ -83,7 +81,6 @@ public class MissionSystem
                 clearMission.enable = false;
                 clearMission.missionLevel += 1;
                 clearMission.clearPoint = GetArchivementClearPoint(clearMission);
-                // 업적 목표 재설정 clearMission.clearPoint += 00;
             }
             else
             {
@@ -95,24 +92,80 @@ public class MissionSystem
                 clearMission.clear = true;
                 MissionDatabase.ClearMission(clearMission);
             }
+            RewardMission(clearMission);
         }
     }
-    public static void CheckClearMissions(bool isUI = false)
+    public static void RewardMission(Mission mission)
     {
+        RewardType rewardType = (RewardType)mission.rewardType;
+        switch (rewardType)
+        {
+            case RewardType.coin:
+                SaveSystem.AddUserCoin(GetMissionRewardItemCount(mission));
+                UI_Manager.instance.ShowGetAlert(Common.GetCoinCrystalEnergyImagePath(0), string.Format("<color='yellow'>{0}</color> {1} {2}", LocalizationManager.GetText("Coin"), Common.GetThousandCommaText(GetMissionRewardItemCount(mission)), LocalizationManager.GetText("alertGetMessage4")));
+                break;
+            case RewardType.crystal:
+                SaveSystem.AddUserCrystal(GetMissionRewardItemCount(mission));
+                UI_Manager.instance.ShowGetAlert(Common.GetCoinCrystalEnergyImagePath(1), string.Format("<color='yellow'>{0}</color> {1} {2}", LocalizationManager.GetText("Crystal"), Common.GetThousandCommaText(GetMissionRewardItemCount(mission)), LocalizationManager.GetText("alertGetMessage4")));
+                break;
+            case RewardType.energy:
+                SaveSystem.AddUserEnergy(GetMissionRewardItemCount(mission));
+                UI_Manager.instance.ShowGetAlert(Common.GetCoinCrystalEnergyImagePath(2), string.Format("<color='yellow'>{0}</color> {1} {2}", LocalizationManager.GetText("Energy"), Common.GetThousandCommaText(GetMissionRewardItemCount(mission)), LocalizationManager.GetText("alertGetMessage4")));
+                break;
+            case RewardType.scroll:
+                ItemSystem.SetObtainItem(mission.rewardItemId, GetMissionRewardItemCount(mission));
+                Item rewardItem = ItemSystem.GetItem(mission.rewardItemId);
+                UI_Manager.instance.ShowGetAlert(rewardItem.image, string.Format("<color='yellow'>{0}</color> {1}", ItemSystem.GetItemName(rewardItem.id), LocalizationManager.GetText("alertGetMessage3")));
+                break;
+            case RewardType.specialGacha:
+                UI_Manager.instance.PopupGetGacha(GachaSystem.GachaType.SpecialFive);
+                break;
+        }
+    }
+    public static int GetMissionRewardItemCount(Mission mission, bool isUI=false)
+    {
+        RewardType rewardType = (RewardType)mission.rewardType;
+        Mission refMission = missions.Find(x => x.id == mission.id || x.id.Equals(mission.id));
+        if(refMission!=null)
+        {
+            if (mission.missionType == 2)
+            {
+                if (rewardType == RewardType.coin || rewardType == RewardType.crystal || rewardType == RewardType.energy || rewardType == RewardType.scroll)
+                {
+                    int rewardCount = isUI? refMission.rewardItemCount + (int)(refMission.rewardItemCount * (mission.missionLevel + 1) * (mission.missionLevel + 1) * 0.03f) : refMission.rewardItemCount + (int)(refMission.rewardItemCount * mission.missionLevel * mission.missionLevel * 0.03f);
+                    return rewardCount;
+                }
+
+                else
+                    return refMission.rewardItemCount;
+            }
+            else
+            {
+                return refMission.rewardItemCount;
+            }
+        }
+        return 0;
+    }
+    public static void CheckClearMissions()
+    {
+        SetArchivementClearPoint();
         List<Mission> clearMissions = new List<Mission>();
+        bool isUnClearEnabledMission = false;
         foreach(var mission in userMissions)
         {
-            if (mission.point >= mission.clearPoint&&!mission.enable&&!mission.clear)
+            if (mission.point >= mission.clearPoint && !mission.enable && !mission.clear)
             {
                 clearMissions.Add(mission);
                 mission.enable = true;
             }
+            if (!isUnClearEnabledMission && mission.enable&&!mission.clear)
+            {
+                Debugging.LogWarning("=============>>" + GetMissionName(mission.id));
+                isUnClearEnabledMission = true;
+            }
         }
         PointSave();
-        if (clearMissions.Count>0&&isUI)
-        {
-            UI_Manager.instance.ShowAlert("UI/ui_trophy", string.Format("<color='yellow'>'{0}'</color> {1} {2} {3} ", GetMissionName(clearMissions[0].id),LocalizationManager.GetText("missionClearAlertMessage2"), clearMissions.Count-1, LocalizationManager.GetText("missionClearAlertMessage")));
-        }
+        UI_Manager.instance.MissionUIAlertOn(isUnClearEnabledMission);
     }
     public static void AddClearPoint(ClearType clearType)
     {
@@ -140,8 +193,7 @@ public class MissionSystem
             //업적
             if (currentMissions[i].missionType == 2)
             {
-                if (currentMissions[i].point < currentMissions[i].clearPoint)
-                    currentMissions[i].point += count;
+                currentMissions[i].point += count;
             }
             //임무
             else
@@ -173,6 +225,7 @@ public class MissionSystem
                             {
                                 point += hero.level;
                             }
+                            User.HeroRankPoint = point;
                             break;
                         case 9:
                             point = User.flatEnergyMaxLevel + User.flatEnergyChargingLevel + User.addMoneyLevel + User.addExpLevel + User.addAttackLevel + User.addDefenceLevel;
@@ -193,7 +246,6 @@ public class MissionSystem
                             break;
                     }
                     currentMissions[i].point = point;
-                    Debugging.Log(MissionSystem.GetMissionName(currentMissions[i].id) + " 의 포인트 > " + point);
                 }
             }
         }
@@ -203,22 +255,6 @@ public class MissionSystem
     {
         MissionDatabase.PointSave(userMissions.FindAll(x => !x.clear));
     }
-    public static void CoinReward(int coin)
-    {
-
-    }
-    public static void CrystalReward(int crystal)
-    {
-
-    }
-    public static void EnergyReward(int energy)
-    {
-
-    }
-    public static void ItemReward(int itemId)
-    {
-
-    }
     public enum ClearType { EnemyKill, StageClear,DayMissionClear,Attendance,Gacha,CollectHero,CollectEquipment,PlayerLevel,TotalHeroLevel,TotalLabLevel,TotalUseCoin,TotalUseCrystal,TotalUseEnergy,TotalUseScroll,TotalPlayerSkillLevel,TotalHeroSkillLevel,TotalStageCount,TotalItemDropCount,TotalCoinDropCount,BossKill,EquipUpgrade,FreeGacha,WeeklyClear };
     public enum RewardType { coin, crystal, energy, scroll, normalGacha, specialGacha };
     public static int GetArchivementClearPoint(Mission mission)
@@ -226,7 +262,10 @@ public class MissionSystem
         int point = 0;
         if(mission.missionType==2)
         {
-            point = mission.clearPoint + (int)(mission.clearPoint * mission.missionLevel);
+            var refMission = missions.Find(x => x.id == mission.id || x.id.Equals(mission.id));
+            int refPoint = refMission.clearPoint;
+            if(refMission!=null)
+                point = refPoint + (int)(refPoint * mission.missionLevel*mission.missionLevel);
         }
         return point;
     }
@@ -274,7 +313,7 @@ public class MissionSystem
         string saveday = PlayerPrefs.GetString("MissionDay");
         Debugging.Log("저장된 일자 > " + saveday);
         //저장된날짜와 오늘날짜가 다를때. 저녁 12:00가 지났는데
-        if (saveday!=currentday||!saveday.Equals(currentday)|| string.IsNullOrEmpty(saveday))
+        if (saveday!=currentday||!saveday.Equals(currentday)|| string.IsNullOrEmpty(saveday) || userMissions.FindAll(m => m.missionType == 0 || m.missionType.Equals(0)).Count < 1)
         {
             PlayerPrefs.SetString("MissionDay", currentday);
             PlayerPrefs.Save();
@@ -309,12 +348,12 @@ public class MissionSystem
     }
     public static List<Mission> GetWeekMissions()
     {
-        string currentWeek = (DateTime.Now.DayOfYear/7).ToString();
-        Debugging.Log("오늘 일자 > " + currentWeek);
+        string currentWeek = (int.Parse(DateTime.Now.ToString("dd"))/7).ToString();
+        Debugging.Log("이번 주 > " + currentWeek);
         string saveWeek = PlayerPrefs.GetString("MissionWeek");
-        Debugging.Log("저장된 일자 > " + saveWeek);
+        Debugging.Log("저장된 주 > " + saveWeek);
         //주가 변경될경우
-        if (saveWeek != currentWeek || !saveWeek.Equals(currentWeek)|| string.IsNullOrEmpty(saveWeek))
+        if (saveWeek != currentWeek || !saveWeek.Equals(currentWeek)|| string.IsNullOrEmpty(saveWeek)|| userMissions.FindAll(m => m.missionType == 1 || m.missionType.Equals(1)).Count<1)
         {
             PlayerPrefs.SetString("MissionWeek", currentWeek);
             PlayerPrefs.Save();
@@ -378,9 +417,15 @@ public class MissionSystem
     }
     public static Sprite GetMissionImage(Mission mission)
     {
-        Sprite sprite = Resources.Load<Sprite>("Mission/mission_" + mission.clearType);
-        if (sprite != null)
-            return sprite;
+        switch(mission.missionType)
+        {
+            case 0:
+                return Resources.Load<Sprite>("Mission/mission_Day");
+            case 1:
+                return Resources.Load<Sprite>("Mission/mission_Week");
+            case 2:
+                return Resources.Load<Sprite>("Mission/mission_Archivement1");
+        }
         return ItemSystem.GetItemNoneImage();
     }
     #endregion

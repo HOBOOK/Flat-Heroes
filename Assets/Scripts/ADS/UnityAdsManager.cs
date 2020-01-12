@@ -17,23 +17,44 @@ public class UnityAdsManager : MonoBehaviour
     }
     public void ShowRewardedAd(RewardItems reward, int amount=0)
     {
-        if (Advertisement.IsReady("rewardedVideo"))
+        if(User.isAdsSkip)
         {
+            Debugging.Log("광고스킵");
             rewardItems = reward;
             rewardAmount = amount;
-            var options = new ShowOptions { resultCallback = HandleShowResult };
-            Advertisement.Show("rewardedVideo", options);
+            GetReward();
+        }
+        else
+        {
+            if (Advertisement.IsReady("rewardedVideo"))
+            {
+                Debugging.Log("광고시작");
+                rewardItems = reward;
+                rewardAmount = amount;
+                var options = new ShowOptions { resultCallback = HandleShowResult };
+                Advertisement.Show("rewardedVideo", options);
+            }
         }
     }
 
     public void ShowDefaultRewardedAd(int reward)
     {
-        if (Advertisement.IsReady("rewardedVideo"))
+        if (User.isAdsSkip)
         {
+            Debugging.Log("광고스킵");
             rewardItems = (RewardItems)reward;
             rewardAmount = defaultRewardAmount[reward];
-            var options = new ShowOptions { resultCallback = HandleShowResult };
-            Advertisement.Show("rewardedVideo", options);
+            GetReward();
+        }
+        else
+        {
+            if (Advertisement.IsReady("rewardedVideo"))
+            {
+                rewardItems = (RewardItems)reward;
+                rewardAmount = defaultRewardAmount[reward];
+                var options = new ShowOptions { resultCallback = HandleShowResult };
+                Advertisement.Show("rewardedVideo", options);
+            }
         }
     }
 
@@ -62,12 +83,15 @@ public class UnityAdsManager : MonoBehaviour
             {
                 case RewardItems.Coin:
                     SaveSystem.AddUserCoin(rewardAmount);
+                    UI_Manager.instance.ShowGetAlert(Common.GetCoinCrystalEnergyImagePath(0), string.Format("<color='yellow'>{0}</color> {1} {2}", Common.GetThousandCommaText(rewardAmount), LocalizationManager.GetText("Coin"), LocalizationManager.GetText("alertGetMessage1")));
                     break;
                 case RewardItems.Crystal:
                     SaveSystem.AddUserCrystal(rewardAmount);
+                    UI_Manager.instance.ShowGetAlert(Common.GetCoinCrystalEnergyImagePath(1), string.Format("<color='yellow'>{0}</color> {1} {2}", Common.GetThousandCommaText(rewardAmount), LocalizationManager.GetText("Crystal"), LocalizationManager.GetText("alertGetMessage1")));
                     break;
                 case RewardItems.Energy:
                     SaveSystem.AddUserEnergy(rewardAmount);
+                    UI_Manager.instance.ShowGetAlert(Common.GetCoinCrystalEnergyImagePath(2), string.Format("<color='yellow'>{0}</color> {1} {2}", Common.GetThousandCommaText(rewardAmount), LocalizationManager.GetText("Energy"), LocalizationManager.GetText("alertGetMessage1")));
                     break;
                 case RewardItems.SpeicalGachaOne:
                     UI_Manager.instance.PopupGetGacha(GachaSystem.GachaType.SpecialOne);

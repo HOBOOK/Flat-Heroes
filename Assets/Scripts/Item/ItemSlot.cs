@@ -9,6 +9,8 @@ public class ItemSlot : MonoBehaviour
     [SerializeField] Image coverImage;
     [SerializeField] Text nameText;
     [SerializeField] Text countText;
+    [SerializeField] Image reinforceImage;
+    [SerializeField] Text reinforceText;
 
     private Item _item;
     public Item Item
@@ -23,6 +25,8 @@ public class ItemSlot : MonoBehaviour
                 nameText.enabled = false;
                 countText.enabled = false;
                 coverImage.sprite = ItemSystem.GetItemNoneImage();
+                reinforceImage.enabled = false;
+                reinforceText.enabled = false;
             }
             else
             {
@@ -36,6 +40,18 @@ public class ItemSlot : MonoBehaviour
                     countText.enabled = true;
                     countText.text = _item.count.ToString();
                 }
+                if(_item.enhancement>0)
+                {
+                    reinforceImage.enabled = true;
+                    reinforceText.enabled = true;
+                    reinforceText.text = string.Format("<size='15'>+</size>{0}",_item.enhancement.ToString());
+                }
+                else
+                {
+                    reinforceImage.enabled = false ;
+                    reinforceText.enabled = false;
+                }
+
             }
         }
     }

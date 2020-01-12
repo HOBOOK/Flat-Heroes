@@ -18,7 +18,6 @@ public class GUI_Manager : MonoBehaviour
     float currentMaxHp = 0;
     private float hpBarSetpsLength = 10;
     private bool isOnPanelHP = false;
-    private float panelHpTime;
     private float currentValue;
     private RectTransform sliderContainerRectTransform;
     private RectTransform imageRectTransform;
@@ -78,7 +77,6 @@ public class GUI_Manager : MonoBehaviour
         if (Common.hitTargetObject == null || Common.hitTargetObject != target)
             Common.hitTargetObject = target;
         sliderContainerRectTransform.sizeDelta = new Vector2(Mathf.Clamp(GetMaxHp() * 0.01f, 250, 300), 80);
-        panelHpTime = 0.0f;
         currentValue = GetCurrentHp();
         PanelCastleHP.transform.GetChild(0).GetComponent<Slider>().value = GetCurrentHp() / GetMaxHp();
         PanelCastleHP.transform.GetChild(1).GetComponentInChildren<Text>().text = currentHp.ToString();
@@ -101,7 +99,6 @@ public class GUI_Manager : MonoBehaviour
             if (Common.hitTargetObject.GetComponent<Castle>().isDead || GetCurrentHp() <= 0)
             {
                 Common.hitTargetObject = null;
-                panelHpTime = 0.0f;
                 isOnPanelHP = false;
                 PanelCastleHP.SetActive(false);
             }
@@ -121,7 +118,7 @@ public class GUI_Manager : MonoBehaviour
             }
             else if(Common.hitTargetObject.GetComponent<Boss>()!=null)
             {
-                currentHp = (float)Common.hitTargetObject.GetComponent<Boss>().hp;
+                currentHp = (float)Common.hitTargetObject.GetComponent<Hero>().status.hp;
                 hpImage.material.SetFloat("_Percent", currentHp / currentMaxHp);
                 return currentHp;
             }
@@ -142,7 +139,7 @@ public class GUI_Manager : MonoBehaviour
             }
             else if (Common.hitTargetObject.GetComponent<Boss>() != null)
             {
-                currentMaxHp = (float)Common.hitTargetObject.GetComponent<Boss>().maxHp;
+                currentMaxHp = (float)Common.hitTargetObject.GetComponent<Hero>().status.maxHp;
                 return currentMaxHp;
             }
             else

@@ -8,7 +8,6 @@ public class UI_StageCoin : MonoBehaviour
     Text coinText;
     Image coinImage;
     float imageSize;
-    bool isSizeOver = false;
     float effectTimer = 0;
     private void Awake()
     {
@@ -31,10 +30,10 @@ public class UI_StageCoin : MonoBehaviour
     IEnumerator GettingEffect()
     {
         effectTimer = 1.0f;
-        imageSize = 1.1f;
+        imageSize = 1.25f;
         while (effectTimer > 0||imageSize>1)
         {
-            imageSize -= Time.deltaTime * 0.1f;
+            imageSize -= Time.deltaTime * 0.3f;
             coinImage.transform.localScale = new Vector3(imageSize, imageSize, imageSize);
             yield return new WaitForEndOfFrame();
             effectTimer -= Time.deltaTime;

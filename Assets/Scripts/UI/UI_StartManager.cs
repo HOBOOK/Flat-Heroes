@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UI_StartManager : MonoBehaviour
 {
     public static UI_StartManager instance = null;
-    bool isReady = false;
+    public GameObject VersionAlertUI;
     public GameObject DownloadUI;
     public GameObject StartAbleUI;
     public GameObject CoverUI;
@@ -15,7 +15,6 @@ public class UI_StartManager : MonoBehaviour
     public GameObject ErrorAlertUI;
     public GameObject ConsentAlertUI;
 
-    public Button startButton;
     public Text versionText;
 
     Slider downloadProgressBar;
@@ -34,8 +33,7 @@ public class UI_StartManager : MonoBehaviour
         TitleUI.gameObject.SetActive(false);
         ErrorAlertUI.gameObject.SetActive(false);
         downloadProgressBar = DownloadUI.GetComponentInChildren<Slider>();
-        startButton.interactable = false;
-        versionText.text = Application.version;
+        versionText.text = string.Format("Ver. {0}",Application.version);
     }
 
     public void SetDownloadCount(int maxCount)
@@ -53,20 +51,17 @@ public class UI_StartManager : MonoBehaviour
         {
             StartAbleUI.transform.GetChild(0).gameObject.SetActive(true);
             StartAbleUI.transform.GetChild(1).gameObject.SetActive(false);
-            startButton.interactable = true;
         }
         else
         {
             StartAbleUI.transform.GetChild(0).gameObject.SetActive(false);
             StartAbleUI.transform.GetChild(1).gameObject.SetActive(true);
-            startButton.interactable = false;
         }
-        TitleUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
+        TitleUI.gameObject.SetActive(true);
     }
     public void ShowDownloadUI()
     {
         TitleUI.gameObject.SetActive(false);
-        startButton.interactable = false;
         StartAbleUI.gameObject.SetActive(false);
         DownloadUI.gameObject.SetActive(true);
     }
@@ -74,9 +69,19 @@ public class UI_StartManager : MonoBehaviour
     {
         if(ErrorAlertUI!=null)
         {
+            Caching.ClearCache();
             ErrorAlertUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
             //ErrorAlertUI.gameObject.SetActive(true);
             ErrorAlertUI.transform.GetChild(0).GetChild(0).GetComponentInChildren<Text>().text = errorMsg;
+        }
+    }
+    public void ShowVersionUI(string latestVersion)
+    {
+        if (VersionAlertUI != null)
+        {
+
+            VersionAlertUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
+            VersionAlertUI.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().text = string.Format("{0} : {1} \r\n {2} : {3}", LocalizationManager.GetText("CurrentVersion"), Application.version, LocalizationManager.GetText("LatestVersion"), latestVersion);
         }
     }
 
@@ -101,7 +106,7 @@ public class UI_StartManager : MonoBehaviour
         if (downloadProgressBar != null)
         {
             downloadProgressBar.value = v;
-            downloadProgressBar.transform.GetComponentInChildren<Text>().text = string.Format("{0} ({1}/{2})", LocalizationManager.GetText("AssetBundleLoadText"), count, MaxDownloadCount);
+            downloadProgressBar.transform.GetComponentInChildren<Text>().text = string.Format("{0} {1}%", LocalizationManager.GetText("AssetBundleLoadText"), ((float)count * 100f / (float)MaxDownloadCount).ToString("N0"));
         }
     }
 

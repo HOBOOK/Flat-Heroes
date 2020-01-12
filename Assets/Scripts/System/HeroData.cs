@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Xml;
 using System.Xml.Serialization;
+using System;
 
 public class HeroData
 {
@@ -56,4 +57,16 @@ public class HeroData
 
     [XmlElement("AttackType")]
     public int attackType;
+
+    [XmlElement("Skin")]
+    public int skin;
+
+    [XmlElement("Over")]
+    public int over;
+
+    [XmlElement("Ability")]
+    public int ability;
+
+    [XmlElement("AbilityLevel")]
+    public int abilityLevel;
 }

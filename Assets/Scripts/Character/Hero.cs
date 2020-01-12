@@ -15,28 +15,34 @@ public class Hero : MonoBehaviour
     public List<string> playChats = new List<string>();
     //public List<string> endChats = new List<string>();
     //boolean
+
     public bool isPlayerHero = false;
     public bool isStage = false;
-    public bool isCriticalAttack = false;
-    bool isStart = false;
-    public bool isNeutrality;
-    public bool isHold = false;
-    public bool isLeftorRight = false;
-    public bool isFriend = false;
     public bool isDead = false;
     public bool isUnBeat = false;
+    public bool isCriticalAttack = false;
+    public bool isFriend = false;
+    public bool isStatic = false;
     private bool isAttack = false;
-    public bool isSkillAttack = false;
+    private bool isStart = false;
+    private bool isNeutrality;
+    private bool isHold = false;
+    private bool isLeftorRight = false;
+    private bool isSkillAttack = false;
     private bool isWait = false;
     private bool isTrack = false;
     private bool isJumping = false;
-    public bool isDefence = false;
-    public bool isStun = false;
+    private bool isDefence = false;
+    private bool isStun = false;
     private bool isStunning = false;
     private bool isClimb = false;
     private bool isClimbing = false;
-    public bool isAir = false;
+    private bool isAir = false;
     private bool isAirborne = false;
+    private bool isReached = false;
+    private bool isPvpSetting = false;
+    private bool isPersistentHitted = false;
+
     //Integer,float
     float distanceBetweenTarget;
     float standardTime = 5.0f;
@@ -47,13 +53,17 @@ public class Hero : MonoBehaviour
     float attackRange;
     int randomStatus = 0;
     int attackNumber = 0;
+    int stageModeType = 0;
     //GameObject
     public GameObject target;
     List<GameObject> enemys = new List<GameObject>();
     List<GameObject> allys = new List<GameObject>();
     public GameObject weaponPoint;
+    public GameObject weaponPoint2;
     public GameObject attackPoint;
     public GameObject stageHeroProfileUI;
+    GameObject transcendenceEffect;
+    GameObject shadow;
     GameObject hpUI;
     //Vector3
     Vector3 firstPos = Vector3.zero;
@@ -66,7 +76,7 @@ public class Hero : MonoBehaviour
     public HeroState heroState;
     public WeaponType weaponType;
     public enum HeroState { Normal, Attack  }
-    public enum WeaponType { No,Gun,Sword,Knife,Staff,Bow,Heal,Zombie}
+    public enum WeaponType { No,Gun,Sword,Knife,Staff,Bow,Heal,Support,Zombie,Raser,DoubleSword,Wand,Shuriken}
     //Rigidbody2D
     Rigidbody2D rigid;
     //Animator
@@ -74,11 +84,19 @@ public class Hero : MonoBehaviour
     Animator faceAnimator;
     //InnerClass
     public Status status;
+    private int initAttack;
+    private int initDefence;
+    private int initMaxHp;
     //HeroData
-    HeroData heroData;
+    public HeroData heroData;
     Skill skillData;
     //EquipItems
     List<Item> equipItems = new List<Item>();
+    //Buff boolean
+    bool isAttackBuff = false;
+    bool isDefenceBuff = false;
+    bool isWaveBuff = false;
+    bool isSpeedBuff = false;
     #endregion
 
     #region Awake,Start,Update
@@ -86,7 +104,6 @@ public class Hero : MonoBehaviour
     {
         InitHero();
         StartHero();
-        firstPos = this.transform.position;
 
         if (isPlayerHero)
         {
@@ -97,6 +114,9 @@ public class Hero : MonoBehaviour
         {
             isLeftorRight = true;
         }
+        if(transform.Find("shadow")!=null)
+            shadow = transform.Find("shadow").gameObject;
+        ShadowOnOff(true);
         animator = GetComponent<Animator>();
         if(GetComponentInChildren<faceOff>()!=null)
             faceAnimator = GetComponentInChildren<faceOff>().GetFaceAnimator();
@@ -107,10 +127,17 @@ public class Hero : MonoBehaviour
         RemoveWeapon();
         if(isStage)
         {
-            if (isPlayerHero)
-                StartCoroutine("StartAttackMode");
+            if(Common.stageModeType==Common.StageModeType.Battle)
+            {
+                StartCoroutine("StartPvpMode");
+            }
             else
-                StartCoroutine("StartMonsterAttackMode");
+            {
+                if (isPlayerHero)
+                    StartCoroutine("StartAttackMode");
+                else
+                    StartCoroutine("StartMonsterAttackMode");
+            }
         }
         else
         {
@@ -124,6 +151,7 @@ public class Hero : MonoBehaviour
             return;
         FindEnemys();
         StateChecking();
+        RePositioningHero();
         Die();
     }
     private void FixedUpdate()
@@ -135,6 +163,22 @@ public class Hero : MonoBehaviour
         Climb();
         Running();
     }
+    private void OnDisable()
+    {
+        MusicEffectOff();
+        if(EffectPool.Instance != null&&transcendenceEffect != null)
+        {
+            EffectPool.Instance.PushToPool("GlowOrbPink", transcendenceEffect);
+        }
+    }
+    private void OnDestroy()
+    {
+        MusicEffectOff();
+        if (EffectPool.Instance != null && transcendenceEffect != null)
+        {
+            EffectPool.Instance.PushToPool("GlowOrbPink", transcendenceEffect);
+        }
+    }
     #endregion
 
     #region 계산함수
@@ -142,27 +186,70 @@ public class Hero : MonoBehaviour
     {
         get
         {
-            return status.attack;
+            return status.attack + OnReturnHeroAbility(4);
         }
         set { }
     }
-    public int DEFENCE
+    public int GetDefence(float pent)
     {
-        get
+        int def = status.defence + OnReturnHeroAbility(5);
+        return (int)(def - (def * pent));
+    }
+    public int Damage(bool isCtk = false)
+    {
+        if (!isCtk)
         {
-            return status.defence;
+            if (UnityEngine.Random.Range(1, 100) <= this.status.criticalPercent)
+                isCriticalAttack = true;
+            else
+                isCriticalAttack = false;
         }
-        set { }
-    }
-    public int Damage()
-    {
-        if (UnityEngine.Random.Range(1, 100) <= this.status.criticalPercent)
-            isCriticalAttack = true;
         else
-            isCriticalAttack = false;
-        float dam = isCriticalAttack ? ATTACK * 1.5f: ATTACK;
-        dam = isSkillAttack ? dam * (SkillSystem.GetUserSkillPower(heroData.skill)*0.01f) : dam;
+            isCriticalAttack = true;
+
+        float dam = ATTACK;
+        dam = isSkillAttack ? dam * Mathf.Clamp((SkillSystem.GetUserSkillPower(heroData.skill)*0.01f),0f,100f) : dam;
         dam = UnityEngine.Random.Range(dam * 0.8f, dam * 1.2f);
+        dam = isCriticalAttack ? dam * (1.5f+OnReturnHeroAbility(3)*0.01f) : dam;
+        return (int)dam;
+    }
+    public string SetDamageData(int nDam, float nPent)
+    {
+        return nDam + "/" + nPent;
+    }
+    public int DamageDataDam(string attackPointText)
+    {
+        if (attackPointText.Contains("/"))
+            return int.Parse(attackPointText.Substring(0, attackPointText.IndexOf('/')));
+        else
+            return 0;
+    }
+    public float DamageDataPent(string attackPointText)
+    {
+        return float.Parse(attackPointText.Substring(attackPointText.IndexOf('/')+1));
+    }
+    public bool IsReached()
+    {
+        return isReached;
+    }
+
+
+    public int SkillDamage(bool isCtk = false)
+    {
+        if (!isCtk)
+        {
+            if (UnityEngine.Random.Range(1, 100) <= this.status.criticalPercent)
+                isCriticalAttack = true;
+            else
+                isCriticalAttack = false;
+        }
+        else
+            isCriticalAttack = true;
+
+        float dam = ATTACK;
+        dam = dam * Mathf.Clamp((SkillSystem.GetUserSkillPower(heroData.skill) * 0.01f), 0f, 100f);
+        dam = UnityEngine.Random.Range(dam * 0.8f, dam * 1.2f);
+        dam = isCriticalAttack ? dam * 1.5f : dam;
         return (int)dam;
     }
     public bool isHealAble()
@@ -187,10 +274,14 @@ public class Hero : MonoBehaviour
     }
     void RemoveWeapon()
     {
-        if (weaponPoint.transform.childCount > 0 && weaponPoint.transform.GetChild(0).gameObject.activeSelf)
+        if (weaponPoint!=null&&weaponPoint.transform.childCount > 0 && weaponPoint.transform.GetChild(0).gameObject.activeSelf)
         {
             animator.SetInteger("weaponType", -1);
             weaponPoint.transform.GetChild(0).gameObject.SetActive(false);
+        }
+        if (weaponPoint2!=null&&weaponPoint2.transform.childCount > 0 && weaponPoint2.transform.GetChild(0).gameObject.activeSelf)
+        {
+            weaponPoint2.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
     void InitEnemys()
@@ -222,18 +313,18 @@ public class Hero : MonoBehaviour
         {
             if (!isAttack && !isClimb && !isClimbing && !isWait)
             {
-                allys = Common.FindAlly();
+                allys = Common.FindAlly(this.isPlayerHero);
                 allys.Remove(this.gameObject);
                 if (allys != null && allys.Count > 0)
                 {
-                    int tempHp = allys[0].GetComponent<Hero>().status.hp;
+                    float tempHp = (float)allys[0].GetComponent<Hero>().status.hp/(float)allys[0].GetComponent<Hero>().status.maxHp;
                     int targetIndex = 0;
                     for (var i = 1; i < allys.Count; i++)
                     {
-                        if (tempHp > allys[i].GetComponent<Hero>().status.hp && TargetAliveCheck(allys[i]))
+                        if (tempHp > (float)allys[i].GetComponent<Hero>().status.hp / (float)allys[i].GetComponent<Hero>().status.maxHp && TargetAliveCheck(allys[i]))
                         {
                             targetIndex = i;
-                            tempHp = allys[i].GetComponent<Hero>().status.hp;
+                            tempHp = (float)allys[i].GetComponent<Hero>().status.hp / (float)allys[i].GetComponent<Hero>().status.maxHp;
                         }
                     }
                     target = allys[targetIndex].gameObject;
@@ -241,14 +332,10 @@ public class Hero : MonoBehaviour
                 else
                 {
                     target = null;
-                    isFriend = false;
-                    FindEnemys(true);
                 }
-                yield return new WaitForSeconds(1.0f);
             }
-            yield return null;
+            yield return new WaitForSeconds(1f);
         }
-        isFriend = false;
         yield return null;
 
     }
@@ -256,18 +343,51 @@ public class Hero : MonoBehaviour
     {
         if(!isAttack  && !isClimb && !isClimbing&&isStage&&!isFriend)
         {
-            if (!isForce)
+            if (IsInfinityModeMonster())
             {
-                if (target == null && enemys != null && enemys.Count > 0)
+                if (Common.allyTargetObject != null && Common.allyTargetObject.GetComponent<Castle>() != null && !Common.allyTargetObject.GetComponent<Castle>().isDead&&target==null)
                 {
-                    foreach (var character in enemys.ToArray())
+                    target = Common.allyTargetObject;
+                }
+            }
+            else
+            {
+                if (!isForce)
+                {
+                    if (target == null && enemys != null && enemys.Count > 0)
                     {
-                        if (!TargetAliveCheck(character))
+                        foreach (var character in enemys.ToArray())
                         {
-                            enemys.Remove(character);
+                            if (!TargetAliveCheck(character))
+                            {
+                                enemys.Remove(character);
+                            }
+                        }
+
+                        if (enemys.Count > 0)
+                        {
+                            int targetIndex = 0;
+                            float tempTargetDistance = Common.GetDistanceBetweenAnother(transform, enemys[0].transform);
+                            for (int i = 1; i < enemys.Count; i++)
+                            {
+                                if (tempTargetDistance > Common.GetDistanceBetweenAnother(transform, enemys[i].transform))
+                                {
+                                    targetIndex = i;
+                                    tempTargetDistance = Common.GetDistanceBetweenAnother(transform, enemys[i].transform);
+                                }
+                            }
+                            target = enemys[targetIndex].gameObject;
+
+                            //Debugging.Log(name + " 의 타겟 >> " + target.name);
+                        }
+                        else
+                        {
+                            //Debugging.Log(name + " 의 타겟 찾을 수 없음. ");
                         }
                     }
-
+                }
+                else
+                {
                     if (enemys.Count > 0)
                     {
                         int targetIndex = 0;
@@ -277,105 +397,117 @@ public class Hero : MonoBehaviour
                             if (tempTargetDistance > Common.GetDistanceBetweenAnother(transform, enemys[i].transform))
                             {
                                 targetIndex = i;
-                                tempTargetDistance = Common.GetDistanceBetweenAnother(transform, enemys[i].transform);
                             }
+                            tempTargetDistance = Common.GetDistanceBetweenAnother(transform, enemys[i - 1].transform);
                         }
                         target = enemys[targetIndex].gameObject;
-                     
-                        //Debugging.Log(name + " 의 타겟 >> " + target.name);
-                    }
-                    else
-                    {
-                        //Debugging.Log(name + " 의 타겟 찾을 수 없음. ");
+                        //Debugging.Log(name + " 의 타겟 강제지정 >> " + target.name);
                     }
                 }
-            }
-            else
-            {
-                if (enemys.Count > 0)
+                if (target != null)
                 {
-                    int targetIndex = 0;
-                    float tempTargetDistance = Common.GetDistanceBetweenAnother(transform, enemys[0].transform);
-                    for (int i = 1; i < enemys.Count; i++)
+                    if (TargetDeadCheck(target))
                     {
-                        if (tempTargetDistance > Common.GetDistanceBetweenAnother(transform, enemys[i].transform))
-                        {
-                            targetIndex = i;
-                        }
-                        tempTargetDistance = Common.GetDistanceBetweenAnother(transform, enemys[i - 1].transform);
+                        target = null;
                     }
-                    target = enemys[targetIndex].gameObject;
-                    //Debugging.Log(name + " 의 타겟 강제지정 >> " + target.name);
-                }
-            }
-            if (target != null)
-            {
-                if (TargetDeadCheck(target))
-                {
-                    target = null;
-                }
-            }
-            if(isPlayerHero)
-            {
-                if (target == null && enemys.Count < 1)
-                {
-                    enemys = Common.FindEnemy();
-                   
-                    // 캐슬타겟
-                    if (Common.hitTargetObject != null)
+                    else if (IsLimitXOutRange(target.transform))
                     {
-                        if(Common.hitTargetObject.GetComponent<Castle>()!=null&&!Common.hitTargetObject.GetComponent<Castle>().isDead)
-                        {
-                            target = Common.hitTargetObject;
-                        }
-                        else if(Common.hitTargetObject.GetComponent<Boss>()!=null&&!Common.hitTargetObject.GetComponent<Boss>().bossPrefabData.isDead)
-                        {
-                            target = Common.hitTargetObject;
-                        }
+                        target = null;
                     }
                 }
-            }
-            else
-            {
-                if (target == null && enemys.Count < 1)
-                {
-                    enemys = Common.FindAlly();
-
-                    // 캐슬타겟
-                    if (Common.allyTargetObject != null)
-                    {
-                        if (Common.allyTargetObject.GetComponent<Castle>() != null && !Common.allyTargetObject.GetComponent<Castle>().isDead)
-                        {
-                            target = Common.allyTargetObject;
-                        }
-                    }
-                }
-            }
-            if(Common.hitTargetObject==null&&Common.stageModeType==Common.StageModeType.Main)
-            {
-                if (!isPlayerHero)
-                    status.hp = 0;
-                target = null;
-            }
-            else if(Common.allyTargetObject==null && Common.stageModeType == Common.StageModeType.Main)
-            {
                 if (isPlayerHero)
-                    status.hp = 0;
-                target = null;
+                {
+                    if (target == null && enemys.Count < 1)
+                    {
+                        enemys = Common.FindEnemy(this.isPlayerHero);
+                        // 캐슬타겟
+                        if (Common.hitTargetObject != null && enemys.Count < 1)
+                        {
+                            if (Common.hitTargetObject.GetComponent<Castle>() != null && !Common.hitTargetObject.GetComponent<Castle>().isDead)
+                            {
+                                target = Common.hitTargetObject;
+                            }
+                            else if (Common.hitTargetObject.GetComponent<Boss>() != null && !Common.hitTargetObject.GetComponent<Boss>().bossPrefabData.isDead)
+                            {
+                                target = Common.hitTargetObject;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (target == null && enemys.Count < 1)
+                    {
+                        enemys = Common.FindEnemy(this.isPlayerHero);
+                        // 캐슬타겟
+                        if (Common.allyTargetObject != null && enemys.Count < 1)
+                        {
+                            if (Common.allyTargetObject.GetComponent<Castle>() != null && !Common.allyTargetObject.GetComponent<Castle>().isDead)
+                            {
+                                target = Common.allyTargetObject;
+                            }
+                        }
+                    }
+                }
+                if (Common.stageModeType == Common.StageModeType.Main)
+                {
+                    if (Common.hitTargetObject == null)
+                    {
+                        if (!isPlayerHero)
+                            status.hp = 0;
+                        target = null;
+                    }
+                    if (StageManagement.instance.stageInfo.stageType == 0)
+                    {
+                        if (Common.allyTargetObject == null)
+                        {
+                            if (isPlayerHero)
+                                status.hp = 0;
+                            target = null;
+                        }
+                    }
+                }
             }
         }
     }
     public void ResearchingEnemys(GameObject enemy)
     {
-        if(!TargetDeadCheck(enemy))
+        if(TargetAliveCheck(enemy))
         {
             enemys.Add(enemy);
             if (target == Common.hitTargetObject||target==Common.allyTargetObject)
             {
-                target = null;
                 FindEnemys(true);
             }
         }
+    }
+    public void ResearchingEnemysAll(List<GameObject> enemy)
+    {
+        foreach(var e in enemy)
+        {
+            if (TargetAliveCheck(e))
+            {
+                enemys.Add(e);
+
+            }
+        }
+        if (!TargetAliveCheck(target))
+        {
+            FindEnemys(true);
+        }
+    }
+    bool IsLimitXOutRange(Transform tran)
+    {
+        if (stageModeType != (int)Common.SCENE.INFINITE||!isPlayerHero)
+            return false;
+        else
+        {
+            if (tran.position.x > 12f||tran.position.x<-12f)
+            {
+                return true;
+            }
+        }
+        return false;
     }
     bool TargetAliveCheck(GameObject obj)
     {
@@ -424,8 +556,8 @@ public class Hero : MonoBehaviour
         }
         //방향전환 레이어 (필드)
         layerMask = 1 << 31;
-        checkTurnHit2D = Physics2D.Raycast(transform.position + new Vector3(0, -0.5f, 0), isLeftorRight ? Vector2.left : Vector2.right, 0.2f, layerMask);
-        Debug.DrawRay(transform.position + new Vector3(0, 0, 0), isLeftorRight ? Vector2.left : Vector2.right, Color.blue, 0.2f);
+        checkTurnHit2D = Physics2D.Raycast(transform.position, isLeftorRight ? Vector2.left : Vector2.right, 0.2f, layerMask);
+        Debug.DrawRay(transform.position, isLeftorRight ? Vector2.left : Vector2.right, Color.blue, 0.2f);
         if (checkTurnHit2D)
         {
             isLeftorRight = !isLeftorRight;
@@ -436,8 +568,8 @@ public class Hero : MonoBehaviour
         if (rigid.velocity.y <= 0 && animator.GetBool("isJumping"))
         {
             int layerMask = 1 << 31;
-            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.localPosition, Vector2.down, 1.3f, layerMask);
-            Debug.DrawRay(transform.localPosition, Vector3.down * 1.3f, Color.blue, 1f);
+            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.localPosition, Vector2.down, 1.5f, layerMask);
+            Debug.DrawRay(transform.localPosition, Vector3.down * 1.5f, Color.blue, 1f);
             foreach (var i in hit)
             {
                 if (i.collider && !i.collider.isTrigger)
@@ -448,18 +580,27 @@ public class Hero : MonoBehaviour
             }
         }
     }
+    private bool IsTargetLeft(Transform tran)
+    {
+        if(tran.transform.position.x > this.transform.position.x)
+        {
+            return false;
+        }
+        return true;
+    }
     #endregion
 
     #region 영웅세팅
     void InitHero()
     {
-        if (Common.GetSceneCompareTo(Common.SCENE.STAGE)|| Common.GetSceneCompareTo(Common.SCENE.INFINITE))
+        if (Common.GetSceneCompareTo(Common.SCENE.STAGE) || Common.GetSceneCompareTo(Common.SCENE.INFINITE) || Common.GetSceneCompareTo(Common.SCENE.BOSS) || Common.GetSceneCompareTo(Common.SCENE.BATTLE) || Common.GetSceneCompareTo(Common.SCENE.ATTACK)) 
         {
             isStage = true;
+            stageModeType = Common.GetSceneNumber();
         }
         this.tag = isPlayerHero ? "Hero" : "Enemy";
         InitSpriteLayer();
-        if(isStage)
+        if (isStage)
         {
             if (isPlayerHero)
             {
@@ -471,28 +612,44 @@ public class Hero : MonoBehaviour
             }
 
         }
+
         SpriteAlphaSetting(0);
     }
     void StartHero()
     {
         // STATUS 설정
-        heroData = null;
-        if (isPlayerHero)
-            heroData = HeroSystem.GetUserHero(id);
+        isPvpSetting = Common.stageModeType == Common.StageModeType.Battle;
+        if (!isPvpSetting)
+        {
+            if (isPlayerHero)
+                heroData = HeroSystem.GetUserHero(id);
+            else
+                heroData = HeroSystem.GetHero(id);
+        }
         else
-            heroData = HeroSystem.GetHero(id);
-
+        {
+            if (isPlayerHero)
+                heroData = HeroSystem.GetUserHero(id);
+        }
         if (heroData!=null)
         {
-            this.status.SetHeroStatus(ref heroData,false);
+            if(isPvpSetting)
+                this.status.SetPvpStatus(ref heroData, isPlayerHero, this);
+            else
+            {
+                this.status.SetHeroStatus(ref heroData, false, this);
+            }
+            initAttack = this.status.attack;
+            initDefence = this.status.defence;
+            initMaxHp = this.status.maxHp;
+
+            BossModeDifficultyBuff();
+            SetSkin(heroData);
+
             this.HeroName = HeroSystem.GetHeroName(heroData.id);
             this.name = HeroName;
             initChats = HeroSystem.GetHeroChats(heroData.id);
             skillData = SkillSystem.GetSkill(heroData.skill);
-            if(skillData!=null)
-            {
-                Debugging.LogSystem(string.Format("{0} 의 스킬 이름 :{1} , 레벨:{2}", HeroName, skillData.name, SkillSystem.GetUserSkillLevel(skillData.id)));
-            }
             // 보스의 경우
             if(this.id>1000)
             {
@@ -510,10 +667,19 @@ public class Hero : MonoBehaviour
             Debugging.LogWarning(this.name + " 영웅의 Status 데이터 받아오기 실패.");
         }
     }
-
-    void SpriteAlphaSetting(float alpha)
+    void ShadowOnOff(bool on)
     {
-        if(isPlayerHero&&isStage)
+        if(shadow!=null)
+        {
+            if (on)
+                shadow.SetActive(true);
+            else
+                shadow.SetActive(false);
+        }
+    }
+    public void SpriteAlphaSetting(float alpha)
+    {
+        if(isPlayerHero&&isStage&&Common.stageModeType!=Common.StageModeType.Battle)
         {
             foreach (var sprite in GetComponentsInChildren<SpriteRenderer>())
             {
@@ -528,8 +694,10 @@ public class Hero : MonoBehaviour
         isClimb = false;
         isClimbing = false;
         isUnBeat = false;
+        isWait = false;
+        isStun = false;
+        isStunning = false;
 
-         
         foreach (var i in animator.parameters)
         {
             if (i.type == AnimatorControllerParameterType.Bool)
@@ -587,14 +755,21 @@ public class Hero : MonoBehaviour
                 attackRange = 5.0f + scale;
                 attackPoint.GetComponent<BoxCollider2D>().offset = new Vector2(0.5f - attackRange, 0);
                 attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(1.5f + attackRange * 2f, 3);
+                if(isStage)
+                    animator.SetBool("isFly", true);
                 break;
             case WeaponType.Bow:
-                attackRange = 10.0f + scale;
+                attackRange = 9.0f + scale;
                 attackPoint.GetComponent<BoxCollider2D>().offset = new Vector2(-0.5f, 0);
-                attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(3, 3);
+                attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(2f + attackRange * 3f, 3);
                 break;
             case WeaponType.Heal:
                 attackRange = 1.0f + scale;
+                attackPoint.GetComponent<BoxCollider2D>().offset = new Vector2(0.5f - attackRange, 0);
+                attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(1.5f + attackRange * 2f, 3);
+                break;
+            case WeaponType.Support:
+                attackRange = 5.0f + scale;
                 attackPoint.GetComponent<BoxCollider2D>().offset = new Vector2(0.5f - attackRange, 0);
                 attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(1.5f + attackRange * 2f, 3);
                 break;
@@ -612,19 +787,56 @@ public class Hero : MonoBehaviour
                     attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(3, 3);
                 }
                 break;
+            case WeaponType.Raser:
+                attackRange = 3.5f + scale;
+                attackPoint.GetComponent<BoxCollider2D>().offset = new Vector2(0.5f - attackRange, 0);
+                attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(2f + attackRange * 3f, 3);
+                //if (isStage)
+                //    animator.SetBool("isFly", true);
+                break;
+            case WeaponType.DoubleSword:
+                attackRange = 1.7f + scale;
+                attackPoint.GetComponent<BoxCollider2D>().offset = new Vector2(0.5f - attackRange, 0);
+                attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(1.5f + attackRange * 2f, 3);
+                break;
+            case WeaponType.Wand:
+                attackRange = 5.0f + scale;
+                attackPoint.GetComponent<BoxCollider2D>().offset = new Vector2(0.5f - attackRange, 0);
+                attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(2f + attackRange * 3f, 3);
+                break;
+            case WeaponType.Shuriken:
+                attackRange = 7.0f + scale;
+                attackPoint.GetComponent<BoxCollider2D>().offset = new Vector2(-0.5f, 0);
+                attackPoint.GetComponent<BoxCollider2D>().size = new Vector2(3, 3);
+                break;
         }
+        if (isStatic)
+            attackRange = 100f;
         attackMaxRange = UnityEngine.Random.Range(attackRange * 0.8f, attackRange);
     }
     void HealMode()
     {
         RecoveryHp();
         DistanceChecking();
-        if (distanceBetweenTarget < attackMaxRange && distanceBetweenTarget >= attackMinRange && target != null)
+        if (distanceBetweenTarget < attackMaxRange && distanceBetweenTarget >= attackMinRange && TargetAliveCheck(target))
         {
-            if (target.GetComponent<Hero>().isHealAble())
-                Heal();
-            else
-                Idle();
+            if(id==109)
+            {
+                if (target.GetComponent<Hero>().isHealAble())
+                {
+                    Heal();
+                }
+                else
+                {
+                    animator.SetBool("isMoving", false);
+                    animator.SetBool("isRun", false);
+                }
+            }
+            else if(id==107)
+            {
+                Support();
+            }
+
         }
         else
         {
@@ -641,20 +853,25 @@ public class Hero : MonoBehaviour
         DistanceChecking();
         if (distanceBetweenTarget < attackMaxRange && distanceBetweenTarget >= attackMinRange&&target!=null)
         {
+            isReached = true;
             Attack();
         }
         else
         {
-            if (!isAttack && !isUnBeat && !isStunning && !isClimb && !isWait && !isAirborne&&!isClimb&&!isClimbing&&!isSkillAttack)
+            isReached = false;
+            if (!isAttack && !isUnBeat && !isStunning && !isClimb && !isWait && !isAirborne&&!isClimb&&!isClimbing&&!isSkillAttack&&target!=null)
+            {
+                Track();
+            }
+            else
             {
                 ChangeNpcMode();
-                Track();
             }
         }
     }
     void RedirectCharacter()
     {
-        if (target != null && target.activeSelf)
+        if (target != null && target.activeSelf && !isStatic)
         {
             isLeftorRight = target.transform.position.x < transform.position.x ? true : false;
         }
@@ -664,7 +881,7 @@ public class Hero : MonoBehaviour
     {
         if (heroState != HeroState.Attack)
         {
-            SetFalseAllboolean();
+            //SetFalseAllboolean();
             RedirectCharacter();
             heroState = HeroState.Attack;
             EquipWeapon();
@@ -673,13 +890,17 @@ public class Hero : MonoBehaviour
     void ChangingNormalMode()
     {
         if (heroState != HeroState.Normal)
+        {
             heroState = HeroState.Normal;
+            Idle();
+        }
+
     }
     void StateChecking()
     {
         if(isStage)
         {
-            if (isStart&&StageManagement.instance.isStageStart)
+            if (isStart&&StageManagement.instance.isStageStart())
             {
                 switch (heroState)
                 {
@@ -693,6 +914,10 @@ public class Hero : MonoBehaviour
                             HealMode();
                         break;
                 }
+            }
+            else
+            {
+                Idle();
             }
         }
         else
@@ -715,6 +940,51 @@ public class Hero : MonoBehaviour
         }
 
     }
+    void SetSkin(HeroData data)
+    {
+        if (data.skin>0)
+        {
+            var skins = Resources.LoadAll<Sprite>("Skins/"+data.id+"/"+data.skin);
+            foreach (var skin in skins)
+            {
+                foreach (var sprite in GetComponentsInChildren<SpriteRenderer>())
+                {
+                    if (sprite.sprite.name.Equals(skin.name))
+                    {
+                        sprite.sprite = skin;
+                    }
+                }
+            }
+        }
+        if (data.over>0)
+        {
+            TranscendenceEffect();
+        }
+    }
+    void RePositioningHero()
+    {
+        if(isStage&&isStart)
+        {
+            if (this.transform.position.x > 16)
+            {
+                this.transform.position = new Vector3(14, 0, 0);
+            }
+            else if(this.transform.position.x < - 16)
+            {
+                this.transform.position = new Vector3(-14, 0, 0);
+            }
+        }
+    }
+    public void SetFirstPos(Vector3 pos)
+    {
+        this.firstPos = pos;
+    }
+    bool IsInfinityModeMonster()
+    {
+        if (stageModeType == (int)Common.SCENE.INFINITE && this.id > 500 && this.id < 1000)
+            return true;
+        return false;
+    }
     #endregion
 
     #region 영웅행동처리
@@ -729,6 +999,9 @@ public class Hero : MonoBehaviour
     {
         if (status.hp <= 0 && !isDead)
         {
+            if(!isPlayerHero)
+                DeathEffect();
+            ShadowOnOff(false);
             isDead = true;
             StopAllCoroutines();
             SetFalseAllboolean();
@@ -737,15 +1010,19 @@ public class Hero : MonoBehaviour
             if(faceAnimator!=null)
                 faceAnimator.SetBool("isDead", true);
             rigid.velocity = Vector3.zero;
-            Knockback(12, 23);
+            KnockbackFix(20, 30);
             attackPoint.SetActive(false);
             animator.SetTrigger("deading");
             if (!isPlayerHero)
             {
-                StartCoroutine("DroppingItem");
+                StageManagement.instance.SetDPoint(-1);
+                if(Common.stageModeType==Common.StageModeType.Main||Common.stageModeType==Common.StageModeType.Infinite)
+                {
+                    StartCoroutine("DroppingItem");
+                }
                 MissionSystem.AddClearPoint(MissionSystem.ClearType.EnemyKill);
-                StageManagement.instance.SetKPoint();
-                List<GameObject> allyHeros = Common.FindAlly();
+                StageManagement.instance.SetKPoint(id>1000 ? true:false);
+                List<GameObject> allyHeros = Common.FindAlly(true);
                 if(allyHeros.Count>0)
                 {
                     foreach (var hero in allyHeros)
@@ -756,19 +1033,24 @@ public class Hero : MonoBehaviour
             }
             else
             {
-                StageManagement.instance.SetDPoint();
-                if(stageHeroProfileUI!=null)
+                if(stageHeroProfileUI!=null&&Common.stageModeType==Common.StageModeType.Main&&StageManagement.instance.stageInfo.stageType==0&&StageManagement.instance.isStageStart())
                 {
                     stageHeroProfileUI.GetComponent<UI_StageHeroProfile>().ShowResurrectionTime();
                 }
             }
             if(id<1000)
                 StartCoroutine("TransparentSprite");
+            else
+            {
+                if(Common.GetSceneCompareTo(Common.SCENE.INFINITE))
+                    StartCoroutine("TransparentSprite");
+            }
+            isStart = false;
         }
     }
     public bool isSkillAble()
     {
-        if (!isSkillAttack && !isDead)
+        if (!isDead&&!isSkillAttack&&isStart)
         {
             return true;
         }
@@ -778,8 +1060,22 @@ public class Hero : MonoBehaviour
     {
         if (isSkillAble())
         {
+            StopHeroAllCoroutines();
+            SetFalseAllboolean();
+            ShowSkillCastingUI();
+            SkillChat(string.Format("{0} !!", SkillSystem.GetSkillName(this.skillData.id)));
             StartCoroutine("SkillAttacking");
         }
+    }
+    void StopHeroAllCoroutines()
+    {
+        StopCoroutine("Shoot");
+        StopCoroutine("Bowing");
+        StopCoroutine("Tracking");
+        StopCoroutine("Attacking");
+        StopCoroutine("Supporting");
+        StopCoroutine("SkillAttacking");
+        StopCoroutine("HealAttacking");
     }
     void Heal()
     {
@@ -790,6 +1086,17 @@ public class Hero : MonoBehaviour
         if (!isAttack && !isUnBeat && !isWait && !isStunning && !isAirborne && !isClimb && !isClimbing && !isSkillAttack)
         {
             StartCoroutine("HealAttacking");
+        }
+    }
+    void Support()
+    {
+        isTrack = false;
+        animator.SetBool("isMoving", false);
+        animator.SetBool("isRun", false);
+
+        if (!isAttack && !isUnBeat && !isWait && !isStunning && !isAirborne && !isClimb && !isClimbing && !isSkillAttack)
+        {
+            StartCoroutine("Supporting");
         }
     }
     void Attack()
@@ -832,16 +1139,18 @@ public class Hero : MonoBehaviour
     }
     void Hold()
     {
-        if (Vector3.Distance(firstPos, transform.position) > 2)
+        if (Vector2.Distance(this.transform.position,firstPos)>6)
         {
+            isHold = true;
             animator.SetBool("isMoving", true);
-            animator.SetBool("isRun", true);
+            animator.SetBool("isRun", false);
             rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
             if (!isTrack)
-                StartCoroutine(Tracking(firstPos));
+                StartCoroutine("Holding");
         }
         else
         {
+            isHold = false;
             Idle();
         }
         ChangeNpcMode();
@@ -851,24 +1160,26 @@ public class Hero : MonoBehaviour
         animator.SetBool("isMoving", true);
         animator.SetBool("isRun", false);
         rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
-        isLeftorRight = UnityEngine.Random.Range(0, 2) == 0 ? true : false;
+        if (!isStatic)
+            isLeftorRight = UnityEngine.Random.Range(0, 2) == 0 ? true : false;
     }
     void Running()
     {
-        ChangeNpcMode();
-
-        if (animator.GetBool("isMoving") && !isStunning && !isClimb && !isSkillAttack)
+        if (animator.GetBool("isMoving") && !isStunning && !isClimb && !isSkillAttack&&!isStatic)
         {
+            ChangeNpcMode();
             rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
             Vector3 moveVelocity = Vector3.zero;
             CheckHurdle();
             RedirectCharacter();
             moveVelocity = isLeftorRight ? Vector3.left : Vector3.right;
-            transform.position += moveVelocity * (animator.GetBool("isRun") ? status.moveSpeed * 1.7f : status.moveSpeed) * Time.deltaTime;
+            transform.position += moveVelocity * (animator.GetBool("isRun") ? status.moveSpeed * 1f : status.moveSpeed*0.5f) * Time.deltaTime;
         }
     }
     void StopAttack()
     {
+        animator.SetBool("isMoving", false);
+        animator.SetBool("isRun", false);
         animator.SetBool("isAttack", false);
         animator.SetBool("isSkill", false);
         animator.SetFloat("speed", 1.0f);
@@ -946,11 +1257,13 @@ public class Hero : MonoBehaviour
             {
                 GameObject bullet = ObjectPool.Instance.PopFromPool("Bullet");
                 bullet.GetComponent<bulletController>().penetrateCnt = 2;
-                bullet.GetComponent<bulletController>().damage = Damage()/ 2;
+                bullet.GetComponent<bulletController>().damage = Damage();
+                bullet.GetComponent<bulletController>().pent = this.status.penetration;
                 bullet.GetComponent<bulletController>().isAlly = this.isPlayerHero;
                 bullet.GetComponent<bulletController>().Target = target.transform;
                 bullet.GetComponent<bulletController>().isCritical = isCriticalAttack;
                 bullet.transform.position = transform.GetChild(0).position + new Vector3(0, 0.1f) + transform.right * -0.5f;
+                bullet.transform.rotation = isLeftorRight ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
                 bullet.SetActive(true);
             }
             yield return new WaitForSeconds(0.05f);
@@ -964,6 +1277,7 @@ public class Hero : MonoBehaviour
         {
             GameObject knife = ObjectPool.Instance.PopFromPool("knife(throw)");
             knife.GetComponent<bulletController>().damage = Damage();
+            knife.GetComponent<bulletController>().pent = this.status.penetration;
             knife.GetComponent<bulletController>().isAlly = this.isPlayerHero;
             knife.GetComponent<bulletController>().Target = target.transform;
             knife.GetComponent<bulletController>().isCritical = isCriticalAttack;
@@ -983,6 +1297,30 @@ public class Hero : MonoBehaviour
                 GameObject arrow = ObjectPool.Instance.PopFromPool("Arrow");
 
                 arrow.GetComponent<arrowController>().damage = Damage();
+                arrow.GetComponent<arrowController>().pent = this.status.penetration;
+                arrow.GetComponent<arrowController>().isAlly = this.isPlayerHero;
+                arrow.GetComponent<arrowController>().target = target.transform;
+                arrow.GetComponent<arrowController>().isCritical = isCriticalAttack;
+                arrow.transform.position = transform.position + new Vector3(0, 0.1f) + transform.right * -1f;
+                arrow.transform.rotation = isLeftorRight ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+                arrow.SetActive(true);
+            }
+            yield return new WaitForSeconds(0.05f);
+        }
+        yield return null;
+    }
+    public IEnumerator ThrowingShuriken(int count = 1)
+    {
+        count = Mathf.Clamp(count, 1, 10);
+        for (int i = 0; i < count; i++)
+        {
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.bow);
+            if (target != null && ObjectPool.Instance != null)
+            {
+                GameObject arrow = ObjectPool.Instance.PopFromPool("Shuriken");
+
+                arrow.GetComponent<arrowController>().damage = Damage();
+                arrow.GetComponent<arrowController>().pent = this.status.penetration;
                 arrow.GetComponent<arrowController>().isAlly = this.isPlayerHero;
                 arrow.GetComponent<arrowController>().target = target.transform;
                 arrow.GetComponent<arrowController>().isCritical = isCriticalAttack;
@@ -997,30 +1335,31 @@ public class Hero : MonoBehaviour
     void Normal()
     {
         ChangeNpcMode();
-        animationTime += Time.deltaTime;
+        if(isStage)
+        {
+            if (stageModeType == (int)Common.SCENE.INFINITE)
+                Hold();
+            else
+                Idle();
+        }
+        else
+        {
+            IdleAndRun(UnityEngine.Random.Range(3.0f, 5.0f));
+        }
+    }
+    void IdleAndRun(float time)
+    {
+        animationTime += Time.unscaledDeltaTime;
         if (animationTime >= standardTime)
         {
             StopAttack();
             animationTime = 0;
-            standardTime = UnityEngine.Random.Range(3.0f, 5.0f);
+            standardTime = time;
             randomStatus = UnityEngine.Random.Range(0, 3);
-            if (isHold)
-                randomStatus = 3;
-            switch (randomStatus)
-            {
-                case 0:
-                    Idle();
-                    break;
-                case 1:
-                    Run();
-                    break;
-                case 2:
-                    Idle();
-                    break;
-                case 3:
-                    Hold();
-                    break;
-            }
+            if (randomStatus <= 1)
+                Idle();
+            else
+                Run();
         }
     }
     void Knockback(float kx, float ky, Collider2D collision = null)
@@ -1066,13 +1405,27 @@ public class Hero : MonoBehaviour
         }
 
     }
+    void KnockbackFix(float kx, float ky)
+    {
+        Vector2 attackedVelocity = Vector2.zero;
+        kx = kx < 0 ? 0 : kx;
+        ky = ky < 0 ? 0 : ky;
+        if (target != null)
+            attackedVelocity = target.transform.position.x > transform.position.x ? new Vector2(-kx, ky) : new Vector2(kx, ky);
+        rigid.AddForce(attackedVelocity, ForceMode2D.Impulse);
+        if ((rigid.velocity.x > 0 && isLeftorRight) || (rigid.velocity.x < 0 && !isLeftorRight))
+            animator.SetBool("isFrontHit", true);
+        else
+            animator.SetBool("isFrontHit", false);
+    }
+
     void Defence(Collider2D collision)
     {
         isUnBeat = true;
         isDefence = true;
         ChangingAttackMode();
-
-        if (!animator.GetBool("isAttack")&&!animator.GetBool("isSkill"))
+        GuardEffect(collision);
+        if (!animator.GetBool("isAttack")&&!isSkillAttack)
         {
             animator.SetTrigger("defencing");
             if (faceAnimator != null)
@@ -1093,18 +1446,41 @@ public class Hero : MonoBehaviour
         isWait = false;
         animator.SetBool("isWait", false);
     }
-    public void Hitted(Collider2D collision, int dam, float kx, float ky)
+    public void Hitting(GameObject target, int dam, bool isCritical, Vector2 addforce, float pent= 0.0f)
+    {
+        if (target == null)
+            return;
+        if (target.GetComponent<Castle>() != null)
+        {
+            if (!target.GetComponent<Castle>().isDead)
+                target.GetComponent<Castle>().HittedByObject(dam, isCritical, addforce);
+        }
+        else if(target.GetComponent<Hero>()!=null)
+        {
+            if (!target.GetComponent<Hero>().isDead)
+                target.GetComponent<Hero>().HittedByObject(dam, isCritical, addforce,pent);
+        }
+    }
+    public void Hitted(Collider2D collision, int dam, float kx, float ky, float pentration = 0.0f)
     {
         if(!isDead && status.hp > 0)
         {
-            dam = Common.GetDamage(dam, DEFENCE);
-            Common.isHitShake = true;
+            bool isCritical = collision.GetComponentInParent<Hero>().isCriticalAttack;
+            if (isCritical)
+            {
+                HitCriticalEffect();
+                Common.isHitShake = true;
+            }
+            else
+                HitEffect();
+            dam = isPvpSetting&&isPlayerHero ? Common.GetPvpDamage(dam,GetDefence(pentration),StageBattleManager.instance.GetHeroMaxDamageLevel()):  Common.GetDamage(dam, GetDefence(pentration));
+
             ChangingAttackMode();
             isUnBeat = true;
             if (collision.GetComponentInParent<Hero>() != null)
             {
-                DamageUIShow(dam.ToString(), collision.GetComponentInParent<Hero>().isCriticalAttack);
-                if (collision.GetComponentInParent<Hero>() != null && collision.GetComponentInParent<Hero>().isPlayerHero != isPlayerHero)
+                DamageUIShow(dam.ToString(), isCritical);
+                if (collision.GetComponentInParent<Hero>() != null && collision.GetComponentInParent<Hero>().isPlayerHero != isPlayerHero&&!isFriend)
                 {
                     if(target==Common.hitTargetObject)
                     {
@@ -1123,7 +1499,7 @@ public class Hero : MonoBehaviour
             else
             {
                 Knockback(kx, ky, collision);
-                if (!animator.GetBool("isAttack") && !animator.GetBool("isSkill"))
+                if (!animator.GetBool("isAttack") && !isSkillAttack)
                     animator.SetTrigger("heating");
             }
             if (faceAnimator != null)
@@ -1132,18 +1508,25 @@ public class Hero : MonoBehaviour
             StartCoroutine(UnBeatTime(dam));
         }
     }
-    public void HittedByObject(int dam,bool isCritical, Vector2 addforce)
+    public void HittedByObject(int dam,bool isCritical, Vector2 addforce, float pent=0.0f)
     {
         if(!isDead&&status.hp>0)
         {
-            dam = Common.GetDamage(dam, DEFENCE);
-            Common.isHitShake = true;
+            if (isCritical)
+            {
+                Common.isHitShake = true;
+                HitCriticalEffect();
+            }
+
+            else
+                HitEffect();
+            dam = isPvpSetting && isPlayerHero ? Common.GetPvpDamage(dam, GetDefence(pent), StageBattleManager.instance.GetHeroMaxDamageLevel()) : Common.GetDamage(dam, GetDefence(pent));
             ChangingAttackMode();
             isUnBeat = true;
             DamageUIShow(dam.ToString(), isCritical);
             if (!isStunning)
             {
-                if (!animator.GetBool("isAttack") && !animator.GetBool("isSkill"))
+                if (!animator.GetBool("isAttack") && !isSkillAttack)
                     animator.SetTrigger("heating");
             }
             if (faceAnimator != null)
@@ -1154,9 +1537,36 @@ public class Hero : MonoBehaviour
             StartCoroutine(UnBeatTime(dam));
         }
     }
+    public void HittedPersistent(int dam, int time)
+    {
+        if (!isPersistentHitted)
+            StartCoroutine(HittedPersistenting(dam, time));
+    }
+    public IEnumerator HittedPersistenting(int dam, int time)
+    {
+        if (!isDead && status.hp > 0)
+        {
+            isPersistentHitted = true;
+            dam = dam / time;
+
+            float t = 0.0f;
+            while(t<=time)
+            {
+                status.hp = Common.looMinus(status.hp, dam);
+                DamageFixedUIShow("-" + dam.ToString());
+                ShowHpBar(dam);
+                yield return new WaitForSeconds(1.0f);
+                t += 1.0f;
+            }
+            isPersistentHitted = false;
+            yield return null;
+        }
+        isPersistentHitted = false; 
+        yield return null;
+    }
     public void Healing(int healAmount=0)
     {
-        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.heal);
+        HealEffect();
         int maxHeal = status.maxHp - status.hp;
         healAmount = Mathf.Clamp(healAmount, 0, maxHeal);
         this.status.hp = Common.looHpPlus(this.status.hp, this.status.maxHp, healAmount);
@@ -1180,6 +1590,10 @@ public class Hero : MonoBehaviour
             animator.SetTrigger("changingWeapon");
             weaponPoint.transform.GetChild(0).gameObject.SetActive(true);
         }
+        if (weaponPoint2 != null && weaponPoint2.transform.childCount > 0 && !weaponPoint2.transform.GetChild(0).gameObject.activeSelf)
+        {
+            weaponPoint2.transform.GetChild(0).gameObject.SetActive(true);
+        }
         SetAttackAnimation();
     }
     IEnumerator DroppingItem()
@@ -1190,11 +1604,11 @@ public class Hero : MonoBehaviour
             // 하트
             if(UnityEngine.Random.Range(0,10)<1)
             {
-                var findTarget = Common.FindAlly();
+                var findTarget = Common.FindAlly(true);
                 if(findTarget!=null&&findTarget.Count>0)
                 {
                     GameObject heartPrefab = ObjectPool.Instance.PopFromPool("Heart");
-                    heartPrefab.GetComponent<Heart>().SetHeart(10);
+                    heartPrefab.GetComponent<Heart>().SetHeart(100);
                     findTarget.Sort((t1, t2) => t1.GetComponent<Hero>().status.hp.CompareTo(t2.GetComponent<Hero>().status.hp));
                     heartPrefab.GetComponent<Heart>().MagnetTarget = findTarget[0];
                     heartPrefab.transform.position = this.transform.position;
@@ -1207,7 +1621,9 @@ public class Hero : MonoBehaviour
             if(id>1000)
             {
                 int bossCoinCount = UnityEngine.Random.Range(3, 7);
-                for(var i = 0; i < bossCoinCount; i++)
+                if (Common.GetSceneCompareTo(Common.SCENE.INFINITE))
+                    bossCoinCount = 1;
+                for (var i = 0; i < bossCoinCount; i++)
                 {
                     int coin = Common.GetMonsterCoin(status.level);
                     GameObject coinPrefab = ObjectPool.Instance.PopFromPool("Coin");
@@ -1232,23 +1648,179 @@ public class Hero : MonoBehaviour
             }
         }
         // 아이템 획득 파트
-        Item randomItem = ItemSystem.GetRandomItem();
-        if(UnityEngine.Random.Range(0,1000)<ItemSystem.GetDroprate(randomItem))
+        if(stageModeType==(int)Common.SCENE.INFINITE)
         {
-            Debugging.Log(ItemSystem.GetDroprate(randomItem) + " 의 확률수치의 " + randomItem.name + "의 아이템이 드랍되었습니다.");
-            GameObject dropItem = ObjectPool.Instance.PopFromPool("dropItemPrefab");
-            dropItem.transform.position = transform.position;
-            dropItem.GetComponent<dropItemInfo>().dropItemID = randomItem.id;
-            dropItem.SetActive(true);
-            dropItem.GetComponent<dropItemInfo>().DropItem();
-            StageManagement.instance.AddGetStageItem(randomItem.id);
-            MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalItemDropCount);
-            yield return new WaitForSeconds(0.1f);
+            if(id>1000)
+            {
+                Item randomItem = ItemSystem.GetRandomItem(4);
+                if (UnityEngine.Random.Range(0, 1000) < ItemSystem.GetDroprate(randomItem) && StageManagement.instance.stageInfo.stageGetItems.Count < 5)
+                {
+                    GameObject dropItem = ObjectPool.Instance.PopFromPool("dropItemPrefab");
+                    dropItem.transform.position = transform.position;
+                    dropItem.GetComponent<dropItemInfo>().dropItemID = randomItem.id;
+                    dropItem.SetActive(true);
+                    dropItem.GetComponent<dropItemInfo>().DropItem();
+                    StageManagement.instance.AddGetStageItem(randomItem.id);
+                    MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalItemDropCount);
+                    yield return new WaitForSeconds(0.1f);
+                }
+            }
         }
         else
         {
-            Debugging.Log(randomItem.name + "이 아쉽게 드랍되지 않앗습니다");
+            if (UnityEngine.Random.Range(0, 15) < StageManagement.instance.stageInfo.stageNumber + 3)
+            {
+                Item randomItem = ItemSystem.GetRandomItem();
+                if (UnityEngine.Random.Range(0, 1000) < ItemSystem.GetDroprate(randomItem) && StageManagement.instance.stageInfo.stageGetItems.Count < 5)
+                {
+                    GameObject dropItem = ObjectPool.Instance.PopFromPool("dropItemPrefab");
+                    dropItem.transform.position = transform.position;
+                    dropItem.GetComponent<dropItemInfo>().dropItemID = randomItem.id;
+                    dropItem.SetActive(true);
+                    dropItem.GetComponent<dropItemInfo>().DropItem();
+                    StageManagement.instance.AddGetStageItem(randomItem.id);
+                    MissionSystem.AddClearPoint(MissionSystem.ClearType.TotalItemDropCount);
+                    yield return new WaitForSeconds(0.1f);
+                }
+            }
         }
+        yield return null;
+    }
+    #endregion
+
+    #region 영웅버프
+    public void AttackBuff(float buffTime,float buffPower)
+    {
+        if(!isAttackBuff)
+        {
+            StartCoroutine(AttackBuffing(buffTime, buffPower));
+        }
+    }
+    public void DefenceBuff(float buffTime, float buffPower)
+    {
+        if(!isDefenceBuff)
+        {
+            StartCoroutine(DefenceBuffing(buffTime, buffPower));
+        }
+    }
+    public void SpeedBuff(float buffTime, float buffPower)
+    {
+        if (!isSpeedBuff)
+        {
+            StartCoroutine(SpeedBuffing(buffTime, buffPower));
+        }
+    }
+    public void WaveBuff(int wave, bool isAlready = false)
+    {
+        if (!isPlayerHero&&!isWaveBuff)
+        {
+            StartCoroutine(WaveBuffing(wave,isAlready));
+        }
+    }
+    IEnumerator WaveBuffing(int wave, bool isAlready)
+    {
+        isWaveBuff = true;
+        this.status.attack = (int)(wave * 0.1f * this.initAttack) + this.initAttack;
+        this.status.defence = (int)(wave * 0.1f * this.initDefence) + this.initDefence;
+
+        if(!isAlready)
+        {
+            this.status.maxHp = (int)(wave * 0.1f * this.initMaxHp) + this.initMaxHp;
+            this.status.hp = this.status.maxHp;
+        }
+        isWaveBuff = false;
+        yield return null;
+    }
+    void BossModeDifficultyBuff()
+    {
+        if(this.id>1000&&Common.stageModeType==Common.StageModeType.Boss)
+        {
+            if(Common.bossModeDifficulty==1)
+            {
+                this.status.attack += (int)(2 * this.status.attack);
+                this.status.defence += (int)(1 * this.status.defence);
+                this.status.maxHp += (int)(9 * this.status.maxHp);
+                this.status.hp = this.status.maxHp;
+            }
+            else if (Common.bossModeDifficulty == 2)
+            {
+                this.status.attack += (int)(3 * this.status.attack);
+                this.status.defence += (int)(3 * this.status.defence);
+                this.status.maxHp += (int)(49 * this.status.maxHp);
+                this.status.hp = this.status.maxHp;
+            }
+            Debugging.Log("보스난이도 세팅");
+        }
+    }
+    IEnumerator AttackBuffing(float buffTime,float buffPower)
+    {
+        isAttackBuff = true;
+        BuffEffectAttack();
+        int initAttack = this.status.attack;
+        float time = 0.0f;
+        this.status.attack += (int)(initAttack * buffPower);
+        if(buffPower >= 0)
+            DamageCCUIShow(LocalizationManager.GetText("AttackBuffUp"));
+        else
+            DamageCCUIShow(LocalizationManager.GetText("AttackBuffDown"));
+
+        while (time < buffTime)
+        {
+            time += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        isAttackBuff = false;
+        this.status.attack = initAttack;
+        Debugging.Log(this.HeroName + " 의 공격력 원상태로"  + this.status.attack);
+        yield return null;
+    }
+    IEnumerator DefenceBuffing(float buffTime, float buffPower)
+    {
+        buffPower = Mathf.Clamp(buffPower, -0.8f, 0.8f);
+        isDefenceBuff = true;
+        BuffEffectAttack();
+        int initDefence = this.status.defence;
+        float time = 0.0f;
+        this.status.defence += (int)(initDefence * buffPower);
+        if (buffPower >= 0)
+            DamageCCUIShow(LocalizationManager.GetText("DefenceBuffUp"));
+        else
+            DamageCCUIShow(LocalizationManager.GetText("DefenceBuffDown"));
+        while (time < buffTime)
+        {
+            time += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        isDefenceBuff = false;
+        this.status.defence = initDefence;
+        Debugging.Log(this.HeroName + " 의 방어력 원상태로" + this.status.defence);
+        yield return null;
+    }
+    IEnumerator SpeedBuffing(float buffTime, float buffPower)
+    {
+        isSpeedBuff = true;
+        BuffEffectAttack();
+        float initMove = this.status.moveSpeed;
+        float initASpeed = this.status.attackSpeed;
+        float time = 0.0f;
+        this.status.moveSpeed += (initMove * buffPower);
+        this.status.attackSpeed += (initASpeed * buffPower);
+        Debugging.Log(this.status.moveSpeed + " 업됨");
+        if (buffPower >= 0)
+            DamageCCUIShow(LocalizationManager.GetText("SpeedBuffUp"));
+        else
+            DamageCCUIShow(LocalizationManager.GetText("SpeedBuffDown"));
+
+        while (time < buffTime)
+        {
+            time += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        isSpeedBuff = false;
+
+        this.status.moveSpeed = initMove;
+        this.status.attackSpeed = initASpeed;
+        DamageCCUIShow(LocalizationManager.GetText("SpeedBuffDown"));
         yield return null;
     }
     #endregion
@@ -1256,7 +1828,11 @@ public class Hero : MonoBehaviour
     #region 공통기능
     public void Chat(string chat)
     {
-        Common.Chat(chat, transform);
+        Common.Chat(chat, transform.GetChild(0).transform);
+    }
+    public void SkillChat(string chat)
+    {
+        Common.SkillChat(chat, transform.GetChild(0).transform);
     }
     #endregion
 
@@ -1286,26 +1862,31 @@ public class Hero : MonoBehaviour
     }
     public void SpawnEffect()
     {
-        if(isPlayerHero)
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.teleport);
+        if (EffectPool.Instance != null)
         {
-            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.teleport);
-            if (EffectPool.Instance != null)
-            {
-                GameObject effect = EffectPool.Instance.PopFromPool("SimplePortalRed");
-                effect.transform.position = transform.GetChild(0).position;
-                effect.SetActive(true);
-            }
+            GameObject effect = EffectPool.Instance.PopFromPool("SoftPortalRed");
+            effect.transform.position = transform.GetChild(0).position;
+            effect.transform.localScale = Vector3.one*1.5f;
+            effect.SetActive(true);
+        }
+    }
+    public void ShadowAttackEffect()
+    {
+       
+        if (EffectPool.Instance != null)
+        {
+            GameObject effect = EffectPool.Instance.PopFromPool("ShadowExplosion");
+            effect.transform.position = transform.GetChild(0).position;
+            effect.SetActive(true);
         }
     }
     public void LevelUpEffect()
     {
         SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.levelup);
-        if (EffectPool.Instance != null)
-        {
-            GameObject effect = EffectPool.Instance.PopFromPool("LevelUpEffect");
-            effect.transform.position = transform.GetChild(0).position;
-            effect.SetActive(true);
-        }
+        GameObject effect = EffectPool.Instance.PopFromPool("LevelUpEffect");
+        effect.transform.position = transform.GetChild(0).position;
+        effect.SetActive(true);
     }
     public void MagicEffect(int effectNumber=0)
     {
@@ -1387,12 +1968,52 @@ public class Hero : MonoBehaviour
             effect.SetActive(true);
         }
     }
-    public void HitEffect(Collider2D collider)
+    public void HitEffect(Collider2D collider=null)
     {
         if (EffectPool.Instance != null)
         {
             GameObject effect = EffectPool.Instance.PopFromPool("Hit_white_Small");
             effect.transform.position = transform.position + new Vector3(UnityEngine.Random.Range(-0.2f, 0.2f), 0.2f, 0);
+            effect.SetActive(true);
+        }
+    }
+    public void HitCriticalEffect()
+    {
+        if (EffectPool.Instance != null)
+        {
+            GameObject effect = EffectPool.Instance.PopFromPool("SoftFightAction");
+            effect.transform.position = transform.GetChild(0).position + new Vector3(UnityEngine.Random.Range(-0.2f, 0.2f), 0.2f, 0);
+            effect.SetActive(true);
+        }
+    }
+    public void DeathEffect()
+    {
+        if (EffectPool.Instance != null)
+        {
+            GameObject effect = EffectPool.Instance.PopFromPool("GenericDeath");
+            effect.transform.position = transform.GetChild(0).position;
+            effect.SetActive(true);
+        }
+    }
+    public void SlashHitEffect()
+    {
+        if (EffectPool.Instance != null)
+        {
+            GameObject effect = EffectPool.Instance.PopFromPool("SwordHitBlue");
+            effect.transform.position = transform.position + new Vector3(UnityEngine.Random.Range(-0.2f, 0.2f), 0.2f, 0);
+            effect.SetActive(true);
+        }
+    }
+    public void SlashEffect()
+    {
+        if (EffectPool.Instance != null)
+        {
+            GameObject effect = EffectPool.Instance.PopFromPool("SwordSlashBlue");
+            var effectPos = this.transform.position;
+            effectPos.z = 100;
+            effect.transform.localScale = new Vector3(2, 2, 2);
+            effect.transform.position = effectPos;
+            effect.transform.rotation = isLeftorRight ? Quaternion.Euler(-100, 180, 0) : Quaternion.Euler(-100, 0, 0);
             effect.SetActive(true);
         }
     }
@@ -1458,6 +2079,12 @@ public class Hero : MonoBehaviour
             effect.SetActive(true);
         }
     }
+    public void BoomEffect()
+    {
+        GameObject effect = EffectPool.Instance.PopFromPool("ExplosionRoundFire");
+        effect.transform.position = transform.position;
+        effect.SetActive(true);
+    }
     public void SmokeDarkEffect()
     {
         SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.smoke);
@@ -1468,6 +2095,127 @@ public class Hero : MonoBehaviour
             effect.SetActive(true);
         }
 
+    }
+    public void SlamEffect()
+    {
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.fireShot);
+        if (EffectPool.Instance != null)
+        {
+            GameObject effect = EffectPool.Instance.PopFromPool("SoftBodySlam");
+            effect.transform.position = transform.GetChild(0).position + new Vector3(isLeftorRight ? -1 : 1, 0, 0);
+            effect.transform.rotation = isLeftorRight ? Quaternion.Euler(0, 110, -90) : Quaternion.Euler(0, -110, -90);
+            effect.SetActive(true);
+        }
+    }
+    GameObject musicEffect;
+    public void MusicEffect()
+    {
+        if (EffectPool.Instance != null&&musicEffect==null)
+        {
+            musicEffect = EffectPool.Instance.PopFromPool("MusicalNotes");
+        }
+        if(musicEffect!=null)
+        {
+            musicEffect.transform.position = transform.GetChild(0).position;
+            musicEffect.SetActive(true);
+        }
+    }
+    public void MusicEffectOff()
+    {
+        if (EffectPool.Instance != null && musicEffect != null)
+        {
+            EffectPool.Instance.PushToPool("MusicalNotes", musicEffect);
+        }
+    }
+    public void BuffEffectSpeed()
+    {
+        if (EffectPool.Instance != null)
+        {
+            GameObject effect = EffectPool.Instance.PopFromPool("SoulMuzzleGreen");
+            effect.transform.position = transform.GetChild(0).position;
+            effect.SetActive(true);
+        }
+
+    }
+    public void BuffEffectAttack()
+    {
+        if (EffectPool.Instance != null)
+        {
+            GameObject effect = EffectPool.Instance.PopFromPool("SoulMuzzlePurple");
+            effect.transform.position = transform.GetChild(0).position;
+            effect.SetActive(true);
+        }
+
+    }
+    public void BuffEffectDefence()
+    {
+        if (EffectPool.Instance != null)
+        {
+            GameObject effect = EffectPool.Instance.PopFromPool("SoulMuzzlePurple");
+            effect.transform.position = transform.GetChild(0).position;
+            effect.SetActive(true);
+        }
+
+    }
+    public void RaserEffect(float distance)
+    {
+        if (EffectPool.Instance != null)
+        {
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.fireShot);
+            GameObject effect = isPlayerHero ? EffectPool.Instance.PopFromPool("TallExplosionBlue") : EffectPool.Instance.PopFromPool("TallExplosionFire");
+            effect.transform.position = transform.position + new Vector3(isLeftorRight ? -distance : distance, 0, 0);
+            if(target!=null)
+            {
+                effect.transform.rotation = IsTargetLeft(target.transform) ? Quaternion.Euler(-180, 90, 0) : Quaternion.Euler(-180, -90, 0);
+            }
+            else
+            {
+                effect.transform.rotation = isLeftorRight ? Quaternion.Euler(-180, 90, 0) : Quaternion.Euler(-180, -90, 0);
+            }
+            effect.SetActive(true);
+        }
+    }
+    public void HealEffect()
+    {
+        if (EffectPool.Instance != null)
+        {
+            GameObject effect = EffectPool.Instance.PopFromPool("SoulMuzzleOrange");
+            effect.transform.position = transform.GetChild(0).position;
+            effect.SetActive(true);
+        }
+    }
+    public void TranscendenceEffect()
+    {
+        if (EffectPool.Instance != null&& transform!=null)
+        {
+            transcendenceEffect = EffectPool.Instance.PopFromPool("GlowOrbPink");
+            if(transcendenceEffect!=null)
+            {
+                transcendenceEffect.transform.SetParent(transform.GetChild(0));
+                transcendenceEffect.transform.position = transform.GetChild(0).position;
+                transcendenceEffect.SetActive(true);
+            }
+        }
+    }
+    public void FireEffect()
+    {
+        StartCoroutine("FireEffecting");
+    }
+    public IEnumerator FireEffecting()
+    {
+        GameObject effect = EffectPool.Instance.PopFromPool("SoftFireABRed");
+        if(effect!=null)
+        {
+            effect.transform.position = transform.GetChild(0).position;
+            effect.SetActive(true);
+            while (effect.activeSelf && !this.isDead)
+            {
+                effect.transform.position = transform.GetChild(0).position + new Vector3(UnityEngine.Random.Range(-0.2f, 0.2f), UnityEngine.Random.Range(-0.2f, 0.2f), 0);
+                yield return new WaitForSeconds(0.2f);
+            }
+            EffectPool.Instance.PushToPool("SoftFireABRed", effect);
+        }
+        yield return null;
     }
     #endregion
 
@@ -1480,7 +2228,7 @@ public class Hero : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Boom"))
             {
-                Hitted(collision, status.maxHp, 25f, 25f);
+                Hitted(collision, status.maxHp, 25f, 15f);
             }
             if (collision.gameObject.CompareTag("bullet") && collision.GetComponent<bulletController>() != null && collision.GetComponent<bulletController>().isAlly != isPlayerHero)
             {
@@ -1493,15 +2241,13 @@ public class Hero : MonoBehaviour
             }
             if (collision.gameObject.layer == 9 && collision.isTrigger && collision.gameObject != attackPoint.gameObject && collision.GetComponentInParent<Hero>() != null && collision.GetComponentInParent<Hero>().isPlayerHero != isPlayerHero && collision.GetComponentInParent<Hero>().target != null && collision.GetComponentInParent<Hero>().target.gameObject.GetInstanceID() == this.gameObject.GetInstanceID())
             {
-                if (UnityEngine.Random.Range(0, 1000) <= Mathf.Clamp(status.defence*0.1f,0,200) && !isStunning && !isAirborne)
+                if (UnityEngine.Random.Range(0, 1000) <= Mathf.Clamp(status.defence*0.1f,0,200)+OnReturnHeroAbility(8) && !isStunning && !isAirborne)
                 {
                     Defence(collision);
-                    GuardEffect(collision);
                 }
                 else
                 {
-                    Hitted(collision, Convert.ToInt32(collision.name), 3f, 3f);
-                    HitEffect(collision);
+                    Hitted(collision, DamageDataDam(collision.name), 4f, 2f, DamageDataPent(collision.name));
                 }
             }
         }
@@ -1581,21 +2327,22 @@ public class Hero : MonoBehaviour
     IEnumerator StartAttackMode()
     {
         yield return new WaitForSeconds(UnityEngine.Random.Range(0.1f, 0.5f));
-        SpawnEffect();
+        if(isPlayerHero)
+            SpawnEffect();
         RedirectCharacter();
         yield return new WaitForSeconds(3);
+        EquipWeapon();
         SpriteAlphaSetting(1);
         OpenHpBar(isPlayerHero);
         yield return new WaitForSeconds(1);
-        EquipWeapon();
         if (initChats.Count > 0)
-            Common.Chat(initChats[UnityEngine.Random.Range(0, initChats.Count)], transform);
-        yield return new WaitForSeconds(3);
+            Common.Chat(initChats[UnityEngine.Random.Range(0, initChats.Count)], transform.GetChild(0),UnityEngine.Random.Range(0,3));
+        yield return new WaitForSeconds(1);
         InitEnemys();
         heroState = HeroState.Attack;
         isStart = true;
-        yield return new WaitForSeconds(5.0f);
-        FindEnemys(true);
+        yield return new WaitForSeconds(2.0f);
+        FindEnemys(this.isPlayerHero);
         StartCoroutine("FindAllys");
         yield return null;
     }
@@ -1605,8 +2352,8 @@ public class Hero : MonoBehaviour
         OpenHpBar(isPlayerHero);
         yield return new WaitForSeconds(0.5f);
         EquipWeapon();
-        if (initChats.Count > 0)
-            Common.Chat(initChats[UnityEngine.Random.Range(0, initChats.Count)], transform);
+        if (initChats.Count > 0 && UnityEngine.Random.Range(0, 3) < 1)
+            Common.Chat(initChats[UnityEngine.Random.Range(0, initChats.Count)], transform.GetChild(0));
         yield return new WaitForSeconds(1);
         InitEnemys();
         heroState = HeroState.Attack;
@@ -1614,9 +2361,29 @@ public class Hero : MonoBehaviour
         FindEnemys(true);
         yield return null;
     }
+    IEnumerator StartPvpMode()
+    {
+        while(!StageBattleManager.instance.isStartGame)
+        {
+            yield return null;
+        }
+        RedirectCharacter();
+        yield return new WaitForSeconds(3);
+        EquipWeapon();
+        SpriteAlphaSetting(1);
+        OpenHpBar(isPlayerHero);
+        yield return new WaitForSeconds(2);
+        InitEnemys();
+        heroState = HeroState.Attack;
+        isStart = true;
+        yield return new WaitForSeconds(2.0f);
+        FindEnemys(this.isPlayerHero);
+        StartCoroutine("FindAllys");
+        yield return null;
+    }
     IEnumerator OnAttackPoint(int totalCount=1)
     {
-        attackPoint.name = this.Damage().ToString();
+        attackPoint.name = this.SetDamageData(this.Damage(), this.status.penetration);
         totalCount = Mathf.Clamp(totalCount, 1, 10);
         int cnt = 0;
         while(cnt<totalCount&&!isFriend)
@@ -1626,7 +2393,7 @@ public class Hero : MonoBehaviour
             {
                 attackPoint.GetComponent<AudioSource>().Play();
             }
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForSeconds(0.07f);
             attackPoint.gameObject.SetActive(false);
             cnt++;
         }
@@ -1636,52 +2403,105 @@ public class Hero : MonoBehaviour
     {
         if (target != null)
         {
-            switch(magicType)
+            if(id==103||id==511)
             {
-                case 0:
-                    GameObject magic = ObjectPool.Instance.PopFromPool("MagicStone");
-                    magic.transform.position = target.transform.position + new Vector3(0, 5);
-                    MagicCircleEffect(magic.transform.position + new Vector3(0, 1), 3);
-                    if (magic.GetComponent<DecompositionObject>() != null)
-                    {
-                        magic.GetComponent<DecompositionObject>().TargetTag = isPlayerHero ? "Enemy" : "Hero";
-                        magic.GetComponent<DecompositionObject>().Damage = Damage() * 2;
-                        magic.GetComponent<DecompositionObject>().isCritical = isCriticalAttack;
-                        magic.GetComponent<DecompositionObject>().isRolling = true;
-                    }
-                    magic.SetActive(true);
-                    break;
-                case 1:
-                    SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.smoke);
-                    List<GameObject> targetList = enemys;
-                    targetList  = targetList.FindAll(x=> Common.GetDistanceBetweenAnother(this.transform, x.transform) < 5);
-                    if(targetList.Count>0)
-                    {
-                        for(int i = 0; i < targetList.Count; i++)
+                switch (magicType)
+                {
+                    case 0:
+                        GameObject magic = ObjectPool.Instance.PopFromPool("MagicStone");
+                        magic.transform.position = target.transform.position + new Vector3(0, 5);
+                        MagicCircleEffect(magic.transform.position + new Vector3(0, 1), 3);
+                        if (magic.GetComponent<DecompositionObject>() != null)
                         {
-                            yield return new WaitForEndOfFrame();
-                            if (i > 6)
-                                break;
-                            if (TargetAliveCheck(targetList[i]))
+                            magic.GetComponent<DecompositionObject>().TargetTag = isPlayerHero ? "Enemy" : "Hero";
+                            magic.GetComponent<DecompositionObject>().Damage = Damage();
+                            magic.GetComponent<DecompositionObject>().pent = this.status.penetration;
+                            magic.GetComponent<DecompositionObject>().isCritical = isCriticalAttack;
+                            magic.GetComponent<DecompositionObject>().isRolling = true;
+                        }
+                        magic.SetActive(true);
+                        break;
+                    case 1:
+                        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.smoke);
+                        List<GameObject> targetList = enemys;
+                        targetList = targetList.FindAll(x => Common.GetDistanceBetweenAnother(this.transform, x.transform) < 5);
+                        if (targetList.Count > 0)
+                        {
+                            for (int i = 0; i < targetList.Count; i++)
                             {
-                                GameObject skillEffect = EffectPool.Instance.PopFromPool("LightningStrikeTall", this.transform);
-                                skillEffect.transform.position = targetList[i].transform.position;
-                                skillEffect.SetActive(true);
-                                skillEffect.GetComponent<ParticleSystem>().Play();
-                                targetList[i].GetComponent<Hero>().HittedByObject((Damage()*2/targetList.Count), isCriticalAttack, new Vector2(5f, 5f));
+                                yield return new WaitForEndOfFrame();
+                                if (i > 6)
+                                    break;
+                                if (TargetAliveCheck(targetList[i]))
+                                {
+                                    GameObject skillEffect = EffectPool.Instance.PopFromPool("LightningStrikeTall", this.transform);
+                                    skillEffect.transform.position = targetList[i].transform.position;
+                                    skillEffect.SetActive(true);
+                                    skillEffect.GetComponent<ParticleSystem>().Play();
+                                    targetList[i].GetComponent<Hero>().HittedByObject((Damage() * 2 / targetList.Count), isCriticalAttack, new Vector2(5f, 5f), this.status.penetration);
+                                }
                             }
                         }
+                        else if (Common.hitTargetObject != null && isPlayerHero)
+                        {
+                            yield return new WaitForEndOfFrame();
+                            GameObject skillEffect = EffectPool.Instance.PopFromPool("LightningStrikeTall", this.transform);
+                            skillEffect.transform.position = Common.hitTargetObject.transform.position;
+                            skillEffect.SetActive(true);
+                            skillEffect.GetComponent<ParticleSystem>().Play();
+                            if (Common.hitTargetObject.GetComponent<Castle>() != null)
+                                Common.hitTargetObject.GetComponent<Castle>().HittedByObject((Damage()), isCriticalAttack, new Vector2(5f, 5f));
+                        }
+                        else if (Common.allyTargetObject != null && !isPlayerHero)
+                        {
+                            yield return new WaitForEndOfFrame();
+                            GameObject skillEffect = EffectPool.Instance.PopFromPool("LightningStrikeTall", this.transform);
+                            skillEffect.transform.position = Common.hitTargetObject.transform.position;
+                            skillEffect.SetActive(true);
+                            skillEffect.GetComponent<ParticleSystem>().Play();
+                            if (Common.hitTargetObject.GetComponent<Castle>() != null)
+                                Common.allyTargetObject.GetComponent<Castle>().HittedByObject((Damage()), isCriticalAttack, new Vector2(5f, 5f));
+                        }
+                        break;
+                }
+            }
+            else if(id==524)
+            {
+                Vector3 pos = transform.GetChild(0).position + new Vector3(UnityEngine.Random.Range(-2f, 2f), UnityEngine.Random.Range(-1f, 1f));
+                MagicSpawnEffect(pos);
+                yield return new WaitForSeconds(0.2f);
+                if (target != null)
+                {
+                    GameObject bullet = ObjectPool.Instance.PopFromPool("FlamethrowerCartoonyFire");
+                    bullet.transform.position = pos;
+                    bullet.transform.rotation = IsTargetLeft(target.transform) ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+                    bullet.GetComponent<bulletController>().damage = this.Damage();
+                    bullet.GetComponent<bulletController>().pent = this.status.penetration;
+                    bullet.GetComponent<bulletController>().isAlly = this.isPlayerHero;
+                    bullet.GetComponent<bulletController>().Target = target.transform;
+                    bullet.GetComponent<bulletController>().isCritical = isCriticalAttack;
+                    bullet.SetActive(true);
+                }
+            }
+            else if(id==1008)
+            {
+                List<GameObject> targetList = Common.FindEnemy(isPlayerHero);
+                if(targetList!=null&&targetList.Count>0)
+                for(var i = 0; i < targetList.Count; i++)
+                {
+                        GameObject magic = ObjectPool.Instance.PopFromPool("MagicSpier");
+                        magic.transform.position = targetList[i].transform.position + new Vector3(0, 5);
+                        MagicCircleEffect(magic.transform.position + new Vector3(0, 1), 3);
+                        if (magic.GetComponent<DecompositionObject>() != null)
+                        {
+                            magic.GetComponent<DecompositionObject>().TargetTag = isPlayerHero ? "Enemy" : "Hero";
+                            magic.GetComponent<DecompositionObject>().Damage = Damage();
+                            magic.GetComponent<DecompositionObject>().pent = this.status.penetration;
+                            magic.GetComponent<DecompositionObject>().isCritical = isCriticalAttack;
+                            magic.GetComponent<DecompositionObject>().isRolling = false;
+                        }
+                        magic.SetActive(true);
                     }
-                    else if(Common.hitTargetObject!=null)
-                    {
-                        yield return new WaitForEndOfFrame();
-                        GameObject skillEffect = EffectPool.Instance.PopFromPool("LightningStrikeTall", this.transform);
-                        skillEffect.transform.position = Common.hitTargetObject.transform.position;
-                        skillEffect.SetActive(true);
-                        skillEffect.GetComponent<ParticleSystem>().Play();
-                        Common.hitTargetObject.GetComponent<Castle>().HittedByObject((Damage()), isCriticalAttack, new Vector2(5f, 5f));
-                    }
-                    break;
             }
         }
         yield return null;
@@ -1705,7 +2525,7 @@ public class Hero : MonoBehaviour
     }
     IEnumerator TransparentSprite()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(2.0f);
         var sprites = GetComponentsInChildren<SpriteRenderer>();
 
         float alpha = 1.0f;
@@ -1752,32 +2572,45 @@ public class Hero : MonoBehaviour
     IEnumerator Tracking(Vector3 tPos)
     {
         isTrack = true;
-        int cnt = 0;
-        while (cnt < 1)
+        float cnt = 0;
+        while (cnt < 1&&target!=null)
         {
-            isLeftorRight = tPos.x < transform.position.x ? true : false;
-            yield return new WaitForSeconds(0.5f);
-            cnt++;
+            if (!isStatic)
+                isLeftorRight = tPos.x < transform.position.x ? true : false;
+            yield return new WaitForFixedUpdate();
+            cnt += Time.deltaTime;
         }
+        isTrack = false;
+        yield return null;
+    }
+    IEnumerator Holding()
+    {
+        isTrack = true;
+        if (!isStatic)
+            isLeftorRight = firstPos.x < transform.position.x ? true : false;
+        yield return new WaitForSeconds(1);
         isTrack = false;
         yield return null;
     }
     IEnumerator Stunning(float stunTime)
     {
-        isStunning = true;
-        Knockback(10, 1);
-        animator.SetTrigger("stunning");
-        animator.SetBool("isStun", true);
-        if (faceAnimator != null)
-            faceAnimator.SetTrigger("Hit");
-        rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
-        while (isStunning)
+        if(!isDead)
         {
-            yield return new WaitForSeconds(stunTime);
-            isStun = false;
-            isStunning = false;
+            isStunning = true;
+            Knockback(10, 1);
+            animator.SetTrigger("stunning");
+            animator.SetBool("isStun", true);
+            if (faceAnimator != null)
+                faceAnimator.SetTrigger("Hit");
+            rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+            while (isStunning)
+            {
+                yield return new WaitForSeconds(stunTime);
+                isStun = false;
+                isStunning = false;
+            }
+            animator.SetBool("isStun", false);
         }
-        animator.SetBool("isStun", false);
         yield return null;
     }
     IEnumerator HealAttacking()
@@ -1793,17 +2626,47 @@ public class Hero : MonoBehaviour
         animator.SetBool("isAttack", true);
         animator.SetTrigger("attacking");
         if (playChats.Count > 0 && UnityEngine.Random.Range(0, 5) < 1)
-            Common.Chat(playChats[UnityEngine.Random.Range(0, playChats.Count)], transform);
+            Common.Chat(playChats[UnityEngine.Random.Range(0, playChats.Count)], transform.GetChild(0));
         if (target != null && target.GetComponent<Hero>() != null)
-            target.GetComponent<Hero>().Healing(100);
+            target.GetComponent<Hero>().Healing(this.Damage());
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.heal);
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        StopAttack();
+        yield return null;
+    }
+    IEnumerator Supporting()
+    {
+        isAttack = true;
+        attackNumber = 0;
+        isLeftorRight = target.transform.position.x < transform.position.x ? true : false;
+        RedirectCharacter();
+        animator.SetInteger("attackNumber", attackNumber);
+        animator.SetFloat("speed", 0.8f + this.status.attackSpeed * 2f);
+        if (faceAnimator != null)
+            faceAnimator.SetTrigger("Do");
+        animator.SetBool("isAttack", true);
+        animator.SetTrigger("attacking");
+        MusicEffect();
+        var enemyList = Common.FindEnemy(this.isPlayerHero);
+        foreach(var enemy in enemyList)
+        {
+            enemy.GetComponent<Hero>().DefenceBuff(20,-HeroSystem.GetHeroStatusSkillEnergy(ref heroData)*0.01f);
+        }
+        for(var i =0;i<10;i++)
+        {
+            if (distanceBetweenTarget > attackMaxRange+2||!TargetAliveCheck(target)||!isAttack)
+                break;
+            yield return new WaitForSeconds(1.0f);
+        }
+        target = null;
+        MusicEffectOff();
         StopAttack();
         yield return null;
     }
     IEnumerator Attacking()
     {
         isAttack = true;
-        if(id>500&&id<1000)
+        if(id>500)
         {
             attackNumber = heroData.attackType;
         }
@@ -1811,7 +2674,8 @@ public class Hero : MonoBehaviour
         {
             attackNumber = UnityEngine.Random.Range(0, 5);
         }
-        isLeftorRight = target.transform.position.x < transform.position.x ? true : false;
+        if(!isStatic)
+            isLeftorRight = target.transform.position.x < transform.position.x ? true : false;
         RedirectCharacter();
         animator.SetInteger("attackNumber", attackNumber);
         animator.SetFloat("speed", 0.8f + this.status.attackSpeed*2f);
@@ -1820,19 +2684,28 @@ public class Hero : MonoBehaviour
         animator.SetBool("isAttack", true);
         animator.SetTrigger("attacking");
         if (playChats.Count > 0 && UnityEngine.Random.Range(0, 5)<1)
-            Common.Chat(playChats[UnityEngine.Random.Range(0, playChats.Count)], transform);
+            Common.Chat(playChats[UnityEngine.Random.Range(0, playChats.Count)], transform.GetChild(0));
 
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        if (target!=null&&target.GetComponent<Hero>() != null)
+            OnAttackHeroAbility();
         StopAttack();
         yield return null;
     }
     IEnumerator SkillAttacking()
     {
         isSkillAttack = true;
+        animator.SetFloat("speed", 1f);
         animator.SetBool("isSkill", true);
         animator.SetTrigger("skillAttacking");
         animator.SetInteger("skillType", skillData.id);
-        yield return new WaitForSeconds(2.0f);
+        float time = 0.0f;
+        while(time<2.2f)
+        {
+            isSkillAttack = true;
+            time += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
         StopAttack();
         isSkillAttack = false;
         yield return null;
@@ -1844,6 +2717,8 @@ public class Hero : MonoBehaviour
         animator.SetBool("isMoving", false);
         animator.SetBool("isAttack", true);
         yield return new WaitForSeconds(0.5f);
+        if (initChats.Count > 0)
+            LobbyChat(initChats[UnityEngine.Random.Range(0, initChats.Count)], transform, UnityEngine.Random.Range(0, 2));
         attackNumber = UnityEngine.Random.Range(0, 5);
         animator.SetInteger("attackNumber", attackNumber);
         animator.SetFloat("speed", 1.0f);
@@ -1876,7 +2751,10 @@ public class Hero : MonoBehaviour
         foreach (var i in GetComponentsInChildren<SpriteRenderer>())
         {
             i.sortingLayerName = "Default";
-            i.sortingOrder -= GetInstanceID();
+            if (this.id<500)
+                i.sortingOrder += Math.Abs(GetInstanceID()/1000+(this.id*10));
+            else
+                i.sortingOrder -= Math.Abs(GetInstanceID()/1000+ (this.id * 10));
         }
     }
     int GetSpriteLayer(string name)
@@ -1903,6 +2781,46 @@ public class Hero : MonoBehaviour
             }
         }
     }
+    void LobbyChat(string chat, Transform tran = null, int posY = 0, int leftOrRight = 0)
+    {
+        GameObject chatObj = ObjectPool.Instance.PopFromPool("chatBox");
+        chatObj.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        posY = posY == 0 ? 1 : posY;
+        if (leftOrRight == 0)
+        {
+            if (tran.rotation.y == 0)
+            {
+                chatObj.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                chatObj.GetComponentInChildren<Text>().transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+
+            }
+            else
+            {
+                chatObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                chatObj.GetComponentInChildren<Text>().transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+
+            }
+        }
+        else
+        {
+            if (leftOrRight == 1)
+            {
+                chatObj.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                chatObj.GetComponentInChildren<Text>().transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            }
+            else if (leftOrRight == 2)
+            {
+                chatObj.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                chatObj.GetComponentInChildren<Text>().transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            }
+        }
+
+        chatObj.GetComponent<UI_chatBox>().correctionY = posY;
+        chatObj.GetComponent<UI_chatBox>().Target = tran;
+        chatObj.GetComponent<UI_chatBox>().chatText = chat;
+        chatObj.SetActive(true);
+    }
+
     #endregion
 
     #region 유저인터페이스
@@ -1915,7 +2833,25 @@ public class Hero : MonoBehaviour
             damageUIprefab.GetComponent<TextDamageController>().isLeft = !isLeftorRight;
             damageUIprefab.GetComponent<TextDamageController>().isCritical = isCritical;
             damageUIprefab.GetComponent<TextDamageController>().isCC = false;
-            damageUIprefab.transform.position = transform.position + new Vector3(0, 1);
+            damageUIprefab.GetComponent<TextDamageController>().isFixed = false;
+            if(isCritical)
+                damageUIprefab.transform.position = transform.GetChild(0).position + new Vector3(0, 1.5f);
+            else
+                damageUIprefab.transform.position = transform.GetChild(0).position + new Vector3(0, 1.2f);
+            damageUIprefab.SetActive(true);
+        }
+    }
+    public void DamageFixedUIShow(string font)
+    {
+        if (ObjectPool.Instance != null)
+        {
+            GameObject damageUIprefab = ObjectPool.Instance.PopFromPool("damageUI", GameObject.Find("CanvasUI").transform) as GameObject;
+            damageUIprefab.GetComponentInChildren<Text>().text = font.ToString();
+            damageUIprefab.GetComponent<TextDamageController>().isLeft = !isLeftorRight;
+            damageUIprefab.GetComponent<TextDamageController>().isCritical = false;
+            damageUIprefab.GetComponent<TextDamageController>().isCC = false;
+            damageUIprefab.GetComponent<TextDamageController>().isFixed = true;
+            damageUIprefab.transform.position = transform.GetChild(0).position + new Vector3(0, 1.2f);
             damageUIprefab.SetActive(true);
         }
     }
@@ -1924,11 +2860,12 @@ public class Hero : MonoBehaviour
         if(ObjectPool.Instance!=null)
         {
             GameObject damageUIprefab = ObjectPool.Instance.PopFromPool("damageUI", GameObject.Find("CanvasUI").transform) as GameObject;
-            damageUIprefab.GetComponentInChildren<Text>().text = font.ToString();
+            damageUIprefab.GetComponentInChildren<Text>().text = string.Format("<size='27'>{0}</size>",font.ToString());
             damageUIprefab.GetComponent<TextDamageController>().isLeft = !isLeftorRight;
             damageUIprefab.GetComponent<TextDamageController>().isCritical = false;
+            damageUIprefab.GetComponent<TextDamageController>().isFixed = false;
             damageUIprefab.GetComponent<TextDamageController>().isCC = true;
-            damageUIprefab.transform.position = transform.position;
+            damageUIprefab.transform.position = transform.GetChild(0).position;
             damageUIprefab.SetActive(true);
         }
 
@@ -1943,9 +2880,12 @@ public class Hero : MonoBehaviour
         }
         else
         {
-            hpUI = ObjectPool.Instance.PopFromPool("hpCastleUI");
-            hpUI.GetComponent<UI_castleHp>().OpenHpUI(this.gameObject, isBlue);
-            hpUI.gameObject.SetActive(true);
+            if(Common.stageModeType!=Common.StageModeType.Boss)
+            {
+                hpUI = ObjectPool.Instance.PopFromPool("hpCastleUI");
+                hpUI.GetComponent<UI_castleHp>().OpenHpUI(this.gameObject, isBlue);
+                hpUI.gameObject.SetActive(true);
+            }
         }
     }
     private void ShowHpBar(int dam=0)
@@ -1968,6 +2908,24 @@ public class Hero : MonoBehaviour
                     hpUI.GetComponent<UI_hp>().GetDamage(dam);
             }
 
+        }
+    }
+    private void ShowSkillCastingUI()
+    {
+        if(isPlayerHero)
+        {
+            GameObject castingUI = ObjectPool.Instance.PopFromPool("SkillCastingUI");
+            castingUI.SetActive(true);
+            castingUI.GetComponent<UI_SkillCasting>().ShowCastingUI(HeroSystem.GetHeroThumbnail(this.id), SkillSystem.GetSkillName(this.skillData.id),false,SkillSystem.GetSkillImage(this.skillData.id));
+        }
+        else
+        {
+            if(id<1000)
+            {
+                GameObject castingUI = ObjectPool.Instance.PopFromPool("SkillCastingReverseUI");
+                castingUI.SetActive(true);
+                castingUI.GetComponent<UI_SkillCasting>().ShowCastingUI(HeroSystem.GetHeroThumbnail(this.id), SkillSystem.GetSkillName(this.skillData.id), true, SkillSystem.GetSkillImage(this.skillData.id));
+            }
         }
     }
     #endregion
@@ -2027,16 +2985,17 @@ public class Hero : MonoBehaviour
         public int level;
         [HideInInspector]
         public int exp;
-        [Range(1, 9999)]
+        [HideInInspector]
         public int attack;
-        [Range(0, 1000)]
+        [HideInInspector]
         public int defence;
-        [Range(0, 9999)]
+        [HideInInspector]
         public int hp;
-        [Range(10, 1000)]
+        [HideInInspector]
         public int skillEnegry;
         [HideInInspector]
-        [Range(0, 9999)]
+        public float penetration;
+        [HideInInspector]
         public int maxHp;
         [Range(0, 100)]
         public int criticalPercent;
@@ -2044,58 +3003,112 @@ public class Hero : MonoBehaviour
         public float attackSpeed;
         [Range(0.1f, 3)]
         public float moveSpeed;
-        [Range(0, 10)]
+        [Range(0, 15)]
         public float knockbackResist;
         [Range(10, 120)]
         public float resurrectionTime;
 
         public Status() { level = 1; exp = 0;}
 
-        public void SetHeroStatus(ref HeroData data, bool isLevelUp)
+        public void SetHeroStatus(ref HeroData data, bool isLevelUp, Hero prefabData = null)
         {
             this.level = data.level;
             this.exp = data.exp;
             this.attack = HeroSystem.GetHeroStatusAttack(ref data);
             this.defence = HeroSystem.GetHeroStatusDefence(ref data);
-            this.maxHp = HeroSystem.GetHeroStatusMaxHp(ref data);
-            this.hp = this.maxHp;
+            this.maxHp = HeroSystem.GetHeroStatusMaxHp(ref data)+ prefabData.OnReturnHeroAbility(9);
+            this.hp = isLevelUp?hp : this.maxHp;
             this.criticalPercent = HeroSystem.GetHeroStatusCriticalPercent(ref data);
-            this.attackSpeed = HeroSystem.GetHeroStatusAttackSpeed(ref data)*0.01f;
-            this.moveSpeed = Mathf.Clamp(HeroSystem.GetHeroStatusMoveSpeed(ref data)*0.01f,0.1f,4f);
+            this.attackSpeed = HeroSystem.GetHeroStatusAttackSpeed(ref data)*0.005f;
+            this.moveSpeed = Mathf.Clamp(HeroSystem.GetHeroStatusMoveSpeed(ref data)*0.01f,0.5f,3.8f);
             this.knockbackResist = HeroSystem.GetHeroStatusKnockbackResist(ref data);
             this.skillEnegry = 20 - HeroSystem.GetHeroStatusSkillEnergy(ref data);
+            this.penetration = HeroSystem.GetHeroStatusPenetration(ref data)*0.01f;
             this.resurrectionTime = HeroSystem.GetHeroResurrectionTime(data.id, 0);
+        }
+
+        public void SetPvpStatus(ref HeroData data,  bool isPlayerHero, Hero prefabData = null)
+        {
+            if(isPlayerHero)
+            {
+                this.level = data.level;
+                this.exp = data.exp;
+                this.attack = HeroSystem.GetHeroStatusAttack(ref data)/2;
+                this.defence = HeroSystem.GetHeroStatusDefence(ref data)*2;
+                this.maxHp = HeroSystem.GetHeroStatusMaxHp(ref data) + prefabData.OnReturnHeroAbility(9);
+                this.hp = this.maxHp;
+                this.criticalPercent = HeroSystem.GetHeroStatusCriticalPercent(ref data);
+                this.attackSpeed = HeroSystem.GetHeroStatusAttackSpeed(ref data) * 0.005f;
+                this.moveSpeed = Mathf.Clamp(HeroSystem.GetHeroStatusMoveSpeed(ref data) * 0.01f, 0.5f, 3.5f);
+                this.knockbackResist = HeroSystem.GetHeroStatusKnockbackResist(ref data);
+                this.skillEnegry = 20 - HeroSystem.GetHeroStatusSkillEnergy(ref data);
+                this.penetration = HeroSystem.GetHeroStatusPenetration(ref data) * 0.01f;
+                this.resurrectionTime = HeroSystem.GetHeroResurrectionTime(data.id, 0);
+            }
+            else
+            {
+                this.level = data.level;
+                this.exp = data.exp;
+                this.attack = StageBattleManager.instance.GetHeroStatusAttack(ref data)/2;
+                this.defence = StageBattleManager.instance.GetHeroStatusDefence(ref data)*2;
+                this.maxHp = StageBattleManager.instance.GetHeroStatusMaxHp(ref data) + prefabData.OnReturnHeroAbility(9);
+                this.hp = this.maxHp;
+                this.criticalPercent = StageBattleManager.instance.GetHeroStatusCriticalPercent(ref data);
+                this.attackSpeed = StageBattleManager.instance.GetHeroStatusAttackSpeed(ref data) * 0.005f;
+                this.moveSpeed = Mathf.Clamp(StageBattleManager.instance.GetHeroStatusMoveSpeed(ref data) * 0.01f, 0.45f, 3.5f);
+                this.knockbackResist = StageBattleManager.instance.GetHeroStatusKnockbackResist(ref data);
+                this.skillEnegry = 20 - StageBattleManager.instance.GetHeroStatusSkillEnergy(ref data);
+                this.penetration = HeroSystem.GetHeroStatusPenetration(ref data) * 0.01f;
+                this.resurrectionTime = HeroSystem.GetHeroResurrectionTime(data.id, 0);
+            }
+        }
+
+        public void SetTutorialHeroStatus(bool isPlayer)
+        {
+            this.level = 1;
+            this.exp = 0;
+            this.attack = !isPlayer ? 5 : 60;
+            this.defence = 30;
+            this.maxHp = !isPlayer ? 100 : 300;
+            this.hp = this.maxHp;
+            this.criticalPercent = 0;
+            this.attackSpeed = !isPlayer ? 0.5f: 0.7f;
+            this.moveSpeed = !isPlayer ? 1.2f: 1.5f;
+            this.knockbackResist = 0;
+            this.skillEnegry = 0;
+            this.resurrectionTime = 0;
         }
     }
 
+    int GetHeroMaxLevel()
+    {
+        return this.heroData.over * 10 + 100;
+    }
+   
     public void LevelUp()
     {
-        if (status.exp >= Common.GetHeroNeedExp(status.level)&& status.level < 200&& !isDead)
+        if (status.exp >= Common.GetHeroNeedExp(status.level)&& status.level < GetHeroMaxLevel() && !isDead)
         {
             LevelUpEffect();
             HeroSystem.LevelUpStatusSet(this.id,this);
-            if (hpUI != null&&id<1000)
+            if (id < 500&&hpUI!=null)
             {
-                hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Text>().text = status.level.ToString();
-                if (status.level < 200)
-                    hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Slider>().value = (float)status.exp / (float)Common.GetHeroNeedExp(status.level);
-                else
-                    hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Slider>().value = 0;
-                ShowHpBar();
+                hpUI.GetComponent<UI_hp>().SetLevelUI(this.status.level);
             }
-            Debugging.Log(name + " 의 레벨업 ! >> " + status.level);
+            Debugging.Log(name + " 의 레벨업  >> " + status.level);
         }
     }
 
     public void ExpUp(int nExp)
     {
-        if (status!=null&&status.level<200 && !isDead)
+        if (status!=null&& !isDead)
         {
-            status.exp += nExp;
-            HeroSystem.SetHero(this);
-            if(hpUI!=null&&id<1000)
-                hpUI.GetComponent<UI_hp>().levelUI.GetComponentInChildren<Slider>().value = (float)status.exp / (float)Common.GetHeroNeedExp(status.level);
-            LevelUp();
+            if(status.level< GetHeroMaxLevel())
+            {
+                status.exp += nExp;
+                HeroSystem.SetHero(this);
+                LevelUp();
+            }
         }
     }
     #endregion
@@ -2103,21 +3116,26 @@ public class Hero : MonoBehaviour
     #region 영웅스킬모음
     public IEnumerator Skill001()
     {
-        attackPoint.name = this.Damage().ToString();
-        attackPoint.gameObject.SetActive(true);
-        if (attackPoint && attackPoint.GetComponent<AudioSource>() != null)
+        SlashEffect();
+        var targetList = Common.FindEnemysByDistance(this.isPlayerHero,isLeftorRight,this.transform,4.0f);
+        foreach(var target in targetList)
         {
-            attackPoint.GetComponent<AudioSource>().Play();
+            target.GetComponent<Hero>().HittedByObject(this.Damage(), true, new Vector2(10, 10),this.status.penetration);
+            target.GetComponent<Hero>().SlashHitEffect();
+            yield return new WaitForEndOfFrame();
         }
-        yield return new WaitForSeconds(0.3f);
-        attackPoint.gameObject.SetActive(false);
+        if(Common.hitTargetObject!=null&&Common.hitTargetObject.GetComponent<Castle>()!=null&&target!=null)
+        {
+            if(Common.hitTargetObject==target&&Common.GetDistanceBetweenAnother(this.transform,Common.hitTargetObject.transform)<4.0f)
+                Common.hitTargetObject.GetComponent<Castle>().HittedByObject(this.Damage(), true, Vector2.zero);
+        }
         yield return null;
     }
     public IEnumerator Skill002()
     {
         if (target != null && ObjectPool.Instance != null)
         {
-            int totalCount = SkillSystem.GetUserSkillLevel(skillData.id);
+            int totalCount = Mathf.Clamp(SkillSystem.GetUserSkillLevel(skillData.id) / 5 + 1,1,10);
             GameObject bomb = ObjectPool.Instance.PopFromPool("Bomb");
             bomb.transform.position = this.transform.position;
             bomb.gameObject.SetActive(true);
@@ -2127,7 +3145,7 @@ public class Hero : MonoBehaviour
     }
     public IEnumerator Skill003()
     {
-        int totalCount = SkillSystem.GetUserSkillLevel(skillData.id);
+        int totalCount = Mathf.Clamp(SkillSystem.GetUserSkillLevel(skillData.id)/5 + 1,1,8);
         for (int i = 0; i < totalCount; i++)
         {
             SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.magic);
@@ -2139,11 +3157,14 @@ public class Hero : MonoBehaviour
                 if (target != null)
                 {
                     GameObject bullet = ObjectPool.Instance.PopFromPool("FlamethrowerCartoonyFire");
-                    bullet.GetComponent<bulletController>().damage = Damage();
+                    bullet.transform.position = pos;
+                    bullet.transform.rotation = IsTargetLeft(target.transform) ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+                    bullet.GetComponent<bulletController>().damage = this.SkillDamage()/totalCount;
+                    bullet.GetComponent<bulletController>().pent = this.status.penetration;
                     bullet.GetComponent<bulletController>().isAlly = this.isPlayerHero;
                     bullet.GetComponent<bulletController>().Target = target.transform;
                     bullet.GetComponent<bulletController>().isCritical = isCriticalAttack;
-                    bullet.transform.position = pos;
+
                     bullet.SetActive(true);
                 }
             }
@@ -2153,7 +3174,7 @@ public class Hero : MonoBehaviour
     }
     public IEnumerator Skill004()
     {
-        int totalCount = SkillSystem.GetUserSkillLevel(skillData.id);
+        int totalCount = Mathf.Clamp(SkillSystem.GetUserSkillLevel(skillData.id) / 5 + 1,1,8);
         for (int i = 0; i < totalCount; i++)
         {
             SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.bow);
@@ -2161,7 +3182,8 @@ public class Hero : MonoBehaviour
             {
                 GameObject arrow = ObjectPool.Instance.PopFromPool("Arrow");
 
-                arrow.GetComponent<arrowController>().damage = Damage();
+                arrow.GetComponent<arrowController>().damage = this.SkillDamage();
+                arrow.GetComponent<arrowController>().pent = this.status.penetration;
                 arrow.GetComponent<arrowController>().isAlly = this.isPlayerHero;
                 arrow.GetComponent<arrowController>().target = target.transform;
                 arrow.GetComponent<arrowController>().isCritical = isCriticalAttack;
@@ -2194,8 +3216,8 @@ public class Hero : MonoBehaviour
 
         }
         SmokeDarkEffect();
-        attackPoint.name = this.Damage().ToString();
-        int totalCount = SkillSystem.GetUserSkillLevel(skillData.id);
+        attackPoint.name = this.SetDamageData(this.SkillDamage(), this.status.penetration);
+        int totalCount = Mathf.Clamp(SkillSystem.GetUserSkillLevel(skillData.id) / 5 + 1,1,10);
         for (int i = 0; i < totalCount; i++)
         {
 
@@ -2207,14 +3229,443 @@ public class Hero : MonoBehaviour
 
         if(target!=null)
         {
+            Hero targetHero = target.GetComponent<Hero>();
             if (!flag)
                 this.transform.position = Common.GetBottomPosition(target.transform) + new Vector3(-0.7f, 0);
             else
                 this.transform.position = Common.GetBottomPosition(target.transform) + new Vector3(0.7f, 0);
-            SmokeDarkEffect();
+            if (targetHero != null)
+            {
+                targetHero.ShadowAttackEffect();
+                if(targetHero.id>1000)
+                {
+                    targetHero.HittedByObject(targetHero.status.hp/10, true, new Vector2(25, 10), 1);
+                }
+            }
+
         }
 
         yield return null;
     }
+    public IEnumerator Skill006()
+    {
+        JumpEffect();
+        SlamEffect();
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.smoke);
+        var targetList = Common.FindEnemysByDistance(this.isPlayerHero,isLeftorRight, this.transform, 5.0f);
+        yield return new WaitForSeconds(0.2f);
+        int totalCount = Mathf.Clamp(SkillSystem.GetUserSkillLevel(skillData.id) / 3 + 1,1,10);
+        for(var i = 0; i<totalCount&&i<targetList.Count; i++)
+        {
+            targetList[i].GetComponent<Hero>().HittedByObject(this.Damage(), true, new Vector2(20, 20),this.status.penetration);
+            yield return new WaitForEndOfFrame();
+        }
+        attackPoint.gameObject.SetActive(false);
+        yield return null;
+    }
+    public IEnumerator Skill007()
+    {
+        GroundEffect();
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.spell007);
+        foreach(var ally in Common.FindAlly(this.isPlayerHero))
+        {
+            if(TargetAliveCheck(ally))
+            {
+                ally.GetComponent<Hero>().AttackBuff(2.3f, SkillSystem.GetUserSkillPower(skillData.id)*0.01f);
+            }
+            yield return new WaitForEndOfFrame();
+        }
+        yield return null;
+    }
+    public IEnumerator Skill008()
+    {
+        GameObject missile = EffectPool.Instance.PopFromPool("RocketMissileBlue");
+        missile.transform.position = this.transform.GetChild(0).position;
+        missile.gameObject.SetActive(true);
+        SlamEffect();
+        float distance = 1.0f;
+        while(distance>0.5f&&target!=null)
+        {
+            distance = Vector2.Distance(missile.transform.position, target.transform.position);
+            missile.transform.position = Vector2.Lerp(missile.transform.position, target.transform.position, 0.07f);
+            yield return new WaitForEndOfFrame();
+        }
+        EffectPool.Instance.PushToPool("RocketMissileBlue", missile);
+        if(target!=null&&target.GetComponent<Hero>()!=null)
+        {
+            target.GetComponent<Hero>().HittedByObject(this.SkillDamage(), true, new Vector2(40, 20),this.status.penetration);
+            target.GetComponent<Hero>().BoomEffect();
+        }
+        else if(target != null&&target.GetComponent<Castle>()!=null)
+        {
+            target.GetComponent<Castle>().HittedByObject(this.SkillDamage(), true, Vector2.zero);
+            target.GetComponent<Castle>().BoomEffect();
+        }
+        yield return null;
+    }
+    public IEnumerator Skill009()
+    {
+        GameObject embulance = ObjectPool.Instance.PopFromPool("Embulance");
+        embulance.transform.position = this.transform.position;
+        if(isLeftorRight)
+            embulance.transform.rotation = Quaternion.Euler(0, 180, 0);
+        else
+            embulance.transform.rotation = Quaternion.Euler(0, 0, 0);
+        embulance.SetActive(true);
+        float timeCheck = 0.0f;
+        while (timeCheck<2)
+        {
+            embulance.transform.Translate(new Vector2(5 * Time.deltaTime, 0));
+            timeCheck += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        var allyList = Common.FindAlly(this.isPlayerHero);
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.heal);
+        foreach (var ally in allyList)
+        {
+            if(TargetAliveCheck(ally))
+                ally.GetComponent<Hero>().Healing(this.Damage());
+            yield return new WaitForEndOfFrame();
+        }
+        yield return null;
+    }
+    public IEnumerator Skill010()
+    {
+        yield return new WaitForSeconds(0.3f);
+        var targetList = Common.FindEnemysByDistance(this.isPlayerHero,isLeftorRight, this.transform, 4.0f);
+        GameObject t = null;
+        foreach (var target in targetList)
+        {
+            if(TargetAliveCheck(target))
+            {
+                t = target;
+            }
+            break;
+        }
+        if(t==null)
+        {
+            if (Common.hitTargetObject != null && Common.hitTargetObject.GetComponent<Castle>() != null)
+            {
+                if (Common.hitTargetObject == target && Common.GetDistanceBetweenAnother(this.transform, Common.hitTargetObject.transform) < 4.0f)
+                {
+                    t = Common.hitTargetObject;
+                }
+            }
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            Hitting(t,this.SkillDamage(), isCriticalAttack, Vector2.zero, this.status.penetration);
+            yield return new WaitForSeconds(0.05f);
+        }
+        yield return new WaitForSeconds(0.2f);
+        Hitting(t, this.SkillDamage(), true, new Vector2(25,10), this.status.penetration);
+        yield return new WaitForEndOfFrame();
+        Healing(this.status.maxHp / 10);
+    }
+
+    public IEnumerator Skill011()
+    {
+        var targetList = Common.FindEnemysByDistance(this.isPlayerHero, isLeftorRight, this.transform, 8.0f);
+        Vector3 effectPos = Vector3.zero;
+        List<GameObject> effectTransfoms = new List<GameObject>();
+        float effectY = 5;
+        for(var i =0; i<6; i++)
+        {
+            if (EffectPool.Instance != null)
+            {
+                GameObject effect = EffectPool.Instance.PopFromPool("SpikyFireAdditivePurple");
+                if (effect != null)
+                {
+                    if(isLeftorRight)
+                    {
+                        effectPos = new Vector3(this.transform.position.x-(i + 1), effectY);
+                        effect.transform.position = effectPos;
+                    }
+                    else
+                    {
+                        effectPos = new Vector3(this.transform.position.x+(i + 1), effectY);
+                        effect.transform.position = effectPos;
+                    }
+                    effect.SetActive(true);
+                    effectTransfoms.Add(effect);
+                }
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.fireShot);
+        while (effectY>0)
+        {
+            effectY -= 8 * Time.deltaTime;
+            foreach (var efx in effectTransfoms)
+            {
+                efx.transform.position = new Vector3(efx.transform.position.x, effectY, 0);
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        for (var i = 0; i < 3; i++)
+        {
+            if (EffectPool.Instance != null)
+            {
+                GameObject effect = EffectPool.Instance.PopFromPool("SoulExplosionPurple");
+                if (effect != null)
+                {
+                    if (isLeftorRight)
+                    {
+                        effectPos = new Vector3(this.transform.position.x-(i + 1)*1.5f, 0);
+                        effect.transform.position = effectPos;
+                    }
+                    else
+                    {
+                        effectPos = new Vector3(this.transform.position.x+(i + 1)*1.5f, 0);
+                        effect.transform.position = effectPos;
+                    }
+                    effect.SetActive(true);
+                }
+            }
+        }
+        foreach (var target in targetList)
+        {
+            if (TargetAliveCheck(target))
+            {
+                target.GetComponent<Hero>().HittedByObject(this.SkillDamage(), true, new Vector2(5, 5), this.status.penetration);
+                yield return new WaitForEndOfFrame();
+                target.GetComponent<Hero>().Stunned(0.5f,true);
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.smoke);
+        yield return new WaitForEndOfFrame();
+    }
+    public IEnumerator Skill012()
+    {
+        int totalCount = Mathf.Clamp(SkillSystem.GetUserSkillLevel(skillData.id) / 5 + 1, 1, 7);
+        for (int i = 0; i < totalCount; i++)
+        {
+            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.bow);
+            if (target != null && ObjectPool.Instance != null)
+            {
+                GameObject arrow = ObjectPool.Instance.PopFromPool("Shuriken");
+
+                arrow.GetComponent<arrowController>().pent = this.status.penetration;
+                arrow.GetComponent<arrowController>().isAlly = this.isPlayerHero;
+                arrow.GetComponent<arrowController>().target = target.transform;
+                arrow.GetComponent<arrowController>().isCritical = isCriticalAttack;
+                arrow.GetComponent<arrowController>().damage = isCriticalAttack ? (int)(this.SkillDamage()*1.1f) : this.SkillDamage();
+
+                arrow.transform.position = transform.position + new Vector3(0, 0.1f) + transform.right * -1f;
+                arrow.transform.rotation = isLeftorRight ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+                arrow.SetActive(true);
+            }
+            yield return new WaitForSeconds(0.05f);
+        }
+        yield return null;
+    }
+    #endregion
+
+    #region 보스스킬모음
+    public IEnumerator BSkill004()
+    {
+        if(UnityEngine.Random.Range(0,10)<3)
+        {
+            var targetList = Common.FindAlly(true);
+            if(targetList!=null&&targetList.Count>0)
+            {
+                foreach (var target in targetList)
+                {
+                    target.GetComponent<Hero>().HittedByObject(this.Damage() / Mathf.Clamp((targetList.Count/2),1,4), true, new Vector2(20, 20));
+                    target.GetComponent<Hero>().SlamEffect();
+                    yield return new WaitForEndOfFrame();
+                }
+            }
+        }
+        yield return null;
+    }
+    public IEnumerator BSkill1006()
+    {
+        GameObject spawnEnemy = PrefabsDatabaseManager.instance.GetMonsterPrefab(516);
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject e = Instantiate(spawnEnemy);
+            e.SetActive(false);
+            e.GetComponent<Hero>().isPlayerHero = false;
+            e.GetComponent<Hero>().SpriteAlphaSetting(0);
+            e.transform.position = this.transform.position + new Vector3(UnityEngine.Random.Range(-2f, 2f), 0);
+            e.GetComponent<Hero>().SpawnEffect();
+            yield return new WaitForSeconds(0.5f);
+            e.SetActive(true);
+            e.GetComponent<Hero>().SpriteAlphaSetting(1);
+            StageManagement.instance.AddMonsterCount();
+            List<GameObject> allys = Common.FindAlly(true);
+            foreach (var ally in allys)
+            {
+                if (ally.GetComponent<Hero>() != null)
+                {
+                    ally.GetComponent<Hero>().ResearchingEnemys(e);
+                }
+            }
+            yield return new WaitForEndOfFrame();
+        }
+        yield return null;
+    }
+    public IEnumerator BSkill1007()
+    {
+        SlashEffect();
+        var targetList = Common.FindAlly(true);
+        foreach (var target in targetList)
+        {
+            target.GetComponent<Hero>().HittedByObject(this.SkillDamage(), true, new Vector2(10, 15), this.status.penetration);
+            target.GetComponent<Hero>().SlamEffect();
+            yield return new WaitForEndOfFrame();
+        }
+        yield return null;
+    }
+    public IEnumerator BSkill1008()
+    {
+        JumpEffect();
+        SlamEffect();
+        var targetList = Common.FindAlly(true);
+        if(targetList!=null&&targetList.Count>0)
+        {
+            for (var i = 0; i < targetList.Count; i++)
+            {
+                if (TargetAliveCheck(targetList[i]))
+                {
+                    targetList[i].GetComponent<Hero>().HittedByObject(this.SkillDamage(), true, new Vector2(30, 35), 0.5f);
+                    targetList[i].GetComponent<Hero>().SlamEffect();
+                    yield return new WaitForEndOfFrame();
+                    targetList[i].GetComponent<Hero>().Stunned(3.0f, true);
+                    yield return null;
+                }
+            }
+        }
+    }
+    #endregion
+
+    #region 잠재능력
+    public void OnAttackHeroAbility()
+    {
+        switch(heroData.ability)
+        {
+            case 1:
+                HeroAbility001();
+                break;
+            case 2:
+                HeroAbility002();
+                break;
+            case 6:
+                HeroAbility006(target);
+                break;
+            case 7:
+                HeroAbility007(target);
+                break;
+        }
+    }
+    public int OnReturnHeroAbility(int type)
+    {
+        switch(type)
+        {
+            case 3:
+                return HeroAbility003();
+            case 4:
+                return HeroAbility004();
+            case 5:
+                return HeroAbility005();
+            case 8:
+                return HeroAbility008();
+            case 9:
+                return HeroAbility009();
+        }
+        return 0;
+    }
+    public void HeroAbility001()
+    {
+        if(heroData.ability==1)
+        {
+            int drainAmount = Mathf.Clamp((HeroAbilitySystem.GetAbilityPower(heroData.ability, heroData.abilityLevel)*status.maxHp)/100, 0, this.status.maxHp);
+            this.status.hp = Common.looHpPlus(this.status.hp, this.status.maxHp, drainAmount);
+            DamageCCUIShow("+" + drainAmount.ToString());
+            ShowHpBar(-drainAmount);
+        }
+    }
+    public void HeroAbility002()
+    {
+        if(heroData.ability==2)
+        {
+            int drainAmount = Mathf.Clamp(HeroAbilitySystem.GetAbilityPower(heroData.ability, heroData.abilityLevel), 0, 100);
+            if (StageManagement.instance != null)
+            {
+                StageManagement.instance.stageInfo.stageEnergy += drainAmount;
+            }
+        }
+    }
+    public int HeroAbility003()
+    {
+        if(heroData.ability==3)
+        {
+            int ctkDmg = Mathf.Clamp(HeroAbilitySystem.GetAbilityPower(heroData.ability, heroData.abilityLevel), 0, 100);
+            return ctkDmg;
+        }
+        return 0;
+    }
+    public int HeroAbility004()
+    {
+        if (heroData.ability == 4)
+        {
+            int atk = Mathf.Clamp(HeroAbilitySystem.GetAbilityPower(heroData.ability, heroData.abilityLevel), 0, 300);
+            return atk;
+        }
+        return 0;
+    }
+    public int HeroAbility005()
+    {
+        if (heroData.ability == 5)
+        {
+            int def = Mathf.Clamp(HeroAbilitySystem.GetAbilityPower(heroData.ability, heroData.abilityLevel), 0, 300);
+            return def;
+        }
+        return 0;
+    }
+    public void HeroAbility006(GameObject target)
+    {
+        if (heroData.ability == 6)
+        {
+            int percent = HeroAbilitySystem.GetAbilityPower(heroData.ability, heroData.abilityLevel);
+            if (target != null && target.GetComponent<Hero>()!=null&& !target.GetComponent<Hero>().isDead)
+            {
+                if (UnityEngine.Random.Range(0, 100) < percent)
+                    target.GetComponent<Hero>().Stunned(2.0f);
+            }
+        }
+    }
+    public void HeroAbility007(GameObject target)
+    {
+        if (heroData.ability == 7)
+        {
+            if (target != null && target.GetComponent<Hero>() != null && !target.GetComponent<Hero>().isDead)
+            {
+                target.GetComponent<Hero>().FireEffect();
+                target.GetComponent<Hero>().HittedPersistent(HeroAbilitySystem.GetAbilityPower(heroData.ability,heroData.abilityLevel), 5);
+            }
+        }
+    }
+    public int HeroAbility008()
+    {
+        if (heroData.ability == 8)
+        {
+            return HeroAbilitySystem.GetAbilityPower(heroData.ability, heroData.abilityLevel);
+        }
+        return 0;
+    }
+    public int HeroAbility009()
+    {
+        if (heroData.ability == 9)
+        {
+            return HeroAbilitySystem.GetAbilityPower(heroData.ability, heroData.abilityLevel);
+        }
+        return 0;
+    }
+
     #endregion
 }

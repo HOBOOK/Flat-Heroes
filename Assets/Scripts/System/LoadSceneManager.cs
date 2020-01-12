@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -32,7 +33,7 @@ public class LoadSceneManager : MonoBehaviour
     }
     public string GetTip()
     {
-        int tipNum = UnityEngine.Random.Range(1, 3);
+        int tipNum = UnityEngine.Random.Range(1, 10);
         return string.Format("<size='35'>TIP #{0}. {1}</size>", (tipNum+1), LocalizationManager.GetText("TipText"+tipNum));
     }
     public string GetLoadingPercent(float percent)
@@ -52,6 +53,7 @@ public class LoadSceneManager : MonoBehaviour
     {
         if(!isLoadStart)
         {
+            SoundManager.instance.StopSingleLoop();
             Debugging.Log(sceneNumber + " 로드 시작");
             nextSceneNumber = sceneNumber;
             StartCoroutine("LoadingScene");
@@ -71,8 +73,27 @@ public class LoadSceneManager : MonoBehaviour
                     break;
                 case 1:
                     nextSceneNumber = 3;
-                    GameManagement.instance.SetStageInfo(0);
                     Common.stageModeType = Common.StageModeType.Infinite;
+                    GameManagement.instance.SetStageInfo(0);
+                    StartCoroutine("LoadingScene");
+                    break;
+                case 2:
+                    nextSceneNumber = 4;
+                    Common.stageModeType = Common.StageModeType.Boss;
+                    SaveSystem.SetBossClearTime(BossModeData.mapStage, ((ulong)DateTime.Now.Ticks).ToString());
+                    GameManagement.instance.SetStageInfo(0);
+                    StartCoroutine("LoadingScene");
+                    break;
+                case 3:
+                    nextSceneNumber = 7;
+                    Common.stageModeType = Common.StageModeType.Battle;
+                    GameManagement.instance.SetStageInfo(0);
+                    StartCoroutine("LoadingScene");
+                    break;
+                case 4:
+                    nextSceneNumber = 8;
+                    Common.stageModeType = Common.StageModeType.Attack;
+                    GameManagement.instance.SetStageInfo(0);
                     StartCoroutine("LoadingScene");
                     break;
             }
@@ -110,16 +131,16 @@ public class LoadSceneManager : MonoBehaviour
         while(!async.isDone)
         {
             progress = async.progress;
-            loadingUIPrefab.GetComponentInChildren<Slider>().value = progress;
-            loadingUIPrefab.GetComponentInChildren<Slider>().transform.GetComponentInChildren<Text>().text = GetLoadingPercent(progress);
+            loadingUIPrefab.transform.GetChild(1).GetComponentInChildren<Text>().text = GetLoadingPercent(progress);
             Debugging.Log("현재 로딩 " + progress*100f);
             yield return true;
 
             async.allowSceneActivation = true;
         }
-        
+        Resources.UnloadUnusedAssets();
         isLoadStart = false;
         Destroy(loadingPrefab);
+        GameManagement.instance.TutorialStageStart();
         yield return null;
     }
     IEnumerator LoadingSceneAddtive()
@@ -155,9 +176,7 @@ public class LoadSceneManager : MonoBehaviour
         while (!async.isDone)
         {
             progress = async.progress;
-            loadingUIPrefab.GetComponentInChildren<Slider>().value = progress;
-            loadingUIPrefab.GetComponentInChildren<Slider>().transform.GetComponentInChildren<Text>().text = GetLoadingPercent(progress);
-            Debugging.Log("현재 로딩 " + progress * 100f);
+            loadingUIPrefab.transform.GetChild(1).GetComponentInChildren<Text>().text = GetLoadingPercent(progress);
             yield return true;
 
             async.allowSceneActivation = true;

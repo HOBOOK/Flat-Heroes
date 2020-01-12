@@ -59,7 +59,6 @@ public class LoadAssetBundleExample : MonoBehaviour
                     yield return request;
                     PrefabsDatabaseManager.instance.AddPrefabToHeroList(request.asset as GameObject);
                 }
-                PrefabsDatabaseManager.instance.GetPrefabList();
                 bundle.Unload(false);
             }
         }

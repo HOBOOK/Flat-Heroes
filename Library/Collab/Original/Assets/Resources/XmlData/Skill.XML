@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SkillCollection>
+  <Skills>
+    <Skill id="1">
+      <Name>바람 가르기</Name>
+      <Description>순간적으로 앞으로 나아가면서 다수의 적을 공격한다.</Description>
+      <Image>Skill/skill_001</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>150</Power>
+      <AddPower>30</AddPower>
+      <Energy>40</Energy>
+    </Skill>
+    <Skill id="2">
+      <Name>수류탄 투척</Name>
+      <Description>3초후 폭발하는 수류탄을 적에게 투척한다.</Description>
+      <Image>Skill/skill_002</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>50</Power>
+      <AddPower>5</AddPower>
+      <Energy>55</Energy>
+    </Skill>
+    <Skill id="3">
+      <Name>살라만더</Name>
+      <Description>불꽃들을 소환하여 전방에 무차별 폭격을 가한다.</Description>
+      <Image>Skill/skill_003</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>50</Power>
+      <AddPower>10</AddPower>
+      <Energy>80</Energy>
+    </Skill>
+    <Skill id="4">
+      <Name>퀵스나이핑</Name>
+      <Description>엄청난 속도로 연속으로 화살을 발사한다.</Description>
+      <Image>Skill/skill_004</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>80</Power>
+      <AddPower>17</AddPower>
+      <Energy>50</Energy>
+    </Skill>
+    <Skill id="5">
+      <Name>스모킹나이프</Name>
+      <Description>나이프를 던진곳으로 날아가 적을 공격한다.</Description>
+      <Image>Skill/skill_005</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>90</Power>
+      <AddPower>12</AddPower>
+      <Energy>65</Energy>
+    </Skill>
+    <Skill id="6">
+      <Name>6번째 스킬</Name>
+      <Description>엄청난 속도로 연속으로 화살을 발사한다.</Description>
+      <Image>Skill/skill_006</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>50</Power>
+      <AddPower>10</AddPower>
+      <Energy>100</Energy>
+    </Skill>
+    <Skill id="7">
+      <Name>7번째 스킬</Name>
+      <Description>엄청난 속도로 연속으로 화살을 발사한다.</Description>
+      <Image>Skill/skill_007</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>50</Power>
+      <AddPower>10</AddPower>
+      <Energy>100</Energy>
+    </Skill>
+    <Skill id="8">
+      <Name>8번째 스킬</Name>
+      <Description>엄청난 속도로 연속으로 화살을 발사한다.</Description>
+      <Image>Skill/skill_008</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>50</Power>
+      <AddPower>10</AddPower>
+      <Energy>100</Energy>
+    </Skill>
+    <Skill id="9">
+      <Name>9번째 스킬</Name>
+      <Description>엄청난 속도로 연속으로 화살을 발사한다.</Description>
+      <Image>Skill/skill_009</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>0</TargetType>
+      <Power>50</Power>
+      <AddPower>10</AddPower>
+      <Energy>100</Energy>
+    </Skill>
+    <Skill id="101">
+      <Name>절망</Name>
+      <Description>적 전체에게 강력한 화염공격을 가한다.</Description>
+      <Image>Skill/skill_101</Image>
+      <Level>1</Level>
+      <SkillType>0</SkillType>
+      <TargetType>2</TargetType>
+      <Power>100</Power>
+      <AddPower>10</AddPower>
+      <Energy>40</Energy>
+    </Skill>
+    <Skill id="102">
+      <Name>희망</Name>
+      <Description>아군 전체의 체력을 회복한다.</Description>
+      <Image>Skill/skill_102</Image>
+      <Level>1</Level>
+      <SkillType>1</SkillType>
+      <TargetType>1</TargetType>
+      <Power>100</Power>
+      <AddPower>10</AddPower>
+      <Energy>60</Energy>
+    </Skill>
+    <Skill id="103">
+      <Name>후회</Name>
+      <Description>아군 한명을 랜덤으로 부활시킨다.</Description>
+      <Image>Skill/skill_103</Image>
+      <Level>1</Level>
+      <SkillType>4</SkillType>
+      <TargetType>3</TargetType>
+      <Power>0</Power>
+      <AddPower>5</AddPower>
+      <Energy>200</Energy>
+    </Skill>
+    <Skill id="104">
+      <Name>자만</Name>
+      <Description>적 전체를 2초간 스턴상태로 만든다.</Description>
+      <Image>Skill/skill_104</Image>
+      <Level>1</Level>
+      <SkillType>5</SkillType>
+      <TargetType>2</TargetType>
+      <Power>2</Power>
+      <AddPower>1</AddPower>
+      <Energy>50</Energy>
+    </Skill>
+    <Skill id="105">
+      <Name>희생</Name>
+      <Description>아군 한명을 희생시켜 가장강한 적의 체력을 희생한 아군의 체력만큼 감소시킨다.</Description>
+      <Image>Skill/skill_105</Image>
+      <Level>20</Level>
+      <SkillType>3</SkillType>
+      <TargetType>2</TargetType>
+      <Power>0</Power>
+      <AddPower>0</AddPower>
+      <Energy>150</Energy>
+    </Skill>
+  </Skills>
+</SkillCollection>
