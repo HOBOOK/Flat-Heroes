@@ -14,24 +14,16 @@ public class BackObjectPool : MonoBehaviour
         if(this.name.Contains("(Clone)"))
             poolItemName = this.name.Replace("(Clone)","");
     }
-    private void OnEnable()
-    {
-        _elapsedTime = 0f;
-    }
     void Update ()
     {
         if (GetTimer() > lifeTime)
         {
             SetTimer();
-            PushToPool();
+            if(ObjectPool.Instance!=null&& PoolType==POOLTYPE.ObjectPool)
+                ObjectPool.Instance.PushToPool(poolItemName, gameObject);
+            else if(EffectPool.Instance!=null&&PoolType==POOLTYPE.EffectPool)
+                EffectPool.Instance.PushToPool(poolItemName, gameObject);
         }
-    }
-    public void PushToPool()
-    {
-        if (ObjectPool.Instance != null && PoolType == POOLTYPE.ObjectPool)
-            ObjectPool.Instance.PushToPool(poolItemName, gameObject);
-        else if (EffectPool.Instance != null && PoolType == POOLTYPE.EffectPool)
-            EffectPool.Instance.PushToPool(poolItemName, gameObject);
     }
 
     float GetTimer()

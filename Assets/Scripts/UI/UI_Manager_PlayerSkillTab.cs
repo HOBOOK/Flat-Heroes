@@ -43,7 +43,7 @@ public class UI_Manager_PlayerSkillTab : MonoBehaviour
                 skillImage.sprite = SkillSystem.GetSkillImage(playerSkillList[i].id);
                 skillDescriptionText.text = SkillSystem.GetPlayerSkillDescription(playerSkillList[i]);
 
-                int upgradePayment = 30;
+                int upgradePayment = 100;
                 skillNeedCrystalText.text = Common.GetThousandCommaText(upgradePayment);
                 skillUpgradeButton.onClick.RemoveAllListeners();
                 int index = i;
@@ -72,7 +72,7 @@ public class UI_Manager_PlayerSkillTab : MonoBehaviour
                     {
                         skillUpgradeButton.enabled = false;
                         skillUpgradeButton.transform.GetChild(2).gameObject.SetActive(true);
-                        skillUpgradeButton.transform.GetChild(2).GetComponentInChildren<Text>().text = string.Format("! {0} : {1}", LocalizationManager.GetText("UserLevel"),User.level+1);
+                        skillUpgradeButton.transform.GetChild(2).GetComponentInChildren<Text>().text = string.Format("! {0} : {1}", LocalizationManager.GetText("UserLevel"),SkillSystem.GetUserSkillLevel(playerSkillList[i].id)+1);
                     }
                 }
                 else

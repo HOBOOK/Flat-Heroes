@@ -45,8 +45,7 @@ public class ItemColor
     {
         get
         {
-            UnityEngine.Color color = new Color(0.15f, 0.3f, 1f,1f);
-            return color;
+            return Color.blue;
         }
     }
     public static Color SSS
@@ -99,29 +98,4 @@ public class ItemColor
         }
     }
     #endregion region
-}
-
-public class HeroClassColor
-{
-    public static Color GetHeroColor(int over)
-    {
-        if (over == 3)
-        {
-            return ItemColor.Legend;
-        }
-        if (over == 2)
-        {
-            UnityEngine.Color color = new Color(0.75f, 0.3f, 0.5f, 1f);
-            return color;
-        }
-        else if (over == 1)
-        {
-            UnityEngine.Color color = new Color(1f, 0.55f, 0.15f, 1f);
-            return color;
-        }
-        else
-        {
-            return Color.cyan;
-        }
-    }
 }

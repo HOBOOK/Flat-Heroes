@@ -22,8 +22,6 @@ public class LabSystem
                 return User.addAttackLevel + plusLevel;
             case 5:
                 return User.addDefenceLevel + plusLevel;
-            case 6:
-                return User.addMaxDamageLevel + plusLevel;
             default:
                 return 0;
         }
@@ -50,22 +48,12 @@ public class LabSystem
             case 5:
                 User.addDefenceLevel += 1;
                 break;
-            case 6:
-                User.addMaxDamageLevel += 1;
-                break;
         }
         SaveSystem.SavePlayer();
     }
     public static int GetNeedMoney(int level)
     {
-        if (level > 50)
-            return (level + 10) * (level + 10) * 20 + 1000;
-        else
-            return (level-1) * 900 + 1000;
-    }
-    public static int GetNeedStone(int level)
-    {
-        return level;
+        return level * level * 100 + 1000;
     }
     public static float GetLapPower(int type, int level)
     {
@@ -83,8 +71,6 @@ public class LabSystem
                 return GetAddAttack(level);
             case 5:
                 return GetAddDefence(level);
-            case 6:
-                return GetAddMaxDamage(level);
             default:
                 return 0;
         }
@@ -96,7 +82,7 @@ public class LabSystem
     }
     public static int ChargeEnergy
     {
-        get { return User.flatEnergyChargingLevel*2+10; }
+        get { return User.flatEnergyChargingLevel*2+5; }
     }
     public static int AddMoney
     {
@@ -113,10 +99,6 @@ public class LabSystem
     public static int AddDefence
     {
         get { return User.addDefenceLevel * 10; }
-    }
-    public static int AddMaxDamage
-    {
-        get { return User.addMaxDamageLevel * 50; }
     }
 
     public static int GetMaxEnergy(int level)
@@ -142,10 +124,6 @@ public class LabSystem
     public static int GetAddDefence(int level)
     {
         return level * 10;
-    }
-    public static int GetAddMaxDamage(int level)
-    {
-        return level * 50;
     }
 
 }

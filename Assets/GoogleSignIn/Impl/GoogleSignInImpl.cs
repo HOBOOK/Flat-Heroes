@@ -177,7 +177,6 @@ namespace Google.Impl {
 #if UNITY_ANDROID
       UnityEngine.AndroidJavaClass jc = new UnityEngine.AndroidJavaClass(
         "com.unity3d.player.UnityPlayer");
-            Debugging.LogForce("GetPlayerActivity");
       return jc.GetStatic<UnityEngine.AndroidJavaObject>("currentActivity")
                .GetRawObject();
 #else

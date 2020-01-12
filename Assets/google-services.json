@@ -29,10 +29,6 @@
             "package_name": "com.HobookGames.FlatHeros",
             "certificate_hash": "42b995897f32391f93d2dc9f5d14eadaaf1d2c1d"
           }
-        },
-        {
-          "client_id": "312752000151-4iql3uip7a39ujqejem5st36e03v2gki.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [
@@ -49,8 +45,7 @@
             }
           ]
         }
-      },
-      "admob_app_id": "ca-app-pub-1654715490901132~4141792007"
+      }
     }
   ],
   "configuration_version": "1"

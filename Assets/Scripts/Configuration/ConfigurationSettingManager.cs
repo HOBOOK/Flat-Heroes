@@ -42,7 +42,7 @@ public class ConfigurationSettingManager : MonoBehaviour
     }
     void EnableUI()
     {
-        UserDeviceIdentifierText.text = string.Format("{0} <color='yellow'>{1}</color>\r\n{2} <color='yellow'>{3}</color>", LocalizationManager.GetText("configPlayerIdText"), User.id, LocalizationManager.GetText("configGameVersionText"), Application.version);
+        UserDeviceIdentifierText.text = string.Format("{0} : {1}\r\n{2} : {3}", LocalizationManager.GetText("configPlayerIdText"), User.id, LocalizationManager.GetText("configGameVersionText"), Application.version);
 
         // 언어설정
         foreach (var btn in LanguageSettingPanel.transform.GetComponentsInChildren<Button>())

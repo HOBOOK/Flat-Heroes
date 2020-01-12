@@ -8,7 +8,6 @@ public class bulletController : MonoBehaviour
     public bool isAlly = false;
     public bool isCritical;
     public int damage = 10;
-    public float pent;
     public float lifeTime = 0.5f;
     public float _elapsedTime = 0f;
     public float speed;
@@ -89,7 +88,7 @@ public class bulletController : MonoBehaviour
             {
                 if (parent.GetComponentInParent<Hero>() != null)
                 {
-                    parent.GetComponentInParent<Hero>().HittedByObject(damage, isCritical, new Vector2(2, 3), pent);
+                    parent.GetComponentInParent<Hero>().HittedByObject(damage, isCritical, new Vector2(2, 3));
                 }
                 else if (parent.GetComponent<Castle>() != null)
                 {

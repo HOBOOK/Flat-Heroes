@@ -57,7 +57,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 0
-    - _BorderWidth: 0.75
+    - _BorderWidth: 2
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DamagesPercent: 0
@@ -70,16 +70,16 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Percent: 1
+    - _Percent: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Steps: 4
+    - _Steps: 50
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _BorderColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 1}
-    - _Color: {r: 0.2953008, g: 0.36667868, b: 0.85490197, a: 1}
+    - _BorderColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DamagesColor: {r: 1, g: 1, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _ImageSize: {r: 70, g: 50, b: 0, a: 0}
+    - _ImageSize: {r: 0, g: 0, b: 0, a: 0}

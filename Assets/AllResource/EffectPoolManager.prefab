@@ -133,8 +133,8 @@ MonoBehaviour:
     parent: {fileID: 0}
     poolCount: 5
     poolList: []
-  - poolItemName: SoftPortalRed
-    prefab: {fileID: 6731680396007168275, guid: 84da02512a60adc49a54d4a991783d62,
+  - poolItemName: SimplePortalRed
+    prefab: {fileID: 6432300728687792413, guid: 5c55baf2b52ebce4c8ff9afafed0ff00,
       type: 3}
     parent: {fileID: 0}
     poolCount: 5
@@ -190,126 +190,4 @@ MonoBehaviour:
     prefab: {fileID: 1072648880540966, guid: d960e8deac910cf46a1803e9134000e4, type: 3}
     parent: {fileID: 0}
     poolCount: 20
-    poolList: []
-  - poolItemName: SoftBodySlam
-    prefab: {fileID: 7483934720270247601, guid: aa6644f2a1791204e9c8a854553a245e,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 5
-    poolList: []
-  - poolItemName: MusicalNotes
-    prefab: {fileID: 3400842897305711461, guid: fbf66578c8e498c49b246eb49e2e6d4a,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 3
-    poolList: []
-  - poolItemName: SoulMuzzleGreen
-    prefab: {fileID: 3548471483934701082, guid: ef6ba2179c167654b87299e3a5ab7bc8,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 5
-    poolList: []
-  - poolItemName: SoulMuzzleOrange
-    prefab: {fileID: 2327590744056850082, guid: 8efec9a67e53fae48bf794ede9425a1d,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 5
-    poolList: []
-  - poolItemName: SoulMuzzlePurple
-    prefab: {fileID: 6111959946322883388, guid: fc6b1c8e9126c3440a62cc1f9cb89b90,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 5
-    poolList: []
-  - poolItemName: TallExplosionBlue
-    prefab: {fileID: 6945530223555182586, guid: b33e0f2549da66c43a6c74d2d33c85d3,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 5
-    poolList: []
-  - poolItemName: RocketMissileBlue
-    prefab: {fileID: 6808259419393701483, guid: 0938d0e49d3b2a24aaf992b7e8e40c71,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 3
-    poolList: []
-  - poolItemName: BattleEffect
-    prefab: {fileID: 2780019534477496922, guid: 029b29640cb0bfe4694eec81c7c8c40b,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 1
-    poolList: []
-  - poolItemName: SwordHitBlue
-    prefab: {fileID: 405937877836314180, guid: 323c5da7284651749a321806b4be51c1, type: 3}
-    parent: {fileID: 0}
-    poolCount: 10
-    poolList: []
-  - poolItemName: SwordSlashBlue
-    prefab: {fileID: 2095602563396375972, guid: 79a396a13e96878458f96fcefa7dea7f,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 5
-    poolList: []
-  - poolItemName: TallExplosionFire
-    prefab: {fileID: 6567860572859492113, guid: 32ce8b2201f53bc4c8dd2fad0bb52080,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 3
-    poolList: []
-  - poolItemName: SoulExplosionPurple
-    prefab: {fileID: 107965864212933652, guid: 8edef4a924ac8814caedc5b8f7aa1bc9, type: 3}
-    parent: {fileID: 0}
-    poolCount: 5
-    poolList: []
-  - poolItemName: SpikyFireAdditivePurple
-    prefab: {fileID: 1192140366262819376, guid: 6edc0a4804ba9ba468c5d4a3389da6be,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 5
-    poolList: []
-  - poolItemName: GlowOrbPink
-    prefab: {fileID: 8138401229495557999, guid: fb1ef698de0bdc943870f16609e0fcdc,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 10
-    poolList: []
-  - poolItemName: SoftFireABRed
-    prefab: {fileID: 9202321325930658048, guid: e32947e3e80bddb439e92962bd659d57,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 10
-    poolList: []
-  - poolItemName: SoftFightAction
-    prefab: {fileID: 96766284336038022, guid: 625ec04b13d0b3044b36760c51352fe6, type: 3}
-    parent: {fileID: 0}
-    poolCount: 20
-    poolList: []
-  - poolItemName: GenericDeath
-    prefab: {fileID: 658209925727472710, guid: d29db6780b32c6f4b9014f258a33230b, type: 3}
-    parent: {fileID: 0}
-    poolCount: 10
-    poolList: []
-  - poolItemName: MagicEnchantBlue
-    prefab: {fileID: 2169882826512034391, guid: 0d540c4ef8c5e1a4d9c52a1b2dc9bb6b,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 2
-    poolList: []
-  - poolItemName: ShadowExplosion
-    prefab: {fileID: 7196222675122342061, guid: 0209a65a8239dc4499d3c527c1c9020b,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 3
-    poolList: []
-  - poolItemName: NovaMissileBlue
-    prefab: {fileID: 2575125708112910148, guid: fbaca10c79928cd41ac86e700c474c83,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 15
-    poolList: []
-  - poolItemName: SpikyFireTrail
-    prefab: {fileID: 4755910495599612215, guid: 366b499e0af06eb42960177910cb99fd,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 7
     poolList: []

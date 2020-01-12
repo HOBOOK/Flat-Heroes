@@ -72,15 +72,12 @@ namespace Google {
     internal IEnumerator WaitForResult(TaskCompletionSource<T> tcs) {
       yield return new WaitUntil(() => !Pending);
       if (Status == GoogleSignInStatusCode.Canceled) {
-                Debug.Log("GoogleSignCode_Canceled");
         tcs.SetCanceled();
       } else if (Status == GoogleSignInStatusCode.Success ||
             Status == GoogleSignInStatusCode.SuccessCached) {
-                Debug.Log("GoogleSignCode_Success");
-                tcs.SetResult(Result);
+        tcs.SetResult(Result);
       } else {
-                Debug.Log("GoogleSignCode_ERR");
-                tcs.SetException(new GoogleSignIn.SignInException(Status));
+        tcs.SetException(new GoogleSignIn.SignInException(Status));
       }
     }
   }

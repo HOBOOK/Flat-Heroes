@@ -7,13 +7,7 @@ using System;
 public class GoogleAdMobManager : MonoBehaviour
 {
     RewardBasedVideoAd ad;
-#if UNITY_ANDROID
-    [SerializeField] string appId = "ca-app-pub-1654715490901132~4141792007";
-#elif UNITY_IPHONE
-    [SerializeField] string appId = "ca-app-pub-1654715490901132~4141792007" ;
-#else
-    [SerializeField] string appId = "unexpected_platform"; 
-#endif
+    [SerializeField] string appId;
     [SerializeField] string unitId;
     [SerializeField] bool isTest;
     [SerializeField] string deviceId;
@@ -58,18 +52,15 @@ public class GoogleAdMobManager : MonoBehaviour
 
     public void OnBtnViewAdClicked()
     {
-        if(!User.isAdsRemove)
+        if(ad.IsLoaded())
         {
-            if (ad.IsLoaded())
-            {
-                Debug.Log("View Ad");
-                ad.Show();
-            }
-            else
-            {
-                Debug.Log("Ad is no loaded");
-                LoadAd();
-            }
+            Debug.Log("View Ad");
+            ad.Show();
+        }
+        else
+        {
+            Debug.Log("Ad is no loaded");
+            LoadAd();
         }
     }
 

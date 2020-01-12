@@ -157,7 +157,7 @@ public class UI_MapSelect : MonoBehaviour
             ScrollSnapMapView.GetComponent<SimpleScrollSnap>().GoToPanel(currentStageIndex);
             if (hero == null)
             {
-                hero = Instantiate(PrefabsDatabaseManager.instance.GetHeroPrefab(User.profileHero), mapNodeImage.transform);
+                hero = Instantiate(PrefabsDatabaseManager.instance.GetHeroPrefab(101), mapNodeImage.transform);
                 if (hero.GetComponent<Hero>() != null)
                     Destroy(hero.GetComponent<Hero>());
                 if (hero.GetComponent<Rigidbody2D>() != null)
@@ -249,7 +249,6 @@ public class UI_MapSelect : MonoBehaviour
     }
     public void OnMapSelectCompletedClick()
     {
-        Common.stageModeType = Common.StageModeType.Main;
         GameManagement.instance.SetStageInfo(currentMapId);
         Debugging.Log(currentMapId + " 의 맵 선택완료.");
     }

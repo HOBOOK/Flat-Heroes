@@ -116,7 +116,6 @@ namespace Google {
     /// </remarks>
     public Task<GoogleSignInUser> SignIn() {
       var tcs = new TaskCompletionSource<GoogleSignInUser>();
-            Debug.Log("tcs start");
       SignInHelperObject.Instance.StartCoroutine(
         impl.SignIn().WaitForResult(tcs));
       return tcs.Task;

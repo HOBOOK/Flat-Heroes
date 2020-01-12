@@ -67,8 +67,7 @@ public class UI_ShopCharacter : MonoBehaviour
         {
             foreach (Transform child in ScrollViewContent.transform)
             {
-                if (child.GetComponent<ItemSlot>() != null)
-                    Destroy(child.gameObject);
+                Destroy(child.gameObject);
             }
             foreach (var slot in HeroSystem.GetUnableHeros())
             {
@@ -90,7 +89,7 @@ public class UI_ShopCharacter : MonoBehaviour
                     slotItemImage.sprite = Resources.Load<Sprite>(slot.image);
                 if (slotMoneyImage != null)
                 {
-                    slotMoneyImage.sprite = Resources.Load<Sprite>("Items/coin");
+                    slotMoneyImage.sprite = Resources.Load<Sprite>("Items/blackCrystal");
                 }
                 slotPrefab.GetComponent<Button>().onClick.RemoveAllListeners();
                 slotPrefab.GetComponent<Button>().onClick.AddListener(delegate
@@ -128,15 +127,15 @@ public class UI_ShopCharacter : MonoBehaviour
         infoImage.sprite = slotItemImage.sprite;
         infoImage.enabled = true;
         infoImage.GetComponent<AiryUIAnimatedElement>().ShowElement();
-        infoItemDescriptionText.text = HeroSystem.GetHeroDescription(heroData.id);
+        infoItemDescriptionText.text = heroData.description;
         infoItemNameText.text = slotNameText.text;
         infoItemValueText.text = slotValueText.text;
         BuyButton.GetComponent<Button>().enabled = true;
         BuyButton.GetComponent<UI_Button>().callBackScript = this.gameObject;
         BuyButton.GetComponent<UI_Button>().buttonType = UI_Button.ButtonType.CharacterBuy;
         BuyButton.GetComponent<UI_Button>().characterId = heroData.id;
-        BuyButton.GetComponent<UI_Button>().paymentType = UI_Button.PaymentType.Coin;
-        BuyButton.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/coin");
+        BuyButton.GetComponent<UI_Button>().paymentType = UI_Button.PaymentType.BlackCrystal;
+        BuyButton.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/blackCrystal");
         BuyButton.GetComponent<UI_Button>().paymentAmount = heroData.value;
         BuyButton.GetComponentInChildren<Text>().text = Common.GetThousandCommaText(heroData.value);
     }

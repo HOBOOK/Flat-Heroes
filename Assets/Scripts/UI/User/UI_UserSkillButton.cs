@@ -8,12 +8,25 @@ public class UI_UserSkillButton : MonoBehaviour
 {
     public int skillnumber;
     float skillDelayTime;
-    public Text skillDelayText;
-    public Image skillCover;
-    public Image skillImage;
+    Text skillDelayText;
+    Image skillCover;
+    Image skillImage;
 
     bool isStart = false;
-
+    private void Awake()
+    {
+        skillImage = transform.GetChild(0).GetComponent<Image>();
+        skillDelayText = GetComponentInChildren<Text>();
+        foreach(var i in GetComponentsInChildren<Image>())
+        {
+            if (i.type == Image.Type.Filled)
+                skillCover = i;
+        }
+    }
+    private void Start()
+    {
+        isStart = false;
+    }
     public void StartButton(bool start, Sprite sprite)
     {
         if(start)

@@ -6,7 +6,7 @@ namespace UnityEngine.UDP.Editor
     public static class Utils
     {
         static Dictionary<string, Type> m_TypeCache = new Dictionary<string, Type>();
-        private static string[] k_WhiteListedAssemblies = {"UnityEditor", "UnityEngine.Purchasing"};
+        private static string[] k_WhiteListedAssemblies = {"UnityEditor"};
 
         public static Type FindTypeByName(string name)
         {

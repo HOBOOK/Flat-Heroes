@@ -12,7 +12,6 @@ public class UI_TabManager : MonoBehaviour
     public GameObject PanelButtons;
 
     Vector2 buttonRectSizeDelta;
-
     private void Awake()
     {
         if(PanelTabs!=null)
@@ -45,12 +44,11 @@ public class UI_TabManager : MonoBehaviour
         {
             foreach (var i in buttonList)
             {
-                i.GetComponent<Button>().interactable = true;
                 i.transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
                 i.GetComponent<RectTransform>().sizeDelta = buttonRectSizeDelta;
             }
             buttonList[0].transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
-            buttonList[0].GetComponent<RectTransform>().sizeDelta = new Vector2(buttonRectSizeDelta.x, 110);
+            buttonList[0].GetComponent<RectTransform>().sizeDelta = new Vector2(buttonRectSizeDelta.x, 120);
         }
     }
 
@@ -78,7 +76,7 @@ public class UI_TabManager : MonoBehaviour
                 if(i==tabNumber)
                 {
                     buttonList[i].transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
-                    buttonList[i].GetComponent<RectTransform>().sizeDelta = new Vector2(buttonRectSizeDelta.x, 110);
+                    buttonList[i].GetComponent<RectTransform>().sizeDelta = new Vector2(buttonRectSizeDelta.x, 120);
                 }
                 else
                 {

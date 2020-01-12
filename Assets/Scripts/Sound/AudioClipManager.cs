@@ -27,14 +27,11 @@ public class AudioClipManager : MonoBehaviour
     public AudioClip grasscut;
     public AudioClip dead;
     public AudioClip levelup;
-    public AudioClip victory;
     //UI
     public AudioClip ui_shop;
     public AudioClip ui_button_default;
     public AudioClip ui_pop;
     public AudioClip ui_button_skill;
-    public AudioClip ui_button_cancel;
-    public AudioClip ui_roulette;
     //Skill
     public AudioClip spell;
     public AudioClip heal;
@@ -43,61 +40,12 @@ public class AudioClipManager : MonoBehaviour
     public AudioClip fireShot;
     public AudioClip shootPistolSilence;
     public AudioClip magic;
-    public AudioClip spell007;
 
 
     public AudioClip LobbyBgm;
-    public AudioClip Stage_001;
-    public AudioClip Stage_002;
-    public AudioClip Stage_003;
-    public AudioClip Stage_004;
-    public AudioClip Stage_005;
-    public AudioClip Stage_006;
-    public AudioClip Stage_007;
-    public AudioClip Stage_008;
-    public AudioClip Stage_Attack;
-    public AudioClip Stage_Battle;
-    public AudioClip Stage_Raid;
-    public AudioClip Stage_Infinity;
-    public AudioClip Intro;
+    public AudioClip StageBgm;
 
     public static AudioClipManager instance;
-
-    public AudioClip StageBgm(int stageNumber)
-    {
-        if (stageNumber == 0 || stageNumber == 1)
-            return Stage_001;
-        else if (stageNumber == 2)
-            return Stage_002;
-        else if (stageNumber == 3)
-            return Stage_003;
-        else if (stageNumber == 4)
-            return Stage_004;
-        else if (stageNumber == 5)
-            return Stage_005;
-        else if (stageNumber == 6)
-            return Stage_006;
-        else if (stageNumber == 7)
-            return Stage_007;
-        else
-            return Stage_008;
-    }
-    public AudioClip StageBattleBgm()
-    {
-        return Stage_Battle;
-    }
-    public AudioClip StageAttackBgm()
-    {
-        return Stage_Attack;
-    }
-    public AudioClip StageRaidBgm()
-    {
-        return Stage_Raid;
-    }
-    public AudioClip StageInfinityBgm()
-    {
-        return Stage_Infinity;
-    }
 
     void Awake()
     {

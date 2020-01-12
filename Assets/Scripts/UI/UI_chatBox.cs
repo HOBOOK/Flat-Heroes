@@ -14,16 +14,16 @@ public class UI_chatBox : MonoBehaviour
     float _elapsedTime;
     float lifeTime = 3;
     float scale;
+    bool scaleFlag = false;
     bool isCounting = false;
     
-    Transform canvasShow;
+    Transform canvasUI;
     private void Awake()
     {
-        canvasShow = GameObject.Find("ChatParent").transform;
+        canvasUI = GameObject.Find("CanvasUI").transform;
     }
     private void OnEnable()
     {
-        this.transform.localScale = Vector3.one;
         initScale = this.transform.localScale;
         
         if (transform.rotation.y != 0)
@@ -49,6 +49,21 @@ public class UI_chatBox : MonoBehaviour
             this.transform.position = Target.position + correctionPos;
         if (isCounting)
         {
+            if (scaleFlag)
+            {
+                scale += Time.deltaTime * 0.05f;
+                this.transform.localScale = initScale + (initScale * scale);
+                if (this.transform.localScale.x > initScale.x * 1.02f)
+                    scaleFlag = false;
+            }
+            else
+            {
+                scale -= Time.deltaTime * 0.05f;
+                this.transform.localScale = initScale + (initScale * scale);
+                if (this.transform.localScale.x <= initScale.x)
+                    scaleFlag = true;
+            }
+
             if (GetTimer()>lifeTime)
             {
                 SetTimer();
@@ -64,7 +79,7 @@ public class UI_chatBox : MonoBehaviour
         while(!isCounting && cnt<initScale.x)
         {
             this.transform.localScale = new Vector3(cnt, cnt, cnt);
-            cnt += Time.deltaTime*7;
+            cnt += initScale.x * 0.2f;
             yield return new WaitForEndOfFrame();
         }
         this.transform.localScale = initScale;
@@ -76,11 +91,11 @@ public class UI_chatBox : MonoBehaviour
         while (cnt > 0)
         {
             this.transform.localScale = new Vector3(cnt, cnt, cnt);
-            cnt -= Time.deltaTime*7;
+            cnt -= initScale.x * 0.2f;
             yield return new WaitForEndOfFrame();
         }
         this.transform.localScale = Vector3.zero;
-        ObjectPool.Instance.PushToPool("chatBox", gameObject, canvasShow);
+        ObjectPool.Instance.PushToPool("chatBox", gameObject, canvasUI);
         yield return null;
     }
     IEnumerator TypingChat()
@@ -89,7 +104,7 @@ public class UI_chatBox : MonoBehaviour
         while(cnt<textCount)
         {
             this.GetComponentInChildren<Text>().text += chatText[cnt];
-           yield return new WaitForSeconds(0.03f);
+           yield return new WaitForSeconds(0.05f);
             if (cnt % 10 == 0 && cnt > 1&&textCount>10)
                 this.GetComponentInChildren<Text>().text += "\r\n";
             cnt++;

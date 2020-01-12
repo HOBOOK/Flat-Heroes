@@ -57,6 +57,7 @@ public class AssetLoadManager : MonoBehaviour
         string keyName = abManager.MakeKeyName(url, version);
         if(!abManager.isVersionAdded(url,version)||this.IsAssetLoaded(url,version,assetName))
         {
+            UI_StartManager.instance.ShowErrorUI("이미 로드 되어있습니다.");
             yield return null;
         }
         else
@@ -83,17 +84,16 @@ public class AssetLoadManager : MonoBehaviour
             while (!abReq.isDone)
             {
                 yield return null;
+                UI_StartManager.instance.SetAssetLoadUIProgressbarValue(abReq.progress, assetName,UI_StartManager.instance.CurrentDownloadCount);
             }
             if (abReq.asset!=null)
             {
                 dicAsset[keyName].Add(assetName, abReq.asset);
                 UI_StartManager.instance.CurrentDownloadCount += 1;
-                UI_StartManager.instance.SetAssetLoadUIProgressbarValue(abReq.progress, assetName, UI_StartManager.instance.CurrentDownloadCount);
             }
             else
             {
-                Caching.ClearCache();
-                UI_StartManager.instance.ShowErrorUI(LocalizationManager.GetText("alertDBErrorMessage"));
+                UI_StartManager.instance.ShowErrorUI(assetName + " 로드에 실패하였습니다.");
             }
         }
     }
@@ -112,8 +112,8 @@ public class AssetLoadManager : MonoBehaviour
         }
         if(obj==null)
         {
-            Caching.ClearCache();
-            UI_StartManager.instance.ShowErrorUI(LocalizationManager.GetText("alertDBErrorMessage"));
+            Debugging.Log(assetName + "이 Null 입니다.");
+            UI_StartManager.instance.ShowErrorUI(assetName + " 로드에 실패하였습니다.");
         }
 
 

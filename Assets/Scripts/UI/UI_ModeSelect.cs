@@ -19,13 +19,13 @@ public class UI_ModeSelect : MonoBehaviour
             if(MapSystem.IsAbleInfinityMode())
             {
                 InfinityMode.GetComponent<Button>().enabled = true;
-                InfinityMode.transform.GetChild(3).gameObject.SetActive(false);
-                //InfinityMode.transform.GetChild(3).GetComponent<Text>().text = string.Format("{0} pts", Common.GetThousandCommaText(User.InfinityRankPoint));
+                InfinityMode.transform.GetChild(2).GetComponent<Image>().enabled = false;
             }
             else
             {
                 InfinityMode.GetComponent<Button>().enabled = false;
-                InfinityMode.transform.GetChild(3).gameObject.SetActive(true);
+                InfinityMode.transform.GetChild(2).GetComponent<Image>().enabled = true;
+
             }
         }
         if (BossMode != null)
@@ -33,12 +33,13 @@ public class UI_ModeSelect : MonoBehaviour
             if (MapSystem.IsAbleBossMode())
             {
                 BossMode.GetComponent<Button>().enabled = true;
-                BossMode.transform.GetChild(3).gameObject.SetActive(false);
+                BossMode.transform.GetChild(2).GetComponent<Image>().enabled = false;
             }
             else
             {
                 BossMode.GetComponent<Button>().enabled = false;
-                BossMode.transform.GetChild(3).gameObject.SetActive(true);
+                BossMode.transform.GetChild(2).GetComponent<Image>().enabled = true;
+
             }
         }
     }

@@ -13,8 +13,6 @@ public class UI_EvolutionItem : MonoBehaviour
     private Button matItemSlotButton1;
     private Button matItemSlotButton2;
     private Image targetItemSlotImage;
-    private Image targetItemSlotBackImage;
-    private Image targetItemSlotForeImage;
     private Image matItemSlotImage1;
     private Image matItemSlotImage2;
     private Image resultItemSlotImage;
@@ -22,7 +20,6 @@ public class UI_EvolutionItem : MonoBehaviour
     public Item resultItem;
     public Button evolutionButton;
     public Text evolutionInformationText;
-    public Text evolutionResultText;
     public bool isEndEvolution = false;
     int paymentType;
     int paymentAmount;
@@ -36,10 +33,8 @@ public class UI_EvolutionItem : MonoBehaviour
 
         matItemSlotImage1 = matItemSlot1.transform.GetChild(0).GetComponent<Image>();
         matItemSlotImage2 = matItemSlot2.transform.GetChild(0).GetComponent<Image>();
-        targetItemSlotImage = targetItemSlot.transform.GetChild(1).GetComponent<Image>();
-        targetItemSlotBackImage= targetItemSlot.transform.GetChild(0).GetComponent<Image>();
-        targetItemSlotForeImage = targetItemSlot.transform.GetChild(2).GetComponent<Image>();
-        resultItemSlotImage = resultItemSlot.transform.GetChild(0).GetChild(0).GetComponent<Image>();
+        targetItemSlotImage = targetItemSlot.transform.GetChild(0).GetComponent<Image>();
+        resultItemSlotImage = resultItemSlot.transform.GetChild(0).GetComponent<Image>();
     }
 
     public void OpenUI(Item item)
@@ -54,14 +49,10 @@ public class UI_EvolutionItem : MonoBehaviour
             paymentType = 0;
         else
             paymentType = 1;
-        if (parentPanel.GetComponent<UI_Manager_InventoryTab>() != null)
-        {
-            parentPanel.GetComponent<UI_Manager_InventoryTab>().SetSelectedItem(targetItem);
-        }
         targetItemSlotImage.gameObject.SetActive(true);
         matItemSlotImage1.gameObject.SetActive(true);
         matItemSlotImage2.gameObject.SetActive(true);
-        resultItemSlotImage.gameObject.SetActive(false);
+        resultItemSlotImage.gameObject.SetActive(true);
 
         RefreshUI();
     }
@@ -96,8 +87,6 @@ public class UI_EvolutionItem : MonoBehaviour
         if (targetItem == null)
         {
             targetItemSlotImage.sprite = ItemSystem.GetItemNoneImage();
-            targetItemSlotBackImage.sprite = ItemSystem.GetItemNoneImage();
-            targetItemSlotForeImage.color = Color.white;
             evolutionButton.gameObject.SetActive(false);
             evolutionInformationText.gameObject.SetActive(true);
             targetItemSlot.GetComponent<Image>().color = Color.white;
@@ -106,17 +95,15 @@ public class UI_EvolutionItem : MonoBehaviour
         {
             targetItemSlot.GetComponent<Image>().color = ItemColor.GetItemColor(targetItem.itemClass);
             targetItemSlotImage.sprite = ItemSystem.GetItemImage(targetItem.id);
-            targetItemSlotBackImage.sprite = ItemSystem.GetItemClassImage(targetItem.id);
-            targetItemSlotForeImage.color = ItemColor.GetItemColor(targetItem.itemClass);
             int itemClass = targetItem.itemClass;
             if (matItems.Count == 2 && itemClass < 8)
             {
                 evolutionButton.interactable = true;
                 evolutionButton.gameObject.SetActive(true);
                 if (paymentType == 0)
-                    paymentAmount = itemClass * itemClass * (500 + (itemClass * itemClass * 60));
+                    paymentAmount = itemClass * itemClass * (300 + (itemClass * itemClass * 100));
                 else if(paymentType == 1)
-                    paymentAmount = (int)(itemClass * itemClass * 1.5f);
+                    paymentAmount = itemClass * itemClass * 2;
 
                 evolutionButton.GetComponentInChildren<Text>().text = Common.GetThousandCommaText(paymentAmount);
                 evolutionButton.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(Common.GetCoinCrystalEnergyImagePath(paymentType));
@@ -133,17 +120,14 @@ public class UI_EvolutionItem : MonoBehaviour
         if (resultItem == null)
         {
             resultItemSlotImage.sprite = ItemSystem.GetItemNoneImage();
-            resultItemSlot.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemClassImage(-1);
-            resultItemSlot.transform.GetChild(0).GetChild(1).GetComponent<Image>().color = Color.white;
-            evolutionResultText.text = "";
+            resultItemSlot.GetComponent<Image>().sprite = ItemSystem.GetItemClassImage(-1);
+            resultItemSlot.transform.GetChild(1).GetComponent<Image>().color = Color.white;
         }
         else
         {
             resultItemSlotImage.sprite = ItemSystem.GetItemImage(resultItem.id);
-            resultItemSlot.transform.GetChild(0).GetComponent<Image>().sprite = ItemSystem.GetItemClassImage(resultItem.id);
-            resultItemSlot.transform.GetChild(0).GetChild(1).GetComponent<Image>().color = ItemColor.GetItemColor(resultItem.itemClass);
-            evolutionResultText.text = string.Format("{0} {1}  <size='20'><color='white'>{2}</color></size>", ItemSystem.GetItemName(resultItem.id), ItemSystem.GetIemClassName(resultItem.itemClass), LocalizationManager.GetText("manageTab2EvolutionSuccess"));
-            evolutionResultText.color = ItemColor.GetItemColor(resultItem.itemClass);
+            resultItemSlot.GetComponent<Image>().sprite = ItemSystem.GetItemClassImage(resultItem.id);
+            resultItemSlot.transform.GetChild(1).GetComponent<Image>().color = ItemColor.GetItemColor(resultItem.itemClass);
         }
 
         matItemSlotButton1.onClick.RemoveAllListeners();
@@ -192,8 +176,6 @@ public class UI_EvolutionItem : MonoBehaviour
     {
         if(parentPanel.GetComponent<UI_Manager_InventoryTab>()!=null)
         {
-            if(targetItem!=null)
-                parentPanel.GetComponent<UI_Manager_InventoryTab>().SetSelectedItem(targetItem);
             parentPanel.GetComponent<UI_Manager_InventoryTab>().RefreshUI();
         }
     }
@@ -265,54 +247,29 @@ public class UI_EvolutionItem : MonoBehaviour
         targetItemSlotImage.GetComponent<AiryUIAnimatedElement>().HideElement();
         yield return new WaitForSeconds(0.1f);
         SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.equip);
+        ItemSystem.UseItem(targetItem.customId, 1);
         matItemSlotImage1.GetComponent<AiryUIAnimatedElement>().HideElement();
         matItemSlotImage2.GetComponent<AiryUIAnimatedElement>().HideElement();
-        if (ItemSystem.IsSetObtainItem(ItemSystem.GetNextClassItemId(targetItem)))
+        foreach (var i in matItems.Values)
         {
-            ItemSystem.UseItem(targetItem.customId, 1);
-            foreach (var i in matItems.Values)
-            {
-                ItemSystem.UseItem(i.customId, 1);
-                yield return new WaitForSeconds(0.1f);
-            }
-            yield return new WaitForSeconds(0.5f);
-            EffectManager.SkillUpgradeEffect(resultItemSlot.transform);
-            yield return new WaitForSeconds(0.3f);
-            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.dropItem);
-            resultItem = ItemSystem.GetItem(ItemSystem.GetNextClassItemId(targetItem));
-            resultItemSlotImage.gameObject.SetActive(true);
-            resultItemSlotImage.GetComponent<AiryUIAnimatedElement>().ShowElement();
-            Debugging.Log("합성성공!");
-            MissionSystem.AddClearPoint(MissionSystem.ClearType.EquipUpgrade);
-            targetItem = null;
-            matItems.Clear();
-            evolutionButton.interactable = true;
-            isEndEvolution = true;
-            if (parentPanel.GetComponent<UI_Manager_InventoryTab>() != null)
-            {
-                parentPanel.GetComponent<UI_Manager_InventoryTab>().SetSelectedItem(null);
-            }
-            RefreshUI();
-            yield return null;
+            ItemSystem.UseItem(i.customId, 1);
+            yield return new WaitForSeconds(0.1f);
         }
-        else
-        {
-            UI_Manager.instance.ShowAlert("", LocalizationManager.GetText("manageTab2EvolutionFailWarning"));
-            targetItem = null;
-            matItems.Clear();
-            evolutionButton.interactable = true;
-            isEndEvolution = true;
-            RefreshUI();
-            yield return null;
-        }
-    }
+        yield return new WaitForSeconds(0.5f);
+        EffectManager.SkillUpgradeEffect(resultItemSlot.transform);
+        yield return new WaitForSeconds(0.3f);
+        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.dropItem);
+        ItemSystem.SetObtainItem(ItemSystem.GetNextClassItemId(targetItem));
+        resultItem = ItemSystem.GetItem(ItemSystem.GetNextClassItemId(targetItem));
+        resultItemSlotImage.GetComponent<AiryUIAnimatedElement>().ShowElement();
 
-    public void OnClickAutoInsertEquipment()
-    {
-        if (parentPanel.GetComponent<UI_Manager_InventoryTab>() != null)
-        {
-            parentPanel.GetComponent<UI_Manager_InventoryTab>().AutoItemSlotToEvolution();
-        }
-        Debugging.Log("자동 삽입");
+        Debugging.Log("합성성공!");
+        MissionSystem.AddClearPoint(MissionSystem.ClearType.EquipUpgrade);
+        targetItem = null;
+        matItems.Clear();
+        evolutionButton.interactable = true;
+        isEndEvolution = true;
+        RefreshUI();
+        yield return null;
     }
 }

@@ -20,9 +20,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>1</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="2">
       <CustomId>0</CustomId>
@@ -43,9 +40,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>2</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="3">
       <CustomId>0</CustomId>
@@ -66,9 +60,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>3</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="4">
       <CustomId>0</CustomId>
@@ -89,9 +80,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>4</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>    
     </Item>
     <Item id="5">
       <CustomId>0</CustomId>
@@ -112,9 +100,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>5</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>    
     </Item>
     <Item id="6">
       <CustomId>0</CustomId>
@@ -135,9 +120,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>6</Class>
-       <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="7">
       <CustomId>0</CustomId>
@@ -158,9 +140,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>7</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="8">
       <CustomId>0</CustomId>
@@ -181,9 +160,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>8</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="11">
       <CustomId>0</CustomId>
@@ -204,9 +180,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>1</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="12">
       <CustomId>0</CustomId>
@@ -227,9 +200,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>2</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="13">
       <CustomId>0</CustomId>
@@ -250,9 +220,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>3</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="14">
       <CustomId>0</CustomId>
@@ -273,9 +240,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>4</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="15">
       <CustomId>0</CustomId>
@@ -296,9 +260,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>5</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="16">
       <CustomId>0</CustomId>
@@ -319,9 +280,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>6</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="17">
       <CustomId>0</CustomId>
@@ -342,9 +300,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>7</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="18">
       <CustomId>0</CustomId>
@@ -365,9 +320,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>8</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="21">
       <CustomId>0</CustomId>
@@ -377,9 +329,9 @@
       <ItemType>0</ItemType>
       <WeaponType>1</WeaponType>
       <Attack>35</Attack>
-      <Defence>-5</Defence>
+      <Defence>-2</Defence>
       <Hp>0</Hp>
-      <Critical>1</Critical>
+      <Critical>10</Critical>
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
@@ -388,9 +340,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>1</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="22">
       <CustomId>0</CustomId>
@@ -411,9 +360,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>2</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="23">
       <CustomId>0</CustomId>
@@ -434,9 +380,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>3</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="24">
       <CustomId>0</CustomId>
@@ -457,9 +400,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>4</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="25">
       <CustomId>0</CustomId>
@@ -480,9 +420,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>5</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="26">
       <CustomId>0</CustomId>
@@ -503,9 +440,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>6</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="27">
       <CustomId>0</CustomId>
@@ -526,9 +460,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>7</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="28">
       <CustomId>0</CustomId>
@@ -549,9 +480,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>8</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="31">
        <CustomId>0</CustomId>
@@ -565,16 +493,13 @@
       <Hp>0</Hp>
       <Critical>0</Critical>
       <AttackSpeed>2</AttackSpeed>
-      <MoveSpeed>2</MoveSpeed>
+      <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
       <Value>320</Value>
       <Image>Equipment/equipment_004</Image>
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>1</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="32">
       <CustomId>0</CustomId>
@@ -583,7 +508,7 @@
       <Description>용병단이 주로사용하는 권총으로 특수탄환을 발사할 수있다.</Description>
       <ItemType>0</ItemType>
       <WeaponType>1</WeaponType>
-      <Attack>23</Attack>
+      <Attack>20</Attack>
       <Defence>0</Defence>
       <Hp>0</Hp>
       <Critical>0</Critical>
@@ -595,9 +520,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>2</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="33">
       <CustomId>0</CustomId>
@@ -618,9 +540,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>3</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="34">
       <CustomId>0</CustomId>
@@ -641,9 +560,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>4</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="35">
       <CustomId>0</CustomId>
@@ -664,9 +580,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>5</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="36">
       <CustomId>0</CustomId>
@@ -687,9 +600,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>6</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="37">
       <CustomId>0</CustomId>
@@ -710,9 +620,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>7</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="38">
       <CustomId>0</CustomId>
@@ -733,9 +640,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>8</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>1</EnhancementType>
     </Item>
     <Item id="41">
       <CustomId>0</CustomId>
@@ -747,7 +651,7 @@
       <Attack>0</Attack>
       <Defence>0</Defence>
       <Hp>0</Hp>
-      <Critical>8</Critical>
+      <Critical>5</Critical>
       <AttackSpeed>10</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
@@ -756,9 +660,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>1</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>5</EnhancementType>
     </Item>
     <Item id="42">
       <CustomId>0</CustomId>
@@ -779,9 +680,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>2</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>5</EnhancementType>
     </Item>
     <Item id="43">
       <CustomId>0</CustomId>
@@ -802,9 +700,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>3</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>5</EnhancementType>
     </Item>
     <Item id="44">
       <CustomId>0</CustomId>
@@ -825,9 +720,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>4</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>5</EnhancementType>
     </Item>
     <Item id="45">
       <CustomId>0</CustomId>
@@ -848,9 +740,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>5</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>5</EnhancementType>
     </Item>
     <Item id="46">
       <CustomId>0</CustomId>
@@ -871,9 +760,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>6</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>5</EnhancementType>
     </Item>
     <Item id="47">
       <CustomId>0</CustomId>
@@ -894,9 +780,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>7</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>5</EnhancementType>
     </Item>
     <Item id="48">
       <CustomId>0</CustomId>
@@ -917,9 +800,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>8</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>5</EnhancementType>
     </Item>
     <Item id="51">
       <CustomId>0</CustomId>
@@ -940,9 +820,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>1</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="52">
       <CustomId>0</CustomId>
@@ -963,9 +840,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>2</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="53">
       <CustomId>0</CustomId>
@@ -986,9 +860,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>3</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="54">
       <CustomId>0</CustomId>
@@ -1009,9 +880,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>4</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="55">
       <CustomId>0</CustomId>
@@ -1032,9 +900,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>5</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="56">
       <CustomId>0</CustomId>
@@ -1055,9 +920,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>6</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="57">
       <CustomId>0</CustomId>
@@ -1078,9 +940,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>7</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="58">
       <CustomId>0</CustomId>
@@ -1101,9 +960,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>8</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="61">
       <CustomId>0</CustomId>
@@ -1124,9 +980,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>1</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="62">
       <CustomId>0</CustomId>
@@ -1147,9 +1000,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>2</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="63">
       <CustomId>0</CustomId>
@@ -1170,9 +1020,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>3</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="64">
       <CustomId>0</CustomId>
@@ -1193,9 +1040,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>4</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="65">
       <CustomId>0</CustomId>
@@ -1216,9 +1060,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>5</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="66">
       <CustomId>0</CustomId>
@@ -1239,9 +1080,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>6</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="67">
       <CustomId>0</CustomId>
@@ -1262,9 +1100,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>7</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="68">
       <CustomId>0</CustomId>
@@ -1285,9 +1120,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>8</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="71">
       <CustomId>0</CustomId>
@@ -1308,9 +1140,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>1</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="72">
       <CustomId>0</CustomId>
@@ -1331,9 +1160,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>2</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="73">
       <CustomId>0</CustomId>
@@ -1354,9 +1180,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>3</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="74">
       <CustomId>0</CustomId>
@@ -1377,9 +1200,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>4</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="75">
       <CustomId>0</CustomId>
@@ -1400,9 +1220,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>5</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="76">
       <CustomId>0</CustomId>
@@ -1423,9 +1240,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>6</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="77">
       <CustomId>0</CustomId>
@@ -1446,9 +1260,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>7</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="78">
       <CustomId>0</CustomId>
@@ -1469,9 +1280,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>8</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="81">
       <CustomId>0</CustomId>
@@ -1492,9 +1300,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>1</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="82">
       <CustomId>0</CustomId>
@@ -1515,9 +1320,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>2</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="83">
       <CustomId>0</CustomId>
@@ -1538,9 +1340,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>3</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="84">
       <CustomId>0</CustomId>
@@ -1561,9 +1360,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>4</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="85">
       <CustomId>0</CustomId>
@@ -1584,9 +1380,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>5</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="86">
       <CustomId>0</CustomId>
@@ -1607,9 +1400,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>6</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="87">
       <CustomId>0</CustomId>
@@ -1630,9 +1420,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>7</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="88">
       <CustomId>0</CustomId>
@@ -1653,9 +1440,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>8</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
     </Item>
     <Item id="91">
       <CustomId>0</CustomId>
@@ -1676,9 +1460,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>1</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>3</EnhancementType>
     </Item>
     <Item id="92">
       <CustomId>0</CustomId>
@@ -1699,9 +1480,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>2</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>3</EnhancementType>
     </Item>
     <Item id="93">
       <CustomId>0</CustomId>
@@ -1722,9 +1500,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>3</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>3</EnhancementType>
     </Item>
     <Item id="94">
       <CustomId>0</CustomId>
@@ -1745,9 +1520,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>4</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>3</EnhancementType>
     </Item>
     <Item id="95">
       <CustomId>0</CustomId>
@@ -1768,9 +1540,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>5</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>3</EnhancementType>
     </Item>
     <Item id="96">
       <CustomId>0</CustomId>
@@ -1791,9 +1560,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>6</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>3</EnhancementType>
     </Item>
     <Item id="97">
       <CustomId>0</CustomId>
@@ -1814,9 +1580,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>7</Class>
-        <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>3</EnhancementType>
     </Item>
     <Item id="98">
       <CustomId>0</CustomId>
@@ -1837,9 +1600,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>8</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>3</EnhancementType>
     </Item>
     <Item id="101">
       <CustomId>0</CustomId>
@@ -1860,9 +1620,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>1</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>3</EnhancementType>
     </Item>
     <Item id="102">
       <CustomId>0</CustomId>
@@ -1883,9 +1640,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>2</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>3</EnhancementType>
     </Item>
     <Item id="103">
       <CustomId>0</CustomId>
@@ -1906,9 +1660,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>3</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>3</EnhancementType>
     </Item>
     <Item id="104">
       <CustomId>0</CustomId>
@@ -1929,9 +1680,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>4</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>3</EnhancementType>
     </Item>
     <Item id="105">
       <CustomId>0</CustomId>
@@ -1952,9 +1700,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>5</Class>
-          <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>3</EnhancementType>
     </Item>
     <Item id="106">
       <CustomId>0</CustomId>
@@ -1975,9 +1720,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>6</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>3</EnhancementType>
     </Item>
     <Item id="107">
       <CustomId>0</CustomId>
@@ -1998,9 +1740,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>7</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>3</EnhancementType>
     </Item>
     <Item id="108">
       <CustomId>0</CustomId>
@@ -2021,9 +1760,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>8</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>3</EnhancementType>
     </Item>
     <Item id="111">
       <CustomId>0</CustomId>
@@ -2044,9 +1780,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>1</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>6</EnhancementType>
     </Item>
     <Item id="112">
       <CustomId>0</CustomId>
@@ -2067,9 +1800,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>2</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>6</EnhancementType>
     </Item>
     <Item id="113">
       <CustomId>0</CustomId>
@@ -2090,9 +1820,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>3</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>6</EnhancementType>
     </Item>
     <Item id="114">
       <CustomId>0</CustomId>
@@ -2113,9 +1840,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>4</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>6</EnhancementType>
     </Item>
     <Item id="115">
       <CustomId>0</CustomId>
@@ -2136,9 +1860,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>5</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>6</EnhancementType>
     </Item>
     <Item id="116">
       <CustomId>0</CustomId>
@@ -2159,9 +1880,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>6</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>6</EnhancementType>
     </Item>
     <Item id="117">
       <CustomId>0</CustomId>
@@ -2182,9 +1900,6 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>7</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>6</EnhancementType>
     </Item>
     <Item id="118">
       <CustomId>0</CustomId>
@@ -2205,247 +1920,26 @@
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>8</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>6</EnhancementType>
     </Item>
     <Item id="121">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
-      <Name>플랫 윙</Name>
+      <Name>순백의 날개</Name>
       <Description>고결한 순백의 날개이다.</Description>
       <ItemType>0</ItemType>
       <WeaponType>1</WeaponType>
-      <Attack>15</Attack>
-      <Defence>20</Defence>
-      <Hp>50</Hp>
-      <Critical>3</Critical>
-      <AttackSpeed>5</AttackSpeed>
-      <MoveSpeed>10</MoveSpeed>
-      <SkillEnergy>2</SkillEnergy>
-      <Value>3000</Value>
+      <Attack>100</Attack>
+      <Defence>200</Defence>
+      <Hp>1000</Hp>
+      <Critical>10</Critical>
+      <AttackSpeed>10</AttackSpeed>
+      <MoveSpeed>50</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>300000</Value>
       <Image>Equipment/equipment_013</Image>
-      <Count>0</Count>
-      <Enable>false</Enable>
-      <Class>1</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
-    </Item>
-    <Item id="128">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>플랫 윙</Name>
-      <Description>고결한 순백의 날개이다.</Description>
-      <ItemType>0</ItemType>
-      <WeaponType>1</WeaponType>
-      <Attack>15</Attack>
-      <Defence>20</Defence>
-      <Hp>50</Hp>
-      <Critical>3</Critical>
-      <AttackSpeed>5</AttackSpeed>
-      <MoveSpeed>10</MoveSpeed>
-      <SkillEnergy>2</SkillEnergy>
-      <Value>3000</Value>
-      <Image>Equipment/equipment_013</Image>
-      <Count>0</Count>
-      <Enable>false</Enable>
-      <Class>8</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>2</EnhancementType>
-    </Item>
-    <Item id="131">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>흑마법사의 반지</Name>
-      <Description>음흉한 기운이 나오는 신발이다.</Description>
-      <ItemType>0</ItemType>
-      <WeaponType>1</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>2</SkillEnergy>
-      <Penetration>13</Penetration>
-      <Value>500</Value>
-      <Image>Equipment/equipment_014</Image>
-      <Count>0</Count>
-      <Enable>false</Enable>
-      <Class>1</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>8</EnhancementType>
-    </Item>
-    <Item id="132">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>흑마법사의 반지</Name>
-      <Description>음흉한 기운이 나오는 신발이다.</Description>
-      <ItemType>0</ItemType>
-      <WeaponType>1</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>1</SkillEnergy>
-      <Penetration>1</Penetration>
-      <Value>500</Value>
-      <Image>Equipment/equipment_014</Image>
-      <Count>0</Count>
-      <Enable>false</Enable>
-      <Class>2</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>8</EnhancementType>
-    </Item>
-    <Item id="133">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>흑마법사의 반지</Name>
-      <Description>음흉한 기운이 나오는 신발이다.</Description>
-      <ItemType>0</ItemType>
-      <WeaponType>1</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>1</SkillEnergy>
-      <Penetration>1</Penetration>
-      <Value>500</Value>
-      <Image>Equipment/equipment_014</Image>
-      <Count>0</Count>
-      <Enable>false</Enable>
-      <Class>3</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>8</EnhancementType>
-    </Item>
-    <Item id="134">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>흑마법사의 반지</Name>
-      <Description>음흉한 기운이 나오는 신발이다.</Description>
-      <ItemType>0</ItemType>
-      <WeaponType>1</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>1</SkillEnergy>
-      <Penetration>1</Penetration>
-      <Value>500</Value>
-      <Image>Equipment/equipment_014</Image>
-      <Count>0</Count>
-      <Enable>false</Enable>
-      <Class>4</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>8</EnhancementType>
-    </Item>
-    <Item id="135">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>흑마법사의 반지</Name>
-      <Description>음흉한 기운이 나오는 신발이다.</Description>
-      <ItemType>0</ItemType>
-      <WeaponType>1</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>1</SkillEnergy>
-      <Penetration>1</Penetration>
-      <Value>500</Value>
-      <Image>Equipment/equipment_014</Image>
-      <Count>0</Count>
-      <Enable>false</Enable>
-      <Class>5</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>8</EnhancementType>
-    </Item>
-    <Item id="136">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>흑마법사의 반지</Name>
-      <Description>음흉한 기운이 나오는 신발이다.</Description>
-      <ItemType>0</ItemType>
-      <WeaponType>1</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>1</SkillEnergy>
-      <Penetration>1</Penetration>
-      <Value>500</Value>
-      <Image>Equipment/equipment_014</Image>
-      <Count>0</Count>
-      <Enable>false</Enable>
-      <Class>6</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>8</EnhancementType>
-    </Item>
-    <Item id="137">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>흑마법사의 반지</Name>
-      <Description>음흉한 기운이 나오는 신발이다.</Description>
-      <ItemType>0</ItemType>
-      <WeaponType>1</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>1</SkillEnergy>
-      <Penetration>1</Penetration>
-      <Value>500</Value>
-      <Image>Equipment/equipment_014</Image>
       <Count>0</Count>
       <Enable>false</Enable>
       <Class>7</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>8</EnhancementType>
-    </Item>
-    <Item id="138">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>흑마법사의 반지</Name>
-      <Description>음흉한 기운이 나오는 신발이다.</Description>
-      <ItemType>0</ItemType>
-      <WeaponType>1</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>1</SkillEnergy>
-      <Penetration>1</Penetration>
-      <Value>500</Value>
-      <Image>Equipment/equipment_014</Image>
-      <Count>0</Count>
-      <Enable>false</Enable>
-      <Class>8</Class>
-      <Enhancement>0</Enhancement>
-      <EnhancementCount>0</EnhancementCount>
-      <EnhancementType>8</EnhancementType>
     </Item>
     <Item id="8001">
       <CustomId>0</CustomId>
@@ -2467,187 +1961,7 @@
       <Enable>false</Enable>
       <Class>0</Class>
     </Item>
-    <Item id="8002">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>전투훈장</Name>
-      <Description>대전을 하면 얻을 수 있는 훈장</Description>
-      <ItemType>1</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>1000</Value>
-      <Image>Items/medal</Image>
-      <Count>0</Count>
-      <Enable>false</Enable>
-      <Class>0</Class>
-    </Item>
-    <Item id="8003">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>평범한 플랫박스</Name>
-      <Description>랜덤한 보상을 받을 수 있다.</Description>
-      <ItemType>1</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>1000</Value>
-      <Image>UI/ui_rewardBox</Image>
-      <Count>0</Count>
-      <Enable>false</Enable>
-      <Class>0</Class>
-    </Item>
-        <Item id="8004">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>특별한 플랫박스</Name>
-      <Description>랜덤한 보상을 받을 수 있다.</Description>
-      <ItemType>1</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>1000</Value>
-      <Image>UI/ui_rewardBox2</Image>
-      <Count>0</Count>
-      <Enable>false</Enable>
-      <Class>0</Class>
-    </Item>
-        <Item id="8005">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>전설의 플랫박스</Name>
-      <Description>랜덤한 보상을 받을 수 있다.</Description>
-      <ItemType>1</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>1000</Value>
-      <Image>UI/ui_rewardBox3</Image>
-      <Count>0</Count>
-      <Enable>false</Enable>
-      <Class>0</Class>
-    </Item>
     <Item id="9001">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>흑수정 2000개</Name>
-      <Description>흑수정이 2000개가 들어있다.</Description>
-      <ItemType>100</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>89000</Value>
-      <Image>Items/9001</Image>
-      <Count>2000</Count>
-      <Enable>true</Enable>
-          <Class>0</Class>
-    </Item>
-    <Item id="9002">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>흑수정 60개</Name>
-      <Description>흑수정이 60개가 들어있다.</Description>
-      <ItemType>100</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>3300</Value>
-      <Image>Items/9002</Image>
-      <Count>60</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-        <Item id="9003">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>흑수정 160개</Name>
-      <Description>흑수정이 160개가 들어있다.</Description>
-      <ItemType>100</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-       <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>8000</Value>
-      <Image>Items/9003</Image>
-      <Count>160</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-        <Item id="9004">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>흑수정 300개</Name>
-      <Description>흑수정이 300개가 들어있다.</Description>
-      <ItemType>100</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>15000</Value>
-      <Image>Items/9004</Image>
-      <Count>300</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-      <Item id="9005">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>흑수정 600개</Name>
-      <Description>흑수정이 600개가 들어있다.</Description>
-      <ItemType>100</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>29000</Value>
-      <Image>Items/9005</Image>
-      <Count>600</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-    <Item id="9006">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
       <Name>흑수정 1000개</Name>
@@ -2661,17 +1975,117 @@
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>46000</Value>
-      <Image>Items/9006</Image>
+      <Value>80000</Value>
+      <Image>Items/blackCrystal</Image>
       <Count>1000</Count>
+      <Enable>true</Enable>
+          <Class>0</Class>
+    </Item>
+    <Item id="9002">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>흑수정 30개</Name>
+      <Description>흑수정이 30개가 들어있다.</Description>
+      <ItemType>100</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>0</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>3000</Value>
+      <Image>Items/blackCrystal</Image>
+      <Count>30</Count>
+      <Enable>true</Enable>
+      <Class>0</Class>
+    </Item>
+        <Item id="9003">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>흑수정 80개</Name>
+      <Description>흑수정이 80개가 들어있다.</Description>
+      <ItemType>100</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>0</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+       <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>7500</Value>
+      <Image>Items/blackCrystal</Image>
+      <Count>80</Count>
+      <Enable>true</Enable>
+      <Class>0</Class>
+    </Item>
+        <Item id="9004">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>흑수정 150개</Name>
+      <Description>흑수정이 150개가 들어있다.</Description>
+      <ItemType>100</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>0</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>13500</Value>
+      <Image>Items/blackCrystal</Image>
+      <Count>150</Count>
+      <Enable>true</Enable>
+      <Class>0</Class>
+    </Item>
+      <Item id="9005">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>흑수정 300개</Name>
+      <Description>흑수정이 300개가 들어있다.</Description>
+      <ItemType>100</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>0</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>26000</Value>
+      <Image>Items/blackCrystal</Image>
+      <Count>300</Count>
+      <Enable>true</Enable>
+      <Class>0</Class>
+    </Item>
+    <Item id="9006">
+      <CustomId>0</CustomId>
+      <EquipCharacterId>0</EquipCharacterId>
+      <Name>흑수정 500개</Name>
+      <Description>흑수정이 500개가 들어있다.</Description>
+      <ItemType>100</ItemType>
+      <WeaponType>0</WeaponType>
+      <Attack>0</Attack>
+      <Defence>0</Defence>
+      <Hp>0</Hp>
+      <Critical>0</Critical>
+      <AttackSpeed>0</AttackSpeed>
+      <MoveSpeed>0</MoveSpeed>
+      <SkillEnergy>0</SkillEnergy>
+      <Value>42000</Value>
+      <Image>Items/blackCrystal</Image>
+      <Count>500</Count>
       <Enable>true</Enable>
       <Class>0</Class>
     </Item>
     <Item id="9011">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
-      <Name>포탈에너지 150개</Name>
-      <Description>포탈에너지가 150개 담겨져있다.</Description>
+      <Name>포탈에너지 100개</Name>
+      <Description>포탈에너지가 100개 담겨져있다.</Description>
       <ItemType>101</ItemType>
       <WeaponType>0</WeaponType>
       <Attack>0</Attack>
@@ -2682,16 +2096,16 @@
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
       <Value>100</Value>
-      <Image>Items/9011</Image>
-      <Count>150</Count>
+      <Image>Items/portalEnergy</Image>
+      <Count>100</Count>
       <Enable>true</Enable>
       <Class>0</Class>
     </Item>
     <Item id="9012">
       <CustomId>0</CustomId>
       <EquipCharacterId>0</EquipCharacterId>
-      <Name>포탈에너지 400개</Name>
-      <Description>포탈에너지가 400개 담겨져있다.</Description>
+      <Name>포탈에너지 300개</Name>
+      <Description>포탈에너지가 300개 담겨져있다.</Description>
       <ItemType>101</ItemType>
       <WeaponType>0</WeaponType>
       <Attack>0</Attack>
@@ -2701,9 +2115,9 @@
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>180</Value>
-      <Image>Items/9012</Image>
-      <Count>400</Count>
+      <Value>250</Value>
+      <Image>Items/portalEnergy</Image>
+      <Count>300</Count>
       <Enable>true</Enable>
       <Class>0</Class>
     </Item>
@@ -2721,8 +2135,8 @@
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>70</Value>
-      <Image>Items/9021</Image>
+      <Value>120</Value>
+      <Image>Items/abilityScroll</Image>
       <Count>30</Count>
       <Enable>true</Enable>
       <Class>0</Class>
@@ -2741,289 +2155,9 @@
       <AttackSpeed>0</AttackSpeed>
       <MoveSpeed>0</MoveSpeed>
       <SkillEnergy>0</SkillEnergy>
-      <Value>150</Value>
-      <Image>Items/9022</Image>
+      <Value>230</Value>
+      <Image>Items/abilityScroll</Image>
       <Count>70</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-    <Item id="9031">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>코인 50,000개</Name>
-      <Description>플랫월드에서 사용되는 화폐이다.</Description>
-      <ItemType>101</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>35</Value>
-      <Image>Items/9031</Image>
-      <Count>50000</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-    <Item id="9032">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>코인 100,000개</Name>
-      <Description>플랫월드에서 사용되는 화폐이다.</Description>
-      <ItemType>101</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>70</Value>
-      <Image>Items/9032</Image>
-      <Count>100000</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-    <Item id="9033">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>코인 150,000개</Name>
-      <Description>플랫월드에서 사용되는 화폐이다.</Description>
-      <ItemType>101</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>100</Value>
-      <Image>Items/9033</Image>
-      <Count>150000</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-    <Item id="9034">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>코인 250,000개</Name>
-      <Description>플랫월드에서 사용되는 화폐이다.</Description>
-      <ItemType>101</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>160</Value>
-      <Image>Items/9034</Image>
-      <Count>250000</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-    <Item id="9035">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>코인 700,000개</Name>
-      <Description>플랫월드에서 사용되는 화폐이다.</Description>
-      <ItemType>101</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>420</Value>
-      <Image>Items/9035</Image>
-      <Count>700000</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-    <Item id="9041">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>광고 패키지</Name>
-      <Description>전면 광고 제거 + 보상형 광고 스킵</Description>
-      <ItemType>102</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>4500</Value>
-      <Image>Items/9041</Image>
-      <Count>0</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-    <Item id="9042">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>프리미엄 이용권</Name>
-      <Description>프리미엄 이용권 1개월</Description>
-      <ItemType>102</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>5500</Value>
-      <Image>Items/9042</Image>
-      <Count>0</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-    <Item id="9048">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>완벽한 준비 패키지</Name>
-      <Description>광고패키지 + 수정 400개 + 에너지 100개 + 코인 50,000개</Description>
-      <ItemType>102</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>22000</Value>
-      <Image>Items/9048</Image>
-      <Count>0</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-    <Item id="9049">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>영웅의 준비 패키지</Name>
-      <Description>광고패키지 + 수정 1000개 + 에너지 200개 + 코인 150,000개</Description>
-      <ItemType>102</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>49000</Value>
-      <Image>Items/9049</Image>
-      <Count>0</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-    <Item id="9050">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>전설의 준비 패키지</Name>
-      <Description>광고패키지 + 수정 2400개 + 에너지 500개 + 코인 400,000개</Description>
-      <ItemType>102</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>99000</Value>
-      <Image>Items/9050</Image>
-      <Count>0</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-    <Item id="10001">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>코인</Name>
-      <Description>코인</Description>
-      <ItemType>100</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>1</Value>
-      <Image>Items/coin</Image>
-      <Count>1</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-    <Item id="10002">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>수정</Name>
-      <Description>수정</Description>
-      <ItemType>100</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>1</Value>
-      <Image>Items/blackCrystal</Image>
-      <Count>1</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-    <Item id="10003">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>에너지</Name>
-      <Description>에너지</Description>
-      <ItemType>100</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>1</Value>
-      <Image>Items/portalEnergy</Image>
-      <Count>1</Count>
-      <Enable>true</Enable>
-      <Class>0</Class>
-    </Item>
-      <Item id="10004">
-      <CustomId>0</CustomId>
-      <EquipCharacterId>0</EquipCharacterId>
-      <Name>마석</Name>
-      <Description>마석</Description>
-      <ItemType>100</ItemType>
-      <WeaponType>0</WeaponType>
-      <Attack>0</Attack>
-      <Defence>0</Defence>
-      <Hp>0</Hp>
-      <Critical>0</Critical>
-      <AttackSpeed>0</AttackSpeed>
-      <MoveSpeed>0</MoveSpeed>
-      <SkillEnergy>0</SkillEnergy>
-      <Value>1</Value>
-      <Image>Items/magicStone</Image>
-      <Count>1</Count>
       <Enable>true</Enable>
       <Class>0</Class>
     </Item>

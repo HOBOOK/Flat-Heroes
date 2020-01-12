@@ -7,32 +7,21 @@ public class SoundManager : MonoBehaviour
     public AudioSource effectSource;
     public AudioSource bgmSource;
     public AudioSource loopEffectsource;
-    private static SoundManager _instance = null;
-    public static SoundManager instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType(typeof(SoundManager)) as SoundManager;
+    public static SoundManager instance = null;
 
-                if (_instance == null)
-                {
-                    Debug.LogError("There's no active SoundManager object");
-                }
-            }
-
-            return _instance;
-        }
-    }
-
-    public float lowPichRange = .97f;
-    public float highPitchRange = 1f;
+    public float lowPichRange = .95f;
+    public float highPitchRange = 1.05f;
 
     public bool isBgmOff = false;
     public bool isEffectOff = false;
 
-
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+    }
 
     private void Start()
     {
@@ -99,26 +88,14 @@ public class SoundManager : MonoBehaviour
                 effectSource.PlayOneShot(clips[randomIndex]);
         }
     }
-    public void EffectSourcePlayNoPitch(AudioClip clip)
-    {
-        if (!isEffectOff)
-        {
-            effectSource.pitch = 1;
-            effectSource.PlayOneShot(clip);
-        }
-    }
     public void BgmSourceChange(AudioClip clip)
     {
-        if (!isBgmOff)
+        if (!isEffectOff)
         {
             if (clip != null)
             {
                 bgmSource.clip = clip;
                 bgmSource.Play();
-            }
-            else
-            {
-                bgmSource.Stop();
             }
 
         }

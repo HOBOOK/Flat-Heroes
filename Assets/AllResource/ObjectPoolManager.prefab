@@ -54,6 +54,11 @@ MonoBehaviour:
     parent: {fileID: 0}
     poolCount: 7
     poolList: []
+  - poolItemName: chatBox
+    prefab: {fileID: 1640461840825730, guid: eb8ed0988d4a3e841ad70922fe51531f, type: 3}
+    parent: {fileID: 0}
+    poolCount: 10
+    poolList: []
   - poolItemName: hpEnemyUI
     prefab: {fileID: 2308053101412916070, guid: 316bb6a6255d4d243b0613c2077c2daf,
       type: 3}
@@ -69,13 +74,13 @@ MonoBehaviour:
   - poolItemName: Arrow
     prefab: {fileID: 1026857281472628, guid: 1a3a1d72f9a1aa0409eb813910e3c4f5, type: 3}
     parent: {fileID: 0}
-    poolCount: 20
+    poolCount: 10
     poolList: []
   - poolItemName: Coin
     prefab: {fileID: 7873845372708698426, guid: ab3f40650e1987047ae3bc9dda614f2a,
       type: 3}
     parent: {fileID: 0}
-    poolCount: 20
+    poolCount: 10
     poolList: []
   - poolItemName: damageUI
     prefab: {fileID: 1345877921692938, guid: f3a2b57b58bb06240b35de69cd7ca470, type: 3}
@@ -86,7 +91,7 @@ MonoBehaviour:
     prefab: {fileID: 5897328625803864795, guid: cdff6f786b2ff90409e92f0f2a657003,
       type: 3}
     parent: {fileID: 0}
-    poolCount: 20
+    poolCount: 10
     poolList: []
   - poolItemName: dropItemUI
     prefab: {fileID: 3373492645332630650, guid: 32e923e4f516c2c4883abeaedc088614,
@@ -105,56 +110,4 @@ MonoBehaviour:
       type: 3}
     parent: {fileID: 0}
     poolCount: 10
-    poolList: []
-  - poolItemName: Bomb
-    prefab: {fileID: 2884078706234749140, guid: e1088063e4e7f66489b672bd6bc380b2,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 5
-    poolList: []
-  - poolItemName: hpCastleUI
-    prefab: {fileID: 9035664128700464589, guid: d8f954e592454a641922f7af24acd713,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 3
-    poolList: []
-  - poolItemName: chatBox
-    prefab: {fileID: 1640461840825730, guid: eb8ed0988d4a3e841ad70922fe51531f, type: 3}
-    parent: {fileID: 0}
-    poolCount: 10
-    poolList: []
-  - poolItemName: Embulance
-    prefab: {fileID: 3188492599479240072, guid: 15a2f84b05af5364a82ae563bd20d6f3,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 3
-    poolList: []
-  - poolItemName: messageBox
-    prefab: {fileID: 7559654524643027476, guid: 47d88b70283b8024caaac6f5ee2d504e,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 3
-    poolList: []
-  - poolItemName: SkillCastingUI
-    prefab: {fileID: 3557266385261436605, guid: c0376c5edbbf93a419b1ae3abe01a9ce,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 7
-    poolList: []
-  - poolItemName: SkillCastingReverseUI
-    prefab: {fileID: 6596270022935254940, guid: 541b32f10b6d0c04a8c9108298f1b960,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 7
-    poolList: []
-  - poolItemName: MagicSpier
-    prefab: {fileID: 4653163362358730085, guid: fef0fa25d7da08e4d9094e4bd87d70f4,
-      type: 3}
-    parent: {fileID: 0}
-    poolCount: 5
-    poolList: []
-  - poolItemName: Shuriken
-    prefab: {fileID: 1026857281472628, guid: 0172605fdf21b564ea4939557ed658b2, type: 3}
-    parent: {fileID: 0}
-    poolCount: 20
     poolList: []

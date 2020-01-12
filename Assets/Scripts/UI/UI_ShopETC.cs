@@ -16,8 +16,6 @@ public class UI_ShopETC : MonoBehaviour
     GameObject BuyButton;
     public GameObject detailButton;
 
-    public int ShopType; // 0:코인, 1:에너지
-
     //정보창
     public GameObject ItemInfoView;
     Image infoImage;
@@ -66,10 +64,9 @@ public class UI_ShopETC : MonoBehaviour
         {
             foreach (Transform child in ScrollViewContent.transform)
             {
-                if (child.GetComponent<ItemSlot>() != null)
-                    Destroy(child.gameObject);
+                Destroy(child.gameObject);
             }
-            foreach (var slot in ItemSystem.GetCrystalShopItems(ShopType))
+            foreach (var slot in ItemSystem.GetCrystalShopItems())
             {
                 GameObject slotPrefab = Instantiate(ItemSlotPrefab, ScrollViewContent.transform);
                 foreach (var i in slotPrefab.GetComponentsInChildren<Text>())
@@ -128,7 +125,7 @@ public class UI_ShopETC : MonoBehaviour
         infoImage.sprite = slotItemImage.sprite;
         infoImage.enabled = true;
         infoImage.GetComponent<AiryUIAnimatedElement>().ShowElement();
-        infoItemDescriptionText.text = ItemSystem.GetItemDescription(itemData.id);
+        infoItemDescriptionText.text = itemData.description;
         infoItemNameText.text = slotNameText.text;
         infoItemValueText.text = slotValueText.text;
         BuyButton.GetComponent<Button>().enabled = true;

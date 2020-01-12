@@ -132,7 +132,7 @@ public class MapDatabase
         Debugging.LogSystemWarning("MapDatabase wasn't loaded. >> " + path + " is null. >>");
         return null;
     }
-    public static void AddMapClear(Map clearMap, Map openMap)
+    public static void AddMapClear(int clearId,int openId)
     {
         string path = Application.persistentDataPath + "/Xml/Map.Xml";
         XmlDocument xmlDoc = new XmlDocument();
@@ -145,8 +145,8 @@ public class MapDatabase
         elmRoot.InnerXml = decrpytData;
         //////////
         
-        ChangeNode(clearMap, xmlDoc);
-        CreateNode(openMap, xmlDoc, path);
+        ChangeNode(MapSystem.GetUserMap(clearId), xmlDoc);
+        CreateNode(MapSystem.GetMap(openId), xmlDoc, path);
     }
     #endregion
     public static void CreateXml(Map data, string path)
@@ -199,24 +199,22 @@ public class MapDatabase
     }
     public static void CreateNode(Map data, XmlDocument xmlDoc, string path)
     {
-        if(data!=null)
-        {
-            // 자식 노드 생성
-            XmlNode child = xmlDoc.CreateNode(XmlNodeType.Element, "Map", string.Empty);
-            xmlDoc.DocumentElement.FirstChild.AppendChild(child);
+        // 자식 노드 생성
+        XmlNode child = xmlDoc.CreateNode(XmlNodeType.Element, "Map", string.Empty);
+        xmlDoc.DocumentElement.FirstChild.AppendChild(child);
 
-            XmlAttribute id = xmlDoc.CreateAttribute("id");
-            id.Value = data.id.ToString();
-            child.Attributes.Append(id);
+        XmlAttribute id = xmlDoc.CreateAttribute("id");
+        id.Value = data.id.ToString();
+        child.Attributes.Append(id);
 
-            // 자식 노드에 들어갈 속성 생성
-            XmlElement clearPoint = xmlDoc.CreateElement("ClearPoint");
-            clearPoint.InnerText = data.clearPoint.ToString();
-            child.AppendChild(clearPoint);
-            XmlElement stageNumber = xmlDoc.CreateElement("StageNumber");
-            stageNumber.InnerText = data.stageNumber.ToString();
-            child.AppendChild(stageNumber);
-        }
+        // 자식 노드에 들어갈 속성 생성
+        XmlElement clearPoint = xmlDoc.CreateElement("ClearPoint");
+        clearPoint.InnerText = data.clearPoint.ToString();
+        child.AppendChild(clearPoint);
+        XmlElement stageNumber = xmlDoc.CreateElement("StageNumber");
+        stageNumber.InnerText = data.stageNumber.ToString();
+        child.AppendChild(stageNumber);
+
 
         // 암호화/////
         XmlElement elmRoot = xmlDoc.DocumentElement;

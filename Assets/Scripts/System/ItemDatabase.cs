@@ -323,46 +323,6 @@ public class ItemDatabase
         xmlDoc.Save(path);
         Debugging.Log(id + " 의 아이템 데이터 xml 삭제 완료");
     }
-    public static void SaveEnhancement(int id)
-    {
-        string path = Application.persistentDataPath + "/Xml/Item.Xml";
-        XmlDocument xmlDoc = new XmlDocument();
-        if (System.IO.File.Exists(path))
-            xmlDoc.LoadXml(System.IO.File.ReadAllText(path));
-
-        //복호화////
-        XmlElement elmRoot = xmlDoc.DocumentElement;
-        var decrpytData = DataSecurityManager.DecryptData(elmRoot.InnerText);
-        elmRoot.InnerXml = decrpytData;
-        //////////
-
-        XmlNodeList nodes = xmlDoc.SelectNodes("ItemCollection/Items/Item");
-        foreach (XmlNode node in nodes)
-        {
-            if (node.SelectSingleNode("CustomId").InnerText == id.ToString() || node.SelectSingleNode("CustomId").InnerText.Equals(id.ToString()))
-            {
-                Item itemDB = ItemSystem.GetUserEquipmentItem(id);
-                if (itemDB != null)
-                {
-                    if (node.SelectSingleNode("Enhancement") != null)
-                        node.SelectSingleNode("Enhancement").InnerText = itemDB.enhancement.ToString();
-                    else
-                        AddNodeEnhancement(itemDB, xmlDoc,false);
-                    if (node.SelectSingleNode("EnhancementCount") != null)
-                        node.SelectSingleNode("EnhancementCount").InnerText = itemDB.enhancementCount.ToString();
-                    else
-                        AddNodeEnhancement(itemDB, xmlDoc, true);
-                }
-                break;
-            }
-        }
-        // 암호화/////
-        var encrpytData = DataSecurityManager.EncryptData(elmRoot.InnerXml);
-        elmRoot.InnerText = encrpytData;
-        ////////////
-        xmlDoc.Save(path);
-        Debugging.Log(id + " 아이템 단일 xml 저장 완료");
-    }
     #endregion
 
     public static void CreateXml(string path)
@@ -408,18 +368,9 @@ public class ItemDatabase
         XmlElement enable = xmlDoc.CreateElement("Enable");
         enable.InnerText = data.enable.ToString().ToLower();
         child.AppendChild(enable);
-        XmlElement itemType = xmlDoc.CreateElement("ItemType");
-        itemType.InnerText = data.itemtype.ToString();
-        child.AppendChild(itemType);
         XmlElement itemClass = xmlDoc.CreateElement("Class");
         itemClass.InnerText = data.itemClass.ToString();
         child.AppendChild(itemClass);
-        XmlElement enhancement = xmlDoc.CreateElement("Enhancement");
-        enhancement.InnerText = data.enhancement.ToString();
-        child.AppendChild(enhancement);
-        XmlElement enhancementCount = xmlDoc.CreateElement("EnhancementCount");
-        enhancementCount.InnerText = data.enhancementCount.ToString();
-        child.AppendChild(enhancementCount);
 
         // 암호화/////
         XmlElement elmRoot = xmlDoc.DocumentElement;
@@ -453,18 +404,9 @@ public class ItemDatabase
             XmlElement enable = xmlDoc.CreateElement("Enable");
             enable.InnerText = data.enable.ToString().ToLower();
             child.AppendChild(enable);
-            XmlElement itemType = xmlDoc.CreateElement("ItemType");
-            itemType.InnerText = data.itemtype.ToString();
-            child.AppendChild(itemType);
             XmlElement itemClass = xmlDoc.CreateElement("Class");
             itemClass.InnerText = data.itemClass.ToString();
             child.AppendChild(itemClass);
-            XmlElement enhancement = xmlDoc.CreateElement("Enhancement");
-            enhancement.InnerText = data.enhancement.ToString();
-            child.AppendChild(enhancement);
-            XmlElement enhancementCount = xmlDoc.CreateElement("EnhancementCount");
-            enhancementCount.InnerText = data.enhancementCount.ToString();
-            child.AppendChild(enhancementCount);
         }
 
         // 암호화/////
@@ -473,29 +415,5 @@ public class ItemDatabase
         elmRoot.InnerText = encrpytData;
         ////////////
         xmlDoc.Save(path);
-    }
-
-    public static void AddNodeEnhancement(Item data, XmlDocument xmlDoc,bool isCount)
-    {
-        XmlNodeList nodes = xmlDoc.SelectNodes("ItemCollection/Items/Item");
-        foreach (XmlNode node in nodes)
-        {
-            if (node.SelectSingleNode("CustomId").InnerText == data.customId.ToString() || node.SelectSingleNode("CustomId").InnerText.Equals(data.customId.ToString()))
-            {
-                if (isCount)
-                {
-                    XmlElement enhancementCount = xmlDoc.CreateElement("EnhancementCount");
-                    enhancementCount.InnerText = data.enhancementCount.ToString();
-                    node.AppendChild(enhancementCount);
-                }
-                else
-                {
-                    XmlElement enhancement = xmlDoc.CreateElement("Enhancement");
-                    enhancement.InnerText = data.enhancement.ToString();
-                    node.AppendChild(enhancement);
-                }
-                break;
-            }
-        }
     }
 }

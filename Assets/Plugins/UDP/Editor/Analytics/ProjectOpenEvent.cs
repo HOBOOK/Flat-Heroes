@@ -13,20 +13,22 @@ namespace UnityEngine.UDP.Editor.Analytics
         {
             if (!SessionState.GetBool(k_ProjectOpened, false))
             {
-                if (EditorUserBuildSettings.activeBuildTarget.Equals(BuildTarget.Android) && Common.TargetUDP())
+                SessionState.SetBool(k_ProjectOpened, true);
+//                Debug.Log("[Debug]: project opened");
+                
+                UnityWebRequest request = EditorAnalyticsApi.ProjectOpened();
+                
+                EditorAnalyticsReqStruct reqStruct = new EditorAnalyticsReqStruct
                 {
-                    SessionState.SetBool(k_ProjectOpened, true);
-
-                    UnityWebRequest request = EditorAnalyticsApi.ProjectOpened();
-
-                    EditorAnalyticsReqStruct reqStruct = new EditorAnalyticsReqStruct
-                    {
-                        eventName = EditorAnalyticsApi.k_ProjectOpenEventName,
-                        webRequest = request,
-                    };
-
-                    WebRequestQueue.Enqueue(reqStruct);
-                }
+                    eventName = EditorAnalyticsApi.k_ProjectOpenEventName,
+                    webRequest = request,
+                };
+                
+                WebRequestQueue.Enqueue(reqStruct);
+            }
+            else
+            {
+//                Debug.Log("DEBUG: Project Session Opened detected");
             }
         }
     }

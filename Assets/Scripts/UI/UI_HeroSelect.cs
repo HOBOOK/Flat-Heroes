@@ -16,19 +16,14 @@ public class UI_HeroSelect : MonoBehaviour
     public GameObject pinPoint;
     public GameObject playerSkillPanel;
     public Text useEnergyText;
-    public Button AutoButton;
-    public int StageType;
     Text slotNameText;
-    Text slotLevelText;
     Image slotHeroImage;
-
     // 영웅선택창
     int index;
     GameObject PanelHeroSelection;
     Text selectedHeroNameText;
     GameObject selectPanel;
     Image selectedHeroImage;
-    public Button StartButton;
 
     #endregion
 
@@ -56,36 +51,19 @@ public class UI_HeroSelect : MonoBehaviour
             }
             foreach (var heroSlot in HeroSystem.GetUserHeros())
             {
-                if (heroSlot.id < 500)
+                if (heroSlot.type == 0)
                 {
                     GameObject slotPrefab = Instantiate(heroSlotPrefab, ScrollViewContent.transform);
                     foreach (var i in slotPrefab.GetComponentsInChildren<Text>())
                     {
                         if (i.name.Equals("heroName"))
                             slotNameText = i;
-                        else if (i.name.Equals("heroLevel"))
-                            slotLevelText = i;
                     }
                     if (slotNameText != null)
                         slotNameText.text = HeroSystem.GetHeroName(heroSlot.id);
-                    if (slotLevelText != null)
-                        slotLevelText.text = string.Format("Lv. {0}", heroSlot.level.ToString());
-                    slotHeroImage = slotPrefab.transform.GetChild(0).GetChild(1).GetComponent<Image>();
+                    slotHeroImage = slotPrefab.transform.GetChild(0).GetChild(0).GetComponent<Image>();
                     if (slotHeroImage != null)
-                        slotHeroImage.sprite = HeroSystem.GetHeroThumbnail(heroSlot.id);
-                    slotPrefab.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = HeroSystem.GetHeroClassImage(heroSlot);
-                    // 테두리
-                    slotPrefab.transform.GetChild(3).GetComponent<Image>().color = HeroClassColor.GetHeroColor(heroSlot.over);
-
-                    if (heroSlot.ability > 0)
-                    {
-                        slotPrefab.transform.GetChild(2).gameObject.SetActive(true);
-                        slotPrefab.transform.GetChild(2).GetComponentInChildren<Text>().text = heroSlot.abilityLevel.ToString();
-                    }
-                    else
-                    {
-                        slotPrefab.transform.GetChild(2).gameObject.SetActive(false);
-                    }
+                        slotHeroImage.sprite = Resources.Load<Sprite>(heroSlot.image);
                     slotPrefab.GetComponent<Button>().onClick.RemoveAllListeners();
                     slotPrefab.GetComponent<Button>().onClick.AddListener(delegate
                     {
@@ -104,68 +82,10 @@ public class UI_HeroSelect : MonoBehaviour
                 }
             }
         }
-        int stageHeroCount = CharactersManager.instance.GetStageHeroCount();
-        if(stageHeroCount<1)
-        {
-            StartButton.gameObject.SetActive(false);
-        }
-        else
-        {
-            StartButton.gameObject.SetActive(true);
-            StartButton.gameObject.GetComponent<AiryUIAnimatedElement>().ShowElement();
-            useEnergyText.text = stageHeroCount.ToString();
-        }
-        
+        useEnergyText.text = CharactersManager.instance.GetStageHeroCount().ToString();
         SetImageAndTextSelectHeroPanel();
         RefreshPlayerSkillUI();
-        RefreshAutoButtonUI();
         selectHeroLockCover.SetActive(true);
-    }
-    public void SetStageType(int type)
-    {
-        StageType = type;
-        RefreshAutoButtonUI();
-    }
-    void RefreshAutoButtonUI()
-    {
-        if (AutoButton != null)
-        {
-            if (StageType == 0)
-            {
-                if(Common.IsAutoStagePlay)
-                {
-                    AutoButton.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
-                }
-                else
-                {
-                    AutoButton.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
-                }
-                AutoButton.transform.GetChild(2).GetComponentInChildren<Text>().text = SaveSystem.getPremiumRemainingPeriodText();
-                AutoButton.gameObject.SetActive(true);
-            }
-            else
-                AutoButton.gameObject.SetActive(false);
-        }
-    }
-    public void OnClickAutoButton()
-    {
-        if(!Common.IsAutoStagePlay)
-        {
-            if (SaveSystem.IsPremiumPassAble())
-            {
-                Common.IsAutoStagePlay = true;
-            }
-            else
-            {
-                Common.IsAutoStagePlay = false;
-                UI_Manager.instance.ShowAlert(Common.GetCoinCrystalEnergyImagePath(8), LocalizationManager.GetText("alertAutoUnableTicketMessage"));
-            }
-        }
-        else
-        {
-            Common.IsAutoStagePlay = false;
-        }
-        RefreshAutoButtonUI();
     }
 
     public void SetImageAndTextSelectHeroPanel()
@@ -176,16 +96,17 @@ public class UI_HeroSelect : MonoBehaviour
             selectPanel = PanelHeroSelection.transform.GetChild(i).GetChild(2).gameObject;
             selectedHeroNameText = PanelHeroSelection.transform.GetChild(i).GetChild(0).GetComponent<Text>();
             selectedHeroImage = PanelHeroSelection.transform.GetChild(i).GetChild(1).GetChild(0).GetComponent<Image>();
-            ShowHero(selectedHeroImage.transform, data);
             if (data!=null)
             {
                 selectPanel.gameObject.SetActive(false);
                 selectedHeroNameText.text = string.Format("<size='{0}'>{1} {2}</size>  {3}", selectedHeroNameText.fontSize - 5,LocalizationManager.GetText("Level"), data.level, HeroSystem.GetHeroName(data.id));
                 selectedHeroImage.enabled = true;
+                selectedHeroImage.sprite = Resources.Load<Sprite>(data.image);
             }
             else
             {
                 selectedHeroImage.enabled = false;
+                selectedHeroImage.sprite = HeroSystem.GetHeroNoneImage();
                 selectedHeroNameText.text = "";
                 selectPanel.gameObject.SetActive(true);
             }
@@ -239,36 +160,6 @@ public class UI_HeroSelect : MonoBehaviour
             pinPoint.GetComponent<RectTransform>().anchoredPosition = new Vector2(0.5f, 1f);
             pinPoint.SetActive(true);
             selectHeroLockCover.SetActive(false);
-        }
-    }
-
-    public void ShowHero(Transform parent ,HeroData data)
-    {
-        if(parent.transform.childCount>0)
-        {
-            foreach (Transform child in parent.transform)
-                Destroy(child.gameObject);
-        }
-        if(data!=null)
-        {
-            GameObject hero = PrefabsDatabaseManager.instance.GetHeroPrefab(data.id);
-            if (hero != null)
-            {
-                GameObject showHeroObj = Instantiate(hero, parent);
-                showHeroObj.transform.localScale = new Vector3(150, 150, 150);
-                showHeroObj.transform.localPosition = Vector3.zero;
-
-                if (showHeroObj.GetComponent<Hero>() != null)
-                    Destroy(showHeroObj.GetComponent<Hero>());
-                if (showHeroObj.GetComponent<Rigidbody2D>() != null)
-                    Destroy(showHeroObj.GetComponent<Rigidbody2D>());
-                foreach (var sp in showHeroObj.GetComponentsInChildren<SpriteRenderer>())
-                {
-                    sp.sortingLayerName = "ShowObject";
-                    sp.gameObject.layer = 16;
-                }
-                showHeroObj.gameObject.SetActive(true);
-            }
         }
     }
 }

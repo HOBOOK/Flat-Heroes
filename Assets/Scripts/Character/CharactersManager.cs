@@ -11,7 +11,6 @@ public class CharactersManager : MonoBehaviour
     private GameObject heroInfoUI;
     private Text heroUIname;
     private Text heroUIinfo;
-    private Text heroUIlevel;
     private Transform heroUITarget;
     public static CharactersManager instance = null;
     
@@ -43,7 +42,6 @@ public class CharactersManager : MonoBehaviour
                     GameObject hero = Instantiate(PrefabsDatabaseManager.instance.GetHeroPrefab(id)) as GameObject;
                     hero.transform.parent = spawnPoint;
                     hero.transform.localPosition = Vector3.zero - new Vector3(i, 0);
-                    hero.GetComponent<Hero>().SetFirstPos(new Vector3(-2,0,0));
                     flag = !flag;
                     if(!heroList.ContainsKey(id))
                         heroList.Add(id,hero);
@@ -52,77 +50,20 @@ public class CharactersManager : MonoBehaviour
         }
         Debugging.Log(User.stageHeros.Length + "의 리스트에서 Stage씬에 영웅소환 완료.");
     }
-    public void SetInfinityStagePositionHeros()
-    {
-        heroList = new Dictionary<int, GameObject>();
-        var spawnPoint = GameObject.Find("PlayersHero").transform;
-        bool flag = false;
-        for (int i = 0; i < User.stageHeros.Length; i++)
-        {
-            if (User.stageHeros[i] != 0)
-            {
-                if (PrefabsDatabaseManager.instance.GetHeroPrefab(User.stageHeros[i]) != null)
-                {
-                    int id = User.stageHeros[i];
-                    GameObject hero = Instantiate(PrefabsDatabaseManager.instance.GetHeroPrefab(id)) as GameObject;
-                    hero.transform.parent = spawnPoint;
-                    hero.transform.localPosition = Vector3.zero + new Vector3(2f-i, 0);
-                    hero.GetComponent<Hero>().SetFirstPos(hero.transform.position);
-                    flag = !flag;
-                    if (!heroList.ContainsKey(id))
-                        heroList.Add(id, hero);
-                }
-            }
-        }
-        Debugging.Log(User.stageHeros.Length + "의 리스트에서 Stage씬에 영웅소환 완료.");
-    }
-
-
-    bool IsAlreayAlive(int id)
-    {
-        if(Common.stageModeType==Common.StageModeType.Battle)
-        {
-            return StageBattleManager.instance.IsAlreayAlive(id);
-        }
-        else
-        {
-            foreach (var hero in heroList)
-            {
-                if (hero.Value.GetComponent<Hero>() != null)
-                {
-                    if (hero.Value.GetComponent<Hero>().id == id)
-                    {
-                        if (hero.Value.GetComponent<Hero>().isDead)
-                        {
-                            return false;
-                        }
-                    }
-                }
-            }
-            return true;
-        }
-    }
     public void ResurrectionHero(int id)
     {
-        if (PrefabsDatabaseManager.instance.GetHeroPrefab(id) != null&&StageManagement.instance.isStageStart()&&!IsAlreayAlive(id))
+        if (PrefabsDatabaseManager.instance.GetHeroPrefab(id) != null)
         {
             var spawnPoint = GameObject.Find("PlayersHero").transform;
             GameObject hero = Instantiate(PrefabsDatabaseManager.instance.GetHeroPrefab(id)) as GameObject;
             hero.transform.parent = spawnPoint;
             hero.transform.localPosition = Vector3.zero;
-            if(Common.stageModeType == Common.StageModeType.Battle)
+            if (heroList.ContainsKey(id))
             {
-                StageBattleManager.instance.PvpResurrectionHero(id, hero);
+                heroList.Remove(id);
+                heroList.Add(id, hero);
             }
-            else
-            {
-                if (heroList.ContainsKey(id))
-                {
-                    heroList.Remove(id);
-                    heroList.Add(id, hero);
-                }
-            }
-            List<GameObject> enemyList = Common.FindEnemy(true);
+            List<GameObject> enemyList = Common.FindEnemy();
             if(enemyList!=null&&enemyList.Count>0)
             {
                 foreach(var enemy in enemyList)
@@ -130,8 +71,6 @@ public class CharactersManager : MonoBehaviour
                     enemy.GetComponent<Hero>().ResearchingEnemys(hero);
                 }
             }
-            if(hero!=null&&hero.GetComponent<Hero>()!=null)
-                HeroSkillManager.instance.ResurrectionHero(hero.GetComponent<Hero>());
         }
     }
     public GameObject GetCurrentInStageHero(int id)
@@ -146,31 +85,12 @@ public class CharactersManager : MonoBehaviour
         Debugging.Log(id + "의 영웅이 스테이지에 없음");
         return null;
     }
-    public List<Hero> GetCurrentInStageHeroes()
-    {
-        List<Hero> heroes = null;
-        foreach (var h in heroList)
-        {
-            heroes.Add(h.Value.GetComponent<Hero>());
-        }
-        return heroes;
-    }
     public int GetStageHeroCount()
     {
         int cnt = 0;
         for(var i = 0; i < User.stageHeros.Length; i++)
         {
             if (User.stageHeros[i] != 0)
-                cnt++;
-        }
-        return cnt;
-    }
-    public int GetBattleHeroCount()
-    {
-        int cnt = 0;
-        for (var i = 0; i < User.battleHeros.Length; i++)
-        {
-            if (User.battleHeros[i] != 0)
                 cnt++;
         }
         return cnt;
@@ -203,22 +123,11 @@ public class CharactersManager : MonoBehaviour
         if (Common.GetSceneCompareTo(Common.SCENE.MAIN))
         {
             CastRay();
-            if (heroInfoUI != null && heroInfoUI.activeSelf && heroUITarget != null)
+            if(heroInfoUI!=null&&heroInfoUI.activeSelf&& heroUITarget!=null)
             {
                 heroInfoUI.transform.position = heroUITarget.transform.position + new Vector3(0, 2);
             }
         }
-    }
-    bool IsPointerOverGameObject()
-    {
-        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
-            return true;
-        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
-        {
-            if(UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId))
-                return true;
-        }
-        return false;
     }
     void CastRay()
     {
@@ -227,24 +136,15 @@ public class CharactersManager : MonoBehaviour
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero, 0f);
 
-            if (!IsPointerOverGameObject() && hit.transform!=null)
+            if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()&&hit.transform!=null&&hit.transform.GetComponent<Hero>()!=null)
             {
-                if(hit.transform.GetComponent<Hero>() != null)
+                Debugging.Log(hit.transform.name + " 선택됨");
+                Hero hero = hit.transform.GetComponent<Hero>();
+                StartCoroutine(OpenHeroInfo(hero));
+                if (!hero.animator.GetBool("isAttack"))
                 {
-                    Debugging.Log(hit.transform.name + " 선택됨");
-                    Hero hero = hit.transform.GetComponent<Hero>();
-                    StartCoroutine(OpenHeroInfo(hero));
-                    if (!hero.animator.GetBool("isAttack"))
-                    {
-                        hero.StartCoroutine("LobbyAttack");
-                    }
+                    hero.StartCoroutine("LobbyAttack");
                 }
-                else if(hit.transform.CompareTag("Obelisk"))
-                {
-                    if(!UI_Manager.instance.IsOnPopupPanel())
-                        UI_Manager.instance.ShowObeliskUI();
-                }
-
             }
         }
     }
@@ -259,8 +159,6 @@ public class CharactersManager : MonoBehaviour
                     heroUIname = i;
                 else if (i.name.Equals("heroInfo"))
                     heroUIinfo = i;
-                else if (i.name.Equals("heroLv"))
-                    heroUIlevel = i;
             }
         }
     }
@@ -277,39 +175,14 @@ public class CharactersManager : MonoBehaviour
         SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_pop);
         heroUITarget = hero.transform;
         heroUIname.text = HeroSystem.GetHeroName(hero.id);
-        heroUIinfo.text = string.Format("{0} <size='23'>FP</size>", Common.GetHeroPower(hero).ToString());
-        heroUIlevel.text = hero.status.level.ToString();
-        heroInfoUI.transform.GetChild(1).GetComponentInChildren<Button>().onClick.RemoveAllListeners();
-        heroInfoUI.transform.GetChild(1).GetComponentInChildren<Button>().onClick.AddListener(delegate
-        {
-            OnClickDetailHeroInfoButton(hero);
-        });
-        if(hero.heroData.ability>0)
-        {
-            heroInfoUI.transform.GetChild(3).gameObject.SetActive(true);
-            heroInfoUI.transform.GetChild(3).GetComponentInChildren<Text>().text = string.Format("{0} {1}",HeroAbilitySystem.GetHeroAbilityName(hero.heroData.ability),Common.getRomeNumber(hero.heroData.abilityLevel));
-        }
-        else
-        {
-            heroInfoUI.transform.GetChild(3).gameObject.SetActive(false);
-        }
+        heroUIinfo.text = string.Format("레벨:{0}\r\n전투력:{1}", hero.status.level, Common.GetHeroPower(hero));
         heroInfoUI.GetComponent<AiryUIAnimatedElement>().ShowElement();
-    }
-    void OnClickDetailHeroInfoButton(Hero hero)
-    {
-        SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_button_default);
-        UI_Manager.instance.PopHeroInfoUI.SetActive(true);
-        UI_Manager.instance.PopHeroInfoUI.SetActive(true);
-        UI_Manager.instance.PopHeroInfoUI.GetComponent<UI_HeroInfo>().ShowHero(PrefabsDatabaseManager.instance.GetHeroPrefab(hero.id), hero.heroData);
     }
 
     public void SetStageHeros(int index, int id)
     {
         User.stageHeros[index] = id;
-    }
-    public void SetPvpHeros(int index, int id)
-    {
-        User.battleHeros[index] = id;
+        Debugging.Log(index + " 열에 " + id + "의 영웅 추가됨 >> " + User.stageHeros[index]);
     }
     public bool GetLobbyHeros(int id)
     {
@@ -377,16 +250,6 @@ public class CharactersManager : MonoBehaviour
     public bool IsExistedStageHero(int id)
     {
         foreach (var i in User.stageHeros)
-        {
-            if (i == id)
-                return true;
-        }
-        return false;
-    }
-
-    public bool IsExistedPvpHero(int id)
-    {
-        foreach (var i in User.battleHeros)
         {
             if (i == id)
                 return true;

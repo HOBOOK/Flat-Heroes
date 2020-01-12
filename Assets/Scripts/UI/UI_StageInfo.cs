@@ -26,7 +26,7 @@ public class UI_StageInfo : MonoBehaviour
             stageTimeText.text = StageManagement.instance.GetStageTime();
         if (kPointText != null)
             kPointText.text = StageManagement.instance.GetKPoint().ToString();
-        if (dPointText != null)
+        if (dPointText.text != null)
             dPointText.text = StageManagement.instance.GetDPoint().ToString();
     }
 }

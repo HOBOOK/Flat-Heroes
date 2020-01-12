@@ -55,16 +55,16 @@ public class CameraEffectHandler : MonoBehaviour
 #endregion
 
     #region 흔드는 효과
-    private float shakeAmount = 0.04f;
-    private float shakeTime = 0.12f;
+    private float shakeAmount = 0.035f;
+    private float shakeTime = 0.1f;
     void HitShakeOff()
     {
         if(Common.isHitShake)
             Common.isHitShake = false;
-        shakeAmount = 0.04f;
-        shakeTime = 0.12f;
+        shakeAmount = 0.035f;
+        shakeTime = 0.1f;
     }
-    public void HitShake(float shakeTime = 0.12f, float shakeAmount = 0.04f)
+    public void HitShake(float shakeTime = 0.1f, float shakeAmount = 0.035f)
     {
         this.shakeAmount = shakeAmount;
         this.shakeTime = shakeTime;
@@ -154,13 +154,6 @@ public class CameraEffectHandler : MonoBehaviour
                 item.sizeDelta = new Vector2(item.sizeDelta.x, 0);
         }
         blackupdowneffect.SetActive(false);
-        ReActiveOffPanelList();
-        isBlackEffectClear = true;
-        yield return null;
-    }
-
-    public void ReActiveOffPanelList()
-    {
         if (offPanelList != null && offPanelList.Count > 0)
         {
             foreach (var panel in offPanelList)
@@ -168,6 +161,8 @@ public class CameraEffectHandler : MonoBehaviour
                 panel.gameObject.SetActive(true);
             }
         }
+        isBlackEffectClear = true;
+        yield return null;
     }
     #endregion
 

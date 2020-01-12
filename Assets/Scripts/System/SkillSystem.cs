@@ -46,12 +46,14 @@ public static class SkillSystem
         {
             Debugging.LogSystem("SkillDatabase is loaded Succesfully.");
         }
+
+        SetObtainPlayerSkill();
     }
 
     public static void SetObtainPlayerSkill()
     {
-        List<Skill> playerSkillList = skills.FindAll(x =>x.id<200 &&x.id > 100 && x.level <= User.level);
-        List<Skill> userPlayerSkillList = userSkills.FindAll(x => x.id<200&&x.id > 100);
+        List<Skill> playerSkillList = skills.FindAll(x => x.id > 100 && x.level <= User.level);
+        List<Skill> userPlayerSkillList = userSkills.FindAll(x => x.id > 100);
 
         foreach(var skill in playerSkillList)
         {
@@ -59,8 +61,7 @@ public static class SkillSystem
             if(s==null)
             {
                 SetObtainSkill(skill.id);
-                if(skill.id!=101)
-                    UI_Manager.instance.ShowGetAlert(skill.image, string.Format("<color='yellow'>'{0}'</color> {1}",skill.name,LocalizationManager.GetText("alertGetMessage2")));
+                UI_Manager.instance.ShowGetAlert(skill.image, string.Format("<color='yellow'>'{0}'</color> {1}",skill.name,LocalizationManager.GetText("alertGetMessage2")));
             }
         }
     }
@@ -85,7 +86,7 @@ public static class SkillSystem
     public static int GetNeedSkillEnergy(Skill skill)
     {
         if (skill != null)
-            return skill.energy + ((skill.energy * GetUserSkillLevel(skill.id)) / 20);
+            return skill.energy + ((skill.energy * GetUserSkillLevel(skill.id)) / 10);
         return 0;
     }
     public static int GetNeedSkillEnergy(int id)
@@ -120,70 +121,29 @@ public static class SkillSystem
         Skill skill = skills.Find(s => s.id == id || s.id.Equals(id));
         if (userSkill != null&& skill != null)
         {
-            switch(id)
-            {
-                case 101:
-                    return ((skill.power * User.level) + (skill.addPower * userSkill.level));
-                case 102:
-                    return skill.power + (skill.addPower * userSkill.level) + User.level;
-                case 103:
-                    return skill.power + (skill.addPower * userSkill.level) + User.level;
-                case 104:
-                    return (skill.addPower * userSkill.level);
-                case 105:
-                    return skill.power + (skill.addPower * userSkill.level) + User.level;
-                default:
-                    return skill.power + (skill.addPower * userSkill.level) + User.level;
-            }
-        }
-        else if(userSkill==null&&skill!=null)
-        {
-            return skill.power;
+            return skill.power + (skill.addPower * userSkill.level);
         }
         else
         {
             return 0;
         }
     }
-    public static int GetUserSkillDelay(int id)
-    {
-        Skill userSkill = userSkills.Find(s => s.id == id || s.id.Equals(id));
-        Skill skill = skills.Find(s => s.id == id || s.id.Equals(id));
-        if (userSkill != null && skill != null&&(skill.skillType==3||skill.skillType==4))
-        {
-            return skill.energy - (skill.addPower * userSkill.level);
-        }
-        else
-        {
-            return skill.energy;
-        }
-    }
     public static int GetUserSkillLevelUpNeedCoin(int id)
     {
         int x = GetUserSkillLevel(id);
-        return 1000+(int)(x * x * 100*0.1f);
+        return 1000+(int)(x * x * 1000*0.1f);
     }
     public static string GetUserSkillDescription(Skill skillData, HeroData heroData)
     {
-        if(skillData.id==7) //공격력 버프
-        {
-            return string.Format("\r\n{0}\r\n\r\n{1} : <color='magenta'>{2}%</color>  {3} : {4}<color='magenta'>(-{5})</color>", GetSkillDescription(GetSkill(skillData.id).id), LocalizationManager.GetText("SkillAttackBuff"), GetUserSkillPower(skillData.id), LocalizationManager.GetText("SkillUseEnergy"), HeroSystem.GetHeroNeedEnergy(heroData.id, skillData), HeroSystem.GetHeroStatusSkillEnergy(ref heroData));
-        }
-        else if(skillData.id==9) //체력회복
-        {
-            return string.Format("\r\n{0}\r\n\r\n{1} : <color='magenta'>{2}%</color>  {3} : {4}<color='magenta'>(-{5})</color>", GetSkillDescription(GetSkill(skillData.id).id), LocalizationManager.GetText("SkillHeal"), GetUserSkillPower(skillData.id), LocalizationManager.GetText("SkillUseEnergy"), HeroSystem.GetHeroNeedEnergy(heroData.id, skillData), HeroSystem.GetHeroStatusSkillEnergy(ref heroData));
-
-        }
-        else
-            return string.Format("\r\n{0}\r\n\r\n{1} : <color='magenta'>{2}%</color>  {3} : {4}<color='magenta'>(-{5})</color>", GetSkillDescription(GetSkill(skillData.id).id),LocalizationManager.GetText("SkillAttack"),GetUserSkillPower(skillData.id), LocalizationManager.GetText("SkillUseEnergy"), HeroSystem.GetHeroNeedEnergy(heroData.id,skillData),HeroSystem.GetHeroStatusSkillEnergy(ref heroData));
+        return string.Format("\r\n{0}\r\n\r\n<color='yellow'>{1} : {2}%</color>  <color='cyan'>{3} : {4}</color><color='yellow'>(-{5})</color>", GetSkillDescription(GetSkill(skillData.id).id),LocalizationManager.GetText("SkillAttack"),GetUserSkillPower(skillData.id), LocalizationManager.GetText("SkillUseEnergy"), HeroSystem.GetHeroNeedEnergy(heroData.id,skillData),HeroSystem.GetHeroStatusSkillEnergy(ref heroData));
     }
     public static List<Skill> GetPlayerSkillList()
     {
-        return skills.FindAll(x => x.id < 200 && x.id > 100);
+        return skills.FindAll(x => x.id > 100);
     }
     public static List<Skill> GetAblePlayerSkillList()
     {
-        return skills.FindAll(x =>x.id<200&& x.id > 100&&!x.id.Equals(User.playerSkill[0])&&!x.id.Equals(User.playerSkill[1]));
+        return skills.FindAll(x => x.id > 100&&!x.id.Equals(User.playerSkill[0])&&!x.id.Equals(User.playerSkill[1]));
     }
     public static List<Skill> GetSelectSkillList()
     {
@@ -216,25 +176,7 @@ public static class SkillSystem
     {
         string des = "";
 
-        switch(skill.id)
-        {
-            case 101:
-                des = string.Format("Lv{0} {1}\r\n\r\n{2}\r\n<color='yellow'><size='20'>{3} : {4}\r\n{5} : {6}{7}</size></color>", GetUserSkillLevel(skill.id), GetSkillName(skill.id), GetSkillDescription(skill.id), LocalizationManager.GetText("SkillAttack"), GetUserSkillPower(skill.id), LocalizationManager.GetText("SkillDelay"), GetUserSkillDelay(skill.id), LocalizationManager.GetText("Sec"));
-                break;
-            case 102:
-                des = string.Format("Lv{0} {1}\r\n\r\n{2}\r\n<color='yellow'><size='20'>{3} : {4}\r\n{5} : {6}{7}</size></color>", GetUserSkillLevel(skill.id), GetSkillName(skill.id), GetSkillDescription(skill.id), LocalizationManager.GetText("SkillHeal"), GetUserSkillPower(skill.id), LocalizationManager.GetText("SkillDelay"), GetUserSkillDelay(skill.id), LocalizationManager.GetText("Sec"));
-                break;
-            case 103:
-                des = string.Format("Lv{0} {1}\r\n\r\n{2}\r\n<color='yellow'><size='20'>{3} : {4}{5}</size></color>", GetUserSkillLevel(skill.id), GetSkillName(skill.id), GetSkillDescription(skill.id), LocalizationManager.GetText("SkillDelay"), GetUserSkillDelay(skill.id), LocalizationManager.GetText("Sec"));
-                break;
-            case 104:
-                des = string.Format("Lv{0} {1}\r\n\r\n{2}\r\n<color='yellow'><size='20'>{3} : {4}{5}\r\n{6} : {7}{8}</size></color>", GetUserSkillLevel(skill.id), GetSkillName(skill.id), GetSkillDescription(skill.id), LocalizationManager.GetText("BuffTime"), (2.0f+GetUserSkillPower(skill.id)*0.1f), LocalizationManager.GetText("Sec"), LocalizationManager.GetText("SkillDelay"), GetUserSkillDelay(skill.id), LocalizationManager.GetText("Sec"));
-                break;
-            case 105:
-                des = string.Format("Lv{0} {1}\r\n\r\n{2}\r\n<color='yellow'><size='20'>{3} : {4}{5}</size></color>", GetUserSkillLevel(skill.id), GetSkillName(skill.id), GetSkillDescription(skill.id), LocalizationManager.GetText("SkillDelay"), GetUserSkillDelay(skill.id), LocalizationManager.GetText("Sec"));
-                break;
-        }
-
+        des = string.Format("Lv{0} {1}\r\n\r\n{2}\r\n<color='yellow'><size='20'>{3} : {4}\r\n{5} : {6}초</size></color>", GetUserSkillLevel(skill.id), GetSkillName(skill.id), GetSkillDescription(skill.id), LocalizationManager.GetText("SkillAttack"), GetUserSkillPower(skill.id), LocalizationManager.GetText("SkillDelay"), skill.energy);
 
         return des;
     }
@@ -250,7 +192,7 @@ public static class SkillSystem
     {
         Skill skill = userSkills.Find(x => x.id == id || x.id.Equals(id));
         Skill refSkill = skills.Find(x => x.id == id || x.id.Equals(id));
-        if (skill != null&&refSkill!=null && (refSkill.level+skill.level) <= User.level&&skill.level<30)
+        if (skill != null&&refSkill!=null && (refSkill.level+skill.level) <= User.level)
             return true;
         else
             return false;
@@ -280,6 +222,7 @@ public static class SkillSystem
         if (skill != null)
         {
             str = LocalizationManager.GetText("SkillDescription" + skill.id);
+            ;
         }
         return str;
     }
@@ -296,15 +239,10 @@ public static class SkillSystem
     }
     public static Sprite GetSkillImage(int id)
     {
-        Skill skill = skills.Find(x => x.id == id || x.id.Equals(id));
-        if(skill!=null)
-        {
-            Sprite sprite = Resources.Load<Sprite>(skill.image);
-            if (sprite == null)
-                sprite = ItemSystem.GetItemNoneImage();
-            return sprite;
-        }
-        return ItemSystem.GetItemNoneImage();
+        Sprite sprite = Resources.Load<Sprite>(skills.Find(x => x.id == id || x.id.Equals(id)).image);
+        if (sprite == null)
+            sprite = ItemSystem.GetItemNoneImage();
+        return sprite;
     }
     #endregion
 }

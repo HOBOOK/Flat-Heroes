@@ -66,35 +66,19 @@ MonoBehaviour:
   grasscut: {fileID: 8300000, guid: 48236db9e91fe7f40973a68deb39c68a, type: 3}
   dead: {fileID: 8300000, guid: b377924cc48ce6f4c87a2b802bcfbf74, type: 3}
   levelup: {fileID: 8300000, guid: be16cdb23462f4148b4e55065f56fa8a, type: 3}
-  victory: {fileID: 8300000, guid: 04dff472a43db404aa5c19a5b91e736b, type: 3}
   ui_shop: {fileID: 8300000, guid: 1660ef4124212c647be3a8b251b4b7b4, type: 3}
   ui_button_default: {fileID: 8300000, guid: 2de2a06fa3812e947a94e0531edfe25d, type: 3}
   ui_pop: {fileID: 8300000, guid: e7aabe1962a01224aa83f1018220d5ab, type: 3}
-  ui_button_skill: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
-  ui_button_cancel: {fileID: 8300000, guid: 8d7a47cdf072cc64398b8143b5c80b50, type: 3}
-  ui_roulette: {fileID: 8300000, guid: 744b4dd2f070b0341b05936ac0fe945c, type: 3}
+  ui_button_skill: {fileID: 8300000, guid: 0ade500752bd79d46a02f81b63b68895, type: 3}
   spell: {fileID: 8300000, guid: 63ab379ea3c5328478e3d785da0b2215, type: 3}
-  heal: {fileID: 8300000, guid: 6f54363abebd98c44b81a0aceef073e7, type: 3}
+  heal: {fileID: 8300000, guid: ce415b7198c9d7a498d2228effb42ce0, type: 3}
   teleport: {fileID: 8300000, guid: 7087dc68d59b49941bc4b4f75474d262, type: 3}
   smoke: {fileID: 8300000, guid: 49ff1ca6eb37af44ab905487c9de21b1, type: 3}
   fireShot: {fileID: 8300000, guid: d083adb0d41328b49bcb5b6a9d05bbe2, type: 3}
   shootPistolSilence: {fileID: 8300000, guid: faf46bca684452646b3b94bd9a09101d, type: 3}
   magic: {fileID: 8300000, guid: 88e117ed0ce5729499497283dc2e1e27, type: 3}
-  spell007: {fileID: 8300000, guid: a0ca8964c08d54c5dbebf245bdc474ca, type: 3}
-  LobbyBgm: {fileID: 8300000, guid: 1571eba384b31cd469e9734c7dafd1f9, type: 3}
-  Stage_001: {fileID: 8300000, guid: 737bdbe2425ec664695d2c589f352ca0, type: 3}
-  Stage_002: {fileID: 8300000, guid: 7152bb8526403704bb562c34984a4fb6, type: 3}
-  Stage_003: {fileID: 8300000, guid: a6db411b57488da47b11739f2c1fa3fc, type: 3}
-  Stage_004: {fileID: 8300000, guid: 477d125442a599741be7fa73c423a3cd, type: 3}
-  Stage_005: {fileID: 8300000, guid: 643a1b1e9c857164280bbbb491fcfb7b, type: 3}
-  Stage_006: {fileID: 8300000, guid: 63c077ee0595b4cb1b2757d5ee5d9bfe, type: 3}
-  Stage_007: {fileID: 8300000, guid: 4e06027622894cd449479bd3eec48d35, type: 3}
-  Stage_008: {fileID: 8300000, guid: f180e9b8f717d214281d006d7ce14772, type: 3}
-  Stage_Attack: {fileID: 8300000, guid: 886453bc516bfef4ea287affef998e69, type: 3}
-  Stage_Battle: {fileID: 8300000, guid: fe399479c2183f649ba2ff4f9c23f27f, type: 3}
-  Stage_Raid: {fileID: 8300000, guid: 7f0e763695f55d6418d4ae7ba071eb08, type: 3}
-  Stage_Infinity: {fileID: 8300000, guid: 3636f9cf50cdb1e478439db6ba244d0b, type: 3}
-  Intro: {fileID: 8300000, guid: dadc1fad7aa60a4469913ba72627d39a, type: 3}
+  LobbyBgm: {fileID: 8300000, guid: b442123a67071894ca2beeb4a6185aae, type: 3}
+  StageBgm: {fileID: 8300000, guid: 737bdbe2425ec664695d2c589f352ca0, type: 3}
 --- !u!1 &2522054163756783632
 GameObject:
   m_ObjectHideFlags: 0

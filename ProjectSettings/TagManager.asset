@@ -36,10 +36,6 @@ TagManager:
   - HeroPoint
   - ShowPoint
   - heart
-  - AlertUI
-  - EnemySpawnPoint
-  - BackgroundImage
-  - Obelisk
   layers:
   - Default
   - TransparentFX

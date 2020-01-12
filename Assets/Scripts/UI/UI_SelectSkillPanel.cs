@@ -121,9 +121,9 @@ public class UI_SelectSkillPanel : MonoBehaviour
     public void CompletedSelectSkill()
     {
         SkillSystem.SetPlayerSkill(selectedSkillList);
-        if (FindObjectOfType<UI_HeroSelect>()!=null)
+        if (this.transform.parent.GetComponent<UI_HeroSelect>()!=null)
         {
-            FindObjectOfType<UI_HeroSelect>().RefreshPlayerSkillUI();
+            this.transform.parent.GetComponent<UI_HeroSelect>().RefreshPlayerSkillUI();
         }
         this.gameObject.SetActive(false);
     }

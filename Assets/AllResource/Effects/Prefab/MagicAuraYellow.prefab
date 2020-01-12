@@ -4659,7 +4659,7 @@ ParticleSystem:
 --- !u!199 &1540681573907059844
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4692,8 +4692,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -332948413
-  m_SortingLayer: -1
+  m_SortingLayerID: -360581849
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_RenderMode: 4
   m_SortMode: 0
@@ -9330,7 +9330,7 @@ ParticleSystem:
 --- !u!199 &1540681573907084012
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -9363,8 +9363,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -332948413
-  m_SortingLayer: -1
+  m_SortingLayerID: -360581849
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -9831,7 +9831,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 1
       minScalar: 0
       maxCurve:
@@ -9884,7 +9884,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 1
       minScalar: 0
       maxCurve:
@@ -14046,7 +14046,7 @@ ParticleSystem:
 --- !u!199 &1540681573905928768
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -14079,8 +14079,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -332948413
-  m_SortingLayer: -1
+  m_SortingLayerID: -360581849
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_RenderMode: 4
   m_SortMode: 0

@@ -8,7 +8,6 @@ public class UI_hp : MonoBehaviour
 {
     [HideInInspector]
     public GameObject Target = null;
-    Hero.Status targetStatus;
     bool isOnPanelHP = false;
     float damage = 0;
     float currentValue = 0;
@@ -23,7 +22,7 @@ public class UI_hp : MonoBehaviour
     [SerializeField]
     public Image hpImage;
     [SerializeField]
-    private float hpBarSetpsLength = 4;
+    private float hpBarSetpsLength = 10;
 
     private void OnEnable()
     {
@@ -32,7 +31,7 @@ public class UI_hp : MonoBehaviour
     private void Awake()
     {
         canvasUI = GameObject.Find("CanvasUI");
-        levelUI = this.transform.GetChild(1).gameObject;
+        levelUI = this.transform.GetChild(2).gameObject;
         sliderContainerRectTransform = GetComponent<RectTransform>();
         sliderRectTransform = GetComponentInChildren<Slider>().gameObject.GetComponent<RectTransform>();
         imageRectTransform = hpImage.GetComponent<RectTransform>();
@@ -46,9 +45,8 @@ public class UI_hp : MonoBehaviour
         {
             this.transform.position = Target.transform.GetChild(0).position+ new Vector3(0, 0.5f + (Target.transform.localScale.y)) ;
             SetDamage();
-            hpImage.material.SetFloat("_Percent", GetCurrentHp() / GetMaxHp());
-
-            //transform.GetChild(0).GetComponent<Slider>().value = currentValue;
+            currentValue = DecrementSliderValue(transform.GetChild(0).GetComponent<Slider>().value, GetCurrentHp() / GetMaxHp());
+            transform.GetChild(0).GetComponent<Slider>().value = currentValue;
             //HidePanelHP();
             DisablePanelHP();
         }
@@ -56,48 +54,32 @@ public class UI_hp : MonoBehaviour
     public void OpenHpUI(GameObject target, bool isBlue = false)
     {
         if (Target == null||Target != target)
-        {
             Target = target;
-            if (target.GetComponent<Hero>() != null)
-                targetStatus = target.GetComponent<Hero>().status;
-            else if (target.GetComponent<TutorialHero>() != null)
-                targetStatus = target.GetComponent<TutorialHero>().status;
-        }
-
         this.name = string.Format("HP_BAR_OF_{0}", Target.name);
         this.transform.position = Target.transform.GetChild(0).position;
-        sliderContainerRectTransform.sizeDelta = new Vector2(80, 30);
+        sliderContainerRectTransform.sizeDelta = new Vector2(Mathf.Clamp(GetMaxHp()*0.01f, 120, 200), 70);
         panelHpTime = 0.0f;
-        SetLevelUI(targetStatus.level);
-        if (targetStatus.level >= 100)
-        {
-            levelUI.transform.GetChild(0).GetComponent<Image>().color = Color.white;
-        }
-        else
-        {
-            levelUI.transform.GetChild(0).GetComponent<Image>().color = Color.black;
-        }
+        levelUI.GetComponentInChildren<Text>().text = Target.GetComponent<Hero>().status.level.ToString();
+        levelUI.GetComponentInChildren<Slider>().value = (float)Target.GetComponent<Hero>().status.exp / (float)Common.GetHeroNeedExp(Target.GetComponent<Hero>().status.level);
+        currentValue = GetCurrentHp();
+        transform.GetChild(0).GetComponent<Slider>().value = GetCurrentHp() / GetMaxHp();
+        transform.GetChild(1).GetComponent<Text>().text = Target.name;
         if (isBlue)
-            hpImage.material.SetColor("_Color", new Color(0.25f,0.5f,1f));
+            hpImage.material.SetColor("_Color", new Color(0,0.4f,1));
         else
-            hpImage.material.SetColor("_Color", new Color(1f, 0.5f, 0.25f));
+            hpImage.material.SetColor("_Color", new Color(1, 0.4f, 0));
 
-        hpImage.material.SetVector("_ImageSize", new Vector4(70, 18, 0, 0));
-        hpBarSetpsLength = 4;
+        hpImage.material.SetVector("_ImageSize", new Vector4(imageRectTransform.rect.size.x-10, imageRectTransform.rect.size.y, 0, 0));
+        hpBarSetpsLength = (currentMaxHp *0.01f) > 10 ? 10 : (currentMaxHp *0.01f);
         hpImage.material.SetFloat("_Steps", hpBarSetpsLength);
         isOnPanelHP = true;
-    }
-    public void SetLevelUI(int level)
-    {
-        Text levelText = levelUI.GetComponentInChildren<Text>();
-        levelText.text = level.ToString();
     }
 
     void DisablePanelHP()
     {
-        if(Target!=null&& targetStatus != null)
+        if(Target!=null&&Target.GetComponent<Hero>()!=null)
         {
-            if(GetCurrentHp() <= 0)
+            if(Target.GetComponent<Hero>().isDead || GetCurrentHp() <= 0)
             {
                 Target = null;
                 panelHpTime = 0.0f;
@@ -106,14 +88,6 @@ public class UI_hp : MonoBehaviour
             }
 
         }
-    }
-
-    public void ForceDisableUI()
-    {
-        Target = null;
-        panelHpTime = 0.0f;
-        isOnPanelHP = false;
-        ObjectPool.Instance.PushToPool("hpEnemyUI", this.gameObject, canvasUI.transform);
     }
 
     void HidePanelHP()
@@ -131,9 +105,10 @@ public class UI_hp : MonoBehaviour
     {
         if (Target != null)
         {
-            if (targetStatus != null)
+            if (Target.GetComponent<Hero>() != null)
             {
-                currentHp = (float)targetStatus.hp;
+                currentHp = (float)Target.GetComponent<Hero>().status.hp;
+                hpImage.material.SetFloat("_Percent", currentHp/currentMaxHp);
                 return currentHp;
             }
 
@@ -147,9 +122,9 @@ public class UI_hp : MonoBehaviour
     {
         if (Target != null)
         {
-            if (targetStatus != null)
+            if (Target.GetComponent<Hero>() != null)
             {
-                currentMaxHp = (float)targetStatus.maxHp;
+                currentMaxHp = (float)Target.GetComponent<Hero>().status.maxHp;
                 return currentMaxHp;
             }
             else
@@ -166,7 +141,7 @@ public class UI_hp : MonoBehaviour
     {
         if(currentHp>0)
         {
-            damage -= Time.deltaTime * currentMaxHp*0.3f;
+            damage -= Time.deltaTime * currentMaxHp*0.2f;
             if (damage < 0)
                 damage = 0;
             hpImage.material.SetFloat("_DamagesPercent", damage / currentMaxHp);

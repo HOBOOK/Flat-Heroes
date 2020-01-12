@@ -81,21 +81,14 @@ public static class AbilitySystem
             }
         }
     }
-    public static void ResetAbility()
-    {
-        foreach(var ab in userAbilities)
-        {
-            ab.level = 0;
-            AbilityDatabase.SaveAbility(ab.id);
-        }
-    }
     public static void SetObtainAbility(int id)
     {
         Ability userAb = userAbilities.Find(x => x.id == id || x.id.Equals(id));
         if(userAb != null)
         {
             userAb.level += 1;
-            SaveSystem.UseUserStatPoint();
+            User.abilityCount += 1;
+            SaveSystem.SavePlayer();
             AbilityDatabase.SaveAbility(id);
         }
         else
@@ -103,31 +96,11 @@ public static class AbilitySystem
             Ability ab = abilities.Find(ability => ability.id == id || ability.id.Equals(id));
             if (ab != null)
             {
+                User.abilityCount += 1;
                 SaveSystem.SavePlayer();
                 ab.level = 1;
                 userAbilities.Add(ab);
                 AbilityDatabase.AddAbility(id);
-            }
-        }
-    }
-    public static void SetObtainAllAbility(Ability ab, int count)
-    {
-        Ability userAb = userAbilities.Find(x => x.id == ab.id || x.id.Equals(ab.id));
-        if (userAb != null)
-        {
-            userAb.level += count;
-            SaveSystem.UseUserStatPoint(count);
-            AbilityDatabase.SaveAbility(ab.id);
-        }
-        else
-        {
-            Ability refAb = abilities.Find(ability => ability.id == ab.id || ability.id.Equals(ab.id));
-            if (refAb != null)
-            {
-                SaveSystem.SavePlayer();
-                refAb.level = count;
-                userAbilities.Add(refAb);
-                AbilityDatabase.AddAbility(refAb.id);
             }
         }
     }

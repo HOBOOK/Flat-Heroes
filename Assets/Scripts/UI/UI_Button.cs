@@ -12,7 +12,7 @@ public class UI_Button : MonoBehaviour
     public ButtonType buttonType;
     public GameObject targetUI;
     public int targetSceneNumber;
-    public enum PaymentType { Coin,BlackCrystal,Energy,Advertisement,Cash,None};
+    public enum PaymentType { Coin,BlackCrystal,Cash,Advertisement,None};
     public PaymentType paymentType;
     public GachaSystem.GachaType gachaType;
     public int stageType;
@@ -40,7 +40,9 @@ public class UI_Button : MonoBehaviour
                 {
                     if (!targetUI.activeSelf)
                     {
-                        StartCoroutine("ActiveUI");
+                        targetUI.SetActive(true);
+                        targetUI.SetActive(true);
+                        showUIanimation();
                     }
                     else
                     {
@@ -82,10 +84,7 @@ public class UI_Button : MonoBehaviour
                 break;
             case ButtonType.SceneLoad:
                 OnButtonEffectSound();
-                if (LoadSceneManager.instance != null)
-                    LoadSceneManager.instance.LoadScene(targetSceneNumber);
-                else
-                    SceneManager.LoadScene(targetSceneNumber);
+                LoadSceneManager.instance.LoadScene(targetSceneNumber);
                 this.GetComponent<Button>().interactable = false;
                 break;
             case ButtonType.SceneLoadAddtive:
@@ -94,7 +93,7 @@ public class UI_Button : MonoBehaviour
                 this.GetComponent<Button>().interactable = false;
                 break;
             case ButtonType.ItemBuy:
-                BuyStart(0);
+                BuyStart();
                 break;
             case ButtonType.CharacterBuy:
                 BuyStart(1);
@@ -122,22 +121,12 @@ public class UI_Button : MonoBehaviour
                 SellStart();
                 break;
             case ButtonType.Gacha:
-                if(UI_Manager.instance.PopupGetGachaUI!=null&&!UI_Manager.instance.PopupGetGachaUI.activeSelf)
-                    GachaStart();
+                GachaStart();
                 break;
             case ButtonType.InventoryAdd:
                 InventoryAddStart();
                 break;
         }
-    }
-    IEnumerator ActiveUI()
-    {
-        GoogleSignManager.ShowProgressCircle(10);
-        targetUI.SetActive(true);
-        targetUI.SetActive(true);
-        showUIanimation();
-        GoogleSignManager.ShowProgressCircle(100);
-        yield return null;
     }
     void InventoryAddStart()
     {
@@ -225,20 +214,21 @@ public class UI_Button : MonoBehaviour
     }
     void StopPause()
     {
-        if(!Common.GetSceneCompareTo(Common.SCENE.MAIN))
-            Time.timeScale = User.isSpeedGame ? 1.3f : 1.0f;
+        Time.timeScale = 1;
     }
     public void SetStageType(int type)
     {
         stageType = type;
-        Debugging.Log("스테이지 타입 설정 > " + type);
     }
     void OnButtonEffectSound()
     {
-        if (audioClip == null)
-            SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_button_default);
-        else
-            SoundManager.instance.EffectSourcePlay(audioClip);
+        if (SoundManager.instance != null)
+        {
+            if (audioClip == null)
+                SoundManager.instance.EffectSourcePlay(AudioClipManager.instance.ui_button_default);
+            else
+                SoundManager.instance.EffectSourcePlay(audioClip);
+        }
     }
 
     void BuyStart(int type=0)
@@ -268,7 +258,7 @@ public class UI_Button : MonoBehaviour
                 if (Common.PaymentCheck(ref User.coin, paymentAmount))
                 {
                     OnButtonEffectSound();
-                    if (buyItemId > 9000&& buyItemId <= 9040)
+                    if (buyItemId > 9000)
                         ItemSystem.SetObtainMoney(buyItemId);
                     else
                         ItemSystem.SetObtainItem(buyItemId);
@@ -360,6 +350,7 @@ public class UI_Button : MonoBehaviour
                 break;
             case PaymentType.Cash:
                 OnButtonEffectSound();
+                OnButtonEffectSound();
                 IAPManager.instance.OnBtnPurchaseClicked(buyItemId);
                 CallbackScriptRefresh();
                 Debugging.Log(characterId + " 현금거래 버튼 입니다. >> Cash : " + paymentAmount);
@@ -380,7 +371,7 @@ public class UI_Button : MonoBehaviour
                 UI_Manager.instance.ShowGetAlert("Items/coin", string.Format("<color='yellow'>{0}</color> {1}{2}", Common.GetThousandCommaText(value),LocalizationManager.GetText("Coin"),LocalizationManager.GetText("alertGetMessage1")));
                 if (callBackScript != null)
                 {
-                    callBackScript.GetComponent<UI_Manager_InventoryTab>().RefreshUI();
+                    callBackScript.GetComponent<UI_Manager_InventoryTab>().RefreshUI(Common.OrderByType.NAME);
                 }
             }
             else
@@ -433,7 +424,7 @@ public class UI_Button : MonoBehaviour
     IEnumerator CheckingAlert(int type)
     {
         isCheckAlertOn = true;
-        var alertPanel = UI_Manager.instance.ShowNeedAlert("Items/" + Enum.GetName(typeof(PaymentType), paymentType), string.Format("<color='yellow'>'{0}' <size='24'>x </size>{1}</color>  {2}", Common.GetCoinCrystalEnergyText((int)paymentType), paymentAmount,LocalizationManager.GetText("alertNeedMessage5")));
+        var alertPanel = UI_Manager.instance.ShowNeedAlert("Items/" + Enum.GetName(typeof(PaymentType), paymentType), string.Format("<color='yellow'>'{0}' <size='24'>x </size>{1}</color>  {2}", Common.GetCoinCrystalEnergyText(type), paymentAmount,LocalizationManager.GetText("alertNeedMessage5")));
         while (!alertPanel.GetComponentInChildren<UI_CheckButton>().isChecking)
         {
             yield return new WaitForFixedUpdate();
